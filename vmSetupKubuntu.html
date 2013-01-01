@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Setting up the Virtual Machine (MathKubuntu)" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <script src="./javascript/utility.js"></script>
+
+    <title>Setting up the Virtual Machine (MathKubuntu)</title>
+  </head>
+
+  <body onload="initialize();">
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="go_home" href="more.html">More Info</a>
+          <a id="download_book" href="https://github.com/lqbrin/tea-time-numerical/blob/master/TeaTimeNumericalAnalysis.pdf?raw=true">Download PDF</a>
+          <h2 id="book_title">Tea Time Numerical Analysis <span style="font-size:60%">Experiences in Mathematics</span></h2>
+        </header>
+    </div>
+
+    <script>
+      srcbase="images/vmSetup/kub";
+      function initialize(){
+	var el=document.getElementById('radioDefault');
+	el.checked=true;
+	osSelected(el.value,12,19);
+      }
+      caption=[
+	'Once the virtual machine has started, select \'Insert Guest Additions CD image...\' from the Devices menu.', // 0
+	'The \'Available Devices\' dialog box should pop up automatically. Click \'Open with File Manager\'. Don\'t worry if it disappears before you get to it. Just click the <img width=\'32\' height=\'34\' alt=\'Kubuntu available devices\' src=\'images/kubuntuDevices.png\'> icon to get it back. Then click the VBOXADDITIONS device to get the \'Open with File Manager\' option back.', //1
+	'Click the <img width=\'32\' height=\'35\' alt=\'Kubuntu menu button\' src=\'images/kubuntuButton.png\'> button to get the Kubuntu menu.', //2
+	'Type \'term\' in the search box and click Konsole when it shows up.', //3
+	'Type <pre>sudo apt-get install dkms</pre> and press Enter.', //4
+	'Enter your password. Nothing will show on the screen as you type. No asterisks, dots, or other characters. Don\'t worry. Just finish typing your password and press Enter.', //5
+	'Type <pre>sudo ./VBoxLinuxAdditions.run</pre> and press Enter.', //6
+	'Guest Additions is now installed. Type <pre>exit</pre> and press Enter.', //7
+	'Click the <img width=\'32\' height=\'34\' alt=\'Kubuntu available devices\' src=\'images/kubuntuDevices.png\'> icon and eject the Guest Additions CD image by clicking the <img width=\'33\' height=\'34\' alt=\'Kubuntu eject device\' src=\'images/kejectButton.png\'> icon next to VBOXADDITI...', //8
+	'Select \'Leave --> Shut down\' from the Kubuntu menu. Click the <img width=\'32\' height=\'35\' alt=\'Kubuntu menu button\' src=\'images/kubuntuButton.png\'> button to get the Kubuntu menu.', //9
+	'Click \'Turn Off Computer\' or just wait.', //10
+	'With your virtual machine highlighted, click the <img width=\'76\' height=\'68\' alt=\'Settings button\' src=\'images/settingsButton.png\'> button.', //11
+	'Click the Shared Folders tab.', //12
+	'Click the <img width=\'27\' height=\'24\' alt=\'Add shared folder button\' src=\'images/plusButton.png\'> button on the right.', //13
+	'Select Other... from the Folder Path dropdown menu.', //14
+	'Select the directory (folder) you want to share. The files in that directory will be available to both the host (Windows) and the guest (Mathbuntu). Any file created in this folder will be instantly available to both Windows programs and Mathbuntu programs. This makes it very easy to share files between the two. All you need to do is save your work to this folder and it is automatically shared. Sharing the Documents folder is suggested. You can repeat this procedure if you would like to share other folders too.', //15
+	'Select the Documents folder and click Choose.', //16
+	'Make sure the Auto-mount checkbox is checked. Then click OK.', //17
+	'Click OK.', //18
+	'With your virtual machine highlighted, click the <img width=\'53\' height=\'67\' alt=\'Start button\' src=\'images/startButton.png\'> button.', //19
+	'Once the virtual machine has started and you have logged in, type \'term\' in the Kubuntu menu search box and select Konsole. Click the <img width=\'32\' height=\'35\' alt=\'Kubuntu menu button\' src=\'images/kubuntuButton.png\'> button to get the Kubuntu menu.', //20
+	'Type <pre>groups</pre> and press Enter. You must be part of the vboxsf group in order to use the shared folder. This command shows that you are not part of that group since vboxsf does not appear in the list. The next steps will add you to the group and set up your shared documents folder.', //21
+	'Type <pre>sudo usermod -a -G vboxsf [username]</pre> substituting your username as shown -- no square brackets. Press Enter. Type your password and press Enter. Nothing will show on the screen as you type your password.', //22
+	'Type <pre>mv Documents/ LocalDocuments</pre> and press Enter.', //23
+	'Type <pre>ln -s /media/sf_Documents/ Documents</pre> and press Enter. This means that within Mathbuntu, the Documents folder is the one that is shared. Put files here if you want to share them with the host.', //24
+	'You must log out for the changes to take effect. Select Leave --> Shut down from the Kubuntu menu.', //25
+	'Click \'Turn Off Computer\' or just wait.', //26
+	'With your virtual machine highlighted, click the <img width=\'76\' height=\'68\' alt=\'Settings button\' src=\'images/settingsButton.png\'> button.', //27
+	'Click the Advanced tab and check the \'Show at Top of Screen\' box. Click OK.', //28
+	'One last nicety...right-click your virtual machine listing and select \'Create Shortcut on Desktop\'. This will put a shortcut on your desktop so you can run Mathbuntu as if it were a Windows program. Exit the Oracle VM VirtualBox Manager. Double-click the newly created desktop icon to start the virtual machine.', //29
+	'One last nicety...control-click your virtual machine listing and select \'Create Alias on Desktop\'. This will put an alias on your desktop so you can run Mathbuntu as if it were a MacOS X app. Exit the Oracle VM VirtualBox Manager. Double-click the newly created desktop alias to start the virtual machine.', //30
+	'Type <pre>cd /media/VBOX</pre> and press Tab. The rest of the name should automatically pop up and look something like above. If it does not, double check your spelling and make sure you are using the right slashes. If necessary, go back to step 2. The VBOXADDITIONS image may not be mounted. When the tab completion works, you are set to proceed. Press Enter.', //31
+      ];
+    </script>
+    
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+	<h4>Setting up the Virtual Machine (MathKubuntu)</h4>
+        <p>The default virtual machine leaves a lot to be desired. Its resolution is low and it has no access to the host machine's files, for example. These few steps will fix both these deficiencies plus some others. Start by launching the virtual machine.</p>
+        <p>Mouse over the thumbnails on the left for step-by-step instructions and screenshots. NOTE: Screenshots are representative of what you will see. Your images may vary, but they should be close enough that you can still follow the directions.</p>
+        <form style="text-align:center;">
+	  <input id="radioDefault" type="radio" name="os" value="Win" onclick="osSelected(this.value,12,19);">Windows <input type="radio" name="os" value="Mac" onclick="osSelected(this.value,19,19);">MacOS X
+        </form>
+        <div id="instructions">
+	  <div class="storyboard">
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub12.png" onmouseover="setStep(1, 12, 19);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub01.png" onmouseover="setStep(2, 1, 0);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub19.png" onmouseover="setStep(1, 19, 19);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub00.png" onmouseover="setStep(2, 0, 0);" />
+	    <img class="storythumb" src="images/vmSetup/kub02.png" onmouseover="setStep(3, 2, 1);" />
+	    <img class="storythumb" src="images/vmSetup/kub03.png" onmouseover="setStep(4, 3, 2);" />
+	    <img class="storythumb" src="images/vmSetup/kub04.png" onmouseover="setStep(5, 4, 3);" />
+	    <img class="storythumb" src="images/vmSetup/kub37.png" onmouseover="setStep(6, 37, 31);" />
+	    <img class="storythumb" src="images/vmSetup/kub05.png" onmouseover="setStep(7, 5, 4);" />
+	    <img class="storythumb" src="images/vmSetup/kub06.png" onmouseover="setStep(8, 6, 5);" />
+	    <img class="storythumb" src="images/vmSetup/kub07.png" onmouseover="setStep(9, 7, 6);" />
+	    <img class="storythumb" src="images/vmSetup/kub08.png" onmouseover="setStep(10, 8, 7);" />
+	    <img class="storythumb" src="images/vmSetup/kub09.png" onmouseover="setStep(11, 9, 8);" />
+	    <img class="storythumb" src="images/vmSetup/kub10.png" onmouseover="setStep(12, 10, 9);" />
+	    <img class="storythumb" src="images/vmSetup/kub11.png" onmouseover="setStep(13, 11, 10);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub12.png" onmouseover="setStep(14, 12, 11);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub13.png" onmouseover="setStep(15, 13, 12);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub14.png" onmouseover="setStep(16, 14, 13);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub15.png" onmouseover="setStep(17, 15, 14);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub16.png" onmouseover="setStep(18, 16, 15);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub17.png" onmouseover="setStep(19, 17, 17);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub18.png" onmouseover='setStep(20, 18, 18);' />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub12.png" onmouseover="setStep(21, 12, 19);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub19.png" onmouseover="setStep(14, 19, 11);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub20.png" onmouseover="setStep(15, 20, 12);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub21.png" onmouseover="setStep(16, 21, 13);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub22.png" onmouseover="setStep(17, 22, 14);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub23.png" onmouseover="setStep(18, 23, 16);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub24.png" onmouseover="setStep(19, 24, 17);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub25.png" onmouseover="setStep(20, 25, 18);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub19.png" onmouseover="setStep(21, 19, 19);" />
+	    <img class="storythumb" src="images/vmSetup/kub26.png" onmouseover="setStep(22, 26, 20);" />
+	    <img class="storythumb" src="images/vmSetup/kub27.png" onmouseover='setStep(23, 27, 21);' />
+	    <img class="storythumb" src="images/vmSetup/kub28.png" onmouseover="setStep(24, 28, 22);" />
+	    <img class="storythumb" src="images/vmSetup/kub29.png" onmouseover="setStep(25, 29, 23);" />
+	    <img class="storythumb" src="images/vmSetup/kub30.png" onmouseover="setStep(26, 30, 24);" />
+	    <img class="storythumb" src="images/vmSetup/kub31.png" onmouseover="setStep(27, 31, 25);" />
+	    <img class="storythumb" src="images/vmSetup/kub32.png" onmouseover="setStep(28, 32, 26);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub12.png" onmouseover="setStep(29, 12, 27);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub33.png" onmouseover="setStep(30, 33, 28);" />
+	    <img name="winContext" class="storythumb" src="images/vmSetup/kub35.png" onmouseover="setStep(31, 35, 29);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub19.png" onmouseover="setStep(29, 19, 27);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub34.png" onmouseover="setStep(30, 34, 28);" />
+	    <img name="macContext" class="storythumb" src="images/vmSetup/kub36.png" onmouseover="setStep(31, 36, 30);" />
+	  </div>
+	  <div id="storyframe_wrap">
+	    <table style="margin:auto; border:none; padding:0px;">
+	      <tr style="padding:0px"><td style="padding:0px;"><img id="storyframe" src="images/vmSetup/kub12.png" /></td></tr>
+	    </table>
+	  </div>
+	</div>
+	<div id="message">Message goes here.</div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+	<p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="float:left; margin: 0px 15px 0px 0;" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Tea Time Numerical Analysis</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://lqbrin.github.io/tea-time-numerical/" property="cc:attributionName" rel="cc:attributionURL">Leon Q. Brin</a> is licensed under a<br /><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+  </body>
+</html>

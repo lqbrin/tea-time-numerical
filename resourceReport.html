@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Checking your Machine's Resources" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <script src="./javascript/utility.js"></script>
+
+    <title>Checking your Machine's Resources</title>
+  </head>
+
+  <body onload="initialize();">
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="go_home" href="more.html">More Info</a>
+          <a id="download_book" href="https://github.com/lqbrin/tea-time-numerical/blob/master/TeaTimeNumericalAnalysis.pdf?raw=true">Download PDF</a>
+          <h2 id="book_title">Tea Time Numerical Analysis <span style="font-size:60%">Experiences in Mathematics</span></h2>
+        </header>
+    </div>
+
+    <script>
+      srcbase="images/resourceCheck/capture";
+      function initialize(){
+	var el=document.getElementById('radioDefault');
+	el.checked=true;
+	osSelected(el.value,5,4);
+      }
+      caption=[
+	'From the Apple menu, select \'About This Mac\'', // 0
+	'Click \'More Info...\'', //1
+	'This is where you find out about your processor and memory (RAM). The computer shown above has a 2.5 GHz processor and 8 GB of RAM. The virtual machine can be installed on such a computer. Now check your computer. Then select the \'Storage\' tab.<br />NOTE: 1000 MHz = 1 GHz.', //2
+	'This is where you find out about available disk space. The computer shown above has 232.94 GB available on the Macintosh HD. The virtual machine can be installed on this drive. Now check your computer.<br />NOTE: 1 TB = 1000 GB.', //3
+	'Select \'Computer\' from the Windows menu.', //4
+	'This is where you find out about available disk space. The computer shown above has 116 GB available on the C: drive and 1.27 TB available on the E: drive. The virtual machine can be installed on either drive. Now check your computer.<br />NOTE: 1 TB = 1000 GB. Continue to the next instruction.', //5
+	'Right-click \'Computer\' and select \'Properties\'.', //6
+	'This is where you find out about your Processor and Installed memory (RAM). The computer shown above has a 1.30 GHz processor and 4.00 GB of RAM. The virtual machine can be installed on such a computer. Now check your computer.<br />NOTE: 1000 MHz = 1 GHz.', //7
+      ];
+    </script>
+    
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+	<h4>Checking your Machine's Resources</h4>
+        <p>Your computer will likely perform reasonably with Mathbuntu in a virtual machine if it has <strong>at least</strong></p>
+        <ul>
+	  <li>a 1GHz processor</li>
+	  <li>2 GB RAM. To be more specific:
+	    <ul>
+	      <li>for MathLubuntu:
+		<ul><li>Windows 7 32-bit: 2 GB RAM</li><li>Windows 8 or Windows 7 64-bit: 3 GB RAM</li><li>MacOS X: 3 GB RAM</li></ul>
+	      </li>
+	      <li>for MathUbuntu or MathKubuntu:<ul><li>Windows 7 32-bit: 3 GB RAM</li><li>Windows 8 or Windows 7 64-bit: 4 GB RAM</li><li>MacOS X: 4 GB RAM</li></ul>
+	      </li>
+	    </ul>
+	  </li>
+	  <li>30 GB available disk space</li>
+        </ul>
+        <p>The processor speed is not a requirement, just a guideline. Slower processors may be too slow to run a virtual machine tolerably. That is up to you to decide. The RAM and disk space are firmer guidelines. You may be able to get away with less, but it is not recommended you try. Results will almost certainly be disappointing.</p>
+        <p>Mouse over the thumbnails on the left for step-by-step instructions and screen shots on how to check your machine's resources.</p>
+        <form style="text-align:center;">
+	  <input id="radioDefault" type="radio" name="os" value="Win" onclick="osSelected(this.value,5,4);" checked>Windows <input type="radio" name="os" value="Mac" onclick="osSelected(this.value,1,0);">MacOS X
+        </form>
+        <div id="instructions">
+	  <div class="storyboard">
+	    <img name="macContext" class="storythumb" src="images/resourceCheck/capture01.png" onmouseover="setStep(1, 1, 0);" />
+	    <img name="macContext" class="storythumb" src="images/resourceCheck/capture02.png" onmouseover="setStep(2, 2, 1);" />
+	    <img name="macContext" class="storythumb" src="images/resourceCheck/capture03.png" onmouseover="setStep(3, 3, 2);" />
+	    <img name="macContext" class="storythumb" src="images/resourceCheck/capture04.png" onmouseover="setStep(4, 4, 3);" />
+	    <img name="winContext" class="storythumb" src="images/resourceCheck/capture05.png" onmouseover="setStep(1, 5, 4);" />
+	    <img name="winContext" class="storythumb" src="images/resourceCheck/capture06.png" onmouseover="setStep(2, 6, 5);" />
+	    <img name="winContext" class="storythumb" src="images/resourceCheck/capture07.png" onmouseover="setStep(3, 7, 6);" />
+	    <img name="winContext" class="storythumb" src="images/resourceCheck/capture08.png" onmouseover="setStep(4, 8, 7);" />
+	  </div>
+	  <div id="storyframe_wrap">
+	    <table style="margin:auto; border:none; padding:0px;">
+	      <tr style="padding:0px"><td style="padding:0px;"><img id="storyframe" src="images/resourceCheck/capture01.png" /></td></tr>
+	    </table>
+	  </div>
+	</div>
+	<div id="message">Message goes here.</div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+	<p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="float:left; margin: 0px 15px 0px 0;" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Tea Time Numerical Analysis</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://lqbrin.github.io/tea-time-numerical/" property="cc:attributionName" rel="cc:attributionURL">Leon Q. Brin</a> is licensed under a<br /><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+  </body>
+</html>

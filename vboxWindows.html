@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Installing Virtual Box for Windows" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <script src="./javascript/utility.js"></script>
+
+    <title>Installing Virtual Box for Windows</title>
+  </head>
+
+  <body>
+
+    <script>
+      srcbase="images/vboxInstall/win";
+      var firstMsg='Click <span class="linkClone" onclick="openFullWindow(\'https://www.virtualbox.org/wiki/Downloads\',\'Virtual Box Downloads\',620,460);">here</span> to pop up the download website. In the popup window, click the x86/amd64 download link for Windows hosts. Make sure you do not click the link for OS X hosts.';
+    </script>
+  
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="go_home" href="more.html">More Info</a>
+          <a id="download_book" href="https://github.com/lqbrin/tea-time-numerical/blob/master/TeaTimeNumericalAnalysis.pdf?raw=true">Download PDF</a>
+          <h2 id="book_title">Tea Time Numerical Analysis <span style="font-size:60%">Experiences in Mathematics</span></h2>
+        </header>
+    </div>
+    
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+	<h4>Installing Virtual Box in Windows</h4>
+        <p>Virtual Box is installed just like most Windows programs. You download an installer and run it. The Windows install wizard takes you through the installation.</p>
+        <p>Mouse over the thumbnails on the left for step-by-step instructions and screen shots.</p>
+        <div id="instructions">
+	  <div class="storyboard">
+	    <img class="storythumb" src="images/vboxInstall/win11.png" onmouseover="setFrame(1, 11, firstMsg);" />
+	    <img class="storythumb" src="images/vboxInstall/win12.png" onmouseover="setFrame(2, 12, 'When the download is done, find the VirtualBox installer in the Downloads folder and double-click it.');" />
+	    <img class="storythumb" src="images/vboxInstall/win01.png" onmouseover="setFrame(3, 1, 'This is the installer welcome screen. Nothing to do here. Just click next.');" />
+	    <img class="storythumb" src="images/vboxInstall/win02.png" onmouseover="setFrame(4, 2, 'The default is good. Click next.');" />
+	    <img class="storythumb" src="images/vboxInstall/win03.png" onmouseover="setFrame(5, 3, 'Decide which shortcut(s) you want. You should have at least one for convenient access. Click next.');" />
+	    <img class="storythumb" src="images/vboxInstall/win04.png" onmouseover="setFrame(6, 4, 'Decide if this is a good time to interrupt networking. If not, come back to this later. Click yes when ready.');" />
+	    <img class="storythumb" src="images/vboxInstall/win05.png" onmouseover="setFrame(7, 5, 'Follow the screen instructions.');" />
+	    <img class="storythumb" src="images/vboxInstall/win08.png" onmouseover="setFrame(8, 8, 'If you see this security warning, don\'t worry. Oracle is a trusted company. Check the box next to \'Always trust...\' if you don\'t want to see any more of these popups. Click Install.');" />
+	    <img class="storythumb" src="images/vboxInstall/win06.png" onmouseover="setFrame(9, 6, 'Follow the screen instructions.');" />
+	    <img class="storythumb" src="images/vboxInstall/win10.png" onmouseover="setFrame(10, 10, 'Installation is done. Click Finish.');" />
+	  </div>
+	  <div id="storyframe_wrap">
+	    <table style="margin:auto; border:none; padding:0px;">
+	      <tr style="padding:0px"><td style="padding:0px;"><img id="storyframe" src="images/vboxInstall/win11.png" /></td></tr>
+	    </table>
+	  </div>
+	</div>
+	<div id="message"></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+	<p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="float:left; margin: 0px 15px 0px 0;" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Tea Time Numerical Analysis</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://lqbrin.github.io/tea-time-numerical/" property="cc:attributionName" rel="cc:attributionURL">Leon Q. Brin</a> is licensed under a<br /><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+  </body>
+</html>

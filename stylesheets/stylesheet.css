@@ -34,11 +34,11 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
-
+/*
 ol, ul {
   list-style: none;
 }
-
+*/
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -153,9 +153,12 @@ p img {
   display: inline;
   margin: 0;
   padding: 0;
-  vertical-align: middle;
   text-align: center;
   border: none;
+}
+
+img {
+  vertical-align: middle;
 }
 
 pre, code {
@@ -172,10 +175,12 @@ pre, code {
 }
 
 pre {
-  width: 100%;
+  width: 80%;
+  margin: auto;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
   overflow: auto;
+  text-align: left;
 }
 
 code {
@@ -195,8 +200,7 @@ blockquote {
   padding: 0 0 0 20px;
   border-left: 3px solid #bbb;
 }
-
-
+/*
 ul, ol, dl {
   margin-bottom: 15px
 }
@@ -210,7 +214,11 @@ ol {
   list-style: decimal inside;
   padding-left: 20px;
 }
-
+*/
+ul, ol {
+  list-style-position: inside;
+  padding-left: 20px;
+}
 dl dt {
   font-weight: bold;
 }
@@ -285,6 +293,62 @@ Full-Width Styles
   background: #0090ff;
   font-weight: 300;
   border-radius: 2px;
+}
+
+.storyboard {
+  width: 125px;
+  height: 500px;
+  overflow: auto;
+  float: left;
+}
+
+.storythumb {
+  width:100px;
+  position: relative;
+  margin: 0;
+  padding: 0px;
+  border: none;
+  box-shadow: none;
+  padding-bottom: 2px;
+}
+
+.linkClone {
+  color: #007edf;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.linkClone:hover {
+  text-decoration: underline;
+}
+
+#instructions {
+  width:800px;
+  height:500px;
+}
+
+#message {
+  width:800px;
+  color: red;
+  text-align: center;
+  border: 1px solid black;
+  padding: 3px;
+  min-height: 100px;
+}
+
+#storyframe_wrap {
+  width: 670px;
+  height: 500px;
+  float: left;
+}
+
+#storyframe {
+  max-width: 650px;
+  max-height: 470px;
+  position: relative;
+  padding: 0px;
+  border: none;
+  box-shadow: none;
 }
 
 #download_book {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Installing Octave for Windows" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <script src="./javascript/utility.js"></script>
+
+    <title>Installing Octave for Windows</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="go_home" href="more.html">More Info</a>
+          <a id="download_book" href="https://github.com/lqbrin/tea-time-numerical/blob/master/TeaTimeNumericalAnalysis.pdf?raw=true">Download PDF</a>
+          <h2 id="book_title">Tea Time Numerical Analysis <span style="font-size:60%">Experiences in Mathematics</span></h2>
+        </header>
+    </div>
+
+    <script>
+      srcbase="images/cygwinInstall/capture";
+    </script>
+    
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+	<h4>Installing Octave in Windows</h4>
+        <p>The easiest way to install Octave in Windows is through Cygwin, a large collection of open source programs. Each program in the collection is packaged for easy installation and deinstallation. Cygwin has packages for mathematical tools like LaTeX, LyX, and R, and many generally useful tools, but we will stick to the minimum needed to run Octave.</p>
+        <p>Start by downloading a Cygwin installer: <a href="https://cygwin.com/setup-x86.exe">32-bit Windows</a> or <a href="https://cygwin.com/setup-x86_64.exe">64-bit Windows</a>. If you are unsure, try 64-bit -- if it doesn't work, then use 32-bit. Start the installer and follow the directions below. Mouse over the thumbnails on the left for step-by-step instructions and screen shots.</p>
+        <div id="instructions">
+	  <div class="storyboard">
+	    <img class="storythumb" src="images/cygwinInstall/capture01.png" onmouseover="setFrame(1, 1, 'This is the installer welcome screen. Nothing to do here. Just click next.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture02.png" onmouseover="setFrame(2, 2, 'The default is good. Click next.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture03.png" onmouseover="setFrame(3, 3, 'The default is good. Click next.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture04.png" onmouseover="setFrame(4, 4, 'The default is good. Click next.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture05.png" onmouseover="setFrame(5, 5, 'The default is good. Click next.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture06.png" onmouseover="setFrame(6, 6, 'Choose one of the sites listed. Then click next.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture07.png" onmouseover="setFrame(7, 7, 'If it took a long time to get here (more than 5 or 10 seconds, say) from the last click, you might want to go back and choose a different site. Downloading packages will probably be slow too. Do not click next. Just go on to the next instruction.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture08.png" onmouseover="setFrame(8, 8, 'Click the View button once. The word \'Full\' should appear next to it.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture11.png" onmouseover="setFrame(9, 11, 'Scroll down until you see the gnuplot package. Click the word \'Skip\' on the left. It should change to a number.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture10.png" onmouseover="setFrame(10, 10, 'Scroll down until you see the octave package. Again click the work \'Skip\' on the left.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture09.png" onmouseover="setFrame(11, 9, 'Scroll down until you see the xorg-server package. Again click the work \'Skip\' on the left. DO THE SAME FOR PACKAGES xinit and xterm. Then click next.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture12.png" onmouseover="setFrame(12, 12, 'DO NOT uncheck the \'Select required packages\' box. Click next.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture13.png" onmouseover="setFrame(13, 13, 'The installation will complete in three stages: Downloading..., Installing..., and Running... This will take a while. Be patient. During the \'Running...\' stage, the progress bar will not move. You will just have to trust that it is working, especially when it gets to the texlive packages.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture15.png" onmouseover="setFrame(14, 15, 'Check \'Add icon to Start Menu\'.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture16.png" onmouseover="setFrame(15, 16, 'Click Finish. Installation is done. If you plan to use the command line interface for Octave, you are done. Just double-click the Cygwin Terminal icon on the desktop and type \'octave\' (without the quotes) and press enter in the window that appears. If you plan to use the GUI (graphical IDE) interface, continue reading for instructions on starting Octave. You will not have an Octave icon on the desktop or the Start menu at this point.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture28.png" onmouseover="setFrame(16, 28, 'This is what the command line interface will look like. Continue if you are interested in the GUI interface.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture17.png" onmouseover="setFrame(17, 17, 'Find XWin Server in the Start menu.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture18.png" onmouseover="setFrame(18, 18, 'Right-click XWin Server and create a desktop shortcut.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture20.png" onmouseover="setFrame(19, 20, 'Right-click XWin Server desktop shortcut and select \'Properties\'.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture23.png" onmouseover='setFrame(20, 21, "Click the Shortcut tab if it is not already open. Then copy and paste one of the following into the Target box.<div>64-bit (assuming you accepted the default install location):</div><div style=\"color:black;\">C:\\cygwin64\\bin\\mintty.exe /usr/bin/bash.exe -l -c \"/usr/bin/startwin.exe /usr/bin/octave --force-gui\"</div><div>32-bit (assuming you accepted the default install location):</div><div style=\"color:black;\">C:\\cygwin\\bin\\mintty.exe /usr/bin/bash.exe -l -c \"/usr/bin/startwin.exe /usr/bin/octave --force-gui\"</div>");' />
+	    <img class="storythumb" src="images/cygwinInstall/capture24.png" onmouseover="setFrame(21, 22, 'Click the General tab.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture21.png" onmouseover="setFrame(22, 23, 'Change the name in the box next to the X icon to something like \'Octave GUI\'');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture22.png" onmouseover="setFrame(23, 24, 'Click OK. Double click the desktop shortcut you just made to launch the GUI interface for Octave.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture29.png" onmouseover="setFrame(24, 29, 'This is what the GUI interface will look like. Note: after quitting Octave, the X-server will still be running. You will not be able to run Octave again until you shut it down. Continue reading for instructions on shutting down the X-server.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture26.png" onmouseover="setFrame(25, 26, 'To shut down the X-server, find the Cygwin/X-Server icon in the system tray. It will likely be a hidden icon.');" />
+	    <img class="storythumb" src="images/cygwinInstall/capture27.png" onmouseover="setFrame(26, 27, 'Right click the Cygwin/X-Server icon and select Exit...');" />
+	  </div>
+	  <div id="storyframe_wrap">
+	    <table style="margin:auto; border:none; padding:0px;">
+	      <tr style="padding:0px"><td style="padding:0px;"><img id="storyframe" src="images/cygwinInstall/capture01.png" /></td></tr>
+	    </table>
+	  </div>
+	</div>
+	<div id="message" style="height:100px;"><strong>1) </strong>This is the installer welcome screen. Nothing to do here. Just click next.</div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+	<p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="float:left; margin: 0px 15px 0px 0;" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Tea Time Numerical Analysis</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://lqbrin.github.io/tea-time-numerical/" property="cc:attributionName" rel="cc:attributionURL">Leon Q. Brin</a> is licensed under a<br /><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+  </body>
+</html>

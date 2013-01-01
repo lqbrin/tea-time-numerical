@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Installing Octave for MacOS X" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <script src="./javascript/utility.js"></script>
+
+    <title>Installing Octave for MacOS X</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="go_home" href="more.html">More Info</a>
+          <a id="download_book" href="https://github.com/lqbrin/tea-time-numerical/blob/master/TeaTimeNumericalAnalysis.pdf?raw=true">Download PDF</a>
+          <h2 id="book_title">Tea Time Numerical Analysis <span style="font-size:60%">Experiences in Mathematics</span></h2>
+        </header>
+    </div>
+
+    <script>
+      srcbase="images/macportsInstall/capture";
+      var msg8="While Command Line Tools are installing, go to the <span class='linkClone' onclick='openFullWindow(\"http://www.macports.org/install.php\",\"MacPorts Downloads\",620,460);'>MacPorts website</span> and download the MacPorts pkg appropriate for your version of OS X. (Quickstart step 3)";
+      var msg21="Type <pre>tell application \"Terminal\"\n  do script \"`which octave`; exit\"\nend tell</pre> (or copy and paste from here) into AppleScript editor.";
+    </script>
+    
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+	<h4>Installing Octave for MacOS X</h4>
+        <p>The easiest way to install Octave in Windows is through Macports, an interface for a large collection of open source programs. Each program in the collection is packaged for easy installation and deinstallation. Macports has packages for mathematical tools like Maxima, R, LyX, LaTeX, and many generally useful tools, but we will stick to the minimum needed to run Octave.</p>
+        <p>Mouse over the thumbnails on the left for step-by-step instructions and screen shots.</p>
+        <div id="instructions">
+	  <div class="storyboard">
+	    <img class="storythumb" src="images/macportsInstall/capture40.png" onmouseover="setFrame(1, 40, 'Launch the App Store app.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture39.png" onmouseover="setFrame(2, 39, 'Type \'xcode\' in the search box to find the xcode package.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture38.png" onmouseover="setFrame(3, 38, 'Click \'Install\' next to the xcode icon <img src=\'images/xcodeIcon.png\' alt=\'Xcode icon\'>. Installation will take a long time. Xcode is a very large app.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture37.png" onmouseover="setFrame(4, 37, 'Launch Xcode. It should be in your Applications folder now.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture35.png" onmouseover="setFrame(5, 35, 'Select \'Preferences...\' from the Xcode menu.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture33.png" onmouseover="setFrame(6, 33, 'Click the Downloads tab.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture32.png" onmouseover="setFrame(7, 32, 'Install Command Line Tools by clicking the down arrow next to it. This will install the needed tools to compile Octave.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture31.png" onmouseover="setFrame(8, 31, msg8);" />
+	    <img class="storythumb" src="images/macportsInstall/capture29.png" onmouseover="setFrame(9, 29, 'Open the MacPorts package you just downloaded.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture28.png" onmouseover="setFrame(10, 28, 'This is the MacPorts Installer welcome screen. Nothing to do here. Just click Continue.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture27.png" onmouseover="setFrame(11, 27, 'Read about MacPorts if you wish or just click Continue.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture26.png" onmouseover="setFrame(12, 26, 'Read the MacPorts license or just click Continue.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture25.png" onmouseover="setFrame(13, 25, 'Choose a destination and click Continue.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture24.png" onmouseover="setFrame(14, 24, 'Go back and review your installation choices or click Install to continue.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture22.png" onmouseover="setFrame(15, 22, 'Click Close.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture45.png" onmouseover="setFrame(16, 45, 'Launch Terminal app from the Utilities subfolder of the Applications folder.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture48.png" onmouseover="setFrame(17, 48, 'Type <pre>sudo port selfupdate</pre> and hit return. Type your password when asked. Nothing will show on the screen as you type. No asterisks, no dots, no characters. Don\'t worry. Just finish typing it and hit return.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture49.png" onmouseover="setFrame(18, 49, 'Type <pre>sudo port install octave +atlas+docs+nofortran</pre> and hit return.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture00.png" onmouseover="setFrame(19, 0, 'Be patient. This is a large download and a long install. It may take several hours. You may be \'stuck\' on a screen like this for a long time. Continue with the installation steps while you wait, but Octave will not work until this install finishes.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture18.png" onmouseover="setFrame(20, 18, 'Launch AppleScript Editor from the Utilities subfolder of the Applications folder.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture17.png" onmouseover="setFrame(21, 17, msg21);" />
+	    <img class="storythumb" src="images/macportsInstall/capture16.png" onmouseover="setFrame(22, 16, 'Click Save... from the File menu.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture15.png" onmouseover="setFrame(23, 15, 'This will become an Octave launcher, so rename the script with something having to do with Octave.);" />
+	    <img class="storythumb" src="images/macportsInstall/capture46.png" onmouseover="setFrame(24, 46, 'Select Applications from the \'Where:\' dropdown.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture47.png" onmouseover="setFrame(25, 47, 'Select Application from the \'File Format:\' dropdown.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture12.png" onmouseover="setFrame(26, 12, 'Click Save.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture60.png" onmouseover="setFrame(27, 60, 'Control-click the Octave image above. Select \'Save image in Downloads\'.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture50.png" onmouseover="setFrame(28, 50, 'Find the downloaded icon in Finder. It should be in the Downloads folder. Double-click it to open it in Preview.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture51.png" onmouseover="setFrame(29, 51, 'Select all from the Preview. (Either from the menu or by hitting &#8984;a.)');" />
+	    <img class="storythumb" src="images/macportsInstall/capture55.png" onmouseover="setFrame(29, 55, 'Copy the image (Either using the menu or by hitting &#8984;c.)');" />
+	    <img class="storythumb" src="images/macportsInstall/capture52.png" onmouseover="setFrame(30, 52, 'Find Octave.app in the Applications folder in Finder. Control-click it and select \'Get Info\'.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture53.png" onmouseover="setFrame(31, 53, 'Click the tiny script icon in the upper left corner to select it.');" />
+	    <img class="storythumb" src="images/macportsInstall/capture54.png" onmouseover="setFrame(32, 54, 'Paste the Octave icon (Either using the Edit menu or by hitting &#8984;v.)');" />
+	    <img class="storythumb" src="images/macportsInstall/capture56.png" onmouseover="setFrame(33, 56, 'Use the Octave.app launcher in the Applications folder in order to start Octave. Remember, you need to wait until the Octave install (step 19) finishes before this will work.');" />
+	  </div>
+	  <div id="storyframe_wrap">
+	    <table style="margin:auto; border:none; padding:0px;">
+	      <tr style="padding:0px"><td style="padding:0px;"><img id="storyframe" src="images/macportsInstall/capture40.png" /></td></tr>
+	    </table>
+	  </div>
+	</div>
+	<div id="message"><strong>1) </strong>This is the installer welcome screen. Nothing to do here. Just click next.</div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+	<p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="float:left; margin: 0px 15px 0px 0;" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Tea Time Numerical Analysis</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://lqbrin.github.io/tea-time-numerical/" property="cc:attributionName" rel="cc:attributionURL">Leon Q. Brin</a> is licensed under a<br /><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+  </body>
+</html>

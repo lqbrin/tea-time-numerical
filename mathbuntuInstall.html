@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Installing Mathbuntu in a Virtual Machine" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <script src="./javascript/utility.js"></script>
+
+    <title>Installing Mathbuntu in a Virtual Machine</title>
+  </head>
+
+  <body onload="initialize();">
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="go_home" href="more.html">More Info</a>
+          <a id="download_book" href="https://github.com/lqbrin/tea-time-numerical/blob/master/TeaTimeNumericalAnalysis.pdf?raw=true">Download PDF</a>
+          <h2 id="book_title">Tea Time Numerical Analysis <span style="font-size:60%">Experiences in Mathematics</span></h2>
+        </header>
+    </div>
+
+    <script>
+      srcbase="images/mathbuntuInstall/mtb";
+      function initialize(){
+	var el=document.getElementById('radioFlavor');
+	el.checked=true;
+	flavorSelected(el.value,0,0);
+      }
+      caption=[
+	'Click <span class="linkClone" onclick="openFullWindow(\'http://www.mathbuntu.org?open=download:manual\',\'Mathbuntu ISO Downloads\',620,460);">here</span> to pop up the download website. In the popup window, scroll down and choose one of the Mathbuntu ISO images. If your computer has less than 8 GB RAM, choose 32-bit Kubuntu. If your computer has 8 GB RAM or more, choose 64-bit Kubuntu. This will be a long download. Continue with these instructions while you wait.', // 0
+	'Launch VirtualBox Manager.', //1
+	'Click the <img alt=\'VirtualBox New button\' src=\'images/newButton.png\'> button.', //2
+	'Type a name for the virtual machine. A good name would be the same name as the ISO you downloaded. For example, Mathbuntu 14.04 i386.', //3
+	'If the selection boxes did not change appropriately as you typed the name of your virtual machine, change them now. The type should be Linux and the version should be Ubuntu (32-bit or 64-bit to match the ISO you downloaded).', //4
+	'Select between 2048 and 4096 MB RAM for a 32-bit installation, keeping the indicator in the green. Select at least 4096 MB RAM for a 64-bit installation, keeping the indicator in the green. More RAM will give better Mathbuntu performance. Ignore the recommendation. It is too low. Click Next/Continue.', //5
+	'Select \'Create a virtual hard drive now\' and click Create.', //6
+	'Select VDI and click Next/Continue.', //7
+	'Select Dynamically allocated and click Next/Continue.', //8
+	'Change the name of the new virtual hard drive if you like. Select a size of 25.00 GB. Click Create.<br />Note: This will not use 25 GB of your hard disk. This is just the maximum allowed size. Mathbuntu will actually use only about 12 GB.', //9
+	'Wait until the ISO download is complete. You can not do anything further until you have the ISO file, which may take a while. When you have it, highlight the virtual machine in VirtualBox Manager and click the <img alt=\'VirtualBox Start button\' src=\'images/startButton.png\'> button.', //10
+	'Click the <img alt=\'VirtualBox Folder button\' src=\'images/folderButton.png\'> button. Find the downloaded ISO file in the file chooser that pops up. It is likely in your Downloads folder.', //11
+	'Click Start.', //12
+	'Before too long you should be presented with this screen. Select your language.', //13
+	'With \'live -- boot the Live System\' highlighted, Press Enter (or just wait for the countdown to complete).', //14
+	'Give it a few minutes on this screen. Nothing to do but wait.', //15
+	'Click the <img alt=\'Install Kubuntu button\' src=\'images/installKubuntu.png\'> icon.', //16
+	'Select your language and click Continue.', //17
+	'Check/uncheck the checkboxes to your liking and click Continue.', //18
+	'Keep \'Guided - use entire disk\' selected. Don\'t worry. This will not damage any files on your computer! Only the virtual disk you created (which has nothing on it yet anyway!) will be affected. Click \'Install Now\'', //19
+	'Select your time zone and click Continue.', //20
+	'Select your keyboard layout and click Continue.', //21
+	'Enter your name. You can change the computer\'s name or your username if you wish. Pick a password that you can remember. You will need it! Select \'Log in automatically\'. This is not a serious security issue because your virtual machine is protected by the security of your host (Mac or Windows) operating system. Click Continue.', //22
+	'The rest of the installation is automatic. It will take approximately 15 minutes. Be patient.', //23
+	'Click Restart Now.', //24
+	'With \'Try Lubuntu without installing\' highlighted, Press Enter (or just wait for the countdown to complete).', //25
+	'Click the <img alt=\'Install Lubuntu button\' src=\'images/installLubuntu.png\'> icon.', //26
+	'Keep \'Erase disk and install Lubuntu\' selected. Don\'t worry. This will not damage any files on your computer! Only the virtual disk you created (which has nothing on it yet anyway!) will be affected. There is no need to select \'Encrypt...\' or \'Use LVM...\' as your virtual machine is protected by the security of your host (Mac or Windows) operating system. Click \'Install Now\'.', //27
+	'Enter your name. You can change the computer\'s name or your username if you wish. Pick a password that you can remember. You will need it! Select \'Log in automatically\' (even though that\'s not what it shows above). This is not a serious security issue because your virtual machine is protected by the security of your host (Mac or Windows) operating system. Click Continue.', //28
+	'Click the <img alt=\'Install Ubuntu button\' src=\'images/installUbuntu.png\'> icon.', //29
+	'Keep \'Erase disk and install MathUbuntu\' selected. Don\'t worry. This will not damage any files on your computer! Only the virtual disk you created (which has nothing on it yet anyway!) will be affected. Click Continue.', //30
+	'Click \'Install Now\'.', //31
+      ];
+    </script>
+    
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+	<h4>Installing Mathbuntu in a Virtual Machine</h4>
+        <p>With VirtualBox installed, you are ready to set up a virtual machine for Mathbuntu.</p>
+        <p>Mouse over the thumbnails on the left for step-by-step instructions and screen shots. Some of the images were taken from a Windows machine and some from a Mac. Your images will vary from those shown, but they should be close enough that you can still follow the directions. All instructions apply to both Mac and Windows installation.</p>
+        <p>Before you get started, you will need to choose the Mathbuntu flavor you will install. They all offer the exact same mathematical applications and are all built on top of Ubuntu. The major difference is the desktop environment. Here are some guidelines on how you might choose between them.</p>
+        <ul>
+	  <li><strong>MathLubuntu:</strong> A light-weight, fast, simple desktop. Choose Lubuntu if your computer is low on speed or memory. Also choose Lubuntu if you are interested in a fast and simple interface without a lot of bells and whistles.</li>
+	  <li><strong>MathKubuntu:</strong> A full-featured desktop with lots of bells and whistles. Windows users will be reasonably comfortable with the desktop. Choose Kubuntu if you are interested in a desktop with extra convenience and you are a Windows user.</li>
+	  <li><strong>MathUbuntu:</strong> A full-featured desktop with lots of bells and whistles. Mac users will be reasonably comfortable with the desktop. Choose Ubuntu if you are interested in a desktop with extra convenience and you are a Mac user.</li>
+        </ul>
+        <form style="text-align:center;">
+          Choose a flavor<br />
+	  <input type="radio" name="flavor" value="kub" onclick="flavorSelected(this.value,0,0);">Kubuntu <input id="radioFlavor" type="radio" name="flavor" value="lub" onclick="flavorSelected(this.value,0,0);">Lubuntu <input type="radio" name="flavor" value="ubu" onclick="flavorSelected(this.value,0,0);">Ubuntu
+        </form>
+        <div id="instructions">
+	  <div class="storyboard">
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb00.png" onmouseover="setStep(1, 0, 0);" />
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb24.png" onmouseover="setStep(2, 24, 1);" />
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb01.png" onmouseover="setStep(3, 1, 2);" />
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb02.png" onmouseover="setStep(4, 2, 3);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb03.png" onmouseover="setStep(5, 3, 4);" />
+	    
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb30.png" onmouseover="setStep(5, 30, 4);" />
+	    
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb50.png" onmouseover="setStep(5, 50, 4);" />
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb04.png" onmouseover="setStep(6, 4, 5);" />
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb05.png" onmouseover="setStep(7, 5, 6);" />
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb06.png" onmouseover="setStep(8, 6, 7);" />
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb07.png" onmouseover="setStep(9, 7, 8);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb08.png" onmouseover="setStep(10, 8, 9);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb09.png" onmouseover="setStep(11, 9, 10);" />
+	    
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb31.png" onmouseover="setStep(10, 31, 9);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb32.png" onmouseover="setStep(11, 32, 10);" />
+	    
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb51.png" onmouseover="setStep(10, 51, 9);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb52.png" onmouseover="setStep(11, 52, 10);" />
+	    <img class="storythumb" src="images/mathbuntuInstall/mtb10.png" onmouseover="setStep(12, 10, 11);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb11.png" onmouseover="setStep(13, 11, 12);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb12.png" onmouseover="setStep(14, 12, 14);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb13.png" onmouseover="setStep(15, 13, 15);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb23.png" onmouseover="setStep(16, 23, 16);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb14.png" onmouseover="setStep(17, 14, 17);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb15.png" onmouseover="setStep(18, 15, 18);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb16.png" onmouseover="setStep(19, 16, 19);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb17.png" onmouseover="setStep(20, 17, 20);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb18.png" onmouseover='setStep(21, 18, 21);' />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb20.png" onmouseover="setStep(22, 20, 22);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb21.png" onmouseover="setStep(23, 21, 23);" />
+	    <img name="kubContext" class="storythumb" src="images/mathbuntuInstall/mtb22.png" onmouseover="setStep(24, 22, 24);" />
+	    
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb33.png" onmouseover="setStep(13, 33, 12);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb34.png" onmouseover="setStep(14, 34, 13);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb35.png" onmouseover="setStep(15, 35, 25);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb36.png" onmouseover="setStep(16, 36, 15);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb41.png" onmouseover="setStep(17, 41, 26);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb37.png" onmouseover="setStep(18, 37, 17);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb38.png" onmouseover="setStep(19, 38, 18);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb39.png" onmouseover="setStep(20, 39, 27);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb40.png" onmouseover="setStep(21, 40, 20);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb42.png" onmouseover='setStep(22, 42, 21);' />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb44.png" onmouseover="setStep(23, 44, 28);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb45.png" onmouseover="setStep(24, 45, 23);" />
+	    <img name="lubContext" class="storythumb" src="images/mathbuntuInstall/mtb46.png" onmouseover="setStep(25, 46, 24);" />
+	    
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb53.png" onmouseover="setStep(13, 53, 12);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb54.png" onmouseover="setStep(14, 54, 14);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb55.png" onmouseover="setStep(15, 55, 15);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb56.png" onmouseover="setStep(16, 56, 29);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb57.png" onmouseover="setStep(17, 57, 17);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb58.png" onmouseover="setStep(18, 58, 18);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb59.png" onmouseover="setStep(19, 59, 30);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb65.png" onmouseover="setStep(20, 65, 31);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb60.png" onmouseover="setStep(21, 60, 20);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb61.png" onmouseover='setStep(22, 61, 21);' />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb62.png" onmouseover="setStep(23, 62, 22);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb63.png" onmouseover="setStep(24, 63, 23);" />
+	    <img name="ubuContext" class="storythumb" src="images/mathbuntuInstall/mtb64.png" onmouseover="setStep(25, 64, 24);" />
+	  </div>
+	  <div id="storyframe_wrap">
+	    <table style="margin:auto; border:none; padding:0px;">
+	      <tr style="padding:0px"><td style="padding:0px;"><img id="storyframe" src="images/mathbuntuInstall/mtb00.png" /></td></tr>
+	    </table>
+	  </div>
+	</div>
+	<div id="message">Message goes here.</div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+	<p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="float:left; margin: 0px 15px 0px 0;" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Tea Time Numerical Analysis</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://lqbrin.github.io/tea-time-numerical/" property="cc:attributionName" rel="cc:attributionURL">Leon Q. Brin</a> is licensed under a<br /><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+  </body>
+</html>
