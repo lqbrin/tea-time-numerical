@@ -1,0 +1,6512 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:fixedptOrder"
+
+\end_inset
+
+Order of Convergence for Fixed Point Iteration 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+fixed point iteration method ! analysis
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $f$
+\end_inset
+
+ is a function with fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $f'(\hat{x})$
+\end_inset
+
+ exists.
+ Let 
+\begin_inset Formula $x_{0},x_{1},x_{2},\ldots$
+\end_inset
+
+ be a sequence derived from fixed point iteration (
+\begin_inset Formula $x_{k+1}=f(x_{k})$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+) such that 
+\begin_inset Formula ${\displaystyle \lim_{k\to\infty}x_{k}=\hat{x}}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{k}\neq\hat{x}$
+\end_inset
+
+ for all 
+\begin_inset Formula $k=0,1,2,\ldots$
+\end_inset
+
+.
+ Then
+\begin_inset Formula 
+\[
+\frac{\left|x_{n+1}-\hat{x}\right|}{\left|x_{n}-\hat{x}\right|^{1}}=\left|\frac{f(x_{n})-f(\hat{x})}{x_{n}-\hat{x}}\right|
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{equation}
+\lim_{n\to\infty}\left|\frac{f(x_{n})-f(\hat{x})}{x_{n}-\hat{x}}\right|=|f'(\hat{x})|.\label{eq:fixedPtOrder}
+\end{equation}
+
+\end_inset
+
+Therefore, fixed point iteration is linearly convergent as long as 
+\begin_inset Formula $f'(\hat{x})\neq0$
+\end_inset
+
+.
+ The following proposition could be presented as a corollary to the Fixed
+ Point Convergence Theorem since much of the argument simply repeats what
+ was noted there, but we choose to present it as a separate claim based
+ on equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:fixedPtOrder"
+
+\end_inset
+
+.
+ To be more precise, we have the following result.
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:fixedPointErrorBound"
+
+\end_inset
+
+(Fixed Point Error Bound) 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Fixed Point Error Bound
+\end_layout
+
+\end_inset
+
+ 
+\shape italic
+Let 
+\begin_inset Formula $f$
+\end_inset
+
+ be a differentiable function with fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ and let 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ be an interval containing 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $|f'(x)|\leq M<1$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in[a,b]$
+\end_inset
+
+ and 
+\begin_inset Formula $f([a,b])\subseteq[a,b]$
+\end_inset
+
+, then for any initial value 
+\begin_inset Formula $x_{0}\in[a,b]$
+\end_inset
+
+, fixed point iteration, with 
+\begin_inset Formula $x_{k+1}=f(x_{k})$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq0$
+\end_inset
+
+, gives an approximation of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ with absolute error no more than 
+\begin_inset Formula $M^{k}|x_{0}-\hat{x}|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+An elementary induction proof (requested in the exercises) will establish
+ that 
+\begin_inset Formula $x_{k}\in[a,b]$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq0$
+\end_inset
+
+.
+ We proceed to prove the error bound.
+ The absolute error in approximating 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ by 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is 
+\begin_inset Formula $|x_{0}-\hat{x}|=M^{0}|x_{0}-\hat{x}|$
+\end_inset
+
+ so the claim is true for 
+\begin_inset Formula $k=0$
+\end_inset
+
+.
+ Now suppose the claim is true for some particular but arbitrary 
+\begin_inset Formula $k\geq0$
+\end_inset
+
+.
+ By the Mean Value Theorem, there is a 
+\begin_inset Formula $c$
+\end_inset
+
+ in the interval from 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ to 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ such that 
+\begin_inset Formula $f'(c)=\frac{f(x_{k})-f(\hat{x})}{x_{k}-\hat{x}}$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ are both in 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+, so is 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ It follows that 
+\begin_inset Formula $|f'(c)|\leq M$
+\end_inset
+
+, so 
+\begin_inset Formula $|f(x_{k})-f(\hat{x})|\leq M|x_{k}-\hat{x}|$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ is a fixed point of 
+\begin_inset Formula $f$
+\end_inset
+
+, so 
+\begin_inset Formula $f(\hat{x})=\hat{x}$
+\end_inset
+
+, from which it follows that 
+\begin_inset Formula $|f(x_{k})-\hat{x}|\leq M|x_{k}-\hat{x}|$
+\end_inset
+
+, and therefore that 
+\begin_inset Formula $|x_{k+1}-\hat{x}|\leq M|x_{k}-\hat{x}|$
+\end_inset
+
+.
+ By the inductive hypothesis, 
+\begin_inset Formula $|x_{k}-\hat{x}|\leq M^{k}|x_{0}-\hat{x}|$
+\end_inset
+
+, so 
+\begin_inset Formula $|x_{k+1}-\hat{x}|\leq M\cdot M^{k}|x_{0}-\hat{x}|=M^{k+1}|x_{0}-\hat{x}|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+When 
+\begin_inset Formula $f'(\hat{x})=0$
+\end_inset
+
+, equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:fixedPtOrder"
+
+\end_inset
+
+ shows that fixed point iteration does not converge linearly.
+ For any sequence 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ converging to 
+\begin_inset Formula $p$
+\end_inset
+
+, if 
+\begin_inset Formula $\lim_{n\to\infty}\frac{|p_{n+1}-p|}{|p_{n}-p|}=0$
+\end_inset
+
+ we say the sequence is superlinearly convergent 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! superlinear
+\end_layout
+
+\end_inset
+
+ or that convergence is faster than linear.
+\end_layout
+
+\begin_layout Standard
+Consider the functions 
+\begin_inset Formula $f(x)=\frac{1}{8}x^{3}-x^{2}+2x+1$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{1}(x)=-x^{3}+5x^{2}-3x-6$
+\end_inset
+
+ from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Fixedpt"
+
+\end_inset
+
+.
+ Recall 
+\begin_inset Formula $2$
+\end_inset
+
+ is a fixed point of 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $3$
+\end_inset
+
+ is a fixed point of 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+ and observe that 
+\begin_inset Formula $f'(2)=\frac{3}{8}\cdot2^{2}-2\cdot2+2=-\frac{1}{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{1}'(3)=-3\cdot3^{2}+10\cdot3-3=0$
+\end_inset
+
+ Consequently, we should expect fixed point iteration of 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+ to converge to 3 faster than that of 
+\begin_inset Formula $f$
+\end_inset
+
+ converges to 2.
+ With 
+\begin_inset Formula $s_{0},s_{1},s_{2},\ldots=1.75,f(1.75),f(f(1.75)),\ldots$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{0},t_{1},t_{2},\ldots=2.75,f_{1}(2.75),f_{1}(f_{1}(2.75)),\ldots$
+\end_inset
+
+, table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:fixedPointOrderComparison"
+
+\end_inset
+
+ 
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:fixedPointOrderComparison"
+
+\end_inset
+
+Comparing order of convergence for fixed point iteration when the derivative
+ at the fixed point is not zero, 
+\begin_inset Formula $s_{n}$
+\end_inset
+
+, to that when the derivative at the fixed point is zero, 
+\begin_inset Formula $t_{n}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|2-s_{n}|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|3-t_{n}|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.5(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.5(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.074(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.343(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.644(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.068(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.740(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.623(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.388(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.010(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.894(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.984(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.459(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.286(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.726(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.578(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.640(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.966(10)^{-8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.318(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.973(10)^{-14}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.159(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.317(10)^{-27}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+shows the relative speeds of convergence.
+ 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+ is converging linearly as expected, and 
+\begin_inset Formula $\langle t_{n}\rangle$
+\end_inset
+
+ seems to be converging quadratically.
+ The last four exponents in the 
+\begin_inset Formula $|3-t_{n}|$
+\end_inset
+
+ column are 
+\begin_inset Formula $-4,-8,-14,-27$
+\end_inset
+
+, indicating that the number of significant digits of accuracy is approximately
+ doubling with each iteration.
+ In other words, the error of one term is roughly the square of the previous
+ error (meaning 
+\begin_inset Formula $\alpha=2$
+\end_inset
+
+ in the definition of order of convergence).
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "FixedPointIterationConvergesQuadratically"
+
+\end_inset
+
+Taylor's Theorem will provide the proof we need that this convergence really
+ is quadratic.
+ Suppose 
+\begin_inset Formula $f$
+\end_inset
+
+ has a third derivative in a neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ Define 
+\begin_inset Formula $e_{n}=\hat{x}-x_{n}$
+\end_inset
+
+.
+ Then according to Taylor's Theorem, 
+\begin_inset Formula $\hat{x}=f(\hat{x})=f(x_{n}+e_{n})=f(x_{n})+e_{n}f'(x_{n})+\frac{1}{2}e_{n}^{2}f''(x_{n})+O(e_{n}^{3})$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $f(x_{n})=x_{n+1}$
+\end_inset
+
+ so we get
+\begin_inset Formula 
+\begin{equation}
+\hat{x}-x_{n+1}=e_{n+1}=e_{n}f'(x_{n})+\frac{1}{2}e_{n}^{2}f''(x_{n})+O(e_{n}^{3}).\label{eq:fixedptIsQuadratic1}
+\end{equation}
+
+\end_inset
+
+Also from Taylor's Theorem, 
+\begin_inset Formula $f'(\hat{x})=f'(x_{n}+e_{n})=f'(x_{n})+e_{n}f''(x_{n})+O(e_{n}^{2})$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $f'(\hat{x})=0$
+\end_inset
+
+ so
+\begin_inset Formula 
+\begin{equation}
+f'(x_{n})=-e_{n}f''(x_{n})-O(e_{n}^{2}).\label{eq:fixedptIsQuadratic2}
+\end{equation}
+
+\end_inset
+
+Substituting 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:fixedptIsQuadratic2"
+
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:fixedptIsQuadratic1"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+e_{n+1} & = & e_{n}(-e_{n}f''(x_{n})-O(e_{n}^{2}))+\frac{1}{2}e_{n}^{2}f''(x_{n})+O(e_{n}^{3})\\
+ & = & -\frac{1}{2}e_{n}^{2}f''(x_{n})+O(e_{n}^{3}).
+\end{eqnarray*}
+
+\end_inset
+
+Hence 
+\begin_inset Formula $\frac{\hat{x}-x_{n+1}}{(\hat{x}-x_{n})^{2}}=\frac{e_{n+1}}{e_{n^{2}}}=-\frac{1}{2}f''(x_{n})+O(e_{n})$
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{|\hat{x}-x_{n+1}|}{|\hat{x}-x_{n}|^{2}}=\lim_{n\to\infty}\left|\frac{1}{2}f''(x_{n})+O(e_{n})\right|=\left|\frac{1}{2}f''(\hat{x})\right|,
+\]
+
+\end_inset
+
+showing that convergence is at least quadratic.
+ If 
+\begin_inset Formula $f''(\hat{x})$
+\end_inset
+
+ happens to be 0, then the convergence is superquadratic.
+\end_layout
+
+\begin_layout Standard
+To summarize, on the off-chance that, at a fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, 
+\begin_inset Formula $f'(\hat{x})=0$
+\end_inset
+
+, fixed point iteration is successful and fast for initial values near 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ But when 
+\begin_inset Formula $f'(\hat{x})\neq0$
+\end_inset
+
+, fixed point iteration may fail to converge to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, and when it does converge, the convergence is slow.
+ There is a quick fix (quick to implement, not quick to explain) for some
+ of this deficiency when 
+\begin_inset Formula $f'(\hat{x})\neq0$
+\end_inset
+
+, however.
+ We will first concentrate on the speed of convergence.
+\end_layout
+
+\begin_layout Standard
+Let the sequence 
+\begin_inset Formula $\langle c_{n}\rangle$
+\end_inset
+
+ be defined by
+\begin_inset Formula 
+\begin{eqnarray*}
+c_{0} & = & 1\\
+c_{k} & = & \cos(c_{k-1}),\quad k>0.
+\end{eqnarray*}
+
+\end_inset
+
+You should be able to verify that the first few terms of this sequence are
+ (approximately)
+\begin_inset Formula 
+\[
+1,.5403,.8575,.6542,.7934,\ldots
+\]
+
+\end_inset
+
+This is exactly the sequence you created in the calculator experiment 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sec:Fixedpt"
+
+\end_inset
+
+ of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Fixedpt"
+
+\end_inset
+
+.
+ Define a new sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ by
+\begin_inset Formula 
+\[
+a_{n}=c_{n}-\frac{(c_{n+1}-c_{n})^{2}}{c_{n+2}-2c_{n+1}+c_{n}}.
+\]
+
+\end_inset
+
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:deltaSquaredAcceleration"
+
+\end_inset
+
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:deltaSquaredAcceleration"
+
+\end_inset
+
+Accelerating the convergence of a linearly converging sequence.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $c_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|c_{n}-c|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|a_{n}-c|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left|\frac{a_{n}-c}{c_{n}-c}\right|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{\left|a_{n+1}-c\right|}{\left|a_{n}-c\right|^{2}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.728010$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.609(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.107(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0934$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0110$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.5403$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.733665$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.987(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.419(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0639$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $44.19$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.8575$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.736906$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.184(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.178(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0400$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $74.17$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.6542$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.738050$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.479(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.034(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0274$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $217.9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7934$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.738636$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.439(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.490(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0180$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $419.4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7103$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.738876$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.771(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.085(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0122$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1034$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7639$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.738992$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.487(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.289(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0081$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7221$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7504$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ shows the first few terms of each sequence along with some error analysis.
+ As promised, the sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ is converging more quickly than 
+\begin_inset Formula $\langle c_{n}\rangle$
+\end_inset
+
+, evidenced by the fact that 
+\begin_inset Formula $\left|\frac{a_{n}-c}{c_{n}-c}\right|$
+\end_inset
+
+ is tending to zero.
+ The last column of the table indicates that the convergence of 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ to 
+\begin_inset Formula $c$
+\end_inset
+
+ is not quadratic, however.
+\end_layout
+
+\begin_layout Standard
+More generally, suppose 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ is any sequence that converges linearly to 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Then we have 
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}}\frac{|p-p_{n+1}|}{|p-p_{n}|}=\lambda\neq0$
+\end_inset
+
+, so we should expect 
+\begin_inset Formula $\frac{|p-p_{n+2}|}{|p-p_{n+1}|}\approx\frac{|p-p_{n+1}|}{|p-p_{n}|}\approx\lambda$
+\end_inset
+
+ for large enough 
+\begin_inset Formula $n$
+\end_inset
+
+, from which we get 
+\begin_inset Formula $|(p-p_{n+2})(p-p_{n})|\approx|p-p_{n+1}|^{2}$
+\end_inset
+
+.
+ Assuming 
+\begin_inset Formula $p-p_{n+2}$
+\end_inset
+
+ and 
+\begin_inset Formula $p-p_{n}$
+\end_inset
+
+ have the same sign for large 
+\begin_inset Formula $n$
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This will happen in the common events that the 
+\begin_inset Formula $\hat{x}-x_{n}$
+\end_inset
+
+ all have the same sign or the 
+\begin_inset Formula $\hat{x}-x_{n}$
+\end_inset
+
+ have alternating signs, so this is not an unrealistic assumption.
+\end_layout
+
+\end_inset
+
+, we can remove the absolute values to find
+\begin_inset Formula 
+\begin{eqnarray*}
+(p-p_{n+2})(p-p_{n}) & \approx & (p-p_{n+1}){}^{2}\\
+p^{2}-(p_{n+2}+p_{n})p+p_{n+2}p_{n} & \approx & p^{2}-2p_{n+1}p+p_{n+1}^{2}\\
+(-p_{n+2}+2p_{n+1}-p_{n})p & \approx & -p_{n+2}p_{n}+p_{n+1}^{2}\\
+p & \approx & \frac{p_{n+2}p_{n}-p_{n+1}^{2}}{p_{n+2}-2p_{n+1}+p_{n}}.
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we may take any three consecutive terms of 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ and predict 
+\begin_inset Formula $p$
+\end_inset
+
+ from this formula.
+ For large enough 
+\begin_inset Formula $n$
+\end_inset
+
+, this prediction will be a much better estimate of 
+\begin_inset Formula $p$
+\end_inset
+
+ than is 
+\begin_inset Formula $p_{n}$
+\end_inset
+
+.
+ But just as we were able to claim 
+\begin_inset Formula $|(p-p_{n+2})(p-p_{n})|\approx|p-p_{n+1}|^{2}$
+\end_inset
+
+, it must also be the case that 
+\begin_inset Formula $p_{n+2}p_{n}\approx p_{n+1}^{2}$
+\end_inset
+
+, so the numerator of our approximation is nearly zero.
+ Of course that means the denominator must be nearly zero as well since
+ the quotient is 
+\begin_inset Formula $p$
+\end_inset
+
+, a value that may not be zero.
+ To avoid some of the error inherent in this calculation, it is advisable
+ to compute the algebraically equivalent approximation 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Aitken's delta-squared method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Aitken's delta-squared|see{Aitken's delta-squared method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+p\approx p_{n}-\frac{(p_{n+1}-p_{n})^{2}}{p_{n+2}-2p_{n+1}+p_{n}}\label{eq:aitkensDeltaSquared}
+\end{equation}
+
+\end_inset
+
+ instead.
+ Let's go back and revisit the sequence 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+ and apply this approximation.
+\end_layout
+
+\begin_layout Standard
+Define 
+\begin_inset Formula $a_{n}=s_{n}-\frac{(s_{n+1}-s_{n})^{2}}{s_{n+2}-2s_{n+1}+s_{n}}$
+\end_inset
+
+ and consider table 
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:fixedPointAitkens"
+
+\end_inset
+
+Comparing fixed point iteration when the derivative at the fixed point is
+ not zero, 
+\begin_inset Formula $s_{n}$
+\end_inset
+
+, to the Aitken's delta-squared sequence, 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $s_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|2-s_{n}|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|2-a_{n}|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.75$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.5(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.99506842493985$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.931(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.107421875$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.074(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.999022858310434$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.771(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.943559146486223$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.644(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.999737171760319$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.628(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.027401559734717$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.740(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.999937151202653$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.284(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.986114080555812$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.388(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.999983969455146$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.603(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.006894420349172$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.894(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.996540947531514$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.459(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:fixedPointAitkens"
+
+\end_inset
+
+ comparing the two sequences 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+ and 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ converges significantly faster than the linearly convergent sequence from
+ which is was derived, just as before! The fact that 
+\begin_inset Formula $|2-a_{n}|\approx|2-s_{n+2}|^{2}$
+\end_inset
+
+ is evidence of this claim, but the convergence of 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ is still linear.
+ Make sure you can calculate the 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ in this table yourself before reading on.
+\end_layout
+
+\begin_layout Standard
+On a practical note, there is no sense in calculating all the terms 
+\begin_inset Formula $a_{0},a_{1},\ldots,a_{n-2}$
+\end_inset
+
+ as done in the table.
+ The terms of 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ are dependent only on those of 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+ so 
+\begin_inset Formula $a_{n-2}$
+\end_inset
+
+ can be calculated just as well without having calculated 
+\begin_inset Formula $a_{0},a_{1},\ldots,a_{n-3}$
+\end_inset
+
+.
+ The table shows all of them only for illustrative purposes and so you can
+ get some practice with formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:aitkensDeltaSquared"
+
+\end_inset
+
+.
+ The important thing to notice is that 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ has approximately twice as many significant digits of accuracy as does
+ 
+\begin_inset Formula $s_{n+2}$
+\end_inset
+
+.
+ Consequently, 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ is a much better approximation than is 
+\begin_inset Formula $s_{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Aitken's delta-squared method is designed for any linearly
+ convergent sequence, not just sequences derived from fixed point iteration.}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The derivation of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:aitkensDeltaSquared"
+
+\end_inset
+
+, referred to as Aitken's delta-squared formula, makes no reference to fixed
+ point iteration.
+ In fact it makes no assumptions about the origin of the sequence.
+ It makes no difference.
+ It may be a sequence of partial sums, a sequence of partial products, a
+ sequence derived from any recurrence relation, a sequence derived from
+ number theory, or anything else.
+ The only important characteristics are that the sequence converges and
+ it does so linearly.
+\end_layout
+
+\begin_layout Standard
+The sum 
+\begin_inset Formula $\frac{1}{1}-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\frac{1}{9}-\cdots$
+\end_inset
+
+ converges to 
+\begin_inset Formula $\frac{\pi}{4}$
+\end_inset
+
+ linearly so Aitken's delta-squared method should be helpful.
+ If we let 
+\begin_inset Formula $p_{n}=\sum_{k=1}^{n}\frac{(-1)^{k+1}}{2k-1}$
+\end_inset
+
+ be the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ partial sum, then 
+\begin_inset Formula $p_{2}=\frac{13}{15}$
+\end_inset
+
+, 
+\begin_inset Formula $p_{3}=\frac{76}{105}$
+\end_inset
+
+, 
+\begin_inset Formula $p_{4}=\frac{263}{315}$
+\end_inset
+
+, and 
+\begin_inset Formula $p_{5}=\frac{2578}{3465}$
+\end_inset
+
+.
+ Aitken's extrapolation gives 
+\begin_inset Formula $a_{2}=\frac{13}{15}-\frac{(\frac{76}{105}-\frac{13}{15})^{2}}{\frac{263}{315}-2\frac{76}{105}+\frac{13}{15}}=\frac{1321}{1680}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{3}=\frac{76}{105}-\frac{(\frac{263}{315}-\frac{76}{105})^{2}}{\frac{2578}{3465}-2\frac{263}{315}+\frac{76}{105}}=\frac{989}{1260}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\frac{|\frac{\pi}{4}-p_{4}|^{2}}{|\frac{\pi}{4}-a_{2}|}\approx2.6$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{|\frac{\pi}{4}-p_{5}|^{2}}{|\frac{\pi}{4}-a_{3}|}\approx3.5$
+\end_inset
+
+ so extrapolation gives an error less than the square of the error in the
+ original sequence.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Perhaps this fact gives you an idea.
+ Once 
+\begin_inset Formula $s_{2}$
+\end_inset
+
+ is calculated, we can use equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:aitkensDeltaSquared"
+
+\end_inset
+
+, also known as 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Aitken's delta-squared method
+\end_layout
+
+\end_inset
+
+Aitken's delta-squared method, to calculate a better approximation than
+ we already have.
+ And once we have this good approximation, it seems a bit silly to cast
+ it aside and continue computing 
+\begin_inset Formula $s_{3}=f(s_{2}),s_{4}=f(s_{3}),$
+\end_inset
+
+ and so on.
+ What if we use 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ in place of 
+\begin_inset Formula $s_{3}$
+\end_inset
+
+ in our iteration? In other words, we would have 
+\begin_inset Formula $s_{1}=f(s_{0}),s_{2}=f(s_{1}),s_{3}=a_{0},s_{4}=f(s_{3}),$
+\end_inset
+
+ and so on.
+ That should improve 
+\begin_inset Formula $s_{3},s_{4},\mbox{ and }s_{5}$
+\end_inset
+
+.
+ And once we have 
+\begin_inset Formula $s_{5}$
+\end_inset
+
+ we again have three consecutive fixed point iterations, so we can apply
+ Aitken's delta squared method again.
+ Instead of calculating 
+\begin_inset Formula $s_{6}=f(s_{5})$
+\end_inset
+
+, we can get what should be a better approximation by using equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:aitkensDeltaSquared"
+
+\end_inset
+
+ on 
+\begin_inset Formula $s_{3},s_{4},\mbox{ and }s_{5}$
+\end_inset
+
+.
+ In other words, 
+\begin_inset Formula $s_{6}=a_{3}$
+\end_inset
+
+, 
+\begin_inset Formula $s_{7}=f(s_{6})$
+\end_inset
+
+, 
+\begin_inset Formula $s_{8}=f(s_{7})$
+\end_inset
+
+.
+ Again, we have three consecutive fixed point iterations, so 
+\begin_inset Formula $s_{9}=a_{6}$
+\end_inset
+
+, and so on.
+ This gives the sequence
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.75,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.107421875,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.943559146486222,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.995068424939850,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.002459692429676,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.998768643123618,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.999997974970982,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.000001012513483,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.999999493743001,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.999999999999658,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.000000000000170,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.999999999999914,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $1.999999999999999,$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\ldots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+which converges to 2 very quickly compared to 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+.
+ If we consider the calculations of 
+\begin_inset Formula $s_{1},s_{2},s_{4},s_{5},s_{7},s_{8},\ldots$
+\end_inset
+
+ to be intermediary and focus on the subsequence 
+\begin_inset Formula $s_{0},s_{3},s_{6},s_{9},\ldots=s_{0},a_{0},a_{3},a_{6},\ldots$
+\end_inset
+
+ as a sequence itself we have 
+\begin_inset Formula 
+\[
+1.75,\ 1.995068424939850,\ 1.999997974970982,\ 1.999999999999658,\ 1.999999999999999,\ldots
+\]
+
+\end_inset
+
+which converges very rapidly! The construction of this subsequence as a
+ sequence in and of itself is called 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Steffensen's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Steffensen's|see{Steffensen's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Steffensen's Method and the convergence is quadratic as long as 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+ is convergent.
+ The following is a heuristic argument that Steffensen's Method gives quadratic
+ convergence.
+ As seen, the error in 
+\begin_inset Formula $s_{2}$
+\end_inset
+
+ is not significantly different from the error in 
+\begin_inset Formula $s_{0}$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ has an error approximately equal to the square of the error in 
+\begin_inset Formula $s_{2}$
+\end_inset
+
+, so the error in 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ is approximately the square of the error in 
+\begin_inset Formula $s_{0}$
+\end_inset
+
+.
+ Similarly, the error in 
+\begin_inset Formula $s_{5}$
+\end_inset
+
+ is not significantly different from that in 
+\begin_inset Formula $a_{0}=s_{3}$
+\end_inset
+
+.
+ But the error in 
+\begin_inset Formula $a_{1}$
+\end_inset
+
+ is approximately the square of the error in 
+\begin_inset Formula $s_{5}$
+\end_inset
+
+, so the error in 
+\begin_inset Formula $a_{1}$
+\end_inset
+
+ is approximately the square of the error in 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+.
+ Similarly, the error in 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+ is approximately the square of the error in 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Applying Steffensen's method to the function 
+\begin_inset Formula $f(x)=\cos x$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+, we can accelerate the convergence of the sequence 
+\begin_inset Formula $\langle c_{n}\rangle$
+\end_inset
+
+ dramatically.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:steffensens2"
+
+\end_inset
+
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:steffensens2"
+
+\end_inset
+
+Steffensen's Method applied to 
+\begin_inset Formula $f(x)=\cos x$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(a_{n})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(g(a_{n}))$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|a_{n}-c|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{\left|a_{n+1}-c\right|}{\left|a_{n}-c\right|^{2}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.5403023058681398$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.8575532158463934$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.609(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.162$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7280103614676171$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7464997560452203$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7340702837365296$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.107(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.148$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7390669669086738$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7390973701357808$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7390768902228948$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.816(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.148$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7390851331660755$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.739085133248225$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.739085133192888$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.908(10)^{-11}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.148$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.7390851332151607$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.063(10)^{-17}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ shows the first few terms of 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ with some error analysis.
+ The last column of the table indicates that 
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{\left|a_{n+1}-c\right|}{\left|a_{n}-c\right|^{2}}\approx.148
+\]
+
+\end_inset
+
+and, consequently, that the sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ converges quadratically.
+\end_layout
+
+\begin_layout Standard
+Finally, we have two ways to get quick convergence from fixed point iteration.
+ One, we simply iterate when the function has derivative zero at the fixed
+ point.
+ Two, we use Steffensen's Method.
+\end_layout
+
+\begin_layout Subsection
+Convergence Diagrams
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Speeding up fixed point iteration only takes care of one deficiency of the
+ method.
+ There is still the problem of divergence from fixed points where the derivative
+ of the function has magnitude equal to or greater than 1.
+ Steffensen's Method helps.
+ Compare Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:FiveConvergenceDiagrams"
+
+\end_inset
+
+ with Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SixConvergenceDiagrams"
+
+\end_inset
+
+.
+ The convergence diagrams for Steffensen's Method show convergence over
+ larger intervals of initial values.
+ Moreover, where 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{2}$
+\end_inset
+
+ are concerned, Steffensen's Method finds all three fixed points, just as
+ fixed point iteration on 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ did.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:FiveConvergenceDiagrams"
+
+\end_inset
+
+Convergence diagrams for 5 functions with the same fixed points---Steffensen's
+ Method.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{1}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-order1.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{2}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-order2.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{3}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-order3.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{4}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-order4.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{5}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-order5.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+black: does not converge; green: converges to 
+\begin_inset Formula $3$
+\end_inset
+
+; red: converges to 
+\begin_inset Formula $1+\sqrt{3}$
+\end_inset
+
+; blue: converges to 
+\begin_inset Formula $1-\sqrt{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Steffensen's Method (pseudo-code)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Steffensen's method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since Steffensen's Method is particularly prone to floating-point error,
+ we do a preliminary check for convergence before the Aitken's delta-squared
+ step.
+ This helps prevent large errors or division by zero in Step 4.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: Fixed point iteration converges to a fixed point of 
+\begin_inset Formula $f$
+\end_inset
+
+ with initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Input: Initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+; function 
+\begin_inset Formula $f$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: For 
+\begin_inset Formula $j=1\ldots N$
+\end_inset
+
+ do Steps 2-6:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Set 
+\begin_inset Formula $x_{1}=f(x_{0})$
+\end_inset
+
+; 
+\begin_inset Formula $x_{2}=f(x_{1})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: If 
+\begin_inset Formula $|x_{2}-x_{1}|\leq tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Set 
+\begin_inset Formula $x=x_{0}-\frac{(x_{1}-x_{0})^{2}}{x_{2}-2x_{1}+x_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: If 
+\begin_inset Formula $|x-x_{0}|\leq tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $x$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6: Set 
+\begin_inset Formula $x_{0}=x$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+7: Print 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Maximum iterations exceeded.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $x$
+\end_inset
+
+ near exact fixed point, or message of failure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Aitken's
+\begin_inset space ~
+\end_inset
+
+delta-squared
+\begin_inset space ~
+\end_inset
+
+Method: If 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ linearly, the sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ defined by 
+\begin_inset Formula $a_{n}=p_{n}-\frac{(p_{n+1}-p_{n})^{2}}{p_{n+2}-2p_{n+1}+p_{n}}$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ superlinearly.
+\end_layout
+
+\begin_layout Description
+Fixed
+\begin_inset space ~
+\end_inset
+
+Point
+\begin_inset space ~
+\end_inset
+
+Error
+\begin_inset space ~
+\end_inset
+
+Bound: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Fixed Point Error Bound
+\end_layout
+
+\end_inset
+
+ Let 
+\begin_inset Formula $f$
+\end_inset
+
+ be a differentiable function with fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ and let 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ be an interval containing 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $|f'(x)|\leq M<1$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in[a,b]$
+\end_inset
+
+ and 
+\begin_inset Formula $f([a,b])\subseteq[a,b]$
+\end_inset
+
+, then for any initial value 
+\begin_inset Formula $x_{0}\in[a,b]$
+\end_inset
+
+, fixed point iteration, with 
+\begin_inset Formula $x_{k+1}=f(x_{k})$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq0$
+\end_inset
+
+, gives an approximation of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ with absolute error no more than 
+\begin_inset Formula $M^{k}|x_{0}-\hat{x}|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Fixed
+\begin_inset space ~
+\end_inset
+
+Point
+\begin_inset space ~
+\end_inset
+
+Iteration
+\begin_inset space ~
+\end_inset
+
+Order
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+Convergence: Suppose 
+\begin_inset Formula $f$
+\end_inset
+
+ is a function with fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $f'(\hat{x})$
+\end_inset
+
+ exists.
+ Let 
+\begin_inset Formula $x_{0},x_{1},x_{2},\ldots$
+\end_inset
+
+ be a sequence derived from fixed point iteration (
+\begin_inset Formula $x_{k+1}=f(x_{k})$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+) such that 
+\begin_inset Formula ${\displaystyle \lim_{k\to\infty}x_{k}=\hat{x}}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{k}\neq\hat{x}$
+\end_inset
+
+ for all 
+\begin_inset Formula $k=0,1,2,\ldots$
+\end_inset
+
+.
+ Then the sequence 
+\begin_inset Formula $\langle x_{n}\rangle$
+\end_inset
+
+ converges linearly to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ if 
+\begin_inset Formula $f'(\hat{x})\neq0$
+\end_inset
+
+ and at least quadratically if 
+\begin_inset Formula $f'(\hat{x})=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Steffensen's
+\begin_inset space ~
+\end_inset
+
+Method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Steffensen's method
+\end_layout
+
+\end_inset
+
+A modification of fixed point iteration where every third term is calculated
+ using Aitken's delta-squared method.
+\end_layout
+
+\begin_layout Description
+Superlinear
+\begin_inset space ~
+\end_inset
+
+convergence: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! superlinear
+\end_layout
+
+\end_inset
+
+ If the sequence 
+\begin_inset Formula $p_{0},p_{1},p_{2},\ldots$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula ${\displaystyle \lim_{k\to\infty}\frac{|p_{k+1}-p|}{|p_{k}-p|}=0}$
+\end_inset
+
+, then the sequence is said to converge superlinearly.
+\end_layout
+
+\begin_layout Description
+Superquadratic
+\begin_inset space ~
+\end_inset
+
+convergence: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! superquadratic
+\end_layout
+
+\end_inset
+
+ If the sequence 
+\begin_inset Formula $p_{0},p_{1},p_{2},\ldots$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula ${\displaystyle \lim_{k\to\infty}\frac{|p_{k+1}-p|}{|p_{k}-p|^{2}}=0}$
+\end_inset
+
+, then the sequence is said to converge superquadratically.
+\end_layout
+
+\begin_layout Subsection
+Octave
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:WhileLoop"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Speed"
+
+\end_inset
+
+, we learned about 
+\family typewriter
+for
+\family default
+ loops.
+ With a 
+\family typewriter
+for
+\family default
+ loop, you have to know how many times you want the loop to run or at least
+ you need a maximum.
+ You can quit a 
+\family typewriter
+for
+\family default
+ loop before it is done by exiting (returning) from the function.
+ There are times, however, when you don't know how many times you need a
+ loop to run and you don't even have a convenient maximum at hand.
+ In this case, a 
+\family typewriter
+while
+\family default
+ loop 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+while
+\family default
+ loop
+\end_layout
+
+\end_inset
+
+ is more appropriate.
+ A 
+\family typewriter
+while
+\family default
+ loop will continue to loop as long as a certain condition is met, and you
+ set the condition.
+ The syntax for a while loop is 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+while (condition)
+\end_layout
+
+\begin_layout Plain Layout
+
+  do something.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ but must be used with caution.
+ 
+\family typewriter
+for
+\family default
+ loops always have an end, but 
+\family typewriter
+while
+\family default
+ loops do not if programmed carelessly.
+ If the 
+\family typewriter
+condition
+\family default
+ of a 
+\family typewriter
+while
+\family default
+ loop is never met, the loop runs indefinitely! Here is a simple example
+ of a 
+\family typewriter
+while
+\family default
+ loop that never ends.
+ Do not run it! 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+i=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+while (i<12)
+\end_layout
+
+\begin_layout Plain Layout
+
+  disp("Help! I'm stuck in a never-ending loop!!")
+\end_layout
+
+\begin_layout Plain Layout
+
+end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ The problem is 
+\family typewriter
+i
+\family default
+ is set less than 12 and never changes so always remains less than 12.
+ Thus the condition of this 
+\family typewriter
+while
+\family default
+ loop is always met.
+ This loop can easily be modified to terminate.
+ If we increment 
+\family typewriter
+i
+\family default
+ inside the loop, it will end.
+ This modification of the never-ending loop does end and displays a messge
+ 12 times: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+i=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+while (i<12)
+\end_layout
+
+\begin_layout Plain Layout
+
+  disp("That's better.
+ I can handle a dozen iterations.")
+\end_layout
+
+\begin_layout Plain Layout
+
+  i=i+1;
+\end_layout
+
+\begin_layout Plain Layout
+
+end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ Incidentally, any 
+\family typewriter
+for
+\family default
+ loop can be replaced by a 
+\family typewriter
+while
+\family default
+ loop like this one.
+ 
+\end_layout
+
+\begin_layout Standard
+We are human.
+ Inevitably, we will program a while loop that never ends.
+ What to do once it starts running? Of course, you can power down the machine,
+ but that is a little like bringing your coffee mug to the kitchen using
+ a bull dozer.
+ There is an easier way.
+ You can simply stop the application in which you are running Octave.
+ If you are using a command line (terminal) window or the Octave GUI, you
+ can simply close it.
+ But, if you remember, you can also press 
+\family typewriter
+Ctrl-c
+\family default
+.
+ That is, tap the 
+\family typewriter
+c
+\family default
+ key while holding down the 
+\family typewriter
+Ctrl
+\family default
+ key.
+ This will interrupt the never-ending loop.
+\end_layout
+
+\begin_layout Standard
+For a more practical example, the bisection method can easily be re-programmed
+ using a while loop.
+ First, the pseudo-code:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $f$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+ 
+\begin_inset Formula $f(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)$
+\end_inset
+
+ have opposite signs.
+\end_layout
+
+\begin_layout Description
+Input: Interval 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+; function 
+\begin_inset Formula $f$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $m=\frac{a+b}{2}$
+\end_inset
+
+; 
+\begin_inset Formula $err=|b-a|/2$
+\end_inset
+
+; 
+\begin_inset Formula $L=f(a)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: While 
+\begin_inset Formula $err>tol$
+\end_inset
+
+ do Steps 3-5:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: Set 
+\begin_inset Formula $m=\frac{a+b}{2}$
+\end_inset
+
+; 
+\begin_inset Formula $M=f(m)$
+\end_inset
+
+; 
+\begin_inset Formula $err=err/2$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: If 
+\begin_inset Formula $M=0$
+\end_inset
+
+ then return 
+\begin_inset Formula $m$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: If 
+\begin_inset Formula $LM<0$
+\end_inset
+
+ then set 
+\begin_inset Formula $b=m$
+\end_inset
+
+; else set 
+\begin_inset Formula $a=m$
+\end_inset
+
+ and 
+\begin_inset Formula $L=M$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6: Return 
+\begin_inset Formula $m$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $m$
+\end_inset
+
+ within 
+\begin_inset Formula $tol$
+\end_inset
+
+ of exact root.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+Now the Octave code.
+ If you decide to use this code, it should be saved in a file named 
+\family typewriter
+bisectionWhile.m
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+function p = bisectionWhile(f,a,b,tol)
+\end_layout
+
+\begin_layout Plain Layout
+
+  p = a + (b-a)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+  err = abs(b-a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  FA = f(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (err>tol)
+\end_layout
+
+\begin_layout Plain Layout
+
+    p = a + (b-a)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    FP = f(p);
+\end_layout
+
+\begin_layout Plain Layout
+
+    err=err/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (FP == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (FA*FP > 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+      a = p;
+\end_layout
+
+\begin_layout Plain Layout
+
+      FA = FP;
+\end_layout
+
+\begin_layout Plain Layout
+
+    else
+\end_layout
+
+\begin_layout Plain Layout
+
+      b = p;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ Use this code with caution! It can run as a never-ending loop! If the function
+ is called with a negative value for 
+\family typewriter
+tol
+\family default
+, as in 
+\family typewriter
+bisectionWhile(g,1,2,-10)
+\family default
+, it will run until forcibly stopped (using 
+\family typewriter
+Ctrl-c
+\family default
+ or shutting down the Octave app) as 
+\family typewriter
+err
+\family default
+ will always be greater than 
+\begin_inset Formula $-10$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Error checking
+\end_layout
+
+\begin_layout Standard
+The most useful software includes error checking.
+ In the case of the 
+\family typewriter
+bisectionWhile
+\family default
+ function, we want to avoid the endless loop in every instance we can imagine.
+ Adding a couple lines at the beginning of the function provides some security:
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+function p = bisectionWhile(f,a,b,tol)
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (tol<=0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    p = "ERROR:tol must be positive.";
+\end_layout
+
+\begin_layout Plain Layout
+
+    return
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+  p = a + (b-a)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+  err = abs(b-a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  FA = f(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (err>tol)
+\end_layout
+
+\begin_layout Plain Layout
+
+    p = a + (b-a)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    FP = f(p);
+\end_layout
+
+\begin_layout Plain Layout
+
+    err=err/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (FP == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (FA*FP > 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+      a = p;
+\end_layout
+
+\begin_layout Plain Layout
+
+      FA = FP;
+\end_layout
+
+\begin_layout Plain Layout
+
+    else
+\end_layout
+
+\begin_layout Plain Layout
+
+      b = p;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In general, having your program check for input errors like this is called
+ error checking 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error checking
+\end_layout
+
+\end_inset
+
+ or validation 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+validation
+\end_layout
+
+\end_inset
+
+.
+ Most of the time, we will write code assuming the input is valid and will
+ not do any error checking.
+ This makes the programming simpler, but also allows for problems like never-end
+ing loops!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Supply the proof that 
+\begin_inset Formula $x_{k}\in[a,b]$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq0$
+\end_inset
+
+ in proposition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:fixedPointErrorBound"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula 
+\[
+{\displaystyle \frac{p_{n+2}p_{n}-p_{n+1}^{2}}{p_{n+2}-2p_{n+1}+p_{n}}}
+\]
+
+\end_inset
+
+and 
+\begin_inset Formula 
+\[
+{\displaystyle p_{n}-\frac{(p_{n+1}-p_{n})^{2}}{p_{n+2}-2p_{n+1}+p_{n}}}
+\]
+
+\end_inset
+
+are algebraically equivalent.
+\end_layout
+
+\begin_layout Enumerate
+Write an Octave function that implements Steffensen's Method.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave program (
+\family typewriter
+.m
+\family default
+ file) that uses a
+\family typewriter
+ while
+\family default
+ loop and the 
+\family typewriter
+disp()
+\family default
+ command to output the first 10 powers of 5 starting with 
+\begin_inset Formula $5^{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave program (
+\family typewriter
+.m
+\family default
+ file) that uses a 
+\family typewriter
+while
+\family default
+ loop, an array, and the 
+\family typewriter
+disp()
+\family default
+ command to find the values of 
+\begin_inset Formula ${\displaystyle f(n)=\frac{2^{2^{n}}-2}{2^{2^{n}}+3}}$
+\end_inset
+
+ for 
+\begin_inset Formula $n=0,1,2,4,6,10$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave program (
+\family typewriter
+.m
+\family default
+ file) that uses a 
+\family typewriter
+while
+\family default
+ loop, an array, and the 
+\family typewriter
+disp()
+\family default
+ command to find the values of 
+\begin_inset Formula ${\displaystyle f(n)=\frac{2n}{\sqrt{n^{2}+3n}}}$
+\end_inset
+
+ for 
+\begin_inset Formula $n=0,2,5,10,100,1000,20000$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+The following Octave code is intended to calculate the sum 
+\begin_inset Formula 
+\[
+\sum_{k=1}^{30}\frac{1}{k^{2}}
+\]
+
+\end_inset
+
+but it does not.
+ Find as many mistakes in the code as you can.
+ Classify each mistake as either a compilation error (an error that will
+ prevent the program from running at all) or a bug (an error that will not
+ prevent the program from running, but will cause improper calculation of
+ the sum).
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+sum=1;
+\begin_inset Newline newline
+\end_inset
+
+k=1;
+\begin_inset Newline newline
+\end_inset
+
+while k<30
+\begin_inset Newline newline
+\end_inset
+
+  sum=sum+1.0/k*k;
+\begin_inset Newline newline
+\end_inset
+
+end
+\begin_inset Newline newline
+\end_inset
+
+diss(sum)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a 
+\family typewriter
+while
+\family default
+ loop that outputs the sequence of numbers.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $7,8,9,10,11,12,13,14,15$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-1"
+
+\end_inset
+
+
+\begin_inset Formula $20,19,18,17,16,15,14,13$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $12,12.333,12.667,13,13.333,13.667,14$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $1,9,25,49,81,121,169,225,289,361,441$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $1,.5,.25,.125,.0625,.03125,.015625$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The function 
+\begin_inset Formula $g(x)=\sqrt[3]{5-3x}$
+\end_inset
+
+ satisfies the hypotheses of proposition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:fixedPointErrorBound"
+
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[1,1.3]$
+\end_inset
+
+.
+ Find a bound on the number of iterations required to find the fixed point
+ to within 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ accuracy starting with initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ of your choice.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-2"
+
+\end_inset
+
+Fixed point iteration on the function 
+\begin_inset Formula $g(x)=\sqrt[3]{x^{2}+x}$
+\end_inset
+
+ will converge to approximately 
+\begin_inset Formula $1.618033988749895$
+\end_inset
+
+ for any 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ in 
+\begin_inset Formula $[0.5,3.5]$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find a bound on the number of iterations it will take to achieve 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ accuracy with 
+\begin_inset Formula $x_{0}=2.5.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+How many iterations does it actually take to achieve 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ accuracy with 
+\begin_inset Formula $x_{0}=2.5$
+\end_inset
+
+?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-3"
+
+\end_inset
+
+Let 
+\begin_inset Formula $f(x)=\frac{3x^{2}\text{−}1}{6x+4}$
+\end_inset
+
+.
+ In exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-12"
+
+\end_inset
+
+ of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Fixedpt"
+
+\end_inset
+
+, you were asked to show that 
+\begin_inset Formula $f$
+\end_inset
+
+ has a unique fixed point on 
+\begin_inset Formula $[-4,-0.9]$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find a bound on the number of iterations required to approximate the fixed
+ point to with 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+ accuracy using fixed point iteration with any initial value in 
+\begin_inset Formula $[-4,-0.9]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Use fixed point iteration with 
+\begin_inset Formula $x_{0}=-4$
+\end_inset
+
+ to find an approximation to the fixed point that is accurate to within
+ 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+.
+ The fixed point is 
+\begin_inset Formula $x=-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Compare the bound to the actual number of iterations needed.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $g(x)=\pi+0.5\sin(x/2)$
+\end_inset
+
+ has a unique fixed point on 
+\begin_inset Formula $[0,2\pi]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find a bound on the number of iterations required to achieve 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+ accuracy using fixed point iteration with any initial value in 
+\begin_inset Formula $[0,2\pi]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Use fixed-point iteration with 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+ to find an approximation to the fixed point that is accurate to within
+ 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+.
+ The fixed point is 
+\begin_inset Formula $x=???$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Compare the bound to the actual number of iterations needed.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-4"
+
+\end_inset
+
+Calculate two iterations of Steffensen's method for 
+\begin_inset Formula $g(x)=\sqrt[3]{x^{2}+x}$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=2.5$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-5"
+
+\end_inset
+
+Use Steffensen's Method to find the root of 
+\begin_inset Formula $g(x)=x^{4}-2x^{3}-4x^{2}+4x+4$
+\end_inset
+
+ in 
+\begin_inset Formula $[2,3]$
+\end_inset
+
+ accurate to five siginificant digits.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:aitkensOnSequence"
+
+\end_inset
+
+Compute 
+\begin_inset Formula $a_{0},a_{1},$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{2}$
+\end_inset
+
+ of Aitken's delta-squared Method for the sequence in problem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:linearConvergenceExample"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "enu:linearConvergenceExample"
+
+\end_inset
+
+.
+ Since the sequence has an undefined term at 
+\begin_inset Formula $n=1$
+\end_inset
+
+, start the sequence 
+\begin_inset Formula $\langle\frac{n+1}{n-1}\rangle$
+\end_inset
+
+ with 
+\begin_inset Formula $n=2$
+\end_inset
+
+.
+ In other words, consider the sequence in problem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:linearConvergenceExample"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "enu:linearConvergenceExample"
+
+\end_inset
+
+ to be 
+\begin_inset Formula $3,2,\frac{5}{3},\frac{3}{2},\frac{7}{5}\ldots$
+\end_inset
+
+ so 
+\begin_inset Formula $p_{0}=3$
+\end_inset
+
+, 
+\begin_inset Formula $p_{1}=2$
+\end_inset
+
+, 
+\begin_inset Formula $p_{2}=\frac{5}{3}$
+\end_inset
+
+, and so on.
+\end_layout
+
+\begin_layout Enumerate
+The following sequences are linearly convergent.
+ Generate the first five terms of the sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ using Aitken's delta-squared calculation.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-6"
+
+\end_inset
+
+
+\begin_inset Formula $p_{0}=0.5$
+\end_inset
+
+, 
+\begin_inset Formula $p_{n}=(2-e^{p_{n-1}}+p_{n-1}^{2})/3$
+\end_inset
+
+ for 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p_{0}=0.75$
+\end_inset
+
+, 
+\begin_inset Formula $p_{n}=\sqrt{e^{p_{n-1}}/3}$
+\end_inset
+
+ for 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use Aitken's delta squared method to find 
+\begin_inset Formula ${\displaystyle p=\lim_{n\to\infty}p_{n}}$
+\end_inset
+
+ accurate to 3 decimal places.
+\begin_inset Formula 
+\begin{align*}
+p_{n} & =\{-2,\ -1.85271,\ -1.74274,\ -1.66045,\\
+ & \qquad-1.59884,\ -1.55266,\ -1.51804,\ \\
+ & \qquad-1.49208,\ -1.47261,\ \ldots\}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-7"
+
+\end_inset
+
+the sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:aitkensOnSequence"
+
+\end_inset
+
+ converges faster than does the sequence in problem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:linearConvergenceExample"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "enu:linearConvergenceExample"
+
+\end_inset
+
+.
+ If you were to apply Aitken's delta-squared Method to the sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+, would you expect the convergence to be even faster? Explain.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Recall from calculus that 
+\begin_inset Formula $\lim_{n\to\infty}n\sin\left(\frac{1}{n}\right)=1$
+\end_inset
+
+.
+ Therefore, if we let 
+\begin_inset Formula $p_{n}=n\sin\left(\frac{1}{n}\right)$
+\end_inset
+
+, then the sequence 
+\begin_inset Formula $\langle p_{1},p_{2},p_{3},\ldots\rangle\approx\langle.84147,.95885,.98158,\ldots\rangle$
+\end_inset
+
+ converges to 1, albeit very slowly.
+ Generate the first three terms of the sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ using Aitken's delta-squared calculation.
+ Does it seem to be approaching 1 faster than does 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-8"
+
+\end_inset
+
+Fixed point iteration applied to 
+\begin_inset Formula $f(x)=\sin(x)$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+ takes 
+\begin_inset Formula $29,992$
+\end_inset
+
+ iterations to reach a number below 
+\begin_inset Formula $0.01$
+\end_inset
+
+ on its way to the fixed point 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ Incidentally, 
+\begin_inset Formula $x_{29992}\approx0.099999$
+\end_inset
+
+.
+ How many iterations does it take Steffensen's Method with 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+ to reach a number below 
+\begin_inset Formula $0.01$
+\end_inset
+
+? Comment.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-9"
+
+\end_inset
+
+Let 
+\begin_inset Formula $f(x)=1+(\sin x)^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{0}=1$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $a_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{2}$
+\end_inset
+
+ of Steffensen's method with a calculator.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Compute the first three iterations of Steffensen's Method applied to 
+\begin_inset Formula $g(x)=(\sqrt{2})^{x}$
+\end_inset
+
+ using 
+\begin_inset Formula $p_{0}=3$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:orderOfConvergence-10"
+
+\end_inset
+
+Steffensen's method is applied to a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ using 
+\begin_inset Formula $p_{0}=1$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $f(f(p_{0}))=3$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{1}=0.75$
+\end_inset
+
+, what is 
+\begin_inset Formula $f(p_{0})$
+\end_inset
+
+?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "Steffensens"
+
+\end_inset
+
+Find the fixed point of 
+\begin_inset Formula $f(x)=x-0.002(e^{x}\cos(x)-100)$
+\end_inset
+
+ in 
+\begin_inset Formula $[5,6]$
+\end_inset
+
+ using Steffensen's Method.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+In question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Steffensens"
+
+\end_inset
+
+ you found a fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ For what function 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ is 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ a root?
+\end_layout
+
+\begin_layout Enumerate
+Of the root finding methods we have surveyed so far (Bisection, Fixed Point,
+ Newton's, Secant, and Steffensen's), which one do you feel is the best?
+ Why?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a 
+\family typewriter
+while
+\family default
+ loop that outputs the numbers 
+\begin_inset Formula $1,.5,.25,.125,.0625,.03125,.015625,\ldots$
+\end_inset
+
+ until it reaches a number below 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

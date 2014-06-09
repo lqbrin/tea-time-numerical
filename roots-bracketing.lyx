@@ -1,0 +1,4531 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:RootsBracketing"
+
+\end_inset
+
+Bracketing
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bisection is called a bracketed root-finding method.
+ A root is known to lie within a certain interval.
+ Each iteration reduces the size of the interval and maintains the guarantee
+ the root is within.
+ At each step of the algorithm, the root is known to be between the latest
+ estimate and one of the previous.
+ These bounds form a bracket around the root.
+ As the algorithm proceeds, the bracket decreases in size until it is smaller
+ than some tolerance, at which point the root is known to be close and the
+ algorithm stops.
+\end_layout
+
+\begin_layout Standard
+The problem with bisection is its linear order of convergence.
+ Compared to superlinear methods like the secant method and Newton's method,
+ the bisection method just creeps along.
+ But the bisection method has something the secant method and Newton's method
+ do not---certainty of convergence.
+ Yes, the secant method and Newton's method are fast when they converge,
+ but there is no guarantee they will converge at all.
+\end_layout
+
+\begin_layout Standard
+Methods combining the virtues of the bisection method (guaranteed convergence)
+ and some higher order method (speed) are called safeguarded methods.
+ They are guaranteed to converge and can do so quickly when the root is
+ near.
+ Any superlinear method may be bracketed, producing a safeguarded method.
+\end_layout
+
+\begin_layout Subsection
+Bracketing
+\end_layout
+
+\begin_layout Standard
+Bracketing means maintaining an interval in which a root is known to lie.
+ Bracketing is used in the bisection method.
+ With each iteration, the root is known to lie between the two latest approximat
+ions.
+ Bracketing is not used in the secant method or Newton's method.
+ There is no guarantee a root remains near the latest approximations.
+ 
+\end_layout
+
+\begin_layout Standard
+It is not difficult, however, to combine the bisection method with the secant
+ method or Newton's method, or any other high order method for that matter,
+ to form a hybrid method where the root remains bracketed and there is a
+ chance for fast convergence.
+ In such a method, a candidate for the next iteration is computed according
+ to the high order method.
+ If this candidate lies within the bracket, it becomes the next iteration.
+ If the candidate lies outside the bracket, the bisection method is used
+ to compute the next iteration instead.
+\end_layout
+
+\begin_layout Standard
+Bracketed secant method
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketed secant method
+\end_layout
+
+\end_inset
+
+, better known as the method of false position or regula falsi, provides
+ an elementary example.
+ In fact, the high order method (the secant method) always produces a value
+ inside the bracket, so checking that point is not necessary.
+ Where false position and the secant method differ is choosing which of
+ the previous two iterations to keep.
+ In the secant method, it is always the latest iteration which is kept for
+ the next.
+ In false position, the latest iteration which maintains a bracket about
+ the root is kept for the next whether that iteration is the latest or not.
+ Bracketed Newton's method
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketed Newton's method
+\end_layout
+
+\end_inset
+
+ provides a slighlty more advanced example because it is entirely possible
+ an iteration of Newton's method will land outside the bracket.
+\end_layout
+
+\begin_layout Standard
+Take the function 
+\begin_inset Formula $g(x)=3-x-\sin(x)$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[2,3]$
+\end_inset
+
+.
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[2,3]$
+\end_inset
+
+, and 
+\begin_inset Formula $g(2)\approx0.09$
+\end_inset
+
+ and 
+\begin_inset Formula $g(3)\approx-0.14$
+\end_inset
+
+ have opposite signs.
+ Thus 
+\begin_inset Formula $[2,3]$
+\end_inset
+
+ brackets a root of 
+\begin_inset Formula $g$
+\end_inset
+
+, so let 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=3$
+\end_inset
+
+.
+ The table shows the computation of the next iteration for bracketed secant
+ method and bracketed Newton's method.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+candidate 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bracketed secant
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x_{1}-g(x_{1})\frac{x_{1}-x_{0}}{g(x_{1})-g(x_{0})}\approx2.3912$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.3912$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bracketed Newton's
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{1}-\frac{g(x_{1})}{g'(x_{1})}\approx-11.101$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In bracketed secant, the candidate 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ is accepted, but in bracketed Newton's method, the candidate 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ is outside the bracket so it is discarded and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ according to the bisection method (
+\begin_inset Formula $2.5$
+\end_inset
+
+) is taken instead.
+\end_layout
+
+\begin_layout Standard
+To set up the next iteration, 
+\begin_inset Formula $g(x_{2})$
+\end_inset
+
+ is calculated.
+ Since 
+\begin_inset Formula $g(x_{2})$
+\end_inset
+
+ is negative in both methods, the old 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, which was 
+\begin_inset Formula $3$
+\end_inset
+
+, is discarded and 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+ is 
+\begin_inset Quotes eld
+\end_inset
+
+upgraded
+\begin_inset Quotes erd
+\end_inset
+
+ to 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ in order to maintain the bracket.
+ This way, 
+\begin_inset Formula $g$
+\end_inset
+
+ has opposite signs at 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+.
+ The following table demonstrates this decision process plus the computation
+ of the next iteration.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(x_{2})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+candidate 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bracketed secant
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.073141$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.3912$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x_{2}-g(x_{2})\frac{x_{2}-x_{1}}{g(x_{2})-g(x_{1})}\approx2.2165$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.2165$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bracketed Newton's
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.098472$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}-\frac{g(x_{2})}{g'(x_{2})}\approx2.0048$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.0048$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Can you fill in 
+\begin_inset Formula $x_{4}$
+\end_inset
+
+ based on the values in the following table? Notice the old 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ must be 
+\begin_inset Quotes eld
+\end_inset
+
+upgraded
+\begin_inset Quotes erd
+\end_inset
+
+ in bracketed secant but not in bracketed Newton's.
+ Why? Answers 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:bracketedx4"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(x_{3})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+candidate 
+\begin_inset Formula $x_{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bracketed secant
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.015215$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.2165$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x_{3}-g(x_{3})\frac{x_{3}-x_{2}}{g(x_{3})-g(x_{2})}\approx2.1854$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bracketed Newton's
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.087906$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.0048$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{3}-\frac{g(x_{3})}{g'(x_{3})}\approx2.1565$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The next 5 iterations of each method are given here in case you would like
+ to try your hand at computing a few.
+ And now is a good time to do so.
+ These values were computed using the subsequent Octave code.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bracketed
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+secant
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Newton's
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.18062942638407$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17925592233708$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17988957044102$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17975682599184$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17977718322867$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17975706647997$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17976012038625$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17975706648003$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{9}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17975753008587$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.17975706648003$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+False position (bracketed secant method) Octave code
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketed secant method ! Octave code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Dr.
+ Len Brin           20 May 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: Implementation of the Method of      %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        False Position.
+                        %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: function g; initial values a and b;    %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        tolerance TOL; maximum iterations N    %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: approximation x and number of         %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        iterations i; or message of failure    %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function [x,i] = falsePosition(g,a,b,TOL,N)
+\end_layout
+
+\begin_layout Plain Layout
+
+  i=1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  A=g(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  B=g(b);
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (i<N)
+\end_layout
+
+\begin_layout Plain Layout
+
+    b
+\end_layout
+
+\begin_layout Plain Layout
+
+    x=b-B*(b-a)/(B-A);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(x-b)<TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    X=g(x);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if ((B<0 && X>0) || (B>0 && X<0))
+\end_layout
+
+\begin_layout Plain Layout
+
+      a=b; A=B;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    b=x; B=X;
+\end_layout
+
+\begin_layout Plain Layout
+
+    i=i+1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+  x="Method failed---maximum number of iterations reached";
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Bracketed Newton's method Octave code
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketed Newton's method ! Octave code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Dr.
+ Len Brin           20 May 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: Implementation of bracketed Newton's %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        method.
+                                %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: function g; its derivative gp; initial %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        values a and b; tolerance TOL; maximum %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        iterations N                           %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: approximation x and number of         %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        iterations i; or message of failure    %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function [x,i] = bracketedNewton(g,gp,a,b,TOL,N)
+\end_layout
+
+\begin_layout Plain Layout
+
+  i=1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  A=g(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  B=g(b);
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (i<N)
+\end_layout
+
+\begin_layout Plain Layout
+
+    b
+\end_layout
+
+\begin_layout Plain Layout
+
+    x=b-B/gp(b);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (x<min([a,b]) || x>max([a,b]))
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=b+(a-b)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(x-b)<TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    X=g(x);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if ((B<0 && X>0) || (B>0 && X<0))
+\end_layout
+
+\begin_layout Plain Layout
+
+      a=b; A=B;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    b=x; B=X;
+\end_layout
+
+\begin_layout Plain Layout
+
+    i=i+1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+  x="Method failed---maximum number of iterations reached";
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Code for false position and bracketed Newton's may be retrieved at .
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: give URL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The code for bracketed secant method and bracketed Newton's method are very
+ similar.
+ In fact, they are nearly identical.
+ There are only two differences besides the commentary at the beginning.
+ Where bracketed secant has the line 
+\family typewriter
+x=b-B*(b-a)/(B-A);
+\family default
+, bracketed Newton's has the line 
+\family typewriter
+x=b-B/gp(b);
+\family default
+.
+ This is the essential difference between the two as this is where the high
+ order method is executed.
+ The only other difference is that bracketed Newton's includes three lines
+ where it checks whether 
+\family typewriter
+x
+\family default
+ lands within the bracket and executes one step of the bisection method
+ if not:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (x<min([a,b]) || x>max([a,b]))
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=b+(a-b)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Actually, we could add these three lines to the bracketed secant method
+ and it would run just the same.
+ It is impossible for the secant method to produce a value of 
+\family typewriter
+x
+\family default
+ outside the bracket, so the bisection step would never be executed.
+ The only essential difference between the two functions is the execution
+ of the high order method.
+\end_layout
+
+\begin_layout Standard
+We can use this observation to create a sort of blueprint for bracketing
+ any high order method.
+ Steffensen's, Müller's (as long as the approximation stays real), or Sidi's
+ (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:polynomialLagrange"
+
+\end_inset
+
+), for example, can be bracketed this way.
+ The following pseudo-pseudo-code represents such a blueprint, giving guidance
+ on how to safeguard a high order method by combining it with bisection.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "pseudo:safeguarded"
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketing ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $g$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+ 
+\begin_inset Formula $g(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $g(b)$
+\end_inset
+
+ have opposite signs.
+\end_layout
+
+\begin_layout Description
+Input: Interval 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+; function 
+\begin_inset Formula $g$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+; any other variables, like 
+\begin_inset Formula $g'$
+\end_inset
+
+ in the case of Newton's method, needed to iterate the superlinear method.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $A=g(a)$
+\end_inset
+
+; 
+\begin_inset Formula $B=g(b)$
+\end_inset
+
+; 
+\begin_inset Formula $i=2$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Initialize any other variables needed for superlinear();
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: While 
+\begin_inset Formula $i<N$
+\end_inset
+
+ do Steps 4-10:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Set 
+\begin_inset Formula $x=\mbox{superlinear}(a,b,g,\ldots)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: If 
+\begin_inset Formula $(x-a)(x-b)>0$
+\end_inset
+
+ then 
+\begin_inset Formula $x=b+\frac{a-b}{2}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6: If 
+\begin_inset Formula $|x-b|<tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+7: Set 
+\begin_inset Formula $X=g(x)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+8: If 
+\begin_inset Formula $BX<0$
+\end_inset
+
+ then set 
+\begin_inset Formula $a=b$
+\end_inset
+
+; 
+\begin_inset Formula $A=B$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+9: Set 
+\begin_inset Formula $b=x$
+\end_inset
+
+; 
+\begin_inset Formula $B=X$
+\end_inset
+
+; 
+\begin_inset Formula $i=i+1$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+10: Update any other variables needed for superlinear();
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+11: Print 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Maximum iterations exceeded.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $m$
+\end_inset
+
+ within 
+\begin_inset Formula $tol$
+\end_inset
+
+ of exact root, or message of failure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As motivation for the need to develop bracketed versions of other high order
+ methods, consider the particularly problematic function 
+\begin_inset Formula $g(x)=\frac{1+10x}{1-10x}$
+\end_inset
+
+.
+ It has a root at 
+\begin_inset Formula $-\frac{1}{10}$
+\end_inset
+
+, but the bracketed secant method can be very slow to converge to this root.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:troubleForSecant"
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:troubleForSecant"
+
+\end_inset
+
+A troublesome function for the bracketed secant method.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/rootBracketing01.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ illustrates this slow convergence beginning with the bracket 
+\begin_inset Formula $[a,b]=[-4,.05]$
+\end_inset
+
+.
+ With this unfortunate choice of bracket, the method takes 45 iterations
+ to achieve 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ accuracy.
+ A smarter algorithm would not only check that each iterate lands within
+ the brackets, but would also check to see that the high order method is
+ making quick progress toward the root.
+ If it detected that convergence was slow, say slower than bisection would
+ be, it would take a bisection step instead.
+ Note that bracketed Newton's method does not have a significant problem
+ with this function.
+ Given the same initial bracket, it converges to within 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ of the root in only 10 iterations (the first 4 of which are bisection steps).
+ Alas, Newton's method requires use of the derivative.
+ A fast bracketed root-finding method that does not require knowledge of
+ the derivative would be quite useful.
+\end_layout
+
+\begin_layout Standard
+In the early 1970s, Richard Brent
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Brent's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Brent's|see{Brent's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ built upon the work of van Wijngaarden and Dekker to produce a bracketed
+ method that combines bisection, the secant method, and inverse quadratic
+ interpolation, all the while checking to make sure the high order method
+ is making sufficiently quick progress toward a root.
+ The result is what is now known as Brent's method.
+ It does not require knowledge of the derivative.
+ It is fast.
+ It is guaranteed to converge.
+ Consequently, it is a popular all-purpose method for finding a root within
+ a bracket when the derivative is not accessible.
+ The full details of Brent's method will not be presented here, but a significan
+t step toward that method will.
+\end_layout
+
+\begin_layout Subsection
+Inverse Quadratic Interpolation
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+inverse quadratic interpolation method
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You may recall, in Müller's method, three initial approximations, say 
+\begin_inset Formula $a$
+\end_inset
+
+, 
+\begin_inset Formula $b$
+\end_inset
+
+, and, 
+\begin_inset Formula $c$
+\end_inset
+
+ are needed.
+ The parabola through the points 
+\begin_inset Formula $(a,g(a))$
+\end_inset
+
+, 
+\begin_inset Formula $(b,g(b))$
+\end_inset
+
+, and 
+\begin_inset Formula $(c,g(c))$
+\end_inset
+
+ is drawn and its intersection with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis gives the next iteration.
+ The key elements of this method, the process of fitting a quadratic function
+ to the three points, is called interpolation.
+ Thus Müller's method could just as well be called the 
+\begin_inset Quotes eld
+\end_inset
+
+quadratic interpolation method
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As you may have guessed, the method of inverse quadratic interpolation is
+ similar.
+ Instead of fitting a quadratic function to the points 
+\begin_inset Formula $(a,g(a))$
+\end_inset
+
+, 
+\begin_inset Formula $(b,g(b))$
+\end_inset
+
+, and 
+\begin_inset Formula $(c,g(c))$
+\end_inset
+
+, the roles of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ are reversed.
+ A quadratic function is fitted to the points 
+\begin_inset Formula $(g(a),a)$
+\end_inset
+
+, 
+\begin_inset Formula $(g(b),b)$
+\end_inset
+
+, and 
+\begin_inset Formula $(g(c),c)$
+\end_inset
+
+ instead.
+ Since 
+\begin_inset Formula $x$
+\end_inset
+
+ is a function of 
+\begin_inset Formula $y$
+\end_inset
+
+ in this case, the quadratic will cross the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis exactly once, when 
+\begin_inset Formula $y=0$
+\end_inset
+
+.
+ Evaluating the quadratic at 
+\begin_inset Formula $0$
+\end_inset
+
+ gives the next iteration.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:quadraticVSinverseQuadratic"
+
+\end_inset
+
+ shows quadratic interpolation and inverse quadratic interpolation on the
+ same set of three points.
+ In quadratic interpolation, 
+\begin_inset Formula $y$
+\end_inset
+
+ is treated as a function of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ In inverse quadratic interpolation, 
+\begin_inset Formula $x$
+\end_inset
+
+ is treated as a function of 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Inverse quadratic interpolation avoids the main complication of quadratic
+ interpolation---calculating its 
+\begin_inset Formula $x$
+\end_inset
+
+-axis crossings.
+ In quadratic interpolation, the quadratic may cross the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis twice or not at all! Either way, some choice needs to be made at every
+ step, and the roots of the quadratic involve the quadratic formula.
+ In inverse quadratic interpolation, the quadratic is guaranteed to cross
+ the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis exactly once, and finding the crossing is just a matter of evaluating
+ the quadratic at 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ That is, 
+\begin_inset Formula $y=0$
+\end_inset
+
+.
+ Remember, the quadratic gives 
+\begin_inset Formula $x$
+\end_inset
+
+ as a function of 
+\begin_inset Formula $y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Referring back to the derivation of Müller's method 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:mullers"
+
+\end_inset
+
+, forcing the parabola to pass through the points 
+\begin_inset Formula $(a,A)$
+\end_inset
+
+, 
+\begin_inset Formula $(b,B)$
+\end_inset
+
+, and 
+\begin_inset Formula $(c,C)$
+\end_inset
+
+, and swapping the roles of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+, a formula for the inverse parabola, 
+\begin_inset Formula $q$
+\end_inset
+
+, just falls out:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+q(y)=q_{0}(y-B)^{2}+q_{1}(y-B)+q_{2}
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\begin{eqnarray*}
+q_{2} & = & b\\
+q_{1} & = & \frac{(A-B)^{2}(c-b)-(C-B)^{2}(a-b)}{(A-B)(C-B)(A-C)}\\
+q_{0} & = & \frac{(C-B)(a-b)-(A-B)(c-b)}{(A-B)(C-B)(A-C)}.
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Quadratic interpolation order of convergence} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The method of inverse quadratic interpolation
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+inverse quadratic interpolation method ! order of convergence
+\end_layout
+
+\end_inset
+
+ has order of convergence about 
+\begin_inset Formula $1.84$
+\end_inset
+
+ under reasonable assumptions.
+ If the function whose root is being determined has three continuous derivatives
+ in a neighborhood of the root, the latest three approximations are sufficiently
+ close, and the root is simple, then the order of convergence is the real
+ solution of 
+\begin_inset Formula 
+\[
+\alpha^{3}-\alpha^{2}-\alpha-1=0.
+\]
+
+\end_inset
+
+We can use inverse quadratic interpolation to approximate it! 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> format('long')
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f=inline('x^3-x^2-x-1')
+\end_layout
+
+\begin_layout Plain Layout
+
+f = f(x) = x^3-x^2-x-1
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=inverseQuadratic(f,1,2,10^-12,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  1.83928675521416
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  8
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ The exact solution is
+\begin_inset Formula 
+\[
+\alpha=\left(\frac{\sqrt{11}}{3\sqrt{3}}+\frac{19}{27}\right)^{\frac{1}{3}}+\frac{4}{9\left(\frac{\sqrt{11}}{3\sqrt{3}}+\frac{19}{27}\right)^{\frac{1}{3}}}+\frac{1}{3}.
+\]
+
+\end_inset
+
+You may recognize this as the order of convergence for Müller's Method.
+ Indeed, any quadratic interpolation method converges to a simple root with
+ this order.
+\end_layout
+
+\begin_layout Description
+Reference: 
+\series bold
+A Family of Methods for Solving Nonlinear Equations Using Quadratic Interpolatio
+n
+\series default
+, J.
+ R.
+ Sharma, 
+\shape italic
+Computers & Mathematics with Applications
+\shape default
+, Vol.
+ 48, No.
+ 5-6 (Sep., 2004), pp.
+ 709-714.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Formula $x$
+\end_inset
+
+-axis crossing is therefore 
+\begin_inset Formula 
+\begin{eqnarray*}
+x & = & q(0)\\
+ & = & B^{2}q_{0}-Bq_{1}+q_{2}\\
+ & = & B^{2}\frac{(C-B)(a-b)-(A-B)(c-b)}{(A-B)(C-B)(A-C)}-B\frac{(A-B)^{2}(c-b)-(C-B)^{2}(a-b)}{(A-B)(C-B)(A-C)}+b\\
+ & = & \frac{\left[B^{2}(C-B)+B(C-B)^{2}\right](a-b)-\left[B^{2}(A-B)+B(A-B)^{2}\right](c-b)}{(A-B)(C-B)(A-C)}+b\\
+ & = & \frac{\left[-B^{2}C+BC^{2}\right](a-b)-\left[-B^{2}A+BA^{2}\right](c-b)}{(A-B)(C-B)(A-C)}+b\\
+ & = & \frac{BC(C-B)(a-b)-BA(A-B)(c-b)}{(A-B)(C-B)(A-C)}+b\\
+ & = & b+\frac{\frac{B}{A}(\frac{C}{B}-1)(a-b)-\frac{A}{C}(1-\frac{B}{A})(c-b)}{(1-\frac{B}{A})(\frac{C}{B}-1)(\frac{A}{C}-1)}\\
+ & = & b+\frac{\frac{A}{C}(1-\frac{B}{A})(c-b)-\frac{B}{A}(\frac{C}{B}-1)(a-b)}{(\frac{B}{A}-1)(\frac{B}{C}-1)(\frac{A}{C}-1)}.
+\end{eqnarray*}
+
+\end_inset
+
+To make the compuation of 
+\begin_inset Formula $x$
+\end_inset
+
+ a little more programmer-friendly, some new variables are introduced.
+ Let
+\begin_inset Formula 
+\[
+r=\frac{B}{A}-1,\quad s=\frac{C}{B}-1,\quad t=\frac{A}{C}-1
+\]
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{equation}
+x=b-\frac{r(t+1)(c-b)+s(r+1)(a-b)}{rst}.\label{eq:inverseQuadratic}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:quadraticVSinverseQuadratic"
+
+\end_inset
+
+Quadratic and inverse quadratic interpolation.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/rootBracketing02.pdf
+
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/rootBracketing03.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inverse quadratic interpolation can be bracketed just like any other high
+ order method.
+ But it does present an interesting question that not all high order methods
+ do.
+ Three points are necessary for a quadratic interpolation, so when they
+ are used to produce the next iteration, a fourth point is generated.
+ Of the four points, the computer needs to decide which two will become
+ the next bracket, and which point should be the third needed for the next
+ interpolation.
+ But we are getting ahead of ourselves.
+\end_layout
+
+\begin_layout Standard
+Each iteration begins with three points, 
+\begin_inset Formula $(a,g(a))$
+\end_inset
+
+, 
+\begin_inset Formula $(b,g(b))$
+\end_inset
+
+, and 
+\begin_inset Formula $(c,g(c))$
+\end_inset
+
+ where 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ bracket a root and 
+\begin_inset Formula $c$
+\end_inset
+
+ is a third point.
+ For the first iteration, only the bracket is given.
+ 
+\begin_inset Formula $c$
+\end_inset
+
+ is set equal to 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ For every iteration, the signs of 
+\begin_inset Formula $g(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $g(b)$
+\end_inset
+
+ are checked to ensure that 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ bracket a root.
+ If they are opposite, the method proceeds.
+ If they are the same, that means 
+\begin_inset Formula $g(b)$
+\end_inset
+
+ and 
+\begin_inset Formula $g(c)$
+\end_inset
+
+ must have opposite signs, so 
+\begin_inset Formula $a$
+\end_inset
+
+ is set equal to 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ Next, the absolute values of 
+\begin_inset Formula $g(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $g(b)$
+\end_inset
+
+ are checked.
+ If 
+\begin_inset Formula $|g(a)|<|g(b)|$
+\end_inset
+
+, the labels of 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ are switched and 
+\begin_inset Formula $c$
+\end_inset
+
+ is set equal to the new value of 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ After these initial checks, the computation of the next iteration begins
+ with assurance that a root lies between 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+; 
+\begin_inset Formula $b$
+\end_inset
+
+ is likely the best estimate of the root to date; and 
+\begin_inset Formula $c$
+\end_inset
+
+ is likely the worst estimate of the root to date.
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $c=a$
+\end_inset
+
+ after the initial checks and possible relabeling, then quadratic interpolation
+ is impossible.
+ The next iteration is generated by the secant method (linear interpolation)
+ instead.
+ If 
+\begin_inset Formula $c\neq a$
+\end_inset
+
+ after the initial checks and possible relabeling, a candidate for the next
+ iteration, 
+\begin_inset Formula $x$
+\end_inset
+
+, is calculated according to inverse quadratic interpolation.
+ If the candidate lies within the bracket, it is accepted as the next iteration.
+ If it lies outside the bracket, a step of the bisection method is used
+ instead.
+ In either case, 
+\begin_inset Formula $c$
+\end_inset
+
+ is set equal to 
+\begin_inset Formula $b$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ is set equal to 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ For bracketed inverse quadratic interpolation, this completes one iteration.
+ The method is then repeated until a sufficiently good approximation is
+ found.
+\end_layout
+
+\begin_layout Standard
+In the best-case scenario, inverse quadratic interpolation is used at every
+ step and convergence is superlinear with order about 
+\begin_inset Formula $1.84$
+\end_inset
+
+.
+ In the worst-case scenario, one of the high order methods is used at every
+ step, but the function is pathological and convergence is slow, possibly
+ even slower than bisection.
+ Slow convergence is rare, though, and the actual order of convergence can
+ not be pinned down in general.
+ The method switches between methods of different orders.
+ The best we can say is it is usually fast.
+\end_layout
+
+\begin_layout Subsubsection
+Bracketed inverse quadratic interpolation Octave code
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketed inverse quadratic interpolation ! Octave code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Dr.
+ Len Brin           21 May 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: Implementation of bracketed inverse  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        quadratic interpolation method.
+        %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: function g; initial values a and b;    %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        tolerance TOL; maximum iterations N0   %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: approximation x and number of         %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        iterations i; or message of failure    %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function [x,i] = bracketedInverseQuadratic(g,a,b,TOL,N0)
+\end_layout
+
+\begin_layout Plain Layout
+
+  i=1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  A=g(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  B=g(b);
+\end_layout
+
+\begin_layout Plain Layout
+
+  c=a; C=A;
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (i<N0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    b
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (B*A>0)
+\end_layout
+
+\begin_layout Plain Layout
+
+      a=c; A=C;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(A) < abs(B))
+\end_layout
+
+\begin_layout Plain Layout
+
+      c=b; C=B;
+\end_layout
+
+\begin_layout Plain Layout
+
+      b=a; B=A;
+\end_layout
+
+\begin_layout Plain Layout
+
+      a=c; A=C;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (a==c)
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=(b*A-a*B)/(A-B);
+\end_layout
+
+\begin_layout Plain Layout
+
+    else
+\end_layout
+
+\begin_layout Plain Layout
+
+      r=B/A-1; s=C/B-1; t=A/C-1;
+\end_layout
+
+\begin_layout Plain Layout
+
+      p=(t+1)*r*(c-b)+(r+1)*s*(a-b);
+\end_layout
+
+\begin_layout Plain Layout
+
+      q=t*s*r;
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=b-p/q;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (x<min([a,b]) || x>max([a,b]))
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=b+(a-b)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(x-b)<TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+      disp(" ");
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    c=b; C=B;
+\end_layout
+
+\begin_layout Plain Layout
+
+    b=x; B=g(b);
+\end_layout
+
+\begin_layout Plain Layout
+
+    i=i+1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+  x="Method failed---maximum number of iterations reached";
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ Applying the bracketed inverse quadratic interpolation method to the problemati
+c function 
+\begin_inset Formula $g(x)=\frac{1+10x}{1-10x}$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[-4,.05]$
+\end_inset
+
+ yields the result within 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ accuracy in only 11 iterations.
+ The method took only 1 iteration more than bracketed Newton's without requiring
+ knowledge of the derivative of 
+\begin_inset Formula $g$
+\end_inset
+
+! Bracketed inverse quadratic interpolation code may be retrieved at .
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: give URL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Stopping
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+stopping criterion ! for root finding
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In all of our root-finding methods, the algorithm stops when the difference
+ between consecutive iterations is less than some tolerance.
+ This criterion is based on the assumption that the error will be no more
+ than this difference.
+ And that is a safe assumption for any method that is converging superlinearly
+ when it quits.
+ Indeed, it is even safe for the linearly converging bisection method where
+ the difference between consecutive iterations is exactly the theoretical
+ bound on the error.
+ 
+\end_layout
+
+\begin_layout Standard
+The criterion is not safe when a superlinear method is used far enough from
+ a root that superlinear convergence is not observed.
+ This is exactly what happens in figure 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "fig:troubleForSecant"
+
+\end_inset
+
+.
+ The difference between consecutive iterations is actually larger than the
+ absolute error at every step.
+ This is an unusual situation, but it can happen.
+ 
+\end_layout
+
+\begin_layout Standard
+The criterion is also not safe when a method is linearly convergent with
+ a limiting convergence constant 
+\begin_inset Formula $\lambda>\frac{1}{2}$
+\end_inset
+
+.
+ However, linearly convergent methods should never be used on their own
+ as there is always a faster alternative.
+\end_layout
+
+\begin_layout Standard
+There is one more important consideration regarding stopping.
+ Stopping when the difference between consecutive iterations is less than
+ some tolerance is dependent on the absolute error.
+ When roots could be very small or very large, it is perhaps better to use
+ a criterion based on relative error.
+ Instead of stopping when 
+\begin_inset Formula $|x_{n+1}-x_{n}|<tol$
+\end_inset
+
+, for example, we would instead stop when 
+\begin_inset Formula $|x_{n+1}-x_{n}|<tol\cdot|x_{n+1}|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Bracketing: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketing
+\end_layout
+
+\end_inset
+
+Iteratively refining an interval, also known as the bracket, in which a
+ root is known to lie until it is small beyond some tolerance.
+\end_layout
+
+\begin_layout Description
+Inverse
+\begin_inset space ~
+\end_inset
+
+quadratic
+\begin_inset space ~
+\end_inset
+
+interpolation: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+inverse quadratic interpolation method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! inverse quadratic interpolation|see{inverse quadratic interpolation
+ method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A quadratic in 
+\begin_inset Formula $y$
+\end_inset
+
+ is fit to three consecutive approximations of a root.
+ The intersection of the quadratic with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis becomes the next iteration.
+\end_layout
+
+\begin_layout Description
+Bracketed
+\begin_inset space ~
+\end_inset
+
+secant
+\begin_inset space ~
+\end_inset
+
+method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketed secant method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! bracketed secant method|see{bracketed secant method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A combination of the secant method and bisection method employing bracketing.
+ At each iteration, if the secant method produces a value inside the current
+ bracket, it becomes the next iteration.
+ Otherwise bisection is used to produce the next iteration.
+\end_layout
+
+\begin_layout Description
+False
+\begin_inset space ~
+\end_inset
+
+position: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! false position|see{bracketed secant method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+false position|see{bracketed secant method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Another name for the bracketed secant method.
+\end_layout
+
+\begin_layout Description
+Regula
+\begin_inset space ~
+\end_inset
+
+falsi: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! regula falsi|see{bracketed secant method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+regula falsi|see{bracketed secant method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Another name for the bracketed secant method.
+\end_layout
+
+\begin_layout Description
+Bracketed
+\begin_inset space ~
+\end_inset
+
+Newton's
+\begin_inset space ~
+\end_inset
+
+method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketed Newton's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! bracketed Newton's|see{bracketed Newton's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A combination of Newton's method and the bisection method employing bracketing.
+ At each iteration, if Newton's method produces a value inside the current
+ bracket, it becomes the next iteration.
+ Otherwise bisection is used to produce the next iteration.
+\end_layout
+
+\begin_layout Description
+Bracketed
+\begin_inset space ~
+\end_inset
+
+inverse
+\begin_inset space ~
+\end_inset
+
+quadratic
+\begin_inset space ~
+\end_inset
+
+interpolation: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bracketed inverse quadratic interpolation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! bracketed inverse quadratic interpolation|see{bracketed inverse
+ quadratic interpolation}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A combination of inverse quadratic interpolation, the secant method, and
+ bisection employing bracketing.
+ At each iteration, if inverse quadratic interpolation produces a value
+ inside the current bracket, it becomes the next iteration.
+ Otherwise either the secant method or bisection is used to produce the
+ next iteration.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing"
+
+\end_inset
+
+Use the bracketed secant method (false position) to find a root in the indicated
+ interval, accurate to within 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=3-x-\sin x$
+\end_inset
+
+; 
+\begin_inset Formula $[2,3]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
+\end_inset
+
+; 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
+\end_inset
+
+; 
+\begin_inset Formula $[0,0.9]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(x)=10-\cosh(x)$
+\end_inset
+
+; 
+\begin_inset Formula $[-3,-2]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(t)=\sqrt{4+5\sin t}-2.5$
+\end_inset
+
+; 
+\begin_inset Formula $[-600,-500]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(t)=\frac{3t^{2}\tan t}{1-t^{2}}$
+\end_inset
+
+; 
+\begin_inset Formula $[3490,3491]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(t)=\ln(3\sin t)-\frac{3t}{5}$
+\end_inset
+
+; 
+\begin_inset Formula $[1,2]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(r)=e^{\sin r}-r$
+\end_inset
+
+; 
+\begin_inset Formula $[-20,20]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(r)=\sin(e^{r})+r$
+\end_inset
+
+; 
+\begin_inset Formula $[-3,3]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(r)=2^{\sin r}-3^{\cos r}$
+\end_inset
+
+; 
+\begin_inset Formula $[1,3]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-1"
+
+\end_inset
+
+Repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+ using bracketed Newton's method.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-2"
+
+\end_inset
+
+Repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+ using the secant method.
+ Compare your answer with that of false position.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-3"
+
+\end_inset
+
+Repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+ using Newton's method.
+ Compare your answer with that of bracketed Newton's method.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-4"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+ using Octave and a tolerance of 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-5"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-1"
+
+\end_inset
+
+ using Octave and a tolerance of 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-6"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+ using Octave, bracketed inverse quadratic interpolation, and a tolerance
+ of 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-7"
+
+\end_inset
+
+Compare the results of questions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-4"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-5"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-6"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-8"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a bracketed Steffensen's method Octave function.
+ 
+\series bold
+REMARK:
+\series default
+ Steffensen's method is a fixed point finding method.
+ It solves the equation 
+\begin_inset Formula $f(x)=x$
+\end_inset
+
+, not 
+\begin_inset Formula $f(x)=0$
+\end_inset
+
+.
+ So a proper bracket 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ is one for which (
+\begin_inset Formula $f(a)>a$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)<b$
+\end_inset
+
+) or (
+\begin_inset Formula $f(a)<a$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)>b$
+\end_inset
+
+).
+ Geometrically, this means the points 
+\begin_inset Formula $(a,f(a))$
+\end_inset
+
+ and 
+\begin_inset Formula $(b,f(b))$
+\end_inset
+
+ are on opposite sides of the line 
+\begin_inset Formula $f(x)=x$
+\end_inset
+
+, analogous to a root-finding bracket where the two points are on opposite
+ sides of the line 
+\begin_inset Formula $f(x)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-9"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-8-1"
+
+\end_inset
+
+ to repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+ using Octave, bracketed Steffensen's method, and a tolerance of 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+.
+ Given that you are looking for a root of 
+\begin_inset Formula $g(x)$
+\end_inset
+
+, use 
+\begin_inset Formula $f(x)=g(x)+x$
+\end_inset
+
+ in your call to Steffensen's method.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-13"
+
+\end_inset
+
+Compare the results of questions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-6"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-9"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-10"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Rewrite the 
+\family typewriter
+inverseQuadraticInterpolation
+\family default
+ Octave function so that it stops when the (approximated) relative error
+ is less than the tolerance.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-11"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-10"
+
+\end_inset
+
+ to repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+ with a tolerance of 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-14"
+
+\end_inset
+
+Compare the results of questions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-6"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-11"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Answers
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $x_{4}$
+\end_inset
+
+: 
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:bracketedx4"
+
+\end_inset
+
+In both methods, the candidate 
+\begin_inset Formula $x_{4}$
+\end_inset
+
+ is accepted since in each case, 
+\begin_inset Formula $x_{4}$
+\end_inset
+
+ is within the bracket formed by 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+.
+ So, for bracketed secant, 
+\begin_inset Formula $x_{4}=2.1854$
+\end_inset
+
+, and for bracketed Newton's, 
+\begin_inset Formula $x_{4}=2.1565$
+\end_inset
+
+.
+ 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ is upgraded to 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ in bracketed secant because 
+\begin_inset Formula $g(x_{3})$
+\end_inset
+
+ is negative.
+ 
+\begin_inset Formula $g(x_{2})$
+\end_inset
+
+ and 
+\begin_inset Formula $g(x_{3})$
+\end_inset
+
+ must have opposite signs in order to maintain the bracket.
+ 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ is not upgraded in bracketed Newton's because 
+\begin_inset Formula $g(x_{3})$
+\end_inset
+
+ is positive.
+\end_layout
+
+\end_body
+\end_document

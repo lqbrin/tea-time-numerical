@@ -1,0 +1,256 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+Polynomial interpolation
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+poly(x,y):=block([i,j,F,P,Q],
+    n:length(x),
+    for i:1 thru n do (
+        F[i]:makelist(y[i],j,1,n)
+    ),
+    for i:1 thru n do (
+        for j:2 thru n do (
+            F[i][j]:0.0
+        )
+    ),
+    for j:2 thru n do (
+        for i:1 thru n+1-j do (
+            F[i][j]:(F[i][j-1]-F[i+1][j-1])/(x[i]-x[i+j-1])
+        )
+    ),
+    P:0,
+    for i:n thru 2 step -1 do (
+        P:(P+F[1][i])*(t-x[i-1])
+    ),
+    P:P+F[1][1],
+    Q:0,
+    for i:1 thru n-1 do (
+        Q:(Q+F[i][n-i+1])*(t-x[i+1])
+    ),
+    Q:Q+F[n][1],
+    [P,Q]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+n:7$
+x:[10,36,62,80,136,168,221];
+y:[25,33,35+1/2,35,30,24,12];
+SP:poly(x,y);
+y;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+draw2d(explicit(SP[1],t,x[1],x[n]),proportional_axes=xy,yrange=[0,50]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+n:4$
+x1:[10,36,62,80];
+y1:[25,33,35+1/2,35];
+x2:[80,136,168,221];
+y2:[35,30,24,12];
+SP1:poly(x1,y1);
+SP2:poly(x2,y2);
+draw2d(explicit(SP1[1],t,x1[1],x1[n]),explicit(SP2[1],t,x2[1],x2[n]),proportional_axes=xy,yrange=[0,50]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw2d(explicit(SP1[1],t,x1[4]-10,x1[4]),explicit(SP2[1],t,x2[1],x2[1]+10),proportional_axes=xy,yrange=[30,40]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Spline
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+n:6$
+x:[10,36,62,80,136,168,221];
+y:[25,33,35+1/2,35,30,24,12];
+for i:1 thru n do (
+    PW[i]:a[i]+b[i]*t+c[i]*t^2+d[i]*t^3
+)$
+for i:1 thru n do (
+    eq[i]:subst(t=x[i],PW[i]=y[i]),
+    eq[i+n]:subst(t=x[i+1],PW[i]=y[i+1])
+)$
+for i:1 thru n-1 do (
+    eq[2*n+i]:subst(t=x[i+1],diff(PW[i],t)=diff(PW[i+1],t)),
+    eq[3*n-1+i]:subst(t=x[i+1],diff(PW[i],t,2)=diff(PW[i+1],t,2))
+)$
+eq[4*n-1]:subst(t=x[1],diff(PW[1],t,2)=0)$
+eq[4*n]:subst(t=x[n+1],diff(PW[n],t,2)=0)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sys:makelist(eq[i],i,1,4*n);
+soln:solve(sys);
+for i:1 thru n do (
+    F[i]:subst(soln[1],PW[i])
+)$
+draw2d(
+    color=light_gray,
+    explicit(F[1],t,x[1],x[7]),
+    color=red,
+    explicit(F[2],t,x[1],x[7]),
+    color=green,
+    explicit(F[3],t,x[1],x[7]),
+    color=blue,
+    explicit(F[4],t,x[1],x[7]),
+    color=orange,
+    explicit(F[5],t,x[1],x[7]),
+    color=brown,
+    explicit(F[6],t,x[1],x[7]),
+    color=black,
+    line_width=2,
+    explicit(F[1],t,x[1],x[2]),
+    explicit(F[2],t,x[2],x[3]),
+    explicit(F[3],t,x[3],x[4]),
+    explicit(F[4],t,x[4],x[5]),
+    explicit(F[5],t,x[5],x[6]),
+    explicit(F[6],t,x[6],x[7]),
+    proportional_axes=xy,
+    yrange=[0,50]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Hermite human
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(t,x,x1,y1)$
+p(x):=(x-x1)/(x0-x1)*a + (x-x0)/(x1-x0)*b + (x-x1)^2*(x-x0)/(x0-x1)^2*c + (x-x0)^2*(x-x1)/(x1-x0)^2*d;
+pp(x):=subst(t=x,diff(p(t),t))$
+print("pp(x):=",pp(x))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sys:[p(x0)=y0,p(x1)=y1,pp(x0)=yp0,pp(x1)=yp1];
+soln:solve(sys,[a,b,c,d]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H:ratsimp(subst(soln[1],p(x)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Hermite computer
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+F22:(y1-y0)/(x1-x0);
+F23:(y1p-F22)/(x1-x0);
+F13:(F22-y0p)/(x1-x0);
+F14:(F23-F13)/(x1-x0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ratsimp(F23);
+ratsimp(F13);
+ratsimp(F14);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p(x):=y0+y0p*(x-x0)+F13*(x-x0)^2+F14*(x-x0)^2*(x-x1)$
+p(x);
+pp(x):=subst(t=x,diff(p(t),t))$
+pp(x);
+ratsimp(p(x0));
+ratsimp(p(x1));
+ratsimp(pp(x0));
+ratsimp(pp(x1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+q(x):=y1+y1p*(x-x1)+F23*(x-x1)^2+F14*(x-x1)^2*(x-x0)$
+q(x);
+qp(x):=subst(t=x,diff(q(t),t))$
+qp(x);
+ratsimp(q(x0));
+ratsimp(q(x1));
+ratsimp(qp(x0));
+ratsimp(qp(x1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+qp(x0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Bezier cubic
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+P0:[-1,2];
+P1:[0,4];
+P2:[5,1];
+P3:[5,-2];
+B10:expand((1-t)*P0+t*P1);
+B11:expand((1-t)*P1+t*P2);
+B12:expand((1-t)*P2+t*P3);
+B20:expand((1-t)*B10+t*B11);
+B21:expand((1-t)*B11+t*B12);
+B30:expand((1-t)*B20+t*B21);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+draw2d(
+    proportional_axes=xy,
+    color=black,
+    parametric(B10[1],B10[2],t,0,1),
+    parametric(B11[1],B11[2],t,0,1),
+    parametric(B12[1],B12[2],t,0,1),
+    color=red,
+    parametric(B20[1],B20[2],t,0,1),
+    parametric(B21[1],B21[2],t,0,1),
+    color=blue,
+    parametric(B30[1],B30[2],t,0,1),
+    xrange=[-1.5,5.5],
+    yrange=[-2.5,4.5]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dc:diff(B30,t);
+d0:P1-P0;
+subst(t=0,dc);
+d3:P3-P2;
+subst(t=1,dc);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Bez:subst([x0=0,x1=1],H);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(subst([x=t,y0=P0[1],y1=P3[1],yp0=3*(P1[1]-P0[1]),yp1=3*(P3[1]-P2[1])],Bez));
+B30[1];
+expand(subst([x=t,y0=P0[2],y1=P3[2],yp0=3*(P1[2]-P0[2]),yp1=3*(P3[2]-P2[2])],Bez));
+B30[2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Bezier general cubic
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(P0,P1,P2,P3);
+B10:expand((1-t)*P0+t*P1);
+B11:expand((1-t)*P1+t*P2);
+B12:expand((1-t)*P2+t*P3);
+B20:expand((1-t)*B10+t*B11);
+B21:expand((1-t)*B11+t*B12);
+B30:expand((1-t)*B20+t*B21);
+dc:diff(B30,t);
+subst(t=0,dc);
+subst(t=1,dc);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

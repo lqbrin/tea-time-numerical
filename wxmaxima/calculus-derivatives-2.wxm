@@ -1,0 +1,238 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: section start ]
+Formula functions (good for derivatives and integrals!)
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+twoPointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h)+a1*f(x0+s[2]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0+a1*(x0+s[2]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+a1*(x0+s[2]*h)^1,
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+a1*(x0+s[2]*h)^2+2*k/f2(xi),
+  eq3:lhs[4]=a0*(x0+s[1]*h)^3+a1*(x0+s[2]*h)^3+6*k/f3(xi),
+  soln1:solve([eq0,eq1],[a0,a1]),
+  soln2:solve(subst(soln1[1],eq2),k),
+  soln3:solve(subst(soln1[1],eq3),k),
+  [ratsimp(subst(soln1[1],formula)),soln1,soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+threePointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h)+a1*f(x0+s[2]*h)+a2*f(x0+s[3]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0+a1*(x0+s[2]*h)^0+a2*(x0+s[3]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+a1*(x0+s[2]*h)^1+a2*(x0+s[3]*h)^1,
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+a1*(x0+s[2]*h)^2+a2*(x0+s[3]*h)^2,
+  eq3:lhs[4]=a0*(x0+s[1]*h)^3+a1*(x0+s[2]*h)^3+a2*(x0+s[3]*h)^3+6*k/f3(xi),
+  eq4:lhs[5]=a0*(x0+s[1]*h)^4+a1*(x0+s[2]*h)^4+a2*(x0+s[3]*h)^4+24*k/f4(xi),
+  soln1:solve([eq0,eq1,eq2],[a0,a1,a2]),
+  soln2:solve(subst(soln1[1],eq3),k),
+  soln3:solve(subst(soln1[1],eq4),k),
+  [ratsimp(subst(soln1[1],formula)),soln1,soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fourPointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h)+a1*f(x0+s[2]*h)+a2*f(x0+s[3]*h)+a3*f(x0+s[4]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0+a1*(x0+s[2]*h)^0+a2*(x0+s[3]*h)^0+a3*(x0+s[4]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+a1*(x0+s[2]*h)^1+a2*(x0+s[3]*h)^1+a3*(x0+s[4]*h)^1,
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+a1*(x0+s[2]*h)^2+a2*(x0+s[3]*h)^2+a3*(x0+s[4]*h)^2,
+  eq3:lhs[4]=a0*(x0+s[1]*h)^3+a1*(x0+s[2]*h)^3+a2*(x0+s[3]*h)^3+a3*(x0+s[4]*h)^3,
+  eq4:lhs[5]=a0*(x0+s[1]*h)^4+a1*(x0+s[2]*h)^4+a2*(x0+s[3]*h)^4+a3*(x0+s[4]*h)^4+24*k/f4(xi),
+  eq5:lhs[6]=a0*(x0+s[1]*h)^5+a1*(x0+s[2]*h)^5+a2*(x0+s[3]*h)^5+a3*(x0+s[4]*h)^5+120*k/f5(xi),
+  soln1:solve([eq0,eq1,eq2,eq3],[a0,a1,a2,a3]),
+  soln2:solve(subst(soln1[1],eq4),k),
+  soln3:solve(subst(soln1[1],eq5),k),
+  [ratsimp(subst(soln1[1],formula)),soln1,soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fivePointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h)+a1*f(x0+s[2]*h)+a2*f(x0+s[3]*h)+a3*f(x0+s[4]*h)+a4*f(x0+s[5]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0+a1*(x0+s[2]*h)^0+a2*(x0+s[3]*h)^0+a3*(x0+s[4]*h)^0+a4*(x0+s[5]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+a1*(x0+s[2]*h)^1+a2*(x0+s[3]*h)^1+a3*(x0+s[4]*h)^1+a4*(x0+s[5]*h)^1,
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+a1*(x0+s[2]*h)^2+a2*(x0+s[3]*h)^2+a3*(x0+s[4]*h)^2+a4*(x0+s[5]*h)^2,
+  eq3:lhs[4]=a0*(x0+s[1]*h)^3+a1*(x0+s[2]*h)^3+a2*(x0+s[3]*h)^3+a3*(x0+s[4]*h)^3+a4*(x0+s[5]*h)^3,
+  eq4:lhs[5]=a0*(x0+s[1]*h)^4+a1*(x0+s[2]*h)^4+a2*(x0+s[3]*h)^4+a3*(x0+s[4]*h)^4+a4*(x0+s[5]*h)^4,
+  eq5:lhs[6]=a0*(x0+s[1]*h)^5+a1*(x0+s[2]*h)^5+a2*(x0+s[3]*h)^5+a3*(x0+s[4]*h)^5+a4*(x0+s[5]*h)^5+120*k/f5(xi),
+  eq6:lhs[7]=a0*(x0+s[1]*h)^6+a1*(x0+s[2]*h)^6+a2*(x0+s[3]*h)^6+a3*(x0+s[4]*h)^6+a4*(x0+s[5]*h)^6+720*k/f6(xi),
+  soln1:solve([eq0,eq1,eq2,eq3,eq4],[a0,a1,a2,a3,a4]),
+  soln2:solve(subst(soln1[1],eq5),k),
+  soln3:solve(subst(soln1[1],eq6),k),
+  [ratsimp(subst(soln1[1],formula)),soln1,soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+First derivatives
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+two-point formula
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lhs:[diff(1,x0), diff(x0,x0), diff(x0^2,x0), diff(x0^3,x0), diff(x0^4,x0), diff(x0^5,x0), diff(x0^6,x0)];
+twoPointFormula(lhs,[0,1]);
+twoPointFormula(lhs,[0,2]);
+twoPointFormula(lhs,[-1,2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+three-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+threePointFormula(lhs,[0,1,2]);
+threePointFormula(lhs,[0,1/2,1]);
+threePointFormula(lhs,[-1,0,1]);
+threePointFormula(lhs,[-1,1/2,4/5]);
+threePointFormula(lhs,[-10,5,8]);
+threePointFormula(lhs,[7,8,9]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+four-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fourPointFormula(lhs,[0,1,2,3]);
+fourPointFormula(lhs,[-1,0,1,2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+five-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fivePointFormula(lhs,[0,1,2,3,4]);
+fivePointFormula(lhs,[-1,0,1,2,3]);
+fivePointFormula(lhs,[-2,-1,0,1,2]);
+fivePointFormula(lhs,[1,1/2,1/3,1/4,1/5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Second derivative formulas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+three-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lhs:[diff(1,x0,2), diff(x0,x0,2), diff(x0^2,x0,2), diff(x0^3,x0,2), diff(x0^4,x0,2), diff(x0^5,x0,2), diff(x0^6,x0,2)];
+threePointFormula(lhs,[0,1,2]);
+threePointFormula(lhs,[-1,0,1]);
+threePointFormula(lhs,[-1,0,2]);
+threePointFormula(lhs,[-5,0,7]);
+threePointFormula(lhs,[-5,2,7]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+four-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fourPointFormula(lhs,[0,1,2,3]);
+fourPointFormula(lhs,[-1,0,1,2]);
+fourPointFormula(lhs,[0,2,3,4]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+five-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fivePointFormula(lhs,[0,1,2,3,4]);
+fivePointFormula(lhs,[-1,0,1,2,3]);
+fivePointFormula(lhs,[-2,-1,0,1,2]);
+fivePointFormula(lhs,[-1,-2,0,2,4]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Third derivative formulas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+four-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lhs:[diff(1,x0,3), diff(x0,x0,3), diff(x0^2,x0,3), diff(x0^3,x0,3), diff(x0^4,x0,3), diff(x0^5,x0,3), diff(x0^6,x0,3)];
+fourPointFormula(lhs,[0,1,2,3]);
+fourPointFormula(lhs,[-1,0,1,2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+five-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fivePointFormula(lhs,[0,1,2,3,4]);
+fivePointFormula(lhs,[-1,0,1,2,3]);
+fivePointFormula(lhs,[-2,-1,0,1,2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Fourth derivative formulas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+five-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lhs:[diff(1,x0,4), diff(x0,x0,4), diff(x0^2,x0,4), diff(x0^3,x0,4), diff(x0^4,x0,4), diff(x0^5,x0,4), diff(x0^6,x0,4)];
+fivePointFormula(lhs,[0,1,2,3,4]);
+fivePointFormula(lhs,[-1,0,1,2,3]);
+fivePointFormula(lhs,[-2,-1,0,1,2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Experiments
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(x)-5*x^9+sin(x);
+x0:4.0$
+h:1.5$
+x1:x0+h$
+x2:x0+2*h$
+x3:x0+h/2$
+x4:x0+3*h/2$
+p2(x):=(x-x0)*(x-x1)/((x2-x0)*(x2-x1))*f(x2)
+     + (x-x0)*(x-x2)/((x1-x0)*(x1-x2))*f(x1)
+     + (x-x1)*(x-x2)/((x0-x1)*(x0-x2))*f(x0)$
+p3(x):=(x-x0)*(x-x1)*(x-x3)/((x2-x0)*(x2-x1)*(x2-x3))*f(x2)
+     + (x-x0)*(x-x2)*(x-x3)/((x1-x0)*(x1-x2)*(x1-x3))*f(x1)
+     + (x-x0)*(x-x1)*(x-x2)/((x3-x0)*(x3-x1)*(x3-x2))*f(x3)
+     + (x-x1)*(x-x2)*(x-x3)/((x0-x1)*(x0-x2)*(x0-x3))*f(x0)$
+p4(x):=(x-x0)*(x-x1)*(x-x3)*(x-x4)/((x2-x0)*(x2-x1)*(x2-x3)*(x2-x4))*f(x2)
+     + (x-x0)*(x-x2)*(x-x3)*(x-x4)/((x1-x0)*(x1-x2)*(x1-x3)*(x1-x4))*f(x1)
+     + (x-x0)*(x-x1)*(x-x2)*(x-x4)/((x3-x0)*(x3-x1)*(x3-x2)*(x3-x4))*f(x3)
+     + (x-x0)*(x-x1)*(x-x2)*(x-x3)/((x4-x0)*(x4-x1)*(x4-x2)*(x4-x3))*f(x4)
+     + (x-x1)*(x-x2)*(x-x3)*(x-x4)/((x0-x1)*(x0-x2)*(x0-x3)*(x0-x4))*f(x0)$
+R2(x):=f(x)-p2(x)$
+R3(x):=f(x)-p3(x)$
+R4(x):=f(x)-p4(x)$
+xi0:find_root(diff(R2(x),x),x0,x1);
+xi1:find_root(diff(R2(x),x),x1,x2);
+target:subst(x=x1,diff(R2(x),x));
+sc:(x1-xi0)*(x1-xi1)/2!;
+sc2:-h^2/6;
+find_root(target=sc*subst(x=eta,diff(f(x),x,3)),eta,x0,x2);
+find_root(target=sc2*subst(x=eta,diff(f(x),x,3)),eta,x0,x2);
+subst(x=x1,diff(p2(x),x));
+(f(x2)−f(x0))/(2*h);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

@@ -1,0 +1,19 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+a:x0-h$
+b:x0+6*h$
+p:makelist((x-x0)^j,j,0,6)$
+for j:1 thru 7 do (
+  eq[j]:ratsimp(integrate(p[j],x,a,b)) = sum(c[i]*subst(x=x0+(i-1)*h,p[j]),i,1,7)
+)$
+eqs:[eq[1],eq[2],eq[3],eq[4],eq[5],eq[6],eq[7]];
+vars:[c[1],c[2],c[3],c[4],c[5],c[6],c[7]]$
+soln:solve(eqs,vars);
+approx:factor(subst(soln,sum(c[i]*f(x0+(i-1)*h),i,1,7)))$
+print('integrate(f(x),x,a,b),"~",approx)$
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

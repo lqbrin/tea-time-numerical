@@ -1,0 +1,36 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+load(basic)$
+f(alpha,x):=alpha*x*(1.0-x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+n:200$
+res:[]$
+for i:0 thru n do (
+    a:2.4+i*1.6/n,
+    x0:.123456789,
+    for j:1 thru 500 do (x0:f(a,x0)),
+    push([a,x0],res),
+    xnext:f(a,x0),
+    j:0,
+    while (j<300 and abs(xnext-x0)>1e-8) do (
+        push([a,xnext],res),
+        xnext:f(a,xnext),
+        j:j+1
+    )
+)$
+draw2d(
+    point_size=.2,
+    points(res),
+    dimensions=[1000,618],
+    terminal=pdf,
+    file_name="phaseDiagram"
+);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

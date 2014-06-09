@@ -1,0 +1,3433 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:moreConvergenceDiagrams"
+
+\end_inset
+
+More Convergence Diagrams
+\end_layout
+
+\begin_layout Standard
+The cubic function 
+\begin_inset Formula $g(x)=1-x^{3}$
+\end_inset
+
+ has one real root, 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ But it also has two complex roots.
+ If you have studied complex analysis, you probably know what the other
+ two are.
+ And even if you have not studied complex analysis, you can figure them
+ out by basic techniques of pre-calculus.
+ Since 
+\begin_inset Formula $1$
+\end_inset
+
+ is a root, you can use synthetic division to deflate the polynomial:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This division shows that 
+\begin_inset Formula $g(x)=(x-1)(-x^{2}-x-1)$
+\end_inset
+
+, so the other two roots are the solutions of the equation 
+\begin_inset Formula $-x^{2}-x-1=0$
+\end_inset
+
+, thus deflating the problem to a quadratic.
+ The solutions are 
+\begin_inset Formula $\frac{1\pm\sqrt{1-4}}{-2}=-\frac{1}{2}\pm i\frac{\sqrt{3}}{2}$
+\end_inset
+
+.
+ By the way, you may also recognize 
+\begin_inset Formula $1-x^{3}$
+\end_inset
+
+ as one of the special forms of polynomials, the difference of cubes.
+ 
+\end_layout
+
+\begin_layout Standard
+Of course this is all fascinating, but what does this have to do with numerical
+ analysis? What may surprise you is that Fixed Point Iteration (and therefore
+ Newton's Method), the Secant Method, and Steffensen's Method can all be
+ used to find complex roots just as well as real ones! In fact, the algorithms
+ need no modification! The programming language used to implement the methods,
+ of course, does need to be able to handle complex number arithmetic.
+ Octave does so without ado.
+\end_layout
+
+\begin_layout Standard
+First, finding a root of 
+\begin_inset Formula $g(x)=1-x^{3}$
+\end_inset
+
+ and finding a fixed point of 
+\begin_inset Formula $f(x)=1/x^{2}$
+\end_inset
+
+ are equivalent.
+ Why? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "que:whyEquivalent"
+
+\end_inset
+
+.
+ Setting 
+\begin_inset Formula $x_{0}=-1+i$
+\end_inset
+
+ and applying Newton's Method and the Secant Method to 
+\begin_inset Formula $g(x)=1-x^{3}$
+\end_inset
+
+, and Steffensen's Method to 
+\begin_inset Formula $f(x)=1/x^{2}$
+\end_inset
+
+ we get the following:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Steffensen's
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Secant
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Newton's
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1+i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1+i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1+i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.85+0.8i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.66666666+0.83333333i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.66666666+0.83333333i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.60313824+0.67770639i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.55034016+0.82376444i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.50869191+0.84109987i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.39846066+0.84671567i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.49763752+0.85554014i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.49932999+0.86626917i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.51660491+0.84998590i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.49932718+0.86627140i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.49999991+0.86602490i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.49910537+0.86543351i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.50000774+0.86602504i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.50000000+0.86602540i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.50000228+0.86602568i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.49999999+0.86602540i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.50000000+0.86602540i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.50000000+0.86602540i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Each sequence quickly converges to the complex root 
+\begin_inset Formula $-\frac{1}{2}+\frac{\sqrt{3}}{2}i$
+\end_inset
+
+.
+ And this is not a fluke or a contrived example.
+ Generally, these methods work just as well in the complex plane as they
+ do on the real line.
+ One can find real roots starting with complex numbers too.
+ If we change the initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ to 
+\begin_inset Formula $1+i$
+\end_inset
+
+, Newton's Method converges to 
+\begin_inset Formula $1$
+\end_inset
+
+, for example.
+\end_layout
+
+\begin_layout Standard
+Having expanded our view of the methods to include complex numbers, there
+ is a new type of convergence diagram to consider.
+ We can now look at convergence patterns for the three methods over a host
+ of initial values in the complex plane, not just the real line.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:complexConvergenceDiagram1"
+
+\end_inset
+
+ shows convergence diagrams for Newton's Method with 
+\begin_inset Formula $g(x)=1-x^{3}$
+\end_inset
+
+, the Seeded Secant Method with 
+\begin_inset Formula $g(x)=1-x^{3}$
+\end_inset
+
+, and Steffensen's Method with 
+\begin_inset Formula $f(x)=1/x^{2}$
+\end_inset
+
+.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:complexConvergenceDiagram1"
+
+\end_inset
+
+Convergence diagrams over the complex plane.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="middle" width="5cm" special="c">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+From top to bottom:
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Newton's Method with
+\begin_inset Formula 
+\[
+g(x)=1-x^{3}
+\]
+
+\end_inset
+
+and dwell 20;
+\begin_inset Newline newline
+\end_inset
+
+Seeded Secant Method with
+\begin_inset Formula 
+\[
+g(x)=1-x^{3}
+\]
+
+\end_inset
+
+and dwell 40;
+\begin_inset Newline newline
+\end_inset
+
+Steffensen's Method with
+\begin_inset Formula 
+\[
+f(x)=\frac{1}{x^{2}}
+\]
+
+\end_inset
+
+and dwell 40.
+\begin_inset Newline newline
+\end_inset
+
+Each diagram covers the part of the complex plane with real parts in 
+\begin_inset Formula $[-5,5]$
+\end_inset
+
+ and imaginary parts in 
+\begin_inset Formula $[-3.75,3.75]$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/convergenceDiagram1.1.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/convergenceDiagram1.2a.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/convergenceDiagram1.3.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Each diagram covers the part of the complex plane with real parts in 
+\begin_inset Formula $[-5,5]$
+\end_inset
+
+ and imaginary parts in 
+\begin_inset Formula $[-3.75,3.75]$
+\end_inset
+
+.
+ The top left corner of each diagram represents initial value 
+\begin_inset Formula $-5+3.75i$
+\end_inset
+
+ and the bottom right corner represents initial value 
+\begin_inset Formula $5-3.75i$
+\end_inset
+
+.
+ The center of each diagram represents the the initial value 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ The colors correspond to the three roots, red to 
+\begin_inset Formula $1$
+\end_inset
+
+, green to 
+\begin_inset Formula $-\frac{1}{2}+\frac{\sqrt{3}}{2}i$
+\end_inset
+
+, and blue to 
+\begin_inset Formula $-\frac{1}{2}-\frac{\sqrt{3}}{2}i$
+\end_inset
+
+.
+ Black corresponds to failure to converge.
+ The different intensities of red, green, and blue correspond to the number
+ of iterations the method took to converge.
+ The greater the intensity, the fewer iterations.
+ We can see that for 
+\begin_inset Formula $x_{0}=5-3.75i$
+\end_inset
+
+, Newton's Method and the Seeded Secant Method both converge to 
+\begin_inset Formula $-\frac{1}{2}+\frac{\sqrt{3}}{2}i$
+\end_inset
+
+, because the upper right hand corner of each diagram is colored green.
+ Steffensen's Method, on the other hand, fails to converge to any root if
+ begun with 
+\begin_inset Formula $x_{0}=5-3.75i$
+\end_inset
+
+, evidenced by the blackness in the upper right hand corner of the convergence
+ diagram.
+\end_layout
+
+\begin_layout Standard
+The dwell represents the maximum number of iterations allowed, so actually
+ the black dots represent initial values for which convergence was not achieved
+ within a number of iterations equal to or less than the dwell.
+ That's different from claiming the method does not converge at all for
+ these initial values.
+ There's a chance that some of the blackened initial values would still
+ lead to convergence if allowed more iterations.
+\end_layout
+
+\begin_layout Standard
+Two things are very striking about these convergence diagrams.
+ First, the Seeded Secant Method and Newton's Method converge for a much
+ larger set of initial values than does Steffensen's Method.
+ This is, at least in part, due to the function chosen.
+ For other functions, there may be a fixed point scheme for which Steffensen's
+ Method converges on large sets of initial values too.
+ Second, the patterns of colors are extremely intricate, even fractal in
+ nature.
+ Predicting to which root a method will converge for a given initial value,
+ and indeed whether it will converge at all, are very difficult questions!
+ And this analysis is done on a rather benign (simple) function.
+\end_layout
+
+\begin_layout Standard
+Consider now a much more complicated problem---finding the roots of 
+\begin_inset Formula $g(z)=e^{z}-z$
+\end_inset
+
+ or, equivalently, finding the fixed points of 
+\begin_inset Formula $f(z)=e^{z}$
+\end_inset
+
+.
+ A graph of 
+\begin_inset Formula $f(z)$
+\end_inset
+
+ (over the real numbers) will quickly convince you that there are no real
+ number solutions.
+ It will take some thought to determine the nature of any complex solutions.
+\end_layout
+
+\begin_layout Standard
+To that end, fix a real number 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ and consider the vertical line in the complex plane, 
+\begin_inset Formula $L_{a_{0}}=\{a_{0}+ib:b\in\mathbb{R}\}$
+\end_inset
+
+.
+ The image of 
+\begin_inset Formula $L_{a_{0}}$
+\end_inset
+
+ under the exponential function is a circle with radius 
+\begin_inset Formula $e^{a_{0}}$
+\end_inset
+
+ centered at the origin.
+ Indeed, 
+\begin_inset Formula $e^{a_{0}+ib}=e^{a_{0}}e^{ib}=e^{a_{0}}(\cos b+i\sin b)$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $b$
+\end_inset
+
+ parametrizes the circle about the origin with radius 
+\begin_inset Formula $e^{a_{0}}$
+\end_inset
+
+.
+ Now, suppose 
+\begin_inset Formula $L_{a_{0}}$
+\end_inset
+
+ contains a fixed point, 
+\begin_inset Formula $\hat{z}=a_{0}+i\hat{b}$
+\end_inset
+
+, of the exponential function, 
+\begin_inset Formula $f(z)=e^{z}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\hat{z}=f(\hat{z})$
+\end_inset
+
+, or 
+\begin_inset Formula $a_{0}+i\hat{b}=e^{a_{0}}(\cos\hat{b}+i\sin\hat{b})$
+\end_inset
+
+.
+ We conclude that the line and the circle intersect at the fixed point.
+ Every fixed point of 
+\begin_inset Formula $f$
+\end_inset
+
+ is necessarily an intersection of the line 
+\begin_inset Formula $L_{a_{0}}$
+\end_inset
+
+ with the circle 
+\begin_inset Formula $C_{a_{0}}$
+\end_inset
+
+ for some 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+.
+ Figure 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:verticalLineAndCircle"
+
+\end_inset
+
+A vertical line and its image under the exponential function.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/roots-more2.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:verticalLineAndCircle"
+
+\end_inset
+
+ shows a representative example.
+ In fact, the diagram shows an interesting case: 
+\begin_inset Formula $x=a_{0}\approx2.439940377216816$
+\end_inset
+
+.
+ The coordinates of the two instersections are 
+\begin_inset Formula 
+\[
+(2.439940377216816,\pm11.2098911414971).
+\]
+
+\end_inset
+
+The interesting thing is 
+\begin_inset Formula $e^{2.439940377216816+11.2098911414971i}\approx2.439940377216816-11.2098911414971i$
+\end_inset
+
+ and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $e^{2.439940377216816-11.2098911414971i}\approx2.439940377216816+11.2098911414971i$
+\end_inset
+
+.
+ The two points are images of one another under the exponential function!
+ What we have found here are called periodic points.
+ If we let 
+\begin_inset Formula $z_{1}=2.439940377216816-11.2098911414971i$
+\end_inset
+
+ and 
+\begin_inset Formula $z_{2}=2.439940377216816+11.2098911414971i$
+\end_inset
+
+, then 
+\begin_inset Formula $e^{z_{1}}=z_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $e^{z_{2}}=z1$
+\end_inset
+
+.
+ Hence if we iterate 
+\begin_inset Formula $z_{2}=f(z_{1})$
+\end_inset
+
+, 
+\begin_inset Formula $z_{3}=f(z_{2})$
+\end_inset
+
+, 
+\begin_inset Formula $z_{4}=f(z_{3})$
+\end_inset
+
+, 
+\begin_inset Formula $z_{5}=f(z_{4})$
+\end_inset
+
+, and so on, the sequence 
+\begin_inset Formula $z_{1},z_{2},z_{3},z_{4},\ldots$
+\end_inset
+
+ actually looks like
+\begin_inset Formula 
+\[
+z_{1},z_{2},z_{1},z_{2},z_{1},z_{2},\ldots.
+\]
+
+\end_inset
+
+The sequence just flops back and forth between 
+\begin_inset Formula $z_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $z_{2}$
+\end_inset
+
+ in a periodic fashion.
+ We call such values period 2 points.
+ They are not fixed points of 
+\begin_inset Formula $f(z)$
+\end_inset
+
+ but they are fixed points of 
+\begin_inset Formula $f(f(z))$
+\end_inset
+
+! 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Periodic points.}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+If a sequence 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ has the form
+\begin_inset Formula 
+\[
+p_{1},p_{2},\ldots,p_{k},p_{1},p_{2},\ldots,p_{k},p_{1},\ldots,\qquad k>1
+\]
+
+\end_inset
+
+then we say 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ is a period 
+\begin_inset Formula $k$
+\end_inset
+
+ point (and 
+\begin_inset Formula $p_{2},p_{3},\ldots,p_{k}$
+\end_inset
+
+ are too!).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On the other hand, 
+\begin_inset Formula $\hat{z}=2.062277729598284+7.588631178472513i$
+\end_inset
+
+ is (approximately) a fixed point of 
+\begin_inset Formula $f(z)$
+\end_inset
+
+ since
+\begin_inset Formula 
+\[
+e^{2.062277729598284+7.588631178472513i}=2.062277729598284+7.588631178472513i.
+\]
+
+\end_inset
+
+Moreover, the conjugate of 
+\begin_inset Formula $\hat{z}$
+\end_inset
+
+, 
+\begin_inset Formula $\overline{\hat{z}}=2.0622377729598284-7.588631178472513i$
+\end_inset
+
+ is also a fixed point.
+ Verify it with a calculator or wih Octave!
+\end_layout
+
+\begin_layout Standard
+Generally, if 
+\begin_inset Formula $\hat{z}$
+\end_inset
+
+ is a fixed point of 
+\begin_inset Formula $e^{z}$
+\end_inset
+
+ then so is 
+\begin_inset Formula $\overline{\hat{z}}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\hat{z}=e^{\hat{z}}\implies\overline{\hat{z}}=\overline{e^{\hat{z}}}=e^{\overline{\hat{z}}}.
+\]
+
+\end_inset
+
+So if we find one fixed point, we actually have found two, the fixed point
+ and its conjugate.
+ 
+\end_layout
+
+\begin_layout Standard
+We're ready to get back to considering intersections of 
+\begin_inset Formula $L_{a_{0}}$
+\end_inset
+
+ and 
+\begin_inset Formula $C_{a_{0}}$
+\end_inset
+
+.
+ Assume 
+\begin_inset Formula $a_{0}+ib$
+\end_inset
+
+ is a fixed point of 
+\begin_inset Formula $e^{z}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $a_{0}+ib=e^{a_{0}+ib}=e^{a_{0}}(\cos b+i\sin b$
+\end_inset
+
+), so
+\begin_inset Formula 
+\begin{eqnarray}
+a_{0} & = & e^{a_{0}}\cos b\nonumber \\
+b & = & e^{a_{0}}\sin b\label{eq:expFixedPoint}
+\end{eqnarray}
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:complexConvergenceDiagram2"
+
+\end_inset
+
+More convergence diagrams over the complex plane.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/convergenceDiagram2.1.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figures/convergenceDiagram2.2.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figures/convergenceDiagram2.3.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+From left to right:
+\series default
+ Newton's Method with 
+\begin_inset Formula $g(z)=z-e^{z}$
+\end_inset
+
+ and dwell 20; Secant Method with 
+\begin_inset Formula $g(z)=z-e^{z}$
+\end_inset
+
+ and dwell 40; Steffensen's Method with 
+\begin_inset Formula $f(z)=e^{z}$
+\end_inset
+
+ and dwell 40.
+ Each diagram covers the part of the complex plane with real parts in 
+\begin_inset Formula $[-10,30]$
+\end_inset
+
+ and imaginary parts in 
+\begin_inset Formula $[0,73]$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+Now, because 
+\begin_inset Formula $a_{0}+ib$
+\end_inset
+
+ is a point of intersection, it is on 
+\begin_inset Formula $C_{a_{0}}$
+\end_inset
+
+, so 
+\begin_inset Formula $a_{0}^{2}+b^{2}=e^{2a_{0}}\Rightarrow b=\pm\sqrt{e^{2a_{0}}-a_{0}^{2}}$
+\end_inset
+
+.
+ Finally, substituting 
+\begin_inset Formula $b=\sqrt{e^{2a_{0}}-a_{0}^{2}}$
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:expFixedPoint"
+
+\end_inset
+
+, we find an intersection point will be a fixed point if and only if
+\begin_inset Formula 
+\begin{eqnarray}
+a_{0} & = & e^{a_{0}}\cos\sqrt{e^{2a_{0}}-a_{0}^{2}}\nonumber \\
+ &  & \mbox{and}\nonumber \\
+\sqrt{e^{2a_{0}}-a_{0}^{2}} & = & e^{a_{0}}\sin\sqrt{e^{2a_{0}}-a_{0}^{2}}.\label{eq:realPartRequirement}
+\end{eqnarray}
+
+\end_inset
+
+You should pause long enough to consider why it is not necessary to substitute
+ 
+\begin_inset Formula $b=-\sqrt{e^{2a_{0}}-a_{0}^{2}}$
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:expFixedPoint"
+
+\end_inset
+
+.
+ Hint: make the substitution and simplify.
+ You should find out that the two equations you get are equivalent to those
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:expFixedPoint"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For example, 
+\begin_inset Formula $2.439940377216816-11.2098911414971i$
+\end_inset
+
+ and 
+\begin_inset Formula $2.062277729598284+7.588631178472513i$
+\end_inset
+
+ both satisfy the first equation of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:realPartRequirement"
+
+\end_inset
+
+, but 
+\begin_inset Formula $2.439940377216816-11.2098911414971i$
+\end_inset
+
+ does not satisfy the second while 
+\begin_inset Formula $2.062277729598284+7.588631178472513i$
+\end_inset
+
+ does.
+ So, as observed earlier, 
+\begin_inset Formula $2.439940377216816-11.2098911414971i$
+\end_inset
+
+ is not a fixed point but 
+\begin_inset Formula $2.062277729598284+7.588631178472513i$
+\end_inset
+
+ is.
+ 
+\end_layout
+
+\begin_layout Standard
+Do you recognize the first equation of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:realPartRequirement"
+
+\end_inset
+
+? We first saw it 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "interestingNewton"
+
+\end_inset
+
+ in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:newtonsMethod"
+
+\end_inset
+
+.
+ As noted there, the smallest five solutions are
+\begin_inset Formula 
+\[
+\begin{gathered}.3181315052047641,\ 1.668024051576096,\ 2.062277729598284,\\
+2.439940377216816,\ 2.653191974038697,\ldots
+\end{gathered}
+\]
+
+\end_inset
+
+The values 
+\begin_inset Formula $2.062277729598284$
+\end_inset
+
+ and 
+\begin_inset Formula $2.439940377216816$
+\end_inset
+
+ provided the examples for this discussion.
+ What about the other three values in this list? Do they give fixed points
+ of the exponential function? Period two points? Something else? Take a
+ moment to investigate.
+ Answers are 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "que:natureOfRoots"
+
+\end_inset
+
+.
+ Using Octave to investigate 
+\begin_inset Formula $2.062277729598284$
+\end_inset
+
+, which we know is a fixed point: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> format('long')
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> a0=2.062277729598284
+\end_layout
+
+\begin_layout Plain Layout
+
+a0 =  2.06227772959828
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> b=sqrt(exp(2*a0)-a0^2)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  7.58863117847251
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:4> exp(a0+I*b)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  2.06227772959828 + 7.58863117847251i
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ verifies that 
+\begin_inset Formula $e^{a_{0}+ib}=a_{0}+ib$
+\end_inset
+
+ for 
+\begin_inset Formula $a_{0}=2.062277729598284$
+\end_inset
+
+, at least to machine precision.
+ The exact value of the fixed point is not known, but that is the nature
+ of numerical analysis.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:complexConvergenceDiagram2"
+
+\end_inset
+
+ shows convergence to 12 of the fixed points of 
+\begin_inset Formula $e^{z}$
+\end_inset
+
+, one for each of the 12 different colors.
+ The coordiantes of each fixed point can be approximated by locating the
+ spot of greatest intensity within each colored band.
+ 
+\end_layout
+
+\begin_layout Standard
+As was done in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:complexConvergenceDiagram2"
+
+\end_inset
+
+, convergence diagrams for the Secant Method can be created by setting 
+\begin_inset Formula $x_{1}=x_{0}+\delta$
+\end_inset
+
+ for some small number 
+\begin_inset Formula $\delta.$
+\end_inset
+
+ It does not matter whether 
+\begin_inset Formula $\delta$
+\end_inset
+
+ is real or complex.
+ Selecting 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ automatically this way allows the diagram to show convergence or divergence
+ based on 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ alone, just as is done for the other convergence diagrams.
+ You will notice that the convergence diagram for the Secant Method and
+ the convergence diagram for Newton's Method are quite similar.
+ For sufficiently small 
+\begin_inset Formula $\delta$
+\end_inset
+
+, this will be the case in general.
+ The Secant Method convergence diagram and the Newton's Method convergence
+ diagram for the same function over the same region will look very much
+ the same.
+ The only significant difference will be the number of iterations needed
+ for convergence.
+ The Secant Method will need more iterations to converge.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{small} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:more"
+
+\end_inset
+
+Match the function with its Newton's Method convergence diagram.
+ The real axis passes through the center of each diagram, and the imaginary
+ axis is represented, but is not necessarily centered.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+f(x) & = & 56-152x+140x^{2}-17x^{3}-48x^{4}+9x^{5}\\
+g(x) & = & (x^{2})(\ln x)+(x-3)e^{x}\\
+h(x) & = & 1+2x+3x^{2}+4x^{3}+5x^{4}+6x^{5}\\
+l(x) & = & (\ln x)(x^{3}+1)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more5.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more3.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(c)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(d)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more6.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more4.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:more-1"
+
+\end_inset
+
+Match the function with its Newton's Method convergence diagram.
+ The real axis passes through the center of each diagram, and the imaginary
+ axis is represented, but is not necessarily centered.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+f(x) & = & \sin x\\
+g(x) & = & \sin x-e^{-x}\\
+h(x) & = & e^{x}+2^{-x}+2\cos x-6\\
+l(x) & = & x^{4}+2x^{2}+4
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more12.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more14.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(c)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(d)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more11.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more13.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "polynomials"
+
+\end_inset
+
+Find a polynomial that has the following roots and no others.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $-7,2,1\pm5i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $-7,2,1+5i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:more-2"
+
+\end_inset
+
+
+\begin_inset Formula $-4,-1,2,\pm2i$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:more-4"
+
+\end_inset
+
+
+\begin_inset Formula $-4,-1,2,2i$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $0,-1\pm i,1\pm i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $-3+i,-2-i,-3i,1-2i$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "newton"
+
+\end_inset
+
+Create Newton's Method convergence diagrams for the polynomials of question
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "polynomials"
+
+\end_inset
+
+.
+ Make sure you capture a region that shows at least a small area converging
+ to each root.
+ Download Octave code from 
+\begin_inset CommandInset href
+LatexCommand href
+name "SourceForge"
+target "http://sourceforge.net/p/teatimenumericalanalysis/wiki/Newton%27s%20Method%20Convergence%20Diagrams/"
+
+\end_inset
+
+.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Redo this link?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "noroot"
+
+\end_inset
+
+The functions 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $g(x)=\frac{1}{x^{2}+1}$
+\end_inset
+
+ have no roots, real or complex.
+ Find at least two others that also have no roots.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "failure"
+
+\end_inset
+
+Let 
+\begin_inset Formula $f(x)=\frac{x^{2}-7x+10}{2}+\sin(3x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find all the real roots of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ This is not a polynomial, so deflation will not work.
+ Instead, graph the function and use Newton's method to find the real roots
+ accurate to 
+\begin_inset Formula $10^{-8}$
+\end_inset
+
+.
+ There are four of them.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Create a Newton's method convergence diagram for 
+\begin_inset Formula $f$
+\end_inset
+
+ to see if there are any complex roots.
+ If so, use Newton's method to approximate them.
+ Use the convergence diagram to help you choose initial values.
+\end_layout
+
+\begin_layout Enumerate
+Can you find all the roots of 
+\begin_inset Formula $f$
+\end_inset
+
+?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:more-3"
+
+\end_inset
+
+Match the function with its Seeded Secant method convergence diagram.
+ The real axis passes through the center of each diagram, and the imaginary
+ axis is represented, but is not necessarily centered.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+f(x) & = & \sin x\\
+g(x) & = & \sin x-e^{-x}\\
+h(x) & = & e^{x}+2^{-x}+2\cos x-6\\
+l(x) & = & 56-152x+140x^{2}-17x^{3}-48x^{4}+9x^{5}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more8.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more9.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(c)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(d)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more10.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more7.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:more-5"
+
+\end_inset
+
+Match the function with its Seeded Secant method convergence diagram.
+ The real axis passes through the center of each diagram, and the imaginary
+ axis is represented, but is not necessarily centered.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+f(x) & = & x^{4}+2x^{2}+4\\
+g(x) & = & (x^{2})(\ln x)+(x-3)e^{x}\\
+h(x) & = & 1+2x+3x^{2}+4x^{3}+5x^{4}+6x^{5}\\
+l(x) & = & (\ln x)(x^{3}+1)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more17.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more18.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(c)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(d)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more15.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-more16.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Create Seeded Secant method convergence diagrams for the polynomials of
+ question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "polynomials"
+
+\end_inset
+
+.
+ Make sure you capture a region that shows at least a small area converging
+ to each root.
+ Download Octave code from 
+\begin_inset CommandInset href
+LatexCommand href
+name "SourceForge"
+target "http://sourceforge.net/p/teatimenumericalanalysis/wiki/Seeded%20Secant%20Method%20Convergence%20Diagrams/"
+
+\end_inset
+
+.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Redo this link?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The Newton's method convergence diagram for one polynomial is much like
+ the Newton's method convergence diagram for another.
+ Interesting changes in the Newton's method convergence diagrams and Seeded
+ Secant method convergence diagrams can be achieved by multiplying a polynomial
+ by a non-polynomial function with no roots.
+ Create Newton's method and Seeded Secant method convergence diagrams for
+ products of functions in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "polynomials"
+
+\end_inset
+
+ with functions in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "noroot"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Discuss the relative strengths and weaknesses of Newton's Method, the Secant
+ Method, and the Seeded Secant Method.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{small}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Answers
+\end_layout
+
+\begin_layout Description
+Why
+\begin_inset space ~
+\end_inset
+
+equivalent? 
+\begin_inset CommandInset label
+LatexCommand label
+name "que:whyEquivalent"
+
+\end_inset
+
+The equations 
+\begin_inset Formula $g(x)=0$
+\end_inset
+
+ and 
+\begin_inset Formula $f(x)=x$
+\end_inset
+
+ have exactly the same solutions.
+ 
+\begin_inset Formula $g(x)=0\Leftrightarrow1-x^{3}=0\Leftrightarrow1=x^{3}\Leftrightarrow\frac{1}{x^{2}}=x\Leftrightarrow f(x)=x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Nature
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+roots? 
+\begin_inset CommandInset label
+LatexCommand label
+name "que:natureOfRoots"
+
+\end_inset
+
+ 
+\begin_inset Formula $.3181315052047641$
+\end_inset
+
+ is a fixed point of the exponential function: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> format('long')
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> a0=.3181315052047641;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> b=sqrt(exp(2*a0)-a0^2)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  1.33723570143069
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:4> exp(a0+I*b)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.318131505204764 + 1.337235701430689i
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $1.668024051576096$
+\end_inset
+
+ is a period two point of the exponential function: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> format('long')
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> a0=1.668024051576096;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> b=sqrt(exp(2*a0)-a0^2)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  5.03244706448616
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:4> exp(a0+I*b)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  1.66802405157609 - 5.03244706448616i
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $2.653191974038697$
+\end_inset
+
+ is a fixed point of the exponential function: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:5> a0=2.653191974038697;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:6> b=sqrt(exp(2*a0)-a0^2)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  13.9492083345332
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:7> exp(a0+I*b)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =   2.65319197403878 + 13.94920833453319i 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

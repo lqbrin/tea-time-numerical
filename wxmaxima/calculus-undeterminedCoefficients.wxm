@@ -1,0 +1,35 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 thru 7 do (
+    print((6^i-(-1)^i)/i)
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+1296*6;
+%*6;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq0:sum(a[i],i,0,6)=7*h;
+eq1:sum(i*h*a[i],i,0,6)=35/2*h^2;
+eq2:sum((i*h)^2*a[i],i,0,6)=217/3*h^3;
+eq3:sum((i*h)^3*a[i],i,0,6)=1295/4*h^4;
+eq4:sum((i*h)^4*a[i],i,0,6)=7777/5*h^5;
+eq5:sum((i*h)^5*a[i],i,0,6)=46655/6*h^6;
+eq6:sum((i*h)^6*a[i],i,0,6)=39991*h^7;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln:solve([eq0,eq1,eq2,eq3,eq4,eq5,eq6],[a[0],a[1],a[2],a[3],a[4],a[5],a[6]]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+formula:sum(a[i]*f(x_0 +i*h),i,0,6);
+ratsimp(subst(soln[1],formula));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

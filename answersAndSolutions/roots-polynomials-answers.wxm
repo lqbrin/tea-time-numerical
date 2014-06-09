@@ -1,0 +1,31 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+2-38/71;
+312/71+12;
+%*104/71;
+%-13;
+%*104/71;
+%-8;
+1476/71*104/71;
+104/71-(2911104/357911)/(209027/5041);
+%,numer;
+f:3*x^3+12*x^2-13*x-8;
+fp:9*x^2+24*x-13;
+x0:2;
+x0:x0-subst(x=x0,f)/subst(x=x0,fp);
+x0:x0-subst(x=x0,f)/subst(x=x0,fp);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(9*(x-1/3)*(x+8)*(x+7/3)*(x^2-4*x+5));
+solve(%=0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(x^4+6*x^3-59*x^2+144*x-144=0);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

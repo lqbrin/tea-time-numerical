@@ -1,0 +1,320 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+x0:0.0;
+x1:.9138095996128959;
+x2:.1951846177977887;
+x3:.4823905248516196;
+x4:.3554400571592862;
+x5:1.0;
+p0:(x-x1)*(x-x2)*(x-x3)*(x-x4)*(x-x5)$
+p1:(x-x0)*(x-x2)*(x-x3)*(x-x4)*(x-x5)$
+p2:(x-x0)*(x-x1)*(x-x3)*(x-x4)*(x-x5)$
+p3:(x-x0)*(x-x1)*(x-x2)*(x-x4)*(x-x5)$
+p4:(x-x0)*(x-x1)*(x-x2)*(x-x3)*(x-x5)$
+p5:(x-x0)*(x-x1)*(x-x2)*(x-x3)*(x-x4)$
+w(x):=(x-x0)*(x-x1)*(x-x2)*(x-x3)*(x-x4)*(x-x5)/6!$
+find_root(diff(w(x),x),.6,.8);
+maxw:w(%);
+find_root(diff(w(x),x),.0,.2)$
+minw:w(%)$
+pad:.05*(maxw-minw)$
+draw2d(
+    explicit(w(x),x,0,1),
+    yrange=[minw-pad,maxw+pad],
+    dimensions=[1000,618],
+    file_name="interpolation-polynomials6",
+    terminal=pdf
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+First Example
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(sin((x+1)^2));
+maxoff:f(find_root(diff(f(x),x),x,.2,.4))$
+minoff:float(f(1))$
+pad:.05*abs(maxoff-minoff)$
+pts:[[x0,f(x0)],[x1,f(x1)],[x2,f(x2)],[x3,f(x3)],[x4,f(x4)],[x5,f(x5)]]$
+L6(x):=p0/subst(x=x0,p0)*f(x0) + p1/subst(x=x1,p1)*f(x1) + p2/subst(x=x2,p2)*f(x2) 
+    + p3/subst(x=x3,p3)*f(x3) + p4/subst(x=x4,p4)*f(x4) + p5/subst(x=x5,p5)*f(x5)$
+expand(L6(x));
+draw2d(
+    color=red,
+    explicit(L6(x),x,0,1),
+    color=black,
+    explicit(f(x),x,0,1),
+    color=black,
+    point_type=filled_circle,
+    point_size=.4,
+    points(pts),
+    yrange=[minoff-pad,maxoff+pad],
+    dimensions=[1000,618],
+    file_name="interpolation-polynomials1",
+    terminal=pdf
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f6:diff(f(x),x,6)$
+minoff:-44013.74605321285$
+maxoff:44013.74605321285$
+pad:.05*abs(maxoff-minoff)$
+draw2d(
+    explicit(f6,x,0,1),
+    dimensions=[1000,618],
+    yrange=[minoff-pad,maxoff+pad],
+    file_name="interpolation-polynomials2",
+    terminal=pdf
+)$
+find_root(diff(f6,x),.6,.8);
+maxd:abs(subst(x=%,f6));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+bd:maxw*maxd;
+draw2d(
+    color=black,
+    explicit(0,x,0,1),
+    color=blue,
+    explicit(L6(x)-f(x),x,0,1),
+    yrange=[-1,1]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Second Example
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=sin(exp((x+1)^2));
+pts:[[x0,f(x0)],[x1,f(x1)],[x2,f(x2)],[x3,f(x3)],[x4,f(x4)],[x5,f(x5)]]$
+L6(x):=p0/subst(x=x0,p0)*f(x0) + p1/subst(x=x1,p1)*f(x1) + p2/subst(x=x2,p2)*f(x2) 
+    + p3/subst(x=x3,p3)*f(x3) + p4/subst(x=x4,p4)*f(x4) + p5/subst(x=x5,p5)*f(x5)$
+L:expand(L6(x));
+find_root(diff(L6(x),x),0,.2)$
+minoff:subst(x=%,L)$
+find_root(diff(L6(x),x),.7,.9)$
+maxoff:subst(x=%,L)$
+pad:.05*abs(maxoff-minoff)$
+draw2d(
+    color=red,
+    explicit(L6(x),x,0,1),
+    color=black,
+    explicit(f(x),x,0,1),
+    point_type=filled_circle,
+    point_size=.4,
+    points(pts),
+    dimensions=[1000,618],
+    yrange=[minoff-pad,maxoff+pad],
+    file_name="interpolation-polynomials3",
+    terminal=pdf
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f6:diff(f(x),x,6)$
+minoff:−8.203386953304029*10^13$
+maxoff:subst(x=1.0,f6);
+pad:.05*abs(maxoff-minoff)$
+draw2d(
+    explicit(f6,x,0,1),
+    dimensions=[1000,618],
+    yrange=[minoff-pad,maxoff+pad],
+    file_name="interpolation-polynomials4",
+    terminal=pdf
+)$
+find_root(diff(f6,x),.975,1);
+mind:subst(x=%,f6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+bd:maxw*maxoff;
+draw2d(
+    color=black,
+    explicit(0,x,0,1),
+    color=blue,
+    explicit(L6(x)-f(x),x,0,1),
+    yrange=[-1,1]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Third Example
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:20$
+prec:12$
+fp(x,f,alpha,d1,d2):=(
+    f1:f[1]*(1-d1),
+    c1:f[2]-d1*f[3]-f1,
+    f2:f[2]-d2*f[1],
+    c2:(1-d2)*f[3]-f2,
+    F1:(alpha*(f1+c1/2)+(1-alpha)*(f2+c2/2))/(1-(1-alpha)*d2-alpha*d1),
+    FA:alpha*(f1+c1/2+d1*F1),
+    l:bfloat(0.0),
+    r:bfloat(1.0),
+    its:floor(log(10^-prec)/log(max(alpha,1-alpha))),
+    a:array(a,its),
+    for i:1 thru its do (
+        h:(r-l)*max(alpha,1-alpha),
+        if (alpha>1/2) then 
+            m:l+h
+        else
+            m:r-h,
+        if (x<m) then block (
+            a[i]:0,
+            r:m
+        ) else block (
+            a[i]:1,
+            l:m
+        )
+    ),
+    x:bfloat(0.0),
+    y:c1/(alpha-d1), yy:f[1], yyy:bfloat(0.0),
+    for i:its thru 1 step -1 do (
+        if (a[i]=0) then block (
+            y:(c1+d1*y)/alpha,
+            yy:c1*x+d1*yy+f1,
+            yyy:alpha*(f1*x+c1/2*x*x+d1*yyy),
+            x:alpha*x
+        ) else block (
+            y:(c2+d2*y)/(1-alpha),
+            yy:c2*x+d2*yy+f2,
+            yyy:FA+(1-alpha)*(f2*x+c2/2*x*x+d2*yyy),
+            x:alpha+(1-alpha)*x
+        )
+    ),
+    [y,yy,yyy]
+)$
+f:[0.0,0.25,0.2];
+alpha:.4;
+d1:.57;
+d2:.57;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+numpoints:400$
+pts:[[x0,fp(x0,f,alpha,d1,d2)[2]],[x1,fp(x1,f,alpha,d1,d2)[2]],[x2,fp(x2,f,alpha,d1,d2)[2]],
+     [x3,fp(x3,f,alpha,d1,d2)[2]],[x4,fp(x4,f,alpha,d1,d2)[2]],[x5,fp(x5,f,alpha,d1,d2)[2]]]$
+L6(x):=p0/subst(x=x0,p0)*pts[1][2] + p1/subst(x=x1,p1)*pts[2][2]
+     + p2/subst(x=x2,p2)*pts[3][2] + p3/subst(x=x3,p3)*pts[4][2]
+     + p4/subst(x=x4,p4)*pts[5][2] + p5/subst(x=x5,p5)*pts[6][2]$
+L:expand(L6(x));
+minoff:0.0$
+find_root(diff(L6(x),x),.6,.8)$
+maxoff:subst(x=%,L)$
+pad:.05*abs(maxoff-minoff)$
+for i:1 thru numpoints do (
+    x[i]:bfloat((i-1)/(numpoints-1))
+)$
+y:makelist(fp(x[i],f,alpha,d1,d2)[2],i,1,numpoints)$
+min1:smin(y)$
+max1:smax(y)$
+xy:makelist([x[i],y[i]],i,1,numpoints)$
+draw2d(
+    color=red,
+    explicit(L,x,0,1),
+    color=black,
+    point_type=none,
+    points_joined=true,
+    point_size=0,
+    points(xy),
+    points_joined=false,
+    point_type=filled_circle,
+    point_size=.4,
+    points(pts),
+    dimensions=[1000,618],
+    yrange=[minoff-pad,maxoff+pad],
+    file_name="interpolation-polynomials5",
+    terminal=pdf
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+xy:makelist([x[i],subst(x=x[i],L)-y[i]],i,1,numpoints)$
+draw2d(
+    color=black,
+    explicit(0,x,0,1),
+    color=blue,
+    point_type=none,
+    points_joined=true,
+    point_size=0,
+    points(xy),
+    yrange=[-1,1]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+y[1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst(x=0,L);
+L6(.2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Bernstein approximation of third example
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+phi(t):=fp(t,f,alpha,d1,d2)[2];
+B(n,x):=expand(sum(n!/(nu!*(n-nu)!)*phi(nu/n)*x^nu*(1-x)^(n-nu),nu,0,n));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:300$
+P4:B(4,x)$
+print("B4 done")$
+P20:B(20,x)$
+print("B20 done")$
+P100:B(100,x)$
+print("B100 done")$
+P500:B(500,x)$
+print("B500 done")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(descriptive)$
+numpoints:400$
+for i:1 thru numpoints do (
+    x[i]:bfloat((i-1)/(numpoints-1))
+)$
+y:makelist(phi(x[i]),i,1,numpoints)$
+min1:smin(y)$
+max1:smax(y)$
+pad:0.1*(max1-min1)$
+xy:makelist([x[i],y[i]],i,1,numpoints)$
+xy4:makelist([x[i],subst(x=x[i],P4)],i,1,numpoints)$
+xy20:makelist([x[i],subst(x=x[i],P20)],i,1,numpoints)$
+xy100:makelist([x[i],subst(x=x[i],P100)],i,1,numpoints)$
+xy500:makelist([x[i],subst(x=x[i],P500)],i,1,numpoints)$
+draw2d(
+    color=black,
+    point_type=none,
+    points_joined=true,
+    point_size=0,
+    points(xy),
+    color=orange,
+    points(xy4),
+    color=green,
+    points(xy20),
+    color=blue,
+    points(xy100),
+    color=red,
+    points(xy500),
+    dimensions=[1000,618],
+    yrange=[min1-pad,max1+pad],
+    terminal=pdf,
+    file_name="interpolation-polynomials7"
+);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

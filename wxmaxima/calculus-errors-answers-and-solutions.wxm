@@ -1,0 +1,475 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+4
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+(-3*0.054797 + 4*0.11342 - 1*0.65536)/.4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(0.65536 - 0.054797)/.4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(0.98472 - 0.11342)/.4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(-3*0.98472 + 4*0.65536 - 1*0.11342)/(-.4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+0 c and e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+simpson(a,b,F):=(b-a)/6*(F(a)+4*F((a+b)/2)+F(b));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(cos(x))^2$
+sif:simpson(-.25,.25,f);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):=x^4$
+sig:simpson(1,2,g);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+1 c and e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+trapezoid(a,b,F):=(b-a)/2*(F(a)+F(b));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trf:trapezoid(-.25,.25,f);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trg:trapezoid(1,2,g);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2 c and e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+midpoint(a,b,F):=(b-a)*F((a+b)/2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+mif:midpoint(-.25,.25,f);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+mig:midpoint(1,2,g);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+37 c and e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+exactF:integrate(f(x),x,-1/4,1/4);
+exactG:integrate(g(x),x,1,2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(abs(sif-exactF));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(abs(sig-exactG));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+38 c and e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(abs(trf-exactF));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(abs(trg-exactG));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+39 c and e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(abs(mif-exactF));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(abs(mig-exactG));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+19
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+bode(a,b,F):=([h],
+    h:(b-a)/4,
+    (b-a)/90*(7*F(a)+32*F(a+h)+12*F(a+2*h)+32*F(a+3*h)+7*F(b))
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=32*x^5+7*x^3-2;
+app:bode(-17,36,f);
+float(%);
+exact:integrate(f(x),x,-17,36);
+app-exact;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+20 b
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fp(F,x0,h):=(F(x0+h)-F(x0-h))/(2*h);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(cosh(2*x))^2;
+fp(f,%pi,.05);
+app:float(%);
+exact:float(subst(x=%pi,diff(f(x),x)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+8 b
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+fppp:diff(f(x),x,3);
+draw2d(explicit(fppp,x,%pi-.05,%pi+.05));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lower:float(.05^2/6*subst(x=%pi-.05,fppp));
+upper:float(.05^2/6*subst(x=%pi+.05,fppp));
+actual:float(app-exact);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+9 b
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+eq:exact=app-.05^2/6*subst(x=xi,fppp);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+find_root(eq, xi, %pi-.05, %pi+.05);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+29
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+.04*sin(2.8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+30
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fp30(x0,h,F):=h/2*(F(x0+h/3)+F(x0+2*h/3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=sin(x);
+app:fp30(0,%pi,f);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(%pi^3/36);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+exact:integrate(sin(x),x,0,%pi);
+err:float(app-exact);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+31
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1:f0+f2=4;
+eq2:f0+4*f1+f2=2;
+solve(eq1-eq2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+40
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=21*x^3-14*x^2;
+app:trapezoid(-3.0,6.1,f);
+exact:integrate(f(x),x,-3,6+1/10);
+abs(app-exact);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+34
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+(1.34986-1.10517)/.2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(-3*1.22140 + 4*1.10517 -1)/(-.2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(-3*(1.22140)+4*(1.34986)-1.49182)/.2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+35
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(cos(3*x))^2+log(x);
+exact:subst(x=3,diff(f(x),x));
+flexact:float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+app(h):=(-2*f(3-h)-3*f(3)+6*f(3+h)-f(3+2*h))/(6*h);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+previouserr:10000$ err:1000$ h:1/10$
+while (err<previouserr) do (
+    previouserr:err,
+    err:abs(float(app(h)-flexact)),
+    print("h=",h,"  err=",err),
+    h:h/2
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h0:1/10240$ h1:1/40960$ hh:(h1-h0)/20$
+for i:0 thru 20 do (
+    h:h0+i*hh,
+    err:abs(float(app(h)-flexact)),
+    print("h=",h,"  err=",err)
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h0:41/819200$ h1:7/163840$ hh:(h1-h0)/20$
+float(h0); float(h1);
+for i:0 thru 20 do (
+    h:h0+i*hh,
+    err:abs(float(app(h)-flexact)),
+    print("h=",h,"  err=",err)
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h0:49/1024000$ h1:193/4096000$ hh:(h1-h0)/20$
+float(h0); float(h1);
+for i:0 thru 20 do (
+    h:h0+i*hh,
+    err:abs(float(app(h)-flexact)),
+    print("h=",h,"  err=",err)
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h0:3893/81920000$ h1:3887/81920000$ hh:(h1-h0)/20$
+float(h0); float(h1);
+for i:0 thru 20 do (
+    h:h0+i*hh,
+    err:abs(float(app(h)-flexact)),
+    print("h=",h,"  err=",err)
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(38903/819200000);
+h:float(389/8192000);
+float(38897/819200000);
+float(app(h));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+5
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+.25/3*(-0.5*log(0.5)+4*(-0.25)*log(.75));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+.5/2*(-0.5*log(0.5)+0*log(1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+2*(.25)*(-0.25*log(0.75));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+37
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+integrate(x*log(x+1),x);
+integrate(x*log(x+1),x,-1/2,0);
+ratsimp(%);
+float(%);
+(.625+.75*log(.5))/2;
+abs(0.05285463856097945-0.05256980729002053);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+38
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+abs(0.08664339756999316-0.05256980729002053);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+39
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+abs(0.03596025905647261-0.05256980729002053);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+36
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+(exp(2.1)-exp(1.9))/(2*(.1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+8
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+.01/6*exp(1.9);
+.01/6*exp(2.1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(abs(exp(2)-7.401377351441916));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+9
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(log(3000*(exp(2.1)-exp(1.9)-.2*exp(2))));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+11
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+1/24-1/27;
+1/24+1/27;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+18
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+app2:(-.2381-8*(-.3125)+8*(-.8333)-(-5))/12;
+app4:(3*(-.2381)-16*(-.3125)+36*(-.4545)-48*(-.8333)+25*(-5))/12;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=1/(x-(4+1/5));
+fp:diff(f(x),x);
+fp2:subst(x=2,fp);
+fp4:subst(x=4,fp);
+err2:abs(fp2-app2);
+err4:abs(fp4-app4);
+rel2:err2/abs(fp2);
+rel4:err4/abs(fp4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+15
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+(.1/.02)^3;
+(.1/.02)^4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+15
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+f(x):=x^2+2*sin(2*x);
+draw2d(explicit(f(x),x,0,3));
+assume(b>0)$
+I:integrate(f(x),x,0,b);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq:I=b*f(b)/2;
+x0:0;
+x1:find_root(eq, b, 1, 3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(integrate(f(x),x,x0,x1));
+(x1-x0)*(f(x0)+f(x1))/2;
+(x1-x0)*(f(x0)+4*f((x0+x1)/2)+f(x1))/6;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):=1+f(x*x1);
+g(0);
+g(1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(integrate(g(x),x,0,1));
+(g(0)+g(1))/2;
+(g(0)+4*g(.5)+g(1))/6;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

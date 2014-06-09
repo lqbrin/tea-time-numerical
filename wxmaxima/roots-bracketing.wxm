@@ -1,0 +1,154 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+f(x):=(x+cos(x))/(0-10*x);
+ratsimp(diff(f(x),x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:-5$ x1:1$
+draw2d(explicit(f(x),x,x0,x1),yrange=[-2,3],color=black,explicit(0,x,x0,x1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a:-.1$ b:-5.0$
+for i:1 thru 30 do (
+    fa:f(a),
+    fb:f(b),
+    m:(f(a)-f(b))/(a-b),
+    c:b-fb/m,
+    print(i,"  ",c),
+    b:c
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):=3-x-sin(x)$
+gp(x):=subst(t=x,diff(g(t),t))$
+draw2d(explicit(g(x),x,2,3))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:2.0$
+x1:3.0$
+x2s:x1-g(x1)*(x1-x0)/(g(x1)-g(x0));
+x2n:x1-g(x1)/gp(x1);
+x2b:(x1+x0)/2;
+g(x2s);
+g(x2n);
+g(x2b);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x2n:x2b;
+x1n:x0;
+x1s:x0;
+x3s:x2s-g(x2s)*(x2s-x1s)/(g(x2s)-g(x1s));
+x3n:x2n-g(x2n)/gp(x2n);
+g(x3s);
+g(x3n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x2s:x1s;
+x4s:x3s-g(x3s)*(x3s-x2s)/(g(x3s)-g(x2s));
+x4n:x3n-g(x3n)/gp(x3n);
+g(x4s);
+g(x4n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(1+10*x)/(1-10*x);
+ratsimp(diff(f(x),x));
+draw2d(explicit(f(x),x,-10,1),yrange=[-5,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(.05);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+x(y):=q0+q1*y+q2*y^2;
+eq1:x(A)=a;
+eq2:x(B)=b;
+eq3:x(C)=c;
+soln:solve([eq1,eq2,eq3],[q0,q1,q2]);
+ratsimp(subst([soln[1][1],soln[1][2],soln[1][3],y=0],x(y)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+R:B/C$ S:B/A$ T:A/C$
+P:S*(T*(R-T)*(c-b)-(1-R)*(b-a))$
+Q:(T-1)*(R-1)*(S-1)$
+ratsimp(b+P/Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+P:S*(a-b)$
+Q:S-1$
+book:ratsimp(b+P/Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x(y):=q0+q1*y+q2*y^2$
+xp(y):=q1+2*q2*y$
+eq3:q0=2*B*(b-a)/(B-A);
+eq1:subst(eq3,x(A)=a);
+eq2:subst(eq3,x(B)=b);
+soln:solve([eq1,eq2],[q1,q2]);
+subst([soln[1][1],soln[1][2],y=B],xp(y));
+ratsimp(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+b:1$ B:-1$ a:5$ A:2$ 
+S:B/A$ P:(a-b)*S;
+if (P<0) then Q:S-1 else Q:1-S$
+x:b+P/Q;
+pts:[[a,A],[b,B],[x,0]];
+draw2d(point_size=5,points(pts));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+quadratic versus inverse quadratic interpolation
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+x0:-7$ y0:7$
+x1:2$ y1:8$
+x2:8$ y2:-3$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p(x):=a0+a1*x+a2*x^2;
+eqp0:p(x0)=y0;
+eqp1:p(x1)=y1;
+eqp2:p(x2)=y2;
+soln:solve([eqp0,eqp1,eqp2]);
+subst(soln[1],p(x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+q(y):=b0+b1*y+b2*y^2;
+eqq0:q(y0)=x0;
+eqq1:q(y1)=x1;
+eqq2:q(y2)=x2;
+soln:solve([eqq0,eqq1,eqq2]);
+subst(soln[1],q(y));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=c0+c1*exp(x)+c2*cos(x/5);
+eqf0:f(x0)=y0;
+eqf1:f(x1)=y1;
+eqf2:f(x2)=y2;
+soln:solve([eqf0,eqf1,eqf2]);
+subst(soln[1],f(x)), numer;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

@@ -1,0 +1,87 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=sin(x);
+n:4$
+x:[1/4,3/5,1,13/11];
+
+f(x):=exp(x);
+x:[0,1,2,3];
+
+y:[f(x[1]),f(x[2]),f(x[3]),f(x[4])];
+for i:1 thru n do (
+    F[i]:makelist(y[i],j,1,n)
+)$
+for i:1 thru n do (
+    for j:2 thru n do (
+        F[i][j]:0.0
+    )
+)$
+for j:2 thru n do (
+    for i:1 thru n+1-j do (
+        F[i][j]:(F[i][j-1]-F[i+1][j-1])/(x[i]-x[i+j-1])
+    )
+)$
+F[1];
+F[2];
+F[3];
+F[4];
+Pa:F[1][1]+F[1][2]*(xi-x[1])+F[1][3]*(xi-x[1])*(xi-x[2]);
+Pb:F[3][1]+F[2][2]*(xi-x[3])+F[1][3]*(xi-x[3])*(xi-x[2]);
+Pc:F[2][1]+F[1][2]*(xi-x[2])+F[1][3]*(xi-x[2])*(xi-x[1]);
+Pd:F[2][1]+F[2][2]*(xi-x[2])+F[1][3]*(xi-x[2])*(xi-x[3]);
+expand(Pa);
+expand(Pb);
+expand(Pc);
+expand(Pd);
+Qa:F[2][1]+F[2][2]*(xi-x[2])+F[2][3]*(xi-x[2])*(xi-x[3]);
+Qb:F[4][1]+F[3][2]*(xi-x[4])+F[2][3]*(xi-x[4])*(xi-x[3]);
+Qc:F[3][1]+F[2][2]*(xi-x[3])+F[2][3]*(xi-x[3])*(xi-x[2]);
+Qd:F[3][1]+F[3][2]*(xi-x[3])+F[2][3]*(xi-x[3])*(xi-x[4]);
+expand(Qa);
+expand(Qb);
+expand(Qc);
+expand(Qd);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x:float(x);
+y:[f(x[1]),f(x[2]),f(x[3]),f(x[4])];
+for i:1 thru n do (
+    F[i]:makelist(y[i],j,1,n)
+)$
+for i:1 thru n do (
+    for j:2 thru n do (
+        F[i][j]:0.0
+    )
+)$
+for j:2 thru n do (
+    for i:1 thru n+1-j do (
+        F[i][j]:(F[i][j-1]-F[i+1][j-1])/(x[i]-x[i+j-1])
+    )
+)$
+F[1];
+F[2];
+F[3];
+F[4];
+Pa:F[1][1]+F[1][2]*(xi-x[1])+F[1][3]*(xi-x[1])*(xi-x[2]);
+Pb:F[3][1]+F[2][2]*(xi-x[3])+F[1][3]*(xi-x[3])*(xi-x[2]);
+Pc:F[2][1]+F[1][2]*(xi-x[2])+F[1][3]*(xi-x[2])*(xi-x[1]);
+Pd:F[2][1]+F[2][2]*(xi-x[2])+F[1][3]*(xi-x[2])*(xi-x[3]);
+expand(Pa);
+expand(Pb);
+expand(Pc);
+expand(Pd);
+Qa:F[2][1]+F[2][2]*(xi-x[2])+F[2][3]*(xi-x[2])*(xi-x[3]);
+Qb:F[4][1]+F[3][2]*(xi-x[4])+F[2][3]*(xi-x[4])*(xi-x[3]);
+Qc:F[3][1]+F[2][2]*(xi-x[3])+F[2][3]*(xi-x[3])*(xi-x[2]);
+Qd:F[3][1]+F[3][2]*(xi-x[3])+F[2][3]*(xi-x[3])*(xi-x[4]);
+expand(Qa);
+expand(Qb);
+expand(Qc);
+expand(Qd);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

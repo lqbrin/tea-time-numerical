@@ -1,0 +1,4710 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter*
+Answers to Selected Exercises
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Accuracy"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Answers to Selected Exercises}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[RE]{Answers to Selected Exercises}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[LO]{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:abserr14"
+
+\end_inset
+
+: 
+\begin_inset Formula $0.83333$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:abserr7"
+
+\end_inset
+
+: 
+\begin_inset Formula $.2353263818643$
+\end_inset
+
+ and 
+\begin_inset Formula $.2343263818643$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:abserr18"
+
+\end_inset
+
+a: 
+\begin_inset Formula $.2349438537911$
+\end_inset
+
+ and 
+\begin_inset Formula $.2347090273506$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:abserr8"
+
+\end_inset
+
+: 
+\begin_inset Formula $(p,\tilde{p})\in\left\{ \left(\frac{1}{3},\frac{97}{300}\right),\ \left(\frac{1}{3},\frac{103}{300}\right),\ \left(-\frac{1}{3},-\frac{97}{300}\right),\ \left(-\frac{1}{3},-\frac{103}{300}\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:abserr9"
+
+\end_inset
+
+: 
+\begin_inset Formula $p=\pm1$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is anything; or 
+\begin_inset Formula $p=\tilde{p}\neq0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:abserr10"
+
+\end_inset
+
+: (i) 
+\begin_inset Formula $8.99999974990351$
+\end_inset
+
+ (ii) 
+\begin_inset Formula $2.5009649(10)^{-7}$
+\end_inset
+
+ (iii) 
+\begin_inset Formula $2.7788499(10)^{-8}$
+\end_inset
+
+ (iv) 
+\begin_inset Formula $(10)^{-14}$
+\end_inset
+
+ (v) 
+\begin_inset Formula $2.5009647(10)^{-7}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Taylor"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:taylor3"
+
+\end_inset
+
+: 
+\begin_inset Formula $T_{3}(x)=x^{2}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $R_{3}(x)=\frac{\xi\sin(\xi)-4\cos(\xi)}{24}x^{4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:taylor9"
+
+\end_inset
+
+: 
+\begin_inset Formula $10.760$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:taylor7"
+
+\end_inset
+
+: 
+\begin_inset Formula $\xi(\pi)=\cos^{-1}\left(\frac{12\pi^{2}-48}{\pi^{4}}\right)\approx0.7625$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Speed"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:convergence-2"
+
+\end_inset
+
+: 
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:convergence-6"
+
+\end_inset
+
+: 
+\begin_inset Formula $O\left(\frac{1}{n}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:convergence-7"
+
+\end_inset
+
+: 
+\begin_inset Formula $O\left(\frac{1}{\sqrt{n}}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:convergence-9"
+
+\end_inset
+
+: 
+\begin_inset Formula $O\left(\frac{1}{n}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:convergence-13"
+
+\end_inset
+
+: 4 iterations
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Recursion"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:recursion"
+
+\end_inset
+
+: (a) 1 more than 4 times the number required for the 
+\begin_inset Formula $2^{n-1}\times2^{n-1}$
+\end_inset
+
+ grid.
+ (b) 0 (c) 0
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:recursion-7"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $S(n-1,k-1)$
+\end_inset
+
+ (b) 
+\begin_inset Formula $k\cdot S(n-1,k)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Bisection"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisection3"
+
+\end_inset
+
+c: In 27 iterations, we get 
+\begin_inset Formula $0.666666664928$
+\end_inset
+
+, which is within 
+\begin_inset Formula $10^{-8}$
+\end_inset
+
+ of an actual root.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisection3"
+
+\end_inset
+
+f: In 27 iterations, we get 
+\begin_inset Formula $21.9911485687$
+\end_inset
+
+, which is within 
+\begin_inset Formula $10^{-8}$
+\end_inset
+
+ of an actual root.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisection"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $0.625$
+\end_inset
+
+ (b) 
+\begin_inset Formula $1.09375$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisection-2"
+
+\end_inset
+
+: 
+\begin_inset Formula $\frac{37\pi}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisection-3"
+
+\end_inset
+
+: 33
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisection-5"
+
+\end_inset
+
+: One possible
+\family typewriter
+ collatz.m
+\family default
+ file is 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by       on                             %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: implementation of the collatz function %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: integer n                                %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: n/2 or 3n+1 depending on whether n is   %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        even or odd                              %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function res=collatz(n)
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (ceil(n/2)==n/2)
+\end_layout
+
+\begin_layout Plain Layout
+
+    res=n/2
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    res=3*n+1
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisection-6"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $\sqrt{20\pi}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Fixedpt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-16"
+
+\end_inset
+
+: (i) The hypotheses of the MVT are met.
+ (ii) 
+\begin_inset Formula $c\approx\text{−}2.540793513382845$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-2"
+
+\end_inset
+
+: (i) The hypotheses of the MVT are not met.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-3"
+
+\end_inset
+
+: (i) The hypotheses of the MVT are met.
+ (ii) 
+\begin_inset Formula $c\approx17.41987374102208$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-4"
+
+\end_inset
+
+: 
+\begin_inset Formula $-2$
+\end_inset
+
+ and 
+\begin_inset Formula $5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-5"
+
+\end_inset
+
+: 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $-\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-7"
+
+\end_inset
+
+: 
+\begin_inset Formula $f_{1}(x)=\sqrt[5]{\frac{4-3x^{2}}{2}}$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{2}(x)=\sqrt{\frac{4-3x^{5}}{6}}$
+\end_inset
+
+.
+ There are many others.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-9"
+
+\end_inset
+
+: 
+\begin_inset Formula $f_{1}(x)=\frac{(x^{2}-5x+1)(\log_{2}3)-x^{2}-1}{5}$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{2}(x)=\sqrt{(\log_{2}3)(x^{2}-5x+1)-5x-1}$
+\end_inset
+
+.
+ There are many others.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-11"
+
+\end_inset
+
+: 1.326008542399018, 1.598751095046933, 1.737721941251104, 1.779703798972744,
+ 1.788512049183622; the sequence seems to be converging.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:usingOctave"
+
+\end_inset
+
+c: 1.79047660196506
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:usingWeb"
+
+\end_inset
+
+c: The web diagram over 
+\begin_inset Formula $[.8,2]$
+\end_inset
+
+ is:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-fixedpt20.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-14"
+
+\end_inset
+
+: (a) 15 (b) The equations 
+\begin_inset Formula $g(x)=x$
+\end_inset
+
+ and 
+\begin_inset Formula $f(x)=x$
+\end_inset
+
+ are equivalent.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fixedpt-15"
+
+\end_inset
+
+: 
+\begin_inset Formula $-\frac{1}{4}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:fixedptOrder"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:orderOfConvergence-2"
+
+\end_inset
+
+: (a) 15.
+ HINT: It is valid to bound the derivative over the interval 
+\begin_inset Formula $[1.618033988749895,2.5]$
+\end_inset
+
+ instead of the entire interval 
+\begin_inset Formula $[.5,3.5]$
+\end_inset
+
+.
+ Why? On the other hand, if you do consider the whole interval 
+\begin_inset Formula $[.5,3.5]$
+\end_inset
+
+, you get a bound of 43.
+ (b) It actually takes 15 iterations.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:orderOfConvergence-4"
+
+\end_inset
+
+: 
+\begin_inset Formula $a_{1}\approx1.942415717$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{2}\approx1.623271404$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:orderOfConvergence-5"
+
+\end_inset
+
+: 
+\begin_inset Formula $2.732050809$
+\end_inset
+
+.
+ HINT: use 
+\begin_inset Formula $f(x)=\sqrt[4]{2x^{3}+4x^{2}-4x-4}$
+\end_inset
+
+.
+ Why?
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:aitkensOnSequence"
+
+\end_inset
+
+: 
+\begin_inset Formula $a_{0}=3$
+\end_inset
+
+, 
+\begin_inset Formula $a_{1}=\frac{3}{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $a_{2}=\frac{4}{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:orderOfConvergence-7"
+
+\end_inset
+
+: No.
+ Aitken's delta-squared Method is designed to speed up linearly convergent
+ sequences, not superlinearly convergent sequences.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:orderOfConvergence-9"
+
+\end_inset
+
+: 
+\begin_inset Formula $a_{1}\approx2.152904629$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{2}\approx1.873464044$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:orderOfConvergence-10"
+
+\end_inset
+
+: 
+\begin_inset Formula $\frac{3}{2}$
+\end_inset
+
+ or 
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Steffensens"
+
+\end_inset
+
+: 
+\begin_inset Formula $\hat{x}\approx5.259185715$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:newtonsMethod"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "secant"
+
+\end_inset
+
+c: Using 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=3$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{8}=1.47883214766643$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "secant"
+
+\end_inset
+
+d: Using 
+\begin_inset Formula $x_{0}=3$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=4$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{10}=0.948434069243393$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton-1"
+
+\end_inset
+
+c: Using 
+\begin_inset Formula $x_{0}=2.5$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{6}=1.47883214733021$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton-1"
+
+\end_inset
+
+d: Using 
+\begin_inset Formula $x_{0}=3.5$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{7}=0.948434069919634$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton"
+
+\end_inset
+
+c: Using 
+\begin_inset Formula $x_{0}=2.5$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{18}=0.948434068437721$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton"
+
+\end_inset
+
+d: Using 
+\begin_inset Formula $x_{0}=3.5$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{15}=0.948434069313413$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-1"
+
+\end_inset
+
+c: Using 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=3$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{10}=1.47883214733021$
+\end_inset
+
+.
+ The difference between 
+\begin_inset Formula $x_{10}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{8}$
+\end_inset
+
+ is about 
+\begin_inset Formula $3.3(10)^{-10}$
+\end_inset
+
+, so 
+\begin_inset Formula $x_{8}$
+\end_inset
+
+ was indeed accurate to within 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-1"
+
+\end_inset
+
+d: Using 
+\begin_inset Formula $x_{0}=3$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=4$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{12}=0.948434069919636$
+\end_inset
+
+.
+ The difference between 
+\begin_inset Formula $x_{12}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{10}$
+\end_inset
+
+ is about 
+\begin_inset Formula $6.7(10)^{-10}$
+\end_inset
+
+, so 
+\begin_inset Formula $x_{10}$
+\end_inset
+
+ was indeed accurate to within 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton1"
+
+\end_inset
+
+b: 
+\begin_inset Formula $x_{14}=0.580055888962675$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-4"
+
+\end_inset
+
+b: 
+\begin_inset Formula $x_{14}=0.580055888962675$
+\end_inset
+
+.
+ This is different from 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ Why?
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-5"
+
+\end_inset
+
+: 
+\begin_inset Formula $x_{10}=3.739599358563032$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-7"
+
+\end_inset
+
+: 
+\begin_inset Formula $x_{16}=3.7201766622615984(10)^{-4}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{17}=2.4933434933779863(10)^{-4}$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{18}=1.6752024023472534(10)^{-4}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $a_{16}=3.7404947721983783(10)^{-6}$
+\end_inset
+
+ so Aitken's delta-squared method DOES speed up convergence.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-9"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $\pi$
+\end_inset
+
+ (b) Newton's Method will fail because 
+\begin_inset Formula $g'(0)=0$
+\end_inset
+
+.
+ (c) 6 (d) Something near 
+\begin_inset Formula $-7.5$
+\end_inset
+
+ will do.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-10"
+
+\end_inset
+
+c: In 18 iterations, we get 
+\begin_inset Formula $0.666666668082383$
+\end_inset
+
+, which is within 
+\begin_inset Formula $10^{-8}$
+\end_inset
+
+ of an actual root.
+ This is the same root found by the bisection method, but the bisection
+ method took longer, 27 iterations.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-10"
+
+\end_inset
+
+f: In 9 iterations, we get 
+\begin_inset Formula $21.9911485743912$
+\end_inset
+
+, which is within 
+\begin_inset Formula $10^{-8}$
+\end_inset
+
+ of an actual root.
+ This is the same root found by the bisection method, but the bisection
+ method took longer, 27 iterations.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:newton-13"
+
+\end_inset
+
+: 
+\begin_inset Formula $3.555963292212723$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:moreConvergenceDiagrams"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:more-1"
+
+\end_inset
+
+: 
+\begin_inset Formula $f$
+\end_inset
+
+ and (a), 
+\begin_inset Formula $g$
+\end_inset
+
+ and (d), 
+\begin_inset Formula $h$
+\end_inset
+
+ and (b), 
+\begin_inset Formula $l$
+\end_inset
+
+ and (c)
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:more-5"
+
+\end_inset
+
+: 
+\begin_inset Formula $f$
+\end_inset
+
+ and (b), 
+\begin_inset Formula $g$
+\end_inset
+
+ and (c), 
+\begin_inset Formula $h$
+\end_inset
+
+ and (d), 
+\begin_inset Formula $l$
+\end_inset
+
+ and (a)
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:RootsOfPolynomials"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-7"
+
+\end_inset
+
+: 
+\begin_inset Formula $g(2)=5$
+\end_inset
+
+ and 
+\begin_inset Formula $g'(2)=-8$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-10"
+
+\end_inset
+
+b: 
+\begin_inset Formula $x_{1}=\frac{21}{8}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}=\frac{241003}{100544}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-14"
+
+\end_inset
+
+: 
+\begin_inset Formula $-8,\ -2.33333,\ 0.33333,\ 2+i,\ 2-i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-17"
+
+\end_inset
+
+: 
+\begin_inset Formula $-2,\ 0.76393,\ 5.23607,\ 0.66667+0.57735i,\ 0.66667-0.57735i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-18"
+
+\end_inset
+
+b: They do change, but not within the first five decimal places.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-9"
+
+\end_inset
+
+: (i) 
+\family typewriter
+-109.372462336481
+\family default
+ (ii) 
+\family typewriter
+-109.372462336481
+\family default
+ (iii) 
+\family typewriter
+ans = 0
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-11"
+
+\end_inset
+
+: (i) 
+\family typewriter
+948.990683139955
+\family default
+ (ii) 
+\family typewriter
+948.990683139955
+\family default
+ (iii) 
+\family typewriter
+ans = 1
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-13"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Dr.
+ Len Brin          15 January 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: Implementation of Newton's Method       %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        for polynomials of the form               %
+\end_layout
+
+\begin_layout Plain Layout
+
+%   p(x) = c1 + c2*x + c3*x^2 + ...
+ + c(n+1)*x^n   %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        using Horner's Method, n > 1.
+             %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: coefficients c; tolerance tol; maximum    %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        number of iterations N                    %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: approximations to all roots, roots       %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function roots = newthornall(c,tol,N,x0)
+\end_layout
+
+\begin_layout Plain Layout
+
+  n=length(c)-1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=1:n-2
+\end_layout
+
+\begin_layout Plain Layout
+
+    res=newtonhorner(c,x0,tol,N)
+\end_layout
+
+\begin_layout Plain Layout
+
+    roots(i)=res;
+\end_layout
+
+\begin_layout Plain Layout
+
+    x0=roots(i);
+\end_layout
+
+\begin_layout Plain Layout
+
+    c=deflate(c,x0);
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  [roots(n-1),roots(n)]=quadraticRoots(c(3),c(2),c(1));
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Remark: This code is often successful, but can easily come up empty.
+ For example,
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+
+\family typewriter
+newthornall([56,-152,140,-17,-48,9],1e-5,100,2)
+\end_layout
+
+\begin_layout Standard
+returns 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  0.763932022500484
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  5.23606797749979
+\end_layout
+
+\begin_layout Plain Layout
+
+res = Method failed---maximum number of iterations reached
+\end_layout
+
+\begin_layout Plain Layout
+
+error: newthornall: A(I) = X: X must have the same size as I
+\end_layout
+
+\begin_layout Plain Layout
+
+error: called from:
+\end_layout
+
+\begin_layout Plain Layout
+
+error:   .../newthornall.m at line 16, column 13
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It fails to come up with the third real root, 
+\begin_inset Formula $-2$
+\end_inset
+
+.
+ After finding the first two roots, the polynomial has been deflated to
+ 
+\begin_inset Formula 
+\[
+\begin{gathered}14.00000000000065-16.99999999999987x+\qquad\\
+\qquad6.00000000000002x^{2}+9.00000000000000x^{3}.
+\end{gathered}
+\]
+
+\end_inset
+
+With this cubic and initial value 
+\begin_inset Formula $5.23606797749979$
+\end_inset
+
+, Newton's method does not converge to 
+\begin_inset Formula $-2$
+\end_inset
+
+.
+ On the other hand, 
+\family typewriter
+newthornall([56,-152,140,-17,-48,9],1e-5,100,-2)
+\family default
+ returns 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+res = -2
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  0.763932022500211
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  5.23606797749979
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ Columns 1 and 2:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  -2.000000000000000 + 0.000000000000000i   0.763932022500211 + 0.000000000000000i
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ Columns 3 and 4:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+   5.236067977499789 + 0.000000000000000i   0.666666666666667 + 0.577350269189623i
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ Column 5:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+   0.666666666666667 - 0.577350269189623i
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Having found 
+\begin_inset Formula $-2$
+\end_inset
+
+ first, it has no problem finding the other roots.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-15"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula 
+\[
+\begin{gathered}1.5858\\
+-13\\
+4.4142\\
+-2+2.2361i\\
+-2-2.2361i
+\end{gathered}
+\]
+
+\end_inset
+
+(b) 
+\begin_inset Formula 
+\[
+\begin{gathered}3-1.4142i\\
+-2.6\\
+-2+2.2361i\\
+-2-2.2361i\\
+3+1.4142i
+\end{gathered}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:polynomialLagrange"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-5"
+
+\end_inset
+
+: 
+\begin_inset Formula $4$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-14"
+
+\end_inset
+
+: 
+\begin_inset Formula $3$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{18+\sqrt{142}}{7}$
+\end_inset
+
+, or 
+\begin_inset Formula $\frac{18-\sqrt{142}}{7}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-15"
+
+\end_inset
+
+: 
+\begin_inset Formula $8$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:polynomialNewton"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-5"
+
+\end_inset
+
+: 
+\begin_inset Formula $P_{2}(x)=-0.001642458785316x^{2}+1.64927376355948x+10$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-6"
+
+\end_inset
+
+: 
+\begin_inset Formula $P_{3}(x)=2x-1$
+\end_inset
+
+.
+ Is degree 
+\begin_inset Formula $1$
+\end_inset
+
+ what you expected?
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-9"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $\frac{3}{40000}f^{(4)}(\xi_{8.4})$
+\end_inset
+
+ (b) 
+\begin_inset Formula $8.7364(10)^{-5}{\displaystyle \max_{x\in[8.1,8.7]}}\left|f^{(4)}(x)\right|$
+\end_inset
+
+ (c) 
+\begin_inset Formula $.52501$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-10"
+
+\end_inset
+
+: 
+\begin_inset Formula $0.5x^{3}+1.5x^{2}+0.335x+0.951$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-13"
+
+\end_inset
+
+: 
+\begin_inset Formula $f$
+\end_inset
+
+ and (b), 
+\begin_inset Formula $g$
+\end_inset
+
+ and (c), 
+\begin_inset Formula $h$
+\end_inset
+
+ and (d), 
+\begin_inset Formula $l$
+\end_inset
+
+ and (a)
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:NumericalRudiments"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-4"
+
+\end_inset
+
+c: 
+\begin_inset Formula $f'\left(x_{0}+\frac{h}{2}\right)\approx\frac{f(x_{0}+h)-f(x_{0})}{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-5"
+
+\end_inset
+
+c: 
+\begin_inset Formula $f'\left(x_{0}+\frac{h}{2}\right)\approx\frac{f(x_{0}+h)-f(x_{0})}{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-1"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $20.32712878304436$
+\end_inset
+
+ (e) 
+\begin_inset Formula $0.6321205268681437$
+\end_inset
+
+ (g) 
+\begin_inset Formula $0.2325441461772505$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-11"
+
+\end_inset
+
+: (a) (i) 
+\begin_inset Formula $e^{3}-e^{-4}$
+\end_inset
+
+ (ii) 
+\begin_inset Formula $0.2599074987454273$
+\end_inset
+
+ (e) (i) 
+\begin_inset Formula $1-e^{-1}$
+\end_inset
+
+ (ii) 
+\begin_inset Formula $3.196041398201288(10)^{-8}$
+\end_inset
+
+ (g) (i) 
+\begin_inset Formula $\ln2$
+\end_inset
+
+ (ii) 
+\begin_inset Formula $1.2110575916990385(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-12"
+
+\end_inset
+
+: 
+\begin_inset Formula $1.19336533331362$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-13"
+
+\end_inset
+
+b: 
+\begin_inset Formula $.19336533331362$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-14"
+
+\end_inset
+
+: 
+\begin_inset Formula $35$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-16"
+
+\end_inset
+
+: 
+\begin_inset Formula $\frac{28}{15}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-17"
+
+\end_inset
+
+: 
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-18"
+
+\end_inset
+
+: 
+\begin_inset Formula $-23$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-20"
+
+\end_inset
+
+: 
+\begin_inset Formula $f'(x_{0}+3h)\approx\frac{7f(x_{0}+2h)-15f(x_{0})+8f(x_{0}-h)}{6h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-22"
+
+\end_inset
+
+: 
+\begin_inset Formula $f'(x_{0}-h)\approx\frac{-f(x_{0}+2h)+9f(x_{0})-8f(x_{0}-h)}{6h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-23"
+
+\end_inset
+
+: 
+\begin_inset Formula $f'(x_{0})\approx\frac{-f(x_{0}+3h)+9f(x_{0}+h)-8f(x_{0})}{6h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-24"
+
+\end_inset
+
+: 
+\begin_inset Formula $\int_{x_{0}+\theta_{0}h}^{x_{0}+\theta_{1}h}f(x)dx\approx-\frac{h}{2}\cdot\frac{\theta_{1}-\theta_{0}}{\theta_{3}-\theta_{2}}\left((2\theta_{2}-\theta_{1}-\theta_{0})f(x_{0}+\theta_{3}h)-(2\theta_{3}-\theta_{1}-\theta_{0})f(x_{0}+\theta_{2}h)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-25"
+
+\end_inset
+
+: 
+\begin_inset Formula $\int_{x_{0}}^{x_{0}+2h}f(x)dx\approx\frac{h}{2}\left[f(x_{0})+3f\left(x_{0}+\frac{4}{3}h\right)\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-27"
+
+\end_inset
+
+: 
+\begin_inset Formula $\int_{x_{0}}^{x_{0}+h}f(x)dx\approx\frac{h}{2}\left[f(x_{0})+f(x_{0}+h)\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:UndeterminedCoefficients"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:undetermined"
+
+\end_inset
+
+: (b) 
+\begin_inset Formula ${\displaystyle f'\left(x_{0}+\frac{h}{4}\right)\approx\frac{f(x_{0}+h)-f(x_{0})}{h}}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(f) 
+\begin_inset Formula ${\displaystyle f'\left(x_{0}-h\right)\approx\frac{-3f(x_{0}-h)+4f(x_{0})-f(x_{0}+h)}{2h}}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(h) 
+\begin_inset Formula ${\displaystyle f'\left(x_{0}-h\right)\approx\frac{-7f(x_{0}-h)+16f(x_{0}+2h)-9f(x_{0}+3h)}{12h}}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(l) 
+\begin_inset Formula ${\displaystyle f'\left(x_{0}\right)\approx\frac{-3f(x_{0}-h)-10f(x_{0})+18f(x_{0}+h)-6f(x_{0}+2h)+f(x_{0}+3h)}{12h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:undetermined-1"
+
+\end_inset
+
+: (b) 
+\begin_inset Formula ${\displaystyle f''\left(x_{0}-h\right)\approx\frac{f(x_{0}-h)-2f(x_{0})+f(x_{0}+h)}{h^{2}}}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(d) 
+\begin_inset Formula ${\displaystyle f''\left(x_{0}-h\right)\approx\frac{f(x_{0}-h)-4f(x_{0}+2h)+3f(x_{0}+3h)}{6h^{2}}}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(h) 
+\begin_inset Formula ${\displaystyle f''\left(x_{0}\right)\approx\frac{11f(x_{0}-h)-20f(x_{0})+6f(x_{0}+h)+4f(x_{0}+2h)-f(x_{0}+3h)}{12h^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:undetermined-2"
+
+\end_inset
+
+: (d) 
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)dx\approx hf(x_{0})}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(f) 
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx\approx h\left(f\left(x_{0}+\frac{2}{3}h\right)+f\left(x_{0}+\frac{4}{3}h\right)\right)}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(h) 
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)dx\approx\frac{h}{2}\left(f(x_{0})+f(x_{0}+h)\right)}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(j) 
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx\approx\frac{h}{2}\left(3f\left(x_{0}+\frac{2}{3}h\right)+f(x_{0}+2h)\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:calculusErrorAnalysis"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-4"
+
+\end_inset
+
+: 
+\begin_inset Formula $f'(-2.7)\approx-0.9151775$
+\end_inset
+
+; 
+\begin_inset Formula $f'(-2.5)\approx1.5014075$
+\end_inset
+
+; 
+\begin_inset Formula $f'(-2.3)\approx2.17825$
+\end_inset
+
+; 
+\begin_inset Formula $f'(-2.1)\approx1.11535$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-6"
+
+\end_inset
+
+: 
+\begin_inset Formula $0.4897985468241977$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-7"
+
+\end_inset
+
+: 
+\begin_inset Formula $149/24=6.208\overline{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-1"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $0.4693956404725931$
+\end_inset
+
+ (e) 
+\begin_inset Formula $17/2=8.5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-2"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $0.5$
+\end_inset
+
+ (e) 
+\begin_inset Formula $81/16=5.0625$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-37"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $8.57775220962087(10)^{-5}$
+\end_inset
+
+ (e) 
+\begin_inset Formula $0.008\overline{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-38"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $0.02031712882950837$
+\end_inset
+
+ (e) 
+\begin_inset Formula $2.3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-39"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $0.0102872306978985$
+\end_inset
+
+ (e) 
+\begin_inset Formula $1.1375$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-19"
+
+\end_inset
+
+: 
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-20"
+
+\end_inset
+
+: 
+\begin_inset Formula $288666.8155482048$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-8"
+
+\end_inset
+
+b: lower: 
+\begin_inset Formula $1565.147456974753$
+\end_inset
+
+ upper: 
+\begin_inset Formula $2334.925631788689$
+\end_inset
+
+ actual: 
+\begin_inset Formula $1915.502415038936$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-9"
+
+\end_inset
+
+b: 
+\begin_inset Formula $3.142092629759007$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-21"
+
+\end_inset
+
+: error term: 
+\begin_inset Formula $O(h^{2}f'(\xi))$
+\end_inset
+
+ degree of precision: 
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-22"
+
+\end_inset
+
+: error term: 
+\begin_inset Formula $O(h^{4}f'''(\xi))$
+\end_inset
+
+ degree of precision: 
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-23"
+
+\end_inset
+
+: error term: 
+\begin_inset Formula $O(h^{4}f'''(\xi))$
+\end_inset
+
+ degree of precision: 
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-24"
+
+\end_inset
+
+: error term: 
+\begin_inset Formula $O(h^{5}f^{(4)}(\xi))$
+\end_inset
+
+ degree of precision: 
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-25"
+
+\end_inset
+
+: 
+\begin_inset Formula $O(hf''(\xi))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-26"
+
+\end_inset
+
+: 
+\begin_inset Formula $O(h^{4}f^{(5)}(\xi))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-27"
+
+\end_inset
+
+: 
+\begin_inset Formula $O(hf'''(\xi))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-28"
+
+\end_inset
+
+: 
+\begin_inset Formula $O(h^{3}f^{(5)}(\xi))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-29"
+
+\end_inset
+
+: 
+\begin_inset Formula $0.0134k$
+\end_inset
+
+ for some constant 
+\begin_inset Formula $k$
+\end_inset
+
+ depending on the approximation formula, not the function 
+\begin_inset Formula $\sin x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-30"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+ (b) 
+\begin_inset Formula $1$
+\end_inset
+
+ (c) 
+\begin_inset Formula $\frac{\sqrt{3}}{2}\pi\approx2.720699046351327$
+\end_inset
+
+ (d) 
+\begin_inset Formula $\frac{\pi^{3}}{36}\approx0.8612854633416616$
+\end_inset
+
+ (e) actual absolute error: 
+\begin_inset Formula $0.7206990463513265$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-31"
+
+\end_inset
+
+: 
+\begin_inset Formula $-\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-32"
+
+\end_inset
+
+: 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-33"
+
+\end_inset
+
+: 
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-40"
+
+\end_inset
+
+: 
+\begin_inset Formula $10506.03569166666$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-34"
+
+\end_inset
+
+: approximation 1: 
+\begin_inset Formula $\frac{-3(1.22140)+4(1.10517)-1}{-.2}=1.2176$
+\end_inset
+
+; approximation 2: 
+\begin_inset Formula $\frac{1.34986-1.10517}{.2}=1.22345$
+\end_inset
+
+; approximation 3: 
+\begin_inset Formula $\frac{-3(1.22140)+4(1.34986)-1.49182}{.2}=1.2171$
+\end_inset
+
+; rank: 3,1,2; Other answers are acceptable.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-35"
+
+\end_inset
+
+: 
+\begin_inset Formula $2.58629507364657$
+\end_inset
+
+; 
+\begin_inset Formula $h=.0000474853515625$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Composite"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $17.52961733248352$
+\end_inset
+
+ (e) 
+\begin_inset Formula $1.560867019857898$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-7"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $19.3773960369059$
+\end_inset
+
+ (e) 
+\begin_inset Formula $1.569045013890161$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-8"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $18.14554356729098$
+\end_inset
+
+ (e) 
+\begin_inset Formula $1.563593017868653$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-9"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $18.14441877898906$
+\end_inset
+
+ (e) 
+\begin_inset Formula $1.563592239944993$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-10"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $17.73342635968343$
+\end_inset
+
+ (e) 
+\begin_inset Formula $1.561774648629937$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-14"
+
+\end_inset
+
+: 141
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-15"
+
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+\int_{x_{0}}^{x_{0}+2h}f(x)dx\approx\frac{h}{3n}\left[f(x_{0})+f(x_{0}+2h)+2\sum_{i=1}^{n-1}f\left(x_{0}+2i\frac{h}{n}\right)+4\sum_{i=1}^{n}f\left(x_{0}+\left(2i-1\right)\frac{h}{n}\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-16"
+
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{x_{0}}^{x_{0}+3h}f(x)dx & \approx & \frac{3h}{8n}\left[f(x_{0})+f(x_{0}+3h)+2\sum_{i=1}^{n-1}f\left(x_{0}+3i\frac{h}{n}\right)\right.\\
+ &  & \qquad\left.+3\sum_{i=1}^{n}\left(f\left(x_{0}+\left(3i-2\right)\frac{h}{n}\right)+f\left(x_{0}+\left(3i-1\right)\frac{h}{n}\right)\right)\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-18"
+
+\end_inset
+
+: 
+\begin_inset Formula $0.386259562814567$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-1"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $1.386294361119891$
+\end_inset
+
+ (b) 
+\begin_inset Formula $132$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-19"
+
+\end_inset
+
+: 
+\begin_inset Formula $3.109198655184147$
+\end_inset
+
+; yes
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-20"
+
+\end_inset
+
+: 
+\begin_inset Formula $0.3862939349171364$
+\end_inset
+
+; 5
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-5"
+
+\end_inset
+
+: A straightforward implementation, 
+\family typewriter
+adaptSimp()
+\family default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+####################################################
+\end_layout
+
+\begin_layout Plain Layout
+
+# Written by Leon Brin                15 May 2014  #
+\end_layout
+
+\begin_layout Plain Layout
+
+# Purpose: Implementation of adaptive Simpson's    #
+\end_layout
+
+\begin_layout Plain Layout
+
+# rule                                             #
+\end_layout
+
+\begin_layout Plain Layout
+
+# INPUT: function f, interval endpoints a and b,   #
+\end_layout
+
+\begin_layout Plain Layout
+
+#        desired accuracy TOL.
+                     #
+\end_layout
+
+\begin_layout Plain Layout
+
+# OUTPUT: approximate integral of f(x) from a to b #
+\end_layout
+
+\begin_layout Plain Layout
+
+#         within TOL of actual.
+                    #
+\end_layout
+
+\begin_layout Plain Layout
+
+####################################################
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+function res = adaptSimp(f,a,b,TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+  h = (b-a)/4;
+\end_layout
+
+\begin_layout Plain Layout
+
+  f0 = f(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  f1 = f(a+h);
+\end_layout
+
+\begin_layout Plain Layout
+
+  f2 = f(a+2*h);
+\end_layout
+
+\begin_layout Plain Layout
+
+  f3 = f(a+3*h);
+\end_layout
+
+\begin_layout Plain Layout
+
+  f4 = f(b);
+\end_layout
+
+\begin_layout Plain Layout
+
+  error = abs(h*(f0-4*(f1+f3)+6*f2+f4))/45;
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (error <= TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+    res = h/3*(f0+4*(f1+f3)+2*f2+f4);
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    res = adaptSimp(f,a,a+2*h,TOL/2) + adaptSimp(f,a+2*h,b,TOL/2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  endif
+\end_layout
+
+\begin_layout Plain Layout
+
+endfunction
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A pair of functions that minimizes the number of evaluations of 
+\begin_inset Formula $f$
+\end_inset
+
+, 
+\family typewriter
+aSimp()
+\family default
+ and 
+\family typewriter
+adaptiveSimpsons()
+\family default
+:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+####################################################
+\end_layout
+
+\begin_layout Plain Layout
+
+# Written by Leon Brin                15 May 2014  #
+\end_layout
+
+\begin_layout Plain Layout
+
+# Purpose: Wrapper for aSimp()                     #
+\end_layout
+
+\begin_layout Plain Layout
+
+# INPUT: function f, interval endpoints a and b,   #
+\end_layout
+
+\begin_layout Plain Layout
+
+#        desired accuracy TOL.
+                     #
+\end_layout
+
+\begin_layout Plain Layout
+
+# OUTPUT: approximate integral of f(x) from a to b #
+\end_layout
+
+\begin_layout Plain Layout
+
+#         within TOL of actual.
+                    #
+\end_layout
+
+\begin_layout Plain Layout
+
+####################################################
+\end_layout
+
+\begin_layout Plain Layout
+
+function res = adaptiveSimpsons(f,a,b,TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+  res = aSimp(f,a,b,f(a),f((a+b)/2),f(b),TOL);
+\end_layout
+
+\begin_layout Plain Layout
+
+end#function
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+####################################################
+\end_layout
+
+\begin_layout Plain Layout
+
+# Written by Leon Brin                15 May 2014  #
+\end_layout
+
+\begin_layout Plain Layout
+
+# Purpose: Implementation of adaptive Simpson's    #
+\end_layout
+
+\begin_layout Plain Layout
+
+# rule                                             #
+\end_layout
+
+\begin_layout Plain Layout
+
+# INPUT: function f, interval endpoints a and b,   #
+\end_layout
+
+\begin_layout Plain Layout
+
+#        f0=f(a), f2=f((a+b)/2), f4=f(b), desired  #
+\end_layout
+
+\begin_layout Plain Layout
+
+#        accuracy TOL.
+                             #
+\end_layout
+
+\begin_layout Plain Layout
+
+# OUTPUT: approximate integral of f(x) from a to b #
+\end_layout
+
+\begin_layout Plain Layout
+
+#         within TOL of actual.
+                    #
+\end_layout
+
+\begin_layout Plain Layout
+
+####################################################
+\end_layout
+
+\begin_layout Plain Layout
+
+function res = aSimp(f,a,b,f0,f2,f4,TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+  h = (b-a)/4;
+\end_layout
+
+\begin_layout Plain Layout
+
+  f1 = f(a+h);
+\end_layout
+
+\begin_layout Plain Layout
+
+  f3 = f(a+3*h);
+\end_layout
+
+\begin_layout Plain Layout
+
+  error = abs(h*(f0-4*(f1+f3)+6*f2+f4))/45;
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (error <= TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+    res = h/3*(f0+4*(f1+f3)+2*f2+f4);
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    res = aSimp(f,a,a+2*h,f0,f1,f2,TOL/2) + aSimp(f,a+2*h,b,f2,f3,f4,TOL/2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  end#if
+\end_layout
+
+\begin_layout Plain Layout
+
+end#function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+REMARK:
+\series default
+ 
+\family typewriter
+aSimp()
+\family default
+ and 
+\family typewriter
+adaptiveSimpsons()
+\family default
+ must be contained in separate 
+\family typewriter
+.m
+\family default
+ files.
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+adaptiveSimpsons()
+\family default
+ is the only one that should be used directly.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-21"
+
+\end_inset
+
+: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f=inline('log(sin(x))');
+\end_layout
+
+\begin_layout Plain Layout
+
+>> adaptiveSimpsons(f,1,3,.002)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans = -0.70293
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-composite-22"
+
+\end_inset
+
+: (a) (i) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> format('long');
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f=inline('x*sin(x^2)');
+\end_layout
+
+\begin_layout Plain Layout
+
+>> adaptiveSimpsons(f,0,2*pi,10^-5)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.603500307287469
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+(ii) 
+\begin_inset Formula $\left|\frac{1-\cos(4%pi^{2})
+}{2}-0.603500307287469\right|\approx6.175(10)^{-7}$
+\end_inset
+
+ (iii) yes
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Extrapolation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation"
+
+\end_inset
+
+: 
+\begin_inset Formula ${\displaystyle \frac{8\sin\left(\frac{\pi h}{2}\right)-\sin(\pi h)}{3h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-1"
+
+\end_inset
+
+: 
+\begin_inset Formula $O(h^{9})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-2"
+
+\end_inset
+
+: 
+\begin_inset Formula $\frac{16}{9}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-3"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $N(1.0)\approx0.4596976941318602$
+\end_inset
+
+ and 
+\begin_inset Formula $N(0.5)\approx0.489669752438509$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(b) (i) 
+\begin_inset Formula $N_{1}(1.0)\approx0.5196418107451577$
+\end_inset
+
+ (ii) 
+\begin_inset Formula $N_{1}(1.0)\approx0.4996604385407252$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(c) assumption (i) because it yields an approximation with error about half
+ that of 
+\begin_inset Formula $N(1.0)$
+\end_inset
+
+, just what would be expected if assumption (i) were true.
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+REMARK: 
+\begin_inset Formula $\lim_{h\to0}\frac{1-\cos h}{h^{2}}=\frac{1}{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-7"
+
+\end_inset
+
+: 
+\begin_inset Formula ${\displaystyle \frac{N(h)-12N(h/3)+27N(h/9)}{16}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-11"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $18.1436194387278$
+\end_inset
+
+ (e) 
+\begin_inset Formula $1.56359161739838$
+\end_inset
+
+ (g) 
+\begin_inset Formula $3.10928992861842$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-8"
+
+\end_inset
+
+: The following code works, but is not very efficient and depends on a working
+ compositeTrapezoidal() function.
+ In fact, the inefficiency is due to calling the compositeTrapezoidal()
+ function.
+ Each time compositeTrapezoidal() is called, it recalculates values of f
+ that it already calculated last time it was called.
+ Avoiding this repetition of work would make the routine much more efficient.
+ Can you think of a way to accomplish this? 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+####################################################
+\end_layout
+
+\begin_layout Plain Layout
+
+# Written by Dr.
+ Len Brin              16 May 2014 #
+\end_layout
+
+\begin_layout Plain Layout
+
+# Purpose: Implementation of Romberg integration   #
+\end_layout
+
+\begin_layout Plain Layout
+
+# INPUT: function f, interval endpoints a and b,   #
+\end_layout
+
+\begin_layout Plain Layout
+
+#        tolerance tol                             #
+\end_layout
+
+\begin_layout Plain Layout
+
+# OUTPUT: approximate integral of f(x) from a to b #
+\end_layout
+
+\begin_layout Plain Layout
+
+####################################################
+\end_layout
+
+\begin_layout Plain Layout
+
+function integral = romberg(f,a,b,tol)
+\end_layout
+
+\begin_layout Plain Layout
+
+  N(1,1)=compositeTrapezoidal(f,a,b,1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  N(2,1)=compositeTrapezoidal(f,a,b,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  N(2,2)=(4*N(2,1)-N(1,1))/3;
+\end_layout
+
+\begin_layout Plain Layout
+
+  i=2;
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (abs(N(i,i)-N(i,i-1))>tol || abs(N(i,i)-N(i-1,i-1))>tol)
+\end_layout
+
+\begin_layout Plain Layout
+
+    i=i+1;
+\end_layout
+
+\begin_layout Plain Layout
+
+    N(i,1)=compositeTrapezoidal(f,a,b,2^(i-1));
+\end_layout
+
+\begin_layout Plain Layout
+
+    for j=2:i
+\end_layout
+
+\begin_layout Plain Layout
+
+      m=4^(j-1);
+\end_layout
+
+\begin_layout Plain Layout
+
+      N(i,j)=(m*N(i,j-1)-N(i-1,j-1))/(m-1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    end#for
+\end_layout
+
+\begin_layout Plain Layout
+
+  end#while
+\end_layout
+
+\begin_layout Plain Layout
+
+  integral=N(i,i);
+\end_layout
+
+\begin_layout Plain Layout
+
+end#function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-9"
+
+\end_inset
+
+: (i) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> romberg(inline('x*sin(x^2)'),0,2*pi,10^-5)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.603500924593406
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+(ii) 
+\begin_inset Formula ${\displaystyle \left|\frac{1-\cos(4\pi^{2})}{2}-0.603500924593406\right|\approx2.34(10)^{-10}}$
+\end_inset
+
+ (iii) yes, and not just barely
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Splines"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-8"
+
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+S(x)=\begin{cases}
+-.28+3.1861(x-.2)-3.208(x-.2)^{2}-10.693333(x-.2)^{3}, & x\in[.1,.2]\\
+.0066+2.5465(x-.3)-3.188(x-.3)^{2}+.066667(x-.3)^{3}, & x\in[.2,.3]\\
+.24+2.2277(x-.4)+10.626667(x-.4)^{3} & x\in[.3,.4]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-12"
+
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+S(x)=\begin{cases}
+-.28+3.84613(x-.2)-20.0773(x-.2)^{2}-245.387(x-.2)^{3}, & x\in[.1,.2]\\
+.0066+2.91347(x-.3)+10.7507(x-.3)^{2}+102.76(x-.3)^{3}, & x\in[.2,.3]\\
+.24+0.1(x-.4)-38.8853(x-.4)^{2}-165.453(x-.4)^{3}, & x\in[.3,.4]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-15"
+
+\end_inset
+
+: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [a,b,c,d]=naturalCubicSpline([.1,.2,.3,.4],[-.62,-.28,.0066,.24])
+\end_layout
+
+\begin_layout Plain Layout
+
+a =
+\end_layout
+
+\begin_layout Plain Layout
+
+  -0.2800000   0.0066000   0.2400000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+b =
+\end_layout
+
+\begin_layout Plain Layout
+
+   3.1861   2.5465   2.2277
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+c =
+\end_layout
+
+\begin_layout Plain Layout
+
+  -3.20800  -3.18800   0.00000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+d =
+\end_layout
+
+\begin_layout Plain Layout
+
+  -10.693333    0.066667   10.626667
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-17"
+
+\end_inset
+
+: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [a,b,c,d]=clampedCubicSpline([.1,.2,.3,.4],[-.62,-.28,.0066,.24],0.5,0.1)
+\end_layout
+
+\begin_layout Plain Layout
+
+a =
+\end_layout
+
+\begin_layout Plain Layout
+
+  -0.2800000   0.0066000   0.2400000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+b =
+\end_layout
+
+\begin_layout Plain Layout
+
+   3.84613   2.91347   0.10000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+c =
+\end_layout
+
+\begin_layout Plain Layout
+
+  -20.077   10.751  -38.885
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+d =
+\end_layout
+
+\begin_layout Plain Layout
+
+  -245.39   102.76  -165.45
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:RootsBracketing"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{4}=2.1806$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{10}=-502.19$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{3}=1.0079$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-1"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{5}=2.1798$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{9}=-502.19$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{6}=1.0079$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-2"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{7}=2.1798$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{6}=-499.98$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{5}=1.0080$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-3"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{7}=2.1798$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{2}=-499.98$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{3}=4.1495$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-4"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{9}=2.17975713685875$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{18}=-502.188059117229$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{4}=1.00794427892360$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-5"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{6}=2.17975706647997$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{10}=-502.188059235320$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{8}=1.00794427848101$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-6"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{6}=2.17975706647996$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{9}=-502.188059235320$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{4}=1.00794427848094$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-7"
+
+\end_inset
+
+: (a), (e), and (j): Bracketed inverse quadratic interpolation is at least
+ as fast or faster than false position or bracketed Newton's method.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-8"
+
+\end_inset
+
+: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Dr.
+ Len Brin         15 January 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: Implementation of Steffensen's method  %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: function f; initial value x0; tolerance  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        TOL; maximum iterations N0               %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: approximation x and number of           %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        iterations i; or message of failure      %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function [x,i] = bracketedSteffensens(f,a,b,TOL,N0)
+\end_layout
+
+\begin_layout Plain Layout
+
+  i=1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  A=f(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  B=f(b);
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (i<=N0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    b
+\end_layout
+
+\begin_layout Plain Layout
+
+    x0=b;
+\end_layout
+
+\begin_layout Plain Layout
+
+    x1=B;
+\end_layout
+
+\begin_layout Plain Layout
+
+    x2=f(x1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(x2-x1)<TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=x2;
+\end_layout
+
+\begin_layout Plain Layout
+
+      disp(" ");
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    x=x0-(x1-x0)^2/(x2-2*x1+x0);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (x<min([a,b]) || x>max([a,b]))
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=a+(b-a)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(x-x2)<TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+      disp(" ");
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    X=f(x);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if ((B<b && X>x) || (B>b && X<x))
+\end_layout
+
+\begin_layout Plain Layout
+
+      a=b; A=B;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    b=x; B=X;
+\end_layout
+
+\begin_layout Plain Layout
+
+    i=i+1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+  x="Method failed---maximum number of iterations reached";
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-9"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{6}=2.17975706643814$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{11}=-502.188059386686$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{9}=1.00794427672537$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-13"
+
+\end_inset
+
+: (a), (e), and (j): Bracketed inverse quadratic interpolation is at least
+ as fast or faster than bracketed Steffensen's method, counting only number
+ of iterations.
+ However, bracketed Steffensen's requires two function evaluations per iteration
+, so for all practical purposes requires more than twice the computational
+ power of bracketed inverse quadratic interpolation.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-11"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{6}=2.17975706647996$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{8}=-502.188059227438$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{4}=1.00794427848094$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-14"
+
+\end_inset
+
+: (a) and (j): Since the root is on the order of 
+\begin_inset Formula $1$
+\end_inset
+
+, there is no difference between testing absolute and relative errors.
+ (e) Since the root is around five hundred, the method stops when the absolute
+ error is only about 
+\begin_inset Formula $10^{-6}\cdot500=5(10)^{-4}$
+\end_inset
+
+.
+ Consequently, the method stops one iteration earlier when checking relative
+ error than it does checking absolute error.
+\end_layout
+
+\end_body
+\end_document

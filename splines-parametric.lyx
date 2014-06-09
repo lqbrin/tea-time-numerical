@@ -1,0 +1,5603 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+More Interpolation
+\end_layout
+
+\begin_layout Section
+Osculating Polynomials
+\end_layout
+
+\begin_layout Standard
+The Taylor polynomials of Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Taylor"
+
+\end_inset
+
+ and interpolating polynomials of Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Interpolation"
+
+\end_inset
+
+ represent opposite extremes in the spectrum of osculating polynomials.
+ Taylor polynomials require the value of the polynomial at a single point
+ while interpolating polynomials require the value of the polynomial at,
+ generally anyway, multiple points.
+ Taylor polynomials require the values of, generally anyway, multiple derivative
+s while interpolating polynomials do not allow derivative specification.
+\end_layout
+
+\begin_layout Standard
+The set of osculating polynomials contains Taylor polynomials, interpolating
+ polynomials, and hybrids.
+ Any polynomial required to pass through any set of points with any number
+ of derivatives specified at those points is called an osculating polynomial.
+ Thus a Taylor polynomial is the special case of an osculating polynomial
+ specified by one point and any number of derivatives at that point.
+ An interpolating polynomial is the special case of an osculating polynomial
+ specified by any number of points and no derivatives at any point.
+ To be precise, an osculating polynomial is one that is required to pass
+ through a set of points
+\begin_inset Formula 
+\[
+(t_{0},y_{0}),(t_{1},y_{1}),\ldots,(t_{n},y_{n})
+\]
+
+\end_inset
+
+with the first 
+\begin_inset Formula $m_{i}$
+\end_inset
+
+ derivatives specified at 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+, 
+\begin_inset Formula $i=0,1,\ldots,n$
+\end_inset
+
+.
+ As before, the 
+\begin_inset Formula $t_{0},t_{1},\ldots,t_{n}$
+\end_inset
+
+ are called nodes.
+\end_layout
+
+\begin_layout Standard
+One useful type of osculating polynomial is the Hermite polynomial in which
+ the values of the polynomial and its first derivative are both given at
+ each node.
+ Even more specifically,  third degree, or cubic, Hermite polynomials play
+ an important role in approximation theory.
+ Since a third degree polynomial has four parameters, data---the ordinate
+ and first derivative---at two nodes is sufficient to specify such a polynomial.
+ So suppose we wish to find a polynomial 
+\begin_inset Formula $p$
+\end_inset
+
+ of degree at most three that passes through 
+\begin_inset Formula $(t_{0},y_{0})$
+\end_inset
+
+ and 
+\begin_inset Formula $(t_{1},y_{1})$
+\end_inset
+
+ with derivative 
+\begin_inset Formula $\dot{y}_{0}$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{y}_{1}$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Remembering the lessons of our study of interpolating polynomials, we might
+ begin with the Lagrange form of the interpolating polynomial passing through
+ 
+\begin_inset Formula $(t_{0},y_{0})$
+\end_inset
+
+ and 
+\begin_inset Formula $(t_{1},y_{1})$
+\end_inset
+
+ and worry about the derivatives later.
+ That gives us 
+\begin_inset Formula $f(t)=\frac{t-t_{1}}{t_{0}-t_{1}}y_{0}+\frac{t-t_{0}}{t_{1}-t_{0}}y_{1}$
+\end_inset
+
+ to begin.
+ Of course 
+\begin_inset Formula $f$
+\end_inset
+
+ passes through the required points, but it is not even potentially cubic,
+ and its derivative is 
+\begin_inset Formula $f'(t)=\frac{y_{0}}{t_{0}-t_{1}}+\frac{y_{1}}{t_{1}-t_{0}}$
+\end_inset
+
+, a constant.
+ It would be nice if we could add to it, a third degree polynomial that
+ has zeroes at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ and whose derivatives we can control.
+ Well, 
+\begin_inset Formula $g(t)=(t-t_{0})(t-t_{1})^{2}$
+\end_inset
+
+, for example, is cubic, has zeroes at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+, and has derivative 
+\begin_inset Formula $(t-t_{1})^{2}+2(t-t_{0})(t-t_{1})$
+\end_inset
+
+, so we have at least some control over its derivative.
+ Great, now let us look at it a little more closely:
+\begin_inset Formula 
+\[
+g'(t)=(t-t_{1})^{2}+2(t-t_{0})(t-t_{1})=(t-t_{1})\left[(t-t_{1})+2(t-t_{0})\right].
+\]
+
+\end_inset
+
+So 
+\begin_inset Formula $g'(t_{1})=0$
+\end_inset
+
+ and 
+\begin_inset Formula $g'(t_{0})=(t_{0}-t_{1})^{2}$
+\end_inset
+
+ is nonzero.
+ That should remind you of how we developed the Lagrange interpolating polynomia
+l.
+ Only, there, the value of the polynomial was either 
+\begin_inset Formula $0$
+\end_inset
+
+ or 
+\begin_inset Formula $1$
+\end_inset
+
+ at each node before we added an unkown coefficient.
+ Of course, 
+\begin_inset Formula $\hat{g}(t)=\frac{g(t)}{(t_{0}-t_{1})^{2}}$
+\end_inset
+
+ has derivative 
+\begin_inset Formula $1$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $0$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+.
+ Putting it all together, 
+\begin_inset Formula $\hat{g}_{a}(t)=a\frac{(t-t_{0})(t-t_{1})^{2}}{(t_{0}-t_{1})^{2}}$
+\end_inset
+
+ has everything we need to control the derivative at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+.
+ Similarly, 
+\begin_inset Formula $\hat{h}_{b}(t)=b\frac{(t-t_{0})^{2}(t-t_{1})}{(t_{1}-t_{0})^{2}}$
+\end_inset
+
+ has everything we need to control the derivative at 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+.
+ The sum of 
+\begin_inset Formula $\hat{g}_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{h}_{b}$
+\end_inset
+
+ is a degree at most three polynomial with zeroes at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ and easily specified derivatives at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+.
+ Finally, a polynomial 
+\begin_inset Formula $p$
+\end_inset
+
+ of the form
+\begin_inset Formula 
+\begin{eqnarray*}
+p(t) & = & \frac{t-t_{1}}{t_{0}-t_{1}}y_{0}+\frac{t-t_{0}}{t_{1}-t_{0}}y_{1}+g_{a}(t)+h_{b}(t)\\
+ &  & \frac{t-t_{1}}{t_{0}-t_{1}}y_{0}+\frac{t-t_{0}}{t_{1}-t_{0}}y_{1}+a\frac{(t-t_{0})(t-t_{1})^{2}}{(t_{0}-t_{1})^{2}}+b\frac{(t-t_{0})^{2}(t-t_{1})}{(t_{1}-t_{0})^{2}}
+\end{eqnarray*}
+
+\end_inset
+
+would be the Hermite polynomial we are after.
+ The first two terms form the interpolating polynomial passing through the
+ required points.
+ The last two terms are zero at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ so do not affect this interpolation.
+ Moreover, the last two terms are chosen so that their derivatives are convenien
+t at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+.
+ The derivative of 
+\begin_inset Formula $\frac{(t-t_{1})^{2}(t-t_{0})}{(t_{0}-t_{1})^{2}}$
+\end_inset
+
+ is 
+\begin_inset Formula $1$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $0$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+.
+ The derivative of 
+\begin_inset Formula $\frac{(t-t_{0})^{2}(t-t_{1})}{(t_{1}-t_{0})^{2}}$
+\end_inset
+
+ is 
+\begin_inset Formula $0$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+.
+ These characteristics ensure simple values for 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ in terms of the specified derivatives.
+ To find out exactly what they should be, it remains to force 
+\begin_inset Formula $\dot{p}(t_{0})=\dot{y}_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{p}(t_{1})=\dot{y}_{1}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\dot{p}(x)=\frac{y_{1}-y_{0}}{t_{1}-t_{0}}+2\frac{(t-t_{1})(t-t_{0})}{(t_{0}-t_{1})^{2}}a+2\frac{(t-t_{0})(t-t_{1})}{(t_{1}-t_{0})^{2}}b+\frac{(t-t_{1})^{2}}{(t_{0}-t_{1})^{2}}a+\frac{(t-t_{0})^{2}}{(t_{1}-t_{0})^{2}}b
+\]
+
+\end_inset
+
+so
+\begin_inset Formula 
+\[
+\begin{gathered}\dot{p}(t_{0})=\frac{y_{1}-y_{0}}{t_{1}-t_{0}}+a\\
+\mbox{and}\\
+\dot{p}(t_{1})=\frac{y_{1}-y_{0}}{t_{1}-t_{0}}+b.
+\end{gathered}
+\]
+
+\end_inset
+
+Therefore, we need 
+\begin_inset Formula $c=\dot{y}_{0}-\frac{y_{1}-y_{0}}{t_{1}-t_{0}}$
+\end_inset
+
+ and 
+\begin_inset Formula $d=\dot{y}_{1}-\frac{y_{1}-y_{0}}{t_{1}-t_{0}}$
+\end_inset
+
+.
+ The desired degree at most three Hermite (osculating) polynomial is 
+\begin_inset Formula 
+\begin{equation}
+p(t)=\frac{t-t_{1}}{t_{0}-t_{1}}y_{0}+\frac{t-t_{0}}{t_{1}-t_{0}}y_{1}+\frac{(t-t_{1})^{2}(t-t_{0})}{(t_{0}-t_{1})^{2}}(\dot{y}_{0}-m)+\frac{(t-t_{0})^{2}(t-t_{1})}{(t_{1}-t_{0})^{2}}(\dot{y}_{1}-m)\label{eq:HermiteCubicForHumans}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $m=\frac{y_{1}-y_{0}}{t_{1}-t_{0}}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+This form of the Hermite cubic polynomial is convenient for humans.
+ It is formulaic and requires very little computation to write down.
+ We will call it the Human form of the Hermite cubic polynomial.
+ A more computer-friendly form, which we will refer to as the Computer form
+ of the Hermite cubic is obtained via divided differences.
+ In general, for an osculating polynomial where the first 
+\begin_inset Formula $k$
+\end_inset
+
+ derivatives are specified at 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ must be repeated 
+\begin_inset Formula $k+1$
+\end_inset
+
+ times in the divided differences table.
+ Quotients that would otherwise be undefined as a result of the repetition
+ are replaced by the specified derivatives, first derivatives for first
+ divided differences, second derivatives for second divided differences,
+ and so on.
+\end_layout
+
+\begin_layout Standard
+For the cubic Hermite polynomial 
+\begin_inset Formula $p$
+\end_inset
+
+ passing through 
+\begin_inset Formula $(t_{0},y_{0})$
+\end_inset
+
+ and 
+\begin_inset Formula $(t_{1},y_{1})$
+\end_inset
+
+ with derivative 
+\begin_inset Formula $\dot{y}_{0}$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{y}_{1}$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+, the table looks like so,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{0}'$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}'$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The four remaining entries are to be filled in by the usual divided difference
+ method.
+ Can you compute them in general (in terms of 
+\begin_inset Formula $t_{0},t_{1},y_{0},y_{1},\dot{y}_{0},\dot{y}_{1}$
+\end_inset
+
+)? Answers 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:hermiteCoefficients"
+
+\end_inset
+
+.
+ Using the results, we write down the interpolating polynomial in two ways:
+\begin_inset Formula 
+\begin{eqnarray*}
+p(t) & = & y_{0}+\left[\dot{y}_{0}\right](t-t_{0})+\left[\frac{y_{1}-y_{0}}{(t_{1}-t_{0})^{2}}-\frac{\dot{y}_{0}}{t_{1}-t_{0}}\right](t-t_{0})^{2}\\
+ &  & \qquad+\left[\frac{\dot{y}_{1}+\dot{y}_{0}}{(t_{1}-t_{0})^{2}}-2\frac{y_{1}-y_{0}}{(t_{1}-t_{0})^{3}}\right](t-t_{0})^{2}(t-t_{1})
+\end{eqnarray*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+p(t) & = & y_{1}+\left[\dot{y}_{1}\right](t-t_{1})+\left[\frac{\dot{y}_{1}}{t_{1}-t_{0}}-\frac{y_{1}-y_{0}}{(t_{1}-t_{0})^{2}}\right](t-t_{1})^{2}\\
+ &  & \qquad+\left[\frac{\dot{y}_{1}+\dot{y}_{0}}{(t_{1}-t_{0})^{2}}-2\frac{y_{1}-y_{0}}{(t_{1}-t_{0})^{3}}\right](t-t_{1})^{2}(t-t_{0}).
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Just as we had for interpolating polynomials, we have two ways to find cubic
+ Hermite osculating polynomials.
+ One way is convenient for humans and the other for computers.
+\end_layout
+
+\begin_layout Subsection
+B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier Curves
+\end_layout
+
+\begin_layout Standard
+Forcing 
+\begin_inset Formula $(x(0),y(0))=(-1,2)$
+\end_inset
+
+, we need 
+\begin_inset Formula 
+\begin{eqnarray*}
+x(0) & = & a_{x}=-1\\
+y(0) & = & a_{y}=2.
+\end{eqnarray*}
+
+\end_inset
+
+Forcing 
+\begin_inset Formula $(x(1),y(1))=(5,-2)$
+\end_inset
+
+, we need
+\begin_inset Formula 
+\begin{eqnarray*}
+x(1) & = & a_{x}+b_{x}+c_{x}=-1+b_{x}+c_{x}=5\\
+y(1) & = & a_{y}+b_{y}+c_{y}=2+b_{y}+c_{y}=-2
+\end{eqnarray*}
+
+\end_inset
+
+or
+\begin_inset Formula 
+\begin{eqnarray*}
+b_{x}+c_{x} & = & 6\\
+b_{y}+c_{y} & = & -4.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves are parametric curves with parameter 
+\begin_inset Formula $t\in[0,1]$
+\end_inset
+
+ connecting two points.
+ The simplest B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve is a straight line passing through the two points.
+ For example, the simplest B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $(-1,2)$
+\end_inset
+
+ to 
+\begin_inset Formula $(5,-2)$
+\end_inset
+
+ is given by the parametric linear functions
+\begin_inset Formula 
+\begin{eqnarray*}
+x(t) & = & (1-t)(-1)+t(5)\\
+y(t) & = & (1-t)(2)+t(-2),
+\end{eqnarray*}
+
+\end_inset
+
+which we choose to write down in Lagrange form.
+ You can check that 
+\begin_inset Formula $x(0)=-1$
+\end_inset
+
+, 
+\begin_inset Formula $x(1)=5$
+\end_inset
+
+, 
+\begin_inset Formula $y(0)=2$
+\end_inset
+
+, and 
+\begin_inset Formula $y(1)=-2$
+\end_inset
+
+.
+ In other words, 
+\begin_inset Formula $x$
+\end_inset
+
+ passes through 
+\begin_inset Formula $(0,-1)$
+\end_inset
+
+ and 
+\begin_inset Formula $(1,5)$
+\end_inset
+
+ while 
+\begin_inset Formula $y$
+\end_inset
+
+ passes through 
+\begin_inset Formula $(0,2)$
+\end_inset
+
+ and 
+\begin_inset Formula $(1,-2)$
+\end_inset
+
+.
+ This parametrization is unique because 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ are interpolating polynomials.
+\end_layout
+
+\begin_layout Standard
+One the other hand, if we allow 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ to be quadratic, there are infinitely many (paramteric) pairs of functions
+ connecting 
+\begin_inset Formula $(-1,2)$
+\end_inset
+
+ to 
+\begin_inset Formula $(5,-2)$
+\end_inset
+
+ even if we require 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ to be interpolating polynomials and restrict the parameter 
+\begin_inset Formula $t$
+\end_inset
+
+ to the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+.
+ That is not to say we do not have quadratic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves, but rather that we need to specify more than just the two points
+ to be connected.
+ Allowing the parameter function to be quadratic, we have say 
+\begin_inset Formula 
+\begin{eqnarray*}
+x(t) & = & a_{x}+b_{x}t+c_{x}t^{2}\\
+y(t) & = & a_{y}+b_{y}t+c_{y}t^{2},
+\end{eqnarray*}
+
+\end_inset
+
+giving six unknowns or undetermined coefficients, if you will.
+ That leaves two conditions that may yet be imposed on the parameter functions.
+\end_layout
+
+\begin_layout Standard
+Any particular quadratic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve is prescribed by specifying a control point distinct from the
+ two endpoints.
+ The two linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves, one connecting 
+\begin_inset Formula $(-1,2)$
+\end_inset
+
+ to the control point and the other connecting the control point to 
+\begin_inset Formula $(5,-2)$
+\end_inset
+
+, then determine the quadratic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve.
+ Suppose 
+\begin_inset Formula $\vec{B}_{1,0}(t)$
+\end_inset
+
+ is the linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $(-1,2)$
+\end_inset
+
+ to the control point and 
+\begin_inset Formula $\vec{B}_{1,1}(t)$
+\end_inset
+
+ is the linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from the control point to 
+\begin_inset Formula $(5,-2)$
+\end_inset
+
+.
+ These two curves define a family of linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves, namely the set of linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves from 
+\begin_inset Formula $\vec{B}_{1,0}(t_{0})$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{B}_{1,1}(t_{0})$
+\end_inset
+
+, where 
+\begin_inset Formula $t_{0}\in[0,1]$
+\end_inset
+
+.
+ Letting 
+\begin_inset Formula $\vec{B}_{2,0,t_{0}}(t)$
+\end_inset
+
+ be the linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $\vec{B}_{1,0}(t_{0})$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{B}_{1,1}(t_{0})$
+\end_inset
+
+, the point 
+\begin_inset Formula $\vec{B}_{2,0,t_{0}}(t_{0})$
+\end_inset
+
+ is on the quadratic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $(-1,2)$
+\end_inset
+
+ to 
+\begin_inset Formula $(5,-2)$
+\end_inset
+
+ via the given control point.
+ The collection of all such points as 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ varies from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $1$
+\end_inset
+
+ is the quadratic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve we are after.
+ Different control points determine different quadratics.
+ For example, if we have 
+\begin_inset Formula $(0,4)$
+\end_inset
+
+ as our control point, 
+\begin_inset Formula $\vec{B}_{1,0}$
+\end_inset
+
+ is the linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve connecting 
+\begin_inset Formula $(-1,2)$
+\end_inset
+
+ to 
+\begin_inset Formula $(0,4)$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{B}_{1,1}$
+\end_inset
+
+ is the linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $(0,4)$
+\end_inset
+
+ to 
+\begin_inset Formula $(5,-2$
+\end_inset
+
+): 
+\begin_inset Formula 
+\[
+\begin{gathered}\vec{B}_{1,0}(t)=\left(\begin{array}{c}
+(1-t)(-1)\\
+(1-t)(2)+t(4)
+\end{array}\right)\\
+\mbox{and}\\
+\vec{B}_{1,1}(t)=\left(\begin{array}{c}
+t(5)\\
+(1-t)(4)+t(-2)
+\end{array}\right).
+\end{gathered}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $\vec{B}_{2,0,t_{0}}$
+\end_inset
+
+ is the linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve connecting 
+\begin_inset Formula $\vec{B}_{1,0}(t_{0})$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{B}_{1,1}(t_{0})$
+\end_inset
+
+.
+ Therefore, 
+\begin_inset Formula $\vec{B}_{2,0,t_{0}}(t)=(1-t)\vec{B}_{1,0}(t_{0})+t\vec{B}_{1,1}(t_{0})$
+\end_inset
+
+ or 
+\begin_inset Formula 
+\[
+\vec{B}_{2,0,t_{0}}(t)=(1-t)\left(\begin{array}{c}
+(1-t_{0})(-1)\\
+(1-t_{0})(2)+t_{0}(4)
+\end{array}\right)+t\left(\begin{array}{c}
+t_{0}(5)\\
+(1-t_{0})(4)+t_{0}(-2)
+\end{array}\right).
+\]
+
+\end_inset
+
+Then
+\begin_inset Formula 
+\[
+\vec{B}_{2,0,t_{0}}(t_{0})=(1-t_{0})\left(\begin{array}{c}
+(1-t_{0})(-1)\\
+(1-t_{0})(2)+t_{0}(4)
+\end{array}\right)+t_{0}\left(\begin{array}{c}
+t_{0}(5)\\
+(1-t_{0})(4)+t_{0}(-2)
+\end{array}\right).
+\]
+
+\end_inset
+
+Observe that 
+\begin_inset Formula $\vec{B}_{2,0,t_{0}}$
+\end_inset
+
+ is quadratic as a function of 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and that 
+\begin_inset Formula $\vec{B}_{2,0,0}(0)=\begin{pmatrix}-1\\
+2
+\end{pmatrix}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{B}_{2,0,1}(1)=\begin{pmatrix}5\\
+-2
+\end{pmatrix}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+But the notation 
+\begin_inset Formula $\vec{B}_{2,0,t_{0}}(t_{0})$
+\end_inset
+
+ is cumbersome and we are really interested in a parametrization of the
+ quadratic anyway.
+ Letting 
+\begin_inset Formula $\vec{B}_{2,0}(t)=\vec{B}_{2,0,t}(t)$
+\end_inset
+
+, we get the quadratic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $(-1,2)$
+\end_inset
+
+ to 
+\begin_inset Formula $(5,-2)$
+\end_inset
+
+ via control point 
+\begin_inset Formula $(0,4)$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+\vec{B}_{2,0}(t)=(1-t)\left(\begin{array}{c}
+(1-t)(-1)\\
+(1-t)(2)+t(4)
+\end{array}\right)+t\left(\begin{array}{c}
+t(5)\\
+(1-t)(4)+t(-2)
+\end{array}\right)
+\]
+
+\end_inset
+
+and we have cleaner notation.
+\end_layout
+
+\begin_layout Standard
+With some algebra, the expression for 
+\begin_inset Formula $\vec{B}_{2,0}$
+\end_inset
+
+ can be simplified, but leaving it unsimplified emphasizes whence it came.
+ It is the result of nested linear interpolations.
+ Higher order B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves are constructed by continued nesting.
+ We now use this idea to define the B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $\vec{P}_{0}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P_{n}}$
+\end_inset
+
+ via control points 
+\begin_inset Formula $\vec{P}_{1},\vec{P}_{2},\ldots,\vec{P}_{n-1}$
+\end_inset
+
+.
+ Commonly, 
+\begin_inset Formula $\vec{P}_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{P}_{n}$
+\end_inset
+
+ are also considered control points and so this B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve is also referred to as the B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve with control points 
+\begin_inset Formula $\vec{P}_{0},\vec{P}_{1},\ldots,\vec{P}_{n}$
+\end_inset
+
+.
+ Such a B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve will have degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We begin by defining the linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves
+\begin_inset Formula 
+\begin{equation}
+\vec{B}_{1,i}(t)=(1-t)\vec{P}_{i}+(t)\vec{P}_{i+1},\qquad i=0,1,\ldots,n-1.\label{eq:bezierPart1}
+\end{equation}
+
+\end_inset
+
+Note that 
+\begin_inset Formula $\vec{B}_{1,i}$
+\end_inset
+
+ is the linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $\vec{P}_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P}_{i+1}$
+\end_inset
+
+.
+ Then
+\begin_inset Formula 
+\begin{equation}
+B_{j,i}(t)=(1-t)\cdot\vec{B}_{j-1,i}(t)+(t)\cdot\vec{B}_{j-1,i+1}(t),\qquad j=2,3,\ldots,n;\ i=0,1,\ldots,n-j.\label{eq:bezierPart2}
+\end{equation}
+
+\end_inset
+
+Note that 
+\begin_inset Formula $B_{2,i}(t)$
+\end_inset
+
+ is the quadratic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve connecting 
+\begin_inset Formula $\vec{P}_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P}_{i+2}$
+\end_inset
+
+ via control point 
+\begin_inset Formula $\vec{P}_{i+1}$
+\end_inset
+
+.
+ With a little algebra, you can confirm that 
+\begin_inset Formula $B_{3,i}(t)$
+\end_inset
+
+ is at most cubic and connects 
+\begin_inset Formula $\vec{P}_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P}_{i+3}$
+\end_inset
+
+.
+ An inductive proof will show that 
+\begin_inset Formula $B_{j,i}(t)$
+\end_inset
+
+ is an at most degree 
+\begin_inset Formula $j$
+\end_inset
+
+ polynomial parametrization connecting 
+\begin_inset Formula $\vec{P_{i}}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P_{i+j}}$
+\end_inset
+
+.
+ Can you provide it? Answer on page .
+ It follows that 
+\begin_inset Formula $B_{n,0}(t)$
+\end_inset
+
+ is the degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve connecting 
+\begin_inset Formula $\vec{P}_{0}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P}_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Returning to our previous example, we add the control point 
+\begin_inset Formula $(5,1)$
+\end_inset
+
+ so we have now four control points:
+\begin_inset Formula 
+\[
+\vec{P}_{0}=\begin{pmatrix}-1\\
+2
+\end{pmatrix},\ \vec{P}_{1}=\begin{pmatrix}0\\
+4
+\end{pmatrix},\ \vec{P}_{2}=\begin{pmatrix}5\\
+1
+\end{pmatrix},\ \vec{P}_{3}=\begin{pmatrix}5\\
+-2
+\end{pmatrix}.
+\]
+
+\end_inset
+
+By equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierPart1"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+\vec{B}_{1,0}(t) & = & (1-t)\vec{P}_{0}+(t)\vec{P}_{1}=(1-t)\begin{pmatrix}-1\\
+2
+\end{pmatrix}+t\begin{pmatrix}0\\
+4
+\end{pmatrix}=\begin{pmatrix}-1+t\\
+2+2t
+\end{pmatrix}\\
+\vec{B}_{1,1}(t) & = & (1-t)\vec{P}_{1}+(t)\vec{P}_{2}=(1-t)\begin{pmatrix}0\\
+4
+\end{pmatrix}+t\begin{pmatrix}5\\
+1
+\end{pmatrix}=\begin{pmatrix}5t\\
+4-3t
+\end{pmatrix}\\
+\vec{B}_{1,2}(t) & = & (1-t)\vec{P}_{2}+(t)\vec{P}_{3}=(1-t)\begin{pmatrix}5\\
+1
+\end{pmatrix}+t\begin{pmatrix}5\\
+-2
+\end{pmatrix}=\begin{pmatrix}5\\
+1-3t
+\end{pmatrix}.
+\end{eqnarray*}
+
+\end_inset
+
+And by equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierPart2"
+
+\end_inset
+
+, 
+\begin_inset Formula 
+\begin{eqnarray*}
+\vec{B}_{2,0}(t) & = & (1-t)\vec{B}_{1,0}(t)+(t)\vec{B}_{1,1}(t)=(1-t)\begin{pmatrix}-1+t\\
+2+2t
+\end{pmatrix}+t\begin{pmatrix}5t\\
+4-3t
+\end{pmatrix}=\begin{pmatrix}-1+2t+4t^{2}\\
+2+4t-5t^{2}
+\end{pmatrix}\\
+\vec{B}_{2,1}(t) & = & (1-t)\vec{B}_{1,1}(t)+(t)\vec{B}_{1,2}(t)=(1-t)\begin{pmatrix}5t\\
+4-3t
+\end{pmatrix}+t\begin{pmatrix}5\\
+1-3t
+\end{pmatrix}=\begin{pmatrix}10t-5t^{2}\\
+4-6t
+\end{pmatrix},
+\end{eqnarray*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray}
+\vec{B}_{3,0}(t) & = & (1-t)\vec{B}_{2,0}(t)+(t)\vec{B}_{2,1}(t)\nonumber \\
+ & = & (1-t)\begin{pmatrix}-1+2t+4t^{2}\\
+2+4t-5t^{2}
+\end{pmatrix}+t\begin{pmatrix}10t-5t^{2}\\
+4-6t
+\end{pmatrix}\nonumber \\
+ & = & \begin{pmatrix}-1+3t+12t^{2}-9t^{3}\\
+2+6t-15t^{2}+5t^{3}
+\end{pmatrix}.\label{eq:bezierCubicExample}
+\end{eqnarray}
+
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\vec{B}_{3,0}(t)$
+\end_inset
+
+ is the cubic B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $\begin{pmatrix}-1\\
+2
+\end{pmatrix}$
+\end_inset
+
+ to 
+\begin_inset Formula $\begin{pmatrix}5\\
+-2
+\end{pmatrix}$
+\end_inset
+
+ via control points 
+\begin_inset Formula $\begin{pmatrix}0\\
+4
+\end{pmatrix}$
+\end_inset
+
+ and 
+\begin_inset Formula $\begin{pmatrix}5\\
+1
+\end{pmatrix}$
+\end_inset
+
+.
+ Figure 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:bezierViaLinearInterpolation"
+
+\end_inset
+
+Three points on a cubic 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve constructed by recursive linear interpolation.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/splines-parametric02a.pdf
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figures/splines-parametric02b.pdf
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figures/splines-parametric02c.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:bezierViaLinearInterpolation"
+
+\end_inset
+
+ shows this
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve and the construction of three of its points via recursive linear
+ interpolation.
+ The blue points lie along the linear 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves 
+\begin_inset Formula $\vec{B}_{1,0},\vec{B}_{1,1},\vec{B}_{1,2}$
+\end_inset
+
+.
+ The orange points lie along the quadratic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves 
+\begin_inset Formula $\vec{B}_{2,0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{B}_{2,1}$
+\end_inset
+
+.
+ The black points lie along the cubic
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve.
+ The graphs of the quadratics have been suppressed to avoid overcomplicating
+ the figure.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:bezierViaLinearInterpolation"
+
+\end_inset
+
+ may help you grasp the recursion, but maybe more importantly may help you
+ understand the relationship between the control points and the 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve.
+ For example, upon close examination, you may be led to believe the line
+ segments 
+\begin_inset Formula $\vec{B}_{1,0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{B}_{1,2}$
+\end_inset
+
+ are tangent to the cubic 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve 
+\begin_inset Formula $\vec{B}_{3,0}$
+\end_inset
+
+ at 
+\begin_inset Formula $\vec{P}_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{P}_{3}$
+\end_inset
+
+, respectively.
+ Close examination of the formulas will confirm it.
+\end_layout
+
+\begin_layout Standard
+According to formulas 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierPart1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierPart2"
+
+\end_inset
+
+, the (at most) cubic 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve with control points 
+\begin_inset Formula $\vec{P}_{0},\vec{P}_{1},\vec{P}_{2},\vec{P}_{3}$
+\end_inset
+
+ is computed thus:
+\begin_inset Formula 
+\begin{eqnarray*}
+\vec{B}_{1,0}(t) & = & (1-t)\vec{P}_{0}+(t)\vec{P}_{1}\\
+\vec{B}_{1,1}(t) & = & (1-t)\vec{P}_{1}+(t)\vec{P}_{2}\\
+\vec{B}_{1,2}(t) & = & (1-t)\vec{P}_{2}+(t)\vec{P}_{3}
+\end{eqnarray*}
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{eqnarray*}
+\vec{B}_{2,0}(t) & = & (1-t)\vec{B}_{1,0}(t)+(t)\vec{B}_{1,1}(t)=(1-t)\left[(1-t)\vec{P}_{0}+(t)\vec{P}_{1}\right]+t\left[(1-t)\vec{P}_{1}+(t)\vec{P}_{2}\right]\\
+ & = & (1-t)^{2}\vec{P}_{0}+2t(1-t)\vec{P}_{1}+t^{2}\vec{P}_{2}\\
+\vec{B}_{2,1}(t) & = & (1-t)\vec{B}_{1,1}(t)+(t)\vec{B}_{1,2}(t)=(1-t)\left[(1-t)\vec{P}_{1}+(t)\vec{P}_{2}\right]+t\left[(1-t)\vec{P}_{2}+(t)\vec{P}_{3}\right]\\
+ & = & (1-t)^{2}\vec{P}_{1}+2t(1-t)\vec{P}_{2}+t^{2}\vec{P}_{3}
+\end{eqnarray*}
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{eqnarray}
+\vec{B}_{3,0}(t) & = & (1-t)\vec{B}_{2,0}(t)+(t)\vec{B}_{2,1}(t)\nonumber \\
+ & = & (1-t)\left[(1-t)^{2}\vec{P}_{0}+2t(1-t)\vec{P}_{1}+t^{2}\vec{P}_{2}\right]+t\left[(1-t)^{2}\vec{P}_{1}+2t(1-t)\vec{P}_{2}+t^{2}\vec{P}_{3}\right]\label{eq:bezierCubicGeneral}\\
+ & = & (1-t)^{3}\vec{P}_{0}+3t(1-t)^{2}\vec{P}_{1}+3t^{2}(1-t)\vec{P_{2}}+t^{3}\vec{P}_{3}.\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+Hence 
+\begin_inset Formula $\frac{d}{dt}\vec{B}_{3,0}(t)=-3(1-t)^{2}\vec{P}_{0}+3\left[(1-t)^{2}-2t(1-t)\right]\vec{P}_{1}+3\left[2t(1-t)-t^{2}\right]\vec{P}_{2}+3t^{2}\vec{P}_{3}$
+\end_inset
+
+, from which it follows
+\begin_inset Formula 
+\begin{eqnarray*}
+\left.\frac{d}{dt}\vec{B}_{3,0}(t)\right|_{t=0} & = & -3\vec{P}_{0}+3\vec{P}_{1}=3(\vec{P}_{1}-\vec{P}_{0})\\
+\left.\frac{d}{dt}\vec{B}_{3,0}(t)\right|_{t=1} & = & -3\vec{P}_{2}+3\vec{P}_{3}=3(\vec{P}_{3}-\vec{P}_{2}).
+\end{eqnarray*}
+
+\end_inset
+
+Indeed, the derivative of 
+\begin_inset Formula $\vec{B}_{3,0}$
+\end_inset
+
+ at 
+\begin_inset Formula $0$
+\end_inset
+
+ is in the directon of the line segment from 
+\begin_inset Formula $\vec{P}_{1}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P}_{2}$
+\end_inset
+
+, and the derivative of 
+\begin_inset Formula $\vec{B}_{3,0}$
+\end_inset
+
+ at 
+\begin_inset Formula $1$
+\end_inset
+
+ is in the direction of the line segment from 
+\begin_inset Formula $\vec{P}_{2}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P}_{3}$
+\end_inset
+
+.
+ Moreover, these derivatives have magnitude exactly three times the magnitudes
+ of the line segments.
+\end_layout
+
+\begin_layout Standard
+Though we took a somewhat circuitous route, we now see another way to compute
+ cubic 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves besides using recursion 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierPart1"
+
+\end_inset
+
+/
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierPart2"
+
+\end_inset
+
+ or formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierCubicGeneral"
+
+\end_inset
+
+.
+ Control points 
+\begin_inset Formula $\vec{P}_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{P}_{3}$
+\end_inset
+
+ give us two points 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ must pass through.
+ Control points 
+\begin_inset Formula $\vec{P}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{P}_{2}$
+\end_inset
+
+ give us 
+\begin_inset Formula $\dot{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{y}$
+\end_inset
+
+ at those two points.
+ Thus specified, 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ are cubic Hermite polynomials! 
+\end_layout
+
+\begin_layout Standard
+To be precise, let 
+\begin_inset Formula $\vec{P}_{i}=(x_{i},y_{i})$
+\end_inset
+
+ for 
+\begin_inset Formula $i=0,1,2,3$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ is the cubic Hermite polynomial with 
+\begin_inset Formula $x(0)=x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{x}(0)=3(x_{1}-x_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $x(1)=x_{3}$
+\end_inset
+
+, and 
+\begin_inset Formula $\dot{x}(1)=3(x_{3}-x_{2})$
+\end_inset
+
+; and 
+\begin_inset Formula $y(t)$
+\end_inset
+
+ is the cubic Hermite polynomial with 
+\begin_inset Formula $y(0)=y_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{y}(0)=3(y_{1}-y_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $y(1)=y_{3}$
+\end_inset
+
+, and 
+\begin_inset Formula $\dot{y}(1)=3(y_{3}-y_{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We close this section by computing the 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve from 
+\begin_inset Formula $\begin{pmatrix}-1\\
+2
+\end{pmatrix}$
+\end_inset
+
+ to 
+\begin_inset Formula $\begin{pmatrix}5\\
+-2
+\end{pmatrix}$
+\end_inset
+
+ via control points 
+\begin_inset Formula $\begin{pmatrix}0\\
+4
+\end{pmatrix}$
+\end_inset
+
+ and 
+\begin_inset Formula $\begin{pmatrix}5\\
+1
+\end{pmatrix}$
+\end_inset
+
+ using equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:HermiteCubicForHumans"
+
+\end_inset
+
+ and comparing our results to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierCubicExample"
+
+\end_inset
+
+.
+ With 
+\begin_inset Formula $x(0)=-1$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{x}(0)=3$
+\end_inset
+
+, 
+\begin_inset Formula $x(1)=5$
+\end_inset
+
+, and 
+\begin_inset Formula $\dot{x}(1)=0$
+\end_inset
+
+ (and the understood substitution of 
+\begin_inset Formula $x$
+\end_inset
+
+ for 
+\begin_inset Formula $y$
+\end_inset
+
+), equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:HermiteCubicForHumans"
+
+\end_inset
+
+ gives 
+\begin_inset Formula $m=\frac{5+1}{1-0}=6$
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+x(t)=\frac{t-1}{-1}(-1)+\frac{t}{1}(5)+\frac{(t-1)^{2}t}{1}\left(3-6\right)+\frac{t^{2}(t-1)}{1}\left(-6\right).
+\]
+
+\end_inset
+
+Using equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:HermiteCubicForHumans"
+
+\end_inset
+
+ with 
+\begin_inset Formula $y(0)=2$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{y}(0)=6$
+\end_inset
+
+, 
+\begin_inset Formula $y(1)=-2$
+\end_inset
+
+, and 
+\begin_inset Formula $\dot{y}(1)=-9$
+\end_inset
+
+ gives 
+\begin_inset Formula $m=\frac{-2-2}{1-0}=-4$
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+y(t)=\frac{t-1}{-1}(2)+\frac{t}{1}(-2)+\frac{(t-1)^{2}t}{1}\left(6+4\right)+\frac{t^{2}(t-1)}{1}\left(-9+4\right).
+\]
+
+\end_inset
+
+While these equations are complete and correct, it is difficult to compare
+ them to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bezierCubicExample"
+
+\end_inset
+
+ without some simplification.
+ Can you show
+\begin_inset Formula 
+\begin{eqnarray*}
+x(t) & = & -1+3t+12t^{2}-9t^{3}\\
+y(t) & = & 2+6t-15t^{2}+5t^{3}
+\end{eqnarray*}
+
+\end_inset
+
+ as required? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:parametricCubics"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{B
+\backslash
+'ezier curves and CAGD}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+'e
+\end_layout
+
+\end_inset
+
+zier curves were originally developed around 1960 by employees at french
+ automobile manufacturing companies.
+ Paul de Casteljau of Citro
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+"e
+\end_layout
+
+\end_inset
+
+n was first, but Pierre B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier of Renault popularized the method so has his name associated with the
+ polynomials.
+\end_layout
+
+\begin_layout Standard
+Nowadays, almost all computer aided graphic design, or CAGD, software uses
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves, particularly cubic, for drawing smooth objects.
+ CAGD software with cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier tools will display the four control points and allow the user to move
+ them about.
+ In fact, the software will draw the two linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+'e
+\end_layout
+
+\end_inset
+
+zier curves at the endpoints as well.
+ This gives the user 
+\begin_inset Quotes eld
+\end_inset
+
+handles
+\begin_inset Quotes erd
+\end_inset
+
+ to manipulate the curve.
+ Some software will include the third linear B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve as well.
+ The three linear 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves together form the so-called control polygon.
+ Since the relationship between the control points and the curve is intuitive,
+ manipulation of the control points, whether it be by handles or control
+ polygons, provides a means for swift modeling of smooth shapes.
+ 
+\end_layout
+
+\begin_layout Standard
+Some shapes are too intricate to model with a single cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve, however.
+ To handle such shapes, CAGD software allows a user to string cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves together end to end, forming a composite, or piecewise, B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve, such as that shown here.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/splines-parametric03.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This particular curve is made of two cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves, one with control points 
+\begin_inset Formula $\vec{P}_{0},\vec{P}_{1},\vec{P}_{2},\vec{P}_{3}$
+\end_inset
+
+ and the other with control points 
+\begin_inset Formula $\vec{P}_{3},\vec{P}_{4},\vec{P}_{5},\vec{P}_{6}$
+\end_inset
+
+.
+ Since B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves are intended to model smooth objects, software will provide
+ the option of forcing derivative matching at a common point such as 
+\begin_inset Formula $\vec{P}_{3}$
+\end_inset
+
+.
+ This is done by making sure the common point is on the line segment between
+ its two adjacent control points (
+\begin_inset Formula $\vec{P}_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{P}_{4}$
+\end_inset
+
+ in this diagram).
+\end_layout
+
+\begin_layout Standard
+Free open source software such as Inkscape, LibreOffice Drawing, and Dia
+ provide Bezier curve drawing tools, but not all of them use the technical
+ term.
+ Inkscape has a Bezier curve tool by that name, but LibreOffice Drawing's
+ Bezier curve tool is simply called 
+\begin_inset Quotes eld
+\end_inset
+
+curve
+\begin_inset Quotes erd
+\end_inset
+
+, and Dia's tool for single Bezier curves only, not composite, goes by the
+ name of 
+\begin_inset Quotes eld
+\end_inset
+
+Bezierline
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Post Bezier curve GeoGebra applets and give URL.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+References
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Get these paper references, read them, and modify the intro above.
+\end_layout
+
+\end_inset
+
+Barnhill, Robert E.
+ and Riesenfeld, Richard F.
+ editors, 
+\begin_inset Quotes eld
+\end_inset
+
+Computer aided geometric design : proceedings of a conference held at the
+ University of Utah, Salt Lake City, Utah, March 18-21, 1974
+\begin_inset Quotes erd
+\end_inset
+
+, Academic Press, New York, 1974.
+\begin_inset Newline newline
+\end_inset
+
+de Casteljau, Paul de Faget, 
+\begin_inset Quotes eld
+\end_inset
+
+De Casteljau's autobiography: My time at Citro
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+"e
+\end_layout
+
+\end_inset
+
+n
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\shape italic
+Computer Aided Geometric Design
+\shape default
+ 
+\series bold
+16
+\series default
+ (7): 583–586, August 1999.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Move this reference to a reference for the book, not this crumpet.
+\end_layout
+
+\end_inset
+
+AMS: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.ams.org/samplings/feature-column/fcarc-bezier
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Inkscape: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.inkscape.org/
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Dia: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://sourceforge.net/projects/dia-installer/
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+LibreOffice: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.libreoffice.org/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+osculating
+\begin_inset space ~
+\end_inset
+
+polynomial: A polynomial whose graph is required to pass through a set of
+ prescribed points 
+\begin_inset Formula $(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})$
+\end_inset
+
+ and whose first 
+\begin_inset Formula $m_{i}$
+\end_inset
+
+ derivatives may also be specified at 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Hermite
+\begin_inset space ~
+\end_inset
+
+polynomial: An osculating polynomial required to pass through two points
+ with its first derivative specified at each point.
+\end_layout
+
+\begin_layout Description
+B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier
+\begin_inset space ~
+\end_inset
+
+curve: A curve connecting two points via parametric osculating polynomials.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Find the cubic Hermite polynomial interpolating the data.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f'(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the Hermite polynomial of degree (at most) 5 interpolating the data.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f'(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $g(x)=(\sqrt{2})^{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Using 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=2$
+\end_inset
+
+, find a Hermite interpolating polynomial for 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Use the Hermite polynomial to approximate 
+\begin_inset Formula $g(1.5)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Calculate the actual error of this approximation, and compare it to the
+ error you got in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-5"
+
+\end_inset
+
+ of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:polynomialLagrange"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "exc:interpolation-lagrange-5"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Which polynomial approximated 
+\begin_inset Formula $g(1.5)$
+\end_inset
+
+ with smaller absolute error, the Hermite or the Lagrange interpolating
+ polynomial?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find a polynomial that passes through the points 
+\begin_inset Formula $(0,0)$
+\end_inset
+
+ and 
+\begin_inset Formula $(4,-3)$
+\end_inset
+
+ and whose derivative passes through the points 
+\begin_inset Formula $(0,1)$
+\end_inset
+
+ and 
+\begin_inset Formula $(4,1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "data"
+
+\end_inset
+
+Construct the Hermite interpolating polynomial for the given data.
+ Do this using a pencil, paper and calculator, or a spreadsheet.
+ Do not use Octave code.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f'(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.29004996$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2.8019975$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.56079734$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2.6159201$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.81401972$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2.4533949$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find parametric equations for the cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve.
+ The ends of the 
+\begin_inset Quotes eld
+\end_inset
+
+handles
+\begin_inset Quotes erd
+\end_inset
+
+ are the four control points.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/splines-parametric04.eps
+	lyxscale 75
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Write down the parametric equations of the B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve with control points 
+\begin_inset Formula $(-1,2)$
+\end_inset
+
+, 
+\begin_inset Formula $(-3,2)$
+\end_inset
+
+, 
+\begin_inset Formula $(3,1)$
+\end_inset
+
+, and 
+\begin_inset Formula $(3,0)$
+\end_inset
+
+.
+ It is not necessary to simplify your answer.
+\end_layout
+
+\begin_layout Enumerate
+Construct the parametric equations for the B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve with control points 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $(1,1),(2,1.5),(7,1.5),(6,2)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find equations for the cubic polynomials that make up the composite B
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+'e
+\end_layout
+
+\end_inset
+
+zier curve.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/splines-parametric06.gif
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The data in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "data"
+
+\end_inset
+
+ were generated using 
+\begin_inset Formula $f(x)=x^{2}\cos(x)-3x$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "approximation"
+
+\end_inset
+
+Approximate 
+\begin_inset Formula $f(0.18)$
+\end_inset
+
+ using the polynomial from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "data"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "error"
+
+\end_inset
+
+Calculate the absolute error of this approximation.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $H(x)=x^{5}-3x^{4}+2x^{3}-6x+2$
+\end_inset
+
+ is a Hermite polynomial interpolating the data
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f'(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-10$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+collected from a function 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Find the missing datum.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+A Hermite polynomial 
+\begin_inset Formula $H(x)$
+\end_inset
+
+ is constructed using the data
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f'(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1.2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-5.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+Find 
+\begin_inset Formula $(H\circ H)'(0.6)$
+\end_inset
+
+.
+ That is, the derivative of 
+\begin_inset Formula $H(H(x))$
+\end_inset
+
+ evaluated at 
+\begin_inset Formula $x=0.6$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+Find 
+\begin_inset Formula $(f\circ f)'(0.8)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The Hermite interpolating polynomial for the following data has the form
+ 
+\begin_inset Formula $H(x)=a_{0}+a_{1}(x-0.3)+a_{2}(x-0.3)^{2}+\ldots$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f'(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.30$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.295$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.155$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.32$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.314$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.149$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.35$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.342$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.139$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Fill in the missing part of the form of 
+\begin_inset Formula $H(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+What is the maximum possible degree of 
+\begin_inset Formula $H(x)$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{1}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Construct the divided differences table that led to the Hermite polynomial
+\begin_inset Formula 
+\[
+p(x)=2-(x-1)+\frac{1}{4}(x-1)^{2}+\frac{1}{4}(x-1)^{2}(x-3).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier Curve
+\begin_inset Formula 
+\begin{eqnarray*}
+x(t) & = & 11t^{3}-18t^{2}+3t+5\\
+y(t) & = & t^{3}+1
+\end{eqnarray*}
+
+\end_inset
+
+has control points 
+\begin_inset Formula $(5,1)$
+\end_inset
+
+, 
+\begin_inset Formula $(6,1)$
+\end_inset
+
+, and 
+\begin_inset Formula $(1,2)$
+\end_inset
+
+.
+ Find the fourth control point.
+\end_layout
+
+\begin_layout Enumerate
+What is the minimum number of cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves in the diagram, and why?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/splines-parametric06.eps
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Refer to the following graph.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/splines-parametric05.gif
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The graph can not be the graph of a single cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve.
+ Why not?
+\end_layout
+
+\begin_layout Enumerate
+The graph is that of a composite cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve.
+ At least how many cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curves have been spliced together, and why?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Give three reasons that might make you use a B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve rather than a Lagrange polynomial to model a certain graph.
+\end_layout
+
+\begin_layout Enumerate
+The osculating polynomial 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ passing through 
+\begin_inset Formula $(x_{0},f(x_{0}))$
+\end_inset
+
+ with 
+\begin_inset Formula $P'(x_{0})=f'(x_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $P''(x_{0})=f''(x_{0})$
+\end_inset
+
+, and 
+\begin_inset Formula $P'''(x_{0})=f'''(x_{0})$
+\end_inset
+
+ is also called what? Be as specific as you can.
+\end_layout
+
+\begin_layout Enumerate
+A cubic polar B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve is the unique (parametrized) cubic polar function 
+\begin_inset Formula $(r(t),\theta(t))$
+\end_inset
+
+ satisfying the following data.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $r(t)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\theta(t)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\dot{r}(t)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\dot{\theta(t)}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $r_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\theta_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\delta_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $r_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\theta_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\delta_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mu_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+A standard cubic B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve is given by the control points 
+\begin_inset Formula $(0,0)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,0)$
+\end_inset
+
+, 
+\begin_inset Formula $(0,1)$
+\end_inset
+
+, and 
+\begin_inset Formula $(0,3)$
+\end_inset
+
+ (in that order).
+ Convert this data into polar coordinate data.
+ Recall that the conversion from Cartesian coordinates to polar coordinates
+ involves the formulas 
+\begin_inset Formula 
+\[
+r=\sqrt{x^{2}+y^{2}}\quad\mbox{and}\quad\tan\theta=\frac{y}{x}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+Find the cubic polar B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+`e
+\end_layout
+
+\end_inset
+
+zier curve based on your results from (a).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave function to compute Hermite polynomials.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+A car traveling along a straight road is clocked at a number of points.
+ The data from the observations are given in the following table, where
+ the time is in seconds, the distance is in feet, and the speed is in feet
+ per second.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="6">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Time
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distance
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+225
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+383
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+623
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+993
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Speed
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+75
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+77
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+74
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+72
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Compute a Hermite interpolating polynomial for the data.
+\end_layout
+
+\begin_layout Enumerate
+Use your polynomial from part (a) to predict the position (distance) of
+ the car and its speed when 
+\begin_inset Formula $t=10$
+\end_inset
+
+ seconds.
+\end_layout
+
+\begin_layout Enumerate
+Determine whether the car ever exceeds the 55 mph speed limit on the road.
+ If so, what is the first time the car exceeds this speed?
+\end_layout
+
+\begin_layout Enumerate
+What is the predicted maximum speed for the car?
+\end_layout
+
+\begin_layout Standard
+NOTES: Speed is the derivative of distance.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+55\frac{\textrm{miles}}{\textrm{hour}} & = & 55\frac{\textrm{miles}}{\textrm{hour}}\times\frac{5280\textrm{ feet}}{\textrm{mile}}\times\frac{1\textrm{ hour}}{3600\textrm{ seconds}}\\
+ & \approx & 80.67\frac{\textrm{feet}}{\textrm{second}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Complete the following code.
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+#######################################
+\end_layout
+
+\begin_layout LyX-Code
+# Written by Dr.
+ Len Brin             #
+\end_layout
+
+\begin_layout LyX-Code
+# 13 March 2012                       #
+\end_layout
+
+\begin_layout LyX-Code
+# Purpose: Evaluate an interpolating  #
+\end_layout
+
+\begin_layout LyX-Code
+#      polynomial at the value z.
+     #
+\end_layout
+
+\begin_layout LyX-Code
+# INPUT: number z                     #
+\end_layout
+
+\begin_layout LyX-Code
+#      Data x0,x1,...,xn used to      #
+\end_layout
+
+\begin_layout LyX-Code
+#      calculate the polynomial: x    #
+\end_layout
+
+\begin_layout LyX-Code
+#      Entries a0;0, a1;0,1, ...
+      #
+\end_layout
+
+\begin_layout LyX-Code
+#      an;0,1,...,n as an array: c    #
+\end_layout
+
+\begin_layout LyX-Code
+# OUTPUT: P(z), the value of the      #
+\end_layout
+
+\begin_layout LyX-Code
+#      interploating polynomial at z.
+ #
+\end_layout
+
+\begin_layout LyX-Code
+#######################################
+\end_layout
+
+\begin_layout LyX-Code
+function ans = divDiffEval(z,x,c)
+\end_layout
+
+\begin_layout LyX-Code
+  n = length(x);
+\end_layout
+
+\begin_layout LyX-Code
+  ans = c(n);
+\end_layout
+
+\begin_layout LyX-Code
+  for i=1:n-1
+\end_layout
+
+\begin_layout LyX-Code
+    ans=(z-x(???))*ans+c(???);
+\end_layout
+
+\begin_layout LyX-Code
+  end#for
+\end_layout
+
+\begin_layout LyX-Code
+end#function
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Answers
+\end_layout
+
+\begin_layout Description
+Hermite
+\begin_inset space ~
+\end_inset
+
+polynomial
+\begin_inset space ~
+\end_inset
+
+computer
+\begin_inset space ~
+\end_inset
+
+form: 
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:hermiteCoefficients"
+
+\end_inset
+
+The four remaining entries are
+\begin_inset Formula 
+\begin{eqnarray*}
+f_{1,1} & = & \frac{y_{1}-y_{0}}{t_{1}-t_{0}}\\
+f_{0,2} & = & \frac{f_{1,1}-\dot{y}_{0}}{t_{1}-t_{0}}=\frac{y_{1}-y_{0}}{(t_{1}-t_{0})^{2}}-\frac{\dot{y}_{0}}{t_{1}-t_{0}}\\
+f_{1,2} & = & \frac{\dot{y}_{1}-f_{1,1}}{t_{1}-t_{0}}=\frac{\dot{y}_{1}}{t_{1}-t_{0}}-\frac{y_{1}-y_{0}}{(t_{1}-t_{0})^{2}}\\
+f_{0,3} & = & \frac{f_{1,2}-f_{0,2}}{t_{1}-t_{0}}=\frac{\dot{y}_{1}+\dot{y}_{0}}{(t_{1}-t_{0})^{2}}-2\frac{y_{1}-y_{0}}{(t_{1}-t_{0})^{3}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+B
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+'e
+\end_layout
+
+\end_inset
+
+zier
+\begin_inset space ~
+\end_inset
+
+curve
+\begin_inset space ~
+\end_inset
+
+via
+\begin_inset space ~
+\end_inset
+
+Hermite
+\begin_inset space ~
+\end_inset
+
+cubics: 
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:parametricCubics"
+
+\end_inset
+
+The simplification may be done as follows.
+\begin_inset Formula 
+\begin{eqnarray*}
+x(t) & = & \frac{t-1}{-1}(-1)+\frac{t}{1}(5)+\frac{(t-1)^{2}t}{1}\left(3-6\right)+\frac{t^{2}(t-1)}{1}\left(-6\right)\\
+ & = & (t-1)+5t-3t(t-1)^{2}-6t^{2}(t-1)\\
+ & = & 6t-1-3t(t^{2}-2t+1)-6t^{3}+6t^{2}\\
+ & = & 6t-1-3t^{3}+6t^{2}-3t-6t^{3}+6t^{2}\\
+ & = & -9t^{3}+12t^{2}+3t-1
+\end{eqnarray*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+y(t) & = & \frac{t-1}{-1}(2)+\frac{t}{1}(-2)+\frac{(t-1)^{2}t}{1}\left(6+4\right)+\frac{t^{2}(t-1)}{1}\left(-9+4\right)\\
+ & = & -2(t-1)-2t+10t(t-1)^{2}-5t^{2}(t-1)\\
+ & = & -2t+2-2t+10t(t^{2}-2t+1)-5t^{3}+5t^{2}\\
+ & = & 2-4t+10t^{3}-20t^{2}+10t-5t^{3}+5t^{2}\\
+ & = & 5t^{3}-15t^{2}+6t+2.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,241 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+Pick some random points
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+n:8$
+mx:next_prime(1200)$
+p[1]:[0,random(mx)/mx-1/2]$
+for i:2 thru n-1 do (
+    p[i]:[p[i-1][1]+random(mx)/mx+1/2,random(mx)/mx-1/2]
+)$
+p[n]:[n-1,random(mx)/mx-1/2]$
+m:makelist([p[i][1],p[i][2]],i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Save a representative set for illustrations--figure 1--the points
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+m:[[0,1095/2402],[3521/2402,−431/2402],[2404/1201,−979/2402],[7353/2402,1001/2402],[4740/1201,−5/2402],[11381/2402,241/2402],[
+6936/1201,285/2402],[7,−631/2402]];
+draw2d(
+    point_type=filled_circle,
+    point_size=.5,
+    points(m),
+    proportional_axes=xy,
+    xrange=[-.25,7.25],
+    yrange=[-1,1],
+    dimensions=[2000,ceiling(2000/8)],
+    terminal=pdf,
+    file_name="generalizedSplines01"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Figure 2--polynomial interpolation
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+l(x):=a[0]+sum(a[i]*x^i,i,1,n-1);
+eq:makelist(l(m[k][1])=m[k][2],k,1,n)$
+soln:solve(eq)$
+r(x):=subst(soln,l(x))$
+draw2d(
+    point_size=.5,
+    point_type=filled_circle,
+    points(m),
+    proportional_axes=xy,
+    color=black,
+    explicit(r(x),x,0,n-1),
+    yrange=[-2.75,4.25],
+    dimensions=[650,650],
+    terminal=pdf,
+    file_name="generalizedSplines02"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Figure 3--osculating polynomial
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+l(x):=a[0]+sum(a[i]*x^i,i,1,n+1);
+lp(x):=subst(t=x,diff(l(t),t))$
+eq:makelist(l(m[k][1])=m[k][2],k,1,n)$
+s1:0$ s2:-1$
+eq:append(eq,[lp(m[1][1])=s1,lp(m[7][1])=s2])$
+length(eq);
+soln:solve(eq)$
+r(x):=subst(soln,l(x))$
+draw2d(
+    point_size=.5,
+    point_type=filled_circle,
+    points(m),
+    proportional_axes=xy,
+    explicit(m[1][2]+s1*x,x,0,1),
+    explicit(m[7][2]+s2*(x-m[7][1]),x,5,7),
+    color=black,
+    explicit(r(x),x,0,n-1),
+    yrange=[-.6,1.4],
+    dimensions=[900,ceiling(900*2/7)],
+    terminal=pdf,
+    file_name="generalizedSplines03"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Figure 4--piecewise linear
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L:makelist(expand((x-m[i][1])/(m[i+1][1]-m[i][1])*m[i+1][2] + (x-m[i+1][1])/(m[i][1]-m[i+1][1])*m[i][2]),i,1,n-1);
+l(i,t):=subst(x=t,L[i])$
+S:makelist(explicit(l(i,x),x,m[i][1],m[i+1][1]),i,1,n-1)$
+draw2d(
+    point_size=.5,
+    point_type=filled_circle,
+    points(m),
+    proportional_axes=xy,
+    S,
+    xrange=[-.25,7.25],
+    yrange=[-1,1],
+    dimensions=[2000,ceiling(2000/8)],
+    terminal=pdf,
+    file_name="generalizedSplines04"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Figure 5--piecewise quadratic
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+l1(x):=(x-m[1][1])*(x-m[2][1])/((m[3][1]-m[1][1])*(m[3][1]-m[2][1]))*m[3][2] + 
+       (x-m[1][1])*(x-m[3][1])/((m[2][1]-m[1][1])*(m[2][1]-m[3][1]))*m[2][2] +
+       (x-m[2][1])*(x-m[3][1])/((m[1][1]-m[2][1])*(m[1][1]-m[3][1]))*m[1][2]$
+l2(x):=(x-m[3][1])*(x-m[4][1])/((m[5][1]-m[3][1])*(m[5][1]-m[4][1]))*m[5][2] + 
+       (x-m[3][1])*(x-m[5][1])/((m[4][1]-m[3][1])*(m[4][1]-m[5][1]))*m[4][2] +
+       (x-m[4][1])*(x-m[5][1])/((m[3][1]-m[4][1])*(m[3][1]-m[5][1]))*m[3][2]$
+l3(x):=(x-m[5][1])*(x-m[6][1])/((m[7][1]-m[5][1])*(m[7][1]-m[6][1]))*m[7][2] + 
+       (x-m[5][1])*(x-m[7][1])/((m[6][1]-m[5][1])*(m[6][1]-m[7][1]))*m[6][2] +
+       (x-m[6][1])*(x-m[7][1])/((m[5][1]-m[6][1])*(m[5][1]-m[7][1]))*m[5][2]$
+graph1:explicit(l1(x),x,m[1][1],m[3][1])$
+graph2:explicit(l2(x),x,m[3][1],m[5][1])$
+graph3:explicit(l3(x),x,m[5][1],m[7][1])$
+draw2d(
+    point_size=.5,
+    point_type=filled_circle,
+    points(m),graph1,graph2,graph3,S[7],
+    xrange=[-.25,7.25],
+    yrange=[-1,1],
+    dimensions=[2000,ceiling(2000/8)],
+    terminal=pdf,
+    file_name="generalizedSplines05",
+    proportional_axes=xy
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Figure 6--piecewise quadratic
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+s0:1$
+L:makelist(a[i]+b[i]*x+c[i]*x^2,i,1,n-1)$
+Lp:makelist(diff(L[i],x),i,1,n-1)$
+l(i,t):=subst(x=t,L[i])$
+lp(i,t):=subst(x=t,Lp[i])$
+eql:makelist(l(i,m[i][1])=m[i][2],i,1,n-1)$
+eqr:makelist(l(i,m[i+1][1])=m[i+1][2],i,1,n-1)$
+eqd:makelist(lp(i,m[i+1][1])=lp(i+1,m[i+1][1]),i,1,n-2)$
+eq:append(eql,eqr,eqd,[lp(1,m[1][1])=s0])$
+soln:solve(eq)[1]$
+S:makelist(explicit(subst(soln,L[i]),x,m[i][1],m[i+1][1]),i,1,n-1)$
+draw2d(
+    point_size=.5,
+    point_type=filled_circle,
+    points(m),
+    S,
+    xrange=[-.25,7.25],
+    yrange=[-1,1],
+    dimensions=[2000,ceiling(2000/8)],
+    terminal=pdf,
+    file_name="generalizedSplines06",
+    proportional_axes=xy
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Figure 7--general piecewise polynomial
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+draw2d(
+    explicit((1-2*x)/3,x,0,1),
+    explicit((x-1)^2/3,x,1,2),
+    explicit(10*(x-2.1)*(x-2.5)*(x-2.9),x,2,3),
+    proportional_axes=xy,
+    yrange=[-.5,.5],
+    dimensions=[1000,ceiling(1000/3)],
+    terminal=pdf,
+    file_name="generalizedSplines07"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Figure 8--piecewise cubic (natural spline)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L:makelist(a[i]+b[i]*(x-m[i+1][1])+c[i]*(x-m[i+1][1])^2+d[i]*(x-m[i+1][1])^3,i,1,n-1)$
+Lp:makelist(diff(L[i],x),i,1,n-1)$
+Lpp:makelist(diff(L[i],x,2),i,1,n-1)$
+l(i,t):=subst(x=t,L[i])$
+lp(i,t):=subst(x=t,Lp[i])$
+lpp(i,t):=subst(x=t,Lpp[i])$
+eql:makelist(l(i,m[i][1])=m[i][2],i,1,n-1)$
+eqr:makelist(l(i,m[i+1][1])=m[i+1][2],i,1,n-1)$
+eqd:makelist(lp(i,m[i+1][1])=lp(i+1,m[i+1][1]),i,1,n-2)$
+eqdd:makelist(lpp(i,m[i+1][1])=lpp(i+1,m[i+1][1]),i,1,n-2)$
+eq:append(eql,eqr,eqd,eqdd,[lpp(1,m[1][1])=0,lpp(n-1,m[n][1])=0])$
+soln1:solve(eq)[1]$
+A:makelist(a[i],i,1,7)$
+B:makelist(b[i],i,1,7)$
+C:makelist(c[i],i,1,7)$
+D:makelist(d[i],i,1,7)$
+float(subst(soln1,A));
+float(subst(soln1,B));
+float(subst(soln1,C));
+float(subst(soln1,D));
+S:makelist(explicit(subst(soln1,L[i]),x,m[i][1],m[i+1][1]),i,1,n-1)$
+draw2d(
+    point_size=.5,
+    point_type=filled_circle,
+    points(m),
+    S,
+    xrange=[-.25,7.25],
+    yrange=[-1,1],
+    dimensions=[2000,ceiling(2000/8)],
+    terminal=pdf,
+    file_name="generalizedSplines08",
+    proportional_axes=xy
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+x and y coordinates for use in Octave
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(m[i][1],i,1,n);
+makelist(m[i][2],i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

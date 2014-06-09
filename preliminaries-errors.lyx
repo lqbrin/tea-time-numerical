@@ -1,0 +1,4823 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/Book-Numerical/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Preliminaries
+\end_layout
+
+\begin_layout Section
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Accuracy"
+
+\end_inset
+
+Accuracy
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{arabic}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[LE,RO]{
+\backslash
+thepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[RE]{
+\backslash
+leftmark}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[LO]{
+\backslash
+rightmark}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Measuring Error
+\end_layout
+
+\begin_layout Standard
+Numerical methods are designed to approximate one thing or another.
+ Sometimes roots, sometimes derivatives or definite integrals, or curves,
+ or solutions of differential equations.
+ As numerical methods produce only approximations to these things, it is
+ important to have some idea how accurate they are.
+ Sometimes accuracy comes down to careful algebraic analysis---sometimes
+ careful analysis of the calculus, and often careful analysis of Taylor
+ polynomials.
+ But before we can tackle those details, we should discuss just how error,
+ and therefore accuracy, is measured.
+\end_layout
+
+\begin_layout Standard
+There are two basic measurements of accuracy
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+accuracy
+\end_layout
+
+\end_inset
+
+: absolute error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! absolute
+\end_layout
+
+\end_inset
+
+ and relative error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! relative
+\end_layout
+
+\end_inset
+
+.
+ Suppose that 
+\begin_inset Formula $p$
+\end_inset
+
+ is the value we are approximating, and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is an approximation of 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ misses the mark by exactly the quantity 
+\begin_inset Formula $\tilde{p}-p$
+\end_inset
+
+, the so-called error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error
+\end_layout
+
+\end_inset
+
+.
+ Of course, 
+\begin_inset Formula $\tilde{p}-p$
+\end_inset
+
+ will be negative when 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ misses low.
+ That is, when the approximation 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is less than the exact value 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ On the other hand, 
+\begin_inset Formula $\tilde{p}-p$
+\end_inset
+
+ will be positive when 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ misses high.
+ But generally, we are not concerned with whether our approximation is too
+ high or too low.
+ We just want to know how far off it is.
+ Thus, we most often talk about the absolute error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! absolute
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Formula $|\tilde{p}-p|$
+\end_inset
+
+.
+ You might recognize the expression 
+\begin_inset Formula $|\tilde{p}-p|$
+\end_inset
+
+ as the distance between 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $p$
+\end_inset
+
+, and that's not a bad way to think about absolute error.
+\end_layout
+
+\begin_layout Standard
+The absolute error in approximating 
+\begin_inset Formula $p=\pi$
+\end_inset
+
+ by the rational number 
+\begin_inset Formula $\tilde{p}=\frac{22}{7}$
+\end_inset
+
+ is 
+\begin_inset Formula $|\frac{22}{7}-\pi|\approx0.00126$
+\end_inset
+
+.
+ The absolute error in approximating 
+\begin_inset Formula $\pi^{5}$
+\end_inset
+
+ by the rational number 
+\begin_inset Formula $\frac{16525}{54}$
+\end_inset
+
+ is 
+\begin_inset Formula $|\frac{16525}{54}-\pi|\approx0.00116$
+\end_inset
+
+.
+ The absolute errors in these two approximations are nearly equal.
+ To make the point more transparent, 
+\begin_inset Formula $\pi\approx3.14159$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{22}{7}\approx3.14285$
+\end_inset
+
+ while 
+\begin_inset Formula $\pi^{5}\approx306.01968$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{16525}{54}\approx306.01851$
+\end_inset
+
+.
+ Each approximation begins to differ from its respective exact value in
+ the thousandths place.
+ And each is off by only 1 in the thousandths place.
+\end_layout
+
+\begin_layout Standard
+But there is something more going on here.
+ 
+\begin_inset Formula $\pi$
+\end_inset
+
+ is near 3 while 
+\begin_inset Formula $\pi^{5}$
+\end_inset
+
+ is near 300.
+ To approximate 
+\begin_inset Formula $\pi$
+\end_inset
+
+ accurate to the nearest one hundredth requires the approximation to agree
+ with the exact value in only 3 place values---the ones, tenths, and hundredths.
+ To approximate 
+\begin_inset Formula $\pi^{5}$
+\end_inset
+
+ accurate to the nearest one hundredth requires the approximation to agree
+ with the exact value in 5 place values---the hundreds, tens, ones, tenths,
+ and hundredths.
+ To use more scientific language, we say that 
+\begin_inset Formula $\frac{22}{7}$
+\end_inset
+
+ approximates 
+\begin_inset Formula $\pi$
+\end_inset
+
+ accurate to 3 significant digits while 
+\begin_inset Formula $\frac{16525}{54}$
+\end_inset
+
+ approximates 
+\begin_inset Formula $\pi^{5}$
+\end_inset
+
+ accurate to 5 significant digits.
+ Therein lies the essence of relative errors---weighing the absolute error
+ against the magnitude of the number being approximated.
+ This is done by computing the ratio of the error to the exact value.
+ Hence the relative error in approximating 
+\begin_inset Formula $\pi$
+\end_inset
+
+ by 
+\begin_inset Formula $\frac{22}{7}$
+\end_inset
+
+ is 
+\begin_inset Formula ${\displaystyle \frac{|\frac{22}{7}-\pi|}{|\pi|}\approx4.02(10)^{-4}}$
+\end_inset
+
+ while the relative error in approximating 
+\begin_inset Formula $\pi^{5}$
+\end_inset
+
+ by 
+\begin_inset Formula $\frac{16525}{54}$
+\end_inset
+
+ is 
+\begin_inset Formula ${\displaystyle \frac{|\frac{16525}{54}-\pi^{5}|}{|\pi^{5}|}\approx3.81(10)^{-6}}$
+\end_inset
+
+.
+ The relative errors differ by a factor of about 100 (equivalent to about
+ two significant digits of accuracy) even though the absolute errors are
+ nearly equal.
+ In general, the relative error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! relative
+\end_layout
+
+\end_inset
+
+ in approximating 
+\begin_inset Formula $p$
+\end_inset
+
+ by 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is given by 
+\begin_inset Formula ${\displaystyle \frac{|\tilde{p}-p|}{|p|}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Sources of Error
+\end_layout
+
+\begin_layout Standard
+There are two general categories of error.
+ Algorithmic error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! algorithmic
+\end_layout
+
+\end_inset
+
+ and floating-point error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! floating-point
+\end_layout
+
+\end_inset
+
+.
+ Algorithmic error is any error due to the approximation method itself.
+ That is, these errors are unavoidable even if we do exact calculations
+ at every step.
+ Floating-point error is error due to the fact that computers and calculators
+ generally do not do exact arithmetic, but rather do floating-point arithmetic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{IEEE Standard 754}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Floating-point
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+floating-point arithmetic
+\end_layout
+
+\end_inset
+
+ values are stored in binary.
+ According to the IEEE Standard 754, which most computers use, the mantissa
+ (or significand) is stored using 52 bits, or binary places.
+ Since the leading bit is always assumed to be 1 (and therefore not actually
+ stored), each floating point number is represented using 53 consecutive
+ binary place values.
+ Now let's consider how 
+\begin_inset Formula $1/7$
+\end_inset
+
+ is represented exactly.
+ In binary, one seventh is equal to 
+\begin_inset Formula $0.001001001\ldots$
+\end_inset
+
+ because 
+\begin_inset Formula $\frac{1}{7}=\sum_{i=1}^{\infty}2^{-3i}=\frac{1}{8}+\frac{1}{64}+\frac{1}{512}+\cdots$
+\end_inset
+
+.
+ To see that this is true, remember from calculus that
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i=1}^{\infty}2^{-3i} & = & \sum_{i=1}^{\infty}\left(2^{-3}\right)^{i}\\
+ & = & \frac{2^{-3}}{1-2^{-3}}\\
+ & = & \frac{1/8}{7/8}\\
+ & = & \frac{1}{7}.
+\end{eqnarray*}
+
+\end_inset
+
+But in IEEE Standard 754, 
+\begin_inset Formula $\frac{1}{7}$
+\end_inset
+
+ is chopped to
+\begin_inset Formula 
+\[
+1.0010010010010010010010010010010010010010010010010010\times(2)^{-3}
+\]
+
+\end_inset
+
+or 
+\begin_inset Formula $\sum_{i=1}^{18}2^{-3i}$
+\end_inset
+
+ which is exactly 
+\begin_inset Formula $\frac{2573485501354569}{18014398509481984}$
+\end_inset
+
+.
+ The floating point error in calculating 
+\begin_inset Formula $1/7$
+\end_inset
+
+ is therefore
+\begin_inset Formula 
+\begin{eqnarray*}
+\left|\frac{2573485501354569}{18014398509481984}-\frac{1}{7}\right| & = & \frac{1}{126100789566373888}\approx7.93(10)^{-18}.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+References
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+IEEE-754 Analysis
+\shape default
+, 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://babbage.cs.qc.cuny.edu/IEEE-754/"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+What Every Computer Scientist Should Know About Floating-Point Arithmetic
+\shape default
+, David Goldberg, 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In floating-point arithmetic, a calculator or computer typically stores
+ its values with about 16 significant digits.
+ For example, in a typical computer or calculator (using double precision
+ arithmetic), the number 
+\begin_inset Formula $\frac{1}{7}$
+\end_inset
+
+ is stored as about 
+\begin_inset Formula $0.1428571428571428$
+\end_inset
+
+ while the exact value is 
+\begin_inset Formula $0.1428571428571428\ldots$
+\end_inset
+
+.
+ In the exact value, the pattern of 
+\begin_inset Formula $142857$
+\end_inset
+
+ repeats without cease while in the floating point value, the repetition
+ ceases after the third 8.
+ The value is chopped to 16 decimal places in the floating-point representation.
+ So the floating point error in calculating 
+\begin_inset Formula $1/7$
+\end_inset
+
+ is around 
+\begin_inset Formula $5(10)^{-17}$
+\end_inset
+
+.
+ I say 
+\begin_inset Quotes eld
+\end_inset
+
+around
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+about
+\begin_inset Quotes erd
+\end_inset
+
+ in this discussion because these claims are not precisely true, but the
+ point is made.
+ There is a small error in representing 
+\begin_inset Formula $1/7$
+\end_inset
+
+ as a floating point real number.
+ And the same is true about all real numbers save a finite set.
+\end_layout
+
+\begin_layout Standard
+Yes, there is some error in the floating-point representation of real numbers,
+ but it is always small in comparison to the size of the real number being
+ represented.
+ The relative error is around 
+\begin_inset Formula $10^{-17}$
+\end_inset
+
+, so it may seem that the consideration of floating-point error is strictly
+ an academic exercise.
+ After all, what's an error of 
+\begin_inset Formula $7.93(10)^{-18}$
+\end_inset
+
+ among friends? Is anyone going to be upset if they are sold a ring that
+ is 
+\begin_inset Formula $.14285714285714284921$
+\end_inset
+
+ inches wide when it should be 
+\begin_inset Formula $.14285714285714285714$
+\end_inset
+
+ inches wide? Clearly not.
+ But it is not only the error in a single calculation (sum, difference,
+ product, or quotient) that you should be worried about.
+ Numerical methods require dozens, thousands, and even millions of computations.
+ Small errors can be compounded.
+ Try the following experiment.
+\end_layout
+
+\begin_layout Subsubsection
+Experiment 1
+\end_layout
+
+\begin_layout Standard
+\noindent
+Use your calculator or computer to calculate the numbers 
+\begin_inset Formula $p_{0},p_{1},p_{2},\ldots,p_{7}$
+\end_inset
+
+ as prescribed here:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{0}=\pi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{1}=10p_{0}-31$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{2}=100p_{1}-41$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{3}=100p_{2}-59$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{4}=100p_{3}-26$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{5}=100p_{4}-53$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{6}=100p_{5}-58$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{7}=100p_{6}-97$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+According to your calculator or computer, 
+\begin_inset Formula $p_{7}$
+\end_inset
+
+ is probably something like one of these:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.93116$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Octave)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.9311599796346854$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Maxima)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(CASIO 
+\shape italic
+fx
+\shape default
+-115ES)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+However, a little algebra will show that 
+\begin_inset Formula $p_{7}=10000000000000\pi-31415926535897$
+\end_inset
+
+ exactly (which is approximately 
+\begin_inset Formula $0.932384$
+\end_inset
+
+).
+ Even though 
+\begin_inset Formula $p_{0}$
+\end_inset
+
+ is a very accurate approximation of 
+\begin_inset Formula $\pi$
+\end_inset
+
+, after just a few (carefully selected) computations, round-off error has
+ caused 
+\begin_inset Formula $p_{7}$
+\end_inset
+
+ to have only one or two significant digits of accuracy!
+\end_layout
+
+\begin_layout Standard
+This experiment serves to highlight the most important cause of floating-point
+ error: subtraction of nearly equal numbers.
+ We repeatedly subtract numbers whose tens and ones digits agree.
+ Their two leading significant digits match.
+ For example, 
+\begin_inset Formula $10\pi-31=31.415926\ldots-31$
+\end_inset
+
+.
+ 
+\begin_inset Formula $10\pi$
+\end_inset
+
+ is held accurate to about 16 digits (
+\begin_inset Formula $31.41592653589793$
+\end_inset
+
+) but 
+\begin_inset Formula $10\pi-31$
+\end_inset
+
+ is held accurate to only 14 significant digits (
+\begin_inset Formula $0.41592653589793$
+\end_inset
+
+).
+ Each subsequent subtraction decreases the accuracy by two more significant
+ digits.
+ Indeed, 
+\begin_inset Formula $p_{7}$
+\end_inset
+
+ is represented with only 2 significant digits.
+ We have repeatedly subtracted nearly equal numbers.
+ Each time, some accuracy is lost.
+ The error grows.
+\end_layout
+
+\begin_layout Standard
+In computations that don't involve the subtraction of nearly equal quantities,
+ there is the concern of algorithmic error.
+ For example, let 
+\begin_inset Formula $f(x)=\sin x$
+\end_inset
+
+.
+ Then one can prove from the definition of derivative that
+\begin_inset Formula 
+\[
+f'(1)=\lim_{h\to0}\frac{\sin(1+h)-\sin(1-h)}{2h}.
+\]
+
+\end_inset
+
+Therefore, we should expect, in general, that 
+\begin_inset Formula $\tilde{p}(h)=\frac{\sin(1+h)-\sin(1-h)}{2h}$
+\end_inset
+
+ is a good approximation of 
+\begin_inset Formula $f'(1)$
+\end_inset
+
+ for small values of 
+\begin_inset Formula $h$
+\end_inset
+
+; and that the smaller 
+\begin_inset Formula $h$
+\end_inset
+
+ is, the better the approximation is.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Experiment 2
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:derivativeExperiment"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using a calculator or computer, compute 
+\begin_inset Formula $\tilde{p}(h)$
+\end_inset
+
+ for 
+\begin_inset Formula $h=10^{-2}$
+\end_inset
+
+, 
+\begin_inset Formula $h=10^{-3}$
+\end_inset
+
+, and so on through 
+\begin_inset Formula $h=10^{-7}$
+\end_inset
+
+.
+ Your results should be something like this:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\tilde{p}^{*}(h)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5402933008747335$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403022158176896$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403023049677103$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403023058569989$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403023058958567$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403023056738121$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The second column is labeled 
+\begin_inset Formula $\tilde{p}^{*}(h)$
+\end_inset
+
+ to indicate that the approximation 
+\begin_inset Formula $\tilde{p}(h)$
+\end_inset
+
+ is calculated using approximate (floating-point) arithmetic, so it is technical
+ly an approximation of the approximation.
+ Since 
+\begin_inset Formula $f'(1)=\cos(1)\approx.5403023058681398$
+\end_inset
+
+, each approximation is indeed reasonably close to the exact value.
+ Taking a closer look, though, there is something more to be said.
+ First, the algorithmic error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! algorithmic
+\end_layout
+
+\end_inset
+
+ of 
+\begin_inset Formula $\tilde{p}(10^{-2})$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\begin{eqnarray*}
+|\tilde{p}(10^{-2})-f'(1)| & = & \left|50\left(\sin\left(\frac{101}{100}\right)-\sin\left(\frac{99}{100}\right)\right)-\cos(1)\right|\\
+ & \approx & 9.00(10)^{-6}
+\end{eqnarray*}
+
+\end_inset
+
+accurate to three significant digits.
+ That is, if we compute 
+\begin_inset Formula $\tilde{p}(10^{-2})$
+\end_inset
+
+ using exact arithmetic, the value still misses 
+\begin_inset Formula $f'(1)$
+\end_inset
+
+ by about 
+\begin_inset Formula $9(10)^{-6}$
+\end_inset
+
+.
+ The floating-point error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! floating-point
+\end_layout
+
+\end_inset
+
+ is only how far the computed value of 
+\begin_inset Formula $\tilde{p}(10^{-2})$
+\end_inset
+
+, what we have labeled 
+\begin_inset Formula $\tilde{p}^{*}(10^{-2})$
+\end_inset
+
+ in the table, deviates from the exact value of 
+\begin_inset Formula $\tilde{p}(10^{-2})$
+\end_inset
+
+.
+ That is, the floating-point error is given by 
+\begin_inset Formula $\left|\tilde{p}^{*}-\tilde{p}\right|$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\left|0.5402933008747335-50\left(\sin\left(\frac{101}{100}\right)-\sin\left(\frac{99}{100}\right)\right)\right|\approx1.58(10)^{-17},
+\]
+
+\end_inset
+
+as small as one could expect.
+ The absolute error 
+\begin_inset Formula $|\tilde{p}^{*}(10^{-2})-f'(1)|=|0.5402933008747335-\cos(1)|$
+\end_inset
+
+ is essentially all algorithmic.
+ The round-off error is dwarfed by the algorithmic error.
+ The fact that we have used floating-point arithmetic is negligible.
+ 
+\end_layout
+
+\begin_layout Standard
+On the other hand, the algorithmic error of 
+\begin_inset Formula $\tilde{p}(10^{-7})$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\begin{eqnarray*}
+|\tilde{p}(10^{-7})-f'(1)| & = & \left|5000000\left(\sin\left(\frac{10000001}{10000000}\right)-\sin\left(\frac{9999999}{10000000}\right)\right)-\cos(1)\right|\\
+ & \approx & 9.00(10)^{-16}
+\end{eqnarray*}
+
+\end_inset
+
+accurate to three significant digits.
+ But we should be a little bit worried about the floating-point error since
+ 
+\begin_inset Formula ${\displaystyle \sin\left(\frac{10000001}{10000000}\right)\approx0.8414710388}$
+\end_inset
+
+ and 
+\begin_inset Formula ${\displaystyle \sin\left(\frac{9999999}{10000000}\right)\approx.8414709307}$
+\end_inset
+
+ are nearly equal.
+ We are subtracting numbers whose five leading significant digits match!
+ Indeed, the floating-point error is, again 
+\begin_inset Formula $|\tilde{p}^{*}-\tilde{p}|$
+\end_inset
+
+, or
+\begin_inset Formula 
+\[
+\left|0.5403023056738121-5000000\left(\sin\left(\frac{10000001}{10000000}\right)-\sin\left(\frac{9999999}{10000000}\right)\right)\right|\approx1.94(10)^{-10}.
+\]
+
+\end_inset
+
+Perhaps this error seems small, but it is very large compared to the algorithmic
+ error of about 
+\begin_inset Formula $9(10)^{-16}$
+\end_inset
+
+.
+ So, in this case, the error is essentially all due to the fact that we
+ are using floating-point arithmetic! This time, the algorithmic error is
+ dwarfed by the round-off error.
+ Luckily, this will not often be the case, and we will be free to focus
+ on algorithmic error alone.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Chaos} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Edward Lorenz
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Lorenz, Edward
+\end_layout
+
+\end_inset
+
+ was perhaps the first to recognize the mathematical phenomenon now called
+ chaos.
+ In the 1960's he was busy trying to model weather systems in an attempt
+ to improve weather forecasting.
+ As the story goes, he was running a simulation when he needed to leave
+ briefly.
+ When he came back, the simulation was complete, but he wanted to rerun
+ the simulation from a certain point just to double check.
+ He programmed the computer to restart the simulation, only this time he
+ rounded off his numbers a bit.
+ When the simulation ran again, he noticed a completely different result!
+ Was this a case of floating-point error? No.
+ Here's an egregiously simplified version of what happened.
+ Let 
+\begin_inset Formula $f(x)=4x(1-x)$
+\end_inset
+
+ and set 
+\begin_inset Formula $p_{0}=1/7$
+\end_inset
+
+.
+ Now compute 
+\begin_inset Formula $p_{1}=f(p_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $p_{2}=f(p_{1})$
+\end_inset
+
+, 
+\begin_inset Formula $p_{3}=f(p_{2})$
+\end_inset
+
+, and so on until you have 
+\begin_inset Formula $p_{40}=f(p_{39})$
+\end_inset
+
+.
+ You should find that 
+\begin_inset Formula $p_{40}\approx0.080685$
+\end_inset
+
+.
+ Now set 
+\begin_inset Formula $p_{0}=1/7+10^{-12}$
+\end_inset
+
+ (so we can run the same computation only with an initial value that differs
+ from the original by 
+\begin_inset Formula $10^{-12}$
+\end_inset
+
+).
+ Compute as before, 
+\begin_inset Formula $p_{1}=f(p_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $p_{2}=f(p_{1})$
+\end_inset
+
+, 
+\begin_inset Formula $p_{3}=f(p_{2})$
+\end_inset
+
+, and so on until you have 
+\begin_inset Formula $p_{40}=f(p_{39})$
+\end_inset
+
+.
+ This time you should find that 
+\begin_inset Formula $p_{40}\approx0.91909$
+\end_inset
+
+---a completely different result! If you go back and run the two calculations
+ using 100 significant digit arithmetic, you will find that beginning with
+ 
+\begin_inset Formula $p_{0}=1/7$
+\end_inset
+
+ leads to 
+\begin_inset Formula $p_{40}\approx.080736$
+\end_inset
+
+ while beginning with 
+\begin_inset Formula $p_{0}=1/7+10^{-12}$
+\end_inset
+
+ leads to 
+\begin_inset Formula $p_{40}\approx0.91912$
+\end_inset
+
+.
+ In other words, it is not the fact that we are using floating-point approximati
+ons that makes these two computations turn out drastically different.
+ Using 1000 significant digit arithmetic would not change the conclusion,
+ nor would any more precise calculation.
+ This is a demonstration of what's known as sensitivity to initial conditions,
+ a feature of all chaotic systems including the weather.
+ Now you know why long-term weather prediction is simply not possible.
+ The errors are algorithmic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Add references
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Experiment 3
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $a=77617$
+\end_inset
+
+ and 
+\begin_inset Formula $b=33096$
+\end_inset
+
+, and compute
+\begin_inset Formula 
+\[
+333.75b^{6}+a^{2}(11a^{2}b^{2}-b^{6}-121b^{4}-2)+5.5b^{8}+\frac{a}{2b}.
+\]
+
+\end_inset
+
+You will probably get a number like 
+\begin_inset Formula $-1.180591620717411(10)^{21}$
+\end_inset
+
+ even though the exact value is 
+\begin_inset Formula $-\frac{54767}{66192}\approx-.8273960599468214$
+\end_inset
+
+.
+ That's an incredible error! But it's not because your calculator or computer
+ has any problem calculating each term to a reasonable degree of accuracy.
+ Try it.
+\begin_inset Formula 
+\begin{eqnarray*}
+333.75b^{6} & = & 438605750846393161930703831040\\
+a^{2}(11a^{2}b^{2}-b^{6}-121b^{4}-2) & = & -7917111779274712207494296632228773890\\
+5.5b^{8} & = & 7917111340668961361101134701524942848\\
+\frac{a}{2b} & = & \frac{77617}{66192}\approx1.172603940053179
+\end{eqnarray*}
+
+\end_inset
+
+The reason the calculation is so poor is that nearly equal values are subtracted
+ after each term is calculated.
+ 
+\begin_inset Formula $a^{2}(11a^{2}b^{2}-b^{6}-121b^{4}-2)$
+\end_inset
+
+ and 
+\begin_inset Formula $5.5b^{8}$
+\end_inset
+
+ have opposite signs and match in their greatest 7 significant digits, so
+ calculating their sum decreases the accuracy by about 7 significant digits.
+ To make matters worse, 
+\begin_inset Formula $a^{2}(11a^{2}b^{2}-b^{6}-121b^{4}-2)+5.5b^{8}=-438605750846393161930703831042$
+\end_inset
+
+, which has the opposite sign of 
+\begin_inset Formula $333.75b^{6}$
+\end_inset
+
+ and matches it in every place value except the ones.
+ That's 29 digits! So we lose another 29 significant digits of accuracy
+ in adding this sum to 
+\begin_inset Formula $333.75b^{6}$
+\end_inset
+
+.
+ Doing the calculation exactly, the sum 
+\begin_inset Formula $333.75b^{6}+a^{2}(11a^{2}b^{2}-b^{6}-121b^{4}-2)+5.5b^{8}$
+\end_inset
+
+ is 
+\begin_inset Formula $-2$
+\end_inset
+
+.
+ But the computation needs to be carried out to 37 significant digits to
+ realize this.
+ Calculation using only about 16 significant digits, as most calculators
+ and computers do, results in 0 signifcant digits of accuracy since 36 digits
+ of accuracy are lost during the calculation.
+ That's why you can get a number like 
+\begin_inset Formula $-1.180591620717411(10)^{21}$
+\end_inset
+
+ for your final answer instead of the exact answer 
+\begin_inset Formula $\frac{a}{2b}-2\approx-.8273960599468214$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+What may be even more surprising is that a simple rearrangement of the expressio
+n leads to a completely different result.
+ Try computing 
+\begin_inset Formula 
+\[
+(333.75-a^{2})b^{6}+a^{2}(11a^{2}b^{2}-121b^{4}-2)+5.5b^{8}+\frac{a}{2b}
+\]
+
+\end_inset
+
+instead.
+ This time you will likely get a number like 
+\begin_inset Formula $1.172603940053179$
+\end_inset
+
+.
+ Again the result is entirely inaccurate, and the reason is the same.
+ This time the individual terms are
+\begin_inset Formula 
+\begin{eqnarray*}
+(333.75-a^{2})b^{6} & = & -7917110903377385049079188237280149504\\
+a^{2}(11a^{2}b^{2}-121b^{4}-2) & = & -437291576312021946464244793346\\
+5.5b^{8} & = & 7917111340668961361101134701524942848\\
+\frac{a}{2b} & = & \frac{77617}{66192}\approx1.172603940053179
+\end{eqnarray*}
+
+\end_inset
+
+so the problem persists.
+ We still end up subtracting numbers of nearly equal value.
+ The difference between this calculation and the last is rounding.
+ In the first case, rounding caused two of the large numbers to disagree
+ in their last significant digit, so they added up to something huge.
+ In the second case, the sum of the first three terms turns out to be 
+\begin_inset Formula $0$
+\end_inset
+
+ because the large numbers agree in all significant digits.
+ Note that in the second case, the final result is simply the value of 
+\begin_inset Formula $\frac{a}{2b}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As these examples show, sometimes floating-point error and sometimes algorithmic
+ error can spoil a calculation.
+ In general, it is very difficult to catch floating-point error, though.
+ Algorithmic error is much more accessible.
+ And most of the algorithms we will explore are not susceptible to floating
+ point error.
+ In almost all cases, the lion's share of the error will be algorithmic.
+\end_layout
+
+\begin_layout Subsubsection
+References
+\end_layout
+
+\begin_layout Standard
+Rump, 
+\shape italic
+Algorithms for Verified Inclusions: Theory and Practice
+\shape default
+, Moore, R.
+ E.
+ (ed.), Reliability in Computing: The Role of Interval Methods in Scientific
+ Computing, Academic Press, Boston, 1988, pp.
+ 109–126.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Loh and Walster, 
+\shape italic
+Rump's Example Revisited
+\shape default
+, Reliable Computing, Vol.
+ 8, No.
+ 3 (2002), pp.
+ 245-248.
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $p$
+\end_inset
+
+ The exact value being approximated.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ An approximation of the value 
+\begin_inset Formula $p$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Absolute
+\begin_inset space ~
+\end_inset
+
+error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! absolute
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Formula $|\tilde{p}-p|$
+\end_inset
+
+ is known as the absolute error in using 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ to approximate the value 
+\begin_inset Formula $p$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Relative
+\begin_inset space ~
+\end_inset
+
+error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! relative
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Formula ${\displaystyle \frac{|\tilde{p}-p|}{|p|}}$
+\end_inset
+
+ is known as the relative error in using 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ to approximate the value 
+\begin_inset Formula $p$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Accuracy
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+accuracy
+\end_layout
+
+\end_inset
+
+: We say that 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is accurate to 
+\begin_inset Formula $n$
+\end_inset
+
+ significant digits if the leading 
+\begin_inset Formula $n$
+\end_inset
+
+ significant digits of 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ match those of 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ More precisely, we say that 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is accurate to 
+\begin_inset Formula $d(\tilde{p})=\log\left|\frac{p}{\tilde{p}-p}\right|$
+\end_inset
+
+ significant digits.
+\end_layout
+
+\begin_layout Description
+Floating-point
+\begin_inset space ~
+\end_inset
+
+arithmetic
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+floating-point arithmetic
+\end_layout
+
+\end_inset
+
+: Arithmetic using numbers represented by a fixed number of significant
+ digits.
+\end_layout
+
+\begin_layout Description
+Algorithmic
+\begin_inset space ~
+\end_inset
+
+error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! algorithmic
+\end_layout
+
+\end_inset
+
+: Error caused solely by the algorithm or equation involved in the approximation
+, 
+\begin_inset Formula $|\tilde{p}-p|$
+\end_inset
+
+ where 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is an approximation of 
+\begin_inset Formula $p$
+\end_inset
+
+ and is computed using exact arithmetic.
+\end_layout
+
+\begin_layout Description
+Truncation
+\begin_inset space ~
+\end_inset
+
+error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! truncation
+\end_layout
+
+\end_inset
+
+: Algorithmic error due to use of a partial sum in place of a series.
+ In this type of error, the tail of the series is truncated---thus the name.
+\end_layout
+
+\begin_layout Description
+Floating-point
+\begin_inset space ~
+\end_inset
+
+error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! floating-point
+\end_layout
+
+\end_inset
+
+: Error caused solely by the fact that a computation is done using floating-poin
+t arithmetic, 
+\begin_inset Formula $|\tilde{p}^{*}-\tilde{p}|$
+\end_inset
+
+ where 
+\begin_inset Formula $\tilde{p}^{*}$
+\end_inset
+
+ is computed using floating-point arithmetic, 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is computed using exact arithmetic, and both are computed according to
+ the same formula or algorithm.
+\end_layout
+
+\begin_layout Description
+Roundoff
+\begin_inset space ~
+\end_inset
+
+error
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+error ! roundoff
+\end_layout
+
+\end_inset
+
+: Another name for floating-point error.
+\end_layout
+
+\begin_layout Subsection
+Octave
+\end_layout
+
+\begin_layout Standard
+The computations of this section can easily be done using Octave.
+ All you need are arithmetic operations
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! arithmetic operations
+\end_layout
+
+\end_inset
+
+ and a few standard functions
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! standard functions
+\end_layout
+
+\end_inset
+
+ like the absolute value and sine and cosine.
+ Luckily, none of these is very difficult using Octave.
+ The arithmetic operations are done much like they would be on a calculator.
+ There is but one important distinction.
+ Most calculators will accept an expression like 
+\family typewriter
+3x
+\family default
+ and understand that you mean 
+\begin_inset Formula $3\times x$
+\end_inset
+
+, but Octave will not.
+ The expression 
+\family typewriter
+3x
+\family default
+ causes a syntax error in Octave.
+ Octave needs you to specify the operation as in 
+\family typewriter
+3*x
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Standard functions like absolute value, sine, and cosine (and many others)
+ have simple abbreviations in Octave.
+ They all take one argument, or input.
+ Think function notation and it will become clear how to find the sine or
+ absolute value of a number.
+ You need to type the name of the function, a left parenthesis, the argument,
+ and a right parenthesis, as in 
+\family typewriter
+sin(7.2)
+\family default
+.
+ Some common functions and their abbreviations are listed in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:commonOctave"
+
+\end_inset
+
+.
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:commonOctave"
+
+\end_inset
+
+Some common functions and their Octave abbreviations.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="6">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Function
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Octave
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Function
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Octave
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Function
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Octave
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n!$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+factorial(n)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sin(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+sin(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cos(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+cos(x)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|x|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+abs(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\tan(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+tan(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cot(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+cot(x)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $e^{x}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+exp(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sin^{-1}(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+asin(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cos^{-1}(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+asin(x)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+log(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\tan^{-1}(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+atan(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cot^{-1}(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+acot(x)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sqrt{x}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+sqrt(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sinh(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+sinh(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cosh(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+cosh(x)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lfloor x\rfloor$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+floor(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lceil x\rceil$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+ceil(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b^{x}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+b^x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Functions and arithmetic operations can be combined in the obvious way.
+ A few examples from this section appear in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:errorExamples"
+
+\end_inset
+
+.
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:errorExamples"
+
+\end_inset
+
+Octave computations of some expressions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Expression
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Octave
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Result
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|\frac{22}{7}-\pi|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+abs(22/7-pi)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+0.0012645
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{|\frac{16525}{54}-\pi^{5}|}{|\pi^{5}|}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+abs(16525/54-pi^5)/abs(pi^5)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+3.8111e-06
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{\sin(1.01)-\sin(0.99)}{0.02}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+(sin(1.01)-sin(0.99))/0.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+0.54029
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+There are two thing to observe.
+ First, Octave notation is very much like calculator notation.
+ Second, by default Octave displays results using 5 significant digits.
+ Don't be fooled into thinking Octave has only computed those five digits
+ of the result, though.
+ In fact, Octave has computed at least 15 digits correctly.
+ And if you want to know what they are, use the 
+\family typewriter
+format('long')
+\family default
+ command
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+format
+\end_layout
+
+\end_inset
+
+.
+ This command only needs to be used once per session.
+ All numbers printed after this command is run will be shown with 15 significant
+ digits.
+ For example, 
+\family typewriter
+1/7
+\family default
+ will produce 
+\family typewriter
+0.142857142857143
+\family default
+ instead of just 
+\family typewriter
+0.14286
+\family default
+.
+ If you would like to go back to the default format, use the 
+\family typewriter
+format()
+\family default
+ command with no arguments.
+ We will discuss finer control over output later.
+ For now, here are a few ways you might do experiment 1 using Octave.
+ The only differences are the amount of output and the format of the output.
+ The numbers are being calculated exactly the same way and with exactly
+ the same precision.
+\end_layout
+
+\begin_layout Subsubsection
+Experiment 1 in Octave, example 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> p0=pi;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> p1=10*p0-31; p2=100*p1-41; p3=100*p2-59;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> p4=100*p3-26; p5=100*p4-53; p6=100*p5-58;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:4> p7=100*p6-97
+\end_layout
+
+\begin_layout Plain Layout
+
+p7 =  0.93116 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Experiment 1 in Octave, example 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> format('long')
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> p0=pi
+\end_layout
+
+\begin_layout Plain Layout
+
+p0 =  3.14159265358979
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> p1=10*p0-31
+\end_layout
+
+\begin_layout Plain Layout
+
+p1 =  0.415926535897931
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:4> p2=100*p1-41
+\end_layout
+
+\begin_layout Plain Layout
+
+p2 =  0.592653589793116
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:5> p3=100*p2-59
+\end_layout
+
+\begin_layout Plain Layout
+
+p3 =  0.265358979311600
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:6> p4=100*p3-26
+\end_layout
+
+\begin_layout Plain Layout
+
+p4 =  0.535897931159980
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:7> p5=100*p4-53
+\end_layout
+
+\begin_layout Plain Layout
+
+p5 =  0.589793115997963
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:8> p6=100*p5-58
+\end_layout
+
+\begin_layout Plain Layout
+
+p6 =  0.979311599796347
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:9> p7=100*p6-97
+\end_layout
+
+\begin_layout Plain Layout
+
+p7 =  0.931159979634685 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Experiment 1 in Octave, example 3
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> 10*pi-31
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.41593
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> 100*ans-41
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.59265
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> 100*ans-59
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.26536
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:4> 100*ans-26
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.53590
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:5> 100*ans-53
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.58979
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:6> 100*ans-58
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.97931
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:7> 100*ans-97
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.93116 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Experiment 3 in Octave
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> a=77617;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> b=33096;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> t1=333.75*b^6;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:4> t2=a^2*(11*a^2*b^2-b^6-121*b^4-2);
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:5> t3=5.5*b^8;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:6> t4=a/(2*b);
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:7> t1+t2+t3+t4
+\end_layout
+
+\begin_layout Plain Layout
+
+ans = -1.18059162071741e+21
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:8> t1=(333.75-a^2)*b^6;
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:9> t2=a^2*(11*a^2*b^2-121*b^4-2);
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:10> t1+t2+t3+t4
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  1.17260394005318 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In the end, the way you choose to complete an exercise in Octave will be
+ a matter of preference, and will depend on your goal.
+ You should ask yourself questions like the following.
+ How many significant digits do I need? How many intermediate results do
+ I need to see? Which ones? The answers to such questions should guide your
+ solution.
+\end_layout
+
+\begin_layout Standard
+When needed, Octave has abbreviations for most common constants.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:constants"
+
+\end_inset
+
+ shows the three most common.
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:constants"
+
+\end_inset
+
+Some Octave 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! constants
+\end_layout
+
+\end_inset
+
+ constants.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Constant
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Octave
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Result
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $e$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+e
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+2.7183
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pi$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+pi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+3.1416
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+i or j
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+0 + 1i
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Besides roundoff error, how may the accuracy of a numerical calculation
+ be adversely affected?
+\end_layout
+
+\begin_layout Enumerate
+Compute the absolute and relative errors in the approximation of 
+\begin_inset Formula $\pi$
+\end_inset
+
+ by 3.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "ex:absoluteError"
+
+\end_inset
+
+Calculate the absolute error in approximating 
+\begin_inset Formula $p$
+\end_inset
+
+ by 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr1"
+
+\end_inset
+
+
+\begin_inset Formula $p=123$
+\end_inset
+
+;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset Formula $\tilde{p}=\frac{1106}{9}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p=\frac{1}{e}$
+\end_inset
+
+;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset Formula $\tilde{p}=.3666$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr2"
+
+\end_inset
+
+
+\begin_inset Formula $p=2^{10}$
+\end_inset
+
+;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset Formula $\tilde{p}=1000$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p=24$
+\end_inset
+
+;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset Formula $\tilde{p}=48$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr3"
+
+\end_inset
+
+
+\begin_inset Formula $p=\pi^{-7}$
+\end_inset
+
+;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset Formula $\tilde{p}=10^{-4}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $p=(0.062847)(0.069234)$
+\end_inset
+
+;
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset Formula $\tilde{p}=0.0042$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr15"
+
+\end_inset
+
+Calculate the relative errors in the approximations of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ex:absoluteError"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr16"
+
+\end_inset
+
+How many significant digits of accuracy do the approximations of question
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ex:absoluteError"
+
+\end_inset
+
+ have?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Compute the absolute error and relative error in approximations of 
+\begin_inset Formula $p$
+\end_inset
+
+ by 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $p=\sqrt{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\tilde{p}=1.414$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p=10^{\pi}$
+\end_inset
+
+, 
+\begin_inset Formula $\tilde{p}=1400$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p=9!$
+\end_inset
+
+, 
+\begin_inset Formula $\tilde{p}=\sqrt{18\pi}(9/e)^{9}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:one-over-pi"
+
+\end_inset
+
+Calculate 
+\begin_inset Formula ${\displaystyle \frac{1103\sqrt{8}}{9801}}$
+\end_inset
+
+ using Octave.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+The number in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:one-over-pi"
+
+\end_inset
+
+ is an approximation of 
+\begin_inset Formula $1/\pi$
+\end_inset
+
+.
+ Using Octave, find the absolute and relative errors in the approximation.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Using Octave, calculate
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\lfloor\ln(234567)\rfloor$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $e^{\lceil\ln(234567)\rceil}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\sqrt[3]{\lfloor\sin(e^{5.2})\rfloor}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $-e^{i\pi}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $4\tan^{-1}(1)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \frac{\lfloor\cos(3)-\sqrt[5]{\ln(3)}\rfloor}{\lceil\arctan(3)-e^{3}\rceil}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Find 
+\begin_inset Formula $f(2)$
+\end_inset
+
+ using Octave.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr12"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=e^{\sin(x)}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\sin\left(e^{x}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr13"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle f(x)=\tan^{-1}(x-0.429)}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=x-\tan^{-1}(0.429)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr14"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=10^{x}/5!$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=5!/x^{10}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+All of these equations are mathematically true.
+ Nonetheless, floating point error causes some of them to be false according
+ to Octave.
+ Which ones? HINT: Use the boolean operator 
+\family typewriter
+==
+\family default
+ to check.
+ For example, to check if 
+\begin_inset Formula $\sin(0)=0$
+\end_inset
+
+, type 
+\family typewriter
+sin(0)==0
+\family default
+ into Octave.
+ 
+\family typewriter
+ans=1
+\family default
+ means true (the two sides are equal according to Octave---no roundoff error)
+ and 
+\family typewriter
+ans=0
+\family default
+ means false (the two sides are not equal according to Octave---roundoff
+ error).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(2)(12)=9^{2}-4(9)-21$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $e^{3\ln(2)}=8$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\ln(10)=\ln(5)+\ln(2)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(\frac{1+\sqrt{5}}{2})=\frac{1+\sqrt{5}}{2}$
+\end_inset
+
+ where 
+\begin_inset Formula $g(x)=\sqrt[3]{x^{2}+x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\lfloor153465/3\rfloor=153465/3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $3\pi^{3}+7\pi^{2}-2\pi+8=((3\pi+7)\pi-2)\pi+8$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "ex:absoluteError2"
+
+\end_inset
+
+Find an approximation 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ of 
+\begin_inset Formula $p$
+\end_inset
+
+ with absolute error 
+\begin_inset Formula $.001$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr4"
+
+\end_inset
+
+
+\begin_inset Formula $p=\pi$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p=\sqrt{5}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr5"
+
+\end_inset
+
+
+\begin_inset Formula $p=\ln(3)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p=\sqrt{23}^{\sqrt{23}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr6"
+
+\end_inset
+
+
+\begin_inset Formula $p=\frac{10}{\ln(1.1)}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p=\tan(1.57079)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr17"
+
+\end_inset
+
+Find an approximation 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ of 
+\begin_inset Formula $p$
+\end_inset
+
+ with relative error 
+\begin_inset Formula $.001$
+\end_inset
+
+ for each value of 
+\begin_inset Formula $p$
+\end_inset
+
+ in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ex:absoluteError2"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "ex:absoluteError3"
+
+\end_inset
+
+
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ approximates what value with absolute error 
+\begin_inset Formula $.0005$
+\end_inset
+
+?
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr7"
+
+\end_inset
+
+
+\begin_inset Formula $\tilde{p}=.2348263818643$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\tilde{p}=23.89627345677$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\tilde{p}=-8.76257664363$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr18"
+
+\end_inset
+
+Repeat question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ex:absoluteError3"
+
+\end_inset
+
+ except with relative error 
+\begin_inset Formula $.0005$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr8"
+
+\end_inset
+
+
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ approximates 
+\begin_inset Formula $p$
+\end_inset
+
+ with absolute error 
+\begin_inset Formula $\frac{1}{100}$
+\end_inset
+
+ and relative error 
+\begin_inset Formula $\frac{3}{100}$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ approximates 
+\begin_inset Formula $p$
+\end_inset
+
+ with absolute error 
+\begin_inset Formula $\frac{3}{100}$
+\end_inset
+
+ and relative error 
+\begin_inset Formula $\frac{1}{100}$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ must approximate 
+\begin_inset Formula $p$
+\end_inset
+
+ with relative error at most 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+.
+ Find the largest interval in which 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ must lie if 
+\begin_inset Formula $p=900$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The number 
+\begin_inset Formula $e$
+\end_inset
+
+ can be defined by 
+\begin_inset Formula $e=\sum_{n=0}^{\infty}(1/n!)$
+\end_inset
+
+.
+ Compute the absolute error and relative error in the following approximations
+ of 
+\begin_inset Formula $e$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \sum_{n=0}^{5}\frac{1}{n!}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \sum_{n=0}^{10}\frac{1}{n!}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The golden ratio, 
+\begin_inset Formula ${\displaystyle \frac{1+\sqrt{5}}{2}}$
+\end_inset
+
+, is found in nature and in mathematics in a variety of places.
+ For example, if 
+\begin_inset Formula $F_{n}$
+\end_inset
+
+ is the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Fibonacci number, then
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{F_{n+1}}{F_{n}}=\frac{1+\sqrt{5}}{2}
+\]
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $F_{11}/F_{10}$
+\end_inset
+
+ may be used as an approximation of the golden ratio.
+ Find the relative error in this approximation.
+ HINT: The Fibonacci sequence is defined by 
+\begin_inset Formula $F_{0}=1$
+\end_inset
+
+, 
+\begin_inset Formula $F_{1}=1$
+\end_inset
+
+, 
+\begin_inset Formula $F_{n}=F_{n-1}+F_{n-2}$
+\end_inset
+
+ for 
+\begin_inset Formula $n\geq2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr9"
+
+\end_inset
+
+Find values for 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ so that the relative and absolute errors are equal.
+ Make a general statement about conditions under which this will happen.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find values for 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ so that the relative error is greater than the absolute error.
+ Make a general statement about conditions under which this will happen.
+\end_layout
+
+\begin_layout Enumerate
+Find values for 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ so that the relative error is less than the absolute error.
+ Make a general statement about conditions under which this will happen.
+\end_layout
+
+\begin_layout Enumerate
+Calculate (i) 
+\begin_inset Formula $\tilde{p}^{*}$
+\end_inset
+
+ using a calculator or computer, (ii) the absolute error, 
+\begin_inset Formula $|\tilde{p}^{*}-p|$
+\end_inset
+
+, and (iii) the relative error, 
+\begin_inset Formula $\frac{|\tilde{p}^{*}-p|}{|p|}$
+\end_inset
+
+.
+ Then use the given value of 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ to compute (iv) the algorithmic error, 
+\begin_inset Formula $|\tilde{p}-p|$
+\end_inset
+
+ and (v) the round-off error, 
+\begin_inset Formula $|\tilde{p}^{*}-\tilde{p}|$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:abserr10"
+
+\end_inset
+
+Let 
+\begin_inset Formula $f(x)=x^{4}+7x^{3}-63x^{2}-295x+350$
+\end_inset
+
+ and let 
+\begin_inset Formula $p=f'(-2)$
+\end_inset
+
+.
+ The value 
+\begin_inset Formula $\tilde{p}=\frac{f(-2+10^{-7})-f(-2-10^{-7})}{2(10)^{-7}}$
+\end_inset
+
+ is a good approximation of 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is exactly 
+\begin_inset Formula $8.99999999999999$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f'(x)=e^{x}\sin(10x)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(0)=0$
+\end_inset
+
+ and let 
+\begin_inset Formula $p=f(1)$
+\end_inset
+
+.
+ It can be shown that 
+\begin_inset Formula $p=\frac{1}{101}e(\sin10-10\cos10)+\frac{10}{101}$
+\end_inset
+
+.
+ Euler's method produces the approximation 
+\begin_inset Formula $\tilde{p}=\frac{1}{10}\sum_{i=1}^{10}e^{i/10}\sin i$
+\end_inset
+
+.
+ Accurate to 28 significant digits, 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is 
+\begin_inset Formula $0.2071647018159241499410798569$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $a_{0}=\frac{5+\sqrt{5}}{8}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{n+1}=4a_{n}(1-a_{n})$
+\end_inset
+
+, and consider 
+\begin_inset Formula $p=a_{51}$
+\end_inset
+
+.
+ It can be shown that 
+\begin_inset Formula $p=a_{51}=\frac{5-\sqrt{5}}{8}$
+\end_inset
+
+.
+ The most direct algorithm for calculating 
+\begin_inset Formula $a_{51}$
+\end_inset
+
+ is to calculate 
+\begin_inset Formula $a_{1},a_{2},a_{3},\ldots a_{51}$
+\end_inset
+
+ in succession, according to the given recursion relation.
+ Use this algorithm to compute 
+\begin_inset Formula $\tilde{p}^{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

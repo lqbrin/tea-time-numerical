@@ -1,0 +1,161 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=2-exp(x);
+p2(t,y):=
+    ((x-t[1])*(x-t[2]))/((t[3]-t[1])*(t[3]-t[2]))*y[3] +
+    ((x-t[1])*(x-t[3]))/((t[2]-t[1])*(t[2]-t[3]))*y[2] +
+    ((x-t[2])*(x-t[3]))/((t[1]-t[2])*(t[1]-t[3]))*y[1];
+sidiSlope2(xs,y):=(
+    p:expand(p2(xs,y)),
+    print(p),
+    pp:diff(p,x),
+    subst(x=xs[3],pp)
+);
+p3(t,y):=
+    ((x-t[1])*(x-t[2])*(x-t[3]))/((t[4]-t[1])*(t[4]-t[2])*(t[4]-t[3]))*y[4] +
+    ((x-t[1])*(x-t[2])*(x-t[4]))/((t[3]-t[1])*(t[3]-t[2])*(t[3]-t[4]))*y[3] +
+    ((x-t[1])*(x-t[3])*(x-t[4]))/((t[2]-t[1])*(t[2]-t[3])*(t[2]-t[4]))*y[2] +
+    ((x-t[2])*(x-t[3])*(x-t[4]))/((t[1]-t[2])*(t[1]-t[3])*(t[1]-t[4]))*y[1];
+sidiSlope3(xs,y):=(
+    p:expand(p3(xs,y)),
+    print(p),
+    pp:diff(p,x),
+    subst(x=xs[4],pp)
+);
+p4(t,y):=
+    ((x-t[1])*(x-t[2])*(x-t[3])*(x-t[4]))/((t[5]-t[1])*(t[5]-t[2])*(t[5]-t[3])*(t[5]-t[4]))*y[5] +
+    ((x-t[1])*(x-t[2])*(x-t[3])*(x-t[5]))/((t[4]-t[1])*(t[4]-t[2])*(t[4]-t[3])*(t[4]-t[5]))*y[4] +
+    ((x-t[1])*(x-t[2])*(x-t[4])*(x-t[5]))/((t[3]-t[1])*(t[3]-t[2])*(t[3]-t[4])*(t[3]-t[5]))*y[3] +
+    ((x-t[1])*(x-t[3])*(x-t[4])*(x-t[5]))/((t[2]-t[1])*(t[2]-t[3])*(t[2]-t[4])*(t[2]-t[5]))*y[2] +
+    ((x-t[2])*(x-t[3])*(x-t[4])*(x-t[5]))/((t[1]-t[2])*(t[1]-t[3])*(t[1]-t[4])*(t[1]-t[5]))*y[1];
+sidiSlope4(xs,y):=(
+    p:expand(p4(xs,y)),
+    print(p),
+    pp:diff(p,x),
+    subst(x=xs[5],pp)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sidi's with k=3
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+xs:[0.0,1.0,0.581976706869326];
+y:[f(xs[1]),f(xs[2]),f(xs[3])];
+s:sidiSlope2(xs,y);
+xs[1]:xs[2];
+xs[2]:xs[3];
+xs[3]:xs[3]-y[3]/s;
+y[1]:y[2]$
+y[2]:y[3]$
+y[3]:f(xs[3])$
+print("")$
+s:sidiSlope2(xs,y);
+xs[1]:xs[2];
+xs[2]:xs[3];
+xs[3]:xs[3]-y[3]/s;
+y[1]:y[2]$
+y[2]:y[3]$
+y[3]:f(xs[3])$
+print("")$
+s:sidiSlope2(xs,y);
+xs[1]:xs[2];
+xs[2]:xs[3];
+xs[3]:xs[3]-y[3]/s;
+y[1]:y[2]$
+y[2]:y[3]$
+y[3]:f(xs[3])$
+print("")$
+s:sidiSlope2(xs,y);
+xs[1]:xs[2];
+xs[2]:xs[3];
+xs[3]:xs[3]-y[3]/s;
+y[1]:y[2]$
+y[2]:y[3]$
+y[3]:f(xs[3])$
+print("")$
+s:sidiSlope2(xs,y);
+xs[1]:xs[2];
+xs[2]:xs[3];
+xs[3]:xs[3]-y[3]/s;
+y[1]:y[2]$
+y[2]:y[3]$
+y[3]:f(xs[3])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sidi's initialize
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+xs:[0.0,1.0,0.581976706869326];
+y:[f(xs[1]),f(xs[2]),f(xs[3])];
+s:sidiSlope2(xs,y);
+xs:append(xs,[xs[3]-y[3]/s]);
+y:append(y,[f(xs[4])])$
+print("")$
+s:sidiSlope3(xs,y);
+xs:append(xs,[xs[4]-y[4]/s]);
+y:append(y,[f(xs[5])])$
+print("")$
+s:sidiSlope4(xs,y);
+xs:append(xs,[xs[5]-y[5]/s]);
+y:append(y,[f(xs[6])])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sidi's with k=5
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+xs:[0.0,1.0,0.581976706869326,0.695104038561997,.6931508737861687];
+y:[f(xs[1]),f(xs[2]),f(xs[3]),f(xs[4]),f(xs[5])];
+s:sidiSlope4(xs,y);
+xs[1]:xs[2];
+xs[2]:xs[3];
+xs[3]:xs[4];
+xs[4]:xs[5];
+xs[5]:xs[5]-y[5]/s;
+y[1]:y[2]$
+y[2]:y[3]$
+y[3]:y[4]$
+y[4]:y[5]$
+y[5]:f(xs[5])$
+print("")$
+s:sidiSlope4(xs,y);
+xs[1]:xs[2];
+xs[2]:xs[3];
+xs[3]:xs[4];
+xs[4]:xs[5];
+xs[5]:xs[5]-y[5]/s;
+y[1]:y[2]$
+y[2]:y[3]$
+y[3]:y[4]$
+y[4]:y[5]$
+y[5]:f(xs[5])$
+print("")$
+s:sidiSlope4(xs,y);
+xs[1]:xs[2];
+xs[2]:xs[3];
+xs[3]:xs[4];
+xs[4]:xs[5];
+xs[5]:xs[5]-y[5]/s;
+y[1]:y[2]$
+y[2]:y[3]$
+y[3]:y[4]$
+y[4]:y[5]$
+y[5]:f(xs[5])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+0.693147180565448;
+0.693147180559945;
+0.693147180559945;
+f(%);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

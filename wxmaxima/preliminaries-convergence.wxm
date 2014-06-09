@@ -1,0 +1,207 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.09.0 ] */
+
+/* [wxMaxima: input   start ] */
+convergence(p,p0,p1,p2):=log(abs((p2-p)/(p1-p)))/log(abs((p1-p)/(p0-p)));
+constant(p,p0,p1,alpha):=abs((p1-p))/(abs(p0-p))^alpha;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:400$
+n:200$
+p:bfloat(%e)$
+p[0]:bfloat(1)$ p[1]:bfloat(2)$
+for i:2 thru n do (
+    p[i]:p[i-1]+1/i!,
+    c[i]:convergence(p,p[i-2],p[i-1],p[i]),
+    k[i]:constant(p,p[i-1],p[i],bfloat(1))
+);
+p[n-2]; p[n-1]; p[n];
+print("");
+abs(p-p[n-2]); abs(p-p[n-1]); abs(p-p[n]);
+print("");
+c[n-2]; c[n-1]; c[n];
+c[n-2]-(c[n-1]-c[n-2])^2/(c[n]-2*c[n-1]+c[n-2]);
+print("");
+k[n-2]; k[n-1]; k[n];
+k[n-2]-(k[n-1]-k[n-2])^2/(k[n]-2*k[n-1]+k[n-2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x+1-log(x)$
+fpprec:20$
+n:20$
+p:bfloat(%e)$
+p[0]:bfloat(1)$
+for i:2 thru n do (
+    p[i]:f(p[i-1]),
+    c[i]:convergence(p,p[i-2],p[i-1],p[i]),
+    k[i]:constant(p,p[i-1],p[i],bfloat(1))
+);
+p[n-2]; p[n-1]; p[n];
+print("");
+abs(p-p[n-2]); abs(p-p[n-1]); abs(p-p[n]);
+print("");
+c[n-2]; c[n-1]; c[n];
+c[n-2]-(c[n-1]-c[n-2])^2/(c[n]-2*c[n-1]+c[n-2]);
+print("");
+k[n-2]; k[n-1]; k[n];
+k[n-2]-(k[n-1]-k[n-2])^2/(k[n]-2*k[n-1]+k[n-2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x+1-log(x)$
+fpprec:1000$
+n:10$
+p:bfloat(%e)$
+p[0]:bfloat(1)$
+t1:p[0]$ t2:f(t1)$ t3:f(t2)$
+p[1]:t1-(t2-t1)^2/(t3-2*t2+t1)$
+for i:2 thru n do (
+    t1:p[i-1], t2:f(t1), t3:f(t2),
+    p[i]:t1-(t2-t1)^2/(t3-2*t2+t1),
+    c[i]:convergence(p,p[i-2],p[i-1],p[i]),
+    k[i]:constant(p,p[i-1],p[i],bfloat(2))
+);
+p[n-2]; p[n-1]; p[n];
+print("");
+abs(p-p[n-2]); abs(p-p[n-1]); abs(p-p[n]);
+print("");
+c[n-2]; c[n-1]; c[n];
+c[n-2]-(c[n-1]-c[n-2])^2/(c[n]-2*c[n-1]+c[n-2]);
+print("");
+k[n-2]; k[n-1]; k[n];
+k[n-2]-(k[n-1]-k[n-2])^2/(k[n]-2*k[n-1]+k[n-2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=1-log(x)$
+fpprec:1000$
+n:15$
+p:bfloat(%e)$
+p[0]:bfloat(1)$
+p[1]:bfloat(2)$
+for i:2 thru n do (
+    p[i]:p[i-1]-f(p[i-1])*(p[i-1]-p[i-2])/(f(p[i-1])-f(p[i-2])),
+    c[i]:convergence(p,p[i-2],p[i-1],p[i]),
+    k[i]:constant(p,p[i-1],p[i],bfloat((1+sqrt(5))/2))
+);
+p[n-2]; p[n-1]; p[n];
+print("");
+abs(p-p[n-2]); abs(p-p[n-1]); abs(p-p[n]);
+print("");
+c[n-2]; c[n-1]; c[n];
+c[n-2]-(c[n-1]-c[n-2])^2/(c[n]-2*c[n-1]+c[n-2]);
+print("");
+k[n-2]; k[n-1]; k[n];
+k[n-2]-(k[n-1]-k[n-2])^2/(k[n]-2*k[n-1]+k[n-2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:20$
+fpprintprec:4$
+lambda:.8$
+alpha:1$
+print("alpha = ",alpha)$
+p:bfloat(%e)$
+p[0]:bfloat(3)$
+print(p[0], "  ", abs(p[0]-p))$
+for i:1 thru 10 do (
+    p[i]:p+lambda*abs(p[i-1]-p)^alpha,
+    print(p[i], "  ", abs(p[i]-p))
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:15$
+fpprintprec:4$
+lambda:.8$
+alpha:bfloat(sqrt(7)/2)$
+print("alpha = ",alpha)$
+p:bfloat(%e)$
+p[0]:bfloat(3)$
+print(p[0], "  ", abs(p[0]-p))$
+for i:1 thru 10 do (
+    p[i]:p+lambda*abs(p[i-1]-p)^alpha,
+    print(p[i], "  ", abs(p[i]-p))
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:125$
+fpprintprec:4$
+lambda:.8$
+alpha:bfloat(1+sqrt(5))/2.0$
+print("alpha = ",alpha)$
+p:bfloat(%e)$
+p[0]:bfloat(3)$
+print(p[0], "  ", abs(p[0]-p))$
+for i:1 thru 10 do (
+    p[i]:p+lambda*abs(p[i-1]-p)^alpha,
+    print(p[i], "  ", abs(p[i]-p))
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:1025$
+fpprintprec:4$
+lambda:.8$
+alpha:2.0$
+print("alpha = ",alpha)$
+p:bfloat(%e)$
+p[0]:bfloat(3)$
+print(p[0], "  ", abs(p[0]-p))$
+for i:1 thru 10 do (
+    p[i]:p+lambda*abs(p[i-1]-p)^alpha,
+    print(p[i], "  ", abs(p[i]-p))
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+log(abs(2.89858145824525-%e)/abs(2.9436563656918-%e))/log(abs(2.9436563656918-%e)/(3-%e));
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(p):=1.322*p-.04$
+r4:f(2.1);
+r5:f(%);
+r6:f(%);
+r7:f(%);
+r8:f(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(n):=(4*n)!*(1103+26390*n)/((n!)^4*396^(4*n));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:500$
+sum:0$
+exact:1/%pi$
+for i:0 thru 10 do(
+    sum:sum+f(i),
+    approx:sqrt(8)*sum/9801,
+    err:bfloat(abs(approx-exact)),
+    print(i,"  ",approx,"  ",err)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+bfloat(1/%pi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(0);
+%*sqrt(8)/9801;
+bfloat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(0)+f(1);
+%*sqrt(8)/9801;
+bfloat(%);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

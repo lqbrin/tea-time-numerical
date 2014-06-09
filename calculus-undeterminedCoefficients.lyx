@@ -1,0 +1,3364 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:UndeterminedCoefficients"
+
+\end_inset
+
+Undetermined Coefficients
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+undetermined coefficients
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The basic idea
+\end_layout
+
+\begin_layout Standard
+According to equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrangeInterpolatingPolynomialError"
+
+\end_inset
+
+, the difference between 
+\begin_inset Formula $f$
+\end_inset
+
+ and an interpolating polynomial is a multiple of 
+\begin_inset Formula $f^{(n+1)}(\xi_{x})$
+\end_inset
+
+.
+ In other words, the error in approximating 
+\begin_inset Formula $f$
+\end_inset
+
+ by the interpolating polynomial 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ depends directly on 
+\begin_inset Formula $f^{(n+1)}$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $f^{(n+1)}(x)$
+\end_inset
+
+ is identically zero whenever 
+\begin_inset Formula $f$
+\end_inset
+
+ is a polynomial of degree less than 
+\begin_inset Formula $n+1$
+\end_inset
+
+.
+ Consequently, 
+\begin_inset Formula $(f-P_{n})(x)$
+\end_inset
+
+ is identically zero in this case.
+ At the risk of sounding redundant, this last thought is worthy of repeating.
+ If 
+\begin_inset Formula $f$
+\end_inset
+
+ is any polynomial of degree less than 
+\begin_inset Formula $n+1$
+\end_inset
+
+, then 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+, computed for any set of 
+\begin_inset Formula $n+1$
+\end_inset
+
+ nodes, equals 
+\begin_inset Formula $f$
+\end_inset
+
+ exactly, for all 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ As a result, derivatives of 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ and integrals of 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ are not just approximations of the corresponding derivatives and integrals
+ of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ They are exact becuase 
+\begin_inset Formula $P_{n}=f$
+\end_inset
+
+ for all 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ This observation can be used to derive formulas for derivatives and integrals
+ without ever computing 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ or its derivatives or integrals!
+\end_layout
+
+\begin_layout Standard
+All the formulas we have been deriving for approximating derivatives and
+ integrals of the arbitrary function 
+\begin_inset Formula $f$
+\end_inset
+
+ have taken the form
+\begin_inset Formula 
+\[
+\sum_{i=0}^{n}a_{i}f(x_{i})
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{n}$
+\end_inset
+
+ are the nodes of the interpolating polynomial, places where the value of
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ is known, and the 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ are constants resulting from the derivation.
+ The Method of Undetermined Coefficients takes a direct approach to calculating
+ the constants 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+.
+ Knowing that the 
+\begin_inset Quotes eld
+\end_inset
+
+approximation
+\begin_inset Quotes erd
+\end_inset
+
+ formula must be exact for all polynomials of degree 
+\begin_inset Formula $0,1,\ldots,n$
+\end_inset
+
+, we can create 
+\begin_inset Formula $n+1$
+\end_inset
+
+ equations in the 
+\begin_inset Formula $n+1$
+\end_inset
+
+ unkowns, 
+\begin_inset Formula $a_{0},a_{1},\ldots,a_{n}$
+\end_inset
+
+.
+ The solution of the resulting system of equations gives the values of the
+ coefficients.
+\end_layout
+
+\begin_layout Subsection
+Derivatives
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+numerical differentiation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We seek an approximation of the 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+ based on knowledge of the values 
+\begin_inset Formula $f(x_{0}+\theta_{0}h),f(x_{0}+\theta_{1}h),\ldots,f(x_{0}+\theta_{n}h)$
+\end_inset
+
+.
+ To be precise, we desire an approximation of the form
+\begin_inset Formula 
+\begin{equation}
+f^{(k)}(x_{0}+\theta h)\approx\sum_{i=0}^{n}a_{i}f(x_{0}+\theta_{i}h).\label{eq:derivApprox}
+\end{equation}
+
+\end_inset
+
+Due to equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrangeInterpolatingPolynomialError"
+
+\end_inset
+
+, the approximation must be exact for all polynomials of degree 
+\begin_inset Formula $n$
+\end_inset
+
+ or less.
+ In particular, it must be exact for the polynomials 
+\begin_inset Formula $p_{j}(x)=(x-x_{0})^{j}$
+\end_inset
+
+, 
+\begin_inset Formula $j=0,1,\ldots,n$
+\end_inset
+
+.
+ Symbolically, it must be that
+\begin_inset Formula 
+\[
+p_{j}^{(k)}(x_{0}+\theta h)=\sum_{i=0}^{n}a_{i}p_{j}(x_{0}+\theta_{i}h)
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $j=0,1,\ldots,n$
+\end_inset
+
+.
+ Notice the approximation has become an (
+\shape italic
+exact
+\shape default
+) equality.
+ Noting that 
+\begin_inset Formula $p_{j}(x_{0}+\theta_{i}h)=((x_{0}+\theta_{i}h)-x_{0})^{j}=(\theta_{i}h)^{j}$
+\end_inset
+
+, the system of equations becomes
+\begin_inset Formula 
+\begin{equation}
+p_{j}^{(k)}(x_{0}+\theta h)=\sum_{i=0}^{n}(\theta_{i}h)^{j}a_{i}\label{eq:systemGenericDerivative}
+\end{equation}
+
+\end_inset
+
+for 
+\begin_inset Formula $j=0,1,\ldots,n$
+\end_inset
+
+.
+ It is the solution of this system that will yield the 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Vandermonde Matrices}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In general, a system of linear equations may have zero, one, or many solutions.
+ However, system 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:systemGenericDerivative"
+
+\end_inset
+
+ has a special form.
+ In each equation, the constants 
+\begin_inset Formula $(\theta_{i}h)^{j}$
+\end_inset
+
+ form a geometric progression.
+ Such a matrix of coefficients is called a Vandermonde matrix, and it is
+ known that as long as the 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ are distinct, this system will have one solution.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To illustrate, suppose we have the stencil 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments03.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+and are interested in formulas for both the first and second derivatives
+ of 
+\begin_inset Formula $f$
+\end_inset
+
+ (at 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+).
+ For this stencil, 
+\begin_inset Formula $\theta=0$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{0}=-1$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{1}=0$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta_{2}=1$
+\end_inset
+
+, so we are looking for formulas of the forms
+\begin_inset Formula 
+\begin{eqnarray*}
+f'(x_{0}) & \approx & a_{0}f(x_{0}-h)+a_{1}f(x_{0})+a_{2}f(x_{0}+h)\\
+ &  & \mbox{ and}\\
+f''(x_{0}) & \approx & b_{0}f(x_{0}-h)+b_{1}f(x_{0})+b_{2}f(x_{0}+h).
+\end{eqnarray*}
+
+\end_inset
+
+Each of these formulas must be exact when 
+\begin_inset Formula $f=p_{0}$
+\end_inset
+
+, when 
+\begin_inset Formula $f=p_{1}$
+\end_inset
+
+, and when 
+\begin_inset Formula $f=p_{2}$
+\end_inset
+
+.
+ These three requirements give three equations in the three unknowns.
+\end_layout
+
+\begin_layout Standard
+Beginning with the first derivative formula, we detail system 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:systemGenericDerivative"
+
+\end_inset
+
+ with 
+\begin_inset Formula $k=1$
+\end_inset
+
+ and 
+\begin_inset Formula $n=2$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+p_{0}'(x_{0}) & = & a_{0}p_{0}(x_{0}-h)+a_{1}p_{0}(x_{0})+a_{2}p_{0}(x_{0}+h)\\
+p_{1}'(x_{0}) & = & a_{0}p_{1}(x_{0}-h)+a_{1}p_{1}(x_{0})+a_{2}p_{1}(x_{0}+h)\\
+p_{2}'(x_{0}) & = & a_{0}p_{2}(x_{0}-h)+a_{1}p_{2}(x_{0})+a_{2}p_{2}(x_{0}+h)
+\end{eqnarray*}
+
+\end_inset
+
+By definition, 
+\begin_inset Formula $p_{0}(x)=(x-x_{0})^{0}=1$
+\end_inset
+
+ so 
+\begin_inset Formula $p_{0}'(x_{0})=0$
+\end_inset
+
+; 
+\begin_inset Formula $p_{1}(x)=(x-x_{0})^{1}=x-x_{0}$
+\end_inset
+
+ so 
+\begin_inset Formula $p_{1}'(x_{0})=1$
+\end_inset
+
+; and 
+\begin_inset Formula $p_{2}(x)=(x-x_{0})^{2}$
+\end_inset
+
+ so 
+\begin_inset Formula $p_{2}'(x)=2(x-x_{0})$
+\end_inset
+
+ giving 
+\begin_inset Formula $p_{2}'(x_{0})=0$
+\end_inset
+
+.
+ Substituting this information into the equations above,
+\begin_inset Formula 
+\begin{eqnarray*}
+0 & = & a_{0}+a_{1}+a_{2}\\
+1 & = & -ha_{0}+ha_{2}\\
+0 & = & h^{2}a_{0}+h^{2}a_{2}.
+\end{eqnarray*}
+
+\end_inset
+
+The system can be solved by substitution, elimination, or computer algebra
+ system.
+ The solution is 
+\begin_inset Formula $a_{0}=\frac{-1}{2h}$
+\end_inset
+
+, 
+\begin_inset Formula $a_{1}=0$
+\end_inset
+
+, and 
+\begin_inset Formula $a_{2}=\frac{1}{2h}$
+\end_inset
+
+, giving the approximation formula
+\begin_inset Formula 
+\[
+f'(x_{0})\approx\frac{f(x_{0}+h)-f(x_{0}-h)}{2h}
+\]
+
+\end_inset
+
+just as we got 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "eq:centeredDifferenceNaive"
+
+\end_inset
+
+ in formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:centeredDifferenceNaive"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The second derivative formula is derived in the same manner.
+ Since the second derivative formula must be exact when 
+\begin_inset Formula $f=p_{0}$
+\end_inset
+
+, when 
+\begin_inset Formula $f=p_{1}$
+\end_inset
+
+, and when 
+\begin_inset Formula $f=p_{2}$
+\end_inset
+
+, the 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ must satisfy
+\begin_inset Formula 
+\begin{eqnarray*}
+p_{0}''(x_{0}) & = & b_{0}p_{0}(x_{0}-h)+b_{1}p_{0}(x_{0})+b_{2}p_{0}(x_{0}+h)\\
+p_{1}''(x_{0}) & = & b_{0}p_{1}(x_{0}-h)+b_{1}p_{1}(x_{0})+b_{2}p_{1}(x_{0}+h)\\
+p_{2}''(x_{0}) & = & b_{0}p_{2}(x_{0}-h)+b_{1}p_{2}(x_{0})+b_{2}p_{2}(x_{0}+h),
+\end{eqnarray*}
+
+\end_inset
+
+system 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:systemGenericDerivative"
+
+\end_inset
+
+ with 
+\begin_inset Formula $k=2$
+\end_inset
+
+ and 
+\begin_inset Formula $n=2$
+\end_inset
+
+.
+ Notice the right-hand sides are exactly the same as they are for the first
+ derivative formula, save the name change from 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+.
+ Only the left-hand side changes substantively.
+ 
+\begin_inset Formula $p_{0}''(x)=0$
+\end_inset
+
+ so 
+\begin_inset Formula $p_{0}''(x_{0})=0$
+\end_inset
+
+; 
+\begin_inset Formula $p_{1}''(x)=0$
+\end_inset
+
+ so 
+\begin_inset Formula $p_{1}(x_{0})=0$
+\end_inset
+
+; and 
+\begin_inset Formula $p_{2}''(x)=2$
+\end_inset
+
+ so 
+\begin_inset Formula $p_{2}''(x_{0})=2$
+\end_inset
+
+.
+ Making these substitutions into the equations above,
+\begin_inset Formula 
+\begin{eqnarray*}
+0 & = & b_{0}+b_{1}+b_{2}\\
+0 & = & -hb_{0}+hb_{2}\\
+2 & = & h^{2}b_{0}+h^{2}b_{2}.
+\end{eqnarray*}
+
+\end_inset
+
+Again, the system can be solved by substitution, elimination, or computer
+ algebra system.
+ The solution is 
+\begin_inset Formula $b_{0}=b_{2}=\frac{1}{h^{2}}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{1}=\frac{2}{h^{2}}$
+\end_inset
+
+, giving the approximation formula
+\begin_inset Formula 
+\[
+f''(x_{0})\approx\frac{f(x_{0}+h)-2f(x_{0})+f(x_{0}-h)}{h^{2}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Integrals
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+numerical integration
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The idea for estimating integrals is identical to that of estimating derivatives.
+ The mechanics only change nominally.
+ Where there were derivatives before, we will have integrals now.
+ We seek an approximation of 
+\begin_inset Formula $\int_{a}^{b}f(x)dx$
+\end_inset
+
+ based on knowledge of the values 
+\begin_inset Formula $f(x_{0}+\theta_{0}h),f(x_{0}+\theta_{1}h),\ldots,f(x_{0}+\theta_{n}h)$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{equation}
+\int_{a}^{b}f(x)dx\approx\sum_{i=0}^{n}a_{i}f(x_{0}+\theta_{i}h).\label{eq:integralApprox}
+\end{equation}
+
+\end_inset
+
+The approximation will be exact for all polynomials of degree 
+\begin_inset Formula $n$
+\end_inset
+
+ or less.
+ In particular, it will be exact for 
+\begin_inset Formula $p_{j}(x)=(x-x_{0})^{j}$
+\end_inset
+
+, 
+\begin_inset Formula $j=0,1,\ldots,n$
+\end_inset
+
+.
+ Therefore, the system of equations
+\begin_inset Formula 
+\begin{equation}
+\int_{a}^{b}p_{j}(x)dx=\sum_{i=0}^{n}(\theta_{i}h)^{j}a_{i}\qquad j=0,1,\ldots,n\label{eq:systemGenericIntegral}
+\end{equation}
+
+\end_inset
+
+must be satisfied by the 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To illustrate, suppose we have the stencil 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments05.pdf
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+For this stencil, 
+\begin_inset Formula $a=x_{0}-h$
+\end_inset
+
+, 
+\begin_inset Formula $b=x_{0}+6h$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta_{i}=ih$
+\end_inset
+
+, 
+\begin_inset Formula $i=0,1,\ldots,6$
+\end_inset
+
+.
+ Therefore we will have a system of seven equations in the seven unknowns.
+ First, the left-hand sides:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{a}^{b}p_{0}(x)dx=\int_{x_{0}-h}^{x_{0}+6h}p_{0}(x)dx & = & \int_{x_{0}-h}^{x_{0}+6h}1dx=\left.(x-x_{0})\right|_{x_{0}-h}^{x_{0}+6h}=7h\\
+\int_{a}^{b}p_{1}(x)dx=\int_{x_{0}-h}^{x_{0}+6h}p_{1}(x)dx & = & \int_{x_{0}-h}^{x_{0}+6h}(x-x_{0})dx=\left.\frac{1}{2}(x-x_{0})^{2}\right|_{x_{0}-h}^{x_{0}+6h}=\frac{35}{2}h^{2}\\
+\int_{a}^{b}p_{2}(x)dx=\int_{x_{0}-h}^{x_{0}+6h}p_{2}(x)dx & = & \int_{x_{0}-h}^{x_{0}+6h}(x-x_{0})^{2}dx=\left.\frac{1}{3}(x-x_{0})^{3}\right|_{x_{0}-h}^{x_{0}+6h}=\frac{217}{3}h^{3}\\
+\int_{a}^{b}p_{3}(x)dx=\int_{x_{0}-h}^{x_{0}+6h}p_{3}(x)dx & = & \int_{x_{0}-h}^{x_{0}+6h}(x-x_{0})^{3}dx=\left.\frac{1}{4}(x-x_{0})^{4}\right|_{x_{0}-h}^{x_{0}+6h}=\frac{1295}{4}h^{4}\\
+\int_{a}^{b}p_{4}(x)dx=\int_{x_{0}-h}^{x_{0}+6h}p_{4}(x)dx & = & \int_{x_{0}-h}^{x_{0}+6h}(x-x_{0})^{4}dx=\left.\frac{1}{5}(x-x_{0})^{5}\right|_{x_{0}-h}^{x_{0}+6h}=\frac{7777}{5}h^{5}\\
+\int_{a}^{b}p_{5}(x)dx=\int_{x_{0}-h}^{x_{0}+6h}p_{5}(x)dx & = & \int_{x_{0}-h}^{x_{0}+6h}(x-x_{0})^{5}dx=\left.\frac{1}{6}(x-x_{0})^{6}\right|_{x_{0}-h}^{x_{0}+6h}=\frac{46655}{6}h^{6}\\
+\int_{a}^{b}p_{6}(x)dx=\int_{x_{0}-h}^{x_{0}+6h}p_{6}(x)dx & = & \int_{x_{0}-h}^{x_{0}+6h}(x-x_{0})^{6}dx=\left.\frac{1}{7}(x-x_{0})^{7}\right|_{x_{0}-h}^{x_{0}+6h}=39991h^{7}.
+\end{eqnarray*}
+
+\end_inset
+
+Now putting them together with the right-hand sides (and swapping sides):
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i=0}^{6}(\theta_{i}h)^{0}a_{i} & = & a_{0}+a_{1}+a_{2}+a_{3}+a_{4}+a_{5}+a_{6}=7h\\
+\sum_{i=0}^{6}(\theta_{i}h)^{1}a_{i} & = & ha_{1}+2ha_{2}+3ha_{3}+4ha_{4}+5ha_{5}+6ha_{6}=\frac{35}{2}h^{2}\\
+\sum_{i=0}^{6}(\theta_{i}h)^{2}a_{i} & = & h^{2}a_{1}+4h^{2}a_{2}+9h^{2}a_{3}+16h^{2}a_{4}+25h^{2}a_{5}+36h^{2}a_{6}=\frac{217}{3}h^{3}\\
+\sum_{i=0}^{6}(\theta_{i}h)^{3}a_{i} & = & h^{3}a_{1}+8h^{3}a_{2}+27h^{3}a_{3}+64h^{3}a_{4}+125h^{3}a_{5}+216h^{3}a_{6}=\frac{1295}{4}h^{4}\\
+\sum_{i=0}^{6}(\theta_{i}h)^{4}a_{i} & = & h^{4}a_{1}+16h^{4}a_{2}+81h^{4}a_{3}+256h^{4}a_{4}+625h^{4}a_{5}+1296h^{4}a_{6}=\frac{7777}{5}h^{5}\\
+\sum_{i=0}^{6}(\theta_{i}h)^{5}a_{i} & = & h^{5}a_{1}+32h^{5}a_{2}+243h^{5}a_{3}+1024h^{5}a_{4}+3125h^{5}a_{5}+7776h^{5}a_{6}=\frac{46655}{6}h^{6}\\
+\sum_{i=0}^{6}(\theta_{i}h)^{6}a_{i} & = & h^{6}a_{1}+64h^{6}a_{2}+729h^{6}a_{3}+4096h^{6}a_{4}+15625h^{6}a_{5}+46656h^{6}a_{6}=39991h^{7}
+\end{eqnarray*}
+
+\end_inset
+
+The system again may be solved by substitution, elimination, or computer
+ algebra, at least in principle.
+ Not many humans have sufficient patience and precision to solve such a
+ system with paper and pencil, though.
+ Trusting a computer algebra system, the solution is 
+\begin_inset Formula $a_{0}=\frac{30919}{8640}h$
+\end_inset
+
+, 
+\begin_inset Formula $a_{1}=-\frac{2107}{360}h$
+\end_inset
+
+, 
+\begin_inset Formula $a_{2}=\frac{34153}{2880}h$
+\end_inset
+
+, 
+\begin_inset Formula $a_{3}=-\frac{1274}{135}h$
+\end_inset
+
+, 
+\begin_inset Formula $a_{4}=\frac{19943}{2880}h$
+\end_inset
+
+, 
+\begin_inset Formula $a_{5}=-\frac{49}{72}h$
+\end_inset
+
+, and 
+\begin_inset Formula $a_{6}=\frac{5257}{8640}h$
+\end_inset
+
+ giving the approximation formula
+\begin_inset Formula 
+\begin{eqnarray}
+\int_{x_{0}-h}^{x_{0}+6h}f(x)dx & \approx & \frac{h}{8640}\left[5257f(x_{0}+6h)-5880f(x_{0}+5h)+59829f(x_{0}+4h)-81536f(x_{0}+3h)\right.\nonumber \\
+ &  & \qquad\qquad\left.+102459f(x_{0}+2h)-50568f(x_{0}+h)+30919f(x_{0})\right]\label{eq:dumbIntegral7}
+\end{eqnarray}
+
+\end_inset
+
+just as we got 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "eq:integral7dumb"
+
+\end_inset
+
+ in formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:integral7dumb"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Practical considerations
+\end_layout
+
+\begin_layout Standard
+We have used stencils like 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments01.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+and 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments05.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+not because the results are particularly helpful, but rather to (a) illustrate
+ the methods and (b) emphasize that these methods work in general for any
+ stencil you may dream up.
+ Most of the differentiation and integration formulas presented in numerical
+ analysis sources stick to a small host of regularly spaced stencils where,
+ for derivatives the point of evaluation is a node, and for integrals, all
+ the nodes lie between the endpoints or there are nodes at both endpoints.
+ It is possible the regularly-spaced stencils are all you will ever need,
+ but it is good to know that you can derive appropriate formulas for more
+ unusual stencils should the need arise.
+\end_layout
+
+\begin_layout Standard
+As for their derivation, the main advantage of the method of undetermined
+ coefficients over working directly with interpolating polynomials is the
+ ease of automation and lessening of the necessary and often laborious algebra
+ needed.
+ In the method of undetermined coefficients, the only polynomials that need
+ to be differentiated or integrated are the polynomials 
+\begin_inset Formula $p_{j}=(x-x_{0})^{j}$
+\end_inset
+
+, a much simpler task than integrating or differentiating interpolating
+ polynomials.
+ Formulas with up to three or four nodes can be handled this way with pencil
+ and paper.
+ The trade off is the necessity of solving a system of equations, again
+ a simpler task than differentiating and simplifying interpolating polynomials
+ of degree 3 or 4.
+ As a final benefit to the method of undetermined coefficients, it is a
+ general solution technique used not only in numerical analysis for deriving
+ calculus approximations, but in other studies as well, particularly differentia
+l equations.
+ The method is applicable whenever the 
+\shape italic
+form
+\shape default
+ of a solution or formula is known, but the constants (coefficients) remain
+ a mystery.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Undetermined Coefficients in Differential Equations}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In differential equations, we know that a particular solution of the equation
+\begin_inset Formula 
+\begin{equation}
+y-2y'+3y''=5\sin x\label{eq:differentialEquation}
+\end{equation}
+
+\end_inset
+
+has the form 
+\begin_inset Formula $y=A\sin x+B\cos x$
+\end_inset
+
+, but we do not immediately know the values of 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ They are undetermined coefficients (at this point).
+ They are determined by substituting the known form into the equation being
+ solved.
+\begin_inset Formula 
+\begin{eqnarray*}
+y' & = & A\cos x-B\sin x\\
+y'' & = & -A\sin x-B\cos x
+\end{eqnarray*}
+
+\end_inset
+
+So the equation being solved becomes
+\begin_inset Formula 
+\[
+(A\sin x+B\cos x)-2(A\cos x-B\sin x)+3(-A\sin x-B\cos x)=5\sin x.
+\]
+
+\end_inset
+
+Collecting the coefficients of 
+\begin_inset Formula $\sin x$
+\end_inset
+
+ and 
+\begin_inset Formula $\cos x$
+\end_inset
+
+ on the left side,
+\begin_inset Formula 
+\[
+(-2A+2B)\sin x+(-2A-2B)\cos x=5\sin x.
+\]
+
+\end_inset
+
+We now match coefficients on left and right sides to get the system of equations
+\begin_inset Formula 
+\begin{eqnarray*}
+-2A+2B & = & 5\\
+-2A-2B & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+whose solution is 
+\begin_inset Formula $A=-\frac{5}{4}$
+\end_inset
+
+ and 
+\begin_inset Formula $B=\frac{5}{4}$
+\end_inset
+
+.
+ Therefore, 
+\begin_inset Formula $y=-\frac{5}{4}\sin x+\frac{5}{4}\cos x$
+\end_inset
+
+ solves equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:differentialEquation"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Conceptually, this process is no different from the method of undetermined
+ coefficients used in deriving numerical calculus formulas.
+ The solution to some problem is known, save for some (undetermined) coefficient
+s.
+ The parameters of the problem require the coefficients to satisfy some
+ system of linear equations.
+ The system is solved, and the solution to the original problem is consequently
+ known completely, coefficients determined.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When we get involved with stencils with more than 3 or 4 nodes, solving
+ the resulting (relatively large) system of linear equations by hand is
+ not a task to which most of us would look forward.
+ However, it is a standard calculation any computer algebra system can do
+ easily and efficiently.
+ Yes, it is advisable to use a computer algebra system to derive formulas
+ as complicated as 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:integral7dumb"
+
+\end_inset
+
+.
+ We have used Maxima
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+See 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://maxima.sourceforge.net/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Maxima
+\end_layout
+
+\end_inset
+
+ to handle or double check a number of the more tedious calculations presented
+ in this text.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{wxMaxima}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+wxMaxima
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Maxima
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The best way to solve a large system of linear equations is with the aid
+ of a computer algebra system.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:wxMaxima"
+
+\end_inset
+
+ shows how wxMaxima may be used to derive formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:dumbIntegral7"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Notice the similarities between Maxima code and Octave code.
+ Maxima allows for statements, print statements, variable assignments, arrays,
+ and suppression of output.
+ The syntax for these things is not the same, but the principles behind
+ them are.
+ Once you have learned how to do these things in one language, learning
+ how to do them in another is usually straightforward
+\end_layout
+
+\begin_layout Standard
+Also notice the main difference between Maxima and Octave.
+ Maxima was designed for synbolic manipulation while Octave was designed
+ for numerical computation.
+ Octave can be made to do symbolic calculation and Maxima can be made to
+ do numerical computation, but the old carpenter's adage 
+\begin_inset Quotes eld
+\end_inset
+
+use the right tool for the job
+\begin_inset Quotes erd
+\end_inset
+
+ is worth consideration.
+ Maxima is much more adept at symbolic manipulation than is Octave, and
+ Octave is much more adept at number crunching than is Maxima.
+\end_layout
+
+\begin_layout Subsection*
+Reference
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://andrejv.github.io/wxmaxima/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:wxMaxima"
+
+\end_inset
+
+wxMaxima deriving an integration formula
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/wxmaximaScreenshot.png
+	lyxscale 50
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+It is unusual to use stencils with more than five nodes anyway.
+ It is not because the formulas for more nodes are significantly more complicate
+d or difficult to use, however.
+ As evidenced by formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrangeInterpolatingPolynomialError"
+
+\end_inset
+
+, the error term for an interpolating polynomial involves higher and higher
+ derivatives of 
+\begin_inset Formula $f$
+\end_inset
+
+ as more nodes are added.
+ This is generally fine as long as 
+\begin_inset Formula $f$
+\end_inset
+
+ has sufficiently many derivatives and the values of the high derivatives
+ are not prohibitively large.
+ However, numerical methods are often employed when the smoothness of 
+\begin_inset Formula $f$
+\end_inset
+
+ is known to be limited, the high derivatives are known to be large, or
+ the properties of its derivatives are unknown completely.
+ For these functions, stencils with fewer nodes, which give rise to formulas
+ with lower order error terms, are often 
+\shape italic
+more accurate
+\shape default
+, not less.
+ And in the case of unknown smoothness, the lower order methods have a better
+ chance of being accurate.
+\end_layout
+
+\begin_layout Standard
+As a final note, some care must be taken not to ask too much of a derivative
+ formula.
+ With 
+\begin_inset Formula $n+1$
+\end_inset
+
+ nodes, the error term for the interpolating polynomial involves 
+\begin_inset Formula $f^{(n+1)}$
+\end_inset
+
+, so there is no hope of using these nodes to estimate 
+\begin_inset Formula $f^{(n+1)}$
+\end_inset
+
+ or any higher derivatives at any point.
+ If you, however, forget this fact, it shows up in a direct way in the method
+ of undetermined coefficients.
+ If 
+\begin_inset Formula $k>n$
+\end_inset
+
+, then the system of equations with undetermined coefficients becomes
+\begin_inset Formula 
+\[
+\sum_{i=0}^{n}(\theta_{i}h)^{j}a_{i}=0,\qquad j=0,1,\ldots,n
+\]
+
+\end_inset
+
+because the 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ derivative of 
+\begin_inset Formula $p_{j}$
+\end_inset
+
+ is identically 0 for all 
+\begin_inset Formula $j\leq n<k$
+\end_inset
+
+.
+ The only solution to this system is 
+\begin_inset Formula $a_{0}=a_{1}=\cdots=a_{n}=0$
+\end_inset
+
+ giving the 
+\begin_inset Quotes eld
+\end_inset
+
+approximation
+\begin_inset Quotes erd
+\end_inset
+
+ formula
+\begin_inset Formula 
+\[
+f^{(k)}(x_{0}+\theta h)=0.
+\]
+
+\end_inset
+
+Indeed, this is exact for all polynomials of degree 
+\begin_inset Formula $n$
+\end_inset
+
+ or less.
+ However, the error in using this formula is exactly 
+\begin_inset Formula $f^{(k)}(x_{0}+\theta h)$
+\end_inset
+
+, a relative error of exactly 
+\begin_inset Formula $1$
+\end_inset
+
+, making it completely useless.
+\end_layout
+
+\begin_layout Subsection
+Stability
+\end_layout
+
+\begin_layout Standard
+In Experiment 2 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:derivativeExperiment"
+
+\end_inset
+
+, section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Accuracy"
+
+\end_inset
+
+, we took a brief look at approximating the first derivative of 
+\begin_inset Formula $f(x)=\sin x$
+\end_inset
+
+ using the fact that
+\begin_inset Formula 
+\[
+f'(1)=\lim_{h\to0}\frac{\sin(1+h)-\sin(1-h)}{2h}.
+\]
+
+\end_inset
+
+The conclusion we drew was that this computation was highly susceptible
+ to floating-point error.
+ If calculations are done exactly, then we expect 
+\begin_inset Formula $\frac{\sin(1+h)-\sin(1-h)}{2h}$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f'(1)$
+\end_inset
+
+ better and better as 
+\begin_inset Formula $h$
+\end_inset
+
+ becomes smaller and smaller.
+ Not so for floating-point calculations, as the experiment revealed.
+ There was a point at which making 
+\begin_inset Formula $h$
+\end_inset
+
+ smaller made the approximation worse! And this example is not unique.
+ This problem always arises when approximating 
+\begin_inset Formula $f'$
+\end_inset
+
+ using the centered difference formula
+\begin_inset Formula 
+\begin{equation}
+f'(x)\approx\frac{f(x+h)-f(x-h)}{2h}.\label{eq:centeredDifference}
+\end{equation}
+
+\end_inset
+
+But how can we predict at what value of 
+\begin_inset Formula $h$
+\end_inset
+
+ that might happen without comparing our results to the exact value of the
+ derivative? After all, numerical differentiation is employed most often
+ when the exact formula for the derivative is unknown or prohibitively difficult
+ to compute.
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $f$
+\end_inset
+
+ can be computed to near machine precision.
+ In typical floating point calculations, including Octave, that means a
+ relative floating-point error of approximately 
+\begin_inset Formula $10^{-15}$
+\end_inset
+
+ or absolute floating-point error 
+\begin_inset Formula $\varepsilon_{f}\approx10^{-15}|f(x)|$
+\end_inset
+
+.
+ Since we assume 
+\begin_inset Formula $h$
+\end_inset
+
+ is small, we can approximate both 
+\begin_inset Formula $|\tilde{f}(x+h)-f(x+h)|$
+\end_inset
+
+ and 
+\begin_inset Formula $|\tilde{f}(x-h)-f(x-h)|$
+\end_inset
+
+ by 
+\begin_inset Formula $\varepsilon_{f}$
+\end_inset
+
+ giving an absolute error of approximately 
+\begin_inset Formula $2\varepsilon_{f}$
+\end_inset
+
+ in calculating the numerator 
+\begin_inset Formula $f(x+h)-f(x-h)$
+\end_inset
+
+.
+ Assuming 
+\begin_inset Formula $h$
+\end_inset
+
+ is calculated exactly, we have the absolute error 
+\begin_inset Formula 
+\begin{equation}
+\varepsilon_{r}=|\tilde{f}'(x)-f'(x)|\approx\frac{2\varepsilon_{f}}{2h}=\frac{\varepsilon_{f}}{h}=\frac{|f(x)|}{10^{15}}\cdot\frac{1}{h}.\label{eq:floatingPointError}
+\end{equation}
+
+\end_inset
+
+As we will see shortly, the algorithmic error, 
+\begin_inset Formula $\varepsilon_{a}$
+\end_inset
+
+, is caused by truncation and equals 
+\begin_inset Formula $\left|\frac{f'''(\xi)}{6}h^{2}\right|$
+\end_inset
+
+ for some value of 
+\begin_inset Formula $\xi$
+\end_inset
+
+ near 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $\xi$
+\end_inset
+
+ is near 
+\begin_inset Formula $x$
+\end_inset
+
+, we approximate 
+\begin_inset Formula $f'''(\xi)$
+\end_inset
+
+ by 
+\begin_inset Formula $f'''(x)$
+\end_inset
+
+ and conclude that 
+\begin_inset Formula 
+\begin{equation}
+\varepsilon_{a}\approx\frac{|f'''(x)|}{6}h^{2}.\label{eq:algorithmicError}
+\end{equation}
+
+\end_inset
+
+We now minimize the value of 
+\begin_inset Formula $\varepsilon_{r}+\varepsilon_{a}$
+\end_inset
+
+ by setting its derivative (with respect to 
+\begin_inset Formula $h$
+\end_inset
+
+) equal to zero and solving the resulting equation:
+\begin_inset Formula 
+\begin{eqnarray*}
+0=\frac{d}{dh}(\varepsilon_{r}+\varepsilon_{a}) & \approx & \frac{d}{dh}\left(\frac{|f(x)|}{10^{15}}\cdot\frac{1}{h}+\frac{|f'''(x)|}{6}\cdot h^{2}\right)\\
+ & = & -\frac{|f(x)|}{10^{15}}\cdot\frac{1}{h^{2}}+\frac{|f'''(x)|}{3}\cdot h\\
+ & \Rightarrow\\
+\frac{|f'''(x)|}{3}\cdot h & \approx & \frac{|f(x)|}{10^{15}}\cdot\frac{1}{h^{2}}\\
+h^{3} & \approx & \frac{|f(x)|}{|f'''(x)|}\cdot\frac{3}{10^{15}}\\
+h & \approx & \sqrt[3]{\frac{3|f(x)|}{|f'''(x)|}}\cdot10^{-5}.
+\end{eqnarray*}
+
+\end_inset
+
+For Experiment 2 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:derivativeExperiment"
+
+\end_inset
+
+, this means we should expect the optimal value of 
+\begin_inset Formula $h$
+\end_inset
+
+ to be around
+\begin_inset Formula $\sqrt[3]{\frac{3\sin(1)}{\sin(1)}}\cdot10^{-5}\approx1.44(10)^{-5}$
+\end_inset
+
+.
+ We reproduce the table from Experiment 2 here with the addition of a third
+ column, the actual absolute error:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\tilde{p}^{*}(h)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|\tilde{p}^{*}(h)-f'(1)|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5402933008747335$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.00(10)^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403022158176896$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.00(10)^{-8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403023049677103$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.00(10)^{-10}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403023058569989$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.11(10)^{-11}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403023058958567$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.77(10)^{-11}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5403023056738121$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.94(10)^{-10}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Indeed, when 
+\begin_inset Formula $h=10^{-5}$
+\end_inset
+
+, we get our best results! However, the prediction of the optimal value
+ of 
+\begin_inset Formula $h$
+\end_inset
+
+ was based on knowledge of 
+\begin_inset Formula $f'''$
+\end_inset
+
+, something we generally will not be able to do.
+ Unless we happen to know that 
+\begin_inset Formula $\frac{|f(x)|}{|f'''(x)|}$
+\end_inset
+
+ is far from 
+\begin_inset Formula $1$
+\end_inset
+
+, we assume it is reasonably close to 
+\begin_inset Formula $1$
+\end_inset
+
+, in which case the optimal value of 
+\begin_inset Formula $h$
+\end_inset
+
+ is around 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+.
+ Similar estimates can be made for other derivative formulas.
+\end_layout
+
+\begin_layout Standard
+Because numerical differentiation is so sensitive to floating-point error,
+ we say that it is unstable.
+ The root-finding methods and numerical integration we have discussed are
+ all stable methods.
+ Their sensitivity to floating-point error is commensurate with that of
+ calculating 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+undetermined
+\begin_inset space ~
+\end_inset
+
+coefficients: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+undetermined coefficients
+\end_layout
+
+\end_inset
+
+A method for solving problems in which the solution is known save for a
+ set of (undetermined) coefficients.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:undetermined"
+
+\end_inset
+
+Using the method of undetermined coefficients, derive an approximation formula
+ for the first derivative over the stencil.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined01.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined06.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined07.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined08.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasasolution
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined02.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined03.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined04.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined05.pdf
+	width 5cm
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined09.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined10.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasasolution
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined11.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined12.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:undetermined-1"
+
+\end_inset
+
+Using the method of undetermined coefficients, derive an approximation formula
+ for the second derivative over the stencil.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined02.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined03.pdf
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined04.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined05.pdf
+	width 5cm
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined09.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined10.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasasolution
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined11.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined12.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use the method of undetermined coefficients to derive an approximation formula
+ over the stencil
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments07.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+for the value of the function.
+\end_layout
+
+\begin_layout Enumerate
+for the first derivative.
+\end_layout
+
+\begin_layout Enumerate
+for the second derivative.
+\end_layout
+
+\begin_layout Enumerate
+for the third derivative.
+ What can you say about this formula?
+\end_layout
+
+\begin_layout Enumerate
+compare the method of undetermined coefficients to the direct method employed
+ in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-28"
+
+\end_inset
+
+ of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:NumericalRudiments"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:undetermined-2"
+
+\end_inset
+
+Use the method of undetermined coefficients to derive an approximation formula
+ over the stencil.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined13.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined14.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasasolution
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined15.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined16.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments16.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments17.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments19.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments20.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined17.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined18.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasananswer
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined19.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined20.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+} 
+\backslash
+hasasolution
+\backslash
+medskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-undetermined21.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Using the method of undetermined coefficients, find a general approximation
+ formula for 
+\begin_inset Formula ${\displaystyle \int_{x_{0}+\theta_{0}h}^{x_{0}+\theta_{1}h}f(x)dx}$
+\end_inset
+
+ using the two nodes 
+\begin_inset Formula $x_{0}+\theta_{2}h$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}+\theta_{3}h$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,2842 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/Book-Numerical/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Recursion"
+
+\end_inset
+
+Recursive Procedures
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+recursion
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The Mathemagician
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Mathemagician:
+\shape default
+ I have here an ordinary bed sheet.
+ Nothing up my sleeves.
+ No secret pockets.
+ Maybe just a touch of magic dust.
+ But other than that, an ordinary bed sheet.
+ When lain flat it is, of course one layer thick.
+ As I take these corners in my hands and place them over the opposite corners,
+ folding the bed sheet in half, how many layers thick does it become?
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Audience:
+\shape default
+ Two!
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Mathemagician:
+\shape default
+ Very good.
+ Allow me to fold it in half again.
+ Now how many layers thick has it become?
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Audience:
+\shape default
+ Four!
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Mathemagician:
+\shape default
+ Excellent.
+ Watch very closely as I fold it for a third time.
+ Think hard and tell me how many layers thick is the folded sheet now.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Audience:
+\shape default
+ Six! (from a few) Eight! (from more)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Mathemagician:
+\shape default
+ That's right.
+ Eight.
+ So much for the warm up.
+ I shall now have my lovely assistant bring out another perfectly ordinary
+ bed sheet.
+ This time already folded.
+ Crystal! The bed sheet please ...
+ (Crystal brings out the bedsheet, already folded).
+ Again, an ordinary bed sheet.
+ This time folded.
+ I shall now fold it in half as I have done before and ask again, how many
+ layers thick has the sheet become?
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Audience:
+\shape default
+ (Mostly silent--just some murmurings)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Mathemagician:
+\shape default
+ I see.
+ Well, I don't know either...
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Audience:
+\shape default
+ (Laughing)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Mathemagician:
+\shape default
+ ...but I can tell you it has twice as many as it had before!
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Audience:
+\shape default
+ (Mostly silent--just a few groans)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Mathemagician:
+\shape default
+ I know.
+ I know.
+ A cheap parlor trick.
+ But wait! Watch as I slowly unfold the sheet, one fold at a time.
+ One! ...
+ Two! (he peers toward the sky as if in though) ...
+ Three! ...
+ (again seemingly deep in thought) ...
+ Four! ...
+ Four times folded in half and now, as you can plainly see, the sheet is
+ three layers thick.
+ The first fold was in thirds.
+ (he peers off into space, waves his wand, stares deep into the eyes of
+ the audience) Forty-eight!!!
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Audience:
+\shape default
+ (Silent but clearly wanting of an explanation)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\shape smallcaps
+Mathemagician:
+\shape default
+ The sheet started 3 layers thick, and was doubled in thickness four times
+ ...
+ 3 ...
+ 6 ...
+ 12 ...
+ 24 ...
+ 48.
+\end_layout
+
+\begin_layout Standard
+Though it was meant to seem like a wise crack, the observation that folding
+ a sheet in half doubles the number of layers was the key to counting the
+ layers in the folded sheet.
+ Recursive procedures are magical in the same way.
+ They seem to hold nothing of value when, in fact, they hold the key.
+ They are based on the principle that no matter what the current state of
+ affairs (no matter how many layers thick the sheet is), following the procedure
+ (folding it in half) will produce a predictable result (double the thickness).
+ 
+\end_layout
+
+\begin_layout Standard
+Perhaps the simplest numerical example of this idea comes from thinking
+ of a bag of marbles---an opaque bag with an unknown number of marbles inside.
+ One marble is added, and you are asked how many are inside.
+ Of course the best you can say is something like 
+\begin_inset Quotes eld
+\end_inset
+
+one more than there were before.
+\begin_inset Quotes erd
+\end_inset
+
+ Even though you do not know how many marbles are in the bag to begin with,
+ when one is added to the bag, you know the new total is one more than the
+ previous total.
+ This is recursive thinking.
+\end_layout
+
+\begin_layout Subsection
+Trominos
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+trominos
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Connect three squares edge-to-edge in the shape of an L, and you have a
+ tromino.
+ Trominos aren't used in games like dominoes are, but are often used in
+ interesting mathematical questions involving tiling.
+ Tiling means covering without overlapping trominos and without having any
+ parts of trominos lying outside the shape being tiled.
+ For example, a 
+\begin_inset Formula $2\times3$
+\end_inset
+
+ grid can be tiled with trominos as can a 
+\begin_inset Formula $6\times9$
+\end_inset
+
+ grid
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:recursion1"
+
+\end_inset
+
+
+\begin_inset Formula $2\times3$
+\end_inset
+
+ and 
+\begin_inset Formula $6\times9$
+\end_inset
+
+ grids can be tiled with trominos.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/2x3tiled.pdf
+	rotateAngle 90
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figures/6x9tiled.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ See Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:recursion1"
+
+\end_inset
+
+.
+ If 
+\begin_inset Formula $n$
+\end_inset
+
+ is a positive integer, then a 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid can almost be tiled with trominos.
+ All but one square can be covered.
+ Try it, first with a 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ grid.
+ That one's not too hard.
+ Then try it with a 
+\begin_inset Formula $4\times4$
+\end_inset
+
+ grid or an 
+\begin_inset Formula $8\times8$
+\end_inset
+
+ grid.
+\end_layout
+
+\begin_layout Standard
+How about a 
+\begin_inset Formula $1024\times1024$
+\end_inset
+
+ grid? I can't recommend that you actually get yourself a 
+\begin_inset Formula $1024\times1024$
+\end_inset
+
+ grid of squares and start filling in with trominos.
+ It would take 
+\begin_inset Formula $349,525$
+\end_inset
+
+ trominos.
+ You may not finish in your lifetime! Instead, it is time to start thinking
+ recursively.
+ Use the previous result in your answer.
+ The same way you can just say the marble bag 
+\begin_inset Quotes eld
+\end_inset
+
+has one more than before
+\begin_inset Quotes erd
+\end_inset
+
+, we can phrase the solution to tiling the 
+\begin_inset Formula $1024\times1024$
+\end_inset
+
+ grid in terms of the tiling of the 
+\begin_inset Formula $512\times512$
+\end_inset
+
+ grid.
+ Here's how it goes.
+ Take a 
+\begin_inset Formula $1024\times1024$
+\end_inset
+
+ grid and section it off into four 
+\begin_inset Formula $512\times512$
+\end_inset
+
+ subgrids by dividing it down the middle both horizontally and vertically.
+ In the upper left 
+\begin_inset Formula $512\times512$
+\end_inset
+
+ grid, tile all but the bottom right corner.
+ In the lower left 
+\begin_inset Formula $512\times512$
+\end_inset
+
+ grid, tile all but the upper right corner.
+ In the lower right grid, tile all but the upper left corner.
+ Finally, in the upper right 
+\begin_inset Formula $512\times512$
+\end_inset
+
+ grid, tile all but the upper right corner 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:recursion2"
+
+\end_inset
+
+ A 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid can be (almost) tiled recursively.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/recursiveTiling.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+(Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:recursion2"
+
+\end_inset
+
+).
+ This leaves room for a single L-shaped tromino in the middle, and one square
+ left over.
+ That's it! It should feel a little bit like cheating since we didn't specify
+ how to deal with the 
+\begin_inset Formula $512\times512$
+\end_inset
+
+ grid, but the same argument applies to the 
+\begin_inset Formula $512\times512$
+\end_inset
+
+ grid.
+ You can section it off into four subgrids, tile those and be done.
+\end_layout
+
+\begin_layout Standard
+The same tiling argument can be made for any 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid based on the 
+\begin_inset Formula $2^{n-1}\times2^{n-1}$
+\end_inset
+
+ tiling, except when 
+\begin_inset Formula $n=1$
+\end_inset
+
+.
+ You just have to tile the 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ grid yourself! But once that's done, you have a complete solution for any
+ 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:recursion3"
+
+\end_inset
+
+ The 
+\begin_inset Formula $32\times32$
+\end_inset
+
+ grid recursively tiled.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/32x32recursive.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A similar exception applies to every recursive procedure.
+ The recursion is only good most of the time.
+ At some point, you have to get your hands dirty and supply a solution or
+ answer.
+ Such an answer is often called an initial condition.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Proof by induction} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Proof by induction also uses a sort of recursive thinking.
+ In the method, one must prove that a claim is true for some value of the
+ variable.
+ This part is analogous to having an initial condition.
+ Then one must prove that the truth of the claim for the value 
+\begin_inset Formula $n$
+\end_inset
+
+ implies the truth of the claim for 
+\begin_inset Formula $n+1$
+\end_inset
+
+.
+ This is analogous to the recursive relationship between states.
+ In fact, the construction of a tiling for the 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid based on the 
+\begin_inset Formula $2^{n-1}\times2^{n-1}$
+\end_inset
+
+ grid plus the tiling of the 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ grid just presented essentially form a proof by induction that the 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid, save one corner, can be tiled by trominos for any 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+.
+ In this way, all proofs by induction boil down to the ability to see the
+ recursive relationship between states.
+\end_layout
+
+\begin_layout Standard
+In 1954, Solomon Golomb 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Golomb ! Solomon
+\end_layout
+
+\end_inset
+
+ pubished a proof by induction that the 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid minus 
+\shape italic
+any
+\shape default
+ single square (not necessarily a corner), called a deficient square, can
+ be tiled by trominoes.
+ Can you construct a (recursive) tiling of a 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ deficient square? You may use the tiling of a 
+\begin_inset Formula $2^{k}\times2^{k}$
+\end_inset
+
+ grid minus one corner in your construction.
+\end_layout
+
+\begin_layout Subsubsection*
+Reference
+\end_layout
+
+\begin_layout Standard
+S.
+ W.
+ Golomb, "Checker Boards and Polyominoes," Amer.
+ Math.
+ Monthly, 61 (1954), 675-682.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Octave
+\end_layout
+
+\begin_layout Subsubsection
+Custom functions
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! custom functions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As any modern useful programming language does, Octave allows custom functions
+ beyond those that can be written as a single 
+\family typewriter
+inline
+\family default
+ formula.
+ Let's say you are interested in the maximum value a function takes over
+ an evenly spaced set of values.
+ That function has a very special purpose and is not commonly used.
+ Consequently, it is not built into any programming language, so if you
+ really want a function that does that, it is your job to write it.
+ Similarly, if you want a function that calculates the symmedian point of
+ a triangle, you need to write it.
+ In fact, most anything computational beyond evaluating basic functions
+ will not be built into Octave.
+\end_layout
+
+\begin_layout Standard
+Custom functions are written around three basic pieces of information: a
+ name for the function, a list of inputs, and a description of the output.
+ These three things should be well defined before the work of writing the
+ function begins.
+ Actually writing the function involves simply telling Octave the desired
+ name, inputs, and how to determine the output.
+ The basic format for a function is this:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+function ans = myName(input1, input2, ...
+ )
+\end_layout
+
+\begin_layout Plain Layout
+
+  ...
+\end_layout
+
+\begin_layout Plain Layout
+
+  ans = final answer;
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+The first line holds the name of the function and a list of inputs.
+ The rest of the function is dedicated to computing the output, 
+\family typewriter
+ans
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+The function that determines the maximum value of a function over an evenly
+ spaced set of values might be written following these steps.
+ First, we decide to name it 
+\begin_inset Quotes eld
+\end_inset
+
+maxOverMesh
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Notice there are no spaces and no special characters in the name.
+ There's a very limited supply of non-alphabetic characters that can go
+ into the name of a function.
+ It's usually safe to assume an underscore and numbers are acceptable, but
+ you can't count on anything else! It's best to keep it at that.
+ Second, we need to think about what inputs are necessary for this function.
+ Of course, the function to maximize is required, and somehow the mesh of
+ points where it should be checked needs to be specified.
+ There are multiple ways to do this, but perhaps the one that is easiest
+ for the user is to require the lower end point, upper end point, and number
+ of intervals in the mesh.
+ Finally, we need to write some code that will take those inputs and determine
+ the maximum value of the function over the mesh.
+ One way to do it is this: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+%  maxOverMesh() written by Leon Q.
+ Brin 21 January 2013  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%  INPUT: Interval [a,b]; function f; and number of       %
+\end_layout
+
+\begin_layout Plain Layout
+
+%         subintervals n.
+                                 %
+\end_layout
+
+\begin_layout Plain Layout
+
+%  OUTPUT: maximum value of the function over the end     %
+\end_layout
+
+\begin_layout Plain Layout
+
+%         points of the subintervals.
+                     %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\end_layout
+
+\begin_layout Plain Layout
+
+function ans = maxOverMesh(f,a,b,n)
+\end_layout
+
+\begin_layout Plain Layout
+
+  ans = f(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=1:n
+\end_layout
+
+\begin_layout Plain Layout
+
+    x = (i*b + (n-i)*a)/n;
+\end_layout
+
+\begin_layout Plain Layout
+
+    F = f(x);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (F>ans) ans = F;
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+It is good practice to preface each function you write with a comment containing
+ a three-point description of the function---the name, inputs, and output.
+ If you or anyone else looks at it later, you will have a quick summary
+ of how to use the function and for what.
+\end_layout
+
+\begin_layout Standard
+Whatever the last value assigned to 
+\family typewriter
+ans
+\family default
+ when the function is complete will be the output of the function.
+ The function starts by assigning the value of the function at the left
+ end point to 
+\family typewriter
+ans
+\family default
+.
+ Then it loops through the rest of the subinterval end points, calculating
+ the value of the function at each one.
+ Each time it finds a value higher than 
+\family typewriter
+ans
+\family default
+, it (re-)assigns 
+\family typewriter
+ans
+\family default
+ to that value.
+ At the end of the loop, the greatest value of the function has been assigned
+ to 
+\family typewriter
+ans
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+To use a custom function, save it in a 
+\family typewriter
+.m
+\family default
+ file 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+.m
+\family default
+ file
+\end_layout
+
+\end_inset
+
+ with the same name as that of the function.
+ For example, the 
+\family typewriter
+maxOverMesh()
+\family default
+ function would be saved in a file named 
+\family typewriter
+maxOverMesh.m
+\family default
+.
+ Then your custom function can be called just as any built-in Octave function
+ as long as the 
+\family typewriter
+.m
+\family default
+ file is saved in the same directory in which the program using it is saved.
+ Or, if using it from the command line, the working directory of Octave
+ (the one from which Octave was started, unless explicitly changed during
+ your session) must be the directory in which the 
+\family typewriter
+.m
+\family default
+ file is saved:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> maxOverMesh(inline('(x^2-6*x+8)*exp(x)'), 0, 4, 99)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  8.6728
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> f = inline('(x^2+3*x-5)/(x^2-3*x+5)')
+\end_layout
+
+\begin_layout Plain Layout
+
+f = f(x) = (x^2+3*x-5)/(x^2-3*x+5)
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> maxOverMesh(f, -5, 5, 225)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  2.6362
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Recursive functions
+\end_layout
+
+\begin_layout Standard
+Thinking recursively, what would you say if I asked you what 
+\begin_inset Formula $10!$
+\end_inset
+
+ was? Think about it for a moment before reading on.
+ That's right! 10 factorial is just 10 times 
+\begin_inset Formula $9!$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+10! & = & 10\cdot9\cdot8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1\\
+ & = & 10\cdot(9\cdot8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1)\\
+ & = & 10\cdot(9!).
+\end{eqnarray*}
+
+\end_inset
+
+No need to come up with a number.
+ Just a recursive idea, because of course the idea works just as well for
+ 
+\begin_inset Formula $9!$
+\end_inset
+
+, and so on 
+\begin_inset Formula $\ldots$
+\end_inset
+
+ up to (or should I say down to?) a point.
+ At what point is it no longer true that 
+\begin_inset Formula $n!=n\cdot(n-1)!$
+\end_inset
+
+? When 
+\begin_inset Formula $n=0$
+\end_inset
+
+.
+ We need to specify that 
+\begin_inset Formula $0!=1$
+\end_inset
+
+ and not rely on recursive thinking in this case.
+ But only this case!
+\end_layout
+
+\begin_layout Standard
+Let's see how this recursive calculation works for 
+\begin_inset Formula $5!$
+\end_inset
+
+.
+ According to the recursion, 
+\begin_inset Formula $5!=5\cdot4!$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $4!=4\cdot3!$
+\end_inset
+
+ so we have 
+\begin_inset Formula $5!=5\cdot(4\cdot3!)$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $3!=3\cdot2!$
+\end_inset
+
+ so we now have 
+\begin_inset Formula $5!=5(4(3\cdot2!))$
+\end_inset
+
+.
+ Continuing, 
+\begin_inset Formula $2!=2\cdot1!=2\cdot1\cdot0!$
+\end_inset
+
+ so we now have 
+\begin_inset Formula $5!=5(4(3(2(1\cdot0!))))$
+\end_inset
+
+.
+ And now the recursion stops and we simply plug in 1 for 
+\begin_inset Formula $0!$
+\end_inset
+
+ to find out that 
+\begin_inset Formula $5!=5(4(3(2(1(1)))))$
+\end_inset
+
+.
+ Maybe you were expecting 
+\begin_inset Formula $5\cdot4\cdot3\cdot2\cdot1$
+\end_inset
+
+ for a final result instead.
+ Of course you get 120 either way, so from the standpoint of getting things
+ right, either way is fine.
+ Pragmatically, the point is moot.
+ Computing factorials recursively is dreadfully inefficient and impossible
+ beyond the maximum depth of recursion for the programming language in use,
+ so should never be used in practice anyway.
+ Its only value is as an exercise in recursive thinking and programming.
+\end_layout
+
+\begin_layout Standard
+Generally, a recursive function 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! recursive function
+\end_layout
+
+\end_inset
+
+ will look like this:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+function ans = recFunction(input1, input2, ...
+ )
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (recursion does not apply)
+\end_layout
+
+\begin_layout Plain Layout
+
+    return appropriate ans
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    return recFunction(i1, i2, ...
+ )
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+Determining whether the recursion applies is the first item of business.
+ If not, an appropriate output must be supplied.
+ Otherwise, the recursive function simply calls itself with modified inputs.
+ Since the recursive (wise-guy) definition of 
+\begin_inset Formula $n!$
+\end_inset
+
+ is 
+\begin_inset Formula $n\cdot(n-1)!$
+\end_inset
+
+ and applies whenever 
+\begin_inset Formula $n>0$
+\end_inset
+
+, and 
+\begin_inset Formula $0!=1$
+\end_inset
+
+, the recursive factorial function might look like this:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+%  recFactorial() written by Leon Q.
+ Brin 21 January 2013  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%       is a recursively defined factorial function.
+       %
+\end_layout
+
+\begin_layout Plain Layout
+
+%  INPUT: nonnegative integer n.
+                           %
+\end_layout
+
+\begin_layout Plain Layout
+
+%  OUTPUT: n!                                              %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function ans = recFactorial(n)
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (n==0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    ans = 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    ans = n*recFactorial(n-1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Note the 
+\family typewriter
+==
+\family default
+ when checking if 
+\family typewriter
+n
+\family default
+ equals 
+\family typewriter
+1
+\family default
+.
+ This is not a typographical error.
+ This is very important.
+ All programming languages must distinguish between assignments and conditions.
+ On paper, it may seem natural to write 
+\begin_inset Formula $x=3$
+\end_inset
+
+ when you want to set 
+\begin_inset Formula $x$
+\end_inset
+
+ equal to 3.
+ It may also seem natural to write 
+\begin_inset Quotes eld
+\end_inset
+
+if 
+\begin_inset Formula $x=3$
+\end_inset
+
+, everything is good.
+\begin_inset Quotes erd
+\end_inset
+
+ We use the 
+\begin_inset Quotes eld
+\end_inset
+
+equation
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $x=3$
+\end_inset
+
+ exactly the same way on paper to mean two very different things.
+ When we set 
+\begin_inset Formula $x=3$
+\end_inset
+
+ we are making a statement, or assignment of the value 3 to the variable
+ 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ But when we write 
+\begin_inset Quotes eld
+\end_inset
+
+if 
+\begin_inset Formula $x=3\ldots$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ we are making a hypothetical statement, or a conditional statement.
+ The value of 
+\begin_inset Formula $x$
+\end_inset
+
+ is unkown.
+ In Octave the distinction is made by using a single equals sign, 
+\family typewriter
+=
+\family default
+, to mean assignment and two equals signs, 
+\family typewriter
+==
+\family default
+, to mean conditional equals.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a .m file with a function that takes one input, squares it, and returns
+ the result.
+ Your file should
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+contain a comment block at the beginning containing your name, the date,
+ and an explanation of what the program does and how to use it.
+\end_layout
+
+\begin_layout Enumerate
+have a function of the form 
+\family typewriter
+foo(x)
+\family default
+ in it that returns the square of its input (argument) 
+\family typewriter
+x
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Make sure to test your function from the Octave command prompt.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+The Octave function 
+\family typewriter
+foo(x)
+\family default
+ is shown below.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+function res = foo(x)
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (x<1)
+\end_layout
+
+\begin_layout Plain Layout
+
+    res = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    half = x/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    floorhalf = floor(half);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (half == floorhalf)
+\end_layout
+
+\begin_layout Plain Layout
+
+      res = 0 + foo(floorhalf);
+\end_layout
+
+\begin_layout Plain Layout
+
+    else
+\end_layout
+
+\begin_layout Plain Layout
+
+      res = 1 + foo(floorhalf);
+\end_layout
+
+\begin_layout Plain Layout
+
+    endif
+\end_layout
+
+\begin_layout Plain Layout
+
+  endif
+\end_layout
+
+\begin_layout Plain Layout
+
+endfunction
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\family typewriter
+foo(2)
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\family typewriter
+foo(23)
+\family default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a recursive Octave function that will calculate 
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\frac{1}{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a recursive Octave function that calculates 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ for any 
+\begin_inset Formula $n\geq0$
+\end_inset
+
+ given
+\begin_inset Formula 
+\begin{eqnarray*}
+a_{0} & = & 100,000\\
+a_{n} & = & 1.05a_{n-1}-1200,\quad n>0.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "recursive1"
+
+\end_inset
+
+The Fibonacci sequence, 
+\begin_inset Formula $\left\langle F_{n}\right\rangle $
+\end_inset
+
+, is recursively defined by
+\begin_inset Formula 
+\begin{align*}
+F_{n+1} & =F_{n}+F_{n-1},\quad n\geq1\\
+F_{0} & =1\\
+F_{1} & =1
+\end{align*}
+
+\end_inset
+
+so the first few terms are 
+\begin_inset Formula $1,1,2,3,5,8$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "recursiveFib"
+
+\end_inset
+
+Write a recursive function that calculates the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Fibonacci number.
+ Your function should have one argument, 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "forloopFib"
+
+\end_inset
+
+Write a function that uses a for loop to calculate the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Fibonacci number.
+ Your function should have one argument, 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Write a program that calls the function from 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "recursiveFib"
+
+\end_inset
+
+ to calculate 
+\begin_inset Formula $F_{30}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Write a program that calls the function from 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "forloopFib"
+
+\end_inset
+
+ to calculate 
+\begin_inset Formula $F_{30}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Which code is simpler (recursive or nonrecursive)?
+\end_layout
+
+\begin_layout Enumerate
+Which code is faster?
+\end_layout
+
+\begin_layout Enumerate
+Which code is more accurate?
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+NOTE
+\series default
+: 
+\begin_inset Formula $F_{30}=1346269$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "recursive2"
+
+\end_inset
+
+Let the sequence 
+\begin_inset Formula $\left\langle a_{n}\right\rangle $
+\end_inset
+
+ be defined by 
+\begin_inset Formula 
+\begin{align*}
+a_{n+1} & =\frac{1}{4}\left|5a_{n}^{2}-30a_{n}+25\right|,\quad n\geq1\\
+a_{0} & =\frac{17+2\sqrt{7}}{5}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Calculate 
+\begin_inset Formula $a_{1},a_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{3}$
+\end_inset
+
+ exactly.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $a_{20}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{51}$
+\end_inset
+
+ exactly.
+\end_layout
+
+\begin_layout Enumerate
+Write a recursive function that calculates the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ term of the sequence.
+ Your function should have one argument, 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Write a program that calls this function to calculate 
+\begin_inset Formula $a_{1},a_{2},a_{3},a_{20},$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{51}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Write a function that uses a for loop to calculate the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ term of the sequence.
+ Your function should have one argument, 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Write a program that calls this function to calculate 
+\begin_inset Formula $a_{1},a_{2},a_{3},a_{20},$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{51}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Which code is simpler (recursive or nonrecursive)?
+\end_layout
+
+\begin_layout Enumerate
+Which function is faster?
+\end_layout
+
+\begin_layout Enumerate
+Which code is more accurate, and why?
+\end_layout
+
+\begin_layout Enumerate
+Which function is better, and why?
+\end_layout
+
+\begin_layout Enumerate
+Do you trust either function to calculate 
+\begin_inset Formula $a_{600}$
+\end_inset
+
+ accurately? If not, why not?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion"
+
+\end_inset
+
+Trominos, part 1.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Recursively speaking, how many trominos are needed to tile a 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid, save one corner?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "tromino-greatest"
+
+\end_inset
+
+What is the greatest (integer) value of 
+\begin_inset Formula $n$
+\end_inset
+
+ for which the recursive definition does not apply?
+\end_layout
+
+\begin_layout Enumerate
+For the value of 
+\begin_inset Formula $n$
+\end_inset
+
+ of part 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tromino-greatest"
+
+\end_inset
+
+, how many trominos are needed?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion-1"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Trominos, part 2.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Write a recursive Octave function for calculating the number of trominos
+ needed to tile a 
+\begin_inset Formula $2^{n}\times2^{n}$
+\end_inset
+
+ grid, save one corner.
+\end_layout
+
+\begin_layout Enumerate
+Use your function to verify that 
+\begin_inset Formula $349,525$
+\end_inset
+
+ trominos are needed to tile a 
+\begin_inset Formula $1024\times1024$
+\end_inset
+
+ grid, save one corner.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion-2"
+
+\end_inset
+
+The Tower of Hanoi, part 1.
+ The Tower of Hanoi is a game played with a number of different sized disks
+ stacked on a pole in decreasing size, the largest on the bottom and the
+ smallest on top.
+ There are two other poles, initially with no disks on them.
+ The goal is to move the entire stack of disks to one of the initially empty
+ poles following two rules.
+ You are allowed to move only one disk at a time from one pole to another.
+ You may never place a disk upon a smaller one.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Starting with a stack of three disks, what is the minimum number of moves
+ it takes to complete the game? Answer this question with a number.
+\end_layout
+
+\begin_layout Enumerate
+Starting with a stack of four disks, what is the minimum number of moves
+ it takes to complete the game?
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:tower-recursion"
+
+\end_inset
+
+Answer this question recursively.
+\end_layout
+
+\begin_layout Enumerate
+Answer this question with a number based on your recursive answer.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion-3"
+
+\end_inset
+
+The Tower of Hanoi, part 2.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Starting with a 
+\begin_inset Quotes eld
+\end_inset
+
+stack
+\begin_inset Quotes erd
+\end_inset
+
+ of one disk, what is the minimum number of moves it takes to complete the
+ game?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your answer to (a) plus a generalization of your answer to question
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:tower-recursion"
+
+\end_inset
+
+ to write a recursive Octave function for calculating the minimum number
+ of moves it takes to complete the game with a stack of 
+\begin_inset Formula $n$
+\end_inset
+
+ disks.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your Octave function to verify that it takes a minimum of 1023 moves
+ to complete the game with a stack of 10 disks.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The Tower of Hanoi, part 3.
+ The Tower of Hanoi with adjacency requirement.
+ Suppose the rules of The Tower of Hanoi are modified so that each disk
+ may only be moved to an adjacent pole, and the goal is to move the entire
+ stack from the left-most pole to the right-most pole.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What is the minimum number of moves it takes to complete the game with a
+ 
+\begin_inset Quotes eld
+\end_inset
+
+stack
+\begin_inset Quotes erd
+\end_inset
+
+ of one disk?
+\end_layout
+
+\begin_layout Enumerate
+Find a recursive formula for the minimum number of moves it takes to complete
+ the game with a stack of 
+\begin_inset Formula $n$
+\end_inset
+
+ disks, 
+\begin_inset Formula $n>1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a recursive Octave function for the minimum number of moves to complete
+ the game with a stack of 
+\begin_inset Formula $n$
+\end_inset
+
+ disks.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your Octave function to compute the minimum number of moves it takes
+ to complete the game with a stack of 
+\begin_inset Formula $5$
+\end_inset
+
+ disks.
+ 
+\begin_inset Formula $10$
+\end_inset
+
+ disks.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Stirling numbers of the second kind, part 1.
+ Let 
+\begin_inset Formula $S(n,k)$
+\end_inset
+
+ be the number of ways to partition a set of 
+\begin_inset Formula $n$
+\end_inset
+
+ elements into 
+\begin_inset Formula $k$
+\end_inset
+
+ nonempty subsets.
+ A partition of a set 
+\begin_inset Formula $A$
+\end_inset
+
+ is a collection of subsets of 
+\begin_inset Formula $A$
+\end_inset
+
+ such that each element of the set 
+\begin_inset Formula $A$
+\end_inset
+
+ must be an element of exactly one of the subsets.
+ The order of the subsets is irrelevant as the partition is a collection
+ (a set of sets).
+ For example, the partition 
+\begin_inset Formula $\{\{1\},\{2,3\},\{4\}\}$
+\end_inset
+
+ is a partition of 
+\begin_inset Formula $\{1,2,3,4\}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\{\{4\},\{1\},\{2,3\}\}$
+\end_inset
+
+ is the same partition of 
+\begin_inset Formula $\{1,2,3,4\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion-4"
+
+\end_inset
+
+Find 
+\begin_inset Formula $S(10,1)$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $S(3,2)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $S(4,3)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion-5"
+
+\end_inset
+
+Find 
+\begin_inset Formula $S(4,2)$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $S(8,8)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion-6"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Stirling2"
+
+\end_inset
+
+Stirling numbers of the second kind, part 2.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $S(n,1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $S(n,n)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion-7"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Stirling3"
+
+\end_inset
+
+Stirling numbers of the second kind, part 3.
+ Let 
+\begin_inset Formula $A=\{1,2,3,\ldots,n\}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+How many partitions of 
+\begin_inset Formula $A$
+\end_inset
+
+ into 
+\begin_inset Formula $k$
+\end_inset
+
+ nonempty subsets include the subset 
+\begin_inset Formula $\{n\}$
+\end_inset
+
+? Give an answer in terms of Stirling numbers of the second kind.
+\end_layout
+
+\begin_layout Enumerate
+How many partitions of 
+\begin_inset Formula $A$
+\end_inset
+
+ into 
+\begin_inset Formula $k$
+\end_inset
+
+ nonempty subsets do not include the subset 
+\begin_inset Formula $\{n\}$
+\end_inset
+
+? Give an answer in terms of Stirling numbers of the second kind.
+ Hint, consider partitions of 
+\begin_inset Formula $B=\{1,2,3,\ldots,n-1\}$
+\end_inset
+
+ into 
+\begin_inset Formula $k$
+\end_inset
+
+ nonempty subsets.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Stirling numbers of the second kind, part 4.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use your answers to questions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Stirling2"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Stirling3"
+
+\end_inset
+
+ to derive a recursive formula with initial conditions for the number of
+ ways a set of 
+\begin_inset Formula $n$
+\end_inset
+
+ elements can be partitioned into 
+\begin_inset Formula $k$
+\end_inset
+
+ subsets.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a recursive Octave function that calculates Stirling numbers of the
+ second kind.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your Octave function to verify that 
+\begin_inset Formula $S(10,4)=34105$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:recursion-8"
+
+\end_inset
+
+A set of blocks contains some that are 1 inch high and some that are 2 inches
+ high.
+ How many ways are there to make a stack of blocks 
+\begin_inset Formula $15$
+\end_inset
+
+ inches high?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+A male bee (drone) has only one parent since drones are the unfertilized
+ offspring of a queen bee.
+ A female bee (queen) has two parents.
+ Therefore, 0 generations back, a male bee has one ancestor (the bee himself).
+ 1 generation back, the bee also has 1 ancestor (the bee's mother).
+ 2 generations back, the bee has 2 ancestors (the mother's two parents).
+ How many direct ancestors does a male bee have 
+\begin_inset Formula $n$
+\end_inset
+
+ generations back?
+\end_layout
+
+\begin_layout Enumerate
+Argue that any polygon can be triangulated (covered with non-overlapping
+ triangles).
+ An example of a triangulation of a dodecagon follows.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/triangulation.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In questions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "recursive1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "recursive2"
+
+\end_inset
+
+, you should have noticed that the recursive functions were slower than
+ their for loop counterparts.
+ How many times slower? Why is the Fibonacci recursion so many more times
+ slower than its for loop counterpart?
+\end_layout
+
+\begin_layout Enumerate
+Let the sequences 
+\begin_inset Formula $\left\langle b_{n}\right\rangle $
+\end_inset
+
+ and 
+\begin_inset Formula $\left\langle c_{n}\right\rangle $
+\end_inset
+
+ be defined as follows.
+\begin_inset Formula 
+\begin{eqnarray*}
+b_{0} & = & \frac{1}{3};\quad b_{n+1}=4b_{n}-1,\quad n\geq0\\
+c_{0} & = & \frac{1}{10};\quad c_{n+1}=4c_{n}(1-c_{n}),\quad n\geq0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Write a function that uses a for loop to calculate the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ term of 
+\begin_inset Formula $\left\langle b_{n}\right\rangle $
+\end_inset
+
+.
+ Your function should have one argument, 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Write a function that uses a for loop to calculate the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ term of 
+\begin_inset Formula $\left\langle c_{n}\right\rangle $
+\end_inset
+
+.
+ Your function should have one argument, 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Write a program that calls these functions to calculate 
+\begin_inset Formula $b_{30}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{30}$
+\end_inset
+
+.
+ How accurate are these calculations? HINT 
+\begin_inset Formula $b_{30}=\frac{1}{3}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{30}=.32034$
+\end_inset
+
+ accurate to 5 decimal places.
+\end_layout
+
+\begin_layout Enumerate
+Can you think of a way to make these calculations more dependable (more
+ accurate)?
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

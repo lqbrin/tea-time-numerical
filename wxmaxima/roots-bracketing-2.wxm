@@ -1,0 +1,49 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+iqi0:-a*B*C/((A-B)*(C-A))-b*A*C/((A-B)*(B-C))-c*A*B/((B-C)*(C-A));
+iqi0:ratsimp(iqi0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+iqi1:subst([A=g(a),a=xi+e_a,B=g(b),b=xi+e_b,C=g(c),c=xi+e_c],iqi0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+taylor_a:g(xi+e_a)=e_a*gp(xi)+1/2*e_a^2*gpp(xi)+1/6*e_a^3*gppp(xi)+O(e_a^4)$
+taylor_b:g(xi+e_b)=e_b*gp(xi)+1/2*e_b^2*gpp(xi)+1/6*e_b^3*gppp(xi)+O(e_b^4)$
+taylor_c:g(xi+e_c)=e_c*gp(xi)+1/2*e_c^2*gpp(xi)+1/6*e_c^3*gppp(xi)+O(e_c^4)$
+iqi2:subst([taylor_a,taylor_b,taylor_c],iqi1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+y(alpha):=alpha^3-alpha^2-alpha-1$
+solve(y(alpha)=0)[3];
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(diff(y(alpha),alpha)=0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+y(1);
+y(-1/3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+draw2d(explicit(y(alpha),alpha,-3,3),explicit(0,alpha,-3,3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand((x-y)*(x^2+x*y+y^2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(iqi2);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

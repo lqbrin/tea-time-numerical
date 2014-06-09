@@ -1,0 +1,319 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+0
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+midpt(F,a,b):=(b-a)*F((a+b)/2);
+compmidpt(F,a,b,n):=([total,h],
+    total:0,
+    h:(b-a)/n,
+    for i:1 thru n do(
+        total:total+midpt(F,a+h*(i-1),a+h*i)
+    ),
+    total
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(sin(x));
+y1:float(2/3*f(1+1/3));
+y2:float(2/3*f(2));
+y3:float(2/3*f(2+2/3));
+y1+y2+y3;
+float(compmidpt(f,1,3,3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(x)*log(x)/x;
+float(compmidpt(f,1,4,3));
+f(x):=exp(x)/(1+x);
+float(compmidpt(f,log(3),log(7),3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+7
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+trap(F,a,b):=(b-a)*(F(a)+F(b))/2;
+comptrap(F,a,b,n):=([total,h],
+    total:0,
+    h:(b-a)/n,
+    for i:1 thru n do(
+        total:total+trap(F,a+h*(i-1),a+h*i)
+    ),
+    total
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(sin(x));
+y1:float(1/3*(f(1)+f(1+2/3)));
+y2:float(1/3*(f(1+2/3)+f(2+1/3)));
+y3:float(1/3*(f(2+1/3)+f(3)));
+y1+y2+y3;
+float(comptrap(f,1,3,3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(x)*log(x)/x;
+float(comptrap(f,1,4,3));
+f(x):=exp(x)/(1+x);
+float(comptrap(f,log(3),log(7),3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+8
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+simp(F,a,b):=(b-a)*(F(a)+4*F((a+b)/2)+F(b))/6;
+compsimp(F,a,b,n):=([total,h],
+    total:0,
+    h:(b-a)/n,
+    for i:1 thru n do(
+        total:total+simp(F,a+h*(i-1),a+h*i)
+    ),
+    total
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(sin(x));
+y1:float(simp(f,1,1+2/3));
+y2:float(simp(f,1+2/3,2+1/3));
+y3:float(simp(f,2+1/3,3));
+y1+y2+y3;
+float(compsimp(f,1,3,3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(x)*log(x)/x;
+float(compsimp(f,1,4,3));
+f(x):=exp(x)/(1+x);
+float(compsimp(f,log(3),log(7),3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+9
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+simp38(F,a,b):=(b-a)*(F(a)+3*F((2*a+b)/3)+3*F((a+2*b)/3)+F(b))/8;
+compsimp38(F,a,b,n):=([total,h],
+    total:0,
+    h:(b-a)/n,
+    for i:1 thru n do(
+        total:total+simp38(F,a+h*(i-1),a+h*i)
+    ),
+    total
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(sin(x));
+y1:float(simp38(f,1,1+2/3));
+y2:float(simp38(f,1+2/3,2+1/3));
+y3:float(simp38(f,2+1/3,3));
+y1+y2+y3;
+float(compsimp38(f,1,3,3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(x)*log(x)/x;
+float(compsimp38(f,1,4,3));
+f(x):=exp(x)/(1+x);
+float(compsimp38(f,log(3),log(7),3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+10
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+thirds(F,a,b):=(b-a)*(F((2*a+b)/3)+F((a+2*b)/3))/2;
+compthirds(F,a,b,n):=([total,h],
+    total:0,
+    h:(b-a)/n,
+    for i:1 thru n do(
+        total:total+thirds(F,a+h*(i-1),a+h*i)
+    ),
+    total
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(sin(x));
+y1:float(thirds(f,1,1+2/3));
+y2:float(thirds(f,1+2/3,2+1/3));
+y3:float(thirds(f,2+1/3,3));
+y1+y2+y3;
+float(compthirds(f,1,3,3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(x)*log(x)/x;
+float(compthirds(f,1,4,3));
+f(x):=exp(x)/(1+x);
+float(compthirds(f,log(3),log(7),3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+14
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(sin(x))^4;
+exact:integrate(f(x),x,0,%pi);
+app:float(midpt(f,0,%pi));
+err:abs(exact-app);
+mult:err/10^-4;
+float(sqrt(mult));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+18
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+adaptiveSimp(a,m,b,tol,fa,fm,fb,c):=block([s,m1,m2,fm1,fm2,simp,simp2,err],
+    s:b-a,
+    m1:a+s/4,
+    m2:a+3*s/4,
+    fm1:f(m1),
+    fm2:f(m2),
+    simp:s*(fa+4*fm+fb)/6,
+    simp2:s*(fa+4*fm1+2*fm+4*fm2+fb)/12,
+    err:abs(simp2-simp),
+    if err<15*tol then [simp2,c+2] else adaptiveSimp(a,m1,m,tol/2,fa,fm1,fm,c)+adaptiveSimp(m,m2,b,tol/2,fm,fm2,fb,c)
+)$
+f(x):=log(x+1);
+app:adaptiveSimp(0,1/2,1,10^-4,f(0),f(1/2),f(1),0);
+float(%);
+exact:integrate(f(x),x,0,1);
+float(exact);
+err:float(abs(exact-app[1]));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x^2*log(x^2+1);
+app:midpt(f,0,2);
+float(app);
+exact:integrate(f(x),x,0,2);
+err:float(abs(exact-app));
+intervals:sqrt(err/10^-4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+19
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+app:float(compmidpt(f,0,2,132));
+err:float(exact-app);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+20
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(x+1);
+exact:integrate(f(x),x,0,1);
+app:float(compsimp38(f,0,1,5));
+err:float(exact-app);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+11
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(sin(x))^4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trap(f,0,%pi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(sqrt(3/8*%pi/10^-4));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+17
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(sin(x));
+s1:float(simp(f,1,3));
+s2:float(compsimp(f,1,3,2));
+err:1/15*abs(s2-s1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+s1:float(simp(f,1,2));
+s2:float(compsimp(f,1,2,2));
+err:1/15*abs(s2-s1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+s1:float(simp(f,2,3));
+s2:float(compsimp(f,2,3,2));
+err:1/15*abs(s2-s1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+s1:float(simp(f,2,2.5));
+s2:float(compsimp(f,2,2.5,2));
+err:1/15*abs(s2-s1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+s1:float(simp(f,2.5,3));
+s2:float(compsimp(f,2.5,3,2));
+err:1/15*abs(s2-s1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+app:-0.045560-0.134243-0.523129;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+exact:romberg(f(x),x,1,3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+err:abs(exact-app);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+12
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(x+1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+integrate(f(x),x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+integrate(f(x),x,0,1);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(comptrap(f,0,1,10));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

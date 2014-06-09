@@ -1,0 +1,144 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.09.0 ] */
+
+/* [wxMaxima: comment start ]
+SECTION 1.1 Accuracy
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1a
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+abs(1106/9-123);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+1c
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+abs(1000-2^10);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+1e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+abs(10^-4-%pi^-7);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2a
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+abs(1106/9-123)/123;
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2c
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+abs(1000-2^10)/2^10;
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+abs(10^-4-%pi^-7)/%pi^-7;
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+3a
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+log(123/abs(1106/9-123))/log(10);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+3c
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+log(2^10/abs(1000-2^10))/log(10);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+3e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+log(%pi^-7/abs(10^-4-%pi^-7))/log(10);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+4a
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(%pi-0.001);
+float(%pi+0.001);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+4c
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(log(3)-0.001);
+float(log(3)+0.001);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+4e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(10/log(1.1)-0.001);
+float(10/log(1.1)+0.001);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+5a
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(%pi-0.001*%pi);
+float(%pi+0.001*%pi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+5c
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(log(3)*0.999);
+float(log(3)*1.001);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+5e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(10/log(1.1)*0.999);
+float(10/log(1.1)*1.001);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

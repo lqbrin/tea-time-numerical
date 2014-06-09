@@ -1,0 +1,5 @@
+Rump, "Algorithms for Verified Inclusions: Theory and Practice", Moore, R. E. (ed.), Reliability in Computing: The Role of Interval Methods in Scientific Computing, Academic Press, Boston, 1988, pp. 109–126.
+http://www.ti3.tu-harburg.de/paper/rump/Ru88a.pdf
+
+Loh, Eugene; Walster, G. William, "Rump's example revisited", Reliab. Comput. 8 (2002), no. 3, 245–248. 
+http://www.springerlink.com/content/6vm756x2739gckqj/

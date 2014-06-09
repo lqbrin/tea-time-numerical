@@ -1,0 +1,191 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+Comparing order of convergence for fixed point iteration when the derivative
+at the fixed point is nonzero versus that when it is zero.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:30;
+f(x):=1/8*x^3-x^2+2*x+1;
+f1(x):=-x^3+5*x^2-3*x-6;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+s:bfloat(1.75)$
+t:bfloat(2.75)$
+for i:0 thru 10 do (
+  print(i," ",s," ",t),
+  print(i," ",abs(s-2)," ",abs(t-3)),
+  s:f(s),
+  t:f1(t)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Aitken's delta squared method applied to s.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+s:1.75$
+for i:0 thru 1 do (
+  ss[i]:s,
+  print(i," ",s," ",abs(2-s)),
+  s:f(s)
+);
+for i:2 thru 3 do (
+  ss[2]:s,
+  a[i-2]:ss[0]-(ss[1]-ss[0])^2/(ss[2]-2*ss[1]+ss[0]),
+  print(i," ",s," ",abs(2-s)," ",a[i-2]," ",abs(2-a[i-2])," ",alpha),
+  s:f(s),
+  ss[0]:ss[1],
+  ss[1]:ss[2]
+);
+for i:4 thru 12 do (
+  ss[2]:s,
+  a[2]:ss[0]-(ss[1]-ss[0])^2/(ss[2]-2*ss[1]+ss[0]),
+  alpha:log(abs((a[2]-2)/(a[1]-2)))/log(abs((a[1]-2)/(a[0]-2))),
+  print(i," ",s," ",abs(2-s)," ",a[2]," ",abs(2-a[2])," ",alpha),
+  s:f(s),
+  ss[0]:ss[1],
+  ss[1]:ss[2],
+  a[0]:a[1],
+  a[1]:a[2]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Aitken's delta-squared applied to sum of reciprocals of odds (converges to pi/4)
+First exactly then approximately
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+s:1$
+p:%pi/4$
+for i:1 thru 2 do (
+  ss[i-1]:s,
+  print(i-1," ",s," ",abs(p-s)),
+  s:s+(-1)^i/(2*i+1)
+);
+for i:3 thru 11 do (
+  ss[2]:s,
+  a:ss[0]-(ss[1]-ss[0])^2/(ss[2]-2*ss[1]+ss[0]),
+  alpha:log(abs((ss[2]-p)/(ss[1]-p)))/log(abs((ss[1]-p)/(ss[0]-p))),
+  print(i-1," ",s," ",abs(p-s)," ",a," ",abs(p-a)," ",alpha),
+  s:s+(-1)^i/(2*i+1),
+  ss[0]:ss[1],
+  ss[1]:ss[2]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+13/15-(76/105-13/15)^2/(263/315-2*76/105+13/15);
+abs(%pi/4-%),numer;
+989/1260;
+(%pi/4-263/315)^2, numer;
+%/(%pi/4-1321/1680), numer;
+(%pi/4-2578/3465)^2, numer;
+%/(%pi/4-989/1260), numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+s:1.0$
+p:%pi/4,numer$
+for i:1 thru 2 do (
+  ss[i-1]:s,
+  print(i-1," ",s," ",abs(p-s)),
+  s:s+(-1)^i/(2*i+1)
+);
+for i:3 thru 11 do (
+  ss[2]:s,
+  a:ss[0]-(ss[1]-ss[0])^2/(ss[2]-2*ss[1]+ss[0]),
+  alpha:log(abs((ss[2]-p)/(ss[1]-p)))/log(abs((ss[1]-p)/(ss[0]-p))),
+  print(i-1," ",s," ",abs(p-s)," ",a," ",abs(p-a)," ",alpha),
+  s:s+(-1)^i/(2*i+1),
+  ss[0]:ss[1],
+  ss[1]:ss[2]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Aitken's delta-squared applied to sum of reciprocals of factorials 
+(superlinear so no speed up)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+s:1.0$
+p:exp(1.0);
+for i:1 thru 2 do (
+  ss[i-1]:s,
+  print(i-1," ",s," ",abs(p-s)),
+  s:s+1/i!
+);
+for i:3 thru 11 do (
+  ss[2]:s,
+  a:ss[0]-(ss[1]-ss[0])^2/(ss[2]-2*ss[1]+ss[0]),
+  alpha:log(abs((ss[2]-p)/(ss[1]-p)))/log(abs((ss[1]-p)/(ss[0]-p))),
+  print(i-1," ",s," ",abs(p-s)," ",a," ",abs(p-a)," ",alpha),
+  s:s+1/i!,
+  ss[0]:ss[1],
+  ss[1]:ss[2]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Aitken's delta-squared applied to sum of reciprocals of squares
+(superlinear so no speed up)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+s:1.0$
+p:%pi^2/6,numer;
+for i:2 thru 3 do (
+  ss[i-1]:s,
+  print(i-1," ",s," ",abs(p-s)),
+  s:s+1/i^2
+);
+for i:4 thru 11 do (
+  ss[2]:s,
+  a:ss[0]-(ss[1]-ss[0])^2/(ss[2]-2*ss[1]+ss[0]),
+  alpha:log(abs((ss[2]-p)/(ss[1]-p)))/log(abs((ss[1]-p)/(ss[0]-p))),
+  print(i-1," ",s," ",abs(p-s)," ",a," ",abs(p-a)," ",alpha),
+  s:s+1/i^2,
+  ss[0]:ss[1],
+  ss[1]:ss[2]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Steffensen's applied to s
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+s0:bfloat(1.75);
+print(s0)$
+for i:1 thru 4 do(
+  s1:f(s0),
+  s2:f(s1),
+  a:s0-(s1-s0)^2/(s2-2*s1+s0),
+  print(s1," ",s2," ",a),
+  s0:a
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Steffensen's applied to f1(x) from section roots-fixedpoint
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):=-x^3+5*x^2-3*x-6;
+x0:-2.0+280*7/400.0;
+x0:-2.0+279*7/400.0;
+for i:1 thru 100 do (
+  x1:g(x0), x2:g(x1), x:x0-(x1-x0)^2/(x2-2*x1+x0),
+  print(x),
+  x0:x
+);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

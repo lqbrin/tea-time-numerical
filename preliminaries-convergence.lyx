@@ -1,0 +1,5783 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Speed"
+
+\end_inset
+
+Speed
+\end_layout
+
+\begin_layout Standard
+Besides accuracy, there is nothing more important about a numerical method
+ than speed.
+ There is almost always a trade off between one and the other, however.
+ Fast computations are often not particularly accurate, and accurate calculation
+s are often not particularly fast.
+ There are certain algorithms that produce accurate results quickly, however.
+ Deriving them, or identifying them once derived is what numerical analysis
+ is all about.
+\end_layout
+
+\begin_layout Standard
+The first type of numerical method we will encounter produces a sequence
+ of approximations that, when everything is working, approach some desired
+ value, say 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ With these methods, we will get a sequence 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ with 
+\begin_inset Formula $\lim_{n\to\infty}p_{n}=p$
+\end_inset
+
+.
+ You should be familiar with the concept of the limit of a sequence from
+ Calculus, but the purpose there was much different from ours here.
+ Generally, you were concerned with whether a given sequence converged at
+ all.
+ And when it did converge, and you were very lucky, you were able to determine
+ the limit.
+ In numerical analysis, we know certain sequences converge, and are only
+ interested in how quickly they do so.
+ 
+\end_layout
+
+\begin_layout Standard
+Simple observation (and a little common sense) can tell you which cars on
+ a highway are traveling faster than which.
+ Simple observation (and a little common sense) will also often tell you
+ which sequences converge faster than which.
+ 
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:convergenceTo2.718281828..."
+
+\end_inset
+
+Some sequences that converge to 
+\begin_inset Formula $e$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $r_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $s_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.9436563656918$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.86799618929986$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.82129001274358$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.78177393100014$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.89858145824525$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.78315514435127$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.73850656616954$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.72150682612711$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.86252153228801$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.73974041668143$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71973377603211$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71829014894701$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.83367359152222$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.72324781752852$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71830229432561$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182851442$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.81059523890958$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71899828870116$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828184916891$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.79213255681947$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71833715075158$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845934$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.77736241114739$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828369688657$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.76554629460972$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828184959225$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.75609340137958$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182851528$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.74853108679547$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845907$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.71828182845904$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Consider the sequences in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:convergenceTo2.718281828..."
+
+\end_inset
+
+ which all converge to 
+\begin_inset Formula $e\approx2.71828182845904$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\langle t_{n}\rangle$
+\end_inset
+
+ is accurate to 15 significant digits by the sixth term; 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+ is accurate to 15 significant digits by the eighth term; 
+\begin_inset Formula $\langle r_{n}\rangle$
+\end_inset
+
+ is still not accurate to 15 significant digits by the eleventh term, but
+ seems likely to gain 15 significant digits of accuracy on the twelfth term;
+ and 
+\begin_inset Formula $\langle q_{n}\rangle$
+\end_inset
+
+ is only accurate to 2 significant digits by the eleventh term, so seems
+ likely to take considerably more than twelve terms to gain 15 significant
+ digits of accuracy.
+ Since they all started at 3, it seems reasonable to say that, ordered from
+ fastest to slowest, they are 
+\begin_inset Formula $\langle t_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle r_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle q_{n}\rangle$
+\end_inset
+
+.
+ And that is correct as we will see soon.
+ But just like knowing which cars are faster than which is different from
+ knowing has fast each is going, knowing which sequences canverge faster
+ than which is different from knowing how quickly each one converges.
+ To measure the speed of a given car, you need access to its spedometer
+ or a radar gun.
+ To measure the order of convergence (speed) of a sequence, you need a definitio
+n and a little algebra.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Order of convergence of a sequence
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! order of
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose the sequence 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Then we say 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ converges with order 
+\begin_inset Formula $\alpha\geq1$
+\end_inset
+
+ if
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{\left|p_{n+1}-p\right|}{\left|p_{n}-p\right|^{\alpha}}=\lambda
+\]
+
+\end_inset
+
+for some real number 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Let's see how to use this definition to calculate the orders of convergence
+ of the sequences in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:convergenceTo2.718281828..."
+
+\end_inset
+
+.
+ According to the definition, 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, should it exist, gives the speed (or order) of convergence 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! order of
+\end_layout
+
+\end_inset
+
+ of a sequence.
+ Now assuming that 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ does exist, we have that 
+\begin_inset Formula $\lim_{n\to\infty}\frac{\left|p_{n+1}-p\right|}{\left|p_{n}-p\right|^{\alpha}}=\lambda$
+\end_inset
+
+, so for large enough 
+\begin_inset Formula $n$
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+\frac{\left|p_{n+1}-p\right|}{\left|p_{n}-p\right|^{\alpha}}\approx\frac{\left|p_{n+2}-p\right|}{\left|p_{n+1}-p\right|^{\alpha}}\approx\lambda.
+\]
+
+\end_inset
+
+In particular, we can solve for 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ to find 
+\begin_inset Formula ${\displaystyle \alpha\approx\frac{\ln\left|\frac{p_{n+2}-p}{p_{n+1}-p}\right|}{\ln\left|\frac{p_{n+1}-p}{p_{n}-p}\right|}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Order of Convergence Less than or equal to 1?} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+There is no such thing as an order of convergence 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! order of
+\end_layout
+
+\end_inset
+
+ less than one because if 
+\begin_inset Formula $\lim_{n\to\infty}\frac{\left|p_{n+1}-p\right|}{\left|p_{n}-p\right|^{\alpha}}=\lambda$
+\end_inset
+
+ for some 
+\begin_inset Formula $0<\alpha<1$
+\end_inset
+
+, then 
+\begin_inset Formula 
+\begin{eqnarray*}
+\lim_{n\to\infty}\frac{|p_{n+1}-p|}{|p_{n}-p|} & = & \lim_{n\to\infty}\frac{|p_{n+1}-p|}{|p_{n}-p|^{\alpha}}\cdot|p_{n}-p|^{\alpha-1},
+\end{eqnarray*}
+
+\end_inset
+
+a contradiction.
+ On the one hand, the ratio test implies that 
+\begin_inset Formula $\lim_{n\to\infty}\frac{|p_{n+1}-p|}{|p_{n}-p|}$
+\end_inset
+
+ exists and is less than or equal to 1.
+ On the other hand, 
+\begin_inset Formula $\alpha<1\implies\alpha-1<0$
+\end_inset
+
+ so for 
+\begin_inset Formula $|p_{n}-p|$
+\end_inset
+
+ small, 
+\begin_inset Formula $|p_{n}-p|^{\alpha-1}$
+\end_inset
+
+ is large.
+ Hence 
+\begin_inset Formula $\lim_{n\to\infty}\frac{|p_{n+1}-p|}{|p_{n}-p|^{\alpha}}\cdot|p_{n}-p|^{\alpha-1}$
+\end_inset
+
+ does not exist.
+ To be rigorous, let 
+\begin_inset Formula $M$
+\end_inset
+
+ be any real number.
+ Then there exists an 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ such that 
+\begin_inset Formula $n>N_{1}$
+\end_inset
+
+ implies 
+\begin_inset Formula $\frac{|p_{n+1}-p|}{|p_{n}-p|^{\alpha}}>0.9\lambda$
+\end_inset
+
+.
+ There also exists 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ such that 
+\begin_inset Formula $n>N_{2}$
+\end_inset
+
+ implies 
+\begin_inset Formula ${\displaystyle |p_{n}-p|<\left(\frac{0.9\lambda}{M}\right)^{\frac{1}{1-\alpha}}}$
+\end_inset
+
+, so 
+\begin_inset Formula $|p_{n}-p|^{\alpha-1}>\frac{M}{0.9\lambda}$
+\end_inset
+
+.
+ Letting 
+\begin_inset Formula $N=\max\{N_{1},N_{2}\}$
+\end_inset
+
+ we have that 
+\begin_inset Formula $n>N$
+\end_inset
+
+ implies both 
+\begin_inset Formula $\frac{|p_{n+1}-p|}{|p_{n}-p|^{\alpha}}>0.9\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $|p_{n}-p|^{\alpha-1}>\frac{M}{0.9\lambda}$
+\end_inset
+
+.
+ Hence, for 
+\begin_inset Formula $n>N$
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{|p_{n+1}-p|}{|p_{n}-p|} & = & \frac{|p_{n+1}-p|}{|p_{n}-p|^{\alpha}}\cdot|p_{n}-p|^{\alpha-1}>0.9\lambda\cdot\frac{M}{0.9\lambda}=M.
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $\lim_{n\to\infty}\frac{|p_{n+1}-p|}{|p_{n}-p|}$
+\end_inset
+
+ does not exist.
+ When 
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+, it must be that 
+\begin_inset Formula $\lambda\leq1$
+\end_inset
+
+ because otherwise the ratio test implies that 
+\begin_inset Formula $\langle|p_{n}-p|\rangle$
+\end_inset
+
+ diverges, and therefore 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ diverges.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For example, 
+\begin_inset Formula ${\displaystyle \frac{\ln\left|\frac{q_{2}-e}{q_{1}-e}\right|}{\ln\left|\frac{q_{1}-e}{q_{0}-e}\right|}\approx\frac{\ln\left|\frac{2.8985-e}{2.9436-e}\right|}{\ln\left|\frac{2.9436-e}{3-e}\right|}}\approx1$
+\end_inset
+
+ and 
+\begin_inset Formula ${\displaystyle \frac{\ln\left|\frac{q_{10}-e}{q_{9}-e}\right|}{\ln\left|\frac{q_{9}-e}{q_{8}-e}\right|}=\frac{\ln\left|\frac{2.7485-e}{2.7560-e}\right|}{\ln\left|\frac{2.7560-e}{2.7655-e}\right|}}\approx1$
+\end_inset
+
+.
+ And if we try other sets of three consecutive terms of 
+\begin_inset Formula $\langle q_{n}\rangle$
+\end_inset
+
+, we get the same results.
+ The order of convergence
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! order of
+\end_layout
+
+\end_inset
+
+ of 
+\begin_inset Formula $\langle q_{n}\rangle$
+\end_inset
+
+ is about 1.
+ Of course, we would need a formula for 
+\begin_inset Formula $|q_{n}-e|$
+\end_inset
+
+ to determine whether the limit were truly 1, but we have some evidence.
+ Repeating the calculations for 
+\begin_inset Formula $\langle r_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+, and 
+\begin_inset Formula $\langle t_{n}\rangle$
+\end_inset
+
+, we get approximate orders of convergence 
+\begin_inset Formula $1.322$
+\end_inset
+
+, 
+\begin_inset Formula $1.618$
+\end_inset
+
+, and 
+\begin_inset Formula $2$
+\end_inset
+
+, respectively.
+ Again we see that, ordered from fastest to slowest, they are 
+\begin_inset Formula $\langle t_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle r_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle q_{n}\rangle$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+If you attempted to calculate the orders of convergence yourself, you may
+ have noticed that more information is needed to use 
+\begin_inset Formula $s_{n}$
+\end_inset
+
+ with 
+\begin_inset Formula $n>6$
+\end_inset
+
+ or 
+\begin_inset Formula $t_{n}$
+\end_inset
+
+ with 
+\begin_inset Formula $n>4$
+\end_inset
+
+.
+ All of these terms in the table are equal so the formula for 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ fails to produce a real number! A more useful table for calculating orders
+ of convergence is one listing absolute errors: 
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:absoluteErrors"
+
+\end_inset
+
+Absolute errors.
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|q_{n}-e|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|r_{n}-e|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|s_{n}-e|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|t_{n}-e|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.817(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.817(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.817(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.817(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.253(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.497(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.03(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.349(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.802(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.487(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.022(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.224(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.442(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.145(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.451(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.32(10)^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.153(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.965(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.046(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.538(10)^{-11}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.231(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.164(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.07(10)^{-8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.453(10)^{-21}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.385(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.532(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.953(10)^{-13}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.817(10)^{-42}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.908(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.868(10)^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.263(10)^{-21}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.856(10)^{-83}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.726(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.113(10)^{-8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.777(10)^{-34}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.757(10)^{-166}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.781(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.623(10)^{-11}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.608(10)^{-54}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.084(10)^{-332}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.024(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.22(10)^{-14}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.595(10)^{-87}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.961(10)^{-663}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ In additon to making it easier to calculate 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, this chart makes it painfully obvious that our common sense conclusion
+ about which sequences converge faster than which was quite right.
+ Just compare the accuracy (absolute errors) of the eleventh terms.
+ 
+\end_layout
+
+\begin_layout Standard
+So now we can calculate orders of convergence 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! order of
+\end_layout
+
+\end_inset
+
+, but what does it all mean? What does the order of convergence tell us
+ about successive terms in the sequence? Solving the approximation 
+\begin_inset Formula $\frac{\left|p_{n+1}-p\right|}{\left|p_{n}-p\right|^{\alpha}}\approx\lambda$
+\end_inset
+
+ gives us that 
+\begin_inset Formula $|p_{n+1}-p|\approx\lambda|p_{n}-p|^{\alpha}$
+\end_inset
+
+.
+ So, roughly speaking, convergence of order 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ means that, for large enough 
+\begin_inset Formula $n$
+\end_inset
+
+, the approximation 
+\begin_inset Formula $p_{n+1}$
+\end_inset
+
+ is about 
+\begin_inset Formula $\lambda|p_{n}-p|^{\alpha-1}$
+\end_inset
+
+ times closer to the limit 
+\begin_inset Formula $p$
+\end_inset
+
+ than is 
+\begin_inset Formula $p_{n}$
+\end_inset
+
+.
+ To rephrase in terms of significant digits of accuracy, a little bit of
+ algebra:
+\begin_inset Formula 
+\begin{eqnarray*}
+|p_{n+1}-p| & \approx & \lambda|p_{n}-p|^{\alpha}\\
+\left|\frac{p_{n+1}-p}{p}\right| & \approx & \lambda\left|\frac{p_{n}-p}{p}\right|^{\alpha}\cdot|p|^{\alpha-1}\\
+-\log\left|\frac{p_{n+1}-p}{p}\right| & \approx & -\log\left|\frac{p_{n}-p}{p}\right|^{\alpha}-\log\left(\lambda|p|^{\alpha-1}\right)\\
+d(p_{n+1}) & \approx & \alpha d(p_{n})-\log\left(\lambda|p|^{\alpha-1}\right).
+\end{eqnarray*}
+
+\end_inset
+
+Based on this calculation, we conclude these rules of thumb:
+\end_layout
+
+\begin_layout Enumerate
+for linear convergence (
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+), 
+\begin_inset Formula $d(p_{n+1})\approx d(p_{n})-\log\lambda$
+\end_inset
+
+, so each term has a fixed number more significant digits of accuracy (approxima
+tely equal to 
+\begin_inset Formula $-\log\lambda$
+\end_inset
+
+) than the previous;
+\end_layout
+
+\begin_layout Enumerate
+for quadratic convergence (
+\begin_inset Formula $\alpha=2$
+\end_inset
+
+), 
+\begin_inset Formula $d(p_{n+1})\approx2d(p_{n})-\log\left(\lambda|p|\right)$
+\end_inset
+
+, so each term has double the number of significant digits of accuracy of
+ the previous, give or take some;
+\end_layout
+
+\begin_layout Enumerate
+for cubic convergence (
+\begin_inset Formula $\alpha=3$
+\end_inset
+
+), 
+\begin_inset Formula $d(p_{n+1})\approx3d(p_{n})-\log\left(\lambda|p|^{2}\right)$
+\end_inset
+
+, so each term has triple the number of significant digits of accuracy of
+ the previous, give or take some;
+\end_layout
+
+\begin_layout Standard
+and so on.
+ Summarizing, for large 
+\begin_inset Formula $n$
+\end_inset
+
+, you can expect that each term will have 
+\begin_inset Formula $-\log\left(\lambda|p|^{\alpha-1}\right)$
+\end_inset
+
+ more than 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ times as many significant digits of accuracy as the previous term.
+ We can see this claim in action by calculating 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ for the sequences 
+\begin_inset Formula $\langle t_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle s_{n}\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\langle r_{n}\rangle$
+\end_inset
+
+, and 
+\begin_inset Formula $\langle q_{n}\rangle$
+\end_inset
+
+.
+ Using the fact that 
+\begin_inset Formula $\lambda\approx\frac{\left|p_{n+1}-p\right|}{\left|p_{n}-p\right|^{\alpha}}$
+\end_inset
+
+, we find that 
+\begin_inset Formula $\lambda=0.8$
+\end_inset
+
+ for each sequence.
+ Therefore, 
+\begin_inset Formula $\langle q_{n}\rangle$
+\end_inset
+
+ should show each term having 
+\begin_inset Formula $-\log0.8\approx.1$
+\end_inset
+
+ more significant digits of accuracy than the previous.
+ More sensibly, this means the sequence will show about one more significant
+ digit of accuracy every ten terms.
+ This is born out by observing that 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ has error about 
+\begin_inset Formula $3(10)^{-1}$
+\end_inset
+
+ while 
+\begin_inset Formula $q_{10}$
+\end_inset
+
+ has error about 
+\begin_inset Formula $3(10)^{-2}$
+\end_inset
+
+.
+ For 
+\begin_inset Formula $\langle r_{n}\rangle$
+\end_inset
+
+, we should expect each term to have about 
+\begin_inset Formula $-\log(0.8\cdot e^{.322})\approx-0.04$
+\end_inset
+
+ more than 
+\begin_inset Formula $1.322$
+\end_inset
+
+ times as many significant digits of accuracy as the previous.
+ For example, 
+\begin_inset Formula $r_{3}$
+\end_inset
+
+ has about 
+\begin_inset Formula $\log\left|\frac{e}{2.145(10)^{-2}}\right|\approx2.1$
+\end_inset
+
+ significant digits of accuracy while 
+\begin_inset Formula $r_{4}$
+\end_inset
+
+ has about 
+\begin_inset Formula $1.322(2.1)-.04\approx2.73$
+\end_inset
+
+ significant digits of accuracy, 
+\begin_inset Formula $r_{5}$
+\end_inset
+
+ has 
+\begin_inset Formula $1.322(2.73)-.04\approx3.57$
+\end_inset
+
+ significant digits of accuracy, and so on until 
+\begin_inset Formula $r_{8}$
+\end_inset
+
+ has about 
+\begin_inset Formula $8.1$
+\end_inset
+
+ significant digits of accuracy.
+ Again this is born out by the table as 
+\begin_inset Formula $\log\left|\frac{e}{r_{8}-e}\right|=\log\left|\frac{e}{2.113(10)^{-8}}\right|\approx8.1$
+\end_inset
+
+.
+ Though we can do a similar calculation for 
+\begin_inset Formula $\langle t_{n}\rangle$
+\end_inset
+
+, it's easier just to eyeball it since all we need to see is that the exponent
+ in the scientific notation doubles, give or take a little, from one term
+ to the next.
+ Indeed it does as it goes from 1 to 2 to 3 to 6 to 11, and so on.
+ 
+\end_layout
+
+\begin_layout Standard
+Note that in all this analysis, we have ignored the requirement that 
+\begin_inset Formula $n$
+\end_inset
+
+ be 
+\begin_inset Quotes eld
+\end_inset
+
+large
+\begin_inset Quotes erd
+\end_inset
+
+.
+ That was acceptable in this case since these sequences were contrived so
+ that even 
+\begin_inset Formula $n=0$
+\end_inset
+
+ was large enough! In practical applications this will not be the case.
+\end_layout
+
+\begin_layout Standard
+To appreciate just how much faster one order of convergence is over another,
+ consider the relation 
+\begin_inset Formula 
+\[
+d(p_{n+1})\approx\alpha d(p_{n})-\log\left(\lambda|p|^{\alpha-1}\right)
+\]
+
+\end_inset
+
+again.
+ Now suppose we know that 
+\begin_inset Formula $d(p_{n_{0}})=d_{n_{0}}$
+\end_inset
+
+ for some particular 
+\begin_inset Formula $n_{0}$
+\end_inset
+
+ large enough that the approximation is reasonable.
+ Then it can be shown that, for 
+\begin_inset Formula $\alpha>1$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+d(p_{n_{0}+k})\approx(d_{n_{0}}-C)\alpha^{k}+C
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula ${\displaystyle C=\frac{\log\left(\lambda|p|^{\alpha-1}\right)}{\alpha-1}}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Solving a Recurrence Relation} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The relation 
+\begin_inset Formula $d(p_{n+1})\approx\alpha d(p_{n})-\log\left(\lambda|p|^{\alpha-1}\right)$
+\end_inset
+
+ is an example of a recurrence relation.
+ In particular, a first order linear nonhomogeneous recurrence relation
+ with constant coefficients since it has the form
+\begin_inset Formula 
+\[
+a_{n+1}=k_{1}a_{n}+k_{2}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ are constants.
+ Linear nonhomogeneous recurrence relations can be solved by summing a homogeneo
+us solution and a particular solution.
+ For the particular solution, we seek a solution of the form 
+\begin_inset Formula $a_{n}=A$
+\end_inset
+
+ (for all 
+\begin_inset Formula $n$
+\end_inset
+
+) by substituting this assumed solution into the recurrence relation.
+ Doing so gives 
+\begin_inset Formula $A=k_{1}A+k_{2}$
+\end_inset
+
+, so 
+\begin_inset Formula $A=\frac{k_{2}}{1-k_{1}}$
+\end_inset
+
+ is such a solution.
+ For the homogeneous solution, we seek a sequence of the form 
+\begin_inset Formula $a_{n}=r^{n}$
+\end_inset
+
+ that satisfies 
+\begin_inset Formula $a_{n+1}=k_{1}a_{n}+0$
+\end_inset
+
+.
+ Substituting our assumed solution into the modified (homogeneous) recurrence
+ relation gives 
+\begin_inset Formula $r^{n+1}=k_{1}r^{n}$
+\end_inset
+
+.
+ Rearranging, 
+\begin_inset Formula $r^{n}(r-k_{1})=0$
+\end_inset
+
+ so 
+\begin_inset Formula $r=0$
+\end_inset
+
+ or 
+\begin_inset Formula $r=k_{1}$
+\end_inset
+
+.
+ Notice that 
+\begin_inset Formula $Bk_{1}^{n}$
+\end_inset
+
+ is also a solution for any constant 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ This includes the solution 
+\begin_inset Formula $a_{n}=0$
+\end_inset
+
+ which would arise from setting 
+\begin_inset Formula $r=0$
+\end_inset
+
+.
+ Finally, putting the particular and homogeneous solutions together, the
+ solution of 
+\begin_inset Formula $a_{n+1}=k_{1}a_{n}+k_{2}$
+\end_inset
+
+ is 
+\begin_inset Formula $a_{n}=Bk_{1}^{n}+\frac{k_{2}}{1-k_{1}}$
+\end_inset
+
+ for any constant 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ In the case of 
+\begin_inset Formula $d(p_{n+1})\approx\alpha d(p_{n})-\log\left(\lambda|p|^{\alpha-1}\right)$
+\end_inset
+
+, 
+\begin_inset Formula $k_{1}=\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $k_{2}=-\log\left(\lambda|p|^{\alpha-1}\right)$
+\end_inset
+
+ so 
+\begin_inset Formula $d(p_{n})=B\alpha^{n}+\frac{\log\left(\lambda|p|^{\alpha-1}\right)}{\alpha-1}$
+\end_inset
+
+.
+ The value of 
+\begin_inset Formula $B$
+\end_inset
+
+ is determined by substituting any known element of the sequence into this
+ formula and solving for 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ Supposing 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $d(p_{n_{0}})=d_{n_{0}}$
+\end_inset
+
+ yields 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $d(p_{n})=\left(d_{n_{0}}-\frac{\log\left(\lambda|p|^{\alpha-1}\right)}{\alpha-1}\right)\alpha^{n}+\frac{\log\left(\lambda|p|^{\alpha-1}\right)}{\alpha-1}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+The important thing to see here is that 
+\begin_inset Formula $d(p_{n_{0}+k})$
+\end_inset
+
+ is an exponential function when 
+\begin_inset Formula $\alpha>1$
+\end_inset
+
+.
+ The number of significant digits of accuracy grows exponentially with base
+ 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ As we saw before, for 
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+, the number of significant digits grows linearly.
+ In calculus you learned that any exponential function grows much faster
+ than any polynomial function, so it is reasonable and correct to conclude
+ that sequences converging with orders greater than 
+\begin_inset Formula $1$
+\end_inset
+
+ are markedly faster converging than are sequences converging with linear
+ (
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+) order.
+ 
+\end_layout
+
+\begin_layout Standard
+But be careful.
+ Based on this same memory of calculus, you would also conclude that the
+ sequence 
+\begin_inset Formula $\langle2^{-n}\rangle$
+\end_inset
+
+ converges to 0 much faster than does 
+\begin_inset Formula $\langle n^{-2}\rangle$
+\end_inset
+
+.
+ By some measures, that's true, but not by all measures.
+ Consider the orders of convergence of these two sequences.
+ We seek values 
+\begin_inset Formula $\alpha_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{2}$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{|2^{-(n+1)}-0|}{|2^{-n}-0|^{\alpha_{1}}}=\lambda_{1}\qquad\mbox{and}\qquad\lim_{n\to\infty}\frac{|(n+1)^{-2}-0|}{|n^{-2}-0|^{\alpha_{2}}}=\lambda_{2}
+\]
+
+\end_inset
+
+for some real numbers 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+.
+ A little bit of algebra will lead to solutions:
+\begin_inset Formula 
+\[
+\begin{gathered}\frac{|2^{-(n+1)}-0|}{|2^{-n}-0|^{\alpha_{1}}}=\frac{2^{-n-1}}{2^{-\alpha_{1}n}}=2^{(\alpha_{1}-1)n-1}\\
+\mbox{while}\\
+\frac{|(n+1)^{-2}-0|}{|n^{-2}-0|^{\alpha_{2}}}=\frac{n^{2\alpha_{2}}}{n^{2}+2n+1}.
+\end{gathered}
+\]
+
+\end_inset
+
+The only way 
+\begin_inset Formula $\lim_{n\to\infty}2^{(\alpha_{1}-1)n-1}$
+\end_inset
+
+ will be a nonzero constant is if 
+\begin_inset Formula $\alpha_{1}=1$
+\end_inset
+
+.
+ The only way 
+\begin_inset Formula $\lim_{n\to\infty}\frac{n^{2\alpha_{2}}}{n^{2}+2n+1}$
+\end_inset
+
+ will be a nonzero constant is if the leading coefficients of the numerator
+ and denominator are equal.
+ That means 
+\begin_inset Formula $\alpha_{2}$
+\end_inset
+
+ must be 1 as well.
+ So 
+\begin_inset Formula $\langle2^{-n}\rangle$
+\end_inset
+
+ and 
+\begin_inset Formula $\langle n^{-2}\rangle$
+\end_inset
+
+ both converge to zero with linear order.
+ They are equally extremely slow to converge by this measure! Still, something
+ should not feel quite right about claiming that 
+\begin_inset Formula $\langle2^{-n}\rangle$
+\end_inset
+
+ and 
+\begin_inset Formula $\langle n^{-2}\rangle$
+\end_inset
+
+ converge at the same speed.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Rate of Convergence of a Sequence
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! rate of
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For sequences that converge with linear order, we need a finer measure than
+ order to determine which is faster than which.
+ Recall from calculus, 
+\begin_inset Formula 
+\begin{eqnarray*}
+\lim_{n\to\infty}\frac{2^{-n}}{n^{-2}} & = & \lim_{n\to\infty}\frac{n^{2}}{2^{n}}\\
+ & = & \lim_{n\to\infty}\frac{2n}{2^{n}\ln2}\\
+ & = & \lim_{n\to\infty}\frac{2}{2^{n}(\ln2)^{2}}=0,
+\end{eqnarray*}
+
+\end_inset
+
+indicating that 
+\begin_inset Formula $\langle2^{-n}\rangle$
+\end_inset
+
+ approaches 0 much faster than does 
+\begin_inset Formula $\langle n^{-2}\rangle$
+\end_inset
+
+.
+ You may also recall comparisons between power functions:
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{n^{-p}}{n^{-q}}=0
+\]
+
+\end_inset
+
+whenever 
+\begin_inset Formula $p>q>0$
+\end_inset
+
+; and between exponential functions:
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{a^{-n}}{b^{-n}}=0
+\]
+
+\end_inset
+
+whenever 
+\begin_inset Formula $a>b\geq1$
+\end_inset
+
+; and between the two:
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{a^{-n}}{n^{-q}}=0
+\]
+
+\end_inset
+
+whenever 
+\begin_inset Formula $a>1$
+\end_inset
+
+.
+ In other words, sequences of the form 
+\begin_inset Formula $\left\langle \frac{1}{a^{n}}\right\rangle $
+\end_inset
+
+ converge to zero faster than sequences of the form 
+\begin_inset Formula $\left\langle \frac{1}{n^{p}}\right\rangle $
+\end_inset
+
+ whenever 
+\begin_inset Formula $a>1$
+\end_inset
+
+.
+ The sequence 
+\begin_inset Formula $\left\langle \frac{1}{a^{n}}\right\rangle $
+\end_inset
+
+ converges to zero faster than 
+\begin_inset Formula $\left\langle \frac{1}{b^{n}}\right\rangle $
+\end_inset
+
+ whenever 
+\begin_inset Formula $a>b\geq1$
+\end_inset
+
+.
+ The sequence 
+\begin_inset Formula $\left\langle \frac{1}{n^{p}}\right\rangle $
+\end_inset
+
+ converges to zero faster than 
+\begin_inset Formula $\left\langle \frac{1}{n^{q}}\right\rangle $
+\end_inset
+
+ whenever 
+\begin_inset Formula $p>q>0$
+\end_inset
+
+.
+ Not all functions are as simple as these, but we can use these as our yard
+ sticks.
+ Suppose 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+, 
+\begin_inset Formula $\langle b_{n}\rangle$
+\end_inset
+
+ converges to 0 and 
+\begin_inset Formula $|p_{n}-p|\leq\lambda|b_{n}|$
+\end_inset
+
+ for some constant 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and all sufficiently large 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Then we say that 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ with rate of convergence 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! rate of
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $O(b_{n})$
+\end_inset
+
+, read 
+\begin_inset Quotes eld
+\end_inset
+
+big-oh of 
+\begin_inset Formula $b_{n}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Since we are familiar with sequences of the forms 
+\begin_inset Formula $\left\langle \frac{1}{a^{n}}\right\rangle $
+\end_inset
+
+ for some constant 
+\begin_inset Formula $a>1$
+\end_inset
+
+ and 
+\begin_inset Formula $\left\langle \frac{1}{n^{p}}\right\rangle $
+\end_inset
+
+ for some constant 
+\begin_inset Formula $p>0$
+\end_inset
+
+, and they are simple enough, typically 
+\begin_inset Formula $\langle b_{n}\rangle$
+\end_inset
+
+ will be one of them.
+ For example, 
+\begin_inset Formula $\left\langle \frac{2n+1}{4n}\right\rangle $
+\end_inset
+
+ converges to 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+, and
+\begin_inset Formula 
+\[
+\left|\frac{2n+1}{4n}-\frac{1}{2}\right|=\frac{1}{4n}\leq\frac{1}{4}\cdot\frac{1}{n},
+\]
+
+\end_inset
+
+so 
+\begin_inset Formula $\left\langle \frac{2n+1}{4n}\right\rangle $
+\end_inset
+
+ converges with rate 
+\begin_inset Formula $O(\frac{1}{n})$
+\end_inset
+
+.
+ We may also say that 
+\begin_inset Formula $\frac{2n+1}{4n}=\frac{1}{2}+O(\frac{1}{n})$
+\end_inset
+
+ to convey exactly the same message.
+ Normally, when we find a rate of convergence, we try to find the fastest
+ converging sequence from our stock of simple examples that satisfies the
+ definition.
+ In this case, there is none faster.
+\end_layout
+
+\begin_layout Standard
+Basically all the sequences studied in any depth in calculus converge with
+ linear order.
+ So what does it take to converge with a higher order? Let's have a look
+ at 
+\begin_inset Formula $\left\langle e^{-2^{n}}\right\rangle $
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{|e^{-2^{n+1}}-0|}{|e^{-2^{n}}-0|^{\alpha}}=\lim_{n\to\infty}\frac{e^{-2\cdot2^{n}}}{e^{-\alpha2^{n}}}=1
+\]
+
+\end_inset
+
+when 
+\begin_inset Formula $\alpha=2$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $\left\langle \frac{1}{e^{2^{n}}}\right\rangle $
+\end_inset
+
+ is quadratically convergent.
+ Essentially, it takes an exponentially growing exponent to converge with
+ an order greater than 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Approximating $
+\backslash
+pi$} 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pi$
+\end_inset
+
+ ! approximation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The sequence 
+\begin_inset Formula 
+\[
+\frac{1103\cdot2^{3/2}}{9801},\ \frac{1130173253125}{313826716467\cdot2^{7/2}},\ \frac{1029347477390786609545}{1116521080257783321\cdot2^{23/2}},\ldots
+\]
+
+\end_inset
+
+converges to 
+\begin_inset Formula $\frac{1}{\pi}$
+\end_inset
+
+.
+ Its terms are given by the formula 
+\begin_inset Formula 
+\[
+\left\langle \frac{\sqrt{8}}{9801}\sum_{j=0}^{n}\frac{(4j)!(1103+26390j)}{(j!)^{4}\cdot396^{4j}}\right\rangle _{n=0,1,2,3,\ldots}
+\]
+
+\end_inset
+
+of Srinivasa Ramanujan
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Ramanujan ! Srinivasa
+\end_layout
+
+\end_inset
+
+.
+ For all practical purposes, it converges very quickly.
+ The first term already has about 8 significant digits of accuracy:
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{1103\cdot2^{3/2}}{9801} & \approx & 0.31830987844047012321768445317\\
+\frac{1}{\pi} & \approx & 0.31830988618379067153776752674,
+\end{eqnarray*}
+
+\end_inset
+
+and the second has about 16:
+\begin_inset Formula 
+\[
+\left|\frac{1130173253125}{313826716467\cdot2^{7/2}}-\frac{1}{\pi}\right|\approx6.48(10)^{-17},
+\]
+
+\end_inset
+
+double the accuracy of the first term.
+ The third term is already more than double-precision accurate.
+ 
+\end_layout
+
+\begin_layout Standard
+It's tempting to believe, or hope, the sequence is quadratically convergent,
+ but it is not.
+ The third term has an accuracy of about 24 significant digits.
+ Each term in the sequence is approximately 8 significant digits more accurate
+ than the previous---the hallmark of a linearly convergent sequence.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Order
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+convergence
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! order of
+\end_layout
+
+\end_inset
+
+ The sequence 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ with order of convergence 
+\begin_inset Formula $\alpha\geq1$
+\end_inset
+
+ if
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{\left|p_{n+1}-p\right|}{\left|p_{n}-p\right|^{\alpha}}=\lambda
+\]
+
+\end_inset
+
+for some real number 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Description
+Absolute
+\begin_inset space ~
+\end_inset
+
+error For a sequence 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ that converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ with order 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, the absolute errors of consecutive terms are related by the approximation
+\begin_inset Formula 
+\[
+|p_{n+1}-p|\approx\lambda|p_{n}-p|^{\alpha}
+\]
+
+\end_inset
+
+for large enough 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Significant
+\begin_inset space ~
+\end_inset
+
+digits
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+accuracy 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+accuracy ! significant digits of
+\end_layout
+
+\end_inset
+
+For a sequence 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ that converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ with order 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, the numbers of significant digits of accuracy of consecutive terms are
+ related by the approximation
+\begin_inset Formula 
+\[
+d(p_{n+1})\approx\alpha d(p_{n})-\log\left(\lambda|p|^{\alpha-1}\right)
+\]
+
+\end_inset
+
+for large enough 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ In closed form (for 
+\begin_inset Formula $\alpha\neq1$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+d(p_{n+k})=(d_{n}-C)\alpha^{k}+C
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula ${\displaystyle C=\frac{\log\left(\lambda|p|^{\alpha-1}\right)}{\alpha-1}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Rate
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+convergence
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! rate of
+\end_layout
+
+\end_inset
+
+ The sequence 
+\begin_inset Formula $\langle p_{n}\rangle$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ with rate of convergence 
+\begin_inset Formula $O(b_{n})$
+\end_inset
+
+ if 
+\begin_inset Formula $\langle b_{n}\rangle$
+\end_inset
+
+ converges to 0 and 
+\begin_inset Formula 
+\[
+|p_{n}-p|\leq\lambda|b_{n}|
+\]
+
+\end_inset
+
+for some constant 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and all sufficiently large 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Octave
+\end_layout
+
+\begin_layout Standard
+An invaluable tool in any kind of programming is looping.
+ When you need to perform some procedure multiple times for varying input,
+ a loop is probably the right solution.
+ While there are several types of loops available in Octave, we will discuss
+ only 
+\family typewriter
+for
+\family default
+ loops 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+for
+\family default
+ loop
+\end_layout
+
+\end_inset
+
+ right now.
+ The idea is to have a variable, sometimes called a counter, that counts
+ how many times the procedure has been performed.
+ When the procedure has been performed the desired number of times, the
+ looping ends, and the program continues from there.
+ You almost certainly encountered this idea before you ever wrote a computer
+ program.
+ If you ever went to the fair and paid a dollar to toss a dozen rings in
+ hopes of landing one on the neck of a soda bottle, you have experienced
+ looping.
+ You may have even counted the rings as you tossed them.
+ You were the counter! You had to perform the procedure of throwing a ring
+ into the field of bottles 12 times.
+ So, perhaps you threw one and counted to yourself 
+\begin_inset Quotes eld
+\end_inset
+
+1
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Then you threw another and counted 
+\begin_inset Quotes eld
+\end_inset
+
+2
+\begin_inset Quotes erd
+\end_inset
+
+.
+ And another and counted 
+\begin_inset Quotes eld
+\end_inset
+
+3
+\begin_inset Quotes erd
+\end_inset
+
+.
+ And so on through 
+\begin_inset Quotes eld
+\end_inset
+
+12
+\begin_inset Quotes erd
+\end_inset
+
+.
+ When the last ring was tossed, you continued about your day at the fair.
+ 
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+for
+\family default
+ loop is an abstract analogy of this situation.
+ Suppose you want to calculate 
+\begin_inset Formula $1!$
+\end_inset
+
+, 
+\begin_inset Formula $2!$
+\end_inset
+
+, 
+\begin_inset Formula $3!$
+\end_inset
+
+, and so on through 
+\begin_inset Formula $12!$
+\end_inset
+
+.
+ In Octave, you could create the following 
+\family typewriter
+.m
+\family default
+ file and run it.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(2)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(3)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(4)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(5)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(6)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(7)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(8)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(9)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(10)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(11)
+\end_layout
+
+\begin_layout Plain Layout
+
+factorial(12)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+But this can be tedious and not particularly reader-friendly, especially
+ if we are interested in doing some computation many more than 12 times.
+ The purpose of the loop is to reduce the repetitiveness of this approach.
+ We want to perform the procedure of calculating the factorial of 12 different
+ integers, so a loop is appropriate.
+ The syntax for the loop is to set up the counter, write the code to perform
+ the procedure, and mark the end 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+end
+\end_layout
+
+\end_inset
+
+ of the loop.
+ It looks something like this.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+for j=first:last
+\end_layout
+
+\begin_layout Plain Layout
+
+  do something.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This will cause Octave to perform the procedure once for each integer from
+ 
+\family typewriter
+first
+\family default
+ to 
+\family typewriter
+last
+\family default
+, including both 
+\family typewriter
+first
+\family default
+ and 
+\family typewriter
+last
+\family default
+.
+ The value of the counter, 
+\family typewriter
+j
+\family default
+ in this case, may be used in the procedure.
+ So to calculate 
+\begin_inset Formula $1!$
+\end_inset
+
+ through 
+\begin_inset Formula $12!$
+\end_inset
+
+, we might write 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+for j=1:12
+\end_layout
+
+\begin_layout Plain Layout
+
+  factorial(j)
+\end_layout
+
+\begin_layout Plain Layout
+
+end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This will produce exactly the same output as the program with one line for
+ each factorial.
+ And if later you want to calculate 
+\begin_inset Formula $1!$
+\end_inset
+
+ through 
+\begin_inset Formula $20!$
+\end_inset
+
+ instead, all you have to do is change the 12 to a 20.
+ The 
+\family typewriter
+for
+\family default
+ loop is your friend!
+\end_layout
+
+\begin_layout Standard
+Now suppose we want to calculate 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ for each set of three consecutive values of 
+\begin_inset Formula $|s_{n}-e|$
+\end_inset
+
+ from Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:absoluteErrors"
+
+\end_inset
+
+.
+ Since there are 9 such sets, we need to create a loop that will run through
+ 9 times.
+ And inside the loop, we will need to perform the calculation 
+\begin_inset Formula ${\displaystyle \alpha=\frac{\ln\left|\frac{s_{n+2}-e}{s_{n+1}-e}\right|}{\ln\left|\frac{s_{n+1}-e}{s_{n}-e}\right|}}$
+\end_inset
+
+.
+ But before we can start, we need to tell Octave about the 11 values from
+ the table.
+ The most convenient way to do so is in an array.
+ An array 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! array
+\end_layout
+
+\end_inset
+
+ is like a vector.
+ It has components.
+ In this case, each component will hold one value from the table.
+ And the syntax for creating the array is a lot like vector notation.
+ We will use square brackets to delimit the components of the array, and
+ we will separate the components by commas.
+ So, the first line of our Octave code will look like this.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+errs = [2.817*10^(-1), 1.03*10^(-1), 2.022*10^(-2), 1.451*10^(-3), ...
+\end_layout
+
+\begin_layout Plain Layout
+
+        2.046*10^(-5), 2.07*10^(-8), 2.953*10^(-13), 4.263*10^(-21), ...
+\end_layout
+
+\begin_layout Plain Layout
+
+        8.777*10^(-34), 2.608*10^(-54), 1.595*10^(-87)]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+The ellipses (three consecutive dots) at the ends of the first two lines
+ are needed to tell Octave that the command continues onto the next line.
+ Without them, separating a single command over multiple lines will cause
+ a syntax error.
+ Starting a new line in Octave is the signal to start a new command as well.
+\end_layout
+
+\begin_layout Standard
+Now Octave knows the values of 
+\begin_inset Formula $|s_{n}-e|$
+\end_inset
+
+.
+ Using this vector is a lot like using subscripts.
+ The first value, 
+\begin_inset Formula $2.817(10)^{-1}$
+\end_inset
+
+, is called 
+\family typewriter
+errs(1)
+\family default
+.
+ The second is called 
+\family typewriter
+errs(2)
+\family default
+.
+ The third is called 
+\family typewriter
+errs(3),
+\family default
+ and so on.
+ The length of the array 
+\family typewriter
+errs
+\family default
+ can be retrieved using the 
+\family typewriter
+length()
+\family default
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! length of an array
+\end_layout
+
+\end_inset
+
+ function of Octave.
+ The command 
+\family typewriter
+length(errs)-2
+\family default
+ will be used instead of hard-coding the 9.
+ So we can finish the Octave code like so.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+errs = [2.817*10^(-1), 1.03*10^(-1), 2.022*10^(-2), 1.451*10^(-3), ...
+\end_layout
+
+\begin_layout Plain Layout
+
+        2.046*10^(-5), 2.07*10^(-8), 2.953*10^(-13), 4.263*10^(-21), ...
+\end_layout
+
+\begin_layout Plain Layout
+
+        8.777*10^(-34), 2.608*10^(-54), 1.595*10^(-87)];
+\end_layout
+
+\begin_layout Plain Layout
+
+for j=1:length(errs)-2
+\end_layout
+
+\begin_layout Plain Layout
+
+  alpha = log(errs(j+2)/errs(j+1))/log(errs(j+1)/errs(j))
+\end_layout
+
+\begin_layout Plain Layout
+
+end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This code produces these results: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6182
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6181
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6176
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6182
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6180
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6180
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6180
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6180
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha =  1.6180
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+Not bad, but we can do better.
+ Let's calculate 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, and 
+\begin_inset Formula $d(s_{n})$
+\end_inset
+
+ by two different methods---directly and using the formula 
+\begin_inset Formula $d(p_{n+1})\approx\alpha d(p_{n})-\log\left(\lambda|p|^{\alpha-1}\right)$
+\end_inset
+
+.
+ Then let's display the results in a nicely formatted table.
+ 
+\end_layout
+
+\begin_layout Standard
+We will need the 
+\family typewriter
+disp()
+\family default
+ command and a two-index array.
+ The 
+\family typewriter
+disp()
+\family default
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+disp
+\end_layout
+
+\end_inset
+
+ command is used to display some text or some quantity.
+ When used for text, the text needs to be delimited by single quotation
+ marks.
+ When used for quantities, not.
+ So, we might have an Octave program output the word 
+\begin_inset Quotes eld
+\end_inset
+
+hello
+\begin_inset Quotes erd
+\end_inset
+
+ with the command 
+\family typewriter
+disp('hello')
+\family default
+ or have it output the value of 
+\begin_inset Formula $\ln(2)$
+\end_inset
+
+ with the command 
+\family typewriter
+disp(log(2))
+\family default
+.
+ The 
+\family typewriter
+disp()
+\family default
+ command can also handle variables, so if 
+\family typewriter
+p1
+\family default
+ and 
+\family typewriter
+p2
+\family default
+ have been assigned values, then we can display their difference using 
+\family typewriter
+disp(p2-p1)
+\family default
+.
+ A two-index array can be thought of as a table, or a matrix.
+ It holds values in what can be imagined as rows and columns.
+ So, instead of having 
+\family typewriter
+errs(j)
+\family default
+ as we did before, we may have 
+\family typewriter
+errs(j,k)
+\family default
+ where 
+\family typewriter
+j
+\family default
+ indicates the row and 
+\family typewriter
+k
+\family default
+ indicates the column.
+ The program 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+A(2,4) = 7;
+\end_layout
+
+\begin_layout Plain Layout
+
+disp(A);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+produces 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+   0   0   0   0
+\end_layout
+
+\begin_layout Plain Layout
+
+   0   0   0   7 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+OK, back to the task at hand.
+ We will combine everything we have learned about Octave into one program.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+errs = [2.817*10^(-1), 1.03*10^(-1), 2.022*10^(-2), 1.451*10^(-3), ...
+\end_layout
+
+\begin_layout Plain Layout
+
+     2.046*10^(-5), 2.07*10^(-8), 2.953*10^(-13), 4.263*10^(-21), ...
+\end_layout
+
+\begin_layout Plain Layout
+
+     8.777*10^(-34), 2.608*10^(-54), 1.595*10^(-87)];
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+d = inline('-log(x/exp(1))/log(10)');
+\end_layout
+
+\begin_layout Plain Layout
+
+for j=1:9
+\end_layout
+
+\begin_layout Plain Layout
+
+    % alpha:
+\end_layout
+
+\begin_layout Plain Layout
+
+  T(j,1) = log(errs(j+2)/errs(j+1))/log(errs(j+1)/errs(j));
+\end_layout
+
+\begin_layout Plain Layout
+
+    % lambda:
+\end_layout
+
+\begin_layout Plain Layout
+
+  T(j,2) = errs(j+2)/errs(j+1)^T(j,1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    % d (explicit):
+\end_layout
+
+\begin_layout Plain Layout
+
+  T(j,3) = d(errs(j+2));
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha = 1.61804;
+\end_layout
+
+\begin_layout Plain Layout
+
+lambda = 0.8;
+\end_layout
+
+\begin_layout Plain Layout
+
+constant = log(lambda*exp(alpha-1))/log(10);
+\end_layout
+
+\begin_layout Plain Layout
+
+T(1,4) = T(1,3);
+\end_layout
+
+\begin_layout Plain Layout
+
+for j=2:9
+\end_layout
+
+\begin_layout Plain Layout
+
+    % d (recursive)
+\end_layout
+
+\begin_layout Plain Layout
+
+  T(j,4) = alpha * T(j-1,4) - constant;
+\end_layout
+
+\begin_layout Plain Layout
+
+end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+disp('      alpha     lambda   d (expl)    d (rec)');
+\end_layout
+
+\begin_layout Plain Layout
+
+disp('  --------------------------------------------');
+\end_layout
+
+\begin_layout Plain Layout
+
+disp(T) 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ produces 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+      alpha     lambda   d (expl)    d (rec)
+\end_layout
+
+\begin_layout Plain Layout
+
+  --------------------------------------------
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61816    0.80015    2.12851    2.12851
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61814    0.80010    3.27263    3.27252
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61764    0.79855    5.12339    5.12356
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61822    0.80158    8.11832    8.11863
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61797    0.79941   12.96403   12.96477
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61804    0.80045   20.80458   20.80601
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61805    0.80059   33.49095   33.49346
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61804    0.80031   54.01799   54.02225
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.61804    0.80031   87.23153   87.23866 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+It is worth taking some time to make sure you understand all the lines of
+ this program.
+ It uses assignment, built-in functions, inline functions, simple output,
+ arrays, and 
+\family typewriter
+for
+\family default
+ loops.
+ The 
+\family typewriter
+%
+\family default
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+%
+\end_layout
+
+\end_inset
+
+ on a line tells Octave to ignore it and everything on the line that follows.
+ These tidbits are called comments
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! comments
+\end_layout
+
+\end_inset
+
+.
+ They are strictly for the human user to document what the program does.
+ Lengthy programs should always be documented so any user of the program
+ will be better able to understand what it does.
+ Here the comments are simple, but they may be much more elaborate.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Some convergent sequences and their limits are given.
+ Find the order of convergence for each.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{n!}{n^{n}}\right\rangle \to0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{1}{3^{e^{n}}}\right\rangle \to0}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-1"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{2^{2^{n}}-2}{2^{2^{n}}+3}\right\rangle \to1}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-2"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{n^{2}}{1+n^{2}}\right\rangle \to1}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{e^{n}}{e^{e^{n}}}\right\rangle \to0}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:linearConvergenceExample"
+
+\end_inset
+
+Show that the sequence 
+\begin_inset Formula ${\displaystyle \left\langle \frac{n+1}{n-1}\right\rangle }$
+\end_inset
+
+ converges to 1 linearly.
+\end_layout
+
+\begin_layout Enumerate
+Show that the sequence 
+\begin_inset Formula $p_{n}=2^{1-2^{n}}$
+\end_inset
+
+ is quadratically convergent.
+\end_layout
+
+\begin_layout Enumerate
+Give an example of a sequence which converges to 0 with order 
+\begin_inset Formula $\alpha=10$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Approximate the order of convergence of the sequence 
+\begin_inset Formula $p_{n}$
+\end_inset
+
+ and explain your answer.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{|p_{n+1}-p|}{|p_{n}-p|^{1.2}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{|p_{n+1}-p|}{|p_{n}-p|^{1.3}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{|p_{n+1}-p|}{|p_{n}-p|^{1.4}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.07(10)^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0110$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.39$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.88(10)^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.00303$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $48.65$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.01(10)^{-9}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.000530$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $277.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Some linearly convergent sequences and their limits are given.
+ Find the (fastest) rate of convergence of the form 
+\begin_inset Formula $O\left(\frac{1}{n^{p}}\right)$
+\end_inset
+
+ or 
+\begin_inset Formula $O\left(\frac{1}{a^{n}}\right)$
+\end_inset
+
+ for each.
+ If this is not possible, suggest a reasonable rate of convergence.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle 6,\frac{6}{7},\frac{6}{49},\frac{6}{343},\frac{6}{2401},\ldots\to0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{11n-2}{n+3}\right\rangle \to11}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-3"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{\sin n}{\sqrt{n}}\right\rangle \to0}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-4"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{4}{10^{n}+35n+9}\right\rangle \to0}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-5"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{4}{10^{n}-35n-9}\right\rangle \to0}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-6"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{2n}{\sqrt{n^{2}+3n}}\right\rangle \to2}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{5^{n}-2}{5^{n}+3}\right\rangle \to1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-7"
+
+\end_inset
+
+
+\begin_inset Formula $\left\langle \sqrt{n+47}-\sqrt{n}\right\rangle \to0$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{n^{2}}{3n^{2}+1}\right\rangle \to\frac{1}{3}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{\pi}{e^{n}-\pi^{n}}\right\rangle \to0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-8"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{n^{2}}{2^{n}}\right\rangle \to0}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{7+\cos(5n)}{n^{3}+1}\right\rangle \to0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{8n^{2}}{3n^{2}+12}+\frac{n}{3n+10}\right\rangle \to3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-9"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \left\langle \frac{2n^{2}+3n}{1-n^{2}}\right\rangle \to-2}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{3n^{5}-5n}{1-n^{5}}\right\rangle \to-3}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the rate of convergence of
+\begin_inset Formula 
+\[
+\lim_{h\to0}(2-e^{h})=1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find the rate of convergence of
+\begin_inset Formula 
+\[
+\lim_{h\to0}\frac{\sin(h)-e^{h}+1}{h}=0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find the rates of convergence of the following sequences as 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}\sin\frac{1}{n}=0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}\sin\frac{1}{n^{2}}=0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}\left(\sin\frac{1}{n}\right)^{2}=0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}[\ln(n+1)-\ln(n)]=0}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the rates of convergence of the following functions as 
+\begin_inset Formula $h\to0$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \lim_{h\to0}\frac{\sin h}{h}=1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \lim_{h\to0}\frac{1-\cos h}{h}=0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \lim_{h\to0}\frac{\sin h-h\cos h}{h}=0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \lim_{h\to0}\frac{1-e^{h}}{h}=-1}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the rate of convergence of 
+\begin_inset Formula 
+\[
+\lim_{h\to0}\frac{h^{2}+\cos h-e^{h}}{h}=-1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula 
+\[
+(\sin h)(1-\cos h)=0+O(h^{3}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-10"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave program (
+\family typewriter
+.m
+\family default
+ file) that uses a loop and the 
+\family typewriter
+disp()
+\family default
+ command to produce the following output (powers of 7).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 1
+\end_layout
+
+\begin_layout Plain Layout
+
+ 7
+\end_layout
+
+\begin_layout Plain Layout
+
+ 49
+\end_layout
+
+\begin_layout Plain Layout
+
+ 343
+\end_layout
+
+\begin_layout Plain Layout
+
+ 2401
+\end_layout
+
+\begin_layout Plain Layout
+
+ 16807
+\end_layout
+
+\begin_layout Plain Layout
+
+ 117649
+\end_layout
+
+\begin_layout Plain Layout
+
+ 823543
+\end_layout
+
+\begin_layout Plain Layout
+
+ 5764801
+\end_layout
+
+\begin_layout Plain Layout
+
+ 40353607
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave program (
+\family typewriter
+.m
+\family default
+ file) that uses a loop and the 
+\family typewriter
+disp()
+\family default
+ command to output the first 10 powers of 5 starting with 
+\begin_inset Formula $5^{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-11"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave program (
+\family typewriter
+.m
+\family default
+ file) that uses a loop, an array, and the disp() command to find the values
+ of 
+\begin_inset Formula ${\displaystyle f(n)=\frac{2^{2^{n}}-2}{2^{2^{n}}+3}}$
+\end_inset
+
+ for 
+\begin_inset Formula $n=0,1,2,4,6,10$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave program (
+\family typewriter
+.m
+\family default
+ file) that uses a loop, an array, and the disp() command to find the values
+ of 
+\begin_inset Formula ${\displaystyle f(n)=\frac{2n}{\sqrt{n^{2}+3n}}}$
+\end_inset
+
+ for 
+\begin_inset Formula $n=0,2,5,10,100,1000,20000$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+The following Octave code is intended to calculate the sum 
+\begin_inset Formula 
+\[
+\sum_{k=1}^{30}\frac{1}{k^{2}}
+\]
+
+\end_inset
+
+but it does not.
+ Find as many mistakes in the code as you can.
+ Classify each mistake as either a compilation error (an error that will
+ prevent the program from running at all) or a bug (an error that will not
+ prevent the program from running, but will cause improper calculation of
+ the sum).
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+sum=1;
+\begin_inset Newline newline
+\end_inset
+
+for k=1:30
+\begin_inset Newline newline
+\end_inset
+
+  sum=sum+1.0/k*k;
+\begin_inset Newline newline
+\end_inset
+
+end
+\begin_inset Newline newline
+\end_inset
+
+diss(sum)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Some sequences do not have an order of convergence.
+ Let 
+\begin_inset Formula $p_{n}=\frac{2^{n}}{n!}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $\lim_{n\to\infty}p_{n}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $\lim_{n\to\infty}\frac{|p_{n+1}|}{|p_{n}|}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $\left\langle \frac{|p_{n+1}|}{|p_{n}|^{\alpha}}\right\rangle $
+\end_inset
+
+ diverges for any 
+\begin_inset Formula $\alpha>1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use the rules of thumb for order of convergence to approximate the number
+ of iterations it will take to achieve 12 significant digits of accuracy
+ of 
+\begin_inset Formula $\pi$
+\end_inset
+
+ for each order of convergence.
+ Assume each sequence starts with one significant digit of accuracy.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda=0.8$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-12"
+
+\end_inset
+
+
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda=0.5$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda=0.1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\alpha=1.5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:convergence-13"
+
+\end_inset
+
+
+\begin_inset Formula $\alpha=2$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\alpha=3$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:orderOfConvergenceIsUnique"
+
+\end_inset
+
+Prove that the order of convergence of a sequence is unique.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a 
+\family typewriter
+for
+\family default
+ loop that outputs the sequence of numbers.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $7,8,9,10,11,12,13,14,15$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $20,19,18,17,16,15,14,13$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $12,12.333,12.667,13,13.333,13.667,14$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $1,9,25,49,81,121,169,225,289,361,441$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $1,.5,.25,.125,.0625,.03125,.015625$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

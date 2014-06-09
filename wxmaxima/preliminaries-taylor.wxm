@@ -1,0 +1,160 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.09.0 ] */
+
+/* [wxMaxima: section start ]
+Taylor Polynomials
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=cos(x);
+T4:taylor(f(x),x,0,4);
+T10:taylor(f(x),x,0,10);
+T60:taylor(f(x),x,0,60);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+a:-10$
+b:10$
+draw2d(
+    key="T4",
+    line_width=3,
+    color=orange,
+    explicit(T4,x,a,b),
+    key="T10",
+    line_width=2,
+    color=blue,
+    explicit(T10,x,a,b),
+    key="cos(x)",
+    line_width=1,
+    color=black,
+    explicit(f(x),x,a,b),
+    yrange=[-3,3],
+    terminal=pdf,
+    dimensions=[1000,618],
+    file_name="taylor1"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+a:-30$
+b:30$
+draw2d(
+    key="T60",
+    line_width=3,
+    color=orange,
+    explicit(T60,x,a,b),
+    key="cos(x)",
+    line_width=1,
+    color=black,
+    explicit(f(x),x,a,b),
+    yrange=[-3,3],
+    terminal=pdf,
+    dimensions=[1000,618],
+    file_name="taylor2"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float((62!)^(1/62));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+f(x):=log(x)$
+x0:%e^2$
+T2:taylor(f(x),x,x0,2);
+T11:taylor(f(x),x,x0,11);
+x1:18$
+draw2d(
+    key="T2(x)",
+    color=orange,
+    line_width=3,
+    explicit(T2,x,0,x1),
+    key="T11(x)",
+    color=blue,
+    line_width=2,
+    explicit(T11,x,0,x1),
+    key="ln(x)",
+    color=black,
+    line_width=1,
+    explicit(f(x),x,0,x1),
+    label(["(e^2,2)",x0,1.2*f(x0)]),
+    key="",
+    color=red,
+    point_type=asterisk,
+    points([x0],[f(x0)]),
+    yrange=[subst(x=0,T11),1.5*f(x1)],
+    dimensions=[1000,618],
+    terminal=pdf,
+    file_name="preliminaries-taylor3"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(1/(3*%e^6)*(x-%e^2)^3=1/10);
+ratsimp(%[3]);
+float(%);
+solve(1/(3*x^3)*(%e^2-x)^3=1/10);
+ratsimp(%[3]);
+float(%);
+float(%e^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw2d(explicit(subst(x=t,T2)-f(t),t,3,14));
+find_root(subst(x=t,T2)-f(t)-1/10,t,3,4);
+find_root(subst(x=t,T2)-f(t)+1/10,t,13,14);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq12p1:(x-%e^2)=(12*%e^24/10)^(1/12);
+solve(eq12p1);
+float(%);
+eq12p2:1/(12*x^12)*(%e^2-x)^12-1/10;
+find_root(eq12p2, x, 3, 4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw2d(explicit(subst(x=t,T11)-f(t),t,.5,17));
+find_root(subst(x=t,T11)-f(t)-1/10,t,.1,1);
+find_root(subst(x=t,T11)-f(t)-1/10,t,10,20);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+bd:float((%e^2-3)^3/3^4);
+er:float(2+(3-%e^2)/%e^2-(3-%e^2)^2/(2*%e^4)-log(3));
+bd/er;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x*sin(x);
+fp1:diff(f(x),x);
+fp2:diff(f(x),x,2);
+fp3:diff(f(x),x,3);
+fp4:diff(f(x),x,4);
+f(0);
+subst(x=0,fp1);
+subst(x=0,fp2);
+subst(x=0,fp3);
+subst(x=xi,fp4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=cos(x);
+fp1(x):=subst(t=x,diff(f(t),t));
+fp2(x):=subst(t=x,diff(f(t),t,2));
+fp3(x):=subst(t=x,diff(f(t),t,3));
+fp4(x):=subst(t=x,diff(f(t),t,4));
+T3(x):=f(0)+fp1(0)*x+fp2(0)/2!*x^2+fp3(0)/3!*x^3$
+T3(x);
+R3(x):=fp4(xi)/4!*x^4$
+R3(x);
+eq:f(%pi)=T3(%pi)+R3(%pi);
+solve(eq,xi);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

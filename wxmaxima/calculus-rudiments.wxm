@@ -1,0 +1,230 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:30$
+f(x):=float(2*%pi*sin(x)/3);
+g(x):=(
+    for i:1 thru 10 do (x:f(x)),
+    x
+)$
+h(x):=(
+    for i:1 thru 2 do (x:float(subst(t=x,t-(f(t)-t)/diff(f(t)-t,t)))),
+    x
+)$
+npoints:7$
+kill(xphi,yphi)$
+for j:1 thru npoints do (
+    xphi[j]:float(j/npoints),
+    yphi[j]:g(xphi[j]),
+    print(xphi[j],"  ",yphi[j])
+)$
+disp("")$
+kill(xnu,ynu)$
+for j:1 thru npoints do (
+    xnu[j]:1.3+j/(5*npoints),
+    ynu[j]:h(xnu[j]),
+    print(xnu[j],"  ",ynu[j])
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):=x-2*%pi/3*sin(x);
+f(x):=2*%pi/3*sin(x);
+find_root(f(x)=x,x,.1,.99*%pi);
+fpi(x):=(
+    for i:1 thru 10 do (x:f(x)),
+    x
+)$
+nm(x):=(
+    for i:1 thru 2 do (x:subst(t=x,t-g(t)/diff(g(t),t))),
+    x
+)$
+fpi(x_0);
+nm(x_0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Interpolating polynomials
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+P(xi,yi):=(
+    n:length(xi),
+    res:0,
+    for i:1 thru n do (
+        pi:1,
+        for j:1 thru n do (
+            if (i # j) then pi:pi*(x-xi[j])/(xi[i]-xi[j])
+        ),
+        res:res+expand(pi*yi[i])
+    ),
+    res
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+xnu:[1.328571428571429,1.357142857142857,1.385714285714286,1.414285714285714,1.442857142857143,1.471428571428572,1.5]$
+ynu:[2.084603181618954,2.055494116570853,2.030278824314539,2.009751835391139,1.993574976724822,1.981091507449763,1.971614474758557]$
+Pnu6:P(xnu,ynu);
+xphi:[.1428571428571428,.2857142857142857,.4285714285714285,.5714285714285714,.7142857142857143,.8571428571428571,1.0]$
+yphi:[1.9498808918992,1.951091775564697,1.923339403354019,1.941460911122824,1.960870620285721,1.965674866641883,1.96122825291126]$
+Pphi6:P(xphi,yphi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+xx:[xnu[1],xnu[4],xnu[7]]$
+yy:[ynu[1],ynu[4],ynu[7]]$
+Pnu2:P(xx,yy);
+xx:[xphi[1],xphi[4],xphi[7]]$
+yy:[yphi[1],yphi[4],yphi[7]]$
+Pphi2:P(xx,yy);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Pnu2p:diff(Pnu2,x);
+Pphi2p:diff(Pphi2,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst(x=1.4,Pnu2p);
+subst(x=.5,Pphi2p);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Pnu2i:integrate(Pnu2,x);
+Pphi2i:integrate(Pphi2,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst(x=1.5,Pnu2i)-subst(x=1.4,Pnu2i);
+subst(x=1,Pphi2i)-subst(x=0,Pphi2i);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Pnu6p:diff(Pnu6,x)$
+Pphi6p:diff(Pphi6,x)$
+Pnu6i:integrate(Pnu6,x)$
+Pphi6i:integrate(Pphi6,x)$
+subst(x=1.4,Pnu6p);
+subst(x=0.5,Pphi6p);
+subst(x=1.5,Pnu6i)-subst(x=1.4,Pnu6i);
+subst(x=1,Pphi6i)-subst(x=0,Pphi6i);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ev(subst(x=1.4,diff(nm(x),x)),numer);
+ev(subst(x=0.5,diff(fpi(x),x)),numer);
+quad_qags(nm(x),x,1.4,1.5);
+quad_qags(fpi(x),x,0,1);
+quad_qag(nm(x),x,1.4,1.5,3);
+quad_qag(fpi(x),x,0,1,6);
+rombergtol:1e-12$
+rombergit:20$
+romberg(nm(x),x,1.4,1.5);
+romberg(fpi(x),x,0,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+.1447147284558277/.002276851294419568;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+derivative of P2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+theta[1]:-1;
+theta[2]:0;
+theta[3]:1;
+theta:0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+P2(t):=((t-theta[1])*(t-theta[2]))/((theta[3]-theta[1])*(theta[3]-theta[2]))*f(x[0]+theta[3]*h)
+    + ((t-theta[3])*(t-theta[2]))/((theta[1]-theta[3])*(theta[1]-theta[2]))*f(x[0]+theta[1]*h)
+    + ((t-theta[3])*(t-theta[1]))/((theta[2]-theta[3])*(theta[2]-theta[1]))*f(x[0]+theta[2]*h);
+ratsimp(P2(theta));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dth[1]:h*(theta[1]-theta)$
+dth[2]:h*(theta[2]-theta)$
+dth[3]:h*(theta[3]-theta)$
+sub1:f(x[0]+theta[1]*h)=f(x[0]+theta*h)+dth[1]*fp(x[0]+theta*h)+1/2*(dth[1])^2*fpp(x[0]+theta*h)+1/6*(dth[1])^3*fppp(x[0]+theta*h)$
+sub2:f(x[0]+theta[2]*h)=f(x[0]+theta*h)+dth[2]*fp(x[0]+theta*h)+1/2*(dth[2])^2*fpp(x[0]+theta*h)+1/6*(dth[2])^3*fppp(x[0]+theta*h)$
+sub3:f(x[0]+theta[3]*h)=f(x[0]+theta*h)+dth[3]*fp(x[0]+theta*h)+1/2*(dth[3])^2*fpp(x[0]+theta*h)+1/6*(dth[3])^3*fppp(x[0]+theta*h)$
+dd:diff(P2(t),t)/h$
+ratsimp(subst([t=theta],%));
+ratsimp(subst([sub1,sub2,sub3],%)-fp(x[0]+theta*h));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(-2*(2.084603181618954)+2.009751835391139+1.971614474758557)/(9/35);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(-2*(1.9498808918992)+1.941460911122824+1.96122825291126)/(9/7);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Formulas for integral of P6
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+p0:(x-x1)*(x-x2)*(x-x3)*(x-x4)*(x-x5)*(x-x6)$
+p1:(x-x0)*(x-x2)*(x-x3)*(x-x4)*(x-x5)*(x-x6)$
+p2:(x-x0)*(x-x1)*(x-x3)*(x-x4)*(x-x5)*(x-x6)$
+p3:(x-x0)*(x-x1)*(x-x2)*(x-x4)*(x-x5)*(x-x6)$
+p4:(x-x0)*(x-x1)*(x-x2)*(x-x3)*(x-x5)*(x-x6)$
+p5:(x-x0)*(x-x1)*(x-x2)*(x-x3)*(x-x4)*(x-x6)$
+p6:(x-x0)*(x-x1)*(x-x2)*(x-x3)*(x-x4)*(x-x5)$
+L6:p0/subst(x=x0,p0)*f(x0) + p1/subst(x=x1,p1)*f(x1) + p2/subst(x=x2,p2)*f(x2) + p3/subst(x=x3,p3)*f(x3) + 
+    p4/subst(x=x4,p4)*f(x4) + p5/subst(x=x5,p5)*f(x5) + p6/subst(x=x6,p6)*f(x6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L6particular:subst([x1=x0+h,x2=x0+2*h,x3=x0+3*h,x4=x0+4*h,x5=x0+5*h,x6=x0+6*h],L6)$
+L6int1:ratsimp(integrate(L6particular,x,x0+5/2*h,x0+6*h));
+L6int2:ratsimp(integrate(L6particular,x,x0-h,x0+6*h));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+1.9498808918992
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Integral of P1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+a:-1;
+b:1;
+theta[1]:-1/sqrt(3);
+theta[2]:1/sqrt(3);
+theta[1]:-1;
+theta[2]:1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+P1(t):=((t-theta[1]))/((theta[2]-theta[1]))*f(x[0]+theta[2]*h)
+    + ((t-theta[2]))/((theta[1]-theta[2]))*f(x[0]+theta[1]*h);
+I1:ratsimp(h*integrate(P1(t),t,a,b));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sub1:f(ratsimp(x[0]+theta[1]*h))=f(x[0])+theta[1]*h*fp(x[0])+1/2*(theta[1]*h)^2*fpp(x[0])+1/6*(theta[1]*h)^3*fppp(x[0])+1/24*(theta[1]*h)^4*fpppp(x[0]);
+sub2:f(ratsimp(x[0]+theta[2]*h))=f(x[0])+theta[2]*h*fp(x[0])+1/2*(theta[2]*h)^2*fpp(x[0])+1/6*(theta[2]*h)^3*fppp(x[0])+1/24*(theta[2]*h)^4*fpppp(x[0]);
+approxIntegral:ratsimp(subst([sub1,sub2],I1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+exactIntegral:ratsimp(integrate(f(x[0])+(w-x[0])*fp(x[0])+1/2*(w-x[0])^2*fpp(x[0])+1/6*(w-x[0])^3*fppp(x[0])+1/24*(w-x[0])^4*fpppp(x[0]),w,x[0]+a*h,x[0]+b*h));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ratsimp(exactIntegral-approxIntegral);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

@@ -1,0 +1,32 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+axn_num:xn*ffxn-fxn^2;
+axn_den:xn-2*fxn+ffxn;
+axnp1_num:fxn*fffxn-ffxn^2;
+axnp1_den:fxn-2*ffxn+fffxn;
+num:expand(axnp1_num*axn_den);
+den:expand(axnp1_den*axn_num);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(num/fffxn/fxn^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(den/ffxn^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+denlim:xn/lambda+lambda*xn-2*xn-fxn/lambda^2+2*lambda*fxn-fxn;
+denlim:expand(denlim/fxn);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+numlim:1/lambda-1/lambda+2+lambda-lambda-2;
+denlim:1+2*lambda+1/lambda^2-1/lambda^2-2/lambda-1;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

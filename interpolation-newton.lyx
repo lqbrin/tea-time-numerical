@@ -1,0 +1,5033 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:polynomialNewton"
+
+\end_inset
+
+Newton Polynomials
+\end_layout
+
+\begin_layout Standard
+In this section, we are interested in an efficient automated process for
+ calculating interpolating polynomials.
+ The Lagrange form of an interpolating polynomial is best suited for pencil
+ and paper calculations, not computer automation.
+ Neville's method is well suited for computing the value of an interpolating
+ polynomial at a particular point, not calculation of the polynomial itself.
+ True, Neville's Method 
+\shape italic
+can
+\shape default
+ be used to calculate the interpolating polynomials themselves, but it lends
+ itself to this task no better than the Lagrange form.
+ Presently, we will discover how the same recursive formula used in Neville's
+ Method is used to derive a very efficient, computer-friendly method for
+ calculating interpolating polynomials themselves.
+ The result of the computation is a set of coefficients for the Newton form
+ of a polynomial.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton form
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose we have already computed the polynomial 
+\begin_inset Formula $N_{n}(x)$
+\end_inset
+
+ interpolating the data 
+\begin_inset Formula 
+\[
+(x_{0},f(x_{0})),(x_{1},f(x_{1})),\ldots,(x_{n},f(x_{n})).
+\]
+
+\end_inset
+
+We now wish to compute the polynomial 
+\begin_inset Formula $N_{n+1}(x)$
+\end_inset
+
+ interpolating the data 
+\begin_inset Formula 
+\[
+(x_{0},f(x_{0})),(x_{1},f(x_{1})),\ldots,(x_{n+1},f(x_{n+1})),
+\]
+
+\end_inset
+
+and we would like to recycle the work we have already done (much the same
+ way we could add a point of interpolation in Neville's Method and reuse
+ all previous work)! One way to attack the problem is to find a polynomial
+ 
+\begin_inset Formula $q(x)$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+N_{n+1}(x)=N_{n}(x)+q(x).
+\]
+
+\end_inset
+
+If the attack is to be successful, we must have 
+\begin_inset Formula $q(x)=N_{n+1}(x)-N_{n}(x)$
+\end_inset
+
+ for all 
+\begin_inset Formula $x$
+\end_inset
+
+, and, in particular, 
+\begin_inset Formula $q(x_{j})=N_{n+1}(x_{j})-N_{n}(x_{j})$
+\end_inset
+
+ for 
+\begin_inset Formula $j=0,1,\ldots,n+1$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $N_{n+1}(x_{j})-N_{n}(x_{j})=f(x_{j})-f(x_{j})=0$
+\end_inset
+
+ for 
+\begin_inset Formula $j=0,1,\ldots,n$
+\end_inset
+
+, and 
+\begin_inset Formula $N_{n+1}(x_{n+1})-N_{n}(x_{n+1})=f(x_{n+1})-N_{n}(x_{n+1})$
+\end_inset
+
+.
+ In other words, we seek the polynomial 
+\begin_inset Formula $q$
+\end_inset
+
+ interpolating the points
+\begin_inset Formula 
+\[
+(x_{0},0),(x_{1},0),\ldots,(x_{n},0),(x_{n+1},(f-N_{n})(x_{n+1})).
+\]
+
+\end_inset
+
+Ironically, this is a job for the Lagrange form:
+\begin_inset Formula 
+\begin{eqnarray}
+q(x) & = & \frac{(x-x_{0})\cdots(x-x_{n})}{(x_{n+1}-x_{0})\cdots(x_{n+1}-x_{n})}(f-N_{n})(x_{n+1})\nonumber \\
+ & = & \frac{(f-N_{n})(x_{n+1})}{(x_{n+1}-x_{0})\cdots(x_{n+1}-x_{n})}(x-x_{0})\cdots(x-x_{n}).\label{eq:qLagrange}
+\end{eqnarray}
+
+\end_inset
+
+But 
+\begin_inset Formula $\frac{(f-N_{n})(x_{n+1})}{(x_{n+1}-x_{0})\cdots(x_{n+1}-x_{n})}$
+\end_inset
+
+ is just a constant, so we replace it by 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+ so that we have 
+\begin_inset Formula $q(x)=a_{n+1}(x-x_{0})\cdots(x-x_{n})$
+\end_inset
+
+.
+ Of course we can calculate 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+ using the formula 
+\begin_inset Formula $\frac{(f-N_{n})(x_{n+1})}{(x_{n+1}-x_{0})\cdots(x_{n+1}-x_{n})}$
+\end_inset
+
+, but there is a better way, which we will see shortly.
+ We can also learn from the upcoming computation the most convenient form
+ for 
+\begin_inset Formula $N_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+When 
+\begin_inset Formula $n=0$
+\end_inset
+
+, 
+\begin_inset Formula $q$
+\end_inset
+
+ has the form 
+\begin_inset Formula $a_{1}(x-x_{0})$
+\end_inset
+
+; when 
+\begin_inset Formula $n=1$
+\end_inset
+
+, 
+\begin_inset Formula $q$
+\end_inset
+
+ has the form 
+\begin_inset Formula $a_{2}(x-x_{0})(x-x_{1})$
+\end_inset
+
+; when 
+\begin_inset Formula $n=2$
+\end_inset
+
+, 
+\begin_inset Formula $q$
+\end_inset
+
+ has the form 
+\begin_inset Formula $a_{3}(x-x_{0})(x-x_{1})(x-x_{2})$
+\end_inset
+
+; and so on.
+ Of course 
+\begin_inset Formula $N_{0}(x)=a_{0}$
+\end_inset
+
+ is constant since it is the interpolating polynomial of least degree passing
+ through a single point.
+ So 
+\begin_inset Formula $N_{1}(x)=N_{0}(x)+a_{1}(x-x_{0})$
+\end_inset
+
+ immediately takes the form 
+\begin_inset Formula $a_{0}+a_{1}(x-x_{0})$
+\end_inset
+
+; 
+\begin_inset Formula $N_{2}(x)$
+\end_inset
+
+ immediately takes the form 
+\begin_inset Formula $a_{0}+a_{1}(x-x_{0})+a_{2}(x-x_{0})(x-x_{1})$
+\end_inset
+
+; 
+\begin_inset Formula $N_{3}(x)$
+\end_inset
+
+ immediately takes the form 
+\begin_inset Formula $a_{0}+a_{1}(x-x_{0})+a_{2}(x-x_{0})(x-x_{1})+a_{3}(x-x_{0})(x-x_{1})(x-x_{2})$
+\end_inset
+
+; and so on.
+ This would suggest that the most convenient form for 
+\begin_inset Formula $N_{n+1}$
+\end_inset
+
+, the one that requires no simplification, is
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton form
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+N_{n+1}(x)=a_{0}+a_{1}(x-x_{0})+a_{2}(x-x_{0})(x-x_{1})+\cdots+a_{n+1}(x-x_{0})\cdots(x-x_{n}).\label{eq:NewtonForm}
+\end{equation}
+
+\end_inset
+
+Given in this form, the unknown quantity, 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+, appears as the coefficient of the 
+\begin_inset Formula $x^{n+1}$
+\end_inset
+
+ term.
+ Consequently, 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+ is 
+\shape italic
+potentially
+\shape default
+ the leading coefficient of 
+\begin_inset Formula $N_{n+1}$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+ were zero, then we would not call it the leading coefficient.
+ We will facilitate the rest of this discussion by introducing the following
+ term.
+ For an interpolating polynomial on 
+\begin_inset Formula $k+1$
+\end_inset
+
+ points, the coefficient of its 
+\begin_inset Formula $x^{k}$
+\end_inset
+
+ term is called its 
+\series bold
+potential leading coefficient 
+\series default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+potential leading coefficient
+\end_layout
+
+\end_inset
+
+(even if it happens to be zero).
+ Since this potential leading coefficient is the crux of our problem, we
+ focus attention on determining the potential leading coefficient of any
+ interpolating polynomial.
+\end_layout
+
+\begin_layout Standard
+Here is where the recursive formula
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{i,m+1}(x) & = & \frac{(x-x_{i+m+1})P_{i,m}(x)-(x-x_{i})P_{i+1,m}(x)}{x_{i}-x_{i+m+1}}\\
+P_{i,0}(x) & = & f(x_{i})
+\end{eqnarray*}
+
+\end_inset
+
+used in devising Neville's Method comes in handy.
+ In as much as 
+\begin_inset Formula $P_{i,m}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{i+1,m}$
+\end_inset
+
+ both have degree at most 
+\begin_inset Formula $m$
+\end_inset
+
+, their potential leading coefficients are the coefficients of their 
+\begin_inset Formula $x^{m}$
+\end_inset
+
+ terms.
+ It follows that the coefficient of the 
+\begin_inset Formula $x^{m+1}$
+\end_inset
+
+ term of 
+\begin_inset Formula $(x-x_{i+m+1})P_{i,m}(x)$
+\end_inset
+
+ equals the potential leading coefficient of 
+\begin_inset Formula $P_{i,m}(x)$
+\end_inset
+
+, and, similarly, the coefficient of the 
+\begin_inset Formula $x^{m+1}$
+\end_inset
+
+ term of 
+\begin_inset Formula $(x-x_{i})P_{i+1,m}$
+\end_inset
+
+ equals the potential leading coefficient of 
+\begin_inset Formula $P_{i+1,m}$
+\end_inset
+
+.
+ Therefore the coefficient of the 
+\begin_inset Formula $x^{m+1}$
+\end_inset
+
+ term of 
+\begin_inset Formula $(x-x_{i+m+1})P_{i,m}(x)-(x-x_{i})P_{i+1,m}(x)$
+\end_inset
+
+ is the difference of the potential leading coefficients of 
+\begin_inset Formula $P_{i,m}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{i+1,m}$
+\end_inset
+
+.
+ To simplify the discussion, we use the notation 
+\begin_inset Formula $f_{i,j}$
+\end_inset
+
+ for the potential leading coefficient of 
+\begin_inset Formula $P_{i,j}$
+\end_inset
+
+.
+ Now the coefficient of the 
+\begin_inset Formula $x^{m+1}$
+\end_inset
+
+ term of 
+\begin_inset Formula $(x-x_{i+m+1})P_{i,m}(x)-(x-x_{i})P_{i+1,m}(x)$
+\end_inset
+
+ is just 
+\begin_inset Formula $f_{i,m}-f_{i+1,m}$
+\end_inset
+
+.
+ Hence the potential leading coefficient 
+\begin_inset Formula $f_{i,m+1}$
+\end_inset
+
+ of 
+\begin_inset Formula $P_{i,m+1}$
+\end_inset
+
+ (the coefficient of the 
+\begin_inset Formula $x^{m+1}$
+\end_inset
+
+ term of 
+\begin_inset Formula $P_{i,m+1}$
+\end_inset
+
+) is given by
+\begin_inset Formula 
+\begin{eqnarray}
+f_{i,m+1} & = & \frac{f_{i,m}-f_{i+1,m}}{x_{i}-x_{i+m+1}}\label{eq:newtonRecursion}\\
+f_{i,0} & = & f(x_{i}).\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{DividedDifferences}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+While we choose to use the notation 
+\begin_inset Formula $f_{i,j}$
+\end_inset
+
+ for the potential leading coefficient of 
+\begin_inset Formula $P_{i,j}$
+\end_inset
+
+, it is much more customary to use the expanded notation 
+\begin_inset Formula $f[x_{i},x_{i+1},\ldots,x_{i+j}]$
+\end_inset
+
+ for this quantity, and to call it a 
+\begin_inset Formula $j^{th}$
+\end_inset
+
+ divided difference.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+divided difference
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we have a formula for the potential leading coefficient that recycles
+ previous calculations.
+ Since 
+\begin_inset Formula $N_{n+1}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{0,n+1}$
+\end_inset
+
+ interpolate the same set of points and both have degree at most 
+\begin_inset Formula $n+1$
+\end_inset
+
+, they are equal by theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:interpolatingPolynomialUniqueness"
+
+\end_inset
+
+.
+ Therefore, their potential leading coefficients, 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{0,n+1}$
+\end_inset
+
+ are equal.
+ By recursion 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:newtonRecursion"
+
+\end_inset
+
+, we then have 
+\begin_inset Formula $a_{n+1}=f_{0,n+1}=\frac{f_{0,n}-f_{1,n}}{x_{0}-x_{n+1}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+It can not be stressed enough that we have not discovered a new polynomial.
+ We have only discovered a new way to calculate the same old interpolating
+ polynomials.
+ 
+\begin_inset Formula $N_{n}$
+\end_inset
+
+, 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+, and 
+\begin_inset Formula $P_{0,n}$
+\end_inset
+
+ all interpolate the same data and all have degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ They are therefore equal by theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:interpolatingPolynomialUniqueness"
+
+\end_inset
+
+.
+ Just the forms in which they are written possibly differ.
+ The polynomial form in equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:NewtonForm"
+
+\end_inset
+
+ is called the Newton form.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton form
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Newton Polynomials}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Typically, the Newton form 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton form
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+divided difference
+\end_layout
+
+\end_inset
+
+ and divided differences are presented completely independent of Neville's
+ recursive formula, an approach that takes considerably more work to develop.
+ There are reasons to do so, however.
+ Refraining from the use of Neville's formula follows more closely the historica
+l development of the subject since Newton (1643–1727) preceeded Neville
+ (1889-1961) by over 200 years! Moreover, following the historical development
+ more naturally leads to further study of divided differences.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "NewtonPolyExample"
+
+\end_inset
+
+As an example, take the polynomial interpolating 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+ at 
+\begin_inset Formula $x=0,1,2$
+\end_inset
+
+, as we did in the discussion of Neville's Method 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "NevillesMethodDiscussion"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula $f_{0,0}=f(0)=1$
+\end_inset
+
+, 
+\begin_inset Formula $f_{1,0}=f(1)\approx2.718281828459045$
+\end_inset
+
+, and 
+\begin_inset Formula $f_{2,0}=f(2)\approx7.38905609893065$
+\end_inset
+
+.
+ So
+\begin_inset Formula 
+\begin{eqnarray*}
+f_{0,1} & = & \frac{f_{0,0}-f_{1,0}}{x_{0}-x_{1}}=\frac{1-2.718281828459045}{0-1}\\
+ &  & \approx1.718281828459045\\
+f_{1,1} & = & \frac{f_{1,0}-f_{2,0}}{x_{1}-x_{2}}=\frac{2.718281828459045-7.38905609893065}{1-2}\\
+ & \approx & 4.670774270471606\\
+f_{0,2} & = & \frac{f_{0,1}-f_{1,1}}{x_{0}-x_{2}}=\frac{1.718281828459045-4.670774270471606}{0-2}\\
+ & \approx & 1.47624622100628.
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $N_{2}(x)=1+1.718281828459045(x)+1.47624622100628(x)(x-1)$
+\end_inset
+
+.
+ 
+\begin_inset Formula $f_{0,i}$
+\end_inset
+
+ are the coefficients of 
+\begin_inset Formula $N_{n}$
+\end_inset
+
+.
+ Though this computation is manageable without a table, it is most convenient
+ to tabulate the values of 
+\begin_inset Formula $f_{i,j}$
+\end_inset
+
+ as they are computed (just as is the case for Neville's Method).
+ This is true for both humans and computers! A tabulation of the computation
+ makes it easier to internalize the recursion and imagine how this process
+ might be automated.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:NewtonPolyExample"
+
+\end_inset
+
+, which is is called a table of divided differences (or divided difference
+ table),
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+divided difference
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:NewtonPolyExample"
+
+\end_inset
+
+Newton form example, calculating 
+\begin_inset Formula $N_{2}(x)$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{i,0}=f(x_{i})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{i,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{i,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.718281828459045$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.47624622100628$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.718281828459045$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.670774270471606$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.38905609893065$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ shows such a tabulation.
+ Adding a data point to the interpolation is as easy as computing another
+ diagonal of coefficients (just like Neville's Method).
+\end_layout
+
+\begin_layout Subsection
+Sidi's Method 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Sidi's method
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now return attention to Sidi's 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ degree root-finding method, 
+\begin_inset Formula 
+\[
+x_{n+1}=x_{n}-\frac{g(x_{n})}{p'_{n,k}(x_{n})},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p_{n,k}$
+\end_inset
+
+ is the interpolating polynomial passing through the points 
+\begin_inset Formula 
+\[
+(x_{n},g(x_{n})),(x_{n-1},g(x_{n-1})),\ldots,(x_{n-k},g(x_{n-k})).
+\]
+
+\end_inset
+
+In its Newton form,
+\begin_inset Formula 
+\[
+p_{n,k}(x)=g_{n,0}+g_{n-1,1}(x-x_{n})+g_{n-2,2}(x-x_{n})(x-x_{n-1})+\cdots+g_{n-k,k}(x-x_{n})\cdots(x-x_{n-k}),
+\]
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{equation}
+p_{n,k}'(x_{n})=g_{n-1,1}+g_{n-2,2}(x_{n}-x_{n-1})+\cdots+g_{n-k,k}(x_{n}-x_{n-1})\cdots(x_{n}-x_{n-k}).\label{eq:sidisDerivative}
+\end{equation}
+
+\end_inset
+
+In particular,
+\begin_inset Formula 
+\[
+p_{n,2}'(x_{n})=g_{n-1,1}+(x_{n}-x_{n-1})g_{n-2,2}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+p_{n,3}'(x_{n})=g_{n-1,1}+(x_{n}-x_{n-1})g_{n-2,2}+(x_{n}-x_{n-1})(x_{n}-x_{n-2})g_{n-3,3}
+\]
+
+\end_inset
+
+and so on.
+ As a nested product,
+\begin_inset Formula 
+\[
+p_{n,k}'(x_{n})=g_{n-1,1}+(x_{n}-x_{n-1})\left[g_{n-2,2}+(x_{n}-x_{n-2})\left[\cdots+(x_{n}-x_{n-k})\left[g_{n-k,k}\right]\cdots\right]\right].
+\]
+
+\end_inset
+
+The nested form is particularly efficient for implementation.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Sidi's method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $g$
+\end_inset
+
+ is 
+\begin_inset Formula $k$
+\end_inset
+
+ times differentiable.
+\end_layout
+
+\begin_layout Description
+Input: Initial values 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{k}$
+\end_inset
+
+; diagonal entries 
+\begin_inset Formula $g_{k,0},g_{k-1,1},\ldots,g_{0,k}$
+\end_inset
+
+ of the divided difference table for 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $s=g_{0,k}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: For 
+\begin_inset Formula $i=1,2,\ldots,k-1$
+\end_inset
+
+ do Step 3:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: Set 
+\begin_inset Formula $s=(x_{k}-x_{i})s+g_{i,k-i}$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Set 
+\begin_inset Formula ${\displaystyle x_{k+1}=x_{k}-\frac{g_{k,0}}{s}}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $x_{k+1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+While this pseudo-code is good as far as it goes, it is far from complete.
+ The most obvious deficiency is that it only executes one step of Sidi's
+ Method.
+ A less obvious deficiency is that its input and output do not match in
+ type or quantity, so at the end of the routine, the computer is still not
+ ready to compute another iteration.
+ What we get from this routine is 
+\begin_inset Formula $x_{k+1}$
+\end_inset
+
+.
+ What we need to run it again are the two arrays 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $g_{k,0},g_{k-1,1},\ldots,g_{0,k}$
+\end_inset
+
+.
+ In order to prepare these arrays for the next iteration, we must re-index
+ the values of 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ and then compute new values for the 
+\begin_inset Formula $g_{i,k-i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $g$
+\end_inset
+
+ is 
+\begin_inset Formula $k$
+\end_inset
+
+ times differentiable.
+\end_layout
+
+\begin_layout Description
+Input: Initial values 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{k}$
+\end_inset
+
+; diagonal entries 
+\begin_inset Formula $g_{k,0},g_{k-1,1},\ldots,g_{0,k}$
+\end_inset
+
+ of the divided difference table for 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $x_{k+1}$
+\end_inset
+
+ according to Sidi's Method applied to 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $g_{k,0},g_{k-1,1},\ldots,g_{0,k}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Set 
+\begin_inset Formula $g_{k+1,0}=g(x_{k+1})$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: For 
+\begin_inset Formula $i=k,k-1,\ldots,1$
+\end_inset
+
+ do Step 4:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Set 
+\begin_inset Formula ${\displaystyle g_{i,k+1-i}=\frac{g_{i+1,k-i}-g_{i,k-i}}{x_{k+1}-x_{i}}}$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Output: Approximations 
+\begin_inset Formula $x_{1},\ldots,x_{k+1}$
+\end_inset
+
+ and corresponding diagonal entries 
+\begin_inset Formula $g_{k+1,0},g_{k,1},\ldots,g_{1,k}$
+\end_inset
+
+ of the divided difference table for 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This new pseudo-code, which utilizes the previous pseudo-code in its first
+ step is an improvement.
+ Now the input and output match in type and quantity, meaning the output
+ of this routine may be used as input for the next iteration.
+ However, this routine still only calculates one step of Sidi's Method.
+ Moreover, we have been ignoring another issue.
+ Each of the routines spelled out in pseudo-code so far assume we have the
+ diagonal entries of the corresponding divided difference table.
+ It is not good practice to make the user of the code worry about this detail.
+ The routine we write should supply these values.
+ After all, the end-user, the person trying to find a root of a function,
+ will only have immediate access to the function and some number of initial
+ values.
+ The routine must supply the rest.
+ Finally, we present pseudo-code in the spirit of other root-finding methods.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $g$
+\end_inset
+
+ has a root at 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+; 
+\begin_inset Formula $g$
+\end_inset
+
+ is 
+\begin_inset Formula $k$
+\end_inset
+
+ times differentiable; 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{k}$
+\end_inset
+
+ are sufficiently close to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Input: Initial values 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{k}$
+\end_inset
+
+; function 
+\begin_inset Formula $g$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: For 
+\begin_inset Formula $i=0,1,\ldots,k$
+\end_inset
+
+ do Step 2:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Set 
+\begin_inset Formula $g_{i,0}=g(x_{i})$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: For 
+\begin_inset Formula $j=1,2,\ldots,k$
+\end_inset
+
+ do Steps 4-5:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: For 
+\begin_inset Formula $i=0,1,\ldots,k-j$
+\end_inset
+
+ do Step 5:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: Set 
+\begin_inset Formula ${\displaystyle g_{i,j}=\frac{g_{i+1,j-1}-g_{i,j-1}}{x_{i+j}-x_{i}}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6: For 
+\begin_inset Formula $i=1\ldots N$
+\end_inset
+
+ do Steps 7-11:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+7: Compute 
+\begin_inset Formula $x=x_{k+1}$
+\end_inset
+
+ according to Sidi's Method applied to 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $g_{k,0},g_{k-1,1},\ldots,g_{0,k}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+8: If 
+\begin_inset Formula $|x-x_{k}|\leq tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $x$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+9: Compute 
+\begin_inset Formula $g_{k+1,0},g_{k,1},\ldots,g_{1,k}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+10: Set 
+\begin_inset Formula $x_{0}=x_{1}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{1}=x_{2}$
+\end_inset
+
+; 
+\begin_inset Formula $\cdots$
+\end_inset
+
+ 
+\begin_inset Formula $x_{k-1}=x_{k}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{k}=x$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+11: Set 
+\begin_inset Formula $g_{k,0}=g_{k+1,0}$
+\end_inset
+
+; 
+\begin_inset Formula $g_{k-1,1}=g_{k,1}$
+\end_inset
+
+; 
+\begin_inset Formula $\cdots$
+\end_inset
+
+ 
+\begin_inset Formula $g_{0,k}=g_{1,k}$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+12: Print 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Maximum iterations exceeded.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $x$
+\end_inset
+
+ near exact fixed point, or message of failure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+As complete as this latest pseudo-code is, it leaves one item unaddressed.
+ It requires 
+\begin_inset Formula $k$
+\end_inset
+
+ initial values to run Sidi's 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ degree method.
+ When we encountered the secant method, we noted that needing two initial
+ values as opposed to one was a disadvantage.
+ The disadvantage is only magnified in Sidi's Method where 
+\begin_inset Formula $k+1$
+\end_inset
+
+ initial values are required.
+ However, just as with the secant method, we can automatically generate
+ initial values if needed.
+ If Sidi's Method is given one initial value, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, and we are trying to find a root of the function 
+\begin_inset Formula $g$
+\end_inset
+
+, then we can set 
+\begin_inset Formula $x_{1}=x_{0}+g(x_{0})$
+\end_inset
+
+ just as we did for the secant method.
+ You may recall, this was not particularly successful, however.
+ The secant method often failed to converge with this selection of initial
+ condition.
+\end_layout
+
+\begin_layout Standard
+Much less is known about Sidi's method and how the selection of intial values
+ affects convergence.
+ It might make an interesting project to analyze good and bad practices
+ for selecting initial values.
+ In any case, if you have initial values 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{j}$
+\end_inset
+
+ with 
+\begin_inset Formula $1<j<k$
+\end_inset
+
+, the remaining 
+\begin_inset Formula $k+1-j$
+\end_inset
+
+ intial values can be found using Sidi's Method of degree 
+\begin_inset Formula $j$
+\end_inset
+
+ (on 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{j}$
+\end_inset
+
+) to get 
+\begin_inset Formula $x_{j+1}$
+\end_inset
+
+ followed by using Sidi's Method of degree 
+\begin_inset Formula $j+1$
+\end_inset
+
+ (on 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{j+1}$
+\end_inset
+
+) to get 
+\begin_inset Formula $x_{j+2}$
+\end_inset
+
+ followed by using Sidi's Method of degree 
+\begin_inset Formula $j+2$
+\end_inset
+
+ (on 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{j+2}$
+\end_inset
+
+) to get 
+\begin_inset Formula $x_{j+3}$
+\end_inset
+
+, and so on until 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ is computed.
+\end_layout
+
+\begin_layout Subsection
+Octave
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Sidi's method ! Octave code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As is the case with Neville's Method, the Octave code follows identically
+ its corresponding pseudo-code except that indices have been modified to
+ accommodate indexing beginning with 1, not 0.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Dr.
+ Len Brin             1 April 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: Implementation of Sidi's Method         %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: function g; initial values x0,x1,...,xk;  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        tolerance TOL; maximum number of          %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        iterations N                              %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: approximation X and number of iterations %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        i; or message of failure                  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function [X,j] = sidi(x, TOL, N, g)
+\end_layout
+
+\begin_layout Plain Layout
+
+  n=length(x);
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=1:n
+\end_layout
+
+\begin_layout Plain Layout
+
+    G(i,1)=g(x(i));
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  for j=2:n
+\end_layout
+
+\begin_layout Plain Layout
+
+    for i=1:n+1-j
+\end_layout
+
+\begin_layout Plain Layout
+
+      G(i,j)=(G(i+1,j-1)-G(i,j-1))/(x(i+j-1)-x(i));
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=1:N
+\end_layout
+
+\begin_layout Plain Layout
+
+    s=G(1,n);
+\end_layout
+
+\begin_layout Plain Layout
+
+    for j=2:n-1
+\end_layout
+
+\begin_layout Plain Layout
+
+      s=(x(n)-x(j))*s+G(j,n+1-j);
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+    X=x(n)-G(n,1)/s;
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(X-x(n))<TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    G(n+1,1)=g(X);
+\end_layout
+
+\begin_layout Plain Layout
+
+    for j=n:-1:2
+\end_layout
+
+\begin_layout Plain Layout
+
+      G(j,n+2-j)=(G(j+1,n+1-j)-G(j,n+1-j))/(X-x(j));
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+    for j=1:n-1
+\end_layout
+
+\begin_layout Plain Layout
+
+      x(j)=x(j+1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+    x(n)=X;
+\end_layout
+
+\begin_layout Plain Layout
+
+    for j=1:n
+\end_layout
+
+\begin_layout Plain Layout
+
+      G(n+1-j,j)=G(n+2-j,j);
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  X = "Method failed.
+ Maximum iterations exceeded.";
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+More divided differences
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+divided difference
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Divided difference tables are generally computed for the sake of finding
+ coefficients for one interpolating polynomial, and one interpolating polynomial
+ only.
+ However, each table of divided differences is rife with representations
+ of interpolating polynomials.
+ One of the strengths of a divided difference table is that its entries
+ may be reused should more data be added.
+ This same property can be thought of in reverse.
+ Suppose you have a divided difference table computed over 4 data values
+ but you are only interested in an at most degree 2 interpolating polynomial.
+ The divided difference table
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{0,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{0,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{0,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{0,3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{1,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{1,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{1,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{2,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{2,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{3,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+actually gives us two different at most quadratic interpolating polynomials
+ with four representations for each! First, the table was devised to compute
+ the interpolating polynomial
+\begin_inset Formula 
+\[
+P_{3}(x)=f_{0,0}+f_{0,1}(x-x_{0})+f_{0,2}(x-x_{0})(x-x_{1})+f_{0,3}(x-x_{0})(x-x_{1})(x-x_{2}).
+\]
+
+\end_inset
+
+Notice that if we simply truncate the 
+\begin_inset Formula $f_{0,3}(x-x_{0})(x-x_{1})(x-x_{2})$
+\end_inset
+
+ term, we still have an interpolating polynomial with nodes 
+\begin_inset Formula $x_{0},x_{1},x_{2}$
+\end_inset
+
+.
+ We can support this claim in at least two ways.
+ First, the term 
+\begin_inset Formula $f_{0,3}(x-x_{0})(x-x_{1})(x-x_{2})$
+\end_inset
+
+ is 
+\begin_inset Formula $0$
+\end_inset
+
+ at 
+\begin_inset Formula $x_{0},x_{1},x_{2}$
+\end_inset
+
+ so it does not contribute to the interpolation at the nodes 
+\begin_inset Formula $x_{0},x_{1},x_{2}$
+\end_inset
+
+.
+ Second, we can 
+\begin_inset Quotes eld
+\end_inset
+
+reverse engineer
+\begin_inset Quotes erd
+\end_inset
+
+ the table, simply erasing the bottom-most diagonal.
+ The remaining table is still a legitimate divided difference table since
+ none of the remaining entries depends on any of the erased entries:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{0,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{0,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{0,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{1,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{1,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{2,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+So 
+\begin_inset Formula 
+\[
+P_{2}(x)=f_{0,0}+f_{0,1}(x-x_{0})+f_{0,2}(x-x_{0})(x-x_{1})
+\]
+
+\end_inset
+
+is one of the degree at most 2 interpolating polynomials.
+ Erasing the top row of the table also leaves a legitimate divided difference
+ table:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{1,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{1,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{1,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{2,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{2,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f_{3,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+so
+\begin_inset Formula 
+\[
+Q_{2}(x)=f_{1,0}+f_{1,1}(x-x_{1})+f_{1,2}(x-x_{1})(x-x_{2})
+\]
+
+\end_inset
+
+is another degree at most 2 interpolating polynomial.
+ Notice that 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{2}$
+\end_inset
+
+ are not just different representations of the same polynomial.
+ They are two different polynomials! 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ interpolates over the nodes 
+\begin_inset Formula $x_{0},x_{1},x_{2}$
+\end_inset
+
+ while 
+\begin_inset Formula $Q_{2}$
+\end_inset
+
+ interpolates over the nodes 
+\begin_inset Formula $x_{1},x_{2},x_{3}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The bottom diagonals of each truncated table give degree at most 2 interpolating
+ polynomials as well.
+ Remember, 
+\begin_inset Formula $f_{i,j}$
+\end_inset
+
+ represents the potential leading coefficient of the interpolating polynomial
+ over the nodes 
+\begin_inset Formula $x_{i},x_{i+1},\ldots,x_{i+j}$
+\end_inset
+
+.
+ Hence 
+\begin_inset Formula 
+\[
+\tilde{Q}_{2}(x)=f_{3,0}+f_{2,1}(x-x_{3})+f_{1,2}(x-x_{3})(x-x_{2})
+\]
+
+\end_inset
+
+interpolates over the nodes 
+\begin_inset Formula $x_{3},x_{2},x_{1}$
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+\tilde{P}_{2}(x)=f_{2,0}+f_{1,1}(x-x_{2})+f_{0,2}(x-x_{2})(x-x_{1})
+\]
+
+\end_inset
+
+interpolates over the nodes 
+\begin_inset Formula $x_{2},x_{1},x_{0}$
+\end_inset
+
+.
+ These are not new polynomials.
+ These are new representations for 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{2}$
+\end_inset
+
+.
+ Actually, 
+\begin_inset Formula $\tilde{P}_{2}=P_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{Q}_{2}=Q_{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The critical feature of each of these interpolating polynomial representations
+ is that each successive coefficient depends on all the same nodes as its
+ predecessor, plus one new one.
+ For example, 
+\begin_inset Formula $f_{2,0}$
+\end_inset
+
+ depends on 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $f_{1,1}$
+\end_inset
+
+ depends on 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $f_{0,2}$
+\end_inset
+
+ depends on 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ Hence, these three coefficients can be used to produce the interpolating
+ polynomial over the nodes 
+\begin_inset Formula $x_{0},x_{1},x_{2}$
+\end_inset
+
+ in the form of polynomial 
+\begin_inset Formula $\tilde{P}_{2}$
+\end_inset
+
+ (which, as we have already noted, equals 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+).
+ Another representation for the same polynomial can be written by utilizing
+ 
+\begin_inset Formula $f_{1,0}$
+\end_inset
+
+ (which depends on 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+), 
+\begin_inset Formula $f_{0,1}$
+\end_inset
+
+ (which depends on 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+), and 
+\begin_inset Formula $f_{0,2}$
+\end_inset
+
+ (which depends on 
+\begin_inset Formula $x_{1},x_{0},x_{2}$
+\end_inset
+
+):
+\begin_inset Formula 
+\[
+\hat{P}_{2}(x)=f_{1,0}+f_{0,1}(x-x_{1})+f_{0,2}(x-x_{1})(x-x_{0})
+\]
+
+\end_inset
+
+to give a representation of the polynomial interpolating over 
+\begin_inset Formula $x_{0},x_{1},x_{2}$
+\end_inset
+
+ (which therefore must equal 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+).
+ There is one more representation of 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ that can be extracted from the original divided difference table.
+ It comes from the coefficients 
+\begin_inset Formula $f_{1,0},f_{1,1},f_{0,2}$
+\end_inset
+
+.
+ Can you write it down? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "que:p2"
+
+\end_inset
+
+.
+ There are two more representations of 
+\begin_inset Formula $Q_{2}$
+\end_inset
+
+ that can be extracted from the original divided difference table.
+ Can you write them down? Answers 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "que:q2"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{small}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Newton
+\begin_inset space ~
+\end_inset
+
+form
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+an
+\begin_inset space ~
+\end_inset
+
+interpolating
+\begin_inset space ~
+\end_inset
+
+polynomial: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton form
+\end_layout
+
+\end_inset
+
+The Newton form, 
+\begin_inset Formula $N_{n}$
+\end_inset
+
+, of the polynomial of degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ interpolating the points 
+\begin_inset Formula $(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+N_{n}(x)=a_{0}+a_{1}(x-x_{i_{0}})+a_{2}(x-x_{i_{0}})(x-x_{i_{1}})+\cdots+a_{n}(x-x_{i_{0}})\cdots(x-x_{i_{n-1}})
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $n$
+\end_inset
+
+ distinct indices 
+\begin_inset Formula $i_{0},i_{1},\ldots,i_{n-1}$
+\end_inset
+
+ from the set 
+\begin_inset Formula $\{0,1,2,\ldots,n\}$
+\end_inset
+
+.
+ The Newton form for a particular set of data is not unique.
+\end_layout
+
+\begin_layout Description
+potential
+\begin_inset space ~
+\end_inset
+
+leading
+\begin_inset space ~
+\end_inset
+
+coefficient: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+potential leading coefficient
+\end_layout
+
+\end_inset
+
+For an interpolating polynomial on 
+\begin_inset Formula $k+1$
+\end_inset
+
+ points, the coefficient of its 
+\begin_inset Formula $x^{k}$
+\end_inset
+
+ term is called its potential leading coefficient.
+\end_layout
+
+\begin_layout Description
+divided
+\begin_inset space ~
+\end_inset
+
+differences: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+divided difference
+\end_layout
+
+\end_inset
+
+The coefficients of the Newton form of an interpolating polynomial are called
+ divided differences.
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Modify the Neville's Method pseudo-code 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "NevillesMethodPseudoCode"
+
+\end_inset
+
+ to produce pseudo-code for computing the coefficients of 
+\begin_inset Formula $N_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-3"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Modify the Neville's Method Octave code 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "NevillesMethodOctaveCode"
+
+\end_inset
+
+ to produce octave code for computing the coefficients of 
+\begin_inset Formula $N_{n}$
+\end_inset
+
+.
+ Test it by computing 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ interpolating 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+ at 
+\begin_inset Formula $x=0,1,2$
+\end_inset
+
+ and comparing your result to that 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "NewtonPolyExample"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(0.1)=0.12,\ f(0.2)=0.14,\ f(0.3)=0.13$
+\end_inset
+
+, and 
+\begin_inset Formula $f(0.4)=0.15$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find the leading coefficient of the polynomial of least degree interpolating
+ these data.
+\end_layout
+
+\begin_layout Enumerate
+Suppose, additionally, that 
+\begin_inset Formula $f(0.5)=0.11$
+\end_inset
+
+.
+ Use your previous work to find the leading coefficient of the polynomial
+ of least degree interpolating all of the data.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-4"
+
+\end_inset
+
+Find a Newton form of the polynomial of degree at most 3 interpolating the
+ points 
+\begin_inset Formula $(1,2)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,2)$
+\end_inset
+
+, 
+\begin_inset Formula $(3,0)$
+\end_inset
+
+ and 
+\begin_inset Formula $(4,0)$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-5"
+
+\end_inset
+
+Use the method of divided differences to find the at most second degree
+ polynomial interpolataing the points 
+\begin_inset Formula $(0,10)$
+\end_inset
+
+, 
+\begin_inset Formula $(30,58)$
+\end_inset
+
+, 
+\begin_inset Formula $(1029,-32)$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton"
+
+\end_inset
+
+Use divided differences to find an interpolating polynomial for the data
+ 
+\begin_inset Formula $f(1)=0.987$
+\end_inset
+
+, 
+\begin_inset Formula $f(2.2)=-0.123$
+\end_inset
+
+, and 
+\begin_inset Formula $f(3)=0.432$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Create a divided differences table for the following data using only pencil
+ and paper.
+\begin_inset Formula 
+\[
+f(1.2)=2.2\quad f(1.4)=2.1\quad f(1.6)=2.3
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What is the interpolating polynomial of degree at most 2? Does it actually
+ have degree 2?
+\end_layout
+
+\begin_layout Enumerate
+Write down two distinct linear interpolating polynomials for this data based
+ on your table.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-6"
+
+\end_inset
+
+Use divided differences to find the at most cubic polynomial of exercise
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-1"
+
+\end_inset
+
+ of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:polynomialLagrange"
+
+\end_inset
+
+.
+ Does it have the expected degree?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-2"
+
+\end_inset
+
+Find the degree at most two interpolationg polynomial of the form 
+\begin_inset Formula 
+\[
+p_{n}(x)=a_{0}+a_{1}(x-x_{0})+a_{2}(x-x_{0})(x-x_{1})+\cdots+a_{n}(x-x_{0})(x-x_{1})\cdots(x-x_{n-1})
+\]
+
+\end_inset
+
+for the data in the table.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-7"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use the Octave code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-3"
+
+\end_inset
+
+ to compute the interpolating polynomial of at most degree four for the
+ data:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-6.00000$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-5.89483$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-5.65014$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-5.17788$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4.28172$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then add 
+\begin_inset Formula $f(1.1)=-3.9958$
+\end_inset
+
+ to the table, and compute the interpolating polynomial of degree at most
+ 5 using a calculator.
+ You may use the Octave code to check your work.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-1"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use the Octave code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-3"
+
+\end_inset
+
+ to find interpolating polynomials of degrees (at most) one, two, and three
+ for the following data.
+ Approximate 
+\begin_inset Formula $f(8.4)$
+\end_inset
+
+ using each polynomial.
+\begin_inset Formula 
+\[
+\begin{gathered}f(8.1)=16.94410,\ f(8.3)=17.56492,\\
+f(8.6)=18.50515,\ f(8.7)=18.82091
+\end{gathered}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-8"
+
+\end_inset
+
+Find a bound on the error in using the interpolating polynomial of question
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton"
+
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(2)$
+\end_inset
+
+ assuming that all derivatives of 
+\begin_inset Formula $f$
+\end_inset
+
+ are bounded between 
+\begin_inset Formula $-2$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[1,3]$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Regarding the polynomial of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-2"
+
+\end_inset
+
+,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+use the polynomial to approximate 
+\begin_inset Formula $f(2.5)$
+\end_inset
+
+; and
+\end_layout
+
+\begin_layout Enumerate
+assuming 
+\begin_inset Formula $f\in C^{3}$
+\end_inset
+
+, find a theoretical bound on the error of approximating 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ on the interval 
+\begin_inset Formula $[2,4]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-9"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find an error bound, in terms of 
+\begin_inset Formula $f^{(4)}(\xi_{8.4})$
+\end_inset
+
+, for the approximation 
+\begin_inset Formula $P_{3}(8.4)$
+\end_inset
+
+ in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find an error bound, in terms of 
+\begin_inset Formula $f^{(4)}(x)$
+\end_inset
+
+, for the approximation 
+\begin_inset Formula $P_{3}(x)$
+\end_inset
+
+ in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-1"
+
+\end_inset
+
+ good for any 
+\begin_inset Formula $x\in[8.1,8.7]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $f^{(4)}(x)=x\cos x-e^{x}$
+\end_inset
+
+ for the function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-newton-1"
+
+\end_inset
+
+.
+ Use this information to find an error bound for the approximation 
+\begin_inset Formula $P_{3}(x)$
+\end_inset
+
+ good for any 
+\begin_inset Formula $x\in[8.1,8.7]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-10"
+
+\end_inset
+
+Buck spilled coffee on his divided differences table, obscuring several
+ numbers.
+ Nevertheless, there is enough legible information to find the at most degree
+ 3 polynomial interpolating the data.
+ Find it.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/interpolation-newton1.gif
+	lyxscale 35
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Show that the polynomial interpolating the following data has degree 3.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $11$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $16$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-11"
+
+\end_inset
+
+For a function 
+\begin_inset Formula $f$
+\end_inset
+
+, Newton's divided difference formula gives the interpolating polynomial
+\begin_inset Formula 
+\[
+N_{3}(x)=1+4x+4x(x-0.25)+\frac{16}{3}x(x-0.25)(x-0.5)
+\]
+
+\end_inset
+
+on the nodes 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+, 
+\begin_inset Formula $x_{1}=0.25$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}=0.5$
+\end_inset
+
+, 
+\begin_inset Formula $x_{3}=0.75$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $f(0.75)$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-12"
+
+\end_inset
+
+Match the function with its Seeded Sidi method convergence diagram.
+ In each case, Sidi's 
+\begin_inset Formula $6^{th}$
+\end_inset
+
+ degree method was used.
+ The real axis passes through the center of each diagram, and the imaginary
+ axis is represented, but is not necessarily centered.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+f(x) & = & \sin x\\
+g(x) & = & \sin x-e^{-x}\\
+h(x) & = & e^{x}+2^{-x}+2\cos x-6\\
+l(x) & = & 56-152x+140x^{2}-17x^{3}-48x^{4}+9x^{5}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-newton2.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-newton5.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(c)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(d)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-newton4.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-newton3.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-newton-13"
+
+\end_inset
+
+Match the function with its Seeded Sidi method convergence diagram.
+ The real axis passes through the center of each diagram, and the imaginary
+ axis is represented, but is not necessarily centered.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+f(x) & = & x^{4}+2x^{2}+4\\
+g(x) & = & (x^{2})(\ln x)+(x-3)e^{x}\\
+h(x) & = & 1+2x+3x^{2}+4x^{3}+5x^{4}+6x^{5}\\
+l(x) & = & (\ln x)(x^{3}+1)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-newton8.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-newton9.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(c)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(d)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-newton6.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-newton7.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+You have found the following Octave function with no comments (boo to the
+ author of the function!).
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+function ans = foo(x,y,x0)
+\end_layout
+
+\begin_layout Plain Layout
+
+  n = length(x);
+\end_layout
+
+\begin_layout Plain Layout
+
+  ans = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=1:n
+\end_layout
+
+\begin_layout Plain Layout
+
+    a=1;
+\end_layout
+
+\begin_layout Plain Layout
+
+    for j=1:n
+\end_layout
+
+\begin_layout Plain Layout
+
+      if (j==i)
+\end_layout
+
+\begin_layout Plain Layout
+
+        a=a*y(i);
+\end_layout
+
+\begin_layout Plain Layout
+
+      else
+\end_layout
+
+\begin_layout Plain Layout
+
+        a=a*(x0-x(j))/(x(i)-x(j));
+\end_layout
+
+\begin_layout Plain Layout
+
+      endif
+\end_layout
+
+\begin_layout Plain Layout
+
+    endfor
+\end_layout
+
+\begin_layout Plain Layout
+
+    ans=ans+a;
+\end_layout
+
+\begin_layout Plain Layout
+
+  endfor
+\end_layout
+
+\begin_layout Plain Layout
+
+endfunction
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What is the output (
+\family typewriter
+ans
+\family default
+) of the Octave command
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\family typewriter
+foo([1.1,1.2,1.3,1.4],[.78,.81,.79,.75],1.2)
+\family default
+ 
+\end_layout
+
+\begin_layout Standard
+and why?
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{small}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Answers
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $P_{2}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+from
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $f_{1,0},f_{1,1},f_{0,2}$
+\end_inset
+
+: 
+\begin_inset CommandInset label
+LatexCommand label
+name "que:p2"
+
+\end_inset
+
+
+\begin_inset Formula $\overline{P}_{2}(x)=f_{1,0}+f_{1,1}(x-x_{1})+f_{0,2}(x-x_{1})(x-x_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $Q_{2}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+two
+\begin_inset space ~
+\end_inset
+
+new
+\begin_inset space ~
+\end_inset
+
+ways: 
+\begin_inset CommandInset label
+LatexCommand label
+name "que:q2"
+
+\end_inset
+
+
+\begin_inset Formula $\hat{Q}_{2}(x)=f_{2,0}+f_{1,1}(x-x_{2})+f_{1,2}(x-x_{2})(x-x_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{Q}_{2}(x)=f_{2,0}+f_{2,1}(x-x_{2})+f_{1,2}(x-x_{2})(x-x_{3})$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

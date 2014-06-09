@@ -1,0 +1,44 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+num:2*x^3-5*x^2-6;
+den:3*x^2-10*x+4;
+f(t):=subst(x=t,num/den);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln:solve(den=0);
+%,numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eqn:f(x)=subst(soln[2],x);
+solve(%);
+expand(%),numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(eqn*den);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+((%+5*x^2+6)/2)^(1/3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+approx:.5288197852594849*(−1)+.6828623307539788/(−1)+2.267591879244;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load("draw");
+g(x):=(sqrt(13)*x^2+10*x^2−(10*sqrt(13)*x)/3−(50*x)/3+(4*sqrt(13))/3+38/3)^(1/3)/2^(1/3);
+plot2d([g(x),x],[x,-2,5]);
+g(approx),numer;
+approx;
+f(approx);
+soln[2],numer;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

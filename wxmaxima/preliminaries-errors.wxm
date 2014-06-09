@@ -1,0 +1,196 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: section start ]
+Errors
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Errors: approximating Pi
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+exact:%pi;
+float(exact);
+approx:22/7;
+float(approx);
+e1:float(abs(approx-exact));
+e2:float(e1/exact);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+exact:%pi^5;
+float(exact);
+approx:16525/54;
+float(approx);
+float(exact);
+e1:float(abs(approx-exact));
+e2:float(e1/exact);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+target:%pi^5$
+tol:0.1$
+print("Approximating ",target,"=",bfloat(target))$
+for k:2 thru 100 do (
+  product:k*target,
+  approx:round(product)/k,
+  err:float(abs(target-approx)),
+  eff:err*k,
+  lowest:ev(gcd(approx*k,k)=1,pred),
+  if (eff<tol and lowest) then
+    print(approx,"=",float(approx),"    has efficiency    ",eff,"    and error    ",err)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Errors: 1/7 in Binary
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:20$
+seventh:sum(2^(-3*i),i,1,18);
+bfloat(seventh);
+err:abs(seventh-1/7);
+bfloat(err);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Errors: subtracting nearly equal numbers
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(10*%pi);
+p1:10*%pi-31;
+p2:ratsimp(100*p1-41);
+p3:ratsimp(100*p2-59);
+p4:ratsimp(100*p3-26);
+p5:ratsimp(100*p4-53);
+p6:ratsimp(100*p5-58);
+p7:ratsimp(100*p6-97);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p1:float(10*%pi-31);
+p2:100*p1-41;
+p3:100*p2-59;
+p4:100*p3-26;
+p5:100*p4-53;
+p6:100*p5-58;
+p7:100*p6-97;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Errors: Approximating the derivative of sin(x)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:100$
+f(x):=sin(x)$
+e:cos(1)$
+N(h):=(f(1+h)-f(1-h))/(2*h);
+for i:2 thru 7 do(
+    a:N(10^-i),
+    disp(a),
+    disp(bfloat(a)),
+    disp(abs(bfloat(a-e)))
+)$
+float(cos(1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+e:cos(1.0)$
+for i:2 thru 7 do(
+    a:N(float(10^-i)),
+    disp(i),
+    disp(a),
+    disp(abs(a-e))
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a:101/100;
+b:99/100;
+c:bfloat(sin(a));
+d:bfloat(sin(b));
+e:bfloat(5402933008747335/10000000000000000);
+f:50*(c-d);
+abs(e-f);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a:10000001/10000000;
+b:9999999/10000000;
+c:bfloat(sin(a));
+d:bfloat(sin(b));
+e:bfloat(5403023056738121/10000000000000000);
+f:5000000*(c-d);
+abs(e-f);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Errors: Chaos and the logistic equation
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:1000$
+f(x):=4*x*(1-x);
+p:bfloat(1/7);
+phat:bfloat(1/7+10^-12);
+for i:1 thru 40 do (
+    p:f(p),
+    phat:f(phat),
+    print(i,"  ",float(p),"  ",float(phat))
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Errors: Calculating 4 types of errors exercise
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fp(x):=exp(x)*sin(10*x);
+f:integrate(fp(x),x);
+subst(x=1,f);
+h:1/10$
+y[0]:0$
+for i:1 thru 10 do (
+    y[i]:y[i-1]+h*fp(h*(i-1))
+)$
+listarray(y);
+bfloat(y[10]);
+h:.1$
+y[0]:0$
+for i:1 thru 10 do (
+    y[i]:y[i-1]+h*fp(h*(i-1))
+)$
+listarray(y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=4*x*(1-x);
+solve(f(f(x))=x);
+p:(5+sqrt(5))/8;
+ratsimp(f(%));
+ratsimp(f(%));
+p:float(p);
+float(f(p));
+for i:1 thru 41 do p:f(p);
+p;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(x-7)*(x+5)*(x-1)*(x+10);
+ratsimp(f(x));
+fp:ratsimp(diff(f(x),x));
+float(rectform(solve(fp=0)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+i:7$
+(f(-2+1/10^i)-f(-2-1/10^i))/(2/10^i);
+(f(-2+1.0/10^i)-f(-2-1.0/10^i))/(2.0/10^i);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

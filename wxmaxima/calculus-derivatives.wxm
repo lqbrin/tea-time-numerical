@@ -1,0 +1,322 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(2*x^2+5*x-1)*(x-119/10);
+expand(10*f(x));
+diff(%,x);
+subst(x=sqrt(2),%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:20$
+f(x):=sin(x)$
+h:1$
+i:0$
+emin:bfloat(10)$
+imin:i$
+exact:bfloat(cos(12))$
+while not(bfloat(12+h) = bfloat(12-h)) do(
+  h:h/2,
+  i:i+1,
+  approx:(f(12-2*h)-8*f(12-h)+8*f(12+h)-f(12+2*h))/(12*h),
+  err:abs(bfloat(exact-approx)),
+  if (err<emin) then block(emin:err, imin:i),
+  print(i,"  ",h,"  ",approx,"  ",err)
+)$
+emin;
+imin;
+i;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:20$
+its:66$
+d:bfloat(1/2)$
+target(x):=exp(-2*x)$
+load(draw)$
+address(x):=([a,i,h,m,l:bfloat(0),r:bfloat(1)],
+    a:array(a,its),
+    for i:1 thru its do (
+        h:bfloat((r-l)/2),
+        m:bfloat(l+h),
+        if (x<m) then
+            block(a[i]:0, r:m)
+        else
+            block(a[i]:1, l:m)
+    ),
+    a
+);
+frp(x):=([a,xx:bfloat(0),yy:bfloat(0),i,y],
+    a:address(x),
+    for i:its thru 1 step -1 do (
+        if (a[i]=1) then
+            block(x:bfloat((xx+1)/2), y:bfloat((1-xx)/4+d*yy))
+        else
+            block(x:bfloat(xx/2), y:bfloat(xx/4+d*yy)),
+        xx:x,
+        yy:y
+    ),
+    yy
+);
+g(x):=frp(x)-target(x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:bfloat(.8)$
+x1:bfloat(.9)$
+y0:g(x0)$
+for i:1 thru 50 do (
+    y1:g(x1),
+    x2:x1-y1*(x1-x0)/(y1-y0),
+    x0:x1,
+    y0:y1,
+    x1:x2
+)$
+print("x2 = ",x2)$
+print("g(x2) = ",g(x2))$
+r1:x2$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:bfloat(.5)$
+x1:bfloat(.6)$
+y0:g(x0)$
+for i:1 thru 50 do (
+    y1:g(x1),
+    x2:x1-y1*(x1-x0)/(y1-y0),
+    x0:x1,
+    y0:y1,
+    x1:x2
+)$
+print("x2 = ",x2)$
+print("g(x2) = ",g(x2))$
+r2:x2$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pts:500$
+x:array(x,pts)$
+for i:1 thru pts do (
+    x[i]:bfloat((i-1)/(pts-1))
+)$
+xy:makelist([x[i],frp(x[i])],i,1,pts)$
+print("list created")$
+draw2d(
+    point_type=none,
+    points_joined=true,
+    point_size=0,
+    points(xy),
+    color=red,
+    explicit(target(x),x,0,1),
+    color=black,
+    point_type=filled_circle,
+    points_joined=false,
+    point_size=.35,
+    points([[r1,target(r1)],[r2,target(r2)]]),
+    xrange=[-.05,1.05],
+    dimensions=[1000,618],
+    file_name="calculus_derivatives1",
+    terminal=pdf
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Four-point formulas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+using f0, fph, fp2h, fp3h
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+eq1:fph=f0+h*fp0+1/2*h^2*fpp0+1/6*h^3*fppp0;
+eq2:fp2h=f0+2*h*fp0+1/2*(2*h)^2*fpp0+1/6*(2*h)^3*fppp0;
+eq3:fp3h=f0+3*h*fp0+1/2*(3*h)^2*fpp0+1/6*(3*h)^3*fppp0;
+eq4:fmh=f0-h*fp0+1/2*h^2*fpp0-1/6*h^3*fppp0$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+co1:A*1/6+B*4/3=-9/2;
+co2:A*1/2+B*2=-9/2;
+solve([co1,co2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(9*eq1-9/2*eq2+eq3);
+solve(%,fp0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+err:fpppp*(x0-(x0+h))*(x0-(x0+2*h))*(x0-(x0+3*h))/4!;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+roundingerror:40*f/(6*h)*10^-15;
+algorithmerror:fpppp*h^3/4;
+err:roundingerror+algorithmerror$
+diff(err,h)=0;
+solve(%,h);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+using fmh, f0, fph, fp2h
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+eq1:fph=f0+h*fp0+1/2*h^2*fpp0+1/6*h^3*fppp0;
+eq2:fp2h=f0+2*h*fp0+1/2*(2*h)^2*fpp0+1/6*(2*h)^3*fppp0;
+eq3:fp3h=f0+3*h*fp0+1/2*(3*h)^2*fpp0+1/6*(3*h)^3*fppp0$
+eq4:fmh=f0-h*fp0+1/2*h^2*fpp0-1/6*h^3*fppp0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+co1:A*1/6+B*4/3=1/6;
+co2:A*1/2+B*2=-1/2;
+solve([co1,co2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(-3*eq1+1/2*eq2+eq4);
+solve(%,fp0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+err:fpppp*(x0-(x0-h))*(x0-(x0+h))*(x0-(x0+2*h))/4!;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+roundingerror:12*f/(6*h)*10^-15;
+algorithmerror:fpppp*h^3/12;
+err:roundingerror+algorithmerror$
+diff(err,h)=0;
+solve(%,h);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Five-point formulas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+using f0, fph, fp2h, fp3h, fp4h
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+eqph:fph=f0+h*fp0+1/2*h^2*fpp0+1/6*h^3*fppp0+1/24*h^4*fpppp0;
+eqp2h:fp2h=f0+2*h*fp0+1/2*(2*h)^2*fpp0+1/6*(2*h)^3*fppp0+1/24*(2*h)^4*fpppp0;
+eqp3h:fp3h=f0+3*h*fp0+1/2*(3*h)^2*fpp0+1/6*(3*h)^3*fppp0+1/24*(3*h)^4*fpppp0;
+eqp4h:fp4h=f0+4*h*fp0+1/2*(4*h)^2*fpp0+1/6*(4*h)^3*fppp0+1/24*(4*h)^4*fpppp0;
+eqmh:fmh=f0-h*fp0+1/2*h^2*fpp0-1/6*h^3*fppp0+1/24*h^4*fpppp0$
+eqm2h:fm2h=f0-2*h*fp0+1/2*(2*h)^2*fpp0-1/6*(2*h)^3*fppp0+1/24*(2*h)^4*fpppp0$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+co1:A*1/24+B*2/3+C*27/8=-32/3;
+co2:A*1/6+B*4/3+C*9/2=-32/3;
+co3:A*1/2+B*2+C*9/2=-8;
+solve([co1,co2,co3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(-16*eqph+12*eqp2h-16/3*eqp3h+eqp4h);
+solve(%,fp0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+err:fppppp*(x0-(x0+h))*(x0-(x0+2*h))*(x0-(x0+3*h))*(x0-(x0+4*h))/5!;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+roundingerror:128*f/(12*h)*10^-15;
+algorithmerror:fppppp*h^4/5;
+err:roundingerror+algorithmerror$
+diff(err,h)=0;
+solve(%,h);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+using fmh, f0, fph, fp2h, fp3h
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+eqph:fph=f0+h*fp0+1/2*h^2*fpp0+1/6*h^3*fppp0+1/24*h^4*fpppp0;
+eqp2h:fp2h=f0+2*h*fp0+1/2*(2*h)^2*fpp0+1/6*(2*h)^3*fppp0+1/24*(2*h)^4*fpppp0;
+eqp3h:fp3h=f0+3*h*fp0+1/2*(3*h)^2*fpp0+1/6*(3*h)^3*fppp0+1/24*(3*h)^4*fpppp0;
+eqp4h:fp4h=f0+4*h*fp0+1/2*(4*h)^2*fpp0+1/6*(4*h)^3*fppp0+1/24*(4*h)^4*fpppp0$
+eqmh:fmh=f0-h*fp0+1/2*h^2*fpp0-1/6*h^3*fppp0+1/24*h^4*fpppp0;
+eqm2h:fm2h=f0-2*h*fp0+1/2*(2*h)^2*fpp0-1/6*(2*h)^3*fppp0+1/24*(2*h)^4*fpppp0$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+co1:A*1/24+B*2/3+C*27/8+1/24=0;
+co2:A*1/6+B*4/3+C*9/2-1/6=0;
+co3:A*1/2+B*2+C*9/2+1/2=0;
+solve([co1,co2,co3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(-6*eqph+2*eqp2h-1/3*eqp3h+eqmh);
+solve(%,fp0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+err:fppppp*(x0-(x0+h))*(x0-(x0+2*h))*(x0-(x0+3*h))*(x0-(x0-h))/5!;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+roundingerror:38*f/(12*h)*10^-15;
+algorithmerror:fppppp*h^4/20;
+err:roundingerror+algorithmerror$
+diff(err,h)=0;
+solve(%,h);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+using fm2h, fmh, f0, fph, fp2h
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+eqph:fph=f0+h*fp0+1/2*h^2*fpp0+1/6*h^3*fppp0+1/24*h^4*fpppp0;
+eqp2h:fp2h=f0+2*h*fp0+1/2*(2*h)^2*fpp0+1/6*(2*h)^3*fppp0+1/24*(2*h)^4*fpppp0;
+eqp3h:fp3h=f0+3*h*fp0+1/2*(3*h)^2*fpp0+1/6*(3*h)^3*fppp0+1/24*(3*h)^4*fpppp0$
+eqp4h:fp4h=f0+4*h*fp0+1/2*(4*h)^2*fpp0+1/6*(4*h)^3*fppp0+1/24*(4*h)^4*fpppp0$
+eqmh:fmh=f0-h*fp0+1/2*h^2*fpp0-1/6*h^3*fppp0+1/24*h^4*fpppp0;
+eqm2h:fm2h=f0-2*h*fp0+1/2*(2*h)^2*fpp0-1/6*(2*h)^3*fppp0+1/24*(2*h)^4*fpppp0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+co1:A*1/24+B*2/3+C*1/24+2/3=0;
+co2:A*1/6+B*4/3-C*1/6-4/3=0;
+co3:A*1/2+B*2+C*1/2+2=0;
+solve([co1,co2,co3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(8*eqph-eqp2h-8*eqmh+eqm2h);
+solve(%,fp0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+err:fppppp*(x0-(x0+h))*(x0-(x0+2*h))*(x0-(x0-2*h))*(x0-(x0-h))/5!;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+roundingerror:18*f/(12*h)*10^-15;
+algorithmerror:fppppp*h^4/30;
+err:roundingerror+algorithmerror$
+diff(err,h)=0;
+solve(%,h);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

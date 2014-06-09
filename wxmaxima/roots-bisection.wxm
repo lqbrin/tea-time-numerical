@@ -1,0 +1,77 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.09.0 ] */
+
+/* [wxMaxima: section start ]
+Bisection
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(x)$
+x0:%e^2$
+T2:taylor(f(x),x,x0,2);
+T11:taylor(f(x),x,x0,11);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprintprec:4$
+g(t):=subst(x=t,T2);
+h(t):=float(g(t)-f(t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h(6);
+h(2);
+h(4);
+h(3);
+h(3.5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprintprec:10$
+a:3$ b:4$ m:(a+b)/2.0;
+if (h(m)<.1) then b:m else a:m$
+    m:(a+b)/2.0;
+if (h(m)<.1) then b:m else a:m$
+    m:(a+b)/2.0;
+if (h(m)<.1) then b:m else a:m$
+    m:(a+b)/2.0;
+if (h(m)<.1) then b:m else a:m$
+    m:(a+b)/2.0;
+if (h(m)<.1) then b:m else a:m$
+    m:(a+b)/2.0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+draw2d(
+    label_orientation='vertical,
+    label(["+",2,.57],["+",3,.57],["|",6,.57],["|",4,.57],["|",3.5,.57]),
+    color=black,
+    label_orientation='horizontal,
+    label(["|",2,0],["|",3,0],["|",6,0],["|",4,0],["|",3.5,0],["|",3.25,0]),
+    label(["2",2,-.622],["3",3,-.622],["6",6,-.622],["4",4,-.622],["3.5",3.5,-.622],["3.25",3.25,-.622]),
+    label(["p_2",3,-1.25],["p_1",4,-1.25],["p_3",3.5,-1.25],["p_4",3.25,-1.25]),
+    explicit(0,x,2,6),
+    xtics='none,
+    ytics='none,
+    axis_top=false,
+    axis_left=false,
+    axis_right=false,
+    axis_bottom=false,
+    xtics_axis=true,
+    xtics_rotate=true,
+    dimensions=[1500,200],
+    terminal='pdf,
+    file_name="roots-bisection1"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw2d(
+    explicit(g(x)-log(x)+1/10,x,0,18),
+    yrange=[-1,1]
+);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

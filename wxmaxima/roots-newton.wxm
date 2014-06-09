@@ -1,0 +1,110 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(2*x^3-5*x^2-6)/(3*x^2-10*x+4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:4.0;
+for i:1 thru 10 do (
+  x0:f(x0),
+  print(x0)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ratsimp(diff(f(x),x));
+factor(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+486-1080+666-12-60;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):=-x^3+5*x^2-4*x-6;
+gp(t):=subst(x=t,diff(g(x),x));
+gp(x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(-2.5);
+gp(-2.5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+-50.875/-47.75-2.5;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Applying secant method to g(x)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:20$
+x0:bfloat(5.0);
+x1:x0+g(x0);
+for i:2 thru 15 do (
+  x:x1-g(x1)*(x1-x0)/(g(x1)-g(x0)),
+  print(i," ",x," ",abs(3-x)),
+  x0:x1,
+  x1:x
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x-exp(x)*cos(sqrt(exp(2*x)-x^2));
+fp(x):=subst(t=x,diff(f(t),t));
+fp(x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:2.8;
+for i:1 thru 10 do (
+  x0:x0-f(x0)/fp(x0),
+  print(i,"  ",x0)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+r0:.3181315052047641;
+r1:1.668024051576096;
+r2:2.062277729598284;
+r3:2.439940377216816;
+r4:2.653191974038697;
+r5:2.872257717171606;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Iterating f6
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f6(x):=(2*x^3-5*x^2-6)/(3*x^2-10*x+4);
+f6p(x):=subst(t=x,diff(f6(t),t))$
+ratsimp(f6p(x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:2.0$
+print(0,"  ",x0)$
+for i:1 thru 6 do (
+  x0:f6(x0),
+  print(i,"  ",x0)
+)$
+1+sqrt(3),numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:-1.0$
+print(0,"  ",x0)$
+for i:1 thru 4 do (
+  x0:f6(x0),
+  print(i,"  ",x0)
+)$
+1-sqrt(3),numer;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

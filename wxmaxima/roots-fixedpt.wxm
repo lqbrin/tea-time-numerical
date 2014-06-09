@@ -1,0 +1,180 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+load("draw");
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+y=cos(x)  and  y=x
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=cos(x);
+x0:-0.1$
+x1:1.1$
+delta:.05*(x1-x0)$
+draw2d(
+    explicit(f(x),x,x0,x1),
+    explicit(x,x,x0,x1),
+    xrange=[x0-delta,x1+delta],
+    yrange=[x0-delta,x1+delta],
+    terminal='pdf,
+    file_name="roots-fixedpt5",
+    dimensions=[600,600],
+    proportional_axes=xy,
+    xtics=[0,.5,1],
+    ytics=[0,.5,1]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+A few iterations of cos(x)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+float(cos(0));
+float(cos(%));
+float(cos(%));
+float(cos(%));
+float(cos(%));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Cosine web diagram
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+t:0.0$
+n:50$
+for i:1 thru n do (
+    t1:float(f(t)),
+    p[2*i-1]:[t,t],
+    p[2*i]:[t,t1],
+    t:t1
+)$
+t1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pp:makelist(p[i],i,1,2*n)$
+draw2d(
+    color=red,
+    point_type=none,
+    points_joined=true,
+    points(pp),
+    color=black,
+    explicit(f(x),x,x0,x1),
+    color=blue,
+    line_type=dots,
+    line_width=2,
+    explicit(x,x,x0,x1),
+    fill_color=white,
+    rectangle([t1,x0-delta],[t1,t1]),
+    rectangle([x0-delta,t1],[t1,t1]),
+    xrange=[x0-delta,x1+delta],
+    yrange=[x0-delta,x1+delta],
+    xtics={["0",0],[".739085",t1],["1",1]},
+    ytics={["0",0],[".739085",t1],["1",1]},
+    terminal='pdf,
+    file_name="cosine-fixed-point",
+    dimensions=[600,600],
+    proportional_axes=xy
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+x^2 web diagram
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x^2;
+x0:-0.2$
+x1:1.2$
+delta:.05*(x1-x0)$
+draw2d(explicit(f(x),x,x0,x1),explicit(x,x,x0,x1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+t:0.9$
+n:50$
+for i:1 thru n do (
+    t1:float(f(t)),
+    p[2*i-1]:[t,t],
+    p[2*i]:[t,t1],
+    t:t1
+)$
+t1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pp:makelist(p[i],i,1,2*n)$
+draw2d(
+    color=red,
+    point_type=none,
+    points_joined=true,
+    points(pp),
+    color=black,
+    explicit(f(x),x,x0,x1),
+    color=blue,
+    line_type=dots,
+    line_width=2,
+    explicit(x,x,x0,x1),
+    fill_color=white,
+    rectangle([t1,x0-delta],[t1,t1]),
+    rectangle([x0-delta,t1],[t1,t1]),
+    xrange=[x0-delta,x1+delta],
+    yrange=[x0-delta,x1+delta],
+    xtics={["0",0],["1",1]},
+    ytics={["0",0],["1",1]},
+    terminal='pdf,
+    file_name="quadratic-fixed-point",
+    dimensions=[600,600],
+    proportional_axes=xy
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2+(x-exp(2))/exp(2)-(x-exp(2))^2/(2*exp(4))-log(x)-1/10+x web diagram
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=2+(x-exp(2))/exp(2)-(x-exp(2))^2/(2*exp(4))-log(x)-1/10+x;
+draw2d(explicit(f(x),x,2,4),explicit(x,x,2,4));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+t:float(f(1.0));
+t:float(f(t));
+for i:1 thru 88 do (
+    t1:float(f(t)),
+    p[2*i-1]:[t,t1],
+    p[2*i]:[t1,t1],
+    t:t1
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pp:makelist(p[i],i,1,87*2)$
+draw2d(
+    color=red,
+    point_type=none,
+    points_joined=true,
+    points(pp),
+    point_type=filled_circle,
+    points([t1,t1],[t1,t1]),
+    color=black,
+    key="y=x",
+    explicit(x,x,2,4),
+    color=blue,
+    line_type=dots,
+    key="y=f(x)",
+    explicit(f(x),x,2,4),
+    xrange=[2,4],
+    yrange=[2,4],
+    dimensions=[1000,618]
+);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

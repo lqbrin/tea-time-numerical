@@ -1,0 +1,6417 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:calculusErrorAnalysis"
+
+\end_inset
+
+Error Analysis
+\end_layout
+
+\begin_layout Subsection
+Errors for first derivative formulas
+\end_layout
+
+\begin_layout Standard
+In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:polynomialLagrange"
+
+\end_inset
+
+, we found that if 
+\begin_inset Formula $f$
+\end_inset
+
+ has sufficient derivatives, then 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+, an interpolating polynomial of degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+, differ according to equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrangeInterpolatingPolynomialError"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "eq:lagrangeInterpolatingPolynomialError"
+
+\end_inset
+
+, copied here for convenience:
+\begin_inset Formula 
+\[
+f(x)-P_{n}(x)=\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}(x-x_{0})(x-x_{1})\cdots(x-x_{n}).
+\]
+
+\end_inset
+
+We can use this formula to derive a concise formula for the error in approximati
+ng 
+\begin_inset Formula $f'(x)$
+\end_inset
+
+ by 
+\begin_inset Formula $P_{n}'(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As done in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:polynomialLagrange"
+
+\end_inset
+
+, suppose 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{n}$
+\end_inset
+
+ are 
+\begin_inset Formula $n$
+\end_inset
+
+ distinct real numbers.
+ Set 
+\begin_inset Formula $w(x)=(x-x_{0})(x-x_{1})\cdots(x-x_{n})$
+\end_inset
+
+, 
+\begin_inset Formula $a=\min(x_{0},\ldots,x_{n},x)$
+\end_inset
+
+, and 
+\begin_inset Formula $b=\max(x_{0},\ldots,x_{n},x)$
+\end_inset
+
+.
+ We know from equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrangeInterpolatingPolynomialError"
+
+\end_inset
+
+ that, assuming 
+\begin_inset Formula $f$
+\end_inset
+
+ has 
+\begin_inset Formula $n+1$
+\end_inset
+
+ derivatives on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ and 
+\begin_inset Formula $f',f'',\ldots,f^{(n)}$
+\end_inset
+
+ are all continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+, for each 
+\begin_inset Formula $x\in[a,b]$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(x)-P_{n}(x)=\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}w(x)
+\]
+
+\end_inset
+
+for some 
+\begin_inset Formula $\xi_{x}\in(a,b)$
+\end_inset
+
+.
+ Hence
+\begin_inset Formula 
+\[
+f'(x)-P_{n}'(x)=\frac{d}{dx}\left[\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}\right]w(x)+\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}w'(x).
+\]
+
+\end_inset
+
+Since 
+\begin_inset Formula $w$
+\end_inset
+
+ vanishes at each node, this formula simplifies nicely when 
+\begin_inset Formula $x$
+\end_inset
+
+ is a node.
+ Without loss of generality, we evaluate for 
+\begin_inset Formula $x=x_{0}$
+\end_inset
+
+ and get 
+\begin_inset Formula 
+\[
+f'(x_{0})-P_{n}'(x_{0})=\frac{f^{(n+1)}(\xi_{x_{0}})}{(n+1)!}w'(x_{0}).
+\]
+
+\end_inset
+
+This expression can be simplified further by noting that 
+\begin_inset Formula 
+\[
+w'(x)=\sum_{i=0}^{n}\prod_{\substack{j=0\\
+i\neq j
+}
+}^{n}(x-x_{j})=\sum_{i=0}^{n}p_{i}(x).
+\]
+
+\end_inset
+
+But 
+\begin_inset Formula $p_{i}(x_{0})=0$
+\end_inset
+
+ for all 
+\begin_inset Formula $i$
+\end_inset
+
+ except 
+\begin_inset Formula $i=0$
+\end_inset
+
+, so
+\begin_inset Formula 
+\[
+w'(x_{0})=p_{0}(x_{0})=(x_{0}-x_{1})(x_{0}-x_{2})\cdots(x_{0}-x_{n}).
+\]
+
+\end_inset
+
+Substituting this expression for 
+\begin_inset Formula $w'$
+\end_inset
+
+, we have the first derivative error formula
+\begin_inset Formula 
+\[
+f'(x_{0})-P_{n}'(x_{0})=\frac{f^{(n+1)}(\xi_{x_{0}})}{(n+1)!}(x_{0}-x_{1})(x_{0}-x_{2})\cdots(x_{0}-x_{n}).
+\]
+
+\end_inset
+
+Making the substitutions 
+\begin_inset Formula $x_{0}+\theta_{i}h$
+\end_inset
+
+ for 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $i=1,2,\ldots,n$
+\end_inset
+
+, to get a formula in terms of 
+\begin_inset Formula $h$
+\end_inset
+
+ and the 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+f'(x_{0}+\theta_{0}h)-P_{n}'(x_{0}+\theta_{0}h)=\frac{f^{(n+1)}(\xi_{x_{0}})}{(n+1)!}(-\theta_{1}h)(-\theta_{2}h)\cdots(-\theta_{n}h).
+\]
+
+\end_inset
+
+This error formula simplifies just a bit:
+\begin_inset Formula 
+\begin{equation}
+f'(x_{0})-P_{n}'(x_{0})=\frac{f^{(n+1)}(\xi)}{(n+1)!}\theta_{1}\theta_{2}\cdots\theta_{n}(-h)^{n}.\label{eq:firstDerivErrorSimplified}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the stencil
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-errors07.pdf
+	scale 200
+
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $n=4$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{1}=-1$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{2}=1$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{3}=2$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta_{4}=3$
+\end_inset
+
+, so the error in calculating 
+\begin_inset Formula $f'$
+\end_inset
+
+ over this stencil is
+\begin_inset Formula 
+\[
+\frac{f^{(5)}(\xi)}{120}(-1)(1)(2)(3)(-h)^{4}=-\frac{f^{(5)}(\xi)}{20}h^{4}.
+\]
+
+\end_inset
+
+Error terms for the first derivative over other stencils are computed similarly.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:firstDerivativeFormulas"
+
+\end_inset
+
+ summarizes some common first derivative formulas, including error terms.
+\end_layout
+
+\begin_layout Standard
+Notice that the error term contains 
+\begin_inset Formula $(x_{0}-x_{1})(x_{0}-x_{2})\cdots(x_{0}-x_{n})$
+\end_inset
+
+, the product of the differences between the point of evaluation and all
+ other nodes, as a factor.
+ When the differences between the point of evaluation and the other nodes
+ is small, the product is small.
+ Consequently, first derivative approximation formulas are generally more
+ accurate when the point of evaluation is centrally located among the nodes.
+ Hence, we might expect a first derivative formula involving nodes 
+\begin_inset Formula $x_{0}<x_{1}<x_{2}$
+\end_inset
+
+ to be more accurate when the point of evaluation is 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ rather than when the point of evaluation is 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ or 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+.
+ The same can be said about higher derivative formulas.
+ The more centrally located the point of evaluation, the more accurate the
+ approximation.
+\end_layout
+
+\begin_layout Subsection
+Errors for other formulas
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:derivativeError"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is tempting to think we can simply repeat the procedure we used with
+ first derivatives, taking the second derivative of 
+\begin_inset Formula $f(x)-P_{n}(x)=\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}w(x)$
+\end_inset
+
+ to find the error for second derivative estimates, and the third derivative
+ of 
+\begin_inset Formula $f(x)-P_{n}(x)=\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}w(x)$
+\end_inset
+
+ to find the error for third derivative estimates, and so on.
+ Alas the matter is not so simple.
+ Higher derivatives of 
+\begin_inset Formula $f(x)-P_{n}(x)=\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}w(x)$
+\end_inset
+
+ involve derivatives of the factor 
+\begin_inset Formula $\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}$
+\end_inset
+
+ which do not vanish even when 
+\begin_inset Formula $x$
+\end_inset
+
+ is a node.
+ Since 
+\begin_inset Formula $\xi_{x}$
+\end_inset
+
+ is entirely unknown, so are its derivatives, making this approach unworkable.
+ Other methods for producing precise bounds for certain higher derivative
+ formulas or certain integral formulas are limited in scope.
+\end_layout
+
+\begin_layout Standard
+There is, however, a general method for determining 
+\shape italic
+good enough
+\shape default
+ error terms for any derivative or integral formula.
+ We replace each evaluation of 
+\begin_inset Formula $f$
+\end_inset
+
+ in the approximation by a Taylor series expanded about 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and simplify.
+ This gives an expression for the approximation in terms of 
+\begin_inset Formula $f(x_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $f'(x_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $f''(x_{0})$
+\end_inset
+
+, and so on.
+ We compare it to the Taylor series representation of the quantity being
+ estimated.
+ The difference between the two is the error.
+ In summary, that's it.
+ Making a rigorous argument of this method takes some care and is worthy
+ of an example.
+ We demonstrate the method for the approximation of the first derivative
+ over the stencil
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments01.pdf
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Again, we choose this stencil not because the stencil is generally useful,
+ but rather to emphasize that the 
+\shape italic
+method
+\shape default
+ is generally useful.
+ 
+\end_layout
+
+\begin_layout Standard
+In subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Derivatives"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:Derivatives"
+
+\end_inset
+
+, we derived the approximation
+\begin_inset Formula 
+\begin{equation}
+f'\left(x_{0}-\frac{1}{6}h\right)\approx\frac{-2f(x_{0}-h)+f(x_{0})+f(x_{0}+h)}{3h}.\label{eq:generalApprox}
+\end{equation}
+
+\end_inset
+
+The left hand side, the quantity being approximated, as a Taylor series
+ looks like
+\begin_inset Formula 
+\[
+f'\left(x_{0}-\frac{1}{6}h\right)=f'(x_{0})-\frac{1}{6}hf''(x_{0})+\frac{1}{72}h^{2}f'''(x_{0})-\frac{1}{1296}h^{3}f^{(4)}(x_{0})+\cdots.
+\]
+
+\end_inset
+
+The terms of the right hand side, the approximation, as Taylor series look
+ like
+\begin_inset Formula 
+\begin{eqnarray*}
+f(x_{0}-h) & = & f(x_{0})-hf'(x_{0})+\frac{1}{2}h^{2}f''(x_{0})-\frac{1}{6}h^{3}f'''(x_{0})+\frac{1}{24}h^{4}f^{(4)}(x_{0})-\cdots\\
+f(x_{0}) & = & f(x_{0})\\
+f(x_{0}+h) & = & f(x_{0})+hf'(x_{0})+\frac{1}{2}h^{2}f''(x_{0})+\frac{1}{6}h^{3}f'''(x_{0})+\frac{1}{24}h^{4}f^{(4)}(x_{0})+\cdots.
+\end{eqnarray*}
+
+\end_inset
+
+We now substitute these Taylor series into the right hand side of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:generalApprox"
+
+\end_inset
+
+ and simplify.
+ To facilitate the algebra, we begin by summing 
+\begin_inset Formula $-2f(x_{0}-h)+f(x_{0})+f(x_{0}+h)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="right" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2f(x_{0}-h)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2f(x_{0})+2hf'(x_{0})-h^{2}f''(x_{0})+\frac{1}{3}h^{3}f'''(x_{0})-\frac{1}{12}h^{4}f^{(4)}(x_{0})-\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x_{0})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x_{0})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x_{0}+h)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x_{0})+hf'(x_{0})+\frac{1}{2}h^{2}f''(x_{0})+\frac{1}{6}h^{3}f'''(x_{0})+\frac{1}{24}h^{4}f^{(4)}(x_{0})+\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2f(x_{0}-h)+f(x_{0})+f(x_{0}+h)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3hf'(x_{0})-\frac{1}{2}h^{2}f''(x_{0})+\frac{1}{2}h^{3}f'''(x_{0})-\frac{1}{24}h^{4}f^{(4)}(x_{0})+\cdots$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Hence we have 
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{-2f(x_{0}-h)+f(x_{0})+f(x_{0}+h)}{3h} & = & \frac{3hf'(x_{0})-\frac{1}{2}h^{2}f''(x_{0})+\frac{1}{2}h^{3}f'''(x_{0})-\frac{1}{24}h^{4}f^{(4)}(x_{0})+\cdots}{3h}\\
+ & = & f'(x_{0})-\frac{1}{6}hf''(x_{0})+\frac{1}{6}h^{2}f'''(x_{0})-\frac{1}{72}h^{3}f^{(4)}(x_{0})+\cdots.
+\end{eqnarray*}
+
+\end_inset
+
+For the error, 
+\begin_inset Formula $e(h)=f'\left(x_{0}-\frac{1}{6}h\right)-\frac{-2f(x_{0}-h)+f(x_{0})+f(x_{0}+h)}{3h}$
+\end_inset
+
+, we then get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{gathered}\left(f'(x_{0})-\frac{1}{6}hf''(x_{0})+\frac{1}{72}h^{2}f'''(x_{0})-\frac{1}{1296}h^{3}f^{(4)}(x_{0})+\cdots\right)\\
+\qquad-\left(f'(x_{0})-\frac{1}{6}hf''(x_{0})+\frac{1}{6}h^{2}f'''(x_{0})-\frac{1}{72}h^{3}f^{(4)}(x_{0})+\cdots\right)\\
+=-\frac{11}{72}h^{2}f'''(x_{0})+\frac{17}{1296}h^{3}f^{(4)}(x_{0})+\cdots.\qquad\qquad\qquad\qquad\qquad
+\end{gathered}
+\]
+
+\end_inset
+
+We now know that we have an error of the form 
+\begin_inset Formula $O(h^{2}f'''(\xi_{h}))$
+\end_inset
+
+, the form of the remaining term with least degree, but we do not have rigorous
+ proof of that fact.
+ Think of what has been done so far as discovery.
+ Now that we know the 
+\begin_inset Formula $f'''$
+\end_inset
+
+ terms do not cancel, we go back and truncate all the Taylor series after
+ the 
+\begin_inset Formula $f''$
+\end_inset
+
+ terms, replacing higher order derivatives with an error term, and 
+\begin_inset Quotes eld
+\end_inset
+
+redo
+\begin_inset Quotes erd
+\end_inset
+
+ the algebra.
+ We thus have
+\begin_inset Formula 
+\begin{eqnarray*}
+f'\left(x_{0}-\frac{1}{6}h\right) & = & f'(x_{0})-\frac{1}{6}hf''(x_{0})+\frac{1}{72}h^{2}f'''(\xi_{1})\\
+f(x_{0}-h) & = & f(x_{0})-hf'(x_{0})+\frac{1}{2}h^{2}f''(x_{0})-\frac{1}{6}h^{3}f'''(\xi_{2})\\
+f(x_{0}) & = & f(x_{0})\\
+f(x_{0}+h) & = & f(x_{0})+hf'(x_{0})+\frac{1}{2}h^{2}f''(x_{0})+\frac{1}{6}h^{3}f'''(\xi_{3})
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\xi_{1}\in(x_{0}-\frac{1}{6}h,x_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $\xi_{2}\in(x_{0}-h,x_{0})$
+\end_inset
+
+, and 
+\begin_inset Formula $\xi_{3}\in(x_{0},x_{0}+h)$
+\end_inset
+
+.
+ And now when we compute 
+\begin_inset Formula $e(h)=f'\left(x_{0}-\frac{1}{6}h\right)-\frac{-2f(x_{0}-h)+f(x_{0})+f(x_{0}+h)}{3h}$
+\end_inset
+
+, we know all the terms involving 
+\begin_inset Formula $f$
+\end_inset
+
+, 
+\begin_inset Formula $f'$
+\end_inset
+
+, and 
+\begin_inset Formula $f''$
+\end_inset
+
+ vanish.
+ The only terms left are those involving 
+\begin_inset Formula $f'''$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+e(h) & = & \frac{1}{72}h^{2}f'''(\xi_{1})-\frac{-2(-\frac{1}{6}h^{3}f'''(\xi_{2}))+\frac{1}{6}h^{3}f'''(\xi_{3})}{3h}\\
+ & = & \frac{1}{72}h^{2}f'''(\xi_{1})-\frac{1}{9}h^{2}f'''(\xi_{2})-\frac{1}{18}h^{2}f'''(\xi_{3})\\
+ & = & \frac{h^{2}}{9}\left[\frac{1}{8}f'''(\xi_{1})-f'''(\xi_{2})-\frac{1}{2}f'''(\xi_{3})\right].
+\end{eqnarray*}
+
+\end_inset
+
+The final formality is that of converting this expression into big-oh notation:
+\begin_inset Formula 
+\begin{eqnarray*}
+|e(h)| & = & \left|\frac{h^{2}}{9}\left[\frac{1}{8}f'''(\xi_{1})-f'''(\xi_{2})-\frac{1}{2}f'''(\xi_{3})\right]\right|\\
+ & \leq & \frac{h^{2}}{9}\left[\left|\frac{1}{8}f'''(\xi_{1})\right|+\left|f'''(\xi_{2})\right|+\left|\frac{1}{2}f'''(\xi_{3})\right|\right]\\
+ & \leq & \frac{h^{2}}{9}\cdot\frac{13}{8}\max\left\{ \left|f'''(\xi_{1})\right|,\left|f'''(\xi_{2})\right|,\left|f'''(\xi_{3})\right|\right\} \\
+ & = & h^{2}\cdot M\left|f'''(\xi_{h})\right|
+\end{eqnarray*}
+
+\end_inset
+
+ for some 
+\begin_inset Formula $\xi_{h}\in(x_{0}-h,x_{0}+h)$
+\end_inset
+
+ and 
+\begin_inset Formula $M=\frac{13}{72}$
+\end_inset
+
+ (the value of 
+\begin_inset Formula $\xi_{h}$
+\end_inset
+
+ is 
+\begin_inset Formula $\xi_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $\xi_{2}$
+\end_inset
+
+, or 
+\begin_inset Formula $\xi_{3}$
+\end_inset
+
+).
+ We conclude
+\begin_inset Formula 
+\[
+e(h)=O(h^{2}f'''(\xi_{h})).
+\]
+
+\end_inset
+
+In general, 
+\begin_inset Formula $\xi_{h}$
+\end_inset
+
+ is guaranteed to be between the least node and the greatest node.
+ In the case of an integral approximation, the endpoints of integration
+ are treated as nodes for the purpose of locating 
+\begin_inset Formula $\xi_{h}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Gaussian quadrature
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+quadrature ! Gaussian
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ultimately, the accuracy of a numerical calculus formula is measured by
+ its error term, a quantity having the form 
+\begin_inset Formula $O(h^{n}f^{(k)}(\xi_{h}))$
+\end_inset
+
+.
+ If we are interested in the rate of convergence, we consider 
+\begin_inset Formula $n$
+\end_inset
+
+, the power of 
+\begin_inset Formula $h$
+\end_inset
+
+ appearing in the error term.
+ The greater the power, the speedier the convergence.
+ However, if we are interested in the largest class of polynomials for which
+ the formula is exact, we need to consider the value 
+\begin_inset Formula $k$
+\end_inset
+
+, the order of the derivative appearing in the error term.
+ The greater 
+\begin_inset Formula $k$
+\end_inset
+
+ is, the larger the class of polynomials for which the formula is exact.
+ In fact, if the error term contains a factor of 
+\begin_inset Formula $f^{(k)}(\xi_{h})$
+\end_inset
+
+, then the formula is exact for all polynomials up to (and including) degree
+ 
+\begin_inset Formula $k-1$
+\end_inset
+
+.
+ The further implication is that there are degree 
+\begin_inset Formula $k$
+\end_inset
+
+ polynomials for which the formula is not exact, for if this were not the
+ case, then the error term would involve a higher derivative.
+ We call the value 
+\begin_inset Formula $k-1$
+\end_inset
+
+ the degree of precision.
+ Formally, the degree of precision
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+degree of precision|see{precision ! degree of}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+precision ! degree of
+\end_layout
+
+\end_inset
+
+ of a numerical calculus formula is the integer 
+\begin_inset Formula $m$
+\end_inset
+
+ such that the formula is exact for all polynomials of degree up to and
+ including 
+\begin_inset Formula $m$
+\end_inset
+
+ but is not exact for all polynomials of degree 
+\begin_inset Formula $m+1$
+\end_inset
+
+.
+ Gaussian quadrature formulas aim to maximize the degree of precision for
+ integral formulas.
+ 
+\end_layout
+
+\begin_layout Standard
+The numerical derivatives and integrals over a stencil with 
+\begin_inset Formula $n+1$
+\end_inset
+
+ points that we have derived so far are exact for all polynomials up to
+ degree 
+\begin_inset Formula $n$
+\end_inset
+
+ as they must be.
+ They have degree of precision at least 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ As it turns out, a select few have degree of precision greater than 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Consider the second derivative approximation over the stencil
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-errors01.pdf
+	scale 150
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The stencil has three points, so we expect it to be exact for all polynomials
+ up to degree 2 (and it is).
+ However, its error term is 
+\begin_inset Formula $O(h^{2}f^{(4)}(\xi_{h}))$
+\end_inset
+
+, indicating that the formula is exact for all polynomials up to degree
+ 3.
+ The degree of precision is actually 3, not 2.
+ The first derivative formula over the same stencil is similar.
+ Though it has an error term of 
+\begin_inset Formula $\frac{h^{2}}{6}f'''(\xi_{h})$
+\end_inset
+
+, indicating that the formula has degree of precision 2 as expected, the
+ formula itself only involves two of the three points available! The coefficient
+ of 
+\begin_inset Formula $f(x_{0})$
+\end_inset
+
+ turns out to be zero.
+ It follows that we can derive the same formula using the stencil
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-errors26.pdf
+	scale 150
+
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\noindent
+having only two points yet having degree of precision 2.
+ Several other centered differences have this attribute.
+ The Newton-Cotes formulas with an odd number of nodes also have this property.
+ Their error terms exceed degree of precision expectations by one degree.
+ We noted earlier that a centrally located point of evaluation tends to
+ increase accuracy, and now we see that the increase can be dramatic.
+\end_layout
+
+\begin_layout Standard
+What we might gather from these observations is that it is not only the
+ number of nodes that determines the error term of a numerical calculus
+ formula.
+ The location of the nodes is also important.
+ Up to now, we have only seen how node location affects derivative approximation.
+ We know that centrally locating the point of evaluation generally increases
+ accuracy.
+ We now take up the question of how to locate nodes in order to increase
+ the accuracy of integral formulas.
+ The idea of a centralized point of evaluation has no meaning in this context,
+ however.
+ Integrals do not have a single point of evaluation.
+ They are taken over an interval.
+ It is the locations of the nodes relative to the endpoints of evaluation
+ that are important.
+ We now find out where to put the nodes to attain the greatest degree of
+ precision for any given number of nodes.
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $G_{n}$
+\end_inset
+
+ be the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Legendre polynomial, defined recursively by 
+\begin_inset Formula 
+\begin{eqnarray*}
+G_{n+1}(x) & = & \frac{(2n+1)xG_{n}(x)-nG_{n-1}(x)}{n+1}\\
+G_{0}(x) & = & 1\\
+G_{1}(x) & = & x.
+\end{eqnarray*}
+
+\end_inset
+
+We set the 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ equal to the roots of 
+\begin_inset Formula $G_{n}$
+\end_inset
+
+ to derive the 
+\begin_inset Formula $n$
+\end_inset
+
+-point quadrature formula over the interval 
+\begin_inset Formula $[x_{0}-h,x_{0}+h]$
+\end_inset
+
+ with greatest degree of precision possible.
+ With placement of the nodes chosen, we force the formula to be exact for
+ polynomials up to degree 
+\begin_inset Formula $n-1$
+\end_inset
+
+ as we did earlier.
+ The difference this time is, due to the particular values of 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+, the resulting formula will be exact for all polynomials up to degree 
+\begin_inset Formula $2n-1$
+\end_inset
+
+.
+ When the nodes are placed at the roots of the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Legendre polynomial, we get a quadrature formula for 
+\begin_inset Formula $\int_{x_{0}-h}^{x_{0}+h}f(x)dx$
+\end_inset
+
+ that exceeds the expected degree of precision by 
+\begin_inset Formula $n$
+\end_inset
+
+, the number of nodes!
+\end_layout
+
+\begin_layout Standard
+We demonstrate for 
+\begin_inset Formula $n=1$
+\end_inset
+
+ and 
+\begin_inset Formula $n=3$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+G_{1}(x)=x
+\]
+
+\end_inset
+
+has for its only root, 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ Hence we seek a formula of the form 
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx a_{0}f(x_{0})
+\]
+
+\end_inset
+
+which is exact for polynomials up to degree 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ The one equation for the one unknown, 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+, is
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}(1)dx=a_{0}(1)
+\]
+
+\end_inset
+
+or 
+\begin_inset Formula $2h=a_{0}$
+\end_inset
+
+.
+ Hence we have
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx2hf(x_{0}),
+\]
+
+\end_inset
+
+which we claim has degree of precision 1, not 0.
+ Indeed, for 
+\begin_inset Formula $f(x)=x-x_{0}$
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx=\left.\frac{1}{2}(x-x_{0})^{2}\right|_{x_{0}-h}^{x_{0}+h}=0
+\]
+
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+2hf(x_{0})=2h(x_{0}-x_{0})=0,
+\]
+
+\end_inset
+
+so it is exact for degree one polynomials.
+ However, for 
+\begin_inset Formula $f(x)=(x-x_{0})^{2}$
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx=\left.\frac{1}{3}(x-x_{0})^{3}\right|_{x_{0}-h}^{x_{0}+h}=\frac{2}{3}h^{3}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+2hf(x_{0})=2h(x_{0}-x_{0})^{2}=0,
+\]
+
+\end_inset
+
+so it is not exact for all degree two polynomials.
+ Therefore its degree of precision is 1.
+ Note the formula 
+\begin_inset Formula ${\displaystyle \int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx2hf(x_{0})}$
+\end_inset
+
+ is equivalent to the Midpoint Rule as found in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:integrationFormulas"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Now
+\begin_inset Formula 
+\begin{eqnarray*}
+G_{2}(x) & = & \frac{3xG_{1}(x)-G_{0}(x)}{2}\\
+ & = & \frac{1}{2}(3x^{2}-1)
+\end{eqnarray*}
+
+\end_inset
+
+ so
+\begin_inset Formula 
+\begin{eqnarray*}
+G_{3}(x) & = & \frac{5xG_{2}(x)-2G_{1}(x)}{3}\\
+ & = & \frac{\frac{5}{2}(3x^{3}-x)-2x}{3}\\
+ & = & \frac{5(3x^{3}-x)-4x}{6}\\
+ & = & \frac{15x^{3}-9x}{6}\\
+ & = & \frac{1}{2}(5x^{3}-3x),
+\end{eqnarray*}
+
+\end_inset
+
+which has roots 
+\begin_inset Formula $-\sqrt{\frac{3}{5}},0,\sqrt{\frac{3}{5}}$
+\end_inset
+
+.
+ Hence we seek a formula of the form 
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx a_{0}f\left(x_{0}-\sqrt{\frac{3}{5}}h\right)+a_{1}f(x_{0})+a_{2}f\left(x_{0}+\sqrt{\frac{3}{5}}h\right)
+\]
+
+\end_inset
+
+which is exact for polynomials up to degree 
+\begin_inset Formula $2$
+\end_inset
+
+.
+ The three equations for the three unknowns are
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{x_{0}-h}^{x_{0}+h}(1)dx=2h & = & a_{0}+a_{1}+a_{2}\\
+\int_{x_{0}-h}^{x_{0}+h}(x-x_{0})dx=0 & = & -\sqrt{\frac{3}{5}}ha_{0}+\sqrt{\frac{3}{5}}ha_{2}\\
+\int_{x_{0}-h}^{x_{0}+h}(x-x_{0})^{2}dx=\frac{2}{3}h^{3} & = & \frac{3}{5}h^{2}a_{0}+\frac{3}{5}h^{2}a_{2}.
+\end{eqnarray*}
+
+\end_inset
+
+The solution is 
+\begin_inset Formula 
+\[
+a_{0}=a_{2}=\frac{5}{9}h\quad\mbox{and}\quad a_{1}=\frac{8}{9}h,
+\]
+
+\end_inset
+
+so the quadrature formula is
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx\frac{h}{9}\left[5f\left(x_{0}-\sqrt{\frac{3}{5}}h\right)+8f(x_{0})+5f\left(x_{0}+\sqrt{\frac{3}{5}}h\right)\right].
+\]
+
+\end_inset
+
+The formula was derived to be exact for polynomials up to degree 2, so its
+ degree of precision is at least 2.
+ We claim the degree of precision is actually 5.
+ For 
+\begin_inset Formula $f(x)=(x-x_{0})^{3}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx=\left.\frac{1}{4}(x-x_{0})^{4}\right|_{x_{0}-h}^{x_{0}+h}=0
+\]
+
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+\frac{h}{9}\left[5f\left(x_{0}-\sqrt{\frac{3}{5}}h\right)+8f(x_{0})+5f\left(x_{0}+\sqrt{\frac{3}{5}}h\right)\right]=\frac{h}{9}\left[5\left(-\sqrt{\frac{3}{5}}h\right)^{3}+0+5\left(\sqrt{\frac{3}{5}}h\right)^{3}\right]=0,
+\]
+
+\end_inset
+
+so it is exact for degree three polynomials.
+ For 
+\begin_inset Formula $f(x)=(x-x_{0})^{4}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx=\left.\frac{1}{5}(x-x_{0})^{5}\right|_{x_{0}-h}^{x_{0}+h}=\frac{2}{5}h^{5}
+\]
+
+\end_inset
+
+ and
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{h}{9}\left[5f\left(x_{0}-\sqrt{\frac{3}{5}}h\right)+8f(x_{0})+5f\left(x_{0}+\sqrt{\frac{3}{5}}h\right)\right] & = & \frac{h}{9}\left[5\left(-\sqrt{\frac{3}{5}}h\right)^{4}+0+5\left(\sqrt{\frac{3}{5}}h\right)^{4}\right]\\
+ & = & \frac{5}{9}h\left[\frac{9}{25}h^{4}+\frac{9}{25}h^{4}\right]\\
+ & = & \frac{2}{5}h^{5},
+\end{eqnarray*}
+
+\end_inset
+
+so it is exact for degree four polynomials.
+ For 
+\begin_inset Formula $f(x)=(x-x_{0})^{5}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx=\left.\frac{1}{6}(x-x_{0})^{6}\right|_{x_{0}-h}^{x_{0}+h}=0
+\]
+
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+\frac{h}{9}\left[5f\left(x_{0}-\sqrt{\frac{3}{5}}h\right)+8f(x_{0})+5f\left(x_{0}+\sqrt{\frac{3}{5}}h\right)\right]=\frac{h}{9}\left[5\left(-\sqrt{\frac{3}{5}}h\right)^{5}+0+5\left(\sqrt{\frac{3}{5}}h\right)^{5}\right]=0,
+\]
+
+\end_inset
+
+so it is exact for degree five polynomials.
+ However, for 
+\begin_inset Formula $f(x)=(x-x_{0})^{6}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\int_{x_{0}-h}^{x_{0}+h}f(x)dx=\left.\frac{1}{7}(x-x_{0})^{7}\right|_{x_{0}-h}^{x_{0}+h}=\frac{2}{7}h^{7}
+\]
+
+\end_inset
+
+ and
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{h}{9}\left[5f\left(x_{0}-\sqrt{\frac{3}{5}}h\right)+8f(x_{0})+5f\left(x_{0}+\sqrt{\frac{3}{5}}h\right)\right] & = & \frac{h}{9}\left[5\left(-\sqrt{\frac{3}{5}}h\right)^{6}+0+5\left(\sqrt{\frac{3}{5}}h\right)^{6}\right]\\
+ & = & \frac{5}{9}h\left[\frac{27}{125}h^{6}+\frac{27}{125}h^{6}\right]\\
+ & = & \frac{3}{25}h^{7},
+\end{eqnarray*}
+
+\end_inset
+
+so it is not exact for all degree six polynomials.
+ Its degree of precision is 5.
+ The formula is listed as the second Gaussian quadrature formula in table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:integrationFormulas"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We can also find the degree of precision of any numerical calculus formula
+ by observing the form of its error term.
+ If the error term has the form 
+\begin_inset Formula $O(h^{n}f^{(k)}(\xi_{h}))$
+\end_inset
+
+, then its degree of precision is 
+\begin_inset Formula $k-1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Some standard formulas
+\end_layout
+
+\begin_layout Standard
+Tables 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:firstDerivativeFormulas"
+
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:firstDerivativeFormulas"
+
+\end_inset
+
+Some standard first derivative formulas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{2.5}
+\backslash
+bigskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="14" columns="3">
+<features rotate="true" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stencil
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Formula
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2-point formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors02.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{-f(x_{0})+f(x_{0}+h)}{h}-\frac{h}{2}f''(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors03.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{-f(x_{0}-h)+f(x_{0})}{h}+\frac{h}{2}f''(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Backward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3-point formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors05.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{-3f(x_{0})+4f(x_{0}+h)-f(x_{0}+2h)}{2h}+\frac{h^{2}}{3}f'''(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors01.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{-f(x_{0}-h)+f(x_{0}+h)}{2h}+\frac{h^{2}}{6}f'''(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Centered Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors04.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{f(x_{0}-2h)-4f(x_{0}-h)+3f(x_{0})}{2h}+\frac{h^{2}}{3}f'''(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Backward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5-point formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors08.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{-25f(x_{0})+48f(x_{0}+h)-36f(x_{0}+2h)+16f(x_{0}+3h)-3f(x_{0}+4h)}{12h}+\frac{h^{4}}{5}f^{(5)}(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors07.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{-3f(x_{0}-h)-10f(x_{0})+18f(x_{0}+h)-6f(x_{0}+2h)+f(x_{0}+3h)}{12h}+\frac{h^{4}}{20}f^{(5)}(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors06.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{f(x_{0}-2h)-8f(x_{0}-h)+8f(x_{0}+h)-f(x_{0}+2h)}{12h}+\frac{h^{4}}{30}f^{(5)}(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Centered Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors09.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{-f(x_{0}-3h)+6f(x_{0}-2h)-18f(x_{0}-h)+10f(x_{0})+3f(x_{0}+h)}{12h}+\frac{h^{4}}{20}f^{(5)}(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors10.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{3f(x_{0}-4h)-16f(x_{0}-3h)+36f(x_{0}-2h)-48f(x_{0}-h)+25f(x_{0})}{12h}+\frac{h^{4}}{5}f^{(5)}(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Backward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:secondDerivativeFormulas"
+
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:secondDerivativeFormulas"
+
+\end_inset
+
+Some second derivative formulas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{2.5}
+\backslash
+bigskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="3">
+<features rotate="true" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stencil
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Formula
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3-point formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors05.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f''(x_{0})=\frac{f(x_{0})-2f(x_{0}+h)+f(x_{0}+2h)}{h^{2}}+O(hf^{(3)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors01.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f''(x_{0})=\frac{f(x_{0}-h)-2f(x_{0})+f(x_{0}+h)}{h^{2}}+O(h^{2}f^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Centered Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4-point formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors14.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f''(x_{0})=\frac{2f(x_{0})-5f(x_{0}+h)+4f(x_{0}+2h)-f(x_{0}+3h)}{h^{2}}+O(h^{2}f^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors13.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f''(x_{0})=\frac{f(x_{0}-h)-2f(x_{0})+f(x_{0}+h)}{h^{2}}+O(h^{2}f^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5-point formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors08.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f''(x_{0})=\frac{35f(x_{0})-104f(x_{0}+h)+114f(x_{0}+2h)-56f(x_{0}+3h)+11f(x_{0}+4h)}{12h^{2}}+O(h^{3}f^{(5)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors07.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f''(x_{0})=\frac{11f(x_{0}-h)-20f(x_{0})+6f(x_{0}+h)+4f(x_{0}+2h)-f(x_{0}+3h)}{12h^{2}}+O(h^{3}f^{(5)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors06.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f''(x_{0})=\frac{-f(x_{0}-2h)+16f(x_{0}-h)-30f(x_{0})+16f(x_{0}+h)-f(x_{0}+2h)}{12h^{2}}+O(h^{4}f^{(6)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Centered Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:thirdDerivativeFormulas"
+
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:thirdDerivativeFormulas"
+
+\end_inset
+
+Some third derivative formulas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{2.5}
+\backslash
+bigskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="3">
+<features rotate="true" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stencil
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Formula
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4-point formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors14.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{-f(x_{0})+3f(x_{0}+h)-3f(x_{0}+2h)+f(x_{0}+3h)}{h^{3}}+O(h)f^{(4)}(\xi_{h})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors13.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{-f(x_{0}-h)+3f(x_{0})-3f(x_{0}+h)+f(x_{0}+2h)}{h^{3}}+O(hf^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors12.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{-f(x_{0}-2h)+3f(x_{0}-h)-3f(x_{0})+f(x_{0}+h)}{h^{3}}+O(hf^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors11.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{-f(x_{0})+3f(x_{0}+h)-3f(x_{0}+2h)+f(x_{0}+3h)}{h^{3}}+O(hf^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Backward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5-point formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors08.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{-5f(x_{0})+18f(x_{0}+h)-24f(x_{0}+2h)+14f(x_{0}+3h)-3f(x_{0}+4h)}{2h^{3}}+O(h^{2}f^{(5)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors07.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{-3f(x_{0}-h)+10f(x_{0})-12f(x_{0}+h)+6f(x_{0}+2h)-f(x_{0}+3h)}{2h^{3}}+O(h^{2}f^{(5)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors06.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{-f(x_{0}-2h)+2f(x_{0}-h)-2f(x_{0}+h)+f(x_{0}+2h)}{2h^{3}}+O(h^{2}f^{(5)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Centered Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors09.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{f(x_{0}-3h)-6f(x_{0}-2h)+12f(x_{0}-h)-10f(x_{0})+3f(x_{0}+h)}{2h^{3}}+O(h^{2}f^{(5)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors10.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle f'''(x_{0})=\frac{3f(x_{0}-4h)-14f(x_{0}-3h)+24f(x_{0}-2h)-18f(x_{0}-h)+5f(x_{0})}{2h^{3}}+O(h^{2}f^{(5)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Backward Difference
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:integrationFormulas"
+
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:integrationFormulas"
+
+\end_inset
+
+Some integration formulas.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{2.5}
+\backslash
+bigskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="14" columns="3">
+<features rotate="true" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stencil
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Formula
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+open Newton-Cotes formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors19.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx=2hf(x_{0}+h)+O(h^{3}f''(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Midpoint Rule
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+midpoint rule
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors20.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+3h}f(x)dx=\frac{3h}{2}\left[f(x_{0}+h)+f(x_{0}+2h)\right]+O(h^{3}f''(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors21.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+4h}f(x)dx=\frac{4h}{3}\left[2f(x_{0}+h)-f(x_{0}+2h)+2f(x_{0}+3h)\right]+O(h^{5}f^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors22.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+5h}f(x)dx=\frac{5h}{24}\left[11f(x_{0}+h)+f(x_{0}+2h)+f(x_{0}+3h)+11f(x_{0}+4h)\right]+O(h^{5}f^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+closed Newton-Cotes formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors15.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)dx=\frac{h}{2}\left[f(x_{0})+f(x_{0}+h)\right]+O(h^{3}f''(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Trapezoidal Rule
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+trapezoidal rule
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors16.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx=\frac{h}{3}\left[f(x_{0})+4f(x_{0}+h)+f(x_{0}+2h)\right]+O(h^{5}f^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simpson's Rule
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Simpson's rule
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors17.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+3h}f(x)dx=\frac{3h}{8}\left[f(x_{0})+3f(x_{0}+h)+3f(x_{0}+2h)+f(x_{0}+3h)\right]+O(h^{5}f^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simpson's 
+\begin_inset Formula $\frac{3}{8}$
+\end_inset
+
+ Rule
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Simpson's 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+frac{3}{8}$
+\end_layout
+
+\end_inset
+
+ rule
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors18.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+4h}f(x)dx=\frac{2h}{45}\left[7f(x_{0})+32f(x_{0}+h)+12f(x_{0}+2h)+32f(x_{0}+3h)+7f(x_{0}+4h)\right]+O(h^{7}f^{(6)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bode's Rule
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Bode's rule
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gaussian quadrature formulas
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors23.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}-h}^{x_{0}+h}f(x)dx=h\left[f\left(x_{0}-\frac{1}{\sqrt{3}}h\right)+f\left(x_{0}+\frac{1}{\sqrt{3}}h\right)\right]+O(h^{5}f^{(4)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/calculus-errors24.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula ${\displaystyle \int_{x_{0}-h}^{x_{0}+h}f(x)dx=\frac{h}{9}\left[5f\left(x_{0}-\sqrt{\frac{3}{5}}h\right)+8f(x_{0})+5f\left(x_{0}+\sqrt{\frac{3}{5}}h\right)\right]+O(h^{7}f^{(6)}(\xi_{h}))}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ summarize some standard formulas for derivatives and integrals.
+ Notice there are no one-point formulas for any derivatives, no two-point
+ formulas for second derivatives or higher, and no three-point formulas
+ for third derivatives or higher.
+ The stencils have been streamlined to show only the values of 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+.
+ Hence the stencil 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments03.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+appears in the table as
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-errors01.pdf
+	scale 200
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Degree
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+precision: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+precision ! degree of
+\end_layout
+
+\end_inset
+
+The integer 
+\begin_inset Formula $m$
+\end_inset
+
+ such that a numerical calculus formula is exact for all polynomials of
+ degree up to and including 
+\begin_inset Formula $m$
+\end_inset
+
+ but is not exact for all polynomials of degree 
+\begin_inset Formula $m+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Error
+\begin_inset space ~
+\end_inset
+
+terms: Error terms for numerical calculus approximations can be found by
+ replacing all occurrences of 
+\begin_inset Formula $f$
+\end_inset
+
+ in an approximation formula by Taylor series expansions about 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and reducing.
+\end_layout
+
+\begin_layout Description
+Gaussian
+\begin_inset space ~
+\end_inset
+
+quadrature: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+quadrature ! Gaussian
+\end_layout
+
+\end_inset
+
+A quadrature method which maximizes the degree of precision relative to
+ the number of nodes used.
+\end_layout
+
+\begin_layout Description
+Quadrature: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+quadrature
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+quadrature|seealso
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{numerical integration}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Another name for a numerical integration formula.
+\end_layout
+
+\begin_layout Description
+Weighted
+\begin_inset space ~
+\end_inset
+
+Mean
+\begin_inset space ~
+\end_inset
+
+Value
+\begin_inset space ~
+\end_inset
+
+Theorem: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Weighted Mean Value
+\end_layout
+
+\end_inset
+
+Assume that 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $g$
+\end_inset
+
+ are continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $g$
+\end_inset
+
+ never changes sign and is nonnegative in 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+, then we have that,
+\begin_inset Formula 
+\[
+\int_{a}^{b}f(x)g(x)dx=f(c)\int_{a}^{b}g(x)dx
+\]
+
+\end_inset
+
+for some 
+\begin_inset Formula $c$
+\end_inset
+
+ in 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{small} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=e^{x}-\sin x$
+\end_inset
+
+.
+ Complete the following table using the approximation formula
+\begin_inset Formula 
+\[
+f'(x_{0})\approx\frac{-3f(x_{0})+4f(x_{0}+h)-f(x_{0}+2h)}{2h}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+approximate 
+\begin_inset Formula $f'(2)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+abs.
+ error
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Is it OK to use negative values for 
+\begin_inset Formula $h$
+\end_inset
+
+?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-4"
+
+\end_inset
+
+ For each value of 
+\begin_inset Formula $x$
+\end_inset
+
+ in the table, use the most accurate three-point formula to approximate
+ 
+\begin_inset Formula $f'(x)$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f'(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2.7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.054797$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.11342$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.65536$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2.1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.98472$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors"
+
+\end_inset
+
+Approximate the integral using Simpson's rule.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-5"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{-0.5}^{0}x\ln(x+1)dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\int_{1}^{3}\ln(x+1)\, dx$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-6"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{-0.25}^{0.25}(\cos x)^{2}dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\int_{1}^{3}e^{\sin x}\: dx$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-7"
+
+\end_inset
+
+
+\begin_inset Formula $\int_{1}^{2}x^{4}\, dx$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-1"
+
+\end_inset
+
+Do question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-1"
+
+\end_inset
+
+ using the Trapezoidal rule.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-2"
+
+\end_inset
+
+Do question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-1"
+
+\end_inset
+
+ using the Midpoint rule.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-37"
+
+\end_inset
+
+Find the error of the approximation in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-38"
+
+\end_inset
+
+Find the error of the approximation in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-1"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-39"
+
+\end_inset
+
+Find the error of the approximation in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-2"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find the error in approximating 
+\begin_inset Formula $\int_{-7}^{11}(32x^{2}+\sqrt{7}x-2)dx$
+\end_inset
+
+ using Simpson's 
+\begin_inset Formula $\frac{3}{8}$
+\end_inset
+
+ Rule.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-19"
+
+\end_inset
+
+Find the error in approximating 
+\begin_inset Formula $\int_{-17}^{36}(32x^{5}+7x^{3}-2)dx$
+\end_inset
+
+ using Bode's Rule.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-3"
+
+\end_inset
+
+For the following values of 
+\begin_inset Formula $f$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $h$
+\end_inset
+
+, use the formula 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+f'(x_{0})=\frac{f(x_{0}+h)-f(x_{0}-h)}{2h}-\frac{h^{2}}{6}f'''(\xi)
+\]
+
+\end_inset
+
+to approximate 
+\begin_inset Formula $f'(x_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-36"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+; 
+\begin_inset Formula $h=0.1$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-20"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=(\cosh2x)^{2}-\sin x$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=\pi$
+\end_inset
+
+; 
+\begin_inset Formula $h=0.05$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\ln(2x-3)+5x$
+\end_inset
+
+; 
+\begin_inset Formula $x=10$
+\end_inset
+
+; 
+\begin_inset Formula $h=1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-8"
+
+\end_inset
+
+Compute both a lower bound and an upper bound on the error for the approximation
+ in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-3"
+
+\end_inset
+
+.
+ Verify that the actual error is between these bounds.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-9"
+
+\end_inset
+
+For each part of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-3"
+
+\end_inset
+
+, find the value of 
+\begin_inset Formula $\xi$
+\end_inset
+
+ guaranteed by the formula.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+State the degree of precision of the closed Newton-Cotes formula on 5 nodes,
+ Bode's Rule.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-10"
+
+\end_inset
+
+State the degree of precision of the five point formula.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+f'(x_{0})=\frac{1}{12h}\left[-25f(x_{0})+48f(x_{0}+h)-36f(x_{0}+2h)\right.\qquad\\
+\left.+16f(x_{0}+3h)-3f(x_{0}+4h)\right]+\frac{h^{4}}{5}f^{(5)}(\xi)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find the degree of precision of the quadrature formula
+\begin_inset Formula 
+\[
+\int_{3}^{5}f(x)\, dx\approx\frac{1}{2}\left[3f\left(\frac{11}{3}\right)+f(5)\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find the error term for the quadrature method, and state its degree of precision.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-21"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)\, dx\approx hf(x_{0})}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)\, dx\approx hf\left(x_{0}+\frac{h}{4}\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-11"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)dx\approx\frac{h}{4}\left[3f\left(x_{0}+\frac{2}{3}h\right)+f(x_{0})\right]}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx\approx\frac{h}{2}\left[3f\left(x_{0}+\frac{4}{3}h\right)+f(x_{0})\right]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-22"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+3h}f(x)dx\approx\frac{3h}{4}\left[f(x_{0})+3f(x_{0}+2h)\right]}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx\approx\frac{h}{2}\left[f\left(x_{0}-\frac{h}{2}\right)+3f\left(x_{0}+\frac{3}{2}h\right)\right]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-23"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx\approx\frac{h}{3}\left[f(x_{0}-h)-2f(x_{0})+7f(x_{0}+h)\right]}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+3h}f(x)dx\approx3h\left[3f\left(x_{0}+\frac{3}{2}h\right)-6f(x_{0}+h)+4f\left(x_{0}+\frac{3}{4}h\right)\right]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-24"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+3h}f(x)dx\approx-\frac{h}{12}\left[208f\left(x_{0}+\frac{3}{2}h\right)-891f(x_{0}+h)+1344f\left(x_{0}+\frac{3}{4}h\right)-625f\left(x_{0}+\frac{3}{5}h\right)\right]}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the error term for the derivative approximation:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-25"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle f'(x_{0})\approx\frac{f(x_{0}+2h)-f(x_{0})}{2h}}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle f'(x_{0})\approx\frac{f(x_{0}+2h)-f(x_{0}-h)}{3h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-12"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle f'(x_{0})\approx\frac{-3f(x_{0})+4f(x_{0}+\frac{h}{2})-f(x_{0}+h)}{h}}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle f'(x_{0})\approx\frac{-13f(x_{0}-10h)-12f(x_{0}+5h)+25f(x_{0}+8h)}{270h}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-26"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle f'(x_{0})\approx\frac{-7f(x_{0}+h)+416f(x_{0}+\frac{1}{2}h)-2916f(x_{0}+\frac{1}{3}h)+5632f(x_{0}+\frac{1}{4}h)-3125f(x_{0}+\frac{1}{5}h)}{12h}}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle f''(x_{0})\approx\frac{2f(x_{0}-h)-3f(x_{0})+f(x_{0}+2h)}{3h^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-27"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle f''(x_{0})\approx\frac{7f(x_{0}-5h)-12f(x_{0})+5f(x_{0}+7h)}{210h^{2}}}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle f''(x_{0})\approx\frac{5f(x_{0}-5h)-12f(x_{0}+2h)+7f(x_{0}+7h)}{210h^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-28"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle f''(x_{0})\approx\frac{5f(x_{0}-2h)+32f(x_{0}-h)-60f(x_{0})+25f(x_{0}+2h)-2f(x_{0}+4h)}{60h^{2}}}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-17"
+
+\end_inset
+
+Diffy Rence writes down the following approximation:
+\begin_inset Formula 
+\[
+f''(3.0)\approx25[\sin(2.8)-2\sin(3.0)+\sin(3.2)].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+What is 
+\begin_inset Formula $f(x)$
+\end_inset
+
+?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=\sin x$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find a bound on the error of the approximation 
+\begin_inset Formula 
+\[
+f'(6)\approx\frac{-3\sin6+4\sin6.1-\sin6.2}{0.2}
+\]
+
+\end_inset
+
+ according to the appropriate error term.
+\end_layout
+
+\begin_layout Enumerate
+Compare this bound to the actual error.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+What can you say about the error in approximating the first derivative of
+ 
+\begin_inset Formula 
+\[
+f(x)=-13x^{4}+17x^{3}-15x^{2}+12x-99
+\]
+
+\end_inset
+
+using a 5-point formula?
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=3x^{3}-2x^{2}+x$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Compute the error (not a bound on the error) in estimating 
+\begin_inset Formula $f'(2)$
+\end_inset
+
+ using the forward difference
+\begin_inset Formula 
+\[
+\frac{f(x_{0}+h)-f(x_{0})}{h}
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula $h=0.1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $\xi_{0.1}$
+\end_inset
+
+ as guaranteed by the error term.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=\sin x$
+\end_inset
+
+.
+ Find a bound on the error of the approximation.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-29"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle f''(3.0)\approx25[\sin(2.8)-2\sin(3.0)+\sin(3.2)]}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle f''(3.0)\approx1600\left[2\sin(3.0)-5\sin(3.025)+4\sin(3.05)-\sin(3.075)\right]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-13"
+
+\end_inset
+
+
+\begin_inset Formula $f'''(3.0)\approx500000\left[-5\sin(3.0)+18\sin(3.01)-24\sin(3.02)+14\sin(3.03)-3\sin(3.04)\right]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle f'''(3.0)\approx1000\left[-\sin(2.8)+3\sin(2.9)-3\sin(3.0)+\sin(3.1)\right]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{3}^{4}f(x)dx\approx\frac{1}{6}\left[\sin(3)+4\sin(3.5)+\sin(4)\right]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-14"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{3}^{4}f(x)dx\approx\frac{1}{2}\left[\sin\left(\frac{7}{2}-\frac{1}{2\sqrt{3}}\right)+\sin\left(\frac{7}{2}+\frac{1}{2\sqrt{3}}\right)\right]}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-18"
+
+\end_inset
+
+Suppose you have the following data on a function 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.2381$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.3125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.4545$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.8333$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Approximate 
+\begin_inset Formula $f'(4)$
+\end_inset
+
+ and 
+\begin_inset Formula $f'(2)$
+\end_inset
+
+ using 5-point formulas.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Which approximation would you expect to be more accurate, and why?
+\end_layout
+
+\begin_layout Enumerate
+Did it turn out that way? The data came from 
+\begin_inset Formula $f(x)=\frac{1}{x-4.2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-30"
+
+\end_inset
+
+Refer to the quadrature method 
+\begin_inset Formula 
+\[
+\int_{x_{0}}^{x_{0}+h}f(x)\, dx=\frac{h}{2}\left[f\left(x_{0}+\frac{h}{3}\right)+f\left(x_{0}+\frac{2h}{3}\right)\right]+\frac{h^{3}}{36}f''(\xi)
+\]
+
+\end_inset
+
+in all of the following questions.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What is the rate of convergence?
+\end_layout
+
+\begin_layout Enumerate
+What is the degree of precision?
+\end_layout
+
+\begin_layout Enumerate
+Use the method to approximate 
+\begin_inset Formula $\int_{0}^{\pi}\sin x\, dx$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a bound on the error of this approximation.
+\end_layout
+
+\begin_layout Enumerate
+Compare the bound to the actual error.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The Trapezoidal rule applied to 
+\begin_inset Formula ${\displaystyle \int_{0}^{2}f(x)dx}$
+\end_inset
+
+ gives the value 5, and the Midpoint rule gives the value 4.
+ What value does Simpson's rule give?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-31"
+
+\end_inset
+
+The Trapezoidal Rule applied to 
+\begin_inset Formula $\int_{0}^{2}f(x)\, dx$
+\end_inset
+
+ gives the value 4, and Simpson's Rule gives the value 2.
+ What is 
+\begin_inset Formula $f(1)$
+\end_inset
+
+?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-32"
+
+\end_inset
+
+When approximating 
+\begin_inset Formula $f'''(x_{0})$
+\end_inset
+
+ using five nodes, the rate of convergence will be at least what? 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Show that the average of the forward difference, 
+\begin_inset Formula $\frac{-f(x_{0})+f(x_{0}+h)}{h}$
+\end_inset
+
+, and backward difference, 
+\begin_inset Formula $\frac{-f(x_{0}-h)+f(x_{0})}{h}$
+\end_inset
+
+, approximations of 
+\begin_inset Formula $f'(x_{0})$
+\end_inset
+
+ gives the central difference approximation, 
+\begin_inset Formula $\frac{f(x_{0}+h)-f(x_{0}-h)}{2h}$
+\end_inset
+
+, of 
+\begin_inset Formula $f'(x_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-33"
+
+\end_inset
+
+Chuck was 
+\begin_inset Quotes eld
+\end_inset
+
+approximating
+\begin_inset Quotes erd
+\end_inset
+
+ a definite integral using Simpson's Rule.
+ As you can see from his work below, he was integrating a cubic polynomial.
+ Calculate the error he incurred even though you can not read all the coefficien
+ts.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-errors02.gif
+	lyxscale 30
+	width 2.5in
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-40"
+
+\end_inset
+
+Repeat 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-33"
+
+\end_inset
+
+ supposing Chuck was using the Trapezoidal Rule.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Sketch the graph of a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, and indicate on it values for 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $h$
+\end_inset
+
+ so that the backward difference 
+\begin_inset Formula $\frac{f(x_{0})-f(x_{0}-h)}{h}$
+\end_inset
+
+ gives a 
+\series bold
+\emph on
+better
+\series default
+\emph default
+ approximation of 
+\begin_inset Formula $f'(x_{0})$
+\end_inset
+
+ than does the central difference 
+\begin_inset Formula $\frac{f(x_{0}+h)-f(x_{0}-h)}{2h}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-15"
+
+\end_inset
+
+Sketch the graph of a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ for which the Trapezoidal Rule gives a better approximation of 
+\begin_inset Formula $\int_{0}^{1}f(x)\, dx$
+\end_inset
+
+ than does Simpson's Rule, and explain how you know.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-16"
+
+\end_inset
+
+Suppose a 5 point formula is used to approximate 
+\begin_inset Formula $f''(x_{0})$
+\end_inset
+
+ for stepsizes 
+\begin_inset Formula $h=0.1$
+\end_inset
+
+ and 
+\begin_inset Formula $h=0.02$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $E_{0.1}$
+\end_inset
+
+ represents the error in the approximation for 
+\begin_inset Formula $h=0.1$
+\end_inset
+
+ and 
+\begin_inset Formula $E_{0.02}$
+\end_inset
+
+ represents the error in the approximation for 
+\begin_inset Formula $h=0.02$
+\end_inset
+
+, what would you expect 
+\begin_inset Formula $\frac{E_{0.1}}{E_{0.02}}$
+\end_inset
+
+ to be, approximately?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+A general three point formula using nodes 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+\alpha h$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}+2h$
+\end_inset
+
+, 
+\begin_inset Formula $(\alpha\neq0,2)$
+\end_inset
+
+ is given by
+\begin_inset Formula 
+\[
+f'(x_{0})\approx\frac{1}{2h}\left[-\frac{2+\alpha}{\alpha}f(x_{0})+\frac{4}{\alpha(2-\alpha)}f(x_{0}+\alpha h)-\frac{\alpha}{2-\alpha}f(x_{0}+2h)\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Show that this formula reduces to one of the standard formulas when 
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find the error term for this formula.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-34"
+
+\end_inset
+
+Find three different approximations for 
+\begin_inset Formula $f'(0.2)$
+\end_inset
+
+ using three-point formulas.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.10517$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.22140$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.34986$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.49182$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The graph of 
+\begin_inset Formula $f'''(x)$
+\end_inset
+
+ is shown below.
+ Use it to rank your three approximations in order from least expected error
+ to greatest expected error, and explain why you ranked them the way you
+ did.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-errors25.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Verify numerically that the error in using the formula 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $f'(x_{0})=\frac{-2f(x_{0}-h)-3f(x_{0})+6f(x_{0}+h)-f(x_{0}+2h)}{6h}$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f'(3)$
+\end_inset
+
+ using the function 
+\begin_inset Formula $f(x)=(\cos3x)^{2}+\ln x$
+\end_inset
+
+ is really 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-35"
+
+\end_inset
+
+Numerically approximate the best estimate that can be obtained from the
+ formula 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+f'(3)=\frac{-2f(3-h)-3f(3)+6f(3+h)-f(3+2h)}{6h}
+\]
+
+\end_inset
+
+with double precision (standard Octave) computation and 
+\begin_inset Formula $f(x)=(\cos3x)^{2}+\ln x$
+\end_inset
+
+.
+ What value of 
+\begin_inset Formula $h$
+\end_inset
+
+ gives this optimal approximation?
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find the degree of precision of the quadrature formula
+\begin_inset Formula 
+\[
+\int_{-1}^{1}f(x)dx=f\left(-\frac{\sqrt{3}}{3}\right)+f\left(\frac{\sqrt{3}}{3}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The quadrature formula 
+\begin_inset Formula ${\displaystyle \int_{0}^{2}f(x)dx=c_{0}f(0)+c_{1}f(1)+c_{2}f(2)}$
+\end_inset
+
+ is exact for all polynomials of degree less than or equal to 2.
+ Determine 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{small}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

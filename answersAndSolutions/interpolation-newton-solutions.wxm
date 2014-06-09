@@ -1,0 +1,76 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+4
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(2-(x-1)*(x-2)+(2/3)*(x-1)*(x-2)*(x-3));
+expand(-2*(x-3)+(x-3)*(x-2)+(2/3)*(x-3)*(x-2)*(x-4));
+expand((x-4)*(x-3)+2/3*(x-4)*(x-3)*(x-2));
+expand(-2*(x-3)-(x-3)*(x-2)+2/3*(x-3)*(x-2)*(x-1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+5
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+ans:expand(10+1.6*(x)-0.001642458785316*x*(x-30));
+subst(x=0,ans);
+subst(x=30,ans);
+subst(x=1029,ans);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+0
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(.987-.925*(x-1)+.809375*(x-1)*(x-2.2));
+expand(-.123-.925*(x-2.2)+.809375*(x-2.2)*(x-1));
+expand(-.123+.69375*(x-2.2)+.809375*(x-2.2)*(x-3));
+expand(.432+.69375*(x-3)+.809375*(x-3)*(x-2.2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+9
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+(8+4/10-(8+1/10))*(8+4/10-(8+3/10))*(8+4/10-(8+6/10))*(8+4/10-(8+7/10))/4!;
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+n(x):=(x-(8+1/10))*(x-(8+3/10))*(x-(8+6/10))*(x-(8+7/10));
+draw2d(explicit(n(x),x,8.1,8.7));
+np:expand(diff(n(x),x));
+ratsimp(solve(np=0));
+
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw2d(explicit(x*cos(x)-exp(x),x,8.1,8.7));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x*cos(x)-exp(x);
+find_root(np=0, x, 8.1, 8.2);
+n(%);
+%/24;
+%*f(8.7);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+10
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(1+(x-.1)+2*(x-.1)*(x-.3)+.5*(x-.1)*(x-.3)*(x-.6));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

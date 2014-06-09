@@ -1,0 +1,37 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+axn_num:xn*ffxn-fxn^2;
+axn_den:xn-2*fxn+ffxn;
+axnp1_num:fxn*fffxn-ffxn^2;
+axnp1_den:fxn-2*ffxn+fffxn;
+num:expand(axnp1_num*axn_den^2);
+den:expand(axnp1_den*axn_num^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(num/fffxn/ffxn);
+expand(den/ffxn^2/xn^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+numlim:xn^2/lambda-xn^2/lambda-4*fxn*xn/lambda+4*fxn*xn/lambda+2*fxn*xn-2*fxn*xn/lambda+4*fxn^2/lambda-4*fxn^2/lambda-4*fxn^2+4*ffxn*fxn/lambda+ffxn*fxn-ffxn^2/lambda;
+denlim:-2*fxn-2*fxn*lambda^2+4*fxn*lambda+fxn-2*lambda*fxn+lambda^2*fxn+fxn-2*ffxn+fffxn;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(numlim/fxn^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+numlim:-2/lambda^2+4-lambda+2/lambda+lambda-4;
+denlim;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Denominator goes to 0 while the numerator does not. BTW, this fraction is multiplied by 1/lambda^3 in the limit.
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

@@ -1,0 +1,2807 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Splines
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Splines"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Osculating polynomials have limited use in applications where a curve is
+ required to pass through a large number of points.
+ And large may mean only 
+\shape italic
+a half dozen
+\shape default
+ or so.
+ Take the following innocuous-looking set of points.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/generalizedSplines01.pdf
+	width 7.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+It is easy to imagine an equally innocuous function passing through these
+ eight points, but actually finding such a function poses a slight challenge.
+ The interpolating polynomial of least degree oscillates too widely.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/generalizedSplines02.pdf
+	width 7.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This is a common problem with high-degree interpolating polynomials.
+ There is no control over their oscillations, and the oscillations are most
+ often undesirable.
+ The oscillations can be tamed to some degree by finding the osculating
+ polynomial through these points with, say, a first derivative of 
+\begin_inset Formula $0$
+\end_inset
+
+ at 
+\begin_inset Formula $0$
+\end_inset
+
+ and of 
+\begin_inset Formula $-\frac{1}{2}$
+\end_inset
+
+ at the seventh point from the left (the one whose 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate is between 5 and 6).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/generalizedSplines03.pdf
+	width 7.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+That's better, but still leaves something to be desired.
+ And the business of setting the first derivatives at two of the points
+ strictly for the purpose of reducing the oscillations is a bit arbitrary---bett
+er to let the nature of the problem dictate.
+ The oscillations of the previous attempts make them far too distinctive
+ and interesting for the vapid set of points with which we began.
+ A rightfully trite way to interpolate the data is by connecting consecutive
+ points by line segments.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/generalizedSplines04.pdf
+	width 7.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This forms what is known as the piecewise linear interpolation of the data
+ set.
+ This type of graph is often seen in public media.
+ Many applications, especially those from engineering, require some smoothness,
+ however.
+ Connecting sets of three consecutive points by quadratic functions helps.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/generalizedSplines05.pdf
+	width 7.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+That takes care of smoothness at three of the points, but still lacks differenti
+ability at the points common to consecutive quadratics.
+ Moreover, using the first three points for the first quadratic (which looks
+ linear to the naked eye), the third through fifth points for the second
+ quadratic, and the fifth through seventh points for the third quadratic
+ (which also looks linear to the naked eye) leaves only the seventh and
+ eighth points for what would presumably be a fourth quadratic.
+ With only two points, however, a line segment is used instead.
+ A smoother solution to the problem is to make sure the first derivatives
+ of consecutive quadratics match at their common point.
+ With that in mind, it makes sense to fit only two points per parabola,
+ leaving one coefficient (of the three in any quadratic) for matching the
+ derivative of the neighboring quadratic.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/generalizedSplines06.pdf
+	width 7.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+That's better! This piecewise parabolic function has continuous first derivative
+, but there is still something arbitrary about it.
+ The seven parabolas have, all together, 21 coefficients.
+ Making each parabola pass through two points gives 14 conditions on those
+ coefficients.
+ Having adjacent parabolas match first derivatives at their common points
+ gives 6 more conditions, one at each of the 6 interior points.
+ That leaves one 
+\begin_inset Quotes eld
+\end_inset
+
+free
+\begin_inset Quotes erd
+\end_inset
+
+ coefficient.
+ Specifying one last condition seems a bit arbitrary, and is.
+ The graph shows the result when the derivative at 
+\begin_inset Formula $0$
+\end_inset
+
+ is set to 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Notice there is no control over the derivative at the right end.
+ Besides the arbitrariness, this asymmetry is bothersome.
+ If only we had one more degree of freedom...
+\end_layout
+
+\begin_layout Subsection
+Piecewise polynomials
+\end_layout
+
+\begin_layout Standard
+A piecewise-defined function whose pieces are all polynomials is called
+ a piecewise polynomial.
+ It takes the form
+\begin_inset Formula 
+\[
+p(x)=\begin{cases}
+p_{1}(x), & x\in[x_{0},x_{1}]\\
+p_{2}(x), & x\in(x_{1},x_{2}]\\
+ & \vdots\\
+p_{n}(x) & x\in(x_{n-1},x_{n}]
+\end{cases}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p_{i}(x)$
+\end_inset
+
+ is a polynomial for each 
+\begin_inset Formula $i=1,2,\ldots,n$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}<x_{1}<\cdots<x_{n}$
+\end_inset
+
+; or some variant where 
+\begin_inset Formula $p(x_{j})$
+\end_inset
+
+ is defined by exactly one of the 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+.
+ If each 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ is a linear function, 
+\begin_inset Formula $p$
+\end_inset
+
+ is called piecewise linear.
+ If each 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ is a quadratic function, 
+\begin_inset Formula $p$
+\end_inset
+
+ is called piecewise quadratic.
+ If each 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ is a cubic function, 
+\begin_inset Formula $p$
+\end_inset
+
+ is called piecewise cubic.
+ And so on.
+ Examples of piecewise linear and piecewise quadratic functions appear in
+ the introduction to this section.
+\end_layout
+
+\begin_layout Subsection
+Splines
+\end_layout
+
+\begin_layout Standard
+Nothing about the definition of piecewise polynomials requires one to be
+ differentiable or even continuous.
+ The following function is a piecewise polynomial.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/generalizedSplines07.pdf
+	width 7.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Most applications of piecewise polynomials require continuity or differentiabili
+ty, however.
+ Any piecewise polynomial with at least one continuous derivative is called
+ a spline.
+ The points separating adjacent pieces, the 
+\begin_inset Formula $x_{j}$
+\end_inset
+
+, 
+\begin_inset Formula $j=1,2,\ldots,n-1$
+\end_inset
+
+, are called knots or joints.
+\end_layout
+
+\begin_layout Standard
+The last graph in the introduction to this section shows a quadratic spline.
+ Each piece of the piecewise function is a quadratic, and the quadratics
+ are chosen so that their derivatives match at the joints.
+ As pointed out there, though, we needed to supply one unnatural condition---the
+ derivative at the left endpoint.
+ It could have been the derivative at any of the points, or even the second
+ derivative at one of the points.
+ In a very real sense, the choice was arbitrary.
+ It was not governed naturally by the question at hand.
+ Consequently, there is a family of solutions to the problem of connecting
+ those eight points with a continuously differentiable piecewise quadratic.
+\end_layout
+
+\begin_layout Subsection
+Cubic splines
+\end_layout
+
+\begin_layout Standard
+The most common spline in use is the cubic spline.
+ As with the quadratic spline, a cubic spline is computed by matching derivative
+s at the joints.
+ In fact, there are enough coefficients in the set of cubics that both first
+ and second derivatives are matched.
+ Matching both first and second derivatives is not strictly necessary according
+ to our definition of spline.
+ However, other sources will give a more restrictive definition of spline
+ where matching both derivatives is required.
+ Additionally, the most common use of splines does include this matching.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Find at least one such reference 
+\end_layout
+
+\end_inset
+
+ As a matter of convention, we focus on cubic splines where both first and
+ second derivatives of adjacent cubics agree at the joints.
+\end_layout
+
+\begin_layout Standard
+A cubic spline required to interpolate 
+\begin_inset Formula $n+1$
+\end_inset
+
+ points has 
+\begin_inset Formula $n-1$
+\end_inset
+
+ joints and 
+\begin_inset Formula $n$
+\end_inset
+
+ pieces.
+ It follows that the set of cubics has 
+\begin_inset Formula $4n$
+\end_inset
+
+ coefficients.
+ Requiring each cubic to pass through 
+\begin_inset Formula $2$
+\end_inset
+
+ points gives 
+\begin_inset Formula $2n$
+\end_inset
+
+ conditions on the coefficients.
+ Requiring first derivative matching at the joints gives 
+\begin_inset Formula $n-1$
+\end_inset
+
+ more conditions.
+ Requiring second derivative matching at the joints gives an addtional 
+\begin_inset Formula $n-1$
+\end_inset
+
+ conditions for a grand total of 
+\begin_inset Formula $4n-2$
+\end_inset
+
+ conditions.
+ That leaves 
+\begin_inset Formula $2$
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+free
+\begin_inset Quotes erd
+\end_inset
+
+ coefficients.
+ Mathematically speaking, we have a family of splines with two degrees of
+ freedom.
+ To find any specific spline, we need to enforce two more conditions on
+ the coefficients.
+ These conditions may include the first, second, or third derivative at
+ two of the nodes, both the first and second derivative at a single node,
+ or some other combination of two derivative requirements.
+\end_layout
+
+\begin_layout Standard
+Guided perhaps by knowledge of draftsman's splines, convention leads us
+ to supply endpoint conditions.
+ That is, we require something of some derivative at 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and at 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+.
+ Supplying the first derivative is akin to pointing the draftsmen's spline
+ in a particular direction at its ends.
+ Setting the second derivative equal to 
+\begin_inset Formula $0$
+\end_inset
+
+ is akin to allowing the ends of a draftsman's spline to freely point in
+ whatever direction physics takes them.
+ These models of draftsman's splines are not particularly accurate, but
+ they are motivational.
+ 
+\end_layout
+
+\begin_layout Standard
+A cubic spline with its first derivative specified at both endpoints is
+ called a clamped spline.
+ A cubic spline with its second derivative set equal to zero at both endpoints
+ is called a natural or free spline.
+ A hybrid where the first derivative is specified at one end and the second
+ derivative is set to zero at the other has no special name.
+ To be precise, we have the following definitions.
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})$
+\end_inset
+
+ be 
+\begin_inset Formula $n+1$
+\end_inset
+
+ points where 
+\begin_inset Formula $x_{0}<x_{1}<\cdots<x_{n}$
+\end_inset
+
+ and let 
+\begin_inset Formula $S_{i}(x)=a_{i,}+b_{i}(x-x_{i})+c_{i}(x-x_{i})^{2}+d_{i}(x-x_{i})^{3}$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,2,\ldots,n$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $S$
+\end_inset
+
+, defined by 
+\begin_inset Formula 
+\[
+S(x)=\begin{cases}
+S_{1}(x), & x\in[x_{0},x_{1}]\\
+S_{2}(x), & x\in[x_{1},x_{2}]\\
+ & \vdots\\
+S_{n}(x), & x\in[x_{n-1},x_{n}]
+\end{cases},
+\]
+
+\end_inset
+
+is a cubic spline if it satisfies the following three conditions.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $S_{i}(x_{i-1})=y_{i-1}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{i}(x_{i})=y_{i}$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,2,\ldots,n$
+\end_inset
+
+ (interpolation)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $S_{i}'(x_{i})=S_{i+1}'(x_{i})$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{i}''(x_{i})=S_{i+1}''(x_{i})$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,2,\ldots,n-1$
+\end_inset
+
+ (derivative matching)
+\end_layout
+
+\begin_layout Enumerate
+One of the following is satisfied (endpoint conditions)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:naturalSpline"
+
+\end_inset
+
+
+\begin_inset Formula $S_{1}''(x_{0})=S_{n}''(x_{n})=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:clampedSpline"
+
+\end_inset
+
+
+\begin_inset Formula $S_{1}'(x_{0})=m_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{n}'(x_{n})=m_{n}$
+\end_inset
+
+ for some 
+\begin_inset Formula $m_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:mixed"
+
+\end_inset
+
+
+\begin_inset Formula $S_{1}'(x_{0})=m_{0}$
+\end_inset
+
+ for some 
+\begin_inset Formula $m_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{n}''(x_{n})=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $S_{1}''(x_{0})=0$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{n}'(x_{n})=m_{n}$
+\end_inset
+
+ for some 
+\begin_inset Formula $m_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+If endpoint condition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:naturalSpline"
+
+\end_inset
+
+ is satisfied, 
+\begin_inset Formula $S$
+\end_inset
+
+ is called a free spline or natural spline.
+ If endpoint condition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:clampedSpline"
+
+\end_inset
+
+ is satisfied, 
+\begin_inset Formula $S$
+\end_inset
+
+ is called a clamped spline.
+\end_layout
+
+\begin_layout Standard
+The natural (cubic) spline passing through the eight points presented in
+ the introduction to this section looks like this.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/generalizedSplines08.pdf
+	width 7.5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Finally, a function that is as unspectacular as the data set itself! How
+ was it calculated, you ask.
+ The short answer is the 28 simultaneous equations resulting from the definition
+ of natural cubic spline were solved.
+ The solution provided the coefficients 
+\begin_inset Formula $a_{i},b_{i},c_{i},d_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $i=1,2,\ldots,7$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Setting up the equations
+\end_layout
+
+\begin_layout Standard
+The long answer is, well, a bit longer to tell, but really only differs
+ from the short version in the level of detail.
+ To begin, the requirement that 
+\begin_inset Formula $S_{i}(x_{i})=y_{i}$
+\end_inset
+
+ immediately gives us the values of 
+\begin_inset Formula $n$
+\end_inset
+
+ of the coefficients:
+\begin_inset Formula 
+\[
+S_{i}(x_{i})=a_{i}=y_{i}.
+\]
+
+\end_inset
+
+The requirement that 
+\begin_inset Formula $S_{i}(x_{i-1})=y_{i-1}$
+\end_inset
+
+ gives us the 
+\begin_inset Formula $n$
+\end_inset
+
+ equations
+\begin_inset Formula 
+\begin{equation}
+S_{i}(x_{i-1})=y_{i}+b_{i}(x_{i-1}-x_{i})+c_{i}(x_{i-1}-x_{i})^{2}+d_{i}(x_{i-1}-x_{i})^{3}=y_{i-1}\label{eq:interpolationRequirement}
+\end{equation}
+
+\end_inset
+
+for 
+\begin_inset Formula $i=1,2,\ldots,n$
+\end_inset
+
+.
+ The derivative requirements give us 
+\begin_inset Formula $n-1$
+\end_inset
+
+ equations each:
+\begin_inset Formula 
+\begin{eqnarray}
+S_{i}'(x_{i})=S_{i+1}'(x_{i}) & \Rightarrow & b_{i}=b_{i+1}+2c_{i+1}(x_{i}-x_{i+1})+3d_{i+1}(x_{i}-x_{i+1})^{2}\label{eq:firstDerivativeRequirement}\\
+S_{i}''(x_{i})=S_{i+1}''(x_{i}) & \Rightarrow & 2c_{i}=2c_{i+1}+6d_{i+1}(x_{i}-x_{i+1})\label{eq:secondDerivative Requirement}
+\end{eqnarray}
+
+\end_inset
+
+for 
+\begin_inset Formula $i=1,2,\ldots,n-1$
+\end_inset
+
+.
+ Finally, the endpoint conditions give us the two equations
+\begin_inset Formula 
+\begin{eqnarray}
+S_{1}''(x_{0}) & = & 2c_{1}+6d_{1}(x_{0}-x_{1})=0\label{eq:freeLeftEndpoint}\\
+S_{n}''(x_{n}) & = & 2c_{n}=0.\label{eq:freeRightEndpoint}
+\end{eqnarray}
+
+\end_inset
+
+Without much ado, we have the values of the 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ and of 
+\begin_inset Formula $c_{n}$
+\end_inset
+
+.
+ The remaining 
+\begin_inset Formula $3n-1$
+\end_inset
+
+ coefficients are found by solving the remaining 
+\begin_inset Formula $3n-1$
+\end_inset
+
+ simultaneous equations.
+ Though a computer can certainly handle the solution from here, finding
+ a bit of the general solution by hand gives a much more efficient algorithm.
+\end_layout
+
+\begin_layout Subsubsection
+Solving the equations
+\end_layout
+
+\begin_layout Standard
+Essentially, we now have three equations with three unknowns.
+ Equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:interpolationRequirement"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:firstDerivativeRequirement"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:secondDerivative Requirement"
+
+\end_inset
+
+ are written in the variables 
+\begin_inset Formula $b_{i},c_{i},d_{i}$
+\end_inset
+
+.
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:secondDerivative Requirement"
+
+\end_inset
+
+ can easily be solved for 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ and equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:interpolationRequirement"
+
+\end_inset
+
+ can easily be solved for 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+.
+ The resulting expressions can be substituted into equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:firstDerivativeRequirement"
+
+\end_inset
+
+ to get an equation in only 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+.
+ It is a straightforward matter to complete the calculation.
+ At this point, it becomes convenient to define 
+\begin_inset Formula $h_{i}=x_{i-1}-x_{i}$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\begin{eqnarray}
+(\mbox{\ref{eq:secondDerivative Requirement}}) & \Rightarrow & d_{i+1}=\frac{c_{i}-c_{i+1}}{3h_{i+1}},\quad i=1,2,\ldots,n-1\nonumber \\
+ & \Rightarrow & d_{i}=\frac{c_{i-1}-c_{i}}{3h_{i}},\quad i=2,3,\ldots,n.\label{eq:di}\\
+(\mbox{\ref{eq:interpolationRequirement}}) & \Rightarrow & b_{i}=\frac{y_{i-1}-y_{i}}{h_{i}}-c_{i}h_{i}-d_{i}h_{i}^{2},\quad i=1,2,\ldots,n\nonumber \\
+ & \Rightarrow & b_{i}=\frac{y_{i-1}-y_{i}}{h_{i}}-c_{i}h_{i}-\frac{(c_{i-1}-c_{i})h_{i}}{3},\quad i=2,3,\ldots,n\nonumber \\
+ & \Rightarrow & b_{i}=\frac{y_{i-1}-y_{i}}{h_{i}}-\frac{(c_{i-1}+2c_{i})h_{i}}{3},\quad i=2,3,\ldots,n\label{eq:bi}\\
+ & \Rightarrow & b_{i+1}=\frac{y_{i}-y_{i+1}}{h_{i+1}}-\frac{(c_{i}+2c_{i+1})h_{i+1}}{3},\quad i=1,2,\ldots,n-1.\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+Substituting into equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:firstDerivativeRequirement"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+\frac{y_{i-1}-y_{i}}{h_{i}}-\frac{(c_{i-1}+2c_{i})h_{i}}{3}=\frac{y_{i}-y_{i+1}}{h_{i+1}}-\frac{(c_{i}+2c_{i+1})h_{i+1}}{3}+2c_{i+1}h_{i+1}+(c_{i}-c_{i+1})h_{i+1}
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $i=2,3,\ldots,n-1$
+\end_inset
+
+.
+ With a bit of simplification, this becomes
+\begin_inset Formula 
+\begin{equation}
+h_{i}c_{i-1}+2(h_{i}+h_{i+1})c_{i}+h_{i+1}c_{i+1}=3\left(\frac{y_{i-1}-y_{i}}{h_{i}}-\frac{y_{i}-y_{i+1}}{h_{i+1}}\right),\quad i=2,3,\ldots,n-1.\label{eq:firstNm2}
+\end{equation}
+
+\end_inset
+
+We now have 
+\begin_inset Formula $n-2$
+\end_inset
+
+ equations in the 
+\begin_inset Formula $n$
+\end_inset
+
+ unknown 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+.
+ These equations hold for any cubic spline with any endpoint conditions.
+ But equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:firstDerivativeRequirement"
+
+\end_inset
+
+ has not been used with index 
+\begin_inset Formula $i=1$
+\end_inset
+
+.
+ Hence we still have to incorporate
+\begin_inset Formula 
+\begin{equation}
+b_{1}=b_{2}+2c_{2}h_{2}+3d_{2}h_{2}^{2}\label{eq:lastEquation}
+\end{equation}
+
+\end_inset
+
+into the solution.
+ It remains to replace 
+\begin_inset Formula $b_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $b_{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $d_{2}$
+\end_inset
+
+ by expressions in 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+To begin, equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bi"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:di"
+
+\end_inset
+
+ with 
+\begin_inset Formula $i=2$
+\end_inset
+
+ give
+\begin_inset Formula 
+\begin{eqnarray*}
+b_{2} & = & \frac{y_{1}-y_{2}}{h_{2}}-\frac{(c_{1}+2c_{2})h_{2}}{3}\\
+d_{2} & = & \frac{c_{1}-c_{2}}{3h_{2}}.
+\end{eqnarray*}
+
+\end_inset
+
+Making the substitutions for 
+\begin_inset Formula $b_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $d_{2}$
+\end_inset
+
+, equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lastEquation"
+
+\end_inset
+
+ becomes 
+\begin_inset Formula 
+\begin{eqnarray}
+b_{1} & = & \frac{y_{1}-y_{2}}{h_{2}}-\frac{(c_{1}+2c_{2})h_{2}}{3}+2c_{2}h_{2}+(c_{1}-c_{2})h_{2}\nonumber \\
+ & = & \frac{y_{1}-y_{2}}{h_{2}}+\frac{2}{3}h_{2}c_{1}+\frac{1}{3}h_{2}c_{2}.\label{eq:b1}
+\end{eqnarray}
+
+\end_inset
+
+We have not used the endpoint conditions yet, so this equation is good for
+ any cubic spline.
+ Whatever endpoint conditions are given must result in an expression for
+ 
+\begin_inset Formula $b_{1}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ plus one other equation in the 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In the case of the free spline, endpoint condition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:freeRightEndpoint"
+
+\end_inset
+
+ gives 
+\begin_inset Formula $c_{n}=0$
+\end_inset
+
+.
+ This is the first of the final two equations.
+ Endpoint condition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:freeLeftEndpoint"
+
+\end_inset
+
+ gives 
+\begin_inset Formula $d_{1}=-\frac{c_{1}}{3h_{1}}$
+\end_inset
+
+.
+ This relationship is not directly useful since we are looking for an expression
+ for 
+\begin_inset Formula $b_{1}$
+\end_inset
+
+.
+ However, equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:interpolationRequirement"
+
+\end_inset
+
+ with 
+\begin_inset Formula $i=1$
+\end_inset
+
+ gives 
+\begin_inset Formula $b_{1}=\frac{y_{0}-y_{1}}{h_{1}}-c_{1}h_{1}-d_{1}h_{1}^{2}$
+\end_inset
+
+ so we can use it to find 
+\begin_inset Formula 
+\begin{eqnarray*}
+b_{1} & = & \frac{y_{0}-y_{1}}{h_{1}}-\frac{2}{3}c_{1}h_{1}.
+\end{eqnarray*}
+
+\end_inset
+
+Finally, substituting into equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:b1"
+
+\end_inset
+
+, the final equation in 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ is 
+\begin_inset Formula $\frac{y_{0}-y_{1}}{h_{1}}-\frac{2}{3}c_{1}h_{1}=\frac{y_{1}-y_{2}}{h_{2}}+\frac{2}{3}h_{2}c_{1}+\frac{1}{3}h_{2}c_{2}$
+\end_inset
+
+, which simplifies to
+\begin_inset Formula 
+\begin{equation}
+2(h_{1}+h_{2})c_{1}+h_{2}c_{2}=3\left(\frac{y_{0}-y_{1}}{h_{1}}-\frac{y_{1}-y_{2}}{h_{2}}\right).\label{eq:finalEquation}
+\end{equation}
+
+\end_inset
+
+Equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:firstNm2"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:finalEquation"
+
+\end_inset
+
+, and 
+\begin_inset Formula $c_{n}=0$
+\end_inset
+
+ are 
+\begin_inset Formula $n$
+\end_inset
+
+ equations which can be solved for the 
+\begin_inset Formula $n$
+\end_inset
+
+ coefficients 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+.
+ Back-substitution will give the values of the 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Other endpoint conditions lead to a different pair of final equations, but
+ the process is the same.
+ We need to substitute an expression for 
+\begin_inset Formula $b_{1}$
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:b1"
+
+\end_inset
+
+ and come up with one other equation.
+\end_layout
+
+\begin_layout Subsection
+Natural spline Octave code
+\end_layout
+
+\begin_layout Standard
+Computing a spline for three or four points can be done by hand with a bit
+ of patience and attention to detail, but many more points and the algebra
+ becomes too tedious.
+ However, each of the equations in 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ have no more than three of the 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ at a time, and they appear in a regular pattern, at least for 
+\begin_inset Formula $n-2$
+\end_inset
+
+ of the equations.
+ These characteristics make automating the solution reasonably straightforward.
+ The following code is perhaps not the most efficient for finding a natural
+ spline, but it is presented this way for two reasons.
+ First, it is meant to emulate the algebraic solution outlined in the previous
+ section closely, making it clearer to follow.
+ Second it is meant to be general enough that modifying it for other endpoint
+ conditions would take minimal effort.
+ Such modification will be requested in the exercises.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Dr.
+ Len Brin           3 June 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: Calculation of a natural cubic       %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        spline.
+                                %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: points (x(1),y(1)), (x(2),y(2)), ...
+   %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        spline must interpolate.
+               %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: coefficients of each piece of the     %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        piecewise cubic spline:                %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        S(i,x) = a(i)                          %
+\end_layout
+
+\begin_layout Plain Layout
+
+%          + b(i)*(x-x(i+1))                    %
+\end_layout
+
+\begin_layout Plain Layout
+
+%          + c(i)*(x-x(i+1))^2                  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%          + d(i)*(x-x(i+1))^3                  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function [a,b,c,d] = naturalCubicSpline(x,y)
+\end_layout
+
+\begin_layout Plain Layout
+
+  n=length(x)-1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=1:n
+\end_layout
+
+\begin_layout Plain Layout
+
+    h(i)=x(i)-x(i+1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  % Left endpoint condition:
+\end_layout
+
+\begin_layout Plain Layout
+
+  % m(1,1)*c(1) + m(1,2)*c(2) = m(1,n+1)
+\end_layout
+
+\begin_layout Plain Layout
+
+  m(1,1)=2*(h(1)+h(2)); m(1,2)=h(2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  m(1,n+1)=3*((y(1)-y(2))/h(1)-(y(2)-y(3))/h(2));
+\end_layout
+
+\begin_layout Plain Layout
+
+  % Right endpoint condition:
+\end_layout
+
+\begin_layout Plain Layout
+
+  % m(n,n-1)*c(n-1) + m(n,n)*c(n) = m(n,n+1)
+\end_layout
+
+\begin_layout Plain Layout
+
+  m(n,n-1)=0; m(n,n)=1; m(n,n+1)=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  % Conditions for all splines:
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=2:n-1
+\end_layout
+
+\begin_layout Plain Layout
+
+    m(i,i-1)=h(i);
+\end_layout
+
+\begin_layout Plain Layout
+
+    m(i,i)=2*(h(i)+h(i+1));
+\end_layout
+
+\begin_layout Plain Layout
+
+    m(i,i+1)=h(i+1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    m(i,n+1)=3*((y(i)-y(i+1))/h(i)-(y(i+1)-y(i+2))/h(i+1));
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  % Solve for c(i)
+\end_layout
+
+\begin_layout Plain Layout
+
+  l(1)=m(1,1); u(1)=m(1,2)/l(1); z(1)=m(1,n+1)/l(1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=2:n-1
+\end_layout
+
+\begin_layout Plain Layout
+
+    l(i)=m(i,i)-m(i,i-1)*u(i-1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    u(i)=m(i,i+1)/l(i);
+\end_layout
+
+\begin_layout Plain Layout
+
+    z(i)=(m(i,n+1)-m(i,i-1)*z(i-1))/l(i);
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  l(n)=m(n,n)-m(n,n-1)*u(n-1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  c(n)=(m(n,n+1)-m(n,n-1)*z(n-1))/l(n);
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=n-1:-1:1
+\end_layout
+
+\begin_layout Plain Layout
+
+    c(i)=z(i)-u(i)*c(i+1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  % Compute a(i), b(i), d(i)
+\end_layout
+
+\begin_layout Plain Layout
+
+  % Endpoint conditions:
+\end_layout
+
+\begin_layout Plain Layout
+
+  b(1)=(y(1)-y(2))/h(1)-2*c(1)*h(1)/3;
+\end_layout
+
+\begin_layout Plain Layout
+
+  d(1)=-c(1)/(3*h(1));
+\end_layout
+
+\begin_layout Plain Layout
+
+  % Conditions for all splines:
+\end_layout
+
+\begin_layout Plain Layout
+
+  a(1)=y(2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=2:n
+\end_layout
+
+\begin_layout Plain Layout
+
+    d(i)=(c(i-1)-c(i))/(3*h(i));
+\end_layout
+
+\begin_layout Plain Layout
+
+    b(i)=(y(i)-y(i+1))/h(i)-(c(i-1)+2*c(i))*h(i)/3;
+\end_layout
+
+\begin_layout Plain Layout
+
+    a(i)=y(i+1);
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+An application of natural cubic splines?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+For many important applications, this mathematical [cubic spline] model
+ of the draftsman's spline is highly realistic.
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Ahlberg and Nilson, The Theory of Splines and their Applications, Elsevier,
+ 1967.
+\end_layout
+
+\end_inset
+
+ Claims such as this rely on the assumptions that a draftsman's spline is
+ aptly modeled by a thin beam and that beam deflections are small.
+ But the shapes modeled by splines often include large deflections, and
+ unless the draftsman's spline is damaged in some way, its shape will be
+ an infinitely differentiable curve.
+ Cubic splines generally lack continuity in their third derivative, hence
+ do not have higher order derivatives.
+ Moreover, the endpoint conditions 
+\begin_inset Formula $S_{0}''(x_{0})=S_{n}''(x_{n})=0$
+\end_inset
+
+ do not translate well to the physical situation.
+ These conditions imply the shape of the spline has zero curvature (concavity)
+ at the endpoints while nothing about the physical situation points to that
+ conclusion.
+\end_layout
+
+\begin_layout Standard
+Despite the cubic spline's ineffective use as a model for a draftsman's
+ spline, it can be used with great efficacy in design applications.
+ At Boeing, the airplane manufacturer, for example, they are used in computer-ai
+ded graphic design, computer-aided manufacturing, engineering analysis and
+ simulation, and as a key component in Boeing's Automated Flight Manual
+ system.
+ By 2005, it was estimated that Boeing's use of splines involved about 500
+ million spline evaluations every day!
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+SIAM News, volume 38, number 4, May 2005.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+What problem with polynomial interpolation does cubic spline interpolation
+ address?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines"
+
+\end_inset
+
+Write down the system of equations that would need to be solved in order
+ to find the cubic spline through 
+\begin_inset Formula $(0,-9)$
+\end_inset
+
+, 
+\begin_inset Formula $(1,-13)$
+\end_inset
+
+, and 
+\begin_inset Formula $(2,-29)$
+\end_inset
+
+ with free boundary conditions.
+ Do not attempt to solve the system.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-1"
+
+\end_inset
+
+Set up but do not solve the equations which could be solved to find the
+ free cubic spline through the points 
+\begin_inset Formula $(1,1)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,3)$
+\end_inset
+
+, and 
+\begin_inset Formula $(4,2)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+List three reasons that might make you use a cubic spline rather than a
+ Lagrange polynomial to model a certain graph.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-2"
+
+\end_inset
+
+Write down a system of equations that could be solved in order to find the
+ free cubic spline through the following data points.
+ Do not solve the system.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.62$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.28$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0066$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-3"
+
+\end_inset
+
+Write down the system of equations that would need to be solved in order
+ to find the cubic spline through 
+\begin_inset Formula $(0,-9)$
+\end_inset
+
+, 
+\begin_inset Formula $(1,-13)$
+\end_inset
+
+, and 
+\begin_inset Formula $(2,-29)$
+\end_inset
+
+ with clamped boundary conditions 
+\begin_inset Formula $S'(0)=1$
+\end_inset
+
+ and 
+\begin_inset Formula $S'(2)=-1$
+\end_inset
+
+.
+ Do not attempt to solve the system.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-4"
+
+\end_inset
+
+Set up but do not solve the equations which could be solved to find the
+ clamped cubic spline through the points 
+\begin_inset Formula $(1,1)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,3)$
+\end_inset
+
+, and 
+\begin_inset Formula $(4,2)$
+\end_inset
+
+ with 
+\begin_inset Formula $S'(1)=S'(4)=0$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-5"
+
+\end_inset
+
+Write down a system of equations that could be solved in order to find the
+ clamped cubic spline through the following data points with 
+\begin_inset Formula $S'(0.1)=0.5$
+\end_inset
+
+ and 
+\begin_inset Formula $S'(0.4)=0.1$
+\end_inset
+
+.
+ Do not solve the system.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.62$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.28$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0066$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the spline described in question
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-6"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-7"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-8"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-2"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-10"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-3"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-11"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-4"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-12"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-5"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use the Octave code presented in this section to check your answer to question
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-14"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-6"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-7"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-15"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-8"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-9"
+
+\end_inset
+
+Modify the Octave code presented in this section so that it computes the
+ coefficients for a clamped cubic spline.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-9"
+
+\end_inset
+
+ to check your answer to question
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-10"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-16"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-11"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-17"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-12"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:cubicSplines-13"
+
+\end_inset
+
+Modify the Octave code presented in this section so that it computes the
+ coefficients for a cubic spline with mixed endpoint conditions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:mixed"
+
+\end_inset
+
+ (page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "enu:mixed"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-13"
+
+\end_inset
+
+ to find the cubic spline through 
+\begin_inset Formula $(0,-9)$
+\end_inset
+
+, 
+\begin_inset Formula $(1,-13)$
+\end_inset
+
+, and 
+\begin_inset Formula $(2,-29)$
+\end_inset
+
+ with mixed boundary conditions 
+\begin_inset Formula $S'(0)=1$
+\end_inset
+
+ and 
+\begin_inset Formula $S''(2)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:cubicSplines-13"
+
+\end_inset
+
+ to find the cubic spline through the points 
+\begin_inset Formula $(1,1)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,3)$
+\end_inset
+
+, and 
+\begin_inset Formula $(4,2)$
+\end_inset
+
+ with 
+\begin_inset Formula $S'(1)=S''(4)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $n+1$
+\end_inset
+
+ points are given 
+\begin_inset Formula $(n>1)$
+\end_inset
+
+.
+ How many endpoint conditions are needed to fit the points with a
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+quadratic spline with first derivative matching at each joint?
+\end_layout
+
+\begin_layout Enumerate
+cubic spline with first and second derivative matching at each joint?
+\end_layout
+
+\begin_layout Enumerate
+quartic spline with first, second, and third derivative matching at each
+ joint?
+\end_layout
+
+\begin_layout Enumerate
+a degree 
+\begin_inset Formula $k$
+\end_inset
+
+ spline 
+\begin_inset Formula $(k>1)$
+\end_inset
+
+ with derivative matching up to degree 
+\begin_inset Formula $k-1$
+\end_inset
+
+ at each joint?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suppose a spline 
+\begin_inset Formula $S$
+\end_inset
+
+ is to be fit to the four points 
+\begin_inset Formula $(x_{i},y_{i})$
+\end_inset
+
+, 
+\begin_inset Formula $i=0,1,2,3$
+\end_inset
+
+ where 
+\begin_inset Formula $x_{0}<x_{1}<x_{2}<x_{3}$
+\end_inset
+
+.
+ Further suppose 
+\begin_inset Formula $S$
+\end_inset
+
+ is to be linear on 
+\begin_inset Formula $[x_{0},x_{1}]$
+\end_inset
+
+, quadratic on 
+\begin_inset Formula $[x_{1},x_{2}]$
+\end_inset
+
+, and cubic on 
+\begin_inset Formula $[x_{2},x_{3}]$
+\end_inset
+
+.
+ Finally suppose 
+\begin_inset Formula $S$
+\end_inset
+
+ is to have one continuous derivative.
+ How many endpoint conditions are needed to specify the spline uniquely?
+ Argue that any such endpoint conditions must be specified at 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+ and not 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=\sin x$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+, 
+\begin_inset Formula $x_{1}=\pi/4$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}=\pi/2$
+\end_inset
+
+, 
+\begin_inset Formula $x_{3}=3\pi/4$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{4}=\pi$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find the cubic (clamped) spline through 
+\begin_inset Formula $(x_{0},f(x_{0})),(x_{1},f(x_{1})),\ldots,(x_{4},f(x_{4}))$
+\end_inset
+
+ with 
+\begin_inset Formula $S'(0)=f'(0)$
+\end_inset
+
+ and 
+\begin_inset Formula $S'(\pi)=f'(\pi)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Approximate 
+\begin_inset Formula $f(\pi/3)$
+\end_inset
+
+ by computing 
+\begin_inset Formula $S(\pi/3)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Approximate 
+\begin_inset Formula $f(7\pi/8)$
+\end_inset
+
+ by computing 
+\begin_inset Formula $S(7\pi/8)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Calculate the absolute errors in the approximations.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

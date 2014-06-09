@@ -1,0 +1,188 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+Pick some random points
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+n:4$
+mx:next_prime(1200)$
+p[1]:[0,random(mx)/mx-1/2]$
+for i:2 thru n-1 do (
+    p[i]:[p[i-1][1]+random(mx)/mx+1/2,random(mx)/mx-1/2]
+)$
+p[n]:[n-1,random(mx)/mx-1/2]$
+m:makelist([p[i][1],p[i][2]],i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S1(x):=a1+b1*x$
+S1p(x):=subst(t=x,diff(S1(t),t))$
+S2(x):=a2+b2*x+c2*x^2$
+S2p(x):=subst(t=x,diff(S2(t),t))$
+S2pp(x):=subst(t=x,diff(S2(t),t,2))$
+S3(x):=a3+b3*x+c3*x^2+d3*x^3$
+S3p(x):=subst(t=x,diff(S3(t),t))$
+S3pp(x):=subst(t=x,diff(S3(t),t,2))$
+eq:[S1(m[1][1])=m[1][2],
+    S1(m[2][1])=m[2][2],
+    S2(m[2][1])=m[2][2],
+    S2(m[3][1])=m[3][2],
+    S3(m[3][1])=m[3][2],
+    S3(m[4][1])=m[4][2],
+    S1p(m[2][1])=S2p(m[2][1]),
+    S2p(m[3][1])=S3p(m[3][1]),
+    S2pp(m[3][1])=S3pp(m[3][1])];
+solve(eq);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+0
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+xi:[0,1,2]$
+yi:[-9,-13,-29]$
+S1(x):=a1+b1*(x-xi[2])+c1*(x-xi[2])^2+d1*(x-xi[2])^3$
+S1p(x):=subst(t=x,diff(S1(t),t))$
+S1pp(x):=subst(t=x,diff(S1(t),t,2))$
+S2(x):=a2+b2*(x-xi[3])+c2*(x-xi[3])^2+d2*(x-xi[3])^3$
+S2p(x):=subst(t=x,diff(S2(t),t))$
+S2pp(x):=subst(t=x,diff(S2(t),t,2))$
+eq:[S1(xi[1])=yi[1],
+    S1(xi[2])=yi[2],
+    S2(xi[2])=yi[2],
+    S2(xi[3])=yi[3],
+    S1p(xi[2])=S2p(xi[2]),
+    S1pp(xi[2])=S2pp(xi[2]),
+    S1pp(xi[1])=0,
+    S2pp(xi[3])=0];
+solve(eq);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+4
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+xi:[1,2,4]$
+yi:[1,3,2]$
+S1(x):=a1+b1*(x-xi[2])+c1*(x-xi[2])^2+d1*(x-xi[2])^3$
+S1p(x):=subst(t=x,diff(S1(t),t))$
+S1pp(x):=subst(t=x,diff(S1(t),t,2))$
+S2(x):=a2+b2*(x-xi[3])+c2*(x-xi[3])^2+d2*(x-xi[3])^3$
+S2p(x):=subst(t=x,diff(S2(t),t))$
+S2pp(x):=subst(t=x,diff(S2(t),t,2))$
+eq:[S1(xi[1])=yi[1],
+    S1(xi[2])=yi[2],
+    S2(xi[2])=yi[2],
+    S2(xi[3])=yi[3],
+    S1p(xi[2])=S2p(xi[2]),
+    S1pp(xi[2])=S2pp(xi[2]),
+    S1p(xi[1])=0,
+    S2p(xi[3])=0];
+sol:solve(eq)[1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+grph1:subst(sol,S1(x))$
+grph2:subst(sol,S2(x))$
+draw2d(
+    explicit(grph1,x,xi[1],xi[2]),
+    explicit(grph2,x,xi[2],xi[3]),
+    color=red,
+    points(xi,yi),
+    xrange=[.5,4.5],
+    yrange=[0,4],
+    proportional_axes=xy
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+	
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+8
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+xi:[.1,.2,.3,.4]$
+yi:[-.62,-.28,.0066,.24]$
+S1(x):=a1+b1*(x-xi[2])+c1*(x-xi[2])^2+d1*(x-xi[2])^3$
+S1p(x):=subst(t=x,diff(S1(t),t))$
+S1pp(x):=subst(t=x,diff(S1(t),t,2))$
+S2(x):=a2+b2*(x-xi[3])+c2*(x-xi[3])^2+d2*(x-xi[3])^3$
+S2p(x):=subst(t=x,diff(S2(t),t))$
+S2pp(x):=subst(t=x,diff(S2(t),t,2))$
+S3(x):=a3+b3*(x-xi[4])+c3*(x-xi[4])^2+d3*(x-xi[4])^3$
+S3p(x):=subst(t=x,diff(S3(t),t))$
+S3pp(x):=subst(t=x,diff(S3(t),t,2))$
+eq:[S1(xi[1])=yi[1],
+    S1(xi[2])=yi[2],
+    S2(xi[2])=yi[2],
+    S2(xi[3])=yi[3],
+    S3(xi[3])=yi[3],
+    S3(xi[4])=yi[4],
+    S1p(xi[2])=S2p(xi[2]),
+    S1pp(xi[2])=S2pp(xi[2]),
+    S2p(xi[3])=S3p(xi[3]),
+    S2pp(xi[3])=S3pp(xi[3]),
+    S1pp(xi[1])=0,
+    S3pp(xi[4])=0];
+solve(eq);
+float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+5
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+xi:[.1,.2,.3,.4]$
+yi:[-.62,-.28,.0066,.24]$
+S1(x):=a1+b1*(x-xi[2])+c1*(x-xi[2])^2+d1*(x-xi[2])^3$
+S1p(x):=subst(t=x,diff(S1(t),t))$
+S1pp(x):=subst(t=x,diff(S1(t),t,2))$
+S2(x):=a2+b2*(x-xi[3])+c2*(x-xi[3])^2+d2*(x-xi[3])^3$
+S2p(x):=subst(t=x,diff(S2(t),t))$
+S2pp(x):=subst(t=x,diff(S2(t),t,2))$
+S3(x):=a3+b3*(x-xi[4])+c3*(x-xi[4])^2+d3*(x-xi[4])^3$
+S3p(x):=subst(t=x,diff(S3(t),t))$
+S3pp(x):=subst(t=x,diff(S3(t),t,2))$
+eq:[S1(xi[1])=yi[1],
+    S1(xi[2])=yi[2],
+    S2(xi[2])=yi[2],
+    S2(xi[3])=yi[3],
+    S3(xi[3])=yi[3],
+    S3(xi[4])=yi[4],
+    S1p(xi[2])=S2p(xi[2]),
+    S1pp(xi[2])=S2pp(xi[2]),
+    S2p(xi[3])=S3p(xi[3]),
+    S2pp(xi[3])=S3pp(xi[3]),
+    S1p(xi[1])=0.5,
+    S3p(xi[4])=0.1];
+solve(eq);
+sol:float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+grph1:subst(sol[1],S1(x))$
+grph2:subst(sol[1],S2(x))$
+grph3:subst(sol[1],S3(x))$
+draw2d(
+    explicit(grph1,x,xi[1],xi[2]),
+    explicit(grph2,x,xi[2],xi[3]),
+    explicit(grph3,x,xi[3],xi[4]),
+    color=red,
+    points(xi,yi),
+    xrange=[.08,.42],
+    yrange=[-.7,.3],
+    proportional_axes=xy
+);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

@@ -1,0 +1,2827 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Extrapolation"
+
+\end_inset
+
+Extrapolation
+\end_layout
+
+\begin_layout Standard
+In calculus you undboubtedly encountered Euler's constant, 
+\begin_inset Formula $e$
+\end_inset
+
+, which you were probably told is approximately 
+\begin_inset Formula $2.718$
+\end_inset
+
+, or maybe just 
+\begin_inset Formula $2.7$
+\end_inset
+
+.
+ And unless you were involved in a digits-of-
+\begin_inset Formula $e$
+\end_inset
+
+ memorization contest, you probably never saw more digits of 
+\begin_inset Formula $e$
+\end_inset
+
+ than your calculator could show.
+ We're about the change that.
+ The first 50 digits of 
+\begin_inset Formula $e$
+\end_inset
+
+ are
+\begin_inset Formula 
+\[
+2.7182818284590452353602874713526624977572470936999.
+\]
+
+\end_inset
+
+How many of them do you remember? Not to worry if it is not very many.
+ No quiz on the digits of 
+\begin_inset Formula $e$
+\end_inset
+
+ is imminent.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Digits of $e$} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The first 1000 digits of 
+\begin_inset Formula $e$
+\end_inset
+
+, 50 per line, are
+\begin_inset Formula 
+\[
+\begin{gathered}2.7182818284590452353602874713526624977572470936999\\
+59574966967627724076630353547594571382178525166427\\
+42746639193200305992181741359662904357290033429526\\
+05956307381323286279434907632338298807531952510190\\
+11573834187930702154089149934884167509244761460668\\
+08226480016847741185374234544243710753907774499206\\
+95517027618386062613313845830007520449338265602976\\
+06737113200709328709127443747047230696977209310141\\
+69283681902551510865746377211125238978442505695369\\
+67707854499699679468644549059879316368892300987931\\
+27736178215424999229576351482208269895193668033182\\
+52886939849646510582093923982948879332036250944311\\
+73012381970684161403970198376793206832823764648042\\
+95311802328782509819455815301756717361332069811250\\
+99618188159304169035159888851934580727386673858942\\
+28792284998920868058257492796104841984443634632449\\
+68487560233624827041978623209002160990235304369941\\
+84914631409343173814364054625315209618369088870701\\
+67683964243781405927145635490613031072085103837505\\
+10115747704171898610687396965521267154688957035035
+\end{gathered}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+However, do you recall from calculus that 
+\begin_inset Formula 
+\[
+\lim_{h\to0}(1+h)^{1/h}=e?
+\]
+
+\end_inset
+
+Can you prove it? Proof 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "proofOfLimit"
+
+\end_inset
+
+.
+ Based on this fact, we might use 
+\begin_inset Formula 
+\[
+\tilde{e}(h)=(1+h)^{1/h}
+\]
+
+\end_inset
+
+to approximate 
+\begin_inset Formula $e$
+\end_inset
+
+.
+ No time like the present!
+\begin_inset Formula 
+\begin{eqnarray*}
+\tilde{e}(0.01) & \approx & 2.704813829421529\\
+\tilde{e}(0.005) & \approx & 2.711517122929293\\
+\tilde{e}(0.0025) & \approx & 2.714891744381238\\
+\tilde{e}(0.00125) & \approx & 2.716584846682473\\
+\tilde{e}(0.000625) & \approx & 2.717432851769196.
+\end{eqnarray*}
+
+\end_inset
+
+Sadly, this sequence of approximations is not converging very quickly.
+ We have two digits of accuracy in the first approximation and still only
+ three digits of accuracy in the fifth.
+ We could, of course, continue to make 
+\begin_inset Formula $h$
+\end_inset
+
+ smaller to get more accurate approximations, but based on the slow improvement
+ observed so far, this does not seem like a very promising route.
+ Instead, we can combine the estimates we already have to get an improved
+ approximation.
+ This idea should remind you, at least on the surface, of Aitken's delta-squared
+ method.
+ In that method, we combined three consecutive approximations to form another
+ that was generally a better approximation than any of the original three.
+ We will do something similar here, combining inadequate approximations
+ to find better ones.
+ We will name the various new approxmations for continued reuse.
+\begin_inset Formula 
+\begin{eqnarray}
+2\tilde{e}(0.005)-\tilde{e}(0.01) & \equiv & \tilde{e}_{1}(0.01)=2.718220416437056\nonumber \\
+2\tilde{e}(0.0025)-\tilde{e}(0.005) & \equiv & \tilde{e}_{1}(0.005)=2.718266365833184\nonumber \\
+2\tilde{e}(0.00125)-\tilde{e}(0.0025) & \equiv & \tilde{e}_{1}(0.0025)=2.718277948983707\nonumber \\
+2\tilde{e}(0.000625)-\tilde{e}(0.00125) & \equiv & \tilde{e}_{1}(0.00125)=2.718280856855920.\label{eq:richardsonC2}
+\end{eqnarray}
+
+\end_inset
+
+Each of these new approximations is accurate to 5 or 6 significant digits!
+ Already a significant improvement.
+ We can combine them further to find yet better approximations:
+\begin_inset Formula 
+\begin{eqnarray}
+\frac{4\tilde{e}_{1}(0.005)-\tilde{e}_{1}(0.01)}{3} & \equiv & \tilde{e}_{2}(0.01)=2.718281682298560\nonumber \\
+\frac{4\tilde{e}_{1}(0.0025)-\tilde{e}_{1}(0.005)}{3} & \equiv & \tilde{e}_{2}(0.005)=2.718281810033881\nonumber \\
+\frac{4\tilde{e}_{1}(0.00125)-\tilde{e}(0.0025)}{3} & \equiv & \tilde{e}_{2}(0.0025)=2.718281826146657.\label{eq:richardsonC3}
+\end{eqnarray}
+
+\end_inset
+
+The first of these approximations is accurate to seven significant digits,
+ the second to eight, and the third to nine! And we can combine them further:
+\begin_inset Formula 
+\begin{eqnarray}
+\frac{8\tilde{e}_{2}(0.005)-\tilde{e}_{2}(0.01)}{7} & \equiv & \tilde{e}_{3}(0.01)=2.718281828281785\nonumber \\
+\frac{8\tilde{e}_{2}(0.0025)-\tilde{e}_{2}(0.005)}{7} & \equiv & \tilde{e}_{3}(0.005)=2.718281828448482.\label{eq:richardsonC4}
+\end{eqnarray}
+
+\end_inset
+
+Now we have approximations accurate to ten and eleven significant digits!
+ Looking back, we took five approximations that had no better than 3 significant
+ digits of accuracy and combined them to get two approximations that were
+ accurate to at least 10 significant digits each.
+ Magic! Okay, not magic, mathemagic! Here is how it works.
+\end_layout
+
+\begin_layout Standard
+Suppose we are approximating 
+\begin_inset Formula $p$
+\end_inset
+
+ using the formula 
+\begin_inset Formula $\tilde{p}(h)$
+\end_inset
+
+, and we know that
+\begin_inset Formula 
+\[
+\tilde{p}(h)=p+c_{1}\cdot h^{m_{1}}+c_{2}\cdot h^{m_{2}}+c_{3}\cdot h^{m_{3}}+\cdots.
+\]
+
+\end_inset
+
+Then
+\begin_inset Formula 
+\[
+\tilde{p}\left(\alpha h\right)=p+c_{1}\cdot\left(\alpha h\right)^{m_{1}}+c_{2}\cdot(\alpha h)^{m_{2}}+c_{3}\cdot(\alpha h)^{m_{3}}+\cdots.
+\]
+
+\end_inset
+
+Now if we multiply the second equation by 
+\begin_inset Formula $\alpha^{-m_{1}}$
+\end_inset
+
+ and subtract the first from it, the 
+\begin_inset Formula $h^{m_{1}}$
+\end_inset
+
+ terms vanish, and we get an approximation with error term beginning with
+ 
+\begin_inset Formula $c_{2}\cdot h^{m_{2}}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="right" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\alpha^{-m_{1}}\tilde{p}\left(\alpha h\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha^{-m_{1}}p+c_{1}\cdot h^{m_{1}}+c_{2}\alpha^{m_{2}-m_{1}}\cdot h^{m_{2}}+c_{3}\alpha^{m_{3}-m_{1}}\cdot h^{m_{3}}+\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-\left[\tilde{p}(h)\right.$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left.p+c_{1}\cdot h^{m_{1}}+c_{2}\cdot h^{m_{2}}+c_{3}\cdot h^{m_{3}}+\cdots\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha^{-m_{1}}\tilde{p}\left(\alpha h\right)-\tilde{p}(h)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(\alpha^{-m}-1)p+c_{2}(\alpha^{m_{2}-m_{1}}-1)\cdot h^{m_{2}}+c_{3}(\alpha^{m_{3}-m_{1}}-1)\cdot h^{m_{3}}+\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+With a little rearranging,
+\begin_inset Formula 
+\begin{equation}
+\frac{\alpha^{-m_{1}}\tilde{p}\left(\alpha h\right)-\tilde{p}(h)}{\alpha^{-m_{1}}-1}=p+d_{2}\cdot h^{m_{2}}+d_{3}\cdot h^{m_{3}}+\cdots\label{eq:richardsonBasis}
+\end{equation}
+
+\end_inset
+
+for some constants 
+\begin_inset Formula $d_{2},d_{3},\ldots$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $m_{2}>m_{1}$
+\end_inset
+
+, then this method will tend to improve on the two approximations 
+\begin_inset Formula $\tilde{p}(h)$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}\left(\alpha h\right)$
+\end_inset
+
+ by combining them into a single approximation with error commensurate with
+ some constant multiple of 
+\begin_inset Formula $h^{m_{2}}$
+\end_inset
+
+.
+ This calculation is the basis for Richardson's Extrapolation.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Richardson's extrapolation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It just so happens 
+\begin_inset Formula $\tilde{e}(h)$
+\end_inset
+
+ has exactly the form needed.
+ 
+\begin_inset Formula 
+\begin{equation}
+\tilde{e}(h)=e+c_{1}h+c_{2}h^{2}+c_{3}h^{3}+c_{4}h^{4}+O(h^{5})\label{eq:eErrorForm}
+\end{equation}
+
+\end_inset
+
+for some constants 
+\begin_inset Formula $c_{1},c_{2},c_{3},c_{4}$
+\end_inset
+
+.
+ The actual values of the constants are not relevant for this computation.
+ To understand the computation of 
+\begin_inset Formula $\tilde{e}_{1},$
+\end_inset
+
+ we use equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonBasis"
+
+\end_inset
+
+ with 
+\begin_inset Formula $\alpha=\frac{1}{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{1}=1$
+\end_inset
+
+ to get
+\begin_inset Formula 
+\begin{eqnarray*}
+\tilde{e}_{1}(h) & = & \frac{2\tilde{e}\left(\frac{h}{2}\right)-\tilde{e}(h)}{2-1}\\
+ & = & 2e+c_{1}h+\frac{1}{2}c_{2}h^{2}+\frac{1}{4}c_{3}h^{3}+\frac{1}{8}c_{4}h^{4}+O(h^{5})\\
+ &  & \qquad-\left[e+c_{1}h+c_{2}h^{2}+c_{3}h^{3}+c_{4}h^{4}+O(h^{5})\right]\\
+ & = & e+d_{2}h^{2}+d_{3}h^{3}+d_{4}h^{4}+O(h^{5})
+\end{eqnarray*}
+
+\end_inset
+
+for some constants 
+\begin_inset Formula $d_{2},d_{3},d_{4}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\tilde{e}_{1}(h)$
+\end_inset
+
+ is the formula that gave us the round of approximations accurate to 5 or
+ 6 significant digits.
+ It is not hard to find the constants 
+\begin_inset Formula $d_{i}$
+\end_inset
+
+ in terms of the constants 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+, but, again, the values of the constants are immaterial and can only serve
+ to complicate further refinements.
+ What is important is the form of the error.
+ Now that we know 
+\begin_inset Formula $\tilde{e}_{1}(h)=e+d_{2}h^{2}+d_{3}h^{3}+d_{4}h^{4}+O(h^{5})$
+\end_inset
+
+, we find 
+\begin_inset Formula $\tilde{e}_{2}(h)$
+\end_inset
+
+ using formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonBasis"
+
+\end_inset
+
+ with 
+\begin_inset Formula $\alpha=\frac{1}{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{1}=2$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+\tilde{e}_{2}(h) & = & \frac{4\tilde{e}_{1}\left(\frac{h}{2}\right)-\tilde{e}_{1}(h)}{3}\\
+ & = & e+k_{3}h^{3}+k_{4}h^{4}+O(h^{5})
+\end{eqnarray*}
+
+\end_inset
+
+for some constants 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+ and 
+\begin_inset Formula $k_{4}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\tilde{e}_{2}(h)$
+\end_inset
+
+ is the formula that gave us the round of approximtions accurate to 7 to
+ 9 significant digits.
+ We can again use formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonBasis"
+
+\end_inset
+
+, this time with 
+\begin_inset Formula $\alpha=\frac{1}{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{1}=3$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+\tilde{e}_{3}(h) & = & \frac{8\tilde{e}_{2}\left(\frac{h}{2}\right)-\tilde{e}_{2}(h)}{7}\\
+ & = & e+l_{4}h^{4}+O(h^{5})
+\end{eqnarray*}
+
+\end_inset
+
+for some constant 
+\begin_inset Formula $l_{4}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\tilde{e}_{3}(h)$
+\end_inset
+
+ is the formula that gave us the approximations accurate to 10 and 11 significan
+t digits.
+ Now is a good time to see if you can use the expression for 
+\begin_inset Formula $\tilde{e}_{3}(h)$
+\end_inset
+
+ and formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonBasis"
+
+\end_inset
+
+ to derive an 
+\begin_inset Formula $O(h^{5})$
+\end_inset
+
+ formula for 
+\begin_inset Formula $\tilde{e}_{4}(h)$
+\end_inset
+
+.
+ Then use your formula to compute 
+\begin_inset Formula $\tilde{e}_{4}(0.01)$
+\end_inset
+
+ using the previously given values of 
+\begin_inset Formula $\tilde{e}_{3}(0.01)$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{e}_{3}(0.005)$
+\end_inset
+
+.
+ How accurate is 
+\begin_inset Formula $\tilde{e}_{4}(0.01)?$
+\end_inset
+
+ Answers 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "eTilde4"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As a special case, Richardson's Extrapolation with 
+\begin_inset Formula $\alpha=\frac{1}{2}$
+\end_inset
+
+ applied to any approximation of the form
+\begin_inset Formula 
+\[
+\tilde{p}_{0}(h)=p+c_{1}h+c_{2}h^{2}+c_{3}h^{3}+\cdots
+\]
+
+\end_inset
+
+gives the recursively defined refinements
+\begin_inset Formula 
+\[
+\tilde{p}_{k}(h)=\frac{2^{k}\tilde{p}_{k-1}\left(\frac{h}{2}\right)-\tilde{p}_{k-1}(h)}{2^{k}-1},\quad k=1,2,3,\ldots
+\]
+
+\end_inset
+
+which are expected to increase in accuracy as 
+\begin_inset Formula $k$
+\end_inset
+
+ increases.
+ For other 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ or other forms of error, the formula for 
+\begin_inset Formula $\tilde{p}_{k}(h)$
+\end_inset
+
+ changes according to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonBasis"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{A Taylor polynomial for $
+\backslash
+tilde e(h)$} 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "crumpet:eApproximate"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $\tilde{e}$
+\end_inset
+
+ is undefined at 
+\begin_inset Formula $0$
+\end_inset
+
+, so its derivatives at 
+\begin_inset Formula $0$
+\end_inset
+
+ are as well.
+ However, if we extend the definition of 
+\begin_inset Formula $\tilde{e}$
+\end_inset
+
+ to
+\begin_inset Formula 
+\[
+\tilde{e}(h)=\begin{cases}
+(1+h)^{1/h} & \mbox{ if }h\neq0\\
+e & \mbox{ if }h=0
+\end{cases},
+\]
+
+\end_inset
+
+thus defining 
+\begin_inset Formula $\tilde{e}$
+\end_inset
+
+ at 
+\begin_inset Formula $0$
+\end_inset
+
+, then 
+\begin_inset Formula $\tilde{e}(h)$
+\end_inset
+
+ becomes infinitely differentiable at 
+\begin_inset Formula $0$
+\end_inset
+
+, and its fifth Taylor polynomial, for example, is:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula 
+\[
+\tilde{e}(h)=e-\frac{e}{2}\cdot h+\frac{11e}{24}\cdot h^{2}-\frac{7e}{16}\cdot h^{3}+\frac{2447e}{5760}\cdot h^{4}+\frac{f^{(5)}(\xi)}{120}h^{5}
+\]
+
+\end_inset
+
+for some 
+\begin_inset Formula $\xi\in(0,h)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Differentiation
+\end_layout
+
+\begin_layout Standard
+Using extrapolation, high order differentiation approximation formulas can
+ be derived from low order formulas.
+ We begin with the lowest order approximation, 
+\begin_inset Formula ${\displaystyle f'(x_{0})=\frac{-f(x_{0})+f(x_{0}+h)}{h}-\frac{h}{2}f''(\xi_{h})}$
+\end_inset
+
+.
+ The standard error term, 
+\begin_inset Formula $-\frac{h}{2}f''(\xi_{h})$
+\end_inset
+
+ does not give the error in the form 
+\begin_inset Formula $c\cdot h^{m_{1}}+O(h^{m_{2}})$
+\end_inset
+
+ as required by Richardson's extrapolation, so we return to Taylor series
+ to determine the 
+\begin_inset Formula $O(h^{m_{2}})$
+\end_inset
+
+ term:
+\begin_inset Formula 
+\[
+f(x_{0}+h)=f(x_{0})+hf'(x_{0})+\frac{1}{2}h^{2}f''(x_{0})+\frac{1}{6}h^{3}f'''(x_{0})+\cdots
+\]
+
+\end_inset
+
+so
+\begin_inset Formula 
+\[
+\frac{-f(x_{0})+f(x_{0}+h)}{h}=f'(x_{0})+\frac{1}{2}hf''(x_{0})+\frac{1}{6}h^{2}f'''(x_{0})+\cdots.
+\]
+
+\end_inset
+
+Hence 
+\begin_inset Formula 
+\begin{eqnarray*}
+f'(x_{0})-\frac{-f(x_{0})+f(x_{0}+h)}{h} & = & -\frac{1}{2}hf''(x_{0})-\frac{1}{6}h^{2}f'''(x_{0})-\cdots\\
+ & = & c_{1}h+O(h^{2})
+\end{eqnarray*}
+
+\end_inset
+
+and extrapolation will yield an 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ formula.
+ Letting 
+\begin_inset Formula $\tilde{p}(h)=\frac{-f(x_{0})+f(x_{0}+h)}{h}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha=2$
+\end_inset
+
+, and 
+\begin_inset Formula $m_{1}=1$
+\end_inset
+
+, formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonBasis"
+
+\end_inset
+
+ tells us the approximation
+\begin_inset Formula 
+\[
+\frac{\frac{1}{2}\tilde{p}(2h)-\tilde{p}(h)}{\frac{1}{2}-1}
+\]
+
+\end_inset
+
+will be an 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ formula for 
+\begin_inset Formula $f'(x_{0})$
+\end_inset
+
+.
+ Simplifying,
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{\frac{1}{2}\tilde{p}(2h)-\tilde{p}(h)}{\frac{1}{2}-1} & = & \frac{\frac{1}{2}\left[\frac{-f(x_{0})+f(x_{0}+2h)}{2h}\right]-\frac{-f(x_{0})+f(x_{0}+h)}{h}}{-\frac{1}{2}}\\
+ & = & \frac{\frac{-f(x_{0})+f(x_{0}+2h)}{4h}-\frac{-4f(x_{0})+4f(x_{0}+h)}{4h}}{-\frac{1}{2}}\\
+ & = & \frac{\frac{3f(x_{0})-4f(x_{0}+h)+f(x_{0}+2h)}{4h}}{-\frac{1}{2}}\\
+ & = & \frac{-3f(x_{0})+4f(x_{0}+h)-f(x_{0}+2h)}{2h}.
+\end{eqnarray*}
+
+\end_inset
+
+Hence we have 
+\begin_inset Formula $f'(x_{0})=\frac{-3f(x_{0})+4f(x_{0}+h)-f(x_{0}+2h)}{2h}+O(h^{2})$
+\end_inset
+
+, but this is not news.
+ This is the first 3-point formula in table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:firstDerivativeFormulas"
+
+\end_inset
+
+! Other high order derivative formulas can be derived by extrapolation too,
+ but, generally, nothing new is learned from the result.
+ We simply have a new way of deriving high order differentiation formulas.
+\end_layout
+
+\begin_layout Subsection
+Integration
+\end_layout
+
+\begin_layout Standard
+Applying extrapolation to definite integrals is more rewarding.
+ We begin with any composite integration formula and apply Richardson's
+ extrapolation.
+ We now consider the composite trapezoidal rule and use the notation 
+\begin_inset Formula $T_{k}(a,b)$
+\end_inset
+
+ to represent the approximation of 
+\begin_inset Formula $\int_{a}^{b}f(x)dx$
+\end_inset
+
+ using the trapezoidal rule with 
+\begin_inset Formula $k$
+\end_inset
+
+ subintervals.
+\end_layout
+
+\begin_layout Standard
+Before continuing we need to have a good idea what it means for the composite
+ trapezoidal rule to have error term 
+\begin_inset Formula $O\left(\left(\frac{1}{n}\right)^{2}\right)$
+\end_inset
+
+.
+ In essence, it means we should expect the error to decrease by a factor
+ of about 4 when the number of intervals is doubled.
+ We should expect the error to decrease by a factor of about 9 when the
+ number of intervals is tripled.
+ And generally we should expect the error to decrease by a factor of about
+ 
+\begin_inset Formula $\beta^{2}$
+\end_inset
+
+ when the number of intervals is multiplied by 
+\begin_inset Formula $\beta$
+\end_inset
+
+.
+ To see this effect in action, consider the definite integral
+\begin_inset Formula 
+\[
+\int_{0}^{1}\sin x\, dx
+\]
+
+\end_inset
+
+whose exact value is 
+\begin_inset Formula $1-\cos(1)\approx.4596976941318602$
+\end_inset
+
+.
+ The absolute errors of 
+\begin_inset Formula $T_{5}(0,1)$
+\end_inset
+
+, 
+\begin_inset Formula $T_{10}(0,1),$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{15}(0,1)$
+\end_inset
+
+ are
+\begin_inset Formula 
+\begin{eqnarray*}
+\left|\int_{0}^{1}\sin x\, dx-T_{5}(0,1)\right| & \approx & 1.533(10)^{-3}\\
+\left|\int_{0}^{1}\sin x\, dx-T_{10}(0,1)\right| & \approx & 3.831(10)^{-4}\\
+\left|\int_{0}^{1}\sin x\, dx-T_{15}(0,1)\right| & \approx & 1.702(10)^{-4}
+\end{eqnarray*}
+
+\end_inset
+
+We should expect 
+\begin_inset Formula $\left|\int_{0}^{1}\sin x\, dx-T_{5}(0,1)\right|$
+\end_inset
+
+ to be about four times 
+\begin_inset Formula $\left|\int_{0}^{1}\sin x\, dx-T_{10}(0,1)\right|$
+\end_inset
+
+ and nine times 
+\begin_inset Formula $\left|\int_{0}^{1}\sin x\, dx-T_{15}(0,1)\right|$
+\end_inset
+
+.
+ To check, we compute the ratios:
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{\left|\int_{0}^{1}\sin x\, dx-T_{5}(0,1)\right|}{\left|\int_{0}^{1}\sin x\, dx-T_{10}(0,1)\right|} & = & \frac{1.533(10)^{-3}}{3.831(10)^{-4}}\approx4.001\\
+\frac{\left|\int_{0}^{1}\sin x\, dx-T_{5}(0,1)\right|}{\left|\int_{0}^{1}\sin x\, dx-T_{15}(0,1)\right|} & = & \frac{1.533(10)^{-3}}{1.702(10)^{-4}}\approx9.007.
+\end{eqnarray*}
+
+\end_inset
+
+What should you expect the ratio 
+\begin_inset Formula $\frac{\left|\int_{0}^{1}\sin x\, dx-T_{10}(0,1)\right|}{\left|\int_{0}^{1}\sin x\, dx-T_{15}(0,1)\right|}$
+\end_inset
+
+ to be about? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "errorRatio"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Finally, we apply Richardson's extrapolation with 
+\begin_inset Formula $\alpha=\frac{1}{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{1}=2$
+\end_inset
+
+ to produce the higher order estimate,
+\begin_inset Formula 
+\[
+T_{k,1}(a,b)\equiv\frac{4T_{2k}(a,b)-T_{k}(a,b)}{3}.
+\]
+
+\end_inset
+
+We defer to numerics to get a handle on the error term of the refinement
+ 
+\begin_inset Formula $T_{k,1}$
+\end_inset
+
+.
+ We begin by collecting some data.
+ Continuing with the analysis of 
+\begin_inset Formula $\int_{0}^{1}\sin x\, dx$
+\end_inset
+
+, note that
+\begin_inset Formula 
+\begin{eqnarray*}
+T_{5}(0,1) & \approx & .4581643459604436\\
+T_{10}(0,1) & \approx & .4593145488579763\\
+T_{20}(0,1) & \approx & .4596019197882473\\
+T_{40}(0,1) & \approx & .4596737512942187.
+\end{eqnarray*}
+
+\end_inset
+
+Hence
+\begin_inset Formula 
+\begin{eqnarray*}
+T_{5,1}(0,1) & = & \frac{4T_{10}(0,1)-T_{5}(0,1)}{3}\approx.4596979498238206\\
+T_{10,1}(0,1) & = & \frac{4T_{20}(0,1)-T_{10}(0,1)}{3}\approx.4596977100983375\\
+T_{20,1}(0,1) & = & \frac{4T_{40}(0,1)-T_{20}(0,1)}{3}\approx.4596976951295424
+\end{eqnarray*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{\left|\int_{0}^{1}\sin x\, dx-T_{5,1}(0,1)\right|}{\left|\int_{0}^{1}\sin x\, dx-T_{10,1}(0,1)\right|} & \approx & 16.01\\
+\frac{\left|\int_{0}^{1}\sin x\, dx-T_{10,1}(0,1)\right|}{\left|\int_{0}^{1}\sin x\, dx-T_{20,1}(0,1)\right|} & \approx & 16.00.
+\end{eqnarray*}
+
+\end_inset
+
+When we double the number of subintervals, the error is decreased by a factor
+ of 16.
+ That's 
+\begin_inset Formula $2^{4}$
+\end_inset
+
+, not 
+\begin_inset Formula $2^{3}$
+\end_inset
+
+ as we might have expected! The first refinement takes us from a 
+\begin_inset Formula $O\left(\left(\frac{1}{n}\right)^{2}\right)$
+\end_inset
+
+ approximation to a 
+\begin_inset Formula $O\left(\left(\frac{1}{n}\right)^{4}\right)$
+\end_inset
+
+ approximation.
+ In other words, the error of 
+\begin_inset Formula $T_{n,1}$
+\end_inset
+
+ is 
+\begin_inset Formula $O\left(\left(\frac{1}{n}\right)^{4}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Now that we know the error of 
+\begin_inset Formula $T_{n,1}$
+\end_inset
+
+ is 
+\begin_inset Formula $O\left(\left(\frac{1}{n}\right)^{4}\right)$
+\end_inset
+
+ we can extrapolate again.
+ Applying Richardson's extrapolation with 
+\begin_inset Formula $\alpha=\frac{1}{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{1}=4$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{eqnarray*}
+T_{5,2}(0,1) & = & \frac{16T_{10,1}(0,1)-T_{5,1}(0,1)}{15}\approx.4596976941166387\\
+T_{10,2}(0,1) & = & \frac{16T_{20,1}(0,1)-T_{10,1}(0,1)}{15}\approx.4596976941316228.
+\end{eqnarray*}
+
+\end_inset
+
+We now have approximations 
+\begin_inset Formula $T_{5,2}$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{10,2}$
+\end_inset
+
+ whose errors are only about 
+\begin_inset Formula $1.522(10)^{-11}$
+\end_inset
+
+ and 
+\begin_inset Formula $2.374(10)^{-13}$
+\end_inset
+
+, respectively.
+ Use this information to calculate 
+\begin_inset Formula $T_{5,3}$
+\end_inset
+
+ and its absolute error.
+ Answers 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "t35"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The method of combining Richardson's extrapolation with the trapezoidal
+ rule is known as Romberg's Method or Romberg integration.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+numerical integration ! Romberg
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Romberg integration
+\end_layout
+
+\end_inset
+
+ The calculation is often tabulated for organizational purposes as in Table
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Romberg"
+
+\end_inset
+
+Romberg's Method
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{1,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{1,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{1,3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{2,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{2,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{4,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Romberg"
+
+\end_inset
+
+.
+ Rows are added until the differences 
+\begin_inset Formula $\left|T_{k,n}-T_{k,n+1}\right|$
+\end_inset
+
+ and 
+\begin_inset Formula $\left|T_{2k,n}-T_{k,n+1}\right|$
+\end_inset
+
+ are both less than some tolerance.
+\end_layout
+
+\begin_layout Standard
+Though Richardson's extrapolation may be applied to any composite integration
+ formula, the computations of the error terms above help explain why the
+ trapezoidal rule is the right one to use.
+ We might infer from our calculations (and it can be proven true) that the
+ error term of the composite trapezoidal rule contains only even powers
+ of 
+\begin_inset Formula $\frac{1}{n}$
+\end_inset
+
+.
+ To be explicit, we have
+\begin_inset Formula 
+\[
+\int_{a}^{b}f(x)dx=T_{n}(a,b)+c_{2}\left(\frac{1}{n}\right)^{2}+c_{4}\left(\frac{1}{n}\right)^{4}+c_{6}\left(\frac{1}{n}\right)^{6}+\cdots
+\]
+
+\end_inset
+
+so each refinement increases the least degree in the error term by 2, not
+ 1.
+ Skipping the odd degrees makes this particular choice very efficient.
+ But this method comes with a price.
+ Hidden within 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ is the assumption that 
+\begin_inset Formula $f$
+\end_inset
+
+ has a continuous second derivative.
+ Hidden within 
+\begin_inset Formula $c_{4}$
+\end_inset
+
+ is the assumption that 
+\begin_inset Formula $f$
+\end_inset
+
+ has a continuous fourth derivative.
+ And so on.
+ The accuracy of each refinement depends on 
+\begin_inset Formula $f$
+\end_inset
+
+ having two more continuous derivatives.
+ The more refinements we do, the smoother 
+\begin_inset Formula $f$
+\end_inset
+
+ must be for this method to work.
+ For this reason, it is advisable to use Romberg's Method only when the
+ integrand is known to have sufficient derivatives.
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Richardson's
+\begin_inset space ~
+\end_inset
+
+extrapolation: If approximation 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ is know to have the form
+\begin_inset Formula 
+\[
+\tilde{p}(h)=p+c_{1}h^{m_{1}}+O(h^{m_{2}})
+\]
+
+\end_inset
+
+then the approximation 
+\begin_inset Formula 
+\[
+\frac{\alpha^{-m_{1}}\tilde{p}\left(\alpha h\right)-\tilde{p}(h)}{\alpha^{-m_{1}}-1}
+\]
+
+\end_inset
+
+will have error 
+\begin_inset Formula $O(h^{m_{2}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Romberg
+\begin_inset space ~
+\end_inset
+
+integration: The application of Richardson's extrapolation to the trapezoidal
+ method.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation"
+
+\end_inset
+
+One can use Taylor Polynomials to show that
+\begin_inset Formula 
+\[
+\pi=\frac{1}{h}\sin(h\pi)+K_{2}h^{2}+K_{4}h^{4}+K_{6}h^{6}+\cdots.
+\]
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $N(h)=\frac{1}{h}\sin(h\pi)$
+\end_inset
+
+ is an 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ approximation of 
+\begin_inset Formula $\pi$
+\end_inset
+
+.
+ Use Richardson's Extrapolation to derive an 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+ approximation of 
+\begin_inset Formula $\pi$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+It is interesting to note that we can reverse engineer Richardson refinements
+ in order to approximate the 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ of equation 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "eq:eErrorForm"
+
+\end_inset
+
+.
+ For example, 
+\begin_inset Formula $\tilde{e}(h)=e+c_{1}h+O(h^{2})$
+\end_inset
+
+, and we assume the 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ term is relatively small, so we can rearrange this equation to find
+\begin_inset Formula 
+\[
+\frac{\tilde{e}(h)-e}{h}\approx c_{1}.
+\]
+
+\end_inset
+
+To take a specific example, 
+\begin_inset Formula $\frac{\tilde{e}(.005)-e}{.005}=\frac{2.711517122929293-e}{.005}\approx-1.35$
+\end_inset
+
+ so 
+\begin_inset Formula $c_{1}\approx-1.35$
+\end_inset
+
+.
+ If we pay careful attention to how the constants are affected as we refine
+ our initial approximations, we can find 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{3}$
+\end_inset
+
+, and 
+\begin_inset Formula $c_{4}$
+\end_inset
+
+ as well.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+\tilde{e}_{1}(h) & = & 2\tilde{e}\left(\frac{h}{2}\right)-\tilde{e}(h)\\
+ & = & 2e+c_{1}h+\frac{c_{2}}{2}h^{2}+\frac{c_{3}}{4}h^{3}+\frac{c_{4}}{8}h^{4}+O(h^{5})\\
+ &  & -(e+c_{1}h+c_{2}h^{2}+c_{3}h^{3}+c_{4}h^{4}+O(h^{5}))\\
+ & = & e-\frac{c_{2}}{2}h^{2}-\frac{3c_{3}}{4}h^{3}-\frac{7c_{4}}{8}h^{4}+O(h^{5}).
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $\tilde{e}_{1}(h)-e\approx-\frac{c_{2}}{2}h^{2}$
+\end_inset
+
+, from which we conclude 
+\begin_inset Formula 
+\[
+\frac{-2(\tilde{e}_{1}(h)-e)}{h^{2}}\approx c_{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use this formula and the values in 
+\begin_inset Formula $\ref{eq:richardsonC2}$
+\end_inset
+
+ to verify that 
+\begin_inset Formula $c_{2}\approx1.24$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Approximate 
+\begin_inset Formula $c_{3}$
+\end_inset
+
+ using values in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonC3"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Approximate 
+\begin_inset Formula $c_{4}$
+\end_inset
+
+ using values in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonC4"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Compare these approximations of 
+\begin_inset Formula $c_{1},c_{2},c_{3},c_{4}$
+\end_inset
+
+ to the exact values in crumpet 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "crumpet:eApproximate"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-1"
+
+\end_inset
+
+Suppose 
+\begin_inset Formula $N$
+\end_inset
+
+ approximates 
+\begin_inset Formula $M$
+\end_inset
+
+ according to 
+\begin_inset Formula $N(h)=M+K_{1}h^{3}+K_{2}h^{5}+K_{3}h^{7}+\cdots$
+\end_inset
+
+.
+ Of what order will 
+\begin_inset Formula $N_{3}(h)$
+\end_inset
+
+ (the third generation Richardson's extrapolation) be?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-2"
+
+\end_inset
+
+Suppose 
+\begin_inset Formula $N$
+\end_inset
+
+ approximates 
+\begin_inset Formula $M$
+\end_inset
+
+ according to  
+\begin_inset Formula $N(h)=M+K_{1}h^{2}+K_{2}h^{4}+K_{3}h^{6}+\cdots$
+\end_inset
+
+.
+ What would you expect the value of 
+\begin_inset Formula 
+\[
+\frac{\left|M-N(h/3)\right|}{\left|M-N(h/4)\right|}
+\]
+
+\end_inset
+
+ to be for small 
+\begin_inset Formula $h$
+\end_inset
+
+, approximately?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-3"
+
+\end_inset
+
+
+\begin_inset Formula $N(h)=\frac{1-\cos h}{h^{2}}$
+\end_inset
+
+ can be used to approximate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\lim_{h\to0}\frac{1-\cos h}{h^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Compute 
+\begin_inset Formula $N(1.0)$
+\end_inset
+
+ and 
+\begin_inset Formula $N(0.5)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-4"
+
+\end_inset
+
+Compute 
+\begin_inset Formula $N_{1}(1.0)$
+\end_inset
+
+, the first Richardson's Extrapolation, assuming
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $N(h)$
+\end_inset
+
+ has an error of the form 
+\begin_inset Formula $K_{1}h+K_{2}h^{2}+K_{3}h^{3}+\cdots$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $N(h)$
+\end_inset
+
+ has an error of the form 
+\begin_inset Formula $K_{2}h^{2}+K_{4}h^{4}+K_{6}h^{6}+\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Which of the assumptions in part 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-4"
+
+\end_inset
+
+ do you think gives the correct error and why?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The backward difference formula can be expressed as
+\begin_inset Formula 
+\[
+\begin{gathered}f'(x_{0})=\frac{1}{h}[f(x_{0})-f(x_{0}-h)]\qquad\qquad\\
+\qquad+\frac{h}{2}f''(x_{0})-\frac{h^{2}}{6}f'''(x_{0})+O(h^{3})
+\end{gathered}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use Richardson's extrapolation to derive an 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ formula for 
+\begin_inset Formula $f'(x_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The formula you derived should look familiar.
+ What formula does it look like? Is it exactly the same? Why or why not?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-5"
+
+\end_inset
+
+Derive an 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+ formula for approximating 
+\begin_inset Formula $M$
+\end_inset
+
+ that uses 
+\begin_inset Formula $N(h)$
+\end_inset
+
+, 
+\begin_inset Formula $N(\frac{h}{2})$
+\end_inset
+
+, and 
+\begin_inset Formula $N(\frac{h}{3})$
+\end_inset
+
+, and is based on the assumption that
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+M=N(h)+K_{1}h+K_{2}h^{2}+K_{3}h^{3}+\cdots.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-6"
+
+\end_inset
+
+The following data give estimates of the integral 
+\begin_inset Formula $M=\int_{0}^{3\pi/2}\cos x\, dx$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+\begin{gathered}N(h)=2.356194\qquad N(h/2)=-0.4879837\\
+N(h/4)=-0.8815732\qquad N(h/8)=-0.9709157
+\end{gathered}
+\]
+
+\end_inset
+
+Assuming 
+\begin_inset Formula $M-N(h)=K_{1}h^{2}+K_{2}h^{4}+K_{3}h^{6}+\cdots$
+\end_inset
+
+, find a third Richardson's extrapolation for 
+\begin_inset Formula $M$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-7"
+
+\end_inset
+
+Suppose that 
+\begin_inset Formula $N(h)$
+\end_inset
+
+ is an approximation of 
+\begin_inset Formula $M$
+\end_inset
+
+ for every 
+\begin_inset Formula $h>0$
+\end_inset
+
+ and that 
+\begin_inset Formula 
+\[
+M-N(h)=K_{1}h+K_{2}h^{2}+K_{3}h^{3}+\cdots
+\]
+
+\end_inset
+
+for some constants 
+\begin_inset Formula $K_{1},K_{2},K_{3},\ldots$
+\end_inset
+
+.
+ Use the values 
+\begin_inset Formula $N(h)$
+\end_inset
+
+, 
+\begin_inset Formula $N(h/3)$
+\end_inset
+
+, and 
+\begin_inset Formula $N(h/9)$
+\end_inset
+
+ to produce an 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+ approximation of 
+\begin_inset Formula $M$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-11"
+
+\end_inset
+
+Use Romberg integration to compute the integral with tolerance 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{1}^{3}\ln(\sin(x))dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{5}^{7}\sqrt{x\cos x}\, dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{1}^{4}\frac{e^{x}\ln(x)}{x}dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{10}^{13}\sqrt{1+\cos^{2}x}\, dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{\ln3}^{\ln7}\frac{e^{x}}{1+x}dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{0}^{1}\frac{x^{2}-1}{x^{2}+1}dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{0}^{2}x^{2}\ln(x^{2}+1)dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-8"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write a Romberg integration Octave function.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-10"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+(i) Use your code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-8"
+
+\end_inset
+
+ to approximate the integral using 
+\begin_inset Formula $tol=10^{-5}$
+\end_inset
+
+.
+ (ii) Calculate the actual error of the approximation.
+ (iii) Is the approximation accurate to within 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ as requested?
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculus-extrapolation-9"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{0}^{2\pi}x\sin(x^{2})dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{0.1}^{2}\frac{1}{x}\, dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{0}^{2}x^{2}\ln(x^{2}+1)\, dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+NOTE: 
+\begin_inset Formula $\int_{0}^{2}x^{2}\ln(x^{2}+1)\, dx=\frac{24\ln(5)-6\tan^{-1}(2)-4}{9}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Compare the results of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculus-extrapolation-10"
+
+\end_inset
+
+ with those of question 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "exc:calculus-composite-23"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Answers
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula ${\displaystyle \lim_{h\to0}(1+h)^{1/h}=e}$
+\end_inset
+
+: 
+\begin_inset CommandInset label
+LatexCommand label
+name "proofOfLimit"
+
+\end_inset
+
+Begin by noting 
+\begin_inset Formula $\ln\left[(1+h)^{1/h}\right]=\frac{\ln(1+h)}{h}$
+\end_inset
+
+.
+ Set 
+\begin_inset Formula 
+\begin{eqnarray*}
+L & = & \lim_{h\to0}\frac{\ln(1+h)}{h}\\
+ & = & \lim_{h\to0}\frac{\frac{d}{dh}(\ln(1+h))}{\frac{d}{dh}(h)}\\
+ & = & \lim_{h\to0}\frac{1}{1+h}\\
+ & = & 1.
+\end{eqnarray*}
+
+\end_inset
+
+Thus 
+\begin_inset Formula $L=1$
+\end_inset
+
+, and due to continuity of the exponential function, 
+\begin_inset Formula $e^{x}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\begin{eqnarray*}
+e=e^{L}=e^{\lim_{h\to0}\frac{\ln(1+h)}{h}}=\lim_{h\to0}e^{\frac{\ln(1+h)}{h}} & = & \lim_{h\to0}e^{\ln\left[(1+h)^{1/h}\right]}\\
+ & = & \lim_{h\to0}(1+h)^{1/h}.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\tilde{e}_{4}(h)$
+\end_inset
+
+: 
+\begin_inset CommandInset label
+LatexCommand label
+name "eTilde4"
+
+\end_inset
+
+We use formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:richardsonBasis"
+
+\end_inset
+
+ with 
+\begin_inset Formula $\alpha=\frac{1}{2}$
+\end_inset
+
+, 
+\begin_inset Formula $m=4$
+\end_inset
+
+, and 
+\begin_inset Formula $n=5$
+\end_inset
+
+ to find
+\begin_inset Formula 
+\begin{eqnarray*}
+\tilde{e}_{4}(h) & = & \frac{16\tilde{e}_{3}\left(\frac{h}{2}\right)-\tilde{e}_{3}(h)}{15}\\
+ & = & e+O(h^{5}).
+\end{eqnarray*}
+
+\end_inset
+
+Applying this formula to 
+\begin_inset Formula $\tilde{e}_{3}(0.01)$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{e}_{3}(0.005)$
+\end_inset
+
+ we get
+\begin_inset Formula 
+\begin{eqnarray*}
+\tilde{e}_{4}(0.01) & = & \frac{16(2.718281828448482)-2.718281828281785}{15}\\
+ & = & 2.718281828459595,
+\end{eqnarray*}
+
+\end_inset
+
+a value that is accurate to 13 significant digits!
+\end_layout
+
+\begin_layout Description
+error
+\begin_inset space ~
+\end_inset
+
+ratio: 
+\begin_inset CommandInset label
+LatexCommand label
+name "errorRatio"
+
+\end_inset
+
+We should expect 
+\begin_inset Formula $\frac{\left|\int_{0}^{1}\sin x\, dx-T_{10}\right|}{\left|\int_{0}^{1}\sin x\, dx-T_{15}\right|}$
+\end_inset
+
+ to be about 
+\begin_inset Formula $1.5^{2}=2.25$
+\end_inset
+
+ because 15 (the number of intervals used in the approximation of the denominato
+r) is 
+\begin_inset Formula $1.5$
+\end_inset
+
+ times 10 (the number of intervals used in the approximation of the numerator).
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $T_{5,3}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+and
+\begin_inset space ~
+\end_inset
+
+its
+\begin_inset space ~
+\end_inset
+
+error: 
+\begin_inset CommandInset label
+LatexCommand label
+name "t35"
+
+\end_inset
+
+
+\begin_inset Formula $\frac{\left|\int_{0}^{1}\sin x\, dx-T_{5,2}\right|}{\left|\int_{0}^{1}\sin x\, dx-T_{10,2}\right|}\approx\frac{1.522(10)^{-11}}{2.374(10)^{-13}}\approx64$
+\end_inset
+
+ so 
+\begin_inset Formula 
+\begin{eqnarray*}
+T_{5,3} & = & \frac{64T_{10,2}-T_{5,2}}{63}\approx.4596976941318606\\
+\left|\int_{0}^{1}\sin x\, dx-T_{5,3}\right| & \approx & 4(10)^{-16}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

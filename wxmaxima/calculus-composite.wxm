@@ -1,0 +1,376 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+Second derivative of erf(x)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+assume(x>0)$
+errf(x):=2/sqrt(%pi)*integrate(exp(-t^2),t,0,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(errf(x),x);
+d2:diff(errf(x),x,2);
+solve(diff(errf(x),x,3)=0);
+subst(%[2],d2);
+float(%);
+draw2d(explicit(d2,x,0,2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Calculating number of terms needed for composite trapezoidal
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+trap(a,b):=(b-a)*(f(a)+f(b))/2;
+comptrap(a,b,n):=(
+    s:(b-a)/n,
+    ans:(f(a)+f(b))/2,
+    ans:ans+sum(f(a+i*(b-a)/n),i,1,n-1),
+    ans*s
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:30$
+x0:bfloat(0.0)$ h:bfloat(3.0)$
+f(x):=sin(x)$
+ex:1.98999249660044545727157279473b0$
+f(x):=exp(-x^2)$
+ex:8.86207348259521233894484577912b−1$
+f(x):=log(3+x)$
+ex:4.45471994936400093068912843952b0$
+f(x):=x-exp(x)*cos(sqrt(exp(2*x)-x^2))$
+ex:4.57837939409486175644294144453b0$
+
+print("trapezoidal rule error:")$
+err1:abs(ex-comptrap(x0,x0+h,2^0));
+print("ratio of one error to the next should be 4 (doubling number of subintervals)")$
+print("ratio 1")$
+err2:abs(ex-comptrap(x0,x0+h,2^1))$
+err1/err2;
+print("ratio 2")$
+err3:abs(ex-comptrap(x0,x0+h,2^2))$
+err2/err3;
+print("ratio 3")$
+err4:abs(ex-comptrap(x0,x0+h,2^3))$
+err3/err4;
+print("ratio 4")$
+err5:abs(ex-comptrap(x0,x0+h,2^4))$
+err4/err5;
+print("ratio 5")$
+err6:abs(ex-comptrap(x0,x0+h,2^5))$
+err5/err6;
+print("ratio 6")$
+err7:abs(ex-comptrap(x0,x0+h,2^6))$
+err6/err7;
+print("ratio 7")$
+err8:abs(ex-comptrap(x0,x0+h,2^7))$
+err7/err8;
+print("ratio 8")$
+err9:abs(ex-comptrap(x0,x0+h,2^8))$
+err8/err9;
+print("ratio 9")$
+err10:abs(ex-comptrap(x0,x0+h,2^9))$
+err9/err10;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(descriptive)$
+tol:10^-2$
+kill(s)$
+fpp:abs(diff(f(x),x,2))$
+y:makelist(subst(x=x0+i*h/1000,fpp),i,0,1000)$
+fppmax:smax(y)$
+print("f'' max = ",fppmax)$
+float(solve(err1/4^k=tol))$
+est1:ceiling(subst(%,2^k))$
+print("number of intervals needed according to halving = ",est1)$
+float(solve(h/12*s^2*fppmax=tol))$
+est2:ceiling(subst(%[2],h/s))$
+print("number of intervals needed according to errterm = ",est2)$
+res:comptrap(x0,x0+h,est1)$
+print("with ",est1," intervals: ",res)$
+print("has error ",abs(ex-res))$
+res:comptrap(x0,x0+h,est2)$
+print("with ",est2," intervals: ",res)$
+print("has error ",abs(ex-res))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+"Exact" integrals
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(-x^2);
+I:integrate(f(x),x);
+l:bfloat(subst(x=x0,I))$
+r:bfloat(subst(x=x0+h,I))$
+r-l;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(sqrt(%pi)/2*erf(3.0));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=sin(x)$
+I:integrate(f(x),x)$
+l:bfloat(subst(x=x0,I))$
+r:bfloat(subst(x=x0+h,I))$
+r-l;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=log(3+x)$
+I:integrate(f(x),x)$
+l:bfloat(subst(x=x0,I))$
+r:bfloat(subst(x=x0+h,I))$
+r-l;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x-exp(x)*cos(sqrt(exp(2*x)-x^2));
+N:13$
+r0:makelist(comptrap(x0,x0+h,2^i),i,0,N)$
+r1:makelist((4^1*r0[i+1]-r0[i])/(4^1-1),i,1,N)$
+r2:makelist((4^2*r1[i+1]-r1[i])/(4^2-1),i,1,N-1)$
+r3:makelist((4^3*r2[i+1]-r2[i])/(4^3-1),i,1,N-2)$
+r4:makelist((4^4*r3[i+1]-r3[i])/(4^4-1),i,1,N-3)$
+r5:makelist((4^5*r4[i+1]-r4[i])/(4^5-1),i,1,N-4)$
+r6:makelist((4^6*r5[i+1]-r5[i])/(4^6-1),i,1,N-5)$
+r7:makelist((4^7*r6[i+1]-r6[i])/(4^7-1),i,1,N-6)$
+r8:makelist((4^8*r7[i+1]-r7[i])/(4^8-1),i,1,N-7)$
+r9:makelist((4^9*r8[i+1]-r8[i])/(4^9-1),i,1,N-8)$
+r10:makelist((4^10*r9[i+1]-r9[i])/(4^10-1),i,1,N-9)$
+r11:makelist((4^11*r10[i+1]-r10[i])/(4^11-1),i,1,N-10)$
+r12:makelist((4^12*r11[i+1]-r11[i])/(4^12-1),i,1,N-11)$
+r13:makelist((4^13*r12[i+1]-r12[i])/(4^13-1),i,1,N-12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Adaptive trapezoidal rule
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+adaptiveTrap(a,b,tol,fa,fb,c):=block([s,m,fm,trap,trap2,err],
+    s:b-a,
+    m:(a+b)/2,
+    fm:f(m),
+    trap:s*(fa+fb)/2,
+    trap2:(trap+s*fm)/2,
+    err:abs(trap2-trap),
+    if err<3*tol then [trap2,c+2] else adaptiveTrap(a,m,tol/2,fa,fm,c)+adaptiveTrap(m,b,tol/2,fm,fb,c)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:float(x0)$ h:float(h)$
+res:adaptiveTrap(x0,x0+h,tol,f(x0),f(x0+h),0);
+err1:abs(float(ex)-res[1]);
+x0:bfloat(x0)$ h:bfloat(h)$
+comptrap(x0,x0+h,res[2]);
+err2:abs(float(ex)-%);
+sqrt(err2/err1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Calculating number of terms needed for composite simpsons
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+simp(a,b):=(b-a)*(f(a)+4*f((a+b)/2)+f(b))/6;
+compsimp(a,b,n):=(
+    s:(b-a)/(2*n),
+    ans:f(a)+f(b),
+    ans:ans+4*sum(f(a+(i-1/2)*(b-a)/n),i,1,n),
+    ans:ans+2*sum(f(a+i*(b-a)/n),i,1,n-1),
+    ans*s/3
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:30$
+x0:bfloat(0.0)$ h:bfloat(3.0)$
+f(x):=sin(x)$
+ex:1.98999249660044545727157279473b0$
+f(x):=exp(-x^2)$
+ex:8.86207348259521233894484577912b−1$
+f(x):=x-exp(x)*cos(sqrt(exp(2*x)-x^2))$
+ex:4.57837939409486175644294144453b0$
+print("simpsons rule error:")$
+err1:abs(ex-compsimp(x0,x0+h,2^0));
+print("ratio of one error to the next should be 16 (doubling number of subintervals)")$
+print("ratio 1")$
+err2:abs(ex-compsimp(x0,x0+h,2^1))$
+err1/err2;
+print("ratio 2")$
+err3:abs(ex-compsimp(x0,x0+h,2^2))$
+err2/err3;
+print("ratio 3")$
+err4:abs(ex-compsimp(x0,x0+h,2^3))$
+err3/err4;
+print("ratio 4")$
+err5:abs(ex-compsimp(x0,x0+h,2^4))$
+err4/err5;
+print("ratio 5")$
+err6:abs(ex-compsimp(x0,x0+h,2^5))$
+err5/err6;
+print("ratio 6")$
+err7:abs(ex-compsimp(x0,x0+h,2^6))$
+err6/err7;
+print("ratio 7")$
+err8:abs(ex-compsimp(x0,x0+h,2^7))$
+err7/err8;
+print("ratio 8")$
+err9:abs(ex-compsimp(x0,x0+h,2^8))$
+err8/err9;
+print("ratio 9")$
+err10:abs(ex-compsimp(x0,x0+h,2^9))$
+err9/err10;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpppp:abs(diff(f(x),x,4))$
+y:makelist(subst(x=x0+i*h/1000,fpppp),i,0,1000)$
+fppppmax:smax(y)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(descriptive)$
+tol:10^-6$
+kill(s)$
+print("f'''' max = ",fppppmax)$
+float(solve(err1/16^k=tol))$
+est1:ceiling(subst(%,2^k))$
+print("number of intervals needed according to halving = ",est1)$
+float(solve(h/180*(s/2)^4*fppppmax=tol))$
+est2:ceiling(subst(%[4],h/s))$
+print("number of intervals needed according to errterm = ",est2)$
+res:compsimp(x0,x0+h,est1)$
+print("with ",est1," intervals: ",res)$
+print("has error ",abs(ex-res))$
+res:compsimp(x0,x0+h,est2)$
+print("with ",est2," intervals: ",res)$
+print("has error ",abs(ex-res))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Adaptive simpsons rule
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+adaptiveSimp(a,m,b,tol,fa,fm,fb,c):=block([s,m1,m2,fm1,fm2,simp,simp2,err],
+    s:b-a,
+    m1:a+s/4,
+    m2:a+3*s/4,
+    fm1:f(m1),
+    fm2:f(m2),
+    simp:s*(fa+4*fm+fb)/6,
+    simp2:s*(fa+4*fm1+2*fm+4*fm2+fb)/12,
+    err:abs(simp2-simp),
+    if err<15*tol then [simp2,c+2] else adaptiveSimp(a,m1,m,tol/2,fa,fm1,fm,c)+adaptiveSimp(m,m2,b,tol/2,fm,fm2,fb,c)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+res:adaptiveSimp(x0,x0+h/2,x0+h,10^-6,f(x0),f(x0+h/2),f(x0+h),0);
+abs(float(ex)-res[1]);
+compsimp(x0,x0+h,res[2]);
+abs(float(ex)-%);
+compsimp(x0,x0+h,427);
+abs(float(ex)-%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=(100/x^2)*sin(10/x);
+x0:1.0;
+h:2.0;
+res:adaptiveSimp(x0,x0+h/2,x0+h,10^-4,f(x0),f(x0+h/2),f(x0+h),0);
+abs(ex-res[1]);
+compsimp(x0,x0+h,res[2]);
+abs(ex-%);
+compsimp(x0,x0+h,105);
+abs(ex-%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I:integrate(f(x),x);
+ex:subst(x=bfloat(3.0),I)-subst(x=bfloat(1.0),I);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+est:comptrap(x0,x0+h,500);
+err:abs(ex-est);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+2^(log(100000.0)/log(4.0));
+2357*sqrt(10.0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+5*10^-5/(1*10^-5);
+float(sqrt(%));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Adaptive Trapezoidal example
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:0.0$ x1:3.0$
+t1:comptrap(x0,x1,1);
+(f(x0)+f(x1))/2*(x1-x0);
+t2:comptrap(x0,x1,2);
+(f(x0)+f((x0+x1)/2))/2*(x1-x0)/2+(f((x0+x1)/2)+f(x1))/2*(x1-x0)/2;
+abs(t1-t2)/3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:0.0$ x1:1.5$
+t1:comptrap(x0,x1,1);
+(f(x0)+f(x1))/2*(x1-x0);
+t2:comptrap(x0,x1,2);
+(f(x0)+f((x0+x1)/2))/2*(x1-x0)/2+(f((x0+x1)/2)+f(x1))/2*(x1-x0)/2;
+abs(t1-t2)/3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:0.0$ x1:0.75$
+t1:comptrap(x0,x1,1);
+(f(x0)+f(x1))/2*(x1-x0);
+t2:comptrap(x0,x1,2);
+(f(x0)+f((x0+x1)/2))/2*(x1-x0)/2+(f((x0+x1)/2)+f(x1))/2*(x1-x0)/2;
+abs(t1-t2)/3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:0.75$ x1:1.5$
+t1:comptrap(x0,x1,1);
+(f(x0)+f(x1))/2*(x1-x0);
+t2:comptrap(x0,x1,2);
+(f(x0)+f((x0+x1)/2))/2*(x1-x0)/2+(f((x0+x1)/2)+f(x1))/2*(x1-x0)/2;
+abs(t1-t2)/3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:1.5$ x1:3.0$
+t1:comptrap(x0,x1,1);
+(f(x0)+f(x1))/2*(x1-x0);
+t2:comptrap(x0,x1,2);
+(f(x0)+f((x0+x1)/2))/2*(x1-x0)/2+(f((x0+x1)/2)+f(x1))/2*(x1-x0)/2;
+abs(t1-t2)/3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ex;
+comptrap(0.0,3.0,6);
+ex-%;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

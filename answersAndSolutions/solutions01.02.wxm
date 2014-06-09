@@ -1,0 +1,115 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.09.0 ] */
+
+/* [wxMaxima: comment start ]
+SECTION 1.2 Taylor Polynomials
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1a)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=sin(x);
+fp(x):=cos(x);
+fpp(x):=-sin(x);
+fppp(x):=-cos(x);
+fpppp(x):=sin(x);
+x0:0$
+T3:f(x0)+fp(x0)*(x-x0)+fpp(x0)*(x-x0)^2/2!+fppp(x0)*(x-x0)^3/3!;
+R3:fpppp(xi)*(x-x0)^4/4!;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+1c)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:%pi$
+T3:f(x0)+fp(x0)*(x-x0)+fpp(x0)*(x-x0)^2/2!+fppp(x0)*(x-x0)^3/3!;
+R3:fpppp(xi)*(x-x0)^4/4!;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+3)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+f(x):=1/x;
+fp(x):=subst(t=x,diff(f(t),t))$
+fpp(x):=subst(t=x,diff(f(t),t,2))$
+fppp(x):=subst(t=x,diff(f(t),t,3))$
+fp(x);
+fpp(x);
+fppp(x);
+x0:5$
+T2(s):=subst(x=s,f(x0)+fp(x0)*(x-x0)+fpp(x0)*(x-x0)^2/2!);
+R2:fppp(xi)*(x-x0)^3/3!;
+T2(1);
+T2(9);
+abs(f(1)-T2(1));
+float(%);
+abs(f(9)-T2(9));
+float(%);
+draw2d(
+    color=blue,
+    key="T2(x)",
+    explicit(T2(x),x,1,9),
+    color=black,
+    key="f(x)",
+    explicit(f(x),x,1,9),
+    yrange=[0,1],
+    dimensions=[1000,618],
+    terminal=pdf,
+    file_name="solns001"
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+6b)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=exp(-x^2);
+fp1(x):=subst(t=x,diff(f(t),t))$
+fp2(x):=subst(t=x,diff(f(t),t,2))$
+fp3(x):=subst(t=x,diff(f(t),t,3))$
+fp4(x):=subst(t=x,diff(f(t),t,4))$
+fp5(x):=subst(t=x,diff(f(t),t,5))$
+fp6(x):=subst(t=x,diff(f(t),t,6))$
+factor(fp1(x));
+factor(fp2(x));
+factor(fp3(x));
+factor(fp4(x));
+factor(fp5(x));
+ratsimp(fp5(xi)/5!*x^5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+draw2d(
+    key="g",
+    explicit(fp5(x)/-8,x,-4,4),
+    yrange=[-4.5,4.5],
+    dimensions=[1000,618],
+    terminal=pdf,
+    file_name="solns002"
+);
+draw2d(
+    key="|g|",
+    explicit(abs(fp5(x)/-8),x,0,4),
+    key="",
+    color=red,
+    points([.4360774119276165],[fp5(.4360774119276165)/-8]),
+    yrange=[0,4.5],
+    dimensions=[1000,618],
+    terminal=pdf,
+    file_name="solns003"
+);
+eq:factor(fp6(x)/-8)=0;
+fp5(.4360774119276165)/-8;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

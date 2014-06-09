@@ -1,0 +1,42 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+Neville's Method
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(P)$
+x0:1.5;
+x:[1.0,1.3,1.6,1.9,2.2];
+y:[.7651977,.6200860,.4554022,.2818186,.1103623];
+n:length(x)$
+for i:1 thru n do (
+    P[i]:makelist(y[i],j,1,n)
+)$
+for i:1 thru n do (
+    for j:2 thru n do (
+        P[i][j]:0.0
+    )
+)$
+for j:2 thru n do (
+    for i:1 thru n+1-j do (
+        P[i][j]:((x0-x[i+j-1])*P[i][j-1]-(x0-x[i])*P[i+1][j-1])/(x[i]-x[i+j-1])
+    )
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+P[1];
+P[2];
+P[3];
+P[4];
+P[5];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(1.5-1)*(1)-(1.5-0)*(2.718281828459045);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

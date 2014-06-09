@@ -1,0 +1,197 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+Composite trapezoidal error term example
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+comptrap(a,b,n):=(
+    s:(b-a)/n,
+    ans:(f(a)+f(b))/2,
+    ans:ans+sum(f(a+i*(b-a)/n),i,1,n-1),
+    ans*s
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=sin(x);
+x0:0$ x1:1$
+ex:float(integrate(f(x),x,x0,x1));
+x0:float(x0)$ x1:float(x1)$
+T5:comptrap(x0,x1,5);
+err5:abs(ex-%);
+T10:comptrap(x0,x1,10);
+err10:abs(ex-%);
+err5/err10;
+comptrap(x0,x1,15);
+err15:abs(ex-%);
+err5/err15;
+T20:comptrap(x0,x1,20);
+T40:comptrap(x0,x1,40);
+T1_5:(4*T10-T5)/3;
+T1_10:(4*T20-T10)/3;
+T1_20:(4*T40-T20)/3;
+abs(ex-T1_5)/abs(ex-T1_10);
+abs(ex-T1_10)/abs(ex-T1_20);
+T2_5:(16*T1_10-T1_5)/15;
+T2_10:(16*T1_20-T1_10)/15;
+abs(ex-T2_5);
+abs(ex-T2_10);
+abs(ex-T2_5)/abs(ex-T2_10);
+T3_5:(64*T2_10-T2_5)/63;
+abs(ex-T3_5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+15.33/3.831;
+15.33/1.702;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Approximation of e
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+approx(h):=(1+h)^(1/h);
+h:0.01;
+ah:approx(h);
+aho2:approx(h/2);
+aho4:approx(h/4);
+aho8:approx(h/8);
+aho16:approx(h/16);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eh:float(ah-%e);
+eho2:float(aho2-%e);
+eho4:float(aho4-%e);
+eho8:float(aho8-%e);
+eho16:float(aho16-%e);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eh/h;
+2*eho2/h;
+4*eho4/h;
+8*eho8/h;
+16*eho16/h;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ap1:2*aho2-ah;
+ap2:2*aho4-aho2;
+ap3:2*aho8-aho4;
+ap4:2*aho16-aho8;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eap1:float(ap1-%e);
+eap2:float(ap2-%e);
+eap3:float(ap3-%e);
+eap4:float(ap4-%e);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+-2*eap1/h^2;
+-2*eap2/(h/2)^2;
+-2*eap3/(h/4)^2;
+-2*eap4/(h/8)^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+app1:(4*ap2-ap1)/3;
+app2:(4*ap3-ap2)/3;
+app3:(4*ap4-ap3)/3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eapp1:float(app1-%e);
+eapp2:float(app2-%e);
+eapp3:float(app3-%e);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eapp1/h^3;
+eapp2/(h/2)^3;
+eapp3/(h/4)^3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+appp1:(8*app2-app1)/7;
+appp2:(8*app3-app2)/7;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eappp1:float(appp1-%e);
+eappp2:float(appp2-%e);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eappp1/h^4;
+eappp2/(h/2)^4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+apppp1:(16*appp2-appp1)/15;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eapppp1:float(apppp1-%e);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:55$
+bfloat(%e);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+e(h):=(1+h)^(1/h);
+diff(e(h),h);
+limit(%,h,0);
+diff(e(h),h,2);
+limit(%,h,0)/2;
+diff(e(h),h,3);
+limit(%,h,0)/6;
+diff(e(h),h,4);
+limit(%,h,0)/24;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eth:e+c1*h+c2*h^2+c3*h^3+c4*h^4;
+etho2:e+c1*h/2+c2*(h/2)^2+c3*(h/2)^3+c4*(h/2)^4;
+etho4:e+c1*h/4+c2*(h/4)^2+c3*(h/4)^3+c4*(h/4)^4;
+etho8:e+c1*h/8+c2*(h/8)^2+c3*(h/8)^3+c4*(h/8)^4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+epth:expand(2*etho2-eth);
+eptho2:expand(2*etho4-etho2);
+eptho4:expand(2*etho8-etho4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(-11/24*%e/2);
+float(11/24*%e);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eppth:expand((4*eptho2-epth)/3);
+epptho2:expand((4*eptho4-eptho2)/3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(-7/16*%e/8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+epppth:expand((8*epptho2-eppth)/7);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(-(2447*%e)/5760/64);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

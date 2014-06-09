@@ -1,0 +1,79 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+f5(x):=exp(x);
+integrate(f5(x),x)$
+integrate(%,x)$
+integrate(%,x)$
+integrate(%,x);
+integrate(%,x);
+fprime(x):=exp(x)$
+f(x):=exp(x)$
+ratsimp(diff(f(x),x,5));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h:.1$
+x0:2$
+errterm:h^4/30*f5(xi)$
+approx:(f(x0-2*h)-8*f(x0-h)+8*f(x0+h)-f(x0+2*h))/(12*h);
+err:fprime(x0)-approx;
+draw2d(explicit(errterm,xi,x0-2*h,x0+2*h),explicit(err,xi,x0-2*h,x0+2*h))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+exact:fp(x0)-1/6*h*fpp(x0)+(-1/6*h)^2/2!*fppp(x0)+(-1/6*h)^3/3!*fpppp(x0)+(-1/6*h)^4/4!*fppppp(x0);
+fx0m2h:f(x0)-2*h*fp(x0)+(-2*h)^2/2!*fpp(x0)+(-2*h)^3/3!*fppp(x0)+(-2*h)^4/4!*fpppp(x0)+(-2*h)^5/5!*fppppp(x0);
+fx0mh:f(x0)-1*h*fp(x0)+(-1*h)^2/2!*fpp(x0)+(-1*h)^3/3!*fppp(x0)+(-1*h)^4/4!*fpppp(x0)+(-1*h)^5/5!*fppppp(x0);
+fx0ph:f(x0)+1*h*fp(x0)+(1*h)^2/2!*fpp(x0)+(1*h)^3/3!*fppp(x0)+(1*h)^4/4!*fpppp(x0)+(1*h)^5/5!*fppppp(x0);
+fx0p2h:f(x0)+2*h*fp(x0)+(2*h)^2/2!*fpp(x0)+(2*h)^3/3!*fppp(x0)+(2*h)^4/4!*fpppp(x0)+(2*h)^5/5!*fppppp(x0);
+ph:expand((-2*fx0mh+f(x0)+fx0ph)/(3*h));
+exact-ph;
+alpha:2$
+m:2$
+pah:subst(h=alpha*h,ph);
+approx:expand((alpha^-m*pah-ph)/(alpha^-m-1));
+exact-approx;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Error term for trapezoidal rule
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fx0ph:f(x0)+1*h*fp(x0)+(1*h)^2/2!*fpp(x0)+(1*h)^3/3!*fppp(x0)+(1*h)^4/4!*fpppp(x0)+(1*h)^5/5!*fppppp(x0);
+exact:h*f(x0)+1/2*h^2*fp(x0)+1/6*h^3*fpp(x0)+1/24*h^4*fppp(x0)+1/120*h^5*fpppp(x0)+1/720*h^6*fppppp(x0);
+approx:expand(h*(f(x0)+fx0ph)/2);
+eh:exact-approx;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load('draw)$
+f(x):=(1-x^2)*(exp(x)+sin(x));
+x0:0.0$ h:1.0$
+draw2d(explicit(diff(f(x),x,2),x,x0,x0+h))$
+T(a,b):=(b-a)*(f(a)+f(b))/2;
+T2(a,b):=T(a,(a+b)/2)+T((a+b)/2,b);
+R1(a,b):=(4*T2(a,b)-T(a,b))/3;
+R12(a,b):=R1(a,(a+b)/2)+R1((a+b)/2,b);
+R2(a,b):=(16*R12(a,b)-R1(a,b))/15;
+R22(a,b):=R2(a,(a+b)/2)+R2((a+b)/2,b);
+ex:quad_qags(f(x),x,x0,x0+h)[1]$
+errT:abs(ex-T(x0,x0+h));
+errT2:abs(ex-T2(x0,x0+h));
+errT/errT2;
+log(%)/log(2.0);
+errR1:abs(ex-R1(x0,x0+h));
+errR12:abs(ex-R12(x0,x0+h));
+errR1/errR12;
+log(%)/log(2.0);
+errR2:abs(ex-R2(x0,x0+h));
+errR22:abs(ex-R22(x0,x0+h));
+errR2/errR22;
+log(%)/log(2.0);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

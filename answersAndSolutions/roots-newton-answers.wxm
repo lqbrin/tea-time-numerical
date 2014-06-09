@@ -1,0 +1,161 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+g:100/x^2*sin(10/x);
+gp:diff(g,x);
+f:ratsimp(x-g/gp);
+x0:1.25;
+x1:subst(x=x0,f);
+x2:subst(x=x1,f);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g:2*log(1+x^2)-x;
+f(x0,x1):=x1-subst(x=x1,g)*(x1-x0)/(subst(x=x1,g)-subst(x=x0,g));
+f(5.0,6.0);
+f(6.0,%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g:x^4+2*x^3-x-3;
+gp:diff(g,x);
+f:x-g/gp;
+ratsimp(%);
+fp:diff(f,x);
+eq1:fp=1;
+eq1:expand(eq1*(4*x^3+6*x^2−1)^2);
+eq1:eq1-(12*x^6+36*x^5+24*x^4−12*x^3−48*x^2−36*x);
+eq2:fp=-1;
+eq2:expand(eq2*(4*x^3+6*x^2−1)^2);
+eq2:eq2-(−16*x^6−48*x^5−36*x^4+8*x^3+12*x^2−1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:.36603;
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+x0:subst(x=x0,f);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(9.149620618+sqrt(9.149620618))*(10.850379382+sqrt(10.850379382));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:30$
+g:x^3-3*x+3;
+gp:diff(g,x);
+f:x-g/gp;
+eqn1:f=1;
+eqn1:ratsimp(eqn1);
+eqn1*(3*x^2-3);
+eqn2:f=-1;
+eqn2:ratsimp(eqn2);
+eqn2*(3*x^2-3);
+solve(eqn2);
+bfloat(%[3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g:exp(3*x)-27*x^6+27*x^4*exp(x)-9*x^2*exp(2*x);
+gp:diff(g,x);
+f:x-g/gp;
+x0:4.0;
+for i:1 thru 10 do (
+  x0:subst(x=x0,f)
+);
+x0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g:exp(6*x)+3*log(2.0)^2*exp(2*x)-log(8.0)*exp(4*x)-log(2.0)^3;
+gp:diff(g,x);
+f:x-g/gp;
+x0:0.0;
+for i:1 thru 101 do (
+  x0:subst(x=x0,f)
+);
+exact:x0;
+x0:0.0;
+i:0$
+while (abs(x0-exact)>.0002) do (
+  x0:subst(x=x0,f),
+  disp(abs(x0-exact)),
+  i:i+1
+);
+i;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:3.7201766622615984*10^−4;
+x1:2.4933434933779863*10^−4;
+x2:1.6752024023472534*10^−4;
+a:x0-(x1-x0)^2/(x2-2*x1+x0);
+x0^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+assume(x>0,t>0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(x):=10.0-romberg(exp(t)/(1+t),t,0.0,x);
+gp(x):=-exp(x)/(1+x);
+f(x):=x-g(x)/gp(x);
+x0:2.0;
+for i:1 thru 10 do (
+    x0:f(x0),
+    print(x0)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw)$
+draw2d(explicit(g(x),x,3,4),explicit(0,x,3,4));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

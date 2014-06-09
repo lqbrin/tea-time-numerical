@@ -1,0 +1,5330 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:RootsOfPolynomials"
+
+\end_inset
+
+Roots of Polynomials
+\end_layout
+
+\begin_layout Subsection
+Synthetic division revisited
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+synthetic division
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+division ! synthetic
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You may recall using the rational roots theorem and synthetic division to
+ find roots of polynomials of degree 3 or more in algebra.
+ The process was something like this.
+ You made a list of possible roots based on the rational roots theorem.
+ You checked each one using synthetic division until you either found a
+ root or ran out of candidates.
+ It is possible that was as far as your class took the process, but there
+ is more to say.
+\end_layout
+
+\begin_layout Standard
+Suppose we have a polynomial 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ and a number 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Synthetic division gives coefficients of 
+\begin_inset Formula $q(x)$
+\end_inset
+
+ such that 
+\begin_inset Formula $p(x)=q(x)\cdot(x-t)+p(t)$
+\end_inset
+
+.
+ For example, the synthetic division
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{gathered}t\\
+\overbrace{\quad}
+\end{gathered}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{gathered}p(x)\\
+\overbrace{\qquad\qquad\qquad\qquad\qquad}
+\end{gathered}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $12$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-42$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $117$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $14$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-39$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $111$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{gathered}\underbrace{\qquad\qquad\qquad}\\
+q(x)
+\end{gathered}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{gathered}\underbrace{\qquad\quad}\\
+p(t)
+\end{gathered}
+$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+tells us that 
+\begin_inset Formula $p(x)=-4x^{3}+2x^{2}+3x-6=(-4x^{2}+14x-39)(x+3)+111$
+\end_inset
+
+.
+ While it is a small burden to evaluate the expression 
+\begin_inset Formula $-4x^{3}+2x^{2}+3x-6$
+\end_inset
+
+ when 
+\begin_inset Formula $x=-3$
+\end_inset
+
+, it is no burden at all to evaluate 
+\begin_inset Formula $(-4x^{2}+14x-39)(x+3)+111$
+\end_inset
+
+ when 
+\begin_inset Formula $x=-3$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $(x+3)$
+\end_inset
+
+ factor is zero, so it doesn't matter to what 
+\begin_inset Formula $(-4x^{2}+14x-39)$
+\end_inset
+
+ evaluates.
+ The product is zero and 
+\begin_inset Formula $(-4x^{2}+14x-39)(x+3)+111$
+\end_inset
+
+ evaluates to 
+\begin_inset Formula $111$
+\end_inset
+
+.
+ Therefore, 
+\begin_inset Formula $p(-3)=111$
+\end_inset
+
+.
+ Synthetic division gives a quick way to evaluate a polynomial.
+ The number at the end of the division is the value of the polynomial at
+ the value of the divisor.
+\end_layout
+
+\begin_layout Standard
+More generally, here is a dissection of the division of 
+\begin_inset Formula $p(x)=a_{0}+a_{1}x+\cdots+a_{n}x^{n}$
+\end_inset
+
+ by 
+\begin_inset Formula $x-t$
+\end_inset
+
+ using synthetic division:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}t$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}(a_{n}t+a_{n-1})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}(\cdots a_{n}(a_{n}(a_{n}t+a_{n-1})+a_{n-2})+\cdots+a_{1})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}t+a_{n-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a_{n}(a_{n}t+a_{n-1})+a_{n-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\cdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p(t)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Beginning with 
+\begin_inset Formula $t$
+\end_inset
+
+ in the upper left corner, we end up with 
+\begin_inset Formula $p(t)$
+\end_inset
+
+ in the lower right corner.
+ It is not only when the number in the lower right corner is zero do we
+ find something of interest.
+ Every synthetic division gives something of interest! The number in the
+ bottom right corner is 
+\begin_inset Formula $p(t)$
+\end_inset
+
+ whether it turns out to be zero or not.
+ And there is more.
+\end_layout
+
+\begin_layout Standard
+The numbers 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+, 
+\begin_inset Formula $a_{n}t+a_{n-1}$
+\end_inset
+
+, 
+\begin_inset Formula $a_{n}(a_{n}t+a_{n-1})+a_{n-2}$
+\end_inset
+
+, and so on, appearing in the bottom row of the synthetic division give
+ the coefficients of the quotient, 
+\begin_inset Formula $q(x)$
+\end_inset
+
+.
+ Every synthetic division gives a decomposition of the polynomial into quotient
+ and remainder.
+ Thus, with every synthetic division, we get an equivalent expression of
+ the form 
+\begin_inset Formula $q(x)\cdot(x-t)+p(t)$
+\end_inset
+
+.
+ There is still more.
+\end_layout
+
+\begin_layout Standard
+Differentiating the equation 
+\begin_inset Formula $p(x)=q(x)\cdot(x-t)+p(t)$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $x$
+\end_inset
+
+ gives
+\begin_inset Formula 
+\[
+p'(x)=q'(x)\cdot(x-t)+q(x).
+\]
+
+\end_inset
+
+Hence 
+\begin_inset Formula $p'(t)=q'(t)\cdot(t-t)+q(t)=q(t)$
+\end_inset
+
+.
+ So, not only do the numbers in the bottom row give the coefficients of
+ the quotient, they double as coefficients appropriate for evaluating 
+\begin_inset Formula $p'(t)$
+\end_inset
+
+.
+ Returning to the previous example, if we desire to calculate 
+\begin_inset Formula $p'(-3)$
+\end_inset
+
+, we simply continue the synthetic division as in
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $12$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-42$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $117$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $14$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-39$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $111$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $12$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-78$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $26$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-117$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+and find out 
+\begin_inset Formula $p'(-3)=-117$
+\end_inset
+
+.
+ The procedure of calculating 
+\begin_inset Formula $p(t)$
+\end_inset
+
+ and 
+\begin_inset Formula $p'(t)$
+\end_inset
+
+ by simultaneous synthetic divisions is known as Horner's method 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Horner's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Horner's|see{Horner's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ and is especially convenient for use in Newton's method.
+ If we were trying to find a root of 
+\begin_inset Formula $p(x)=-4x^{3}+2x^{2}+3x-6$
+\end_inset
+
+ with initial approximation 
+\begin_inset Formula $x_{0}=-3$
+\end_inset
+
+ we would have, at this point, 
+\begin_inset Formula $x_{1}=x_{0}-\frac{p(x_{0})}{p'(x_{0})}=-3-\frac{111}{-117}\approx-2.05128$
+\end_inset
+
+.
+ Yet there is more.
+\end_layout
+
+\begin_layout Subsection
+Finding all the roots of polynomials
+\end_layout
+
+\begin_layout Standard
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+polynomial ! finding all roots
+\end_layout
+
+\end_inset
+
+When we happen upon a root of the polynomial 
+\begin_inset Formula $p(x)$
+\end_inset
+
+, the result of the synthetic divsion, 
+\begin_inset Formula $p(x)=q(x)(x-t)+p(t)$
+\end_inset
+
+, reduces to 
+\begin_inset Formula $p(x)=q(x)(x-t)$
+\end_inset
+
+ since 
+\begin_inset Formula $t$
+\end_inset
+
+ is a root, meaning 
+\begin_inset Formula $p(t)=0$
+\end_inset
+
+.
+ In this case, we have a factorization of 
+\begin_inset Formula $p(x)$
+\end_inset
+
+.
+ The rest of the roots of 
+\begin_inset Formula $p$
+\end_inset
+
+ are exactly the roots of 
+\begin_inset Formula $q$
+\end_inset
+
+, so having found one root, we have reduced the problem of finding roots
+ of 
+\begin_inset Formula $p$
+\end_inset
+
+ to (a) noting the root we have found plus (b) finding the roots of the
+ polynomial 
+\begin_inset Formula $q$
+\end_inset
+
+, a polynomial of one degree less than that of 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ In this way, we have 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+deflation
+\end_layout
+
+\end_inset
+
+ deflated the problem of finding the 
+\begin_inset Formula $n$
+\end_inset
+
+ roots of the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ degree polynomial 
+\begin_inset Formula $p$
+\end_inset
+
+ to finding the 
+\begin_inset Formula $n-1$
+\end_inset
+
+ roots of the 
+\begin_inset Formula $(n-1)$
+\end_inset
+
+-degree polynomial 
+\begin_inset Formula $q$
+\end_inset
+
+.
+ Taking it a step further, when we have found a root of 
+\begin_inset Formula $q$
+\end_inset
+
+, we can use synthetic division to reduce the problem again.
+ We (a) note the root of 
+\begin_inset Formula $q$
+\end_inset
+
+ and (b) continue searching for roots of the quotient, an 
+\begin_inset Formula $(n-2)$
+\end_inset
+
+-degree polynomial.
+ We continue this way, deflating the problem by one degree each time we
+ find a root until we have reduced the problem to a 
+\begin_inset Formula $2^{nd}$
+\end_inset
+
+ degree polynomial.
+ At this point, we have a quadratic polynomial and can use the quadratic
+ equation to find the last two roots.
+\end_layout
+
+\begin_layout Standard
+For example, 
+\begin_inset Formula $-1.18985$
+\end_inset
+
+ is (approximately) a root of 
+\begin_inset Formula $p(x)=-4x^{3}+2x^{2}+3x-6$
+\end_inset
+
+.
+ Synthetic division of 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ by 
+\begin_inset Formula $(x+1.18985)$
+\end_inset
+
+ gives
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1.18985$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.7594$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-8.04267$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.00002$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6.7594$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-5.04267$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.00002$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The (near) zero in the box at the bottom-right indicates that 
+\begin_inset Formula $-1.18985$
+\end_inset
+
+ is approximately a root.
+ There is no appreciable remainder upon division of 
+\begin_inset Formula $-4x^{3}+2x^{2}+3x-6$
+\end_inset
+
+ by 
+\begin_inset Formula $x+1.18985$
+\end_inset
+
+.
+ Moreover, the numbers 
+\begin_inset Formula $-4,6.7594,-5.04267$
+\end_inset
+
+ in the bottom row give the coefficients of 
+\begin_inset Formula $q(x)$
+\end_inset
+
+.
+ Thus, we find from this division that 
+\begin_inset Formula $-4x^{3}+2x^{2}+3x-6=\approx(-4x^{2}+6.7594x-5.04267)(x+118985)$
+\end_inset
+
+.
+ We can now find the other two roots by locating the roots of 
+\begin_inset Formula $q(x)=-4x^{2}+6.7594x-5.04267$
+\end_inset
+
+.
+ Using the quadratic formula, they are
+\begin_inset Formula 
+\[
+\frac{-6.7594\pm\sqrt{6.7594^{2}-4(-4)(-5.04267)}}{-8}\approx.84493\pm.73944i.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Our process will lead us to finding 
+\begin_inset Formula $n$
+\end_inset
+
+ roots of any 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ degree polynomial.
+ It is important to note that some of these roots may be complex and some
+ of them may be repeated.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{The Fundamental Theorem of Algebra}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The process of finding one root of a given polynomial, deflating, and finding
+ another mirrors quite closely the mathematical theorems of algebra.
+ The Fundamental Theorem of Algebra
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! of Algebra, Fundamental
+\end_layout
+
+\end_inset
+
+ states that every polynomial with complex coefficients and degree at least
+ one has a complex root.
+ Thus our search for a root is not in vain! We can then write our polynomial
+ in factored form and continue.
+ The Fundamental Theorem says that there is again a root of the deflated
+ polynomial.
+ And if we keep track of all the roots as we find them, we end up writing
+ our polynomial in the form
+\begin_inset Formula 
+\begin{equation}
+p(x)=a(x-r_{1})^{e_{1}}(x-r_{2})^{e_{2}}\cdots(x-r_{k})^{e_{k}},\label{eq:factoredPolynomial}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $a$
+\end_inset
+
+ is a nonzero constant, 
+\begin_inset Formula $r_{1},r_{2},\ldots,r_{k}$
+\end_inset
+
+ are the 
+\begin_inset Formula $k$
+\end_inset
+
+ distinct complex roots, and 
+\begin_inset Formula $e_{1},e_{2},\ldots,e_{k}$
+\end_inset
+
+ are the so-called (positive integer) multiplicities of the roots.
+ From this form, we see that the degree of the polynomial equals the sum
+ of the multiplicities, 
+\begin_inset Formula $e_{1}+e_{2}+\cdots+e_{k}$
+\end_inset
+
+.
+ This is what we mean when we say the number of roots, counting multiplicity,
+ is equal to the degree of the polynomial.
+ Thus when searching for the roots of a polynomial of degree 
+\begin_inset Formula $n$
+\end_inset
+
+, we know we are looking for 
+\begin_inset Formula $n$
+\end_inset
+
+ roots, but not necessarily 
+\begin_inset Formula $n$
+\end_inset
+
+ distinct roots.
+ Some of them may be repeated and the repetitions are accounted for in the
+ multiplicities.
+ To formalize the claim in equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:factoredPolynomial"
+
+\end_inset
+
+, we have the follwing theorem.
+\end_layout
+
+\begin_layout Theorem
+(Fundamental Factorization Theorem)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Fundamental Factorization
+\end_layout
+
+\end_inset
+
+ If 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+ and 
+\begin_inset Formula $p$
+\end_inset
+
+ is a degree 
+\begin_inset Formula $n$
+\end_inset
+
+ polynomial, then 
+\begin_inset Formula 
+\[
+p(x)=a(x-r_{1})^{e_{1}}(x-r_{2})^{e_{2}}\cdots(x-r_{k})^{e_{k}}
+\]
+
+\end_inset
+
+for some constant 
+\begin_inset Formula $a\neq0$
+\end_inset
+
+, roots 
+\begin_inset Formula $r_{1},r_{2},\ldots,r_{k}$
+\end_inset
+
+, and positive integer exponents 
+\begin_inset Formula $e_{1},e_{2},\ldots,e_{k}$
+\end_inset
+
+ where
+\begin_inset Formula 
+\[
+\sum_{j=1}^{k}e_{j}=n.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Suppose 
+\begin_inset Formula $n=1$
+\end_inset
+
+ so 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ takes the form 
+\begin_inset Formula $ax+b$
+\end_inset
+
+ with 
+\begin_inset Formula $a\neq0$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $p(x)=a(x-(-\frac{b}{a}))^{1}$
+\end_inset
+
+ and thus takes the required form.
+ Now suppose all polynomials of some degree 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+ take the required form and let 
+\begin_inset Formula $p$
+\end_inset
+
+ be a polynomial of degree 
+\begin_inset Formula $n+1$
+\end_inset
+
+.
+ By the Fundamental Theorem of Algebra, 
+\begin_inset Formula $p$
+\end_inset
+
+ has a root.
+ Call it 
+\begin_inset Formula $\rho$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $x-\rho$
+\end_inset
+
+ is a factor of 
+\begin_inset Formula $p$
+\end_inset
+
+ so 
+\begin_inset Formula $p$
+\end_inset
+
+ can be written as 
+\begin_inset Formula $p(x)=(x-\rho)\cdot q(x)$
+\end_inset
+
+ for some polynomial 
+\begin_inset Formula $q$
+\end_inset
+
+ of degree 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ By the inductive hypothesis, we have that 
+\begin_inset Formula $q$
+\end_inset
+
+ takes the required form, so 
+\begin_inset Formula 
+\[
+p(x)=(x-\rho)\cdot a(x-r_{1})^{e_{1}}(x-r_{2})^{e_{2}}\cdots(x-r_{k})^{e_{k}}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $e_{1}+e_{2}+\cdots+e_{k}=n$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $\rho$
+\end_inset
+
+ is distinct from 
+\begin_inset Formula $r_{1},r_{2},\ldots,r_{k}$
+\end_inset
+
+, then 
+\begin_inset Formula $p$
+\end_inset
+
+ takes the form
+\begin_inset Formula 
+\[
+p(x)=a(x-r_{1})^{e_{1}}(x-r_{2})^{e_{2}}\cdots(x-r_{k})^{e_{k}}(x-\rho)^{1}.
+\]
+
+\end_inset
+
+If 
+\begin_inset Formula $\rho$
+\end_inset
+
+ equals one of 
+\begin_inset Formula $r_{1},r_{2},\ldots,r_{k}$
+\end_inset
+
+, say 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+, then 
+\begin_inset Formula $p$
+\end_inset
+
+ takes the form 
+\begin_inset Formula 
+\[
+p(x)=a(x-r_{1})^{e_{1}}(x-r_{2})^{e_{2}}\cdots(x-r_{j})^{e_{j}+1}\cdots(x-r_{k})^{e_{k}}.
+\]
+
+\end_inset
+
+In either case, 
+\begin_inset Formula $p$
+\end_inset
+
+ takes the required form and the proof is complete.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Pseudo-pseudo-code for this procedure might look something like this:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $p$
+\end_inset
+
+ is a polynomial of degree 
+\begin_inset Formula $n>2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Input: Polynomial 
+\begin_inset Formula $p(x)$
+\end_inset
+
+; tolerance 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: For 
+\begin_inset Formula $i=1$
+\end_inset
+
+ to 
+\begin_inset Formula $n-2$
+\end_inset
+
+ do Steps 2-5:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Find a root 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ of 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ [using 
+\begin_inset Formula $tol$
+\end_inset
+
+, 
+\begin_inset Formula $N$
+\end_inset
+
+, and some root-finding method];
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: If error trying to find 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ then
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\qquad$
+\end_inset
+
+return 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Root of degree 
+\begin_inset Formula $n-i+1$
+\end_inset
+
+ not found.
+\begin_inset Quotes erd
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Factor 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ as 
+\begin_inset Formula $q(x)\cdot(x-x_{0})$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: Set 
+\begin_inset Formula $x_{i}=x_{0}$
+\end_inset
+
+; 
+\begin_inset Formula $p(x)=q(x)$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Output: Approximate roots.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To refine the pseudo-pseudo-code into pseudo-code, we will use Newton's
+ Method, assisted by Horner's Method, in Step 2.
+ The usual drawback of Newton's Method, the requirement that the derivative
+ be known and calculated, is but a small inconvenience when Horner's Method
+ is employed.
+ But how do we represent polynomials in a computer program so that we can
+ accomplish Steps 4 and 5? The same way we implement code to execute Horner's
+ Method.
+ Pseudo-code for Horner's method, with an array:
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Horner's method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $p$
+\end_inset
+
+ is a polynomial of degree 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Input: array 
+\begin_inset Formula $[c]$
+\end_inset
+
+ of coefficients of 
+\begin_inset Formula $p(x)=c_{1}+c_{2}x+c_{3}x^{2}+\cdots+c_{n+1}x^{n}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $y=c_{n+1}$
+\end_inset
+
+; 
+\begin_inset Formula $z=c_{n+1}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: For 
+\begin_inset Formula $j=n,n-1,\ldots,2$
+\end_inset
+
+ do Step 3
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: Set 
+\begin_inset Formula $y=x_{0}y+c_{j}$
+\end_inset
+
+; 
+\begin_inset Formula $z=x_{0}z+y$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Set 
+\begin_inset Formula $y=x_{0}y+c_{1}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Output: 
+\begin_inset Formula $y=p(x_{0})$
+\end_inset
+
+ and 
+\begin_inset Formula $z=p'(x_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As in synthetic division, there is no need to retain the variable to various
+ exponents.
+ Only the coefficients are needed to define a polynomial.
+ So, in the program, a polynomial is represented by an array of numbers.
+ Putting together our pseudo-pseudo code, Newton's Method and Horner's Method
+ into a single program, we have a method for finding all the roots of a
+ polynomial:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "pseudo:allroots"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $p$
+\end_inset
+
+ is a polynomial of degree 
+\begin_inset Formula $n>2$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+, the constant coefficient of 
+\begin_inset Formula $p$
+\end_inset
+
+, is nonzero.
+\end_layout
+
+\begin_layout Description
+Input: array 
+\begin_inset Formula $[c]$
+\end_inset
+
+ of coefficients of 
+\begin_inset Formula $p(x)=c_{1}+c_{2}x+c_{3}x^{2}+\cdots+c_{n+1}x^{n}$
+\end_inset
+
+; tolerance 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+; initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $m=n$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: For 
+\begin_inset Formula $i=1$
+\end_inset
+
+ to 
+\begin_inset Formula $n-2$
+\end_inset
+
+ do Steps 3-13:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: Set 
+\begin_inset Formula $k=0$
+\end_inset
+
+; Set 
+\begin_inset Formula $x=x_{0}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: While 
+\begin_inset Formula $|x-x_{0}|>tol$
+\end_inset
+
+ or 
+\begin_inset Formula $k=0$
+\end_inset
+
+ do Steps 5-12:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: If 
+\begin_inset Formula $k=N$
+\end_inset
+
+ then return 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Not all roots found.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6: Set 
+\begin_inset Formula $x_{0}=x$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+7: Set 
+\begin_inset Formula $d_{m}=c_{m+1}$
+\end_inset
+
+; 
+\begin_inset Formula $z=c_{m+1}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+8: For 
+\begin_inset Formula $j=m,m-1,\ldots,2$
+\end_inset
+
+ do Step 9
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+9: Set 
+\begin_inset Formula $d_{j-1}=x_{0}d_{j}+c_{j}$
+\end_inset
+
+; 
+\begin_inset Formula $z=x_{0}z+d_{j-1}$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+10: Set 
+\begin_inset Formula $y=x_{0}d_{1}+c_{1}$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+11: Set 
+\begin_inset Formula $x=x_{0}-\frac{y}{z}$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+12: Set 
+\begin_inset Formula $k=k+1$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+13: Set 
+\begin_inset Formula $r_{i}=x$
+\end_inset
+
+; 
+\begin_inset Formula $[c]=[d]$
+\end_inset
+
+; 
+\begin_inset Formula $m=m-1$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+14: Set 
+\begin_inset Formula $D=\sqrt{c_{2}^{2}-4c_{1}c_{3}}$
+\end_inset
+
+; 
+\begin_inset Formula $s_{1}=-c_{2}+D$
+\end_inset
+
+; 
+\begin_inset Formula $s_{2}=-c_{2}-D$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+15: If the real part of 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ is negative, then set 
+\begin_inset Formula $r_{n-1}=\frac{s_{1}}{2c_{3}}$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{n}=\frac{2c_{1}}{s_{1}}$
+\end_inset
+
+; else set 
+\begin_inset Formula $r_{n-1}=\frac{s_{2}}{2c_{3}}$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{n}=\frac{2c_{1}}{s_{2}}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Output: Array 
+\begin_inset Formula $[r_{1},r_{2},\ldots,r_{n}]$
+\end_inset
+
+ of approximate roots.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Steps 4 through 12 implement Newton's Method to find a single root, using
+ Horner's Method in Steps 7 through 10 to calculte the value of the polynomial
+ and its derivative at 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ Care is taken to calculate and store the coefficients 
+\begin_inset Formula $[d]$
+\end_inset
+
+ of the quotient for easy referral in Step 13.
+ It is assumed that the square root calculated in Step 14 is the principle
+ branch of the complex square root.
+ Steps 14 and 15 utilize an alternate form of the quadratic formula that
+ avoids the subtraction of nearly equal quantities so much as possible.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Alternate Quadratic Formula}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+quadratic formula ! alternate
+\end_layout
+
+\end_inset
+
+When the roots of 
+\begin_inset Formula $p(x)=ax^{2}+bx+c$
+\end_inset
+
+ are small, the numerator of the quadratic formula, 
+\begin_inset Formula $x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}$
+\end_inset
+
+, is necessarily small.
+ In this case, it is best to match the signs of 
+\begin_inset Formula $-b$
+\end_inset
+
+ and 
+\begin_inset Formula $\pm\sqrt{b^{2}-4ac}$
+\end_inset
+
+ in order to avoid subtracting quantities of nearly equal value.
+ Choosing the sign of the square root term this way gives one of the roots
+ as accurately as possible, but leaves the other root undetermined.
+ Multiplying both numerator and denominator by the conjugate of the numerator
+ gives an alternate expression of the quadratic formula:
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}\cdot\frac{-b\mp\sqrt{b^{2}-4ac}}{-b\mp\sqrt{b^{2}-4ac}} & = & \frac{b^{2}-(b^{2}-4ac)}{2a(-b\mp\sqrt{b^{2}-4ac})}\\
+ & = & \frac{4ac}{2a(-b\mp\sqrt{b^{2}-4ac})}\\
+ & = & \frac{2c}{-b\mp\sqrt{b^{2}-4ac}}.
+\end{eqnarray*}
+
+\end_inset
+
+Expanding, we have
+\begin_inset Formula 
+\[
+\frac{-b+\sqrt{b^{2}-4ac}}{2a}=\frac{2c}{-b-\sqrt{b^{2}-4ac}}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+\frac{-b-\sqrt{b^{2}-4ac}}{2a}=\frac{2c}{-b+\sqrt{b^{2}-4ac}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+However, there is little that can be done at this point if zero happens
+ to be a double root.
+ In this instance, both 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ will be zero or nearly zero, making both 
+\begin_inset Formula $s_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $s_{2}$
+\end_inset
+
+ very small.
+ This is why the set of assumptions includes the stipulation 
+\begin_inset Formula $c_{1}\neq0$
+\end_inset
+
+.
+ This ensures that zero is not a root of 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Newton's method and polynomials
+\end_layout
+
+\begin_layout Standard
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton's method
+\end_layout
+
+\end_inset
+
+There is one more issue to address regarding the use of Newton's Method
+ for finding roots of polynomials.
+ For a polynomial with real coefficients, if 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is real, so will be 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+, and every successive iteration! There will be no hope of finding complex
+ roots.
+ This is not a problem if the polynomial has at most two complex roots.
+ The real roots will be found and the resulting quadratic will hold the
+ two complex roots.
+ The complex roots will be uncovered by the quadratic formula.
+ In general, though, we can not count on a polynomial having at most two
+ complex roots.
+ Our method should work for polynomials with arbitrarily many complex roots,
+ including the case when all roots are complex.
+\end_layout
+
+\begin_layout Standard
+The fix is not difficult, with one proviso.
+ Mathematically, Newton's method and Horner's Method work just as well with
+ complex numbers as they do with real numbers.
+ As long as the programming language you are using can handle complex numbers,
+ just begin with a complex (not purely real) initial approximation 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, and complex roots will be found! Even so, it is possible that all the
+ real roots are found first and what remains will be a polynomial with more
+ than two complex roots and no real roots.
+ This is where the inaccuracy of floating point arithmetic is actually helpful!
+ Neither the coefficients nor the value of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ will be purely real due to roundoff error.
+ The complex roots will generally be found.
+\end_layout
+
+\begin_layout Subsection
+Müller's Method
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:mullers"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Another very fast method for finding roots of equations is Müller's method
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Müller's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Müller's|see {Müller's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ In principle, it is very much like the secant method.
+ With the secant method, two initial approximations 
+\begin_inset Formula $p_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ are made.
+ The secant line through the points 
+\begin_inset Formula $(p_{0},f(p_{0}))$
+\end_inset
+
+ and 
+\begin_inset Formula $(p_{1},f(p_{1}))$
+\end_inset
+
+ is drawn and its intersection with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis gives 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+.
+ With Müller's method, three initial approximations 
+\begin_inset Formula $p_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+, and, 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ are needed.
+ The parabola through the points 
+\begin_inset Formula $(p_{0},f(p_{0}))$
+\end_inset
+
+, 
+\begin_inset Formula $(p_{1},f(p_{1}))$
+\end_inset
+
+, and 
+\begin_inset Formula $(p_{2},f(p_{2}))$
+\end_inset
+
+ is drawn and its intersection with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis gives 
+\begin_inset Formula $p_{3}$
+\end_inset
+
+.
+ There are a couple of issues to deal with, however.
+ First, if the parabola so drawn crosses the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis at all, it crosses it twice.
+ We need to choose one of the zeros for 
+\begin_inset Formula $p_{3}$
+\end_inset
+
+.
+ Second, it is possible the parabola will not cross the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis at all.
+ 
+\end_layout
+
+\begin_layout Standard
+Solving the problem of which root to choose is simple.
+ We assume the approximation 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ is better than the others, so we choose the root that is closest to 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+.
+ Actually, that solves the second 
+\begin_inset Quotes eld
+\end_inset
+
+problem
+\begin_inset Quotes erd
+\end_inset
+
+ too.
+ Even when the parabola does not cross the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis, it has zeros.
+ They are complex.
+ And we do not worry about that.
+ We simply take the complex root that is closest to 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+.
+ This has the nice advantage that even when the coefficients of 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ are all real and 
+\begin_inset Formula $p_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+, and, 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ are all real, and all the roots of 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ are complex, it will find a complex root.
+\end_layout
+
+\begin_layout Standard
+As to the business of finding the parabola passing through 
+\begin_inset Formula $(p_{0},f(p_{0}))$
+\end_inset
+
+, 
+\begin_inset Formula $(p_{1},f(p_{1}))$
+\end_inset
+
+, and 
+\begin_inset Formula $(p_{2},f(p_{2}))$
+\end_inset
+
+, we will seek a parabola 
+\begin_inset Formula $P(x)$
+\end_inset
+
+ of the form
+\begin_inset Formula 
+\[
+P(x)=a(x-p_{2})^{2}+b(x-p_{2})+c.
+\]
+
+\end_inset
+
+Making the substitutions 
+\begin_inset Formula $x=p_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $P(x)=f(p_{i})$
+\end_inset
+
+ leads to the three equations
+\begin_inset Formula 
+\begin{eqnarray*}
+f(p_{0}) & = & a(p_{0}-p_{2})^{2}+b(p_{0}-p_{2})+c\\
+f(p_{1}) & = & a(p_{1}-p_{2})^{2}+b(p_{1}-p_{2})+c\\
+f(p_{2}) & = & c
+\end{eqnarray*}
+
+\end_inset
+
+So we find out immediately that 
+\begin_inset Formula $c=f(p_{2})$
+\end_inset
+
+ and we must solve the simultaneous equations
+\begin_inset Formula 
+\begin{eqnarray*}
+f(p_{0})-f(p_{2}) & = & a(p_{0}-p_{2})^{2}+b(p_{0}-p_{2})\\
+f(p_{1})-f(p_{2}) & = & a(p_{1}-p_{2})^{2}+b(p_{1}-p_{2})
+\end{eqnarray*}
+
+\end_inset
+
+for 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+.
+ The solution is
+\begin_inset Formula 
+\begin{eqnarray*}
+b & = & \frac{(p_{0}-p_{2})^{2}(f(p_{1})-f(p_{2}))-(p_{1}-p_{2})^{2}(f(p_{0})-f(p_{2}))}{(p_{0}-p_{2})(p_{1}-p_{2})(p_{0}-p_{1})}\\
+a & = & \frac{(p_{1}-p_{2})(f(p_{0})-f(p_{2}))-(p_{0}-p_{2})(f(p_{1})-f(p_{2}))}{(p_{0}-p_{2})(p_{1}-p_{2})(p_{0}-p_{1})}.
+\end{eqnarray*}
+
+\end_inset
+
+Now plugging 
+\begin_inset Formula $a$
+\end_inset
+
+, 
+\begin_inset Formula $b$
+\end_inset
+
+, and 
+\begin_inset Formula $c$
+\end_inset
+
+ into the quadratic formula gives us roots 
+\begin_inset Formula $x=p_{2}-\frac{2}{b\pm\sqrt{b^{2}-4ac}}$
+\end_inset
+
+.
+ To choose the one closest to 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+, we compare 
+\begin_inset Formula $|b+\sqrt{b^{2}-4ac}|$
+\end_inset
+
+ with 
+\begin_inset Formula $|b-\sqrt{b^{2}-4ac}|$
+\end_inset
+
+ and use the larger.
+ This gives us the smallest value for 
+\begin_inset Formula $|x-p_{2}|$
+\end_inset
+
+, the distance of the root from 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+For example, we will use Müller's method with 
+\begin_inset Formula $p_{0}=1$
+\end_inset
+
+, 
+\begin_inset Formula $p_{1}=2$
+\end_inset
+
+, and 
+\begin_inset Formula $p_{2}=3$
+\end_inset
+
+ to find a root of 
+\begin_inset Formula $f(x)=x^{3}+1$
+\end_inset
+
+.
+ We calculate
+\begin_inset Formula 
+\begin{eqnarray*}
+\delta_{0} & = & f(p_{0})-f(p_{2})=2-28=-26\\
+\delta_{1} & = & f(p_{1})-f(p_{2})=9-28=-19\\
+h_{0} & = & p_{0}-p_{2}=-2\\
+h_{1} & = & p_{1}-p_{2}=-1\\
+h_{2} & = & p_{0}-p_{1}=-1
+\end{eqnarray*}
+
+\end_inset
+
+so we get 
+\begin_inset Formula $c=28$
+\end_inset
+
+, 
+\begin_inset Formula $b=\frac{h_{0}^{2}\delta_{1}-h_{1}^{2}\delta_{0}}{h_{0}h_{1}h_{2}}=\frac{4(-19)-1(-26)}{-2}=25$
+\end_inset
+
+, and 
+\begin_inset Formula $a=\frac{h_{1}\delta_{0}-h_{0}\delta_{1}}{h_{0}h_{1}h_{2}}=\frac{-1(-26)-(-2)(-19)}{-2}=6$
+\end_inset
+
+.
+ A close look at the graphs of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $P(x)=6x^{2}+25x+28$
+\end_inset
+
+ shows that they do meet three times (at the required points), and that
+ 
+\begin_inset Formula $P(x)$
+\end_inset
+
+ does not have real roots:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-polynomials02.eps
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $b\pm\sqrt{b^{2}-4ac}=25\pm\sqrt{625-672}=25\pm i\sqrt{47}$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $|25+i\sqrt{47}|=|25-i\sqrt{47}|$
+\end_inset
+
+, it does not matter which root we take.
+ Selecting 
+\begin_inset Formula $p_{3}=p_{2}-\frac{2c}{b-\sqrt{b^{2}-4ac}}$
+\end_inset
+
+, we get 
+\begin_inset Formula $p_{3}=3-\frac{56}{25-i\sqrt{47}}=\frac{11}{12}-\frac{\sqrt{47}}{12}i$
+\end_inset
+
+.
+ Continuing this process gives the iterates 
+\begin_inset Formula $0.75238-0.75810i,\ 0.57069-0.84288i,\ldots,0.50000-0.86603i$
+\end_inset
+
+, converging to 
+\begin_inset Formula $\frac{1}{2}-\frac{\sqrt{3}}{2}i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Order of convergence for Müller's Method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Müller's method ! order of convergence
+\end_layout
+
+\end_inset
+
+The order of convergence of Müller's Method to a simple root (one that is
+ not repeated) is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{\sqrt{11}}{3\sqrt{3}}+\frac{19}{27}\right)^{\frac{1}{3}}+\frac{4}{9\left(\frac{\sqrt{11}}{3\sqrt{3}}+\frac{19}{27}\right)^{\frac{1}{3}}}+\frac{1}{3}\approx1.839286755214161
+\]
+
+\end_inset
+
+ and to a double root,
+\begin_inset Formula 
+\[
+\left(\frac{\sqrt{139}}{24\sqrt{3}}+\frac{8}{27}\right)^{\frac{1}{3}}+\frac{7}{36\left(\frac{\sqrt{139}}{24\sqrt{3}}+\frac{8}{27}\right)^{\frac{1}{3}}}+\frac{1}{6}\approx1.233751928528259.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Reference: 
+\series bold
+A Method for Solving Algebraic Equations Using an Automatic Computer
+\series default
+, David E.
+ Muller, 
+\shape italic
+Mathematical Tables and Other Aids to Computation
+\shape default
+, Vol.
+ 10, No.
+ 56 (Oct., 1956), pp.
+ 208-215.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Mention Laguerre's Method or Jenkins-Traub or Brent's?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following chart summarizes the relative strengths and weaknesses of
+ Newton's Method, the Secant Method, and Müller's Method.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Newton's
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Secant
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Müller's
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Initial values needed
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Derivative needed?
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Order of Convergence
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Orders listed are for simple roots, not repeated roots.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\approx1.618$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\approx1.839$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Automatic discovery of complex roots?
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simplified in the case of polynomials?
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Synthetic
+\begin_inset space ~
+\end_inset
+
+division: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+synthetic division
+\end_layout
+
+\end_inset
+
+A method for dividing a polynomial 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ by a monomial 
+\begin_inset Formula $(x-x_{0})$
+\end_inset
+
+ using only addition, multiplication, and the coefficients of 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ The process is identical to evaluating a polynomial by nesting.
+ Synthetic division simply provides an organizational tool so that nesting
+ can be accomplished simply with pencil and paper.
+\end_layout
+
+\begin_layout Description
+Horner's
+\begin_inset space ~
+\end_inset
+
+Method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Horner's method
+\end_layout
+
+\end_inset
+
+A method where the value of a polynomial and its derivative at a single
+ point are calculated simultaneously via synthetic division.
+\end_layout
+
+\begin_layout Description
+Müller's
+\begin_inset space ~
+\end_inset
+
+Method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Müller's method
+\end_layout
+
+\end_inset
+
+A root-finding method similar to the Secant Method where instead of using
+ a secant line a parabola is used.
+\end_layout
+
+\begin_layout Description
+Deflation: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+deflation
+\end_layout
+
+\end_inset
+
+The method of replacing a polynomial 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ by the product of a monomial 
+\begin_inset Formula $(x-x_{0})$
+\end_inset
+
+ and a polynomial 
+\begin_inset Formula $q(x)$
+\end_inset
+
+ of degree one less than that of the original polynomial.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave function that calculates the roots of a quadratic function
+ using the alternate quadratic formula when appropriate.
+ The first line of your function should be 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+
+\family typewriter
+function [r1,r2] = quadraticRoots(a,b,c)
+\end_layout
+
+\begin_layout Standard
+where 
+\family typewriter
+r1
+\family default
+ and 
+\family typewriter
+r2
+\family default
+ are the roots of 
+\begin_inset Formula $p(x)=ax^{2}+bx+c$
+\end_inset
+
+.
+ This way, the values 
+\family typewriter
+r1
+\family default
+ and 
+\family typewriter
+r2
+\family default
+ are returned by the function in an array.
+ The function is called like this:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\family typewriter
+[s,t]=quadraticRoots(1,2,3),
+\end_layout
+
+\begin_layout Standard
+setting 
+\family typewriter
+s
+\family default
+ to the value of one of the roots and 
+\family typewriter
+t
+\family default
+ to the other.
+ Test your code well by comparing outputs of your function to hand/calculator
+ computations.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-1"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave function that implements Horner's method.
+ The first line of your function should be 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+
+\family typewriter
+function [p,pprime] = horner(x0,c)
+\end_layout
+
+\begin_layout Standard
+where 
+\family typewriter
+c
+\family default
+ is an array containing the coefficients of the polynomial, 
+\family typewriter
+x0
+\family default
+ is the number at which to evaluate it, 
+\family typewriter
+p
+\family default
+ is the value of the polynomial at 
+\family typewriter
+x0
+\family default
+, and 
+\family typewriter
+pprime
+\family default
+ is the value of the derivative of the polynomial at 
+\family typewriter
+x0
+\family default
+.
+ This way, the values 
+\family typewriter
+p
+\family default
+ and 
+\family typewriter
+pprime
+\family default
+ are returned by the function in an array.
+ The function is called like this:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\family typewriter
+[y,yy]=horner(-2,[5,4,3,2,1]),
+\end_layout
+
+\begin_layout Standard
+setting 
+\family typewriter
+y
+\family default
+ to the value of the polynomial and 
+\family typewriter
+yy
+\family default
+ to the value of its derivative.
+ Test your code well by comparing outputs of your function to hand/calculator
+ computations.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-2"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave function that implements Newton's method with Horner's method.
+ The first line of your function should be
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+
+\family typewriter
+function x = newtonhorner(c,x0,tol,N)
+\end_layout
+
+\begin_layout Standard
+where 
+\family typewriter
+c
+\family default
+ is an array containing the coefficients of the polynomial, 
+\family typewriter
+x0
+\family default
+ is the initial value, 
+\family typewriter
+tol
+\family default
+ is the tolerance, and 
+\family typewriter
+N
+\family default
+ is the maximum number of iterations before giving up.
+ The code should be similar to code you wrote to implement Newton's method
+ before, but this code will only work for polynomials.
+ Inside your 
+\family typewriter
+newtonhorner
+\family default
+ function, DO NOT write Horner's method code.
+ Just call the 
+\family typewriter
+horner
+\family default
+ function you wrote in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-1"
+
+\end_inset
+
+.
+ Test your code well by comparing outputs of your function to outputs from
+ the code you wrote in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:newtonsMethodCode"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "enu:newtonsMethodCode"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-12"
+
+\end_inset
+
+Complete the code for the deflate function begun here.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+% This function will deflate a polynomial
+\end_layout
+
+\begin_layout Plain Layout
+
+% given a root.
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: coefficients c of the polynomial;
+\end_layout
+
+\begin_layout Plain Layout
+
+%        a root r of the polynomial.
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: coefficients d of the deflated
+\end_layout
+
+\begin_layout Plain Layout
+
+%        polynomial.
+\end_layout
+
+\begin_layout Plain Layout
+
+function d = deflate(c,r)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave function implementing Müller's method.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-3"
+
+\end_inset
+
+Use Horner's method/synthetic division to find 
+\begin_inset Formula $g(2)$
+\end_inset
+
+ and 
+\begin_inset Formula $g'(2)$
+\end_inset
+
+.
+ Do not use a computer.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-6"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=3x^{3}+12x^{2}-13x-8$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-7"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=-7+8x-3x^{2}+5x^{3}-2x^{4}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-4"
+
+\end_inset
+
+Use Horner's method to calculate 
+\begin_inset Formula $g(-2)$
+\end_inset
+
+ and 
+\begin_inset Formula $g'(-2)$
+\end_inset
+
+ where 
+\begin_inset Formula $g(x)=4x^{4}-5x^{3}+6x-7$
+\end_inset
+
+.
+ Do not use a computer.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-10"
+
+\end_inset
+
+Use your work from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-3"
+
+\end_inset
+
+ to help execute two iterations of Newton's method using a pencil, paper,
+ calculator, and Horner's method/synthetic division.
+ Use initial value 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Use your work from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-4"
+
+\end_inset
+
+ to help execute two iterations of Newton's method using a pencil, paper,
+ calculator, and Horner's method/synthetic division.
+ Use initial value 
+\begin_inset Formula $x_{0}=-2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Compute 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ of Newton's Method by hand (using Horner's method/synthetic division) for
+ 
+\begin_inset Formula $f(x)=x^{3}+4x-8$
+\end_inset
+
+ starting with 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ of Newton's Method by hand (using Horner's method/synthetic division) for
+ 
+\begin_inset Formula $f(x)=x^{4}-2x^{3}-4x^{2}+4x+4$
+\end_inset
+
+ using 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Using Horner's Method as an aid, and not using your calculator, find the
+ first iteration of Newton's Method for the function 
+\begin_inset Formula $f(x)=2x^{3}-10x+1$
+\end_inset
+
+ using 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Demonstrate two iterations of Newton's Method (using Horner's method/synthetic
+ division) applied to 
+\begin_inset Formula $f(x)=5x^{3}-2x^{2}+7x-3$
+\end_inset
+
+ with 
+\begin_inset Formula $p_{0}=1$
+\end_inset
+
+ by hand.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "findall"
+
+\end_inset
+
+Find all the roots of the polynomial as follows.
+ Use Newton's method with tolerance 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ to approximate a root of the polynomial.
+ You may use your 
+\family typewriter
+newtonhorner
+\family default
+ function from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-2"
+
+\end_inset
+
+.
+ Then use synthetic division to deflate the polynomial one degree.
+ Do not use a computer for deflation.
+ Then use Newton's method with tolerance 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ to approximate a root of the deflated polynomial.
+ Then use synthetic division to deflate the deflated polynomial one degree.
+ Repeat until the deflated polynomial is quadratic.
+ Once this happens, use the quadratic formula (or alternate quadratic formula)
+ to find the last two roots.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-5"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=x^{4}+6x^{3}\text{−}59x^{2}+144x\text{−}144$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-14"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=-280+909x-154x^{2}-178x^{3}+54x^{4}+9x^{5}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find all the roots of the polynomial as follows.
+ Use Newton's method with tolerance 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ to approximate a root of the polynomial.
+ You may use your 
+\family typewriter
+newtonhorner
+\family default
+ function from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-2"
+
+\end_inset
+
+.
+ Then use synthetic division to deflate the polynomial one degree.
+ You may use your 
+\family typewriter
+deflate
+\family default
+ function from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-12"
+
+\end_inset
+
+ for deflation.
+ Then use Newton's method with tolerance 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ to approximate a root of the deflated polynomial.
+ Then use synthetic division to deflate the deflated polynomial one degree.
+ Repeat until the deflated polynomial is quadratic.
+ Once this happens, use the quadratic formula to find the last two roots.
+ You may use your 
+\family typewriter
+quadraticRoots
+\family default
+ function from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials"
+
+\end_inset
+
+ for solving the quadratic.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-16"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=x^{4}-2x^{3}-12x^{2}+16x-40$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-17"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=56-152x+140x^{2}-17x^{3}-48x^{4}+9x^{5}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-18"
+
+\end_inset
+
+For each root you found in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "findall"
+
+\end_inset
+
+ except the first one, use it as an initial approximation in Newton's method
+ with tolerance 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ to see if you can refine your roots.
+ Do they change?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=x^{3}-1.255x^{2}-.9838x+1.2712$
+\end_inset
+
+ has a root at 
+\begin_inset Formula $x=1.12$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use Newton's method with an initial approximation 
+\begin_inset Formula $x_{0}=1.13$
+\end_inset
+
+ to attempt to find this root.
+ Explain what happens.
+\end_layout
+
+\begin_layout Enumerate
+Find all the roots of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Reference Burden and Faires for problems taken from their book
+\end_layout
+
+\end_inset
+
+In 1224, Leonardo of Pisa, better known as Fibonacci, answered a mathematical
+ challenge of John of Palermo in the presence of Emperor Frederick II: Find
+ a root of the equation 
+\begin_inset Formula $x^{3}+2x^{2}+10x=20$
+\end_inset
+
+.
+ He first showed that the equation had no rational roots and no Euclidean
+ irrational roots---that is, no root in any of the forms 
+\begin_inset Formula $a\pm\sqrt{b}$
+\end_inset
+
+, 
+\begin_inset Formula $\sqrt{a}\pm\sqrt{b}$
+\end_inset
+
+, 
+\begin_inset Formula $\sqrt{a\pm\sqrt{b}}$
+\end_inset
+
+, or 
+\begin_inset Formula $\sqrt{\sqrt{a}\pm\sqrt{b}}$
+\end_inset
+
+, where 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ are rational numbers.
+ He then approximated the only real root using an algebraic technique of
+ Omar Khayyam involving the intersection of a circle and a parabola.
+ His answer was given in the base 60 number system as
+\begin_inset Formula 
+\[
+\begin{gathered}1+22\left(\frac{1}{60}\right)+7\left(\frac{1}{60}\right)^{2}+42\left(\frac{1}{60}\right)^{3}+\\
+\qquad\qquad33\left(\frac{1}{60}\right)^{4}+4\left(\frac{1}{60}\right)^{5}+40\left(\frac{1}{60}\right)^{6}.
+\end{gathered}
+\]
+
+\end_inset
+
+How accurate was his approximation?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Calculate the value of the polynomial at the given value of 
+\begin_inset Formula $x$
+\end_inset
+
+ in two different ways.
+ (i) Use your 
+\family typewriter
+horner
+\family default
+ function from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-1"
+
+\end_inset
+
+; and (ii) use an 
+\family typewriter
+inline()
+\family default
+ function.
+ Then (iii) compare the two results using Octave's 
+\family typewriter
+==
+\family default
+ operator.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-8"
+
+\end_inset
+
+
+\begin_inset Formula $p(x)=x^{4}-2x^{3}-12x^{2}+16x-40$
+\end_inset
+
+ at 
+\begin_inset Formula $x=\sqrt{3}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-9"
+
+\end_inset
+
+
+\begin_inset Formula $q(x)=56-152x+140x^{2}-17x^{3}-48x^{4}+9x^{5}$
+\end_inset
+
+ at 
+\begin_inset Formula $x=\pi/2$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-11"
+
+\end_inset
+
+
+\begin_inset Formula $r(x)=x^{6}+11x^{4}-34x^{3}-130x^{2}-275x+819$
+\end_inset
+
+ at 
+\begin_inset Formula $\frac{1-\sqrt{5}}{2}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $s(x)=5x^{10}+3x^{8}-46x^{6}-102x^{4}+365x^{2}+1287$
+\end_inset
+
+ at 
+\begin_inset Formula $\frac{1}{e}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-13"
+
+\end_inset
+
+Write an Octave function that uses your functions from questions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-2"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-12"
+
+\end_inset
+
+ to find all the roots of a polynomial.
+ Test your function well on polynomials of various degrees for which you
+ know the roots.
+ You may base your function on the pseudo-code 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "pseudo:allroots"
+
+\end_inset
+
+, but your code should be significantly simpler since you are calling functions
+ instead of writing their code.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-15"
+
+\end_inset
+
+Use your code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-13"
+
+\end_inset
+
+ to find all the solutions of the equation.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x^{5}+11x^{4}-34x^{3}-130x^{2}-275x+819=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $5x^{5}+3x^{4}-46x^{3}-102x^{2}+365x+1287=0$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find all the roots of 
+\begin_inset Formula $g(x)=25x^{3}-105x^{2}+148x-174$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Recall that there are some similarities between the secant method and Müller's
+ method.
+ They each require multiple initial approximations.
+ They each involve calculating the zero of some function passing through
+ these initial points.
+ They both give superlinear convergence to simple roots.
+ And, of course, they are both root finding methods.
+ Let's tweak the idea in the following way.
+ To find roots of 
+\begin_inset Formula $g$
+\end_inset
+
+, start as with the secant method, using two approximations, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+.
+ Then, instead of using the zero of a line through 
+\begin_inset Formula $(x_{0},g(x_{0}))$
+\end_inset
+
+ and 
+\begin_inset Formula $(x_{1},g(x_{1}))$
+\end_inset
+
+, find the function of the form
+\begin_inset Formula 
+\[
+h(x)=ax^{3}+b
+\]
+
+\end_inset
+
+passing through 
+\begin_inset Formula $(x_{0},g(x_{0}))$
+\end_inset
+
+ and 
+\begin_inset Formula $(x_{1},g(x_{1}))$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ be the zero of 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ Then repeat with 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ to get 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+, and so on.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $g(x)=2\ln(1+x^{2})-x$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}=5$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=6$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ using this method.
+\end_layout
+
+\begin_layout Enumerate
+Find a formula for 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ given any function 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ and any initial conditions 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+.
+ Your formula should be in terms of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $g(x_{0})$
+\end_inset
+
+, and 
+\begin_inset Formula $g(x_{1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a general formula for 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x_{n-2}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{n-1}$
+\end_inset
+
+, 
+\begin_inset Formula $g(x_{n-2})$
+\end_inset
+
+, and 
+\begin_inset Formula $g(x_{n-1})$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave function that implements this method and prints out each
+ iteration.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your Octave function to decide whether the order of convergence for
+ this method is linear or superlinear.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Pick a function whose root(s) you know exactly.
+ Use Müller's method to find one of the roots.
+ Use three consecutive iterations to estimate the order of convergence.
+\end_layout
+
+\begin_layout Enumerate
+The errors in three consecutive iterations of Müller's method are shown
+ in the table.
+ Use this information to estimate the order of convergence.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|x_{n}-x|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.53627(10)^{-349}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.67365(10)^{-642}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.83922(10)^{-1181}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:polynomials-19"
+
+\end_inset
+
+The graph of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is shown.
+ Find distinct sets of values 
+\begin_inset Formula $p_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ for which M
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+"u
+\end_layout
+
+\end_inset
+
+ller's Method
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+will lead to a complex value for 
+\begin_inset Formula $p_{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+will lead to the root at 
+\begin_inset Formula $x\approx4.4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+will lead to the root at 
+\begin_inset Formula $x\approx2.8$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-polynomials01.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+The function shown in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-19"
+
+\end_inset
+
+ is 
+\begin_inset Formula $f(x)=\frac{x^{2}-7x+10}{2}+\sin(3x)$
+\end_inset
+
+.
+ Use this information to test your conjectures in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:polynomials-19"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

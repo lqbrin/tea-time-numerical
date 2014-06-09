@@ -1,0 +1,3848 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Taylor"
+
+\end_inset
+
+Taylor Polynomials
+\end_layout
+
+\begin_layout Standard
+One of the cornerstones of numerical analysis is Taylor's Theorem about
+ which you learned in Calculus.
+ A short study bears repeating here, however.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Taylors"
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Taylor's
+\end_layout
+
+\end_inset
+
+Suppose that 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ has 
+\begin_inset Formula $n+1$
+\end_inset
+
+ derivatives on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}\in(a,b)$
+\end_inset
+
+.
+ Then for each 
+\begin_inset Formula $x\in(a,b)$
+\end_inset
+
+, there exists a 
+\begin_inset Formula $\xi$
+\end_inset
+
+, depending on 
+\begin_inset Formula $x$
+\end_inset
+
+, lying strictly between 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+f(x)=f(x_{0})+\sum_{j=1}^{n}\left(\frac{f^{(j)}(x_{0})}{j!}(x-x_{0})^{j}\right)+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+Let 
+\begin_inset Formula $I$
+\end_inset
+
+ be the open interval between 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{I}$
+\end_inset
+
+ be the closure of 
+\begin_inset Formula $I$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $I\subset\overline{I}\subset(a,b)$
+\end_inset
+
+ and 
+\begin_inset Formula $f$
+\end_inset
+
+ has 
+\begin_inset Formula $n+1$
+\end_inset
+
+ derivatives on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+, we have that 
+\begin_inset Formula $f,f',f'',\ldots,f^{(n)}$
+\end_inset
+
+ are all continuous on 
+\begin_inset Formula $\overline{I}$
+\end_inset
+
+ and that 
+\begin_inset Formula $f^{(n+1)}$
+\end_inset
+
+ exists on 
+\begin_inset Formula $I$
+\end_inset
+
+.
+ We now define
+\begin_inset Formula 
+\[
+F(z)=f(x)-f(z)-\sum_{j=1}^{n}\frac{f^{(j)}(z)}{j!}(x-z)^{j}
+\]
+
+\end_inset
+
+and will prove the theorem by showing that 
+\begin_inset Formula $F(x_{0})=\frac{(x-x_{0})^{n+1}}{(n+1)!}f^{(n+1)}(\xi)$
+\end_inset
+
+ for some 
+\begin_inset Formula $\xi\in I$
+\end_inset
+
+.
+ Note that 
+\begin_inset Formula $F'(z)$
+\end_inset
+
+, a telescoping sum, is given by
+\begin_inset Formula 
+\begin{eqnarray*}
+F'(z) & = & -f'(z)-\sum_{j=1}^{n}\left[\frac{f^{(j+1)}(z)}{j!}(x-z)^{j}-\frac{f^{(j)}(z)}{(j-1)!}(x-z)^{j-1}\right]\\
+ & = & -f'(z)-\left[\frac{f^{(n+1)}(z)}{n!}(x-z)^{n}-f'(z)\right]\\
+ & = & -\frac{f^{(n+1)}(z)}{n!}(x-z)^{n}.
+\end{eqnarray*}
+
+\end_inset
+
+Now define 
+\begin_inset Formula $g(z)=F(z)-\left(\frac{x-z}{x-x_{0}}\right)^{n+1}F(x_{0})$
+\end_inset
+
+.
+ It is easy to verify that 
+\begin_inset Formula $g$
+\end_inset
+
+ satisfies the premises of Rolle's theorem.
+ Indeed, 
+\begin_inset Formula $g(x_{0})=g(x)=0$
+\end_inset
+
+ and the continuity and differentiability criteria are met.
+ By Rolle's theorem, there exists 
+\begin_inset Formula $\xi\in I$
+\end_inset
+
+ such that 
+\begin_inset Formula $g'(\xi)=0=F'(\xi)+(n+1)\frac{(x-\xi)^{n}}{(x-x_{0})^{n-1}}F(x_{0})$
+\end_inset
+
+.
+ Hence 
+\begin_inset Formula 
+\begin{eqnarray*}
+F(x_{0}) & = & -F'(\xi)\frac{(x-x_{0})^{n+1}}{(n+1)(x-\xi)^{n}}\\
+ & = & \frac{f^{(n+1)}(\xi)}{n!(n+1)}(x-x_{0})^{n+1}\\
+ & = & \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}.
+\end{eqnarray*}
+
+\end_inset
+
+This completes the proof.
+ 
+\end_layout
+
+\begin_layout Standard
+We will use the notation 
+\begin_inset Formula 
+\[
+T_{n}(x)=f(x_{0})+\sum_{j=1}^{n}\left(\frac{f^{(j)}(x_{0})}{j!}(x-x_{0})^{j}\right)
+\]
+
+\end_inset
+
+and call this the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Taylor polynomial 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+polynomial ! Taylor
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor ! polynomial
+\end_layout
+
+\end_inset
+
+ of 
+\begin_inset Formula $f$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ We will also use the notation 
+\begin_inset Formula 
+\[
+R_{n}(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}
+\]
+
+\end_inset
+
+and call this the remainder term 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor ! remainder term
+\end_layout
+
+\end_inset
+
+ for the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Taylor polynomial of 
+\begin_inset Formula $f$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{$
+\backslash
+xi$} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $\xi$
+\end_inset
+
+ is the (lower case) fourteenth letter of the Greek alphabet and is pronounced
+ 
+\family typewriter
+ksee
+\family default
+.
+ It is customary, but, of course, not necessary to use this letter for the
+ unknown quantity in Taylor's theorem.
+ The capital version of 
+\begin_inset Formula $\xi$
+\end_inset
+
+ is 
+\begin_inset Formula $\Xi$
+\end_inset
+
+, a symbol rarely seen in mathematics.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It will not be uncommon, for sake of brevity, to call 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Taylor polynomial and 
+\begin_inset Formula $R_{n}(x)$
+\end_inset
+
+ the remainder term when the function and center of expansion, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, are either unspecified or clear from context.
+\end_layout
+
+\begin_layout Standard
+In calculus, you likely focused on the Taylor polynomial, or Taylor series,
+ and did not pay much attention to the remainder term.
+ The situation is quite the reverse in numerical analysis.
+ Algorithmic error can often be ascertained by careful attention to the
+ remainder term, making it more critical than the Taylor polynomial itself.
+ The Taylor polynomial will, however, be used to derive certain methods,
+ so won't be entirely neglected.
+\end_layout
+
+\begin_layout Standard
+The most important thing to understand about the remainder term is that
+ it tells us precisely how well 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ approximates 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ From Taylor's theorem, 
+\begin_inset Formula $f(x)=T_{n}(x)+R_{n}(x)$
+\end_inset
+
+, so the absolute error in using 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is given by 
+\begin_inset Formula $|T_{n}(x)-f(x)|=|R_{n}(x)|$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $|R_{n}(x)|=\left|\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}\right|$
+\end_inset
+
+ for some 
+\begin_inset Formula $\xi$
+\end_inset
+
+ between 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ Therefore 
+\begin_inset Formula 
+\begin{eqnarray*}
+|T_{n}(x)-f(x)|=|R_{n}(x)| & \leq & \max_{\xi}\left|\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}\right|\\
+ & = & \frac{|x-x_{0}|^{n+1}}{(n+1)!}\max_{\xi}\left|f^{(n+1)}(\xi)\right|.
+\end{eqnarray*}
+
+\end_inset
+
+We learn several things from this observation:
+\end_layout
+
+\begin_layout Enumerate
+The remainder term is precisely the error in using 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ Hence it is sometimes referred to as the error term 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor ! error term
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:taylorObservation2"
+
+\end_inset
+
+The absolute error in using 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ depends on three factors:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $|x-x_{0}|^{n+1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\frac{1}{(n+1)!}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $|f^{(n+1)}(\xi)|$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+We can find an upper bound on 
+\begin_inset Formula $|T_{n}(x)-f(x)|$
+\end_inset
+
+ by finding an upper bound on 
+\begin_inset Formula $\left|f^{(n+1)}(\xi)\right|$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:taylor1"
+
+\end_inset
+
+For small 
+\begin_inset Formula $n$
+\end_inset
+
+, 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ is a good approximation only for small 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/preliminaries-taylor1.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ Because 
+\begin_inset Formula $|R_{n}(x)|$
+\end_inset
+
+ measures exactly the absolute error 
+\begin_inset Formula $|T_{n}(x)-f(x)|$
+\end_inset
+
+, we will be interested in conditions that force 
+\begin_inset Formula $|R_{n}(x)|$
+\end_inset
+
+ to be small.
+ According to observation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:taylorObservation2"
+
+\end_inset
+
+, there are three quantities to consider.
+ First, 
+\begin_inset Formula $|x-x_{0}|^{n+1}$
+\end_inset
+
+, or 
+\begin_inset Formula $|x-x_{0}|$
+\end_inset
+
+, the distance between 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ The approximation 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ will generally be better for 
+\begin_inset Formula $x$
+\end_inset
+
+ closer to 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ Second, 
+\begin_inset Formula $\frac{1}{(n+1)!}$
+\end_inset
+
+.
+ This suggests that the more terms we use in our Taylor polynomial (the
+ greater 
+\begin_inset Formula $n$
+\end_inset
+
+ is), the better the approximation will be.
+ Finally, 
+\begin_inset Formula $|f^{(n+1)}(\xi)|$
+\end_inset
+
+, the magnitude of the 
+\begin_inset Formula $(n+1)^{st}$
+\end_inset
+
+ derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ The tamer this derivative, the better 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ will approximate 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ Be warned, however, these are just rules of thumb for making 
+\begin_inset Formula $|R_{n}(x)|$
+\end_inset
+
+ small.
+ There are exceptions to these rules.
+\end_layout
+
+\begin_layout Standard
+To see these factors in action, consider 
+\begin_inset Formula $f(x)=\ln(x)$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=e^{2}$
+\end_inset
+
+.
+ According to Taylor's theorem, 
+\begin_inset Formula 
+\begin{eqnarray*}
+T_{2}(x)=2+\frac{x-e^{2}}{e^{2}}-\frac{(x-e^{2})^{2}}{2e^{4}} & \mbox{ and } & R_{2}(x)=\frac{1}{3\xi^{3}}(x-e^{2})^{3};\\
+T_{11}(x)=2+\sum_{j=1}^{11}\left(\frac{(-1)^{j-1}(x-e^{2})^{j}}{je^{2j}}\right) & \mbox{ and } & R_{11}(x)=\frac{-1}{12\xi^{12}}(x-e^{2})^{12}.
+\end{eqnarray*}
+
+\end_inset
+
+After you have convinced yourself these formulas are correct, suppose that
+ we are interested in approximating 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ with an absolute error of no more than 
+\begin_inset Formula $0.1$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $|\xi^{-3}|$
+\end_inset
+
+ and 
+\begin_inset Formula $|\xi^{-12}|$
+\end_inset
+
+ are decreasing functions of 
+\begin_inset Formula $\xi$
+\end_inset
+
+, they attain their maximum values on a closed interval at the lower endpoint
+ of that interval.
+ Hence for 
+\begin_inset Formula $x\geq e^{2}$
+\end_inset
+
+, we have 
+\begin_inset Formula $|R_{2}(x)|\leq\max_{\xi\in[e^{2},x]}\left|\frac{1}{3\xi^{3}}(x-e^{2})^{3}\right|=\frac{1}{3e^{6}}(x-e^{2})^{3}$
+\end_inset
+
+.
+ But for 
+\begin_inset Formula $0<x<e^{2}$
+\end_inset
+
+, we have 
+\begin_inset Formula $|R_{2}(x)|\leq\max_{\xi\in[x,e^{2}]}\left|\frac{1}{3x^{3}}(x-e^{2})^{3}\right|=\frac{1}{3x^{3}}(e^{2}-x)^{3}$
+\end_inset
+
+.
+ To determine where these remainders are less than 
+\begin_inset Formula $0.1$
+\end_inset
+
+, we need to solve the equations 
+\begin_inset Formula $\frac{1}{3e^{6}}(x-e^{2})^{3}=0.1$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{1}{3x^{3}}(e^{2}-x)^{3}=0.1$
+\end_inset
+
+.
+ The values we seek are 
+\begin_inset Formula $x=\left(1+\sqrt[3]{\frac{3}{10}}\right)e^{2}\approx12.33$
+\end_inset
+
+ and 
+\begin_inset Formula $x=\frac{\sqrt[3]{8100}+10\sqrt[3]{90}-30}{13\sqrt[3]{90}}e^{2}\approx4.427$
+\end_inset
+
+.
+ So Taylor's theorem guarantees that 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ will approximate 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ to within 
+\begin_inset Formula $0.1$
+\end_inset
+
+ over the entire interval 
+\begin_inset Formula $[4.427,12.33]$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $e^{2}\approx7.389$
+\end_inset
+
+, 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ approximates 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ to within 
+\begin_inset Formula $0.1$
+\end_inset
+
+ from about 3 below 
+\begin_inset Formula $e^{2}$
+\end_inset
+
+ to about 5 above 
+\begin_inset Formula $e^{2}$
+\end_inset
+
+.
+ In other words, as long as 
+\begin_inset Formula $x$
+\end_inset
+
+ is close enough to 
+\begin_inset Formula $x_{0}=e^{2}$
+\end_inset
+
+, the approximation is good.
+ A similar calculation for 
+\begin_inset Formula $R_{11}(x)$
+\end_inset
+
+ reveals that 
+\begin_inset Formula $T_{11}(x)$
+\end_inset
+
+ is guaranteed to approximate 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ to within 
+\begin_inset Formula $0.1$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[3.667,14.89]$
+\end_inset
+
+.
+ In other words, for a larger value of 
+\begin_inset Formula $n$
+\end_inset
+
+, 
+\begin_inset Formula $x$
+\end_inset
+
+ doesn't need to be as close to 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ to achieve the same accuracy.
+\end_layout
+
+\begin_layout Standard
+But remember, these are only theoretical bounds on the errors.
+ The actual errors are often much smaller than the bounds.
+ For example, our analysis gives the upper bound 
+\begin_inset Formula $|R_{2}(3)|\leq\frac{1}{3\cdot3^{3}}(e^{2}-3)^{3}\approx1.05$
+\end_inset
+
+ where the actual error, 
+\begin_inset Formula $|T_{2}(3)-\ln(3)|=\left|2+\frac{3-e^{2}}{e^{2}}-\frac{(3-e^{2})^{2}}{2e^{4}}-\ln(3)\right|\approx.131$
+\end_inset
+
+.
+ The bound is about 8 times the actual error.
+ If we take this point a bit further, the graphs of 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{11}(x)$
+\end_inset
+
+ versus 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:taylor3"
+
+\end_inset
+
+The actual error 
+\begin_inset Formula $|T_{n}(x)-f(x)|$
+\end_inset
+
+ is often much smaller than the theoretical bound.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/preliminaries-taylor3.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ (and a bit of calculation we will discuss later) 
+\begin_inset CommandInset label
+LatexCommand label
+name "equationToSolve"
+
+\end_inset
+
+ reveal that 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ actually approximates 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ to within 
+\begin_inset Formula $0.1$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[3.296,13.13]$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{11}(x)$
+\end_inset
+
+ actually approximates 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ to within 
+\begin_inset Formula $0.1$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0.9030,15.33]$
+\end_inset
+
+.
+ These intervals are a bit larger than the theoretical guaranteed intervals.
+ See Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:taylor3"
+
+\end_inset
+
+.
+ This figure reveals something else too.
+ 
+\begin_inset Formula $T_{2}(18)$
+\end_inset
+
+ does a much better job of approximating 
+\begin_inset Formula $\ln(18)$
+\end_inset
+
+ than does 
+\begin_inset Formula $T_{11}(18)$
+\end_inset
+
+.
+ It's not always the case that more terms means a better approximation.
+\end_layout
+
+\begin_layout Standard
+We now turn our attention to perhaps the most often analyzed Taylor polynomials-
+--those for the sine and cosine functions.
+ They provide examples with beautiful visualization and simple analysis.
+ The 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Taylor polynomial for 
+\begin_inset Formula $f(x)=\cos(x)$
+\end_inset
+
+ expanded about 0 is
+\begin_inset Formula 
+\begin{eqnarray*}
+T_{n}(x) & = & \cos(0)+\sum_{j=1}^{n}\left(\frac{\left.\frac{d^{j}}{dx^{j}}(\cos(x))\right|_{x=0}}{j!}(x-0)^{j}\right)\\
+ & = & \cos(0)-\sin(0)\cdot x-\frac{\cos(0)}{2}x^{2}+\frac{\sin(0)}{6}x^{3}+\frac{\cos(0)}{24}x^{4}-\cdots\\
+ & = & 1-\frac{1}{2}x^{2}+\frac{1}{24}x^{4}-\cdots
+\end{eqnarray*}
+
+\end_inset
+
+and its remainder term is 
+\begin_inset Formula 
+\begin{eqnarray*}
+R_{n}(x) & = & \frac{\left.\frac{d^{n+1}}{dx^{n+1}}(\cos(x))\right|_{x=\xi}}{(n+1)!}(x-0)^{n+1}\\
+ & = & \frac{x^{n+1}}{(n+1)!}\begin{cases}
+-\sin(\xi) & \mbox{ when }n\mbox{ mod }4\equiv0\\
+-\cos(\xi) & \mbox{ when }n\mbox{ mod }4\equiv1\\
+\sin(\xi) & \mbox{ when }n\mbox{ mod }4\equiv2\\
+\cos(\xi) & \mbox{ when }n\mbox{ mod }4\equiv3
+\end{cases}.
+\end{eqnarray*}
+
+\end_inset
+
+Since the sine and cosine functions are bounded between 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+ we know that 
+\begin_inset Formula 
+\[
+-\frac{|x|^{n+1}}{(n+1)!}\leq R_{n}(x)\leq\frac{|x|^{n+1}}{(n+1)!}.
+\]
+
+\end_inset
+
+There are two ways this remainder term will be small.
+ First, if 
+\begin_inset Formula $x$
+\end_inset
+
+ is close to 
+\begin_inset Formula $0$
+\end_inset
+
+, then 
+\begin_inset Formula $|x|$
+\end_inset
+
+ is small, making 
+\begin_inset Formula $R_{n}(x)$
+\end_inset
+
+ small.
+ Second, if 
+\begin_inset Formula $n$
+\end_inset
+
+ is large, then 
+\begin_inset Formula $\frac{1}{(n+1)!}$
+\end_inset
+
+ is small, making 
+\begin_inset Formula $R_{n}(x)$
+\end_inset
+
+ small.
+ In other words, for small values of 
+\begin_inset Formula $n$
+\end_inset
+
+, the remainder term is small for small values of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ is a good approximation of 
+\begin_inset Formula $\cos(x)$
+\end_inset
+
+ for such combinations of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ On the other hand, for large values of 
+\begin_inset Formula $n$
+\end_inset
+
+, the remainder term is small even for large values of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ For example, 
+\begin_inset Formula $|R_{61}(x)|\leq\frac{|x|^{62}}{62!}$
+\end_inset
+
+, so 
+\begin_inset Formula $|R_{61}(x)|$
+\end_inset
+
+ will remain less than 1 for all 
+\begin_inset Formula $x$
+\end_inset
+
+ with magnitude less than 
+\begin_inset Formula $\sqrt[62]{62!}\approx23.933$
+\end_inset
+
+.
+ Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:taylor1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:taylor2"
+
+\end_inset
+
+ illustrate these points.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:taylor2"
+
+\end_inset
+
+For large 
+\begin_inset Formula $n$
+\end_inset
+
+, 
+\begin_inset Formula $T_{n}(x)$
+\end_inset
+
+ is a good approximation even for large 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/preliminaries-taylor2.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Rolle's
+\begin_inset space ~
+\end_inset
+
+theorem: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Rolle's
+\end_layout
+
+\end_inset
+
+Suppose that 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ and differentiable on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $f(a)=f(b)$
+\end_inset
+
+, then there exists 
+\begin_inset Formula $\xi\in(a,b)$
+\end_inset
+
+ such that 
+\begin_inset Formula $f'(\xi)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Taylor's
+\begin_inset space ~
+\end_inset
+
+theorem: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Taylor's
+\end_layout
+
+\end_inset
+
+ Suppose that 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ has 
+\begin_inset Formula $n+1$
+\end_inset
+
+ derivatives on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}\in(a,b)$
+\end_inset
+
+.
+ Then for each 
+\begin_inset Formula $x\in(a,b)$
+\end_inset
+
+, there exists 
+\begin_inset Formula $\xi$
+\end_inset
+
+, depending on 
+\begin_inset Formula $x$
+\end_inset
+
+, lying strictly between 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+f(x)=f(x_{0})+\sum_{j=1}^{n}\left(\frac{f^{(j)}(x_{0})}{j!}(x-x_{0})^{j}\right)+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $n^{th}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+Taylor
+\begin_inset space ~
+\end_inset
+
+polynomial: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+polynomial ! Taylor
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor ! polynomial
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $T_{n}(x)=f(x_{0})+\sum_{j=1}^{n}\left(\frac{f^{(j)}(x_{0})}{j!}(x-x_{0})^{j}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Maclaurin
+\begin_inset space ~
+\end_inset
+
+polynomial: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+polynomial ! Maclaurin
+\end_layout
+
+\end_inset
+
+A Taylor polynomial expanded about 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+ is also called a 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Maclaurin polynomial
+\end_layout
+
+\end_inset
+
+Maclaurin polynomial.
+\end_layout
+
+\begin_layout Description
+Remainder
+\begin_inset space ~
+\end_inset
+
+term: 
+\begin_inset Formula $R_{n}(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}$
+\end_inset
+
+ is precisely 
+\begin_inset Formula $-\left(T_{n}(x)-f(x)\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+error
+\begin_inset space ~
+\end_inset
+
+term: Another name for the remainder term.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{The original theorem of Brook Taylor} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The original theorem 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Taylor's
+\end_layout
+
+\end_inset
+
+ of Brook Taylor 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor ! Brook
+\end_layout
+
+\end_inset
+
+ was published in his opus magnum 
+\shape italic
+Methodus Incrementorum Directa & Inversa
+\shape default
+ of 1715.
+ In 
+\shape italic
+Methodus
+\shape default
+, it appears as the second corollary to Proposition VII Theorem III, bearing
+ faint resemblence to any modern statement of the theorem.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/Taylor--MethodusPage21.png
+	lyxscale 10
+	scale 11
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/Taylor--MethodusPage23.png
+	lyxscale 10
+	scale 11
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+There is no mention of a remainder term.
+ There is no use of the familiar 
+\begin_inset Formula $f(x)$
+\end_inset
+
+-type function notation.
+ It's written in Latin.
+ And there is no laundry list of hypotheses.
+\end_layout
+
+\begin_layout Standard
+Here is the original statement of Taylor's theorem in English as translated
+ by Ian Bruce.
+
+\shape smallcaps
+ Proposition VII.
+ Theorem III:
+\shape default
+ There are two variable quantities, 
+\begin_inset Formula $z$
+\end_inset
+
+ & 
+\begin_inset Formula $x$
+\end_inset
+
+, of which 
+\begin_inset Formula $z$
+\end_inset
+
+ is regularly increased by the given increment 
+\begin_inset Formula $\underset{\dot{\ }}{z}$
+\end_inset
+
+, and 
+\begin_inset Formula $n\underset{\dot{\ }}{z}=v$
+\end_inset
+
+, 
+\begin_inset Formula $v-\underset{\dot{\ }}{z}=\overset{^{\backslash}}{v}$
+\end_inset
+
+, 
+\begin_inset Formula $\overset{^{\backslash}}{v}-\underset{\dot{\ }}{z}=\overset{^{\backslash\backslash}}{v}$
+\end_inset
+
+, and thus henceforth.
+ Moreover, I say that in the time 
+\begin_inset Formula $z$
+\end_inset
+
+ increases to 
+\begin_inset Formula $z+v$
+\end_inset
+
+, 
+\begin_inset Formula $x$
+\end_inset
+
+ increases likewise to become 
+\begin_inset Formula $x+\underset{\dot{\ }}{x}\frac{v}{1\underset{\dot{\ }}{z}}+\underset{\ddot{\ }}{x}\frac{v\overset{\backslash}{v}}{1\cdot2\underset{\dot{\ }}{z}^{2}}+\underset{\dddot{\ }}{x}\frac{v\overset{\backslash}{v}\overset{\backslash\backslash}{v}}{1\cdot2\cdot3\underset{\dot{\ }}{z}^{3}}+\mbox{\&c}$
+\end_inset
+
+.
+
+\shape smallcaps
+ Corollary II:
+\shape default
+ If for the evanescent increments, the fluxions of the proportionals themselves
+ are written, now with all the 
+\begin_inset Formula $\overset{^{\backslash\backslash}}{v},\ \overset{^{\backslash}}{v},\ v,\ \underset{^{/}}{v},\ \underset{^{//}}{v},\mbox{ \&c.}$
+\end_inset
+
+ equal to the time 
+\begin_inset Formula $z$
+\end_inset
+
+ uniformly flows to become 
+\begin_inset Formula $z+v$
+\end_inset
+
+, 
+\begin_inset Formula $x$
+\end_inset
+
+ becomes 
+\begin_inset Formula $x+\dot{x}\frac{v}{1\dot{z}}+\ddot{x}\frac{v^{2}}{1\cdot2\dot{z}^{2}}+\dddot{x}\frac{v^{3}}{1\cdot2\cdot3\dot{z}^{3}}+\mbox{\&c }\ldots$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Interpretation of the original theorem of Brook Taylor}
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Unfortunately, the English translation of Taylor's theorem is only moderately
+ helpful to anyone who is not well acquainted with early 
+\begin_inset Formula $18^{th}$
+\end_inset
+
+ century mathematics.
+ In 1715, function notation was still 20 years in the making.
+ Today, we would interpret the declaration of the two variables as declaring
+ that 
+\begin_inset Formula $x$
+\end_inset
+
+ is a function of 
+\begin_inset Formula $z$
+\end_inset
+
+.
+ The claim in Theorem III is that we can rewrite 
+\begin_inset Formula $x(z+v)$
+\end_inset
+
+ as 
+\begin_inset Formula $x+\underset{\dot{\ }}{x}\frac{v}{1\underset{\dot{\ }}{z}}+\underset{\ddot{\ }}{x}\frac{v\overset{\backslash}{v}}{1\cdot2\underset{\dot{\ }}{z}^{2}}+\underset{\dddot{\ }}{x}\frac{v\overset{\backslash}{v}\overset{\backslash\backslash}{v}}{1\cdot2\cdot3\underset{\dot{\ }}{z}^{3}}+\mbox{\&c}$
+\end_inset
+
+.
+ Just as 
+\begin_inset Formula $x$
+\end_inset
+
+ should be interpreted as a function of 
+\begin_inset Formula $z$
+\end_inset
+
+ so should 
+\begin_inset Formula $\underset{\dot{\ }}{x}$
+\end_inset
+
+, 
+\begin_inset Formula $\underset{\ddot{\ }}{x}$
+\end_inset
+
+, and 
+\begin_inset Formula $\underset{\dddot{\ }}{x}$
+\end_inset
+
+.
+ More precisely, 
+\begin_inset Formula $\underset{\dot{\ }}{x}$
+\end_inset
+
+ means 
+\begin_inset Formula $x(z+\underset{\dot{\ }}{z})-x(z)$
+\end_inset
+
+, the amount 
+\begin_inset Formula $x$
+\end_inset
+
+ is incremented as 
+\begin_inset Formula $z$
+\end_inset
+
+ is incremented by 
+\begin_inset Formula $\underset{\dot{\ }}{z}$
+\end_inset
+
+.
+ Likewise, 
+\begin_inset Formula $\underset{\ddot{\ }}{x}$
+\end_inset
+
+ is the amount 
+\begin_inset Formula $\underset{\dot{\ }}{x}$
+\end_inset
+
+ is incremented as 
+\begin_inset Formula $z$
+\end_inset
+
+ is incremented by 
+\begin_inset Formula $\underset{\dot{\ }}{z}$
+\end_inset
+
+, so 
+\begin_inset Formula $\underset{\ddot{\ }}{x}=\underset{\dot{\ }}{x}(z+\underset{\dot{\ }}{z})-\underset{\dot{\ }}{x}(z)=\left[x(z+2\underset{\dot{\ }}{z})-x(z+\underset{\dot{\ }}{z})\right]-\left[x(z+\underset{\dot{\ }}{z})-x(z)\right]=x(z+2\underset{\dot{\ }}{z})-2x(z+\underset{\dot{\ }}{z})+x(z)$
+\end_inset
+
+.
+ Similarly, 
+\begin_inset Formula $\underset{\dddot{\ }}{x}$
+\end_inset
+
+ is the amount 
+\begin_inset Formula $\underset{\ddot{\ }}{x}$
+\end_inset
+
+ is incremented as 
+\begin_inset Formula $z$
+\end_inset
+
+ is incremented by 
+\begin_inset Formula $\underset{\dot{\ }}{z}$
+\end_inset
+
+.
+ Now would be a good time to break from reading to verify that 
+\begin_inset Formula $\underset{\dddot{\ }}{x}=x(z+3\underset{\dot{\ }}{z})-3x(z+2\underset{\dot{\ }}{z})+3x(z+\underset{\dot{\ }}{z})-x(z)$
+\end_inset
+
+, that 
+\begin_inset Formula $\underset{\ddddot{\ }}{x}=x(z+4\underset{\dot{\ }}{z})-4x(z+3\underset{\dot{\ }}{z})+6x(z+2\underset{\dot{\ }}{z})-4x(z+\underset{\dot{\ }}{z})+x(z)$
+\end_inset
+
+, and so on.
+ With this understanding and the conventions 
+\begin_inset Formula $\underset{0}{x}$
+\end_inset
+
+ for 
+\begin_inset Formula $x$
+\end_inset
+
+, 
+\begin_inset Formula $\underset{1}{x}$
+\end_inset
+
+ for 
+\begin_inset Formula $\underset{\dot{\ }}{x}$
+\end_inset
+
+, 
+\begin_inset Formula $\underset{2}{x}$
+\end_inset
+
+ for 
+\begin_inset Formula $\underset{\ddot{\ }}{x}$
+\end_inset
+
+, 
+\begin_inset Formula $\overset{0}{v}$
+\end_inset
+
+ for 
+\begin_inset Formula $v$
+\end_inset
+
+, 
+\begin_inset Formula $\overset{1}{v}$
+\end_inset
+
+ for 
+\begin_inset Formula $\overset{^{\backslash}}{v}$
+\end_inset
+
+, 
+\begin_inset Formula $\overset{2}{v}$
+\end_inset
+
+ for 
+\begin_inset Formula $\overset{^{\backslash\backslash}}{v}$
+\end_inset
+
+, and so on, it is then an algebraic exercise to see that
+\begin_inset Formula 
+\begin{eqnarray*}
+x(z+n\underset{\dot{\ }}{z}) & = & \sum_{j=0}^{n}\left(\begin{array}{c}
+n\\
+j
+\end{array}\right)\underset{^{j}}{x}=\underset{^{0}}{x}+\underset{^{1}}{x}\frac{n}{1}+\underset{^{2}}{x}\frac{n(n-1)}{1\cdot2}+\underset{^{3}}{x}\frac{n(n-1)(n-2)}{1\cdot2\cdot3}+\cdots+\underset{^{n}}{x}\frac{n(n-1)\cdots1}{1\cdot2\cdot3\cdots n}\\
+ & = & \underset{^{0}}{x}+\underset{^{1}}{x}\frac{n\underset{\dot{\ }}{z}}{1\underset{\dot{\ }}{z}}+\underset{^{2}}{x}\frac{n\underset{\dot{\ }}{z}(n-1)\underset{\dot{\ }}{z}}{1\cdot2\underset{\dot{\ }}{z}^{2}}+\underset{^{3}}{x}\frac{n\underset{\dot{\ }}{z}(n-1)\underset{\dot{\ }}{z}(n-2)\underset{\dot{\ }}{z}}{1\cdot2\cdot3\underset{\dot{\ }}{z}^{3}}+\cdots+\underset{^{n}}{x}\frac{n\underset{\dot{\ }}{z}(n-1)\underset{\dot{\ }}{z}\cdots1\underset{\dot{\ }}{z}}{1\cdot2\cdot3\cdots n\underset{\dot{\ }}{z}^{n}}\\
+ & = & \underset{^{0}}{x}+\underset{^{1}}{x}\frac{v}{1\underset{\dot{\ }}{z}}+\underset{^{2}}{x}\frac{v\overset{1}{v}}{1\cdot2\underset{\dot{\ }}{z}^{2}}+\underset{^{3}}{x}\frac{v\overset{2}{v}\overset{3}{v}}{1\cdot2\cdot3\underset{\dot{\ }}{z}^{3}}+\cdots+\underset{^{n}}{x}\frac{v\overset{2}{v}\overset{3}{v}\cdots\overset{n}{v}}{1\cdot2\cdot3\cdots n\underset{\dot{\ }}{z}^{n}}.
+\end{eqnarray*}
+
+\end_inset
+
+This calculation is essentially Taylor's proof of Theorem III.
+ 
+\end_layout
+
+\begin_layout Standard
+Corollary II (which we would consider the theorem) is not proved by Taylor
+ beyond the 
+\begin_inset Quotes eld
+\end_inset
+
+obvious
+\begin_inset Quotes erd
+\end_inset
+
+ application of Newton's theory of fluxions.
+ In today's language, corollary II follows by applying the limit as 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+ to the expression from Theorem III.
+ It makes for another nice exercise to verify that 
+\begin_inset Formula $\lim_{n\to\infty}\frac{\underset{k}{x}}{\underset{\dot{\ }}{z}^{k}}=x^{(k)}(z)$
+\end_inset
+
+, the 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ derivative of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ And one final exercise to see that 
+\begin_inset Formula $\lim_{n\to\infty}\overset{k}{v}=v$
+\end_inset
+
+.
+ As Taylor took these results for granted, so shall we.
+ Applying them to Theorem III, we see that 
+\begin_inset Formula $x(z+v)=x(z)+x'(z)\frac{v}{1!}+x''(z)\frac{v^{2}}{2!}+x'''(z)\frac{v^{3}}{3!}+\cdots$
+\end_inset
+
+.
+ In the notation of Taylor, 
+\begin_inset Formula $\frac{\dot{x}}{\dot{z}}$
+\end_inset
+
+ is the first derivative of 
+\begin_inset Formula $x$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\ddot{x}}{\dot{z}^{2}}$
+\end_inset
+
+ is the second derivative of 
+\begin_inset Formula $x$
+\end_inset
+
+, and so on.
+ So we in fact have 
+\begin_inset Formula $x+\dot{x}\frac{v}{1\dot{z}}+\ddot{x}\frac{v^{2}}{1\cdot2\dot{z}^{2}}+\dddot{x}\frac{v^{3}}{1\cdot2\cdot3\dot{z}^{3}}+\mbox{\&c}$
+\end_inset
+
+ as claimed.
+\end_layout
+
+\begin_layout Standard
+It is interesting that Theorem III is true for any function 
+\begin_inset Formula $x$
+\end_inset
+
+ defined on the interval 
+\begin_inset Formula $[x,x+v]$
+\end_inset
+
+.
+ No matter if 
+\begin_inset Formula $x$
+\end_inset
+
+ is differentiable, or even continuous.
+ It is a statement about finite differences.
+ It is the corollary that requires many more assumptions because that is
+ where we pass to the limit.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Octave
+\end_layout
+
+\begin_layout Standard
+Two things that will come in handy time and again when using Octave are
+ inline functions 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! inline function
+\end_layout
+
+\end_inset
+
+ and 
+\family typewriter
+.m
+\family default
+ files
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+.m
+\family default
+ file
+\end_layout
+
+\end_inset
+
+.
+ Creating an inline function is a simple way to make a 
+\begin_inset Quotes eld
+\end_inset
+
+custom
+\begin_inset Quotes erd
+\end_inset
+
+ function in Octave.
+ Creating a 
+\family typewriter
+.m
+\family default
+ file is an organized way to execute a number of commands and save your
+ work for later.
+ 
+\end_layout
+
+\begin_layout Standard
+In the last section we saw many built-in functions like 
+\family typewriter
+sin(x)
+\family default
+, 
+\family typewriter
+log(x)
+\family default
+, and 
+\family typewriter
+abs(x)
+\family default
+.
+ These have predefined meaning in Octave.
+ But what if you want to define 
+\begin_inset Formula $f(x)=3x^{2}$
+\end_inset
+
+? There is no built-in 
+\begin_inset Quotes eld
+\end_inset
+
+3 
+\begin_inset Formula $x$
+\end_inset
+
+ squared
+\begin_inset Quotes erd
+\end_inset
+
+ function.
+ That's where an inline function is useful.
+ The syntax for an inline function is
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\family typewriter
+name = inline('function definition')
+\end_layout
+
+\begin_layout Standard
+\noindent
+where 
+\family typewriter
+name
+\family default
+ is the name of the function and 
+\family typewriter
+function definition
+\family default
+ is its formula.
+ In the case of 
+\begin_inset Formula $f(x)=3x^{2}$
+\end_inset
+
+, the Octave code looks like 
+\family typewriter
+f=inline('3*x^2')
+\family default
+.
+ Then you can use 
+\family typewriter
+f
+\family default
+ the same way you would use 
+\family typewriter
+sin
+\family default
+ or 
+\family typewriter
+log
+\family default
+ or 
+\family typewriter
+abs
+\family default
+.
+ Write the name of the function, left parenthesis, argument, right parenthesis.
+ So, after defining 
+\family typewriter
+f
+\family default
+ with the 
+\family typewriter
+f=inline('3*x^2')
+\family default
+ statement, 
+\family typewriter
+f(7)
+\family default
+ will result in 147: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> f=inline('3*x^2');
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> f(7)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  147 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now we may complete Experiment 1 of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Accuracy"
+
+\end_inset
+
+ a fourth way.
+ Instead of doing the computations on the command line, we can create a
+ text file with the commands in it.
+ Saved as a 
+\family typewriter
+.m
+\family default
+ file, Octave will recognize it as a list of instructions.
+ If you are familiar with programming, this way of working with Octave will
+ come very naturally.
+ Writing a 
+\family typewriter
+.m
+\family default
+ file is the equivalent of writing a program.
+ After it is written, it needs to be processed.
+ On the Octave command line, a 
+\family typewriter
+.m
+\family default
+ file is run by typing the name of the file, without the 
+\family typewriter
+.m
+\family default
+.
+ That's it, so it isn't exactly like writing a program.
+ There is no compiling.
+ It's a little bit more like scripting that way.
+ 
+\end_layout
+
+\begin_layout Standard
+To begin, use any text editor you like to create the list of commands.
+ Note well, Microsoft Word, LibreOffice, and other word processors are not
+ text editors.
+ They are word processors.
+ They have font formatting features, page set up features, and so on.
+ Now imagine your last report or letter to Mom and remove all the formatting,
+ save separation of paragraphs.
+ That's a text file.
+ No bold, no centering, no images, no special fonts, no margins, no pages.
+ Just the typed words.
+ There is no need for all the decorations a word processor allows.
+ All Octave needs is a list of commands.
+ The only formatting you will need is the line feed (new line) and tabs.
+ If you don't already have a favorite text editor (and maybe even if you
+ do), you should use the one that comes with Octave.
+ If you use this program, you will have no problems.
+ So, first create the text document 
+\family typewriter
+experiment1.m
+\family default
+ exactly as shown here: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+format('long')
+\end_layout
+
+\begin_layout Plain Layout
+
+p1 = 10*pi-31
+\end_layout
+
+\begin_layout Plain Layout
+
+p2 = 100*p1-41
+\end_layout
+
+\begin_layout Plain Layout
+
+p3 = 100*p2-59
+\end_layout
+
+\begin_layout Plain Layout
+
+p4 = 100*p3-26
+\end_layout
+
+\begin_layout Plain Layout
+
+p5 = 100*p4-53
+\end_layout
+
+\begin_layout Plain Layout
+
+p6 = 100*p5-58
+\end_layout
+
+\begin_layout Plain Layout
+
+p7 = 100*p6-97 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ Then, on the Octave command line, type 
+\family typewriter
+experiment1
+\family default
+ to get the results: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> experiment1
+\end_layout
+
+\begin_layout Plain Layout
+
+p1 =  0.415926535897931
+\end_layout
+
+\begin_layout Plain Layout
+
+p2 =  0.592653589793116
+\end_layout
+
+\begin_layout Plain Layout
+
+p3 =  0.265358979311600
+\end_layout
+
+\begin_layout Plain Layout
+
+p4 =  0.535897931159980
+\end_layout
+
+\begin_layout Plain Layout
+
+p5 =  0.589793115997963
+\end_layout
+
+\begin_layout Plain Layout
+
+p6 =  0.979311599796347
+\end_layout
+
+\begin_layout Plain Layout
+
+p7 =  0.931159979634685
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ This way of writing Octave commands has two distinct advantages.
+ First, if you make errors, it's a simple matter to correct them.
+ Just edit the text file and save the changes.
+ Second, you have a record of your work.
+ You can share it, print it, or just save it for later.
+ There is only one real disadvantage.
+ It's more involved than just executing a few commands on the command line.
+ So, for simple computations, it is more headache than necessary.
+\end_layout
+
+\begin_layout Standard
+Note well that the 
+\family typewriter
+.m
+\family default
+ file has to be saved in the same directory from which Octave was started.
+ This type of detail will be taken care of for you if you use an IDE, but
+ if you are using a command line and text editor, you need to be sure 
+\family typewriter
+.m
+\family default
+ files are saved to the proper location.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $T_{3}(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{3}(x)$
+\end_inset
+
+ for the function expanded about 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor1"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\sin(x)$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\sin(x)$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=\pi/2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor2"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\sin(x)$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=\pi$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=\ln2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor3"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=x\sin(x)$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\cos^{2}(x)$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=4x^{3}-2x^{2}+8x-9$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $T_{3}(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{3}(x)$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $T_{3}(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{3}(x)$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Make a conjecture based on your answers to parts (a) and (b).
+ Can you prove it?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the 
+\begin_inset Formula $36^{th}$
+\end_inset
+
+ Maclaurin Polynomial for 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is a function whose fourth derivative exists on the whole real line, 
+\begin_inset Formula $(-\infty,\infty)$
+\end_inset
+
+, and that 
+\begin_inset Formula $f(2)=3$
+\end_inset
+
+, 
+\begin_inset Formula $f'(2)=-1$
+\end_inset
+
+, 
+\begin_inset Formula $f''(2)=2$
+\end_inset
+
+, and 
+\begin_inset Formula $f'''(2)=-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Write down the third Taylor polynomial for 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Use the Taylor polynomial to approximate 
+\begin_inset Formula $f(4)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a bound on the absolute error of the approximation using the fact that
+\begin_inset Formula 
+\[
+-3\leq f^{(4)}(\xi)\leq5
+\]
+
+\end_inset
+
+for all 
+\begin_inset Formula $\xi\in[2,4]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Compute the 
+\begin_inset Formula $3^{rd}$
+\end_inset
+
+ Taylor Polynomial for 
+\begin_inset Formula $f(x)=x^{5}-2x^{4}+x^{3}-9x^{2}+x-1$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find the second Taylor Polynomial for 
+\begin_inset Formula $f(x)=\csc x$
+\end_inset
+
+ expanded about 
+\begin_inset Formula ${\displaystyle x_{0}=\frac{\pi}{4}}$
+\end_inset
+
+.
+ Here are some facts you may find useful:
+\begin_inset Formula 
+\begin{gather*}
+f'(x)=-\csc(x)\cot(x)\quad\csc(x)=\frac{1}{\sin(x)}\\
+f''(x)=\csc(x)(1+2\cot^{2}(x))\quad\cot(x)=\frac{\cos(x)}{\sin(x)}
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The hyperbolic sine, 
+\begin_inset Formula $\sinh(x)$
+\end_inset
+
+, and hyperbolic cosine, 
+\begin_inset Formula $\cosh(x)$
+\end_inset
+
+, are derivatives of one another.
+ That is, 
+\begin_inset Formula 
+\[
+\begin{gathered}\frac{\textrm{d}}{\textrm{d}x}(\sinh(x))=\cosh(x)\\
+\textrm{and}\\
+\frac{\textrm{d}}{\textrm{d}x}(\cosh(x))=\sinh(x).
+\end{gathered}
+\]
+
+\end_inset
+
+Find the remainder term, 
+\begin_inset Formula $R_{43}$
+\end_inset
+
+, associated with the 
+\begin_inset Formula $43^{rd}$
+\end_inset
+
+ Maclaurin polynomial for 
+\begin_inset Formula $f(x)=\cosh(x)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor8"
+
+\end_inset
+
+Use an 
+\family typewriter
+inline
+\family default
+ function to evaluate the Taylor polynomial 
+\begin_inset Formula $T_{4}(x)=1-\frac{1}{2}x^{2}+\frac{1}{24}x^{4}$
+\end_inset
+
+ at the given value of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+0
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+1
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\pi$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor10"
+
+\end_inset
+
+Use an 
+\family typewriter
+inline
+\family default
+ function to evaluate the Taylor polynomial 
+\begin_inset Formula $T_{3}(x)=1+x+\frac{1}{2}x^{2}+\frac{1}{6}x^{3}$
+\end_inset
+
+ at the given value of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+0
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\frac{3}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor9"
+
+\end_inset
+
+
+\begin_inset Formula $e$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor11"
+
+\end_inset
+
+Write and run a 
+\family typewriter
+.m
+\family default
+ file that finds all the answers for exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:taylor8"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write and run a 
+\family typewriter
+.m
+\family default
+ file that finds all the answers for exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:taylor10"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $\xi(x)$
+\end_inset
+
+ as guaranteed by Taylor's theorem in the following situation.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor7"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\cos(x)$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+, 
+\begin_inset Formula $n=3$
+\end_inset
+
+, 
+\begin_inset Formula $x=\pi$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+, 
+\begin_inset Formula $n=3$
+\end_inset
+
+, 
+\begin_inset Formula $x=\ln4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\ln(x)$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+, 
+\begin_inset Formula $n=4$
+\end_inset
+
+, 
+\begin_inset Formula $x=2$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=x^{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find the second Taylor polynomial, 
+\begin_inset Formula $P_{2}(x)$
+\end_inset
+
+, about 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find the remainder term, 
+\begin_inset Formula $R_{2}(0.5)$
+\end_inset
+
+, and the the actual error in using 
+\begin_inset Formula $P_{2}(0.5)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(0.5)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Repeat part (a) using 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Repeat part (b) using the polynomial from part (c).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the second Taylor polynomial, 
+\begin_inset Formula $P_{2}(x)$
+\end_inset
+
+, for 
+\begin_inset Formula $f(x)=e^{x}\cos x$
+\end_inset
+
+ about 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use 
+\begin_inset Formula $P_{2}(0.5)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(0.5)$
+\end_inset
+
+.
+ Find an upper bound on the error 
+\begin_inset Formula $|f(0.5)-P_{2}(0.5)|$
+\end_inset
+
+ using the remainder term and compare it to the actual error.
+\end_layout
+
+\begin_layout Enumerate
+Find a bound on the error 
+\begin_inset Formula $|f(x)-P_{2}(x)|$
+\end_inset
+
+ good on the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Approximate 
+\begin_inset Formula $\int_{0}^{1}f(x)\, dx$
+\end_inset
+
+ by calculating 
+\begin_inset Formula $\int_{0}^{1}P_{2}(x)\, dx$
+\end_inset
+
+ instead.
+\end_layout
+
+\begin_layout Enumerate
+Find an upper bound for the error in (c) using 
+\begin_inset Formula $\int_{0}^{1}|R_{2}(x)|\, dx$
+\end_inset
+
+ and compare the bound to the actual error.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Maclaurin polynomial 
+\begin_inset Formula $P_{n}(x)$
+\end_inset
+
+ for 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a bound on the error in using 
+\begin_inset Formula $P_{4}(2)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(2)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+How many terms of the Maclaurin polynomial would you need to use in order
+ to approximate 
+\begin_inset Formula $f(2)$
+\end_inset
+
+ to within 
+\begin_inset Formula $10^{-10}$
+\end_inset
+
+? In other words, for what 
+\begin_inset Formula $n$
+\end_inset
+
+ does 
+\begin_inset Formula $P_{n}(2)$
+\end_inset
+
+ have an error bound less than or equal to 
+\begin_inset Formula $10^{-10}$
+\end_inset
+
+?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the fourth Taylor Polynomial for 
+\begin_inset Formula $\ln x$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+What is the 
+\begin_inset Formula $50^{th}$
+\end_inset
+
+ term of 
+\begin_inset Formula $T_{100}(e^{x})$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=6$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "arctan"
+
+\end_inset
+
+The Maclaurin series for the arctangent function converges for 
+\begin_inset Formula $-1<x\leq1$
+\end_inset
+
+ and is given by
+\begin_inset Formula 
+\[
+\arctan x-\lim_{n\to\infty}P_{n}(x)=\lim_{n\to\infty}\sum_{i=1}^{n}(-1)^{i+1}\frac{x^{2i-1}}{2i-1}.
+\]
+
+\end_inset
+
+Use the fact that 
+\begin_inset Formula $\tan(\pi/4)=1$
+\end_inset
+
+ to determine the number of terms, 
+\begin_inset Formula $n$
+\end_inset
+
+, of the series that need to be summed to ensure that 
+\begin_inset Formula $|4P_{n}(1)-\pi|<10^{-3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "arctan"
+
+\end_inset
+
+ details a rather inefficient means of obtaining an approximation to 
+\begin_inset Formula $\pi$
+\end_inset
+
+.
+ The method can be improved substantially by observing that 
+\begin_inset Formula $\pi/4=\arctan\frac{1}{2}+\arctan\frac{1}{3}$
+\end_inset
+
+ and evaluating the series for the arctangent at 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+ and at 
+\begin_inset Formula $\frac{1}{3}$
+\end_inset
+
+.
+ Determine the number of terms that must be summed to ensure an approximation
+ to 
+\begin_inset Formula $\pi$
+\end_inset
+
+ within 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+For 
+\begin_inset Formula $f(x)=\tan^{-1}(x)$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+f^{(n)}(0)=\begin{cases}
+0 & \textrm{if }n\textrm{ is even}\\
+(-1)^{(n-1)/2}(n-1)! & \textrm{if }n\textrm{ is odd}
+\end{cases}
+\]
+
+\end_inset
+
+Find the 
+\begin_inset Formula $n^{th}$
+\end_inset
+
+ Maclaurin polynomial 
+\begin_inset Formula $P_{n}(x)$
+\end_inset
+
+ for 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+How many terms of the Maclaurin Series of 
+\begin_inset Formula $\sin x$
+\end_inset
+
+ are needed to guarantee an approximation with error no more than 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+ for any value of 
+\begin_inset Formula $x$
+\end_inset
+
+ between 0 and 
+\begin_inset Formula $2\pi$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Suppose you are approximating 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+ using the tenth Maclaurin Polynomial.
+ Find the largest interval over which the approximation is guaranteed to
+ be accurate to within 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a bound on the error in approximating 
+\begin_inset Formula $e^{10}$
+\end_inset
+
+ by using the twenty-fifth Taylor polynomial of 
+\begin_inset Formula $g(x)=e^{x}$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a bound on the error of the approximation 
+\begin_inset Formula 
+\[
+e^{2}\approx1+2+\frac{1}{2}(2)^{2}+\frac{1}{6}(2)^{3}+\frac{1}{24}(2)^{4}+\frac{1}{120}(2)^{5}
+\]
+
+\end_inset
+
+according to Taylor's Theorem.
+ Compare this bound to the actual error.
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $f^{(8)}(x)=e^{x}\cos x$
+\end_inset
+
+ for some function 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Find a bound on the error in approximating 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0,\pi/2]$
+\end_inset
+
+ using 
+\begin_inset Formula $T_{7}(f)$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor4"
+
+\end_inset
+
+Let 
+\begin_inset Formula $f(x)=\frac{1}{x}$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}=5$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $R_{2}(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Use 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(1)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(9)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a theoretical upper bound on the absolute error of each of the approximatio
+ns in part (c).
+\end_layout
+
+\begin_layout Enumerate
+Find a theoretical lower bound on the absolute error of each of the approximatio
+ns in part (c).
+\end_layout
+
+\begin_layout Enumerate
+Find the actual absolute error for each of the approximations in part (c).
+ Verify that they are indeed between the theoretical bounds.
+\end_layout
+
+\begin_layout Enumerate
+Sketch graphs of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ on the same set of axes for 
+\begin_inset Formula $x\in[1,9]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=\ln(1+x)$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $T_{3}(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $R_{3}(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Use 
+\begin_inset Formula $T_{3}(x)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(1)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(26)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a theoretical upper bound on the absolute error of each of the approximatio
+ns in part (c).
+\end_layout
+
+\begin_layout Enumerate
+Find a theoretical lower bound on the absolute error of each of the approximatio
+ns in part (c).
+\end_layout
+
+\begin_layout Enumerate
+Find the actual absolute error for each of the approximations in part (c).
+ Verify that they are indeed between the theoretical bounds.
+\end_layout
+
+\begin_layout Enumerate
+Sketch graphs of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ on the same set of axes for 
+\begin_inset Formula $x\in[1,26]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is such that 
+\begin_inset Formula $-3\leq f^{(10)}(x)\leq7$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in[0,10]$
+\end_inset
+
+.
+ Find lower and upper bounds on the absolute error in using 
+\begin_inset Formula $T_{9}(x)$
+\end_inset
+
+ expanded about 
+\begin_inset Formula $x_{0}=3$
+\end_inset
+
+ to approximate
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(0)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(10)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suppose you wish to approximate the value of 
+\begin_inset Formula $-e^{4}\sin4$
+\end_inset
+
+ using separate Maclaurin polynomials (Taylor polynomials expanded about
+ 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+) for the sine and exponential functions instead of a single Maclaurin polynomia
+l for the function 
+\begin_inset Formula $f(x)=-e^{x}\sin x$
+\end_inset
+
+.
+ How many terms of each would you need in order to get accuracy within 
+\begin_inset Formula $10^{-20}$
+\end_inset
+
+? Ignore roundoff error.
+\end_layout
+
+\begin_layout Enumerate
+Find a theoretical upper bound, as a function of 
+\begin_inset Formula $x$
+\end_inset
+
+, for the absolute error in using 
+\begin_inset Formula $T_{4}(x)$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $e^{x}\sin x$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:taylor5"
+
+\end_inset
+
+
+\begin_inset Formula $e^{-x^{2}}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\frac{10}{x}+\sin(10x)$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=\pi$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The Maclaurin Series for 
+\begin_inset Formula $f(x)=e^{-x}$
+\end_inset
+
+ is
+\begin_inset Formula 
+\[
+\sum_{i=0}^{\infty}\frac{(-1)^{i}}{i!}x^{i}=1-x+\frac{1}{2}x^{2}-\frac{1}{6}x^{3}+\ldots
+\]
+
+\end_inset
+
+ Find a bound on the error in approximating 
+\begin_inset Formula $1/e$
+\end_inset
+
+ by 
+\begin_inset Formula $1-1+1/2-1/6+1/24$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The Taylor series for 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+ is 
+\begin_inset Formula ${\displaystyle T(x)=1+x+\frac{1}{2!}x^{2}+\frac{1}{3!}x^{3}+\frac{1}{4!}x^{4}+\frac{1}{5!}x^{5}+\cdots}$
+\end_inset
+
+.
+ This series converges to 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ for all values of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ In particular, for 
+\begin_inset Formula $x=1$
+\end_inset
+
+, this means that
+\begin_inset Formula 
+\[
+f(1)=T(1)=1+1+\frac{1}{2!}(1)^{2}+\frac{1}{3!}(1)^{3}+\frac{1}{4!}(1)^{4}+\cdots
+\]
+
+\end_inset
+
+Simplifying this equation, we see that
+\begin_inset Formula 
+\[
+e=1+1+\frac{1}{2}+\frac{1}{6}+\frac{1}{24}+\frac{1}{120}+\cdots
+\]
+
+\end_inset
+
+Use Taylor Series to find infinite sums that sum to 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\ln(2)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $2/3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\pi/4$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

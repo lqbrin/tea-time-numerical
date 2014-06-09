@@ -1,0 +1,47 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+orderOfConvergence-2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load('draw)$
+a:1.618033988749895;
+b:2.5;
+tol:10^-4;
+g(x):=(x^2+x)^(1/3);
+gp:diff(g(x),x);
+draw2d(explicit(g(x),x,a,b),explicit(gp,x,a,b));
+e0:2.5-1.618033988749895;
+M:subst(x=a,gp);
+k:log(tol/e0)/log(M);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+exact:1.618033988749895;
+x0:2.5;
+i:0;
+while (abs(exact-x0)>10^-4) do (
+  x0:g(x0),
+  i:i+1
+);
+i;
+x0;
+abs(exact-x0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x^4-2*x^3-4*x^2+4*x+4=0;
+%-x^4;
+%*-1;
+%^(1/4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+.75=1-(1-fp)^2/(3-2*fp+1);
+solve(%);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

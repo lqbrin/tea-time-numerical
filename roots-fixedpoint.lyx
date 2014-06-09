@@ -1,0 +1,4560 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Fixedpt"
+
+\end_inset
+
+Fixed Point Iteration
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+fixed point iteration method
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! fixed point iteration|see{fixed point iteration method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Grab your calculator.
+ Anything with a cosine button will do nicely.
+ Presuming you have a simple scientific calculator, press the all-clear
+ button, usually marked 
+\family typewriter
+AC
+\family default
+ or just 
+\family typewriter
+C
+\family default
+.
+ The screen should now display 0.
+ Press the cosine button, which should be marked 
+\family typewriter
+cos
+\family default
+.
+ The screen should display 1.
+ Press the cosine button again.
+ The screen should display 
+\begin_inset Formula $0.540302\ldots$
+\end_inset
+
+.
+ Repeat.
+ Repeat again.
+ In fact, continue pressing the cosine button until you notice a pattern.
+ 
+\end_layout
+
+\begin_layout Standard
+If you have a fancier calculator with a previous-answer button, usually
+ marked 
+\family typewriter
+Ans
+\family default
+, press 0 and then 
+\family typewriter
+Enter
+\family default
+ or 
+\family typewriter
+=
+\family default
+.
+ Then press the cosine button and then the previous-answer button.
+ Then press 
+\family typewriter
+Enter
+\family default
+ or 
+\family typewriter
+=
+\family default
+ to do the computation.
+ The first time around, the screen should display 1 (just as with a scientific
+ calculator).
+ To repeat, however, just press 
+\family typewriter
+Enter
+\family default
+ or 
+\family typewriter
+=
+\family default
+ again.
+ This will repeat the last computation.
+ In this case, the cosine of the previous answer.
+ The screen should display 
+\begin_inset Formula $0.540302\ldots$
+\end_inset
+
+.
+ Now repeat until you notice a pattern.
+\end_layout
+
+\begin_layout Standard
+After about 30 repetitions, or, as we will call them, iterations
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+iteration
+\end_layout
+
+\end_inset
+
+, your calculator should display a number like 
+\begin_inset Formula $0.739083847\ldots$
+\end_inset
+
+.
+ And no matter how many times you repeat, or iterate, the calculation, it
+ won't change much.
+ In fact, once it reaches 
+\begin_inset Formula $0.7390851332\ldots$
+\end_inset
+
+, it won't change at all (unless your calculator shows more decimal places---aft
+er about 90 iterations, a calculator showing 15 decimal places will display
+ 
+\begin_inset Formula $0.739085133215161$
+\end_inset
+
+ and it won't change from there).
+ What that means is 
+\begin_inset Formula $\cos(0.7390851332\ldots)=0.7390851332\ldots$
+\end_inset
+
+.
+ And we call 
+\begin_inset Formula $0.7390851332\ldots$
+\end_inset
+
+ a 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+fixed point
+\end_layout
+
+\end_inset
+
+ fixed point of the cosine function.
+ The value is fixed (does not change) when the cosine function is applied.
+ Put another way, at 
+\begin_inset Formula $0.7390851332\ldots$
+\end_inset
+
+, the input and output of the cosine function are equal.
+\end_layout
+
+\begin_layout Standard
+Perhaps a whole series of questions now comes to mind.
+ Why does this work? What if we start with a number other than 0? Does this
+ work with any function? Can we predict when it will or won't work? Can
+ we find roots this way? Is convergence fast? In this section and the next,
+ we will give at least partial answers to all of these questions.
+ We start with 
+\begin_inset Quotes eld
+\end_inset
+
+Why does this work?
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Consider solving the system 
+\begin_inset Formula 
+\[
+\begin{cases}
+y=\cos(x)\\
+y=x
+\end{cases}.
+\]
+
+\end_inset
+
+One way to do so is by the method of substitution.
+ If we substitute 
+\begin_inset Formula $y=x$
+\end_inset
+
+ into 
+\begin_inset Formula $y=\cos x$
+\end_inset
+
+ we get 
+\begin_inset Formula $x=\cos x$
+\end_inset
+
+ or 
+\begin_inset Formula $\cos x=x$
+\end_inset
+
+.
+ The solutions of the system coincide exactly with the fixed points of the
+ cosine function, for any solution of 
+\begin_inset Formula $\cos x=x$
+\end_inset
+
+ is a value 
+\begin_inset Formula $x$
+\end_inset
+
+ that is fixed by the cosine.
+ Since systems of two equations in two unknowns can be solved, at least
+ approximately, by graphing, this suggests that we might take a look at
+ the graph of the system in order to learn more about what is happening
+ during iteration.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cosine-fixed-point"
+
+\end_inset
+
+Finding the fixed point of 
+\begin_inset Formula $\cos(x)$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-fixedpt5.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/roots-fixedpt1.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cosine-fixed-point"
+
+\end_inset
+
+(a) shows the graphs of 
+\begin_inset Formula $y=\cos(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $y=x$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+.
+ We can see the intersection at around 
+\begin_inset Formula $(0.75,0.75)$
+\end_inset
+
+ so we should think that the fixed point is around 
+\begin_inset Formula $0.75$
+\end_inset
+
+ (which of course we know is true from our calculator experiment).
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cosine-fixed-point"
+
+\end_inset
+
+(b) illustrates the exercise of computing 
+\begin_inset Formula $\cos(0),\cos(1),\cos(0.540302\ldots),\ldots$
+\end_inset
+
+.
+ Following the vertical line segment from 
+\begin_inset Formula $(0,0)$
+\end_inset
+
+ to 
+\begin_inset Formula $(0,1)$
+\end_inset
+
+ represents calculating 
+\begin_inset Formula $\cos(0)$
+\end_inset
+
+.
+ Following the horizontal continuation from 
+\begin_inset Formula $(0,1)$
+\end_inset
+
+ to 
+\begin_inset Formula $(1,1)$
+\end_inset
+
+ and subsequently the vertical line segment from 
+\begin_inset Formula $(1,1)$
+\end_inset
+
+ to 
+\begin_inset Formula $(1,0.540302\ldots)$
+\end_inset
+
+ represents calculating 
+\begin_inset Formula $\cos(1)$
+\end_inset
+
+.
+ Following the horizontal line from 
+\begin_inset Formula $(1,0.540302\ldots)$
+\end_inset
+
+ to 
+\begin_inset Formula $(0.540302\ldots,0.540302\ldots)$
+\end_inset
+
+ and subsequently the vertical line from 
+\begin_inset Formula $(0.540302\ldots,0.540302\ldots)$
+\end_inset
+
+ to 
+\begin_inset Formula $(0.540302\ldots,0.857553\ldots)$
+\end_inset
+
+ represents calculating 
+\begin_inset Formula $\cos(0.540302\ldots)$
+\end_inset
+
+, and so on.
+ With each pair of line segments, one going horizontally from the graph
+ of 
+\begin_inset Formula $y=\cos(x)$
+\end_inset
+
+ to the graph of 
+\begin_inset Formula $y=x$
+\end_inset
+
+ followed by one going vertically from the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+ to the graph of 
+\begin_inset Formula $y=\cos(x)$
+\end_inset
+
+, another iteration is shown.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cosine-fixed-point"
+
+\end_inset
+
+(b) is sometimes called a web diagram
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+web diagram
+\end_layout
+
+\end_inset
+
+, and is commonly used to illustrate the concept of iteration.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: References
+\end_layout
+
+\end_inset
+
+ That the path of the web diagram tends toward 
+\begin_inset Formula $(0.739085\ldots,0.739085\ldots)$
+\end_inset
+
+ is an unavoidable consequence of the geometry of the graph of 
+\begin_inset Formula $\cos(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+What if we start with a number other than 0? Using figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cosine-fixed-point"
+
+\end_inset
+
+, you should be able to convince yourself that convergence to the point
+ 
+\begin_inset Formula $(0.7390851332\ldots,0.7390851332\ldots)$
+\end_inset
+
+ is assured for any initial value between 0 and 1.
+ Try it.
+ Start anywhere on the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+.
+ Proceed vertically to the graph of 
+\begin_inset Formula $y=\cos(x)$
+\end_inset
+
+.
+ Then horizontally to the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+.
+ And repeat.
+ You should find that the path of the web diagram always tends toward the
+ intersection of the graphs.
+ Now consider starting with any real number, 
+\begin_inset Formula $r$
+\end_inset
+
+.
+ The cosine of any real number is a number in the interval 
+\begin_inset Formula $[-1,1]$
+\end_inset
+
+ so 
+\begin_inset Formula $\cos(r)\in[-1,1]$
+\end_inset
+
+.
+ And the cosine of any number in the interval 
+\begin_inset Formula $[-1,1]$
+\end_inset
+
+ is a number in the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ so 
+\begin_inset Formula $\cos(\cos(r))\in[0,1]$
+\end_inset
+
+.
+ That is, the second iteration is in the interval from 0 to 1.
+ So after only two iterations, any initial value will become a value between
+ 0 and 1.
+ And our web diagram implies that further iteration will lead to the fixed
+ point.
+ So, regardless of the initial value, iteration leads to the fixed point.
+ And the preceeding argument forms the seed for a proof of this fact.
+\end_layout
+
+\begin_layout Standard
+Not all functions are so well behaved, however.
+ For example, 
+\begin_inset Formula $1^{2}=1$
+\end_inset
+
+.
+ In other words, 
+\begin_inset Formula $1$
+\end_inset
+
+ is a fixed point of the function 
+\begin_inset Formula $y=x^{2}$
+\end_inset
+
+.
+ However, iteration starting with any number other than 
+\begin_inset Formula $1$
+\end_inset
+
+ or 
+\begin_inset Formula $-1$
+\end_inset
+
+ does not lead to this fixed point.
+ If we start with any number greater than 1 and square it, it becomes greater.
+ And if we square the result, it becomes greater still.
+ And squaring again only increases the value, without bound.
+ Hence, iteration starting with any value greater than 1 (or less than 
+\begin_inset Formula $-1$
+\end_inset
+
+) does not lead to convergence to the fixed point 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Nor does iteration starting with any number of magnitude less than 1.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:quadratic-fixed-point"
+
+\end_inset
+
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:quadratic-fixed-point"
+
+\end_inset
+
+Visualizing the iteration of 
+\begin_inset Formula $f(x)=x^{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/roots-fixedpt2.eps
+	scale 120
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ illustrates iteration of 
+\begin_inset Formula $y=x^{2}$
+\end_inset
+
+ with initial value 
+\begin_inset Formula $0.9$
+\end_inset
+
+.
+ Follow the web diagram from the point 
+\begin_inset Formula $(0.9,0.9)$
+\end_inset
+
+ vertically to the graph of 
+\begin_inset Formula $y=x^{2}$
+\end_inset
+
+ and then horizontally back to the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+, and so on, to check for yourself.
+ This is a nice illustration of the fact that the square of any number between
+ 0 and 1, exclusive, is smaller than the number itself.
+ With starting values between 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+ exclusive of 
+\begin_inset Formula $\pm1$
+\end_inset
+
+, iteration gives a sequence converging to 0, not 1.
+ To summarize, excepting 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 1, no initial value will produce a sequence converging to 1 under iteration
+ of the function 
+\begin_inset Formula $y=x^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+There is a fundamental difference between the fixed point 
+\begin_inset Formula $0.7390851332\ldots$
+\end_inset
+
+ of 
+\begin_inset Formula $f(x)=\cos(x)$
+\end_inset
+
+ and the fixed point 
+\begin_inset Formula $1$
+\end_inset
+
+ of 
+\begin_inset Formula $g(x)=x^{2}$
+\end_inset
+
+.
+ Fixed point iteration converges to 
+\begin_inset Formula $0.7390851332\ldots$
+\end_inset
+
+ under 
+\begin_inset Formula $f(x)=\cos(x)$
+\end_inset
+
+ for any initial value.
+ Fixed point iteration fails to converge to 
+\begin_inset Formula $1$
+\end_inset
+
+ under 
+\begin_inset Formula $g(x)=x^{2}$
+\end_inset
+
+ for all initial values but 
+\begin_inset Formula $\pm1$
+\end_inset
+
+.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+For a third type of behavior, fixed point iteration converges to 
+\begin_inset Formula $0$
+\end_inset
+
+ under 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ for initial values near 0, but not for others!
+\end_layout
+
+\end_inset
+
+ Examining the graphs of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ each superimposed against the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+ in the neighborhood of their respective fixed points can give a clue [Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:fixed-pt-zoom"
+
+\end_inset
+
+] as to the difference.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fixed-pt-zoom"
+
+\end_inset
+
+Left: 
+\color blue
+
+\begin_inset Formula $f(x)=\cos(x)$
+\end_inset
+
+
+\color inherit
+ and 
+\begin_inset Formula $y=x$
+\end_inset
+
+.
+ Right: 
+\color blue
+
+\begin_inset Formula $g(x)=x^{2}$
+\end_inset
+
+
+\color inherit
+ and 
+\begin_inset Formula $y=x$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/roots-fixedpt3.eps
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figures/roots-fixedpt4.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+True, 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ has a negative slope at its fixed point while 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ has a positive slope at its fixed point.
+ You can see this from the graphs or you can 
+\begin_inset Quotes eld
+\end_inset
+
+do the calculus
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The important difference, though, is more subtle.
+ It's not the sign of the slope at the fixed point that matters.
+ It's the magnitude of the slope at the fixed point that matters.
+ For smooth functions, neighborhoods of points with slopes of magnitude
+ greater than 1 tend to be expansive.
+ That is, points move away from one another under application of the function.
+ However, neighborhoods of points with slopes of magnitude less than 1 tend
+ to be contractive.
+ That is, points move toward one another under application of the function.
+ 
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:contractive"
+
+\end_inset
+
+If 
+\begin_inset Formula $h(x)$
+\end_inset
+
+ is differentiable on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ with 
+\begin_inset Formula $|h'(x)|<1$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in(a,b)$
+\end_inset
+
+, then whenever 
+\begin_inset Formula $x_{1},x_{2}\in(a,b)$
+\end_inset
+
+, 
+\begin_inset Formula $|h(x_{2})-h(x_{1})|<|x_{2}-x_{1}|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Let 
+\begin_inset Formula $x_{1},x_{2}\in(a,b)$
+\end_inset
+
+ and, without loss of generality, let 
+\begin_inset Formula $x_{2}>x_{1}$
+\end_inset
+
+ so that we may properly refer to the interval from 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+to 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $h(x)$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[x_{1},x_{2}]$
+\end_inset
+
+ and differentiable on 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+, the mean value theorem gives us 
+\begin_inset Formula $c\in(x_{1},x_{2})\subseteq(a,b)$
+\end_inset
+
+ such that 
+\begin_inset Formula $h'(c)=\left|\frac{h(x_{2})-h(x_{1})}{x_{2}-x_{1}}\right|$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $h'(c)<1$
+\end_inset
+
+ by assumption, so 
+\begin_inset Formula $h'(c)=\left|\frac{h(x_{2})-h(x_{1})}{x_{2}-x_{1}}\right|<1$
+\end_inset
+
+, from which we immediately conclude that 
+\begin_inset Formula $|h(x_{2})-h(x_{1})|<|x_{2}-x_{1}|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Moreover, a function whose derivative has magnitude less than 1 can only
+ cross the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+ one time.
+ Once it has crossed, it can never 
+\begin_inset Quotes eld
+\end_inset
+
+catch up
+\begin_inset Quotes erd
+\end_inset
+
+ because that would require a slope greater than 1, the slope of the line
+ 
+\begin_inset Formula $y=x$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:uniquenessOfFixedPoint"
+
+\end_inset
+
+ Suppose 
+\begin_inset Formula $h(x)$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+, differentiable on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ with 
+\begin_inset Formula $|h'(x)|<1$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in(a,b)$
+\end_inset
+
+, and 
+\begin_inset Formula $h([a,b])\subseteq[a,b]$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $h$
+\end_inset
+
+ has a unique fixed point in 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+If 
+\begin_inset Formula $h(a)=a$
+\end_inset
+
+ or 
+\begin_inset Formula $h(b)=b$
+\end_inset
+
+, we have proved existence, so suppose 
+\begin_inset Formula $h(a)\neq a$
+\end_inset
+
+ and 
+\begin_inset Formula $h(b)\neq b$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $h([a,b])\subseteq[a,b]$
+\end_inset
+
+ it must be the case that 
+\begin_inset Formula $h(a)>a$
+\end_inset
+
+ and 
+\begin_inset Formula $h(b)<b$
+\end_inset
+
+.
+ It immediately follows that 
+\begin_inset Formula $h(a)-a>0$
+\end_inset
+
+ and 
+\begin_inset Formula $h(b)-b<0$
+\end_inset
+
+.
+ Since the auxiliary function 
+\begin_inset Formula $f(x)=h(x)-x$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+, the Intermediate Value Theorem guarantees the existence of 
+\begin_inset Formula $c\in(a,b)$
+\end_inset
+
+ such that 
+\begin_inset Formula $f(c)=0$
+\end_inset
+
+.
+ By substitution, 
+\begin_inset Formula $h(c)-c=0$
+\end_inset
+
+, implying 
+\begin_inset Formula $h(c)=c$
+\end_inset
+
+,  so 
+\begin_inset Formula $c$
+\end_inset
+
+ is a fixed point of 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ The existence of a fixed point is established.
+ Now suppose 
+\begin_inset Formula $c_{1}\in[a,b]$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{2}\in[a,b]$
+\end_inset
+
+ are distinct fixed points of 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\[
+\frac{h(c_{1})-h(c_{2})}{c_{1}-c_{2}}=\frac{c_{1}-c_{2}}{c_{1}-c_{2}}=1.
+\]
+
+\end_inset
+
+ By the mean value theorem, there exists 
+\begin_inset Formula $c_{3}$
+\end_inset
+
+ between 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ such that 
+\begin_inset Formula $h'(c_{3})=1$
+\end_inset
+
+, contradicting the fact that 
+\begin_inset Formula $|h'(x)|<1$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in(a,b)$
+\end_inset
+
+.
+ Hence it is impossible that 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ are distinct.
+\end_layout
+
+\begin_layout Standard
+Hence we can reasonably expect that when the derivative at a fixed point
+ has magnitude less than 1, iteration is a viable method for approximating
+ (finding) the fixed point, but when the derivative at a fixed point has
+ magnitude greater than 1, iteration is not a viable method of approximating
+ the fixed point.
+ We must be careful, though, not to take this rule of thumb as absolute.
+ It only applies to so called well-behaved functions.
+ In this case, that the function has a continuous first derivative in the
+ neighborhood of the fixed point is well-behaved enough.
+ The following theorem establishes that fixed point iteration will converge
+ in a neighborhood of a fixed point if the magnitude of the function's derivativ
+e is less than 1 there.
+ 
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:fixedPointConvergence"
+
+\end_inset
+
+(Fixed Point Convergence Theorem) 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Fixed Point Convergence
+\end_layout
+
+\end_inset
+
+ Given a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ with continuous first derivative and fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, if 
+\begin_inset Formula $|f'(\hat{x})|<1$
+\end_inset
+
+ then there exists a neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ in which fixed point iteration converges to the fixed point for any initial
+ value in the neighborhood.
+\end_layout
+
+\begin_layout Proof
+By continuity, there exists 
+\begin_inset Formula $\varepsilon>0$
+\end_inset
+
+ such that 
+\begin_inset Formula $|f'(x)|<1$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in(\hat{x}-\varepsilon,\hat{x}+\varepsilon)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $0<\delta<\varepsilon$
+\end_inset
+
+ and set 
+\begin_inset Formula ${\displaystyle M=\max_{x\in[\hat{x}-\delta,\hat{x}+\delta]}|f'(x)|}$
+\end_inset
+
+.
+ Now suppose 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is a particular but arbitrary value in 
+\begin_inset Formula $(\hat{x}-\delta,\hat{x}+\delta)$
+\end_inset
+
+.
+ As in proposition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:contractive"
+
+\end_inset
+
+, the Mean Value Theorem is applied.
+ This time, we are guaranteed 
+\begin_inset Formula ${\displaystyle c\in(\hat{x}-\delta,\hat{x}+\delta)}$
+\end_inset
+
+ such that 
+\begin_inset Formula $f'(c)=\frac{f(\hat{x})-f(x_{0})}{\hat{x}-x_{0}}$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $|f'(c)|\leq M$
+\end_inset
+
+ so 
+\begin_inset Formula $|f(\hat{x})-f(x_{0})|\leq M|\hat{x}-x_{0}|$
+\end_inset
+
+.
+ Furthermore 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ is a fixed point, so 
+\begin_inset Formula $f(\hat{x})=\hat{x}$
+\end_inset
+
+, from which it follows that 
+\begin_inset Formula $|\hat{x}-f(x_{0})|\leq M|\hat{x}-x_{0}|$
+\end_inset
+
+.
+ Now we define 
+\begin_inset Formula $x_{k}=f(x_{k-1})$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+ and prove by induction that 
+\begin_inset Formula $|\hat{x}-x_{k}|\leq M^{k}|\hat{x}-x_{0}|$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $x_{1}=f(x_{0})$
+\end_inset
+
+, we have already shown 
+\begin_inset Formula $|\hat{x}-x_{1}|\leq M|\hat{x}-x_{0}|$
+\end_inset
+
+, so the claim is true when 
+\begin_inset Formula $k=1$
+\end_inset
+
+.
+ Now suppose 
+\begin_inset Formula $|\hat{x}-x_{k}|\leq M^{k}|\hat{x}-x_{0}|$
+\end_inset
+
+ for some particular but arbitrary value 
+\begin_inset Formula $k\geq1$
+\end_inset
+
+.
+ Note that 
+\begin_inset Formula $|\hat{x}-x_{k}|\leq M^{k}|\hat{x}-x_{0}|$
+\end_inset
+
+ implies 
+\begin_inset Formula $x_{k}\in(\hat{x}-\delta,\hat{x}+\delta)$
+\end_inset
+
+ so we apply the Mean Value Theorem as before and conclude that 
+\begin_inset Formula $|\hat{x}-f(x_{k})|\leq M|\hat{x}-x_{k}|$
+\end_inset
+
+.
+ Substituting 
+\begin_inset Formula $x_{k+1}$
+\end_inset
+
+ for 
+\begin_inset Formula $f(x_{k})$
+\end_inset
+
+ and using the inductive hypothesis, we have 
+\begin_inset Formula $|\hat{x}-x_{k+1}|\leq M\cdot M^{k}|\hat{x}-x_{0}|=M^{k+1}|\hat{x}-x_{0}|$
+\end_inset
+
+.
+ Hence we have 
+\begin_inset Formula $0\leq|\hat{x}-x_{k}|\leq M^{k}|\hat{x}-x_{0}|$
+\end_inset
+
+.
+ Of course 
+\begin_inset Formula ${\displaystyle \lim_{k\to\infty}0=0}$
+\end_inset
+
+ and 
+\begin_inset Formula ${\displaystyle \lim_{k\to\infty}M^{k}|\hat{x}-x_{0}|=0}$
+\end_inset
+
+, so by the squeeze theorem, 
+\begin_inset Formula ${\displaystyle \lim_{k\to\infty}|\hat{x}-x_{k}|=0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As suggested earlier, we should not expect fixed point iteration to converge
+ when the derivative at a fixed point has magnitude greater than one.
+ In fact, more or less the opposite happens.
+ There is a neighborhood of the fixed point in which fixed point iteration
+ is guaranteed to escape the neighborhood for any initial value in the neighborh
+ood not equal to the fixed point itself.
+ Given that fact, it is tempting to think that perhaps the Fixed Point Convergen
+ce Theorem could be strengthened to a bi-directional implication, an if-and-only
+-if claim.
+ And it 
+\begin_inset Quotes eld
+\end_inset
+
+almost
+\begin_inset Quotes erd
+\end_inset
+
+ can.
+ What can be said here has direct parallels to the ratio test for series.
+ Recall, for any sequence of real numbers 
+\begin_inset Formula $a_{0},a_{1},a_{2},\ldots$
+\end_inset
+
+, the limit 
+\begin_inset Formula ${\displaystyle L=\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_{k}}\right|}$
+\end_inset
+
+ helps determine the convergence of 
+\begin_inset Formula ${\displaystyle \sum_{k=0}^{\infty}a_{k}}$
+\end_inset
+
+ in the following way:
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $L<1$
+\end_inset
+
+, then 
+\begin_inset Formula ${\displaystyle \sum_{k=0}^{\infty}a_{k}}$
+\end_inset
+
+ converges (absolutely).
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $L>1$
+\end_inset
+
+, then 
+\begin_inset Formula ${\displaystyle \sum_{k=0}^{\infty}a_{k}}$
+\end_inset
+
+ diverges.
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $L=1$
+\end_inset
+
+, then 
+\begin_inset Formula ${\displaystyle \sum_{k=0}^{\infty}a_{k}}$
+\end_inset
+
+ may converge (absolutely or conditionally) or may diverge.
+\end_layout
+
+\begin_layout Standard
+Analogously, for any function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ with continuous first derivative and fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, the derivative 
+\begin_inset Formula $f'(\hat{x})$
+\end_inset
+
+ helps determine the convergence of the fixed point iteration method in
+ the following way:
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $|f'(\hat{x})|<1$
+\end_inset
+
+, then fixed point iteration converges to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ for any initial value in some neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $|f'(\hat{x})|>1$
+\end_inset
+
+, then fixed point iteration escapes some neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ for any initial value in the neighborhood other than 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $|f'(\hat{x})|=1$
+\end_inset
+
+, then fixed point iteration may converge to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ for any initial value in some neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+; or may escape some neighborhood for any initial value in the neighborhood
+ other than 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+; or may have no neighborhood in which all initial values lead to convergence
+ and no neighboorhood in which all values other than 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ escape.
+\end_layout
+
+\begin_layout Standard
+The graphs in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:derivativeEqualsOne"
+
+\end_inset
+
+ of functions with derivative equal to one at their fixed point help illustrate
+ this last case.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:derivativeEqualsOne"
+
+\end_inset
+
+Convergence behavior when the derivative at the fixed point is 1.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/roots-fixedpt6.eps
+	scale 80
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figures/roots-fixedpt7.eps
+	scale 80
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figures/roots-fixedpt8.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+For one of these functions, fixed point iteration converges for all values
+ in a neighborhood of the fixed point.
+ For another of these functions, fixed point iteration escapes some neighborhood
+ of the fixed point for all initial values in the neighborhood except the
+ fixed point itself.
+ And for the third of these functions, fixed point iteration converges to
+ the fixed point for some initial values and escapes a neighborhood of the
+ fixed point for others (and 
+\shape italic
+every
+\shape default
+ neighborhood of the fixed point will have both types of initial values).
+ Can you tell which is which? Figure it out by creating web diagrams for
+ each.
+ Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:Answers-fixedPointIteration"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The proof of the Fixed Point Convergence Theorem can easily be extended
+ to include initial values in any neighborhood of the fixed point in which
+ the magnitude of the derivative remains less than 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ The size and symmetry of the interval are not important.
+ For example, 
+\begin_inset Formula $f(x)=\frac{1}{8}x^{3}-x^{2}+2x+1$
+\end_inset
+
+ has a fixed point at 
+\begin_inset Formula $\hat{x}=2$
+\end_inset
+
+.
+ The proof of the Fixed Point Convergence Theorem establishes convergence
+ to 
+\begin_inset Formula $2$
+\end_inset
+
+ in a symmetric interval about 
+\begin_inset Formula $2$
+\end_inset
+
+ such as 
+\begin_inset Formula $[1.9,2.1]$
+\end_inset
+
+.
+ But this interval is far from the largest neighborhood of initial values
+ for which fixed point iteration converges to 
+\begin_inset Formula $2$
+\end_inset
+
+.
+ We can find bounds on the largest such interval by solving the equation
+ 
+\begin_inset Formula $|f'(x)|=1$
+\end_inset
+
+.
+ To that end:
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{3}{8}x^{2}-2x+2 & = & \pm1\\
+3x^{2}-16x+16 & = & \pm8\\
+3x^{2}-16x+24=0 & or & 3x^{2}-16x+8=0\\
+x=\frac{8\pm i2\sqrt{2}}{3} & or & x=\frac{8\pm2\sqrt{10}}{3}\\
+\frac{8-2\sqrt{10}}{3}\approx0.558 & and & \frac{8+2\sqrt{10}}{3}\approx4.775,
+\end{eqnarray*}
+
+\end_inset
+
+so we should expect fixed point iteration to converge to 2 on any closed
+ interval contained in
+\begin_inset Formula 
+\[
+\left(\frac{8-2\sqrt{10}}{3},\frac{8+2\sqrt{10}}{3}\right).
+\]
+
+\end_inset
+
+ Now, if we have the computer execute fixed point iteration for a large
+ number of evenly spaced initial values, say 100, on the interval 
+\begin_inset Formula $[-2,8]$
+\end_inset
+
+ and record the results on a number line where we color an initial value
+ black if it does not converge to 2 and green if it does converge to 2 (we
+ will call such diagram a convergence diagram), we get
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-fixedpt9.eps
+
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\noindent
+which shows that fixed point iteration converges to 2 on approximately 
+\begin_inset Formula $[-0.5,6.5]$
+\end_inset
+
+.
+ Indeed, the experiment confirms that fixed point iteration converges on
+ any closed interval contained in 
+\begin_inset Formula $\left(\frac{8-2\sqrt{10}}{3},\frac{8+2\sqrt{10}}{3}\right)$
+\end_inset
+
+ as predicted.
+ But the diagram shows convergence on an even larger set.
+ We can conclude that the Fixed Point Convergence Theorem gives sufficient
+ but not necessary conditions for convergence in a neighborhood of a fixed
+ point.
+ 
+\end_layout
+
+\begin_layout Standard
+A graph of the function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ superimposed on the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:basinOfAttractionExplanation"
+
+\end_inset
+
+) 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:basinOfAttractionExplanation"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\frac{1}{8}x^{3}-x^{2}+2x+1$
+\end_inset
+
+ and the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/roots-fixedpt10.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ gives some insight as to why the bounds 
+\begin_inset Formula $\frac{8\pm2\sqrt{10}}{3}$
+\end_inset
+
+ do not tell a complete story.
+ By imagining the web diagram for any initial value between the two fixed
+ points other than 2, that is 
+\begin_inset Formula $-0.61$
+\end_inset
+
+ and 
+\begin_inset Formula $6.61$
+\end_inset
+
+, you should be able to convince yourself that fixed point iteration converges
+ to 
+\begin_inset Formula $2$
+\end_inset
+
+ for anhy initial value in the interval 
+\begin_inset Formula $(-0.61,6.61)$
+\end_inset
+
+.
+ Can you prove it? Graphs like those in Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:fixed-pt-zoom"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:derivativeEqualsOne"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:basinOfAttractionExplanation"
+
+\end_inset
+
+ are indispensible and should always be consulted when trying to understand
+ fixed point iteration, but they should not be relied upon as proof.
+ For that, we need to rely on theorems like the Fixed Point Convergence
+ Theorem.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{One interesting quadratic} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Trying to find roots of the logistic equation 
+\begin_inset Formula 
+\[
+g(x)=(\alpha-1)x-\alpha x^{2}
+\]
+
+\end_inset
+
+by applying fixed point iteration to the corresponding function 
+\begin_inset Formula $f(x)=x+g(x)=\alpha x(1-x)$
+\end_inset
+
+ is a famous exercise in dynamical systems which has a nasty habit of not
+ working! Complete the following investigation to see what happens.
+\end_layout
+
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $f(x)=\alpha x(1-x)$
+\end_inset
+
+ as claimed.
+\end_layout
+
+\begin_layout Enumerate
+For each of the values 
+\begin_inset Formula $\alpha=2.5$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha=3.2$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha=3.833$
+\end_inset
+
+, and 
+\begin_inset Formula $\alpha=4$
+\end_inset
+
+, do the following.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\noindent
+Find the positive fixed point of 
+\begin_inset Formula $f$
+\end_inset
+
+ (root of 
+\begin_inset Formula $g$
+\end_inset
+
+) analytically (using a pencil, paper, and some algebra).
+ 
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+Set 
+\begin_inset Formula $x_{0}=0.1$
+\end_inset
+
+ and use a computer program to calculate 
+\begin_inset Formula $x_{975}$
+\end_inset
+
+ through 
+\begin_inset Formula $x_{1000}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+Examine the 26 iterations of part (b) and describe what you see.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Draw a connection between your results from part 2 and the following diagram.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename figures/phaseDiagram.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use the diagram to predict a value of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ for which you would expect fixed point iteration to lead to 
+\begin_inset Formula $x_{975}$
+\end_inset
+
+ through 
+\begin_inset Formula $x_{1000}$
+\end_inset
+
+ cycling through 4 different values.
+ Check your prediction.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Root Finding
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:RootFindingInvestigation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When successful, fixed point iteration finds solutions of an equation of
+ the form 
+\begin_inset Formula $f(x)=x$
+\end_inset
+
+.
+ A root finding problem requires the solution of an equation of the form
+ 
+\begin_inset Formula $g(x)=0$
+\end_inset
+
+.
+ However, the equation 
+\begin_inset Formula $f(x)=x$
+\end_inset
+
+ has exactly the same solutions as the equation 
+\begin_inset Formula $f(x)-x=0$
+\end_inset
+
+, so finding fixed points of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is equivalent to finding roots of 
+\begin_inset Formula $g(x)=f(x)-x$
+\end_inset
+
+.
+ Indeed, we can rephrase the example of finding fixed points of 
+\begin_inset Formula $f(x)=\frac{1}{8}x^{3}-x^{2}+2x+1$
+\end_inset
+
+ as the problem of finding roots of 
+\begin_inset Formula $g(x)=f(x)-x=\frac{1}{8}x^{3}-x^{2}+x+1$
+\end_inset
+
+.
+ But it is the opposite problem that is much more common.
+ We have the question of finding the roots of a function and need to rephrase
+ it in terms of a fixed point problem.
+\end_layout
+
+\begin_layout Standard
+Suppose we want the roots of 
+\begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
+\end_inset
+
+.
+ We can rephrase the question of solving 
+\begin_inset Formula $g(x)=0$
+\end_inset
+
+ as the problem of finding the fixed points of many different functions!
+ But you will have to ignore some sage advice of your algebra teacher to
+ derive them! The key is to use algebra to rewrite the equation 
+\begin_inset Formula $-x^{3}+5x^{2}-4x-6=0$
+\end_inset
+
+ as an equation of the form 
+\begin_inset Formula $x=f(x)$
+\end_inset
+
+.
+ The simplest way is to add 
+\begin_inset Formula $x$
+\end_inset
+
+ to both sides of the equation.
+ This manipulation and several others are shown in the following list.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $-x^{3}+5x^{2}-4x-6=0\Rightarrow-x^{3}+5x^{2}-3x-6=x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $-x^{3}+5x^{2}-4x-6=0\Rightarrow-x^{3}+5x^{2}-6=4x\Rightarrow\frac{-x^{3}+5x^{2}-6}{4}=x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $-x^{3}+5x^{2}-4x-6=0\Rightarrow-x^{3}-4x-6=-5x^{2}\Rightarrow\frac{x^{3}+4x+6}{5}=x^{2}\Rightarrow\pm\sqrt{\frac{x^{3}+4x+6}{5}}=x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $-x^{3}+5x^{2}-4x-6=0\Rightarrow5x^{2}-4x-6=x^{3}\Rightarrow\sqrt[3]{5x^{2}-4x-6}=x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Can you see what has been done for each one? Thus we have five candidates
+ for fixed point iteration, 
+\begin_inset Formula $f_{1}(x)=-x^{3}+5x^{2}-3x-6$
+\end_inset
+
+, 
+\begin_inset Formula $f_{2}(x)=\frac{-x^{3}+5x^{2}-6}{4}$
+\end_inset
+
+, 
+\begin_inset Formula $f_{3}(x)=\sqrt{\frac{x^{3}+4x+6}{5}}$
+\end_inset
+
+, 
+\begin_inset Formula $f_{4}(x)=-\sqrt{\frac{x^{3}+4x+6}{5}}$
+\end_inset
+
+, and 
+\begin_inset Formula $f_{5}(x)=\sqrt[3]{5x^{2}-4x-6}$
+\end_inset
+
+, all of which will potentially give roots of 
+\begin_inset Formula $g(x)$
+\end_inset
+
+.
+ There is a sixth function we will discuss in much more detail later: 
+\begin_inset Formula $f_{6}(x)=\frac{2x^{3}\text{−}5x^{2}\text{−}6}{3x^{2}\text{−}10x+4}$
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+By calculating 
+\begin_inset Formula $f_{6}(1-\sqrt{3})$
+\end_inset
+
+, 
+\begin_inset Formula $f_{6}(1+\sqrt{3})$
+\end_inset
+
+, and 
+\begin_inset Formula $f_{6}(3)$
+\end_inset
+
+, you can verify that 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ has these three values as fixed points as well.
+\end_layout
+
+\end_inset
+
+.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SixConvergenceDiagrams"
+
+\end_inset
+
+Convergence diagrams for 6 functions with the same fixed points.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{1}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-fixedpt11.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{2}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-fixedpt12.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{3}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-fixedpt13.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{4}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-fixedpt14.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{5}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-fixedpt15.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $f_{6}$
+\end_inset
+
+: 
+\begin_inset Graphics
+	filename figures/roots-fixedpt16.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+black: does not converge; green: converges to 
+\begin_inset Formula $3$
+\end_inset
+
+; red: converges to 
+\begin_inset Formula $1+\sqrt{3}$
+\end_inset
+
+; blue: converges to 
+\begin_inset Formula $1-\sqrt{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ The roots of 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ are 
+\begin_inset Formula $1-\sqrt{3}\approx-0.73$
+\end_inset
+
+, 
+\begin_inset Formula $1+\sqrt{3}\approx2.73$
+\end_inset
+
+, and 
+\begin_inset Formula $3$
+\end_inset
+
+, so we will consider convergence diagrams over the interval 
+\begin_inset Formula $[-2,5]$
+\end_inset
+
+.
+ Fixed point iteration converges to different fixed points for the different
+ functions despite the fact that all 6 functions have exactly the same three
+ fixed points.
+ The convergence diagrams of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SixConvergenceDiagrams"
+
+\end_inset
+
+ are color-coded to reflect this fact.
+ Black indicates lack of convergence just as before.
+ Green, red, and blue indicate convergence to 
+\begin_inset Formula $3$
+\end_inset
+
+, 
+\begin_inset Formula $1+\sqrt{3}$
+\end_inset
+
+, and 
+\begin_inset Formula $1-\sqrt{3}$
+\end_inset
+
+, respectively.
+ Notice that only 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ provides convergence for, as far as we can tell, every intial value in
+ 
+\begin_inset Formula $[-2,5]$
+\end_inset
+
+, and is also the only one for which fixed point iteration converges to
+ different fixed points for different initial values.
+ See if you can understand why each function has the convergence behavior
+ it does by looking at the graphs of 
+\begin_inset Formula $f_{1},f_{2},\ldots,f_{6}$
+\end_inset
+
+.
+ Pay special attention to the graphs around 
+\begin_inset Formula $1+\sqrt{3}$
+\end_inset
+
+ and 
+\begin_inset Formula $3$
+\end_inset
+
+.
+ Looks can be deceiving in that area because the two fixed points are so
+ close together.
+ Also, see if you can find two initial values in 
+\begin_inset Formula $[-2,5]$
+\end_inset
+
+ for which fixed point iteration on 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ does not converge.
+ What happens instead? For an extra challenge, see if you can find a third
+ point in 
+\begin_inset Formula $[-2,5]$
+\end_inset
+
+ for which fixed point iteration on 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ does not converge.
+ Hint: you may need to use a computer algebra system to find such a point
+ exactly or use fixed point iteration to approximate it! Answers 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:Answers-fixedPointIteration"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The Fixed Point Iteration Method (pseudo-code)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+fixed point iteration method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Though we spent a lot of time talking about how to determine whether we
+ should expect the fixed point iteration method to converge or not, none
+ of that information is strictly relevant to coding the method.
+ Any implementation of the method should allow the user to try fixed point
+ iteration for any function with any initial value.
+ It is the user's responsibility to understand that when the assumptions
+ are not met, the results are unpredictable.
+ Remember, 
+\begin_inset Quotes eld
+\end_inset
+
+garbage in...garbage out.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The fixed point iteration method presents a problem that the bisection method
+ did not.
+ In the bisection method, there was a simple and convenient formula for
+ an upper bound on the error.
+ To provide something similar in the fixed point iteration method, one would
+ have to sacrifice simplicity or convenience or both, but the benefits do
+ not outweigh the sacrifice.
+ Instead, a more general stopping criterion is used.
+ When two consecutive iterations are closer to one another than a given
+ tolerance, the method stops.
+ At this point, the difference between iterations, say 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{k+1}$
+\end_inset
+
+, is smaller than the tolerance.
+ For a sequence derived from fixed point iteration, 
+\begin_inset Formula $x_{k+1}=f(x_{k})$
+\end_inset
+
+, so 
+\begin_inset Formula $|x_{k+1}-x_{k}|=|f(x_{k})-x_{k}|$
+\end_inset
+
+.
+ When 
+\begin_inset Formula $|x_{k+1}-x_{k}|$
+\end_inset
+
+ is small, 
+\begin_inset Formula $|f(x_{k})-x_{k}|$
+\end_inset
+
+ is small, so 
+\begin_inset Formula $f(x_{k})\approx x_{k}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ is 
+\begin_inset Quotes eld
+\end_inset
+
+almost
+\begin_inset Quotes erd
+\end_inset
+
+ a fixed point.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $f$
+\end_inset
+
+ is differentiable.
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ has a fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is in a neighborhood 
+\begin_inset Formula $(\hat{x}-\delta,\hat{x}+\delta)$
+\end_inset
+
+ where the magnitude of 
+\begin_inset Formula $f'$
+\end_inset
+
+ is less than one.
+\end_layout
+
+\begin_layout Description
+Input: Initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+; function 
+\begin_inset Formula $f$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: For 
+\begin_inset Formula $j=1\ldots N$
+\end_inset
+
+ do Steps 2-4:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Set 
+\begin_inset Formula $x=f(x_{0})$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: If 
+\begin_inset Formula $|x-x_{0}|\leq tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $x$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Set 
+\begin_inset Formula $x_{0}=x$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: Print 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Maximum iterations exceeded.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $x$
+\end_inset
+
+ near exact fixed point, or message of failure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Fixed
+\begin_inset space ~
+\end_inset
+
+point: 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is a fixed point of the function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ if 
+\begin_inset Formula $f(x_{0})=x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Fixed
+\begin_inset space ~
+\end_inset
+
+point
+\begin_inset space ~
+\end_inset
+
+iteration: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+fixed point iteration method
+\end_layout
+
+\end_inset
+
+ Calculating the sequence 
+\begin_inset Formula $x_{0},x_{1}=f(x_{0}),x_{2}=f(x_{1}),x_{3}=f(x_{2}),\ldots$
+\end_inset
+
+ given the function 
+\begin_inset Formula $f$
+\end_inset
+
+ and initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Attractive
+\begin_inset space ~
+\end_inset
+
+fixed
+\begin_inset space ~
+\end_inset
+
+point: A fixed point is called 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+fixed point ! attractive
+\end_layout
+
+\end_inset
+
+ attractive (or attracting) if there is a neighborhood of the fixed point
+ in which fixed point iteration converges for all initial values in the
+ neighborhood.
+\end_layout
+
+\begin_layout Description
+Repulsive
+\begin_inset space ~
+\end_inset
+
+fixed
+\begin_inset space ~
+\end_inset
+
+point: A fixed point is called 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+fixed point ! repulsive
+\end_layout
+
+\end_inset
+
+ repulsive (or repelling) if fixed point iteration escapes some neighborhood
+ of the fixed point for any initial value in the neighborhood other than
+ the fixed point itself.
+\end_layout
+
+\begin_layout Description
+Mean
+\begin_inset space ~
+\end_inset
+
+Value
+\begin_inset space ~
+\end_inset
+
+Theorem: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Mean Value
+\end_layout
+
+\end_inset
+
+If 
+\begin_inset Formula $f$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ and has a derivative on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+, then there exists 
+\begin_inset Formula $c\in(a,b)$
+\end_inset
+
+ such that 
+\begin_inset Formula $f'(c)=\frac{f(b)-f(a)}{b-a}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Fixed
+\begin_inset space ~
+\end_inset
+
+Point
+\begin_inset space ~
+\end_inset
+
+Convergence
+\begin_inset space ~
+\end_inset
+
+Theorem: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Fixed Point Convergence
+\end_layout
+
+\end_inset
+
+ Given a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ with continuous first derivative and fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, if 
+\begin_inset Formula $|f'(\hat{x})|<1$
+\end_inset
+
+ then there exists a neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ in which fixed point iteration converges to the fixed point for any initial
+ value in the neighborhood.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:fixedPtIterationCode"
+
+\end_inset
+
+Write an Octave implementation of the fixed point iteration method.
+ Save it as a 
+\family typewriter
+.m
+\family default
+ file for future use.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:mvtExamples"
+
+\end_inset
+
+(i) Decide whether or not the hypotheses of the Mean Value Theorem are met
+ for the function over the interval.
+ (ii) If the hypotheses are met, find a value 
+\begin_inset Formula $c$
+\end_inset
+
+ as guaranteed by the theorem.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=3-x-\sin x$
+\end_inset
+
+; 
+\begin_inset Formula $[2,3]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
+\end_inset
+
+; 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
+\end_inset
+
+; 
+\begin_inset Formula $[0,0.9]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-16"
+
+\end_inset
+
+
+\begin_inset Formula $h(x)=10-\cosh(x)$
+\end_inset
+
+; 
+\begin_inset Formula $[-3,-2]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(t)=\sqrt{4+5\sin t}-2.5$
+\end_inset
+
+; 
+\begin_inset Formula $[-6,-5]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-1"
+
+\end_inset
+
+
+\begin_inset Formula $g(t)=\frac{3t^{2}\tan t}{1-t^{2}}$
+\end_inset
+
+; 
+\begin_inset Formula $[20,23]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-2"
+
+\end_inset
+
+
+\begin_inset Formula $h(t)=\ln(3\sin t)-\frac{3t}{5}$
+\end_inset
+
+; 
+\begin_inset Formula $[2,4]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-3"
+
+\end_inset
+
+
+\begin_inset Formula $f(r)=e^{\sin r}-r$
+\end_inset
+
+; 
+\begin_inset Formula $[-20,20]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(r)=\sin(e^{r})+r$
+\end_inset
+
+; 
+\begin_inset Formula $[-3,3]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(r)=2^{\sin r}-3^{\cos r}$
+\end_inset
+
+; 
+\begin_inset Formula $[1,3]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the fixed point(s) of the function exactly.
+ Use algebra.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\sqrt[3]{2x^{3}-x^{2}-x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\frac{\ln(2%e^{x})
+}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-4"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\log(x^{2}-3x)-1+x$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-5"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=3x^{2}+5x+1$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=x+\frac{5000}{1+2e^{-3t}}-2500$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=e^{\ln(x+1)-3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(x)=\sqrt{4x^{2}+4x+1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-6"
+
+\end_inset
+
+
+\begin_inset Formula $h(x)=x-10+3^{x}+25\cdot3^{-x}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(x)=x+6-3\log_{5}(2x)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find at least two candidate functions, 
+\begin_inset Formula $f_{1}(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{2}(x)$
+\end_inset
+
+, for finding roots of 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ via fixed point iteration.
+ In other words, convert the problem of finding a root of 
+\begin_inset Formula $g$
+\end_inset
+
+ into a problem of finding a fixed point of 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+ or 
+\begin_inset Formula $f_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=7x^{2}+5x-9$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=x+\cos x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-7"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=6x^{5}+12x^{2}-8$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-8"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=x^{2}-e^{3x+4}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=7x-3\cos(\pi x-2)+\ln|2x^{2}+4x-8|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-9"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=3^{x^{2}-5x+1}-2^{-x^{2}-5x-1}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:fixedPtIterationExamples"
+
+\end_inset
+
+Compute the first 5 iterations of the fixed point iteration method using
+ the given function and initial value.
+ Based on these 5 iterations, do you expect the method to converge?
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=3-\sin x$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-10"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=10+x-\cosh(x)$
+\end_inset
+
+; 
+\begin_inset Formula $x_{0}=-3$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-11"
+
+\end_inset
+
+
+\begin_inset Formula $h(t)=\ln(3\sin t)+\frac{2t}{5}$
+\end_inset
+
+; 
+\begin_inset Formula $t_{0}=1$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $w(r)=2^{\sin r}-3^{\cos r}+r$
+\end_inset
+
+; 
+\begin_inset Formula $r_{0}=1$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:usingOctave"
+
+\end_inset
+
+Use your Octave function from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:fixedPtIterationCode"
+
+\end_inset
+
+ with the function and initial value in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:fixedPtIterationExamples"
+
+\end_inset
+
+.
+ Set the tolerance to 
+\begin_inset Formula $10^{-10}$
+\end_inset
+
+ and the maximum iterations to 100.
+ Does the method converge within 100 iterations? If so, to what value? Report
+ at least 10 significant digits.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:usingWeb"
+
+\end_inset
+
+Construct a web diagram for each function/initial value pair in question
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:fixedPtIterationExamples"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Compare the results from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:usingOctave"
+
+\end_inset
+
+ with the results of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:usingWeb"
+
+\end_inset
+
+.
+ Are they consistent with one another?
+\end_layout
+
+\begin_layout Enumerate
+Use proposition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:uniquenessOfFixedPoint"
+
+\end_inset
+
+ to show that 
+\begin_inset Formula $g(x)=2x(1-x)$
+\end_inset
+
+ has a unique fixed point on 
+\begin_inset Formula $[0.3,0.7]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-12"
+
+\end_inset
+
+Let 
+\begin_inset Formula $f(x)=\frac{3x^{2}\text{−}1}{6x+4}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $f$
+\end_inset
+
+ has a unique fixed point on 
+\begin_inset Formula $[-4,-0.9]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Use fixed-point iteration to find an approximation to the fixed point that
+ is accurate to within 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:ShowPart2"
+
+\end_inset
+
+Let 
+\begin_inset Formula $g(x)=\pi+0.5\sin(x/2)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $g$
+\end_inset
+
+ has a unique fixed point on 
+\begin_inset Formula $[0,2\pi]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Use fixed-point iteration to find an approximation to the fixed point that
+ is accurate to within 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-13"
+
+\end_inset
+
+Show that the Fixed Point Iteration Method applied to 
+\begin_inset Formula $f(x)=\sqrt[3]{8-4x}$
+\end_inset
+
+ will converge to a root of 
+\begin_inset Formula $g(x)=x^{3}+4x-8$
+\end_inset
+
+ for any initial value 
+\begin_inset Formula $x_{0}\in[1.2,1.5]$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Show that fixed point iteration is guaranteed to converge to the fixed point
+ of
+\begin_inset Formula 
+\[
+f(x)=(\sqrt{2})^{x}
+\]
+
+\end_inset
+
+for any 
+\begin_inset Formula $x_{0}\in[1,3]$
+\end_inset
+
+.
+ HINT: 
+\begin_inset Formula $f'(x)=\frac{1}{2}\ln(2)\cdot(\sqrt{2})^{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $g(x)=x^{2}-3x-2$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find a function 
+\begin_inset Formula $f$
+\end_inset
+
+ on which fixed point iteration will converge to a root of 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Use your function to find a root of 
+\begin_inset Formula $g$
+\end_inset
+
+ to within 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+ of the exact value.
+\end_layout
+
+\begin_layout Enumerate
+State the initial value you used and how many iterations it took to get
+ the approximation.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use Fixed Point Iteration with 
+\begin_inset Formula $p_{0}=-1$
+\end_inset
+
+ to approximate a root of 
+\begin_inset Formula $g(x)=x^{3}-3x+3$
+\end_inset
+
+ accurate to the nearest 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Use a fixed-point iteration method to find an approximation of 
+\begin_inset Formula $\sqrt{3}$
+\end_inset
+
+ that is accurate to within 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+ What function and initial value did you use?
+\end_layout
+
+\begin_layout Enumerate
+The function 
+\begin_inset Formula $f(x)=x^{4}+2x^{2}-x-3$
+\end_inset
+
+ has two roots.
+ One of them is in 
+\begin_inset Formula $[-1,0]$
+\end_inset
+
+ and the other is in 
+\begin_inset Formula $[1,2]$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+In preparation for finding a root of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ using fixed point iteration, one way to manipulate the equation 
+\begin_inset Formula $x^{4}+2x^{2}-x-3=0$
+\end_inset
+
+ is to add 
+\begin_inset Formula $x$
+\end_inset
+
+ to both sides.
+ This gives
+\begin_inset Formula 
+\[
+x=x^{4}+2x^{2}-3
+\]
+
+\end_inset
+
+Draw appropriate graphs to determine whether iteration of the function 
+\begin_inset Formula $g(x)=x^{4}+2x^{2}-3$
+\end_inset
+
+ will find the root in 
+\begin_inset Formula $[-1,0]$
+\end_inset
+
+.
+ How about the root in 
+\begin_inset Formula $[1,2]$
+\end_inset
+
+? Explain how you came to your conclusions.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "root1"
+
+\end_inset
+
+Manipulate the equation 
+\begin_inset Formula $x^{4}+2x^{2}-x-3=0$
+\end_inset
+
+ in such a way that fixed point iteration does work to find the root in
+ 
+\begin_inset Formula $[-1,0]$
+\end_inset
+
+.
+ Draw the graphs that demonstrate that your method will work.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "root2"
+
+\end_inset
+
+Does the same manipulation allow you to find the root in 
+\begin_inset Formula $[1,2]$
+\end_inset
+
+? If not, find another manipulation that will.
+ Again, show the graphs that demonstrate that your method will work.
+\end_layout
+
+\begin_layout Enumerate
+Use your method(s) from parts 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "root1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "root2"
+
+\end_inset
+
+ to find the two roots accurate to 3 decimal places.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-14"
+
+\end_inset
+
+Fixed point iteration on 
+\begin_inset Formula $f(x)=\sqrt[3]{2x^{3}-x^{2}-x}$
+\end_inset
+
+ will not converge to a fixed point.
+ However, fixed point iteration on the function 
+\begin_inset Formula $g(x)=\sqrt[3]{x^{2}+x}$
+\end_inset
+
+ will converge to approximately 
+\begin_inset Formula $1.618033988749895$
+\end_inset
+
+ for any 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ in 
+\begin_inset Formula $[0.5,3.5]$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+How many iterations does it take to achieve 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ accuracy using 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=2.5$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Explain why 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ have the same fixed points.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find a zero (any zero) of 
+\begin_inset Formula $g(x)=x^{2}+10\cos x$
+\end_inset
+
+ accurate to within 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ using fixed point iteration.
+ State
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+the function 
+\begin_inset Formula $f$
+\end_inset
+
+ to which you fixed point iteration
+\end_layout
+
+\begin_layout Enumerate
+the initial value, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, you used
+\end_layout
+
+\begin_layout Enumerate
+how many iterations it took
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:fixedExp"
+
+\end_inset
+
+Let 
+\begin_inset Formula $c$
+\end_inset
+
+ be a nonzero real number.
+ Argue that any fixed point of 
+\begin_inset Formula $f(x)=xe^{c\cdot g(x)}$
+\end_inset
+
+ is a root of 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Approximate 
+\begin_inset Formula $\sqrt{3}$
+\end_inset
+
+ using the method suggested by question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:fixedExp"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:findC"
+
+\end_inset
+
+Suppose 
+\begin_inset Formula $g(\hat{x})=0$
+\end_inset
+
+ and 
+\begin_inset Formula $g$
+\end_inset
+
+ has a continuous first derivative.
+ Argue that there exists a value 
+\begin_inset Formula $c$
+\end_inset
+
+ for which fixed point iteration on 
+\begin_inset Formula $f(x)=x+cg(x)$
+\end_inset
+
+ will converge to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ on some neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fixedpt-15"
+
+\end_inset
+
+Find a value of 
+\begin_inset Formula $c$
+\end_inset
+
+ for which fixed point iteration is guaranteed to converge for the function
+ 
+\begin_inset Formula $f(x)=x+c(x-5\cos x)$
+\end_inset
+
+ with any initial value 
+\begin_inset Formula $x_{0}\in[0,\pi/2]$
+\end_inset
+
+.
+ Explain.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $g(x)=$
+\end_inset
+
+
+\begin_inset Formula $\frac{1}{2}^{x}+\frac{1}{5}^{x}-10^{-5}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Show that if 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ has a zero at 
+\begin_inset Formula $p$
+\end_inset
+
+, then the function 
+\begin_inset Formula $f(x)=x+cg(x)$
+\end_inset
+
+ has a fixed point at 
+\begin_inset Formula $p$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "findc"
+
+\end_inset
+
+Find a value of 
+\begin_inset Formula $c$
+\end_inset
+
+ for which fixed point iteration of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ will successfully converge for any starting value, 
+\begin_inset Formula $p_{0}$
+\end_inset
+
+, in the interval 
+\begin_inset Formula $[16,17]$
+\end_inset
+
+.
+ Sketch the graphs that demonstrate that your choice of 
+\begin_inset Formula $c$
+\end_inset
+
+ is appropriate.
+\end_layout
+
+\begin_layout Enumerate
+Use the function from part 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "findc"
+
+\end_inset
+
+ with the value of 
+\begin_inset Formula $c$
+\end_inset
+
+ you have determined to find a root of 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ accurate to within 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+ State the value you used for 
+\begin_inset Formula $p_{0}$
+\end_inset
+
+.
+ Show the last 3 iterations.
+ How many iterations did it take?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Prove that for 
+\begin_inset Formula $f(x)=\cos x$
+\end_inset
+
+, fixed point iteration converges for any initial value.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:convergenceStrengthened"
+
+\end_inset
+
+The Fixed Point Convergence Theorem can be strengthened.
+ The requirement that the first derivative be continuous can be replaced.
+ Modify the proof in the text to show the following claim.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\shape italic
+Given a differentiable function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ with fixed point 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, if 
+\begin_inset Formula $|f'(x)|\leq M<1$
+\end_inset
+
+ for all 
+\begin_inset Formula $x$
+\end_inset
+
+ in some neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, then fixed point iteration converges to the fixed point for any initial
+ value in the neighborhood.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Create three graphs similar to those in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:derivativeEqualsOne"
+
+\end_inset
+
+ to analyze the situation when the derivative at the fixed point equals
+ 
+\begin_inset Formula $-1$
+\end_inset
+
+.
+ Does the situation differ from that when the derivative at the fixed point
+ equals 
+\begin_inset Formula $1$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Answers
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Answers-fixedPointIteration"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:derivativeEqualsOne"
+
+\end_inset
+
+: From left to right: every neighborhood of the fixed point will have both
+ types of initial values; point iteration converges for all values in a
+ neighborhood of the fixed point; fixed point iteration escapes some neighborhoo
+d of the fixed point for all initial values in the neighborhood except the
+ fixed point itself
+\end_layout
+
+\begin_layout Description
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SixConvergenceDiagrams"
+
+\end_inset
+
+: When its denominator is zero, 
+\begin_inset Formula $f_{6}(x)$
+\end_inset
+
+ will be undefined (there is a vertical asymptote in the graph), so we solve
+ 
+\begin_inset Formula $3x^{2}\text{−}10x+4=0$
+\end_inset
+
+ to find two intial values for which fixed point iteration will fail (since
+ the first iteration will be undefined).
+ They are 
+\begin_inset Formula $x=\frac{5\pm\sqrt{13}}{3}\approx.4648\mbox{ and }2.868$
+\end_inset
+
+.
+ To find a third point for which fixed point iteration will fail, we solve
+ the equation 
+\begin_inset Formula $f_{6}(x)=\frac{5+\sqrt{13}}{5}$
+\end_inset
+
+ (we could just as easily have solved 
+\begin_inset Formula $f_{6}(x)=\frac{5-\sqrt{13}}{5}$
+\end_inset
+
+ instead).
+ Then the second iteration will be undefined since the first iteration will
+ be 
+\begin_inset Formula $\frac{5+\sqrt{13}}{5}$
+\end_inset
+
+.
+ The only real solution is approximately 
+\begin_inset Formula $1.055909763230534$
+\end_inset
+
+, which can be found by fixed point iteration on 
+\begin_inset Formula $\sqrt[3]{\frac{\sqrt{13}x^{2}+10x^{2}\text{−}\frac{10\sqrt{13}x}{3}\text{−}\frac{50x}{3}+\frac{4\sqrt{13}}{3}+\frac{38}{3}}{2}}$
+\end_inset
+
+.
+ Prove it.
+ Note, though, the claim that fixed point iteration will fail is based on
+ the assumption of 
+\shape italic
+exact
+\shape default
+ arithmetic.
+ The fact that any reasonable implementation of the fixed point iteration
+ method will involve floating point arithmetic might provide just enough
+ error for the method to converge even for these initial values.
+\end_layout
+
+\end_body
+\end_document

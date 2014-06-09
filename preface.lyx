@@ -1,0 +1,454 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter*
+Preface
+\end_layout
+
+\begin_layout Section*
+About Tea Time Numerical Analysis
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Preface}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{About Tea Time Numerical Analysis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[RE]{Preface}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[LO]{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Greetings! And thanks for giving 
+\shape italic
+Tea Time Numerical Analysis
+\shape default
+ a read.
+ This textbook was born out of a desire to contribute a viable, completely
+ free, introductory Numerical Analysis textbook for instructors and students
+ of mathematics.
+ When this project began (summer 2012), there were traditionally published
+ (very expensive hardcover) textbooks, notably the excellent 
+\shape italic
+Numerical Analysis
+\shape default
+ by Burden and Faires, which was in its ninth edition.
+ As you might guess by the number of editions, this text is a classic.
+ It is one of very few numerical analysis textbooks geared for the mathematician
+, not the scientist or engineer.
+ In fact, I studied from an early edition in the mid 1990's! And there were
+ a couple of freely available websites, notably the popular 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://nm.mathforcollege.com/"
+
+\end_inset
+
+, complete with video lectures.
+ However, no resource I could find included a complete, single-pdf downloadable
+ textbook designed for mathematics classes.
+ To be just that is the ultimate goal of 
+\shape italic
+Tea Time Numerical Analysis
+\shape default
+.
+\end_layout
+
+\begin_layout Standard
+The phrase 
+\begin_inset Quotes eld
+\end_inset
+
+tea time
+\begin_inset Quotes erd
+\end_inset
+
+ is meant to do more than give the book a catchy title.
+ It is meant to describe the general nature of the discourse within.
+ Much of the material will be presented as if it were being told to a student
+ during tea time at University, but with the benefit of careful planning.
+ There will be no big blue boxes highlighting the main points, no stream
+ of examples after a short introduction to a topic, and no theorem-proof
+ theorem-proof structure.
+ Instead, the necessary terms and definitions and theorems and examples
+ will be woven into a more conversational style.
+ My hope is that this blend of formal and informal mathematics will be easier
+ to digest, and dare I say, students will be more invited to do their reading
+ in this format.
+ 
+\end_layout
+
+\begin_layout Standard
+Those who enjoy a more typical presentation might still find this textbook
+ suits their preference to a large extent.
+ There will be a summary of the key concepts at the end of each conversation
+ and a number of the exercises will be solved in complete detail in the
+ appendix.
+ So, one can get a closer-to-typical presentation by scanning for theorems
+ in the conversations, reading the key concepts, and then skipping to the
+ exercises with solutions.
+ I hope most readers won't choose to do so, but it is an option.
+ In any case, the exercises with solutions will be critical reading for
+ most.
+ Learning by example is often the most effective means.
+ After reading a section, or at least scanning it, readers are strongly
+ encouraged to skip to the statements of the exercises with solutions (marked
+ by 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+ or 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution
+\end_layout
+
+\end_inset
+
+), contemplate their solutions, and then turn to the back of the book for
+ full disclosure.
+ The hope is that, with their placement in the appendix, readers will be
+ more apt to consider solving the exercises on their own before looking
+ at the solutions.
+\end_layout
+
+\begin_layout Standard
+The topical coverage in 
+\shape italic
+Tea Time Numerical Analysis
+\shape default
+ will be fairly typical.
+ The book starts with an introductory chapter, followed by root finding
+ methods, interpolation (part 1), numerical calculus, and interpolation
+ (part 2).
+ This covers what, at SCSU, constitutes a first semester course in numerical
+ analysis.
+ Future efforts may add chapters on linear algebra and differential equations,
+ making it a full year course.
+ As this book is intended for use as a free download or an inexpensive print-on-
+demand volume, no effort has been made to keep the page count low or to
+ spare copious diagrams and colors.
+ In fact, I have taken the inexpensive mode of delivery as liberty to do
+ quite the opposite.
+ I have added many passages and diagrams that are not strictly necessary
+ for the study of numerical analysis, but are at least peripherally related,
+ and may be of interest to some readers.
+ Most of these passages will be presented as digressions, so they will be
+ easy to identify.
+ For example, Taylor's Theorem plays such a central role in the subject
+ that not only its statement is presented.
+ Its proof and a bit of history are added as 
+\begin_inset Quotes eld
+\end_inset
+
+crumpets
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Of course they can be skipped, but are included to provide a more complete
+ understanding of this fundamental theorem of numerical analysis.
+ For another example, as a fan of dynamical systems, I found it impossible
+ to refrain from including a section on visualizing Newton's Method.
+ The powerful and beautiful pictures of Newton's Method as a dynamical system
+ should be eyebrow-raising and question-provoking even if only tangentially
+ important.
+ There are, of course, other examples of somewhat less critical content,
+ but each is there to enhance the reader's understanding or appreciation
+ of the subject, even if the material is not strictly necessary for an introduct
+ory study of numerical analysis.
+\end_layout
+
+\begin_layout Standard
+Along the way, implementation of the numerical methods in the form of computer
+ code will also be discussed.
+ While one could simply ignore the programming sections and exercises and
+ still get something out of this text, it is my firm belief that full appreciati
+on for the content can not be achieved without getting ones hands 
+\begin_inset Quotes eld
+\end_inset
+
+dirty
+\begin_inset Quotes erd
+\end_inset
+
+ by doing some programming.
+ It would be nice if readers have had at least some minimal exposure to
+ programming whether it be Java, or C, web programming, or just about anything
+ else.
+ But I have made every effort to give enough detail so that even those who
+ have never written even a one-line program will be able to participate
+ in this part of the study.
+\end_layout
+
+\begin_layout Standard
+In keeping with the desire to produce a completely free learning experience,
+ GNU Octave was chosen as the programming language for this book.
+ GNU Octave (Octave for short) is offered freely to anyone and everyone!
+ It is free to download and use.
+ Its source code is free to download and study.
+ And anyone is welcome to modify or add to the code if so inclined.
+ As an added bonus, users of the much better-known MATLAB will not be burdened
+ by learning a new language.
+ Octave is a MATLAB clone.
+ By design, nearly any program written in MATLAB will run in Octave without
+ modification.
+ So, if you have access to MATLAB and would prefer to use it, you may do
+ so without worry.
+ I have made considerable effort to ensure that every line of Octave in
+ this book will run verbatim under MATLAB.
+ Even with this earnest effort, though, it is possible that some of the
+ code will not run under MATLAB.
+ It has only been tested in Octave! If you find any code that does not run
+ in MATLAB, please let me know.
+\end_layout
+
+\begin_layout Standard
+I hope you enjoy your reading of 
+\shape italic
+Tea Time Numerical Analysis
+\shape default
+.
+ It was my pleasure to write it.
+ Feedback is always welcome.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hfill{}
+\end_inset
+
+ 
+\begin_inset space \hfill{}
+\end_inset
+
+ 
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leon Q.
+ Brin
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+brinl1@southernct.edu
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ 
+\begin_inset space \hfill{}
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Section*
+How to Get GNU Octave
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{How to Get Octave}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Where to Get the Code
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Where to Get the Code}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Acknowledgments}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

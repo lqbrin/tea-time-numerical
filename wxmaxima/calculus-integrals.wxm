@@ -1,0 +1,294 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: section start ]
+Formula functions (good for derivatives and integrals!)
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+onePointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+k/f1(xi),
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+2*k/f2(xi),
+  soln1:solve(eq0,a0),
+  soln2:solve(subst(soln1[1],eq1),k),
+  soln3:solve(subst(soln1[1],eq2),k),
+  [ratsimp(subst(soln1[1],formula)),soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+twoPointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h)+a1*f(x0+s[2]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0+a1*(x0+s[2]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+a1*(x0+s[2]*h)^1,
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+a1*(x0+s[2]*h)^2+2*k/f2(xi),
+  eq3:lhs[4]=a0*(x0+s[1]*h)^3+a1*(x0+s[2]*h)^3+6*k/f3(xi),
+  soln1:solve([eq0,eq1],[a0,a1]),
+  soln2:solve(subst(soln1[1],eq2),k),
+  soln3:solve(subst(soln1[1],eq3),k),
+  [ratsimp(subst(soln1[1],formula)),soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+threePointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h)+a1*f(x0+s[2]*h)+a2*f(x0+s[3]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0+a1*(x0+s[2]*h)^0+a2*(x0+s[3]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+a1*(x0+s[2]*h)^1+a2*(x0+s[3]*h)^1,
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+a1*(x0+s[2]*h)^2+a2*(x0+s[3]*h)^2,
+  eq3:lhs[4]=a0*(x0+s[1]*h)^3+a1*(x0+s[2]*h)^3+a2*(x0+s[3]*h)^3+6*k/f3(xi),
+  eq4:lhs[5]=a0*(x0+s[1]*h)^4+a1*(x0+s[2]*h)^4+a2*(x0+s[3]*h)^4+24*k/f4(xi),
+  soln1:solve([eq0,eq1,eq2],[a0,a1,a2]),
+  soln2:solve(subst(soln1[1],eq3),k),
+  soln3:solve(subst(soln1[1],eq4),k),
+  [ratsimp(subst(soln1[1],formula)),soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fourPointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h)+a1*f(x0+s[2]*h)+a2*f(x0+s[3]*h)+a3*f(x0+s[4]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0+a1*(x0+s[2]*h)^0+a2*(x0+s[3]*h)^0+a3*(x0+s[4]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+a1*(x0+s[2]*h)^1+a2*(x0+s[3]*h)^1+a3*(x0+s[4]*h)^1,
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+a1*(x0+s[2]*h)^2+a2*(x0+s[3]*h)^2+a3*(x0+s[4]*h)^2,
+  eq3:lhs[4]=a0*(x0+s[1]*h)^3+a1*(x0+s[2]*h)^3+a2*(x0+s[3]*h)^3+a3*(x0+s[4]*h)^3,
+  eq4:lhs[5]=a0*(x0+s[1]*h)^4+a1*(x0+s[2]*h)^4+a2*(x0+s[3]*h)^4+a3*(x0+s[4]*h)^4+24*k/f4(xi),
+  eq5:lhs[6]=a0*(x0+s[1]*h)^5+a1*(x0+s[2]*h)^5+a2*(x0+s[3]*h)^5+a3*(x0+s[4]*h)^5+120*k/f5(xi),
+  soln1:solve([eq0,eq1,eq2,eq3],[a0,a1,a2,a3]),
+  soln2:solve(subst(soln1[1],eq4),k),
+  soln3:solve(subst(soln1[1],eq5),k),
+  [ratsimp(subst(soln1[1],formula)),soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fivePointFormula(lhs,s):=(
+  formula:a0*f(x0+s[1]*h)+a1*f(x0+s[2]*h)+a2*f(x0+s[3]*h)+a3*f(x0+s[4]*h)+a4*f(x0+s[5]*h),
+  eq0:lhs[1]=a0*(x0+s[1]*h)^0+a1*(x0+s[2]*h)^0+a2*(x0+s[3]*h)^0+a3*(x0+s[4]*h)^0+a4*(x0+s[5]*h)^0,
+  eq1:lhs[2]=a0*(x0+s[1]*h)^1+a1*(x0+s[2]*h)^1+a2*(x0+s[3]*h)^1+a3*(x0+s[4]*h)^1+a4*(x0+s[5]*h)^1,
+  eq2:lhs[3]=a0*(x0+s[1]*h)^2+a1*(x0+s[2]*h)^2+a2*(x0+s[3]*h)^2+a3*(x0+s[4]*h)^2+a4*(x0+s[5]*h)^2,
+  eq3:lhs[4]=a0*(x0+s[1]*h)^3+a1*(x0+s[2]*h)^3+a2*(x0+s[3]*h)^3+a3*(x0+s[4]*h)^3+a4*(x0+s[5]*h)^3,
+  eq4:lhs[5]=a0*(x0+s[1]*h)^4+a1*(x0+s[2]*h)^4+a2*(x0+s[3]*h)^4+a3*(x0+s[4]*h)^4+a4*(x0+s[5]*h)^4,
+  eq5:lhs[6]=a0*(x0+s[1]*h)^5+a1*(x0+s[2]*h)^5+a2*(x0+s[3]*h)^5+a3*(x0+s[4]*h)^5+a4*(x0+s[5]*h)^5+120*k/f5(xi),
+  eq6:lhs[7]=a0*(x0+s[1]*h)^6+a1*(x0+s[2]*h)^6+a2*(x0+s[3]*h)^6+a3*(x0+s[4]*h)^6+a4*(x0+s[5]*h)^6+720*k/f6(xi),
+  soln1:solve([eq0,eq1,eq2,eq3,eq4],[a0,a1,a2,a3,a4]),
+  soln2:solve(subst(soln1[1],eq5),k),
+  soln3:solve(subst(soln1[1],eq6),k),
+  [ratsimp(subst(soln1[1],formula)),soln2,soln3]
+)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Integrals
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+left hand sides
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lhs1:[integrate(1,x,x0,x0+h), integrate(x,x,x0,x0+h), integrate(x^2,x,x0,x0+h), integrate(x^3,x,x0,x0+h)];
+lhs2:[integrate(1,x,x0,x0+2*h), integrate(x,x,x0,x0+2*h), integrate(x^2,x,x0,x0+2*h), integrate(x^3,x,x0,x0+2*h), integrate(x^4,x,x0,x0+2*h)];
+lhs3:[integrate(1,x,x0,x0+3*h), integrate(x,x,x0,x0+3*h), integrate(x^2,x,x0,x0+3*h), integrate(x^3,x,x0,x0+3*h), integrate(x^4,x,x0,x0+3*h), integrate(x^5,x,x0,x0+3*h)];
+lhs4:[integrate(1,x,x0,x0+4*h), integrate(x,x,x0,x0+4*h), integrate(x^2,x,x0,x0+4*h), integrate(x^3,x,x0,x0+4*h), integrate(x^4,x,x0,x0+4*h), integrate(x^5,x,x0,x0+4*h), integrate(x^6,x,x0,x0+4*h)];
+lhs5:[integrate(1,x,x0,x0+5*h), integrate(x,x,x0,x0+5*h), integrate(x^2,x,x0,x0+5*h), integrate(x^3,x,x0,x0+5*h), integrate(x^4,x,x0,x0+5*h), integrate(x^5,x,x0,x0+5*h), integrate(x^6,x,x0,x0+5*h), integrate(x^7,x,x0,x0+5*h)];
+lhs6:[integrate(1,x,x0,x0+6*h), integrate(x,x,x0,x0+6*h), integrate(x^2,x,x0,x0+6*h), integrate(x^3,x,x0,x0+6*h), integrate(x^4,x,x0,x0+6*h), integrate(x^5,x,x0,x0+6*h), integrate(x^6,x,x0,x0+6*h), integrate(x^7,x,x0,x0+6*h), integrate(x^8,x,x0,x0+6*h)];
+lhs7:[integrate(1,x,x0,x0+7*h), integrate(x,x,x0,x0+7*h), integrate(x^2,x,x0,x0+7*h), integrate(x^3,x,x0,x0+7*h), integrate(x^4,x,x0,x0+7*h), integrate(x^5,x,x0,x0+7*h), integrate(x^6,x,x0,x0+7*h), integrate(x^7,x,x0,x0+7*h), integrate(x^8,x,x0,x0+7*h), integrate(x^9,x,x0,x0+7*h)];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+one-point formula
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+open:onePointFormula(lhs2,[1]);
+neither:onePointFormula(lhs1,[1/4]);
+neither:onePointFormula(lhs1,[0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+two-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+closed:twoPointFormula(lhs1,[0,1]);
+open:twoPointFormula(lhs3,[1,2]);
+neither:twoPointFormula(lhs2,[0,4/3]);
+neither:twoPointFormula(lhs1,[0,2/3]);
+neither:twoPointFormula(lhs2,[2/3,4/3]);
+neither:twoPointFormula(lhs2,[-1/2,1/2]);
+neither:twoPointFormula(lhs2,[-1/2,3/2]);
+neither:twoPointFormula(lhs2,[-1/2,5/2]);
+neither:twoPointFormula(lhs2,[1,2]);
+neither:twoPointFormula(lhs3,[3/2,3/3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+three-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+closed:threePointFormula(lhs2,[0,1,2]);
+open:threePointFormula(lhs4,[1,2,3]);
+neither:threePointFormula(lhs2,[1/2,1,2]);
+neither:threePointFormula(lhs3,[0,1,2]);
+neither:threePointFormula(lhs2,[-1,0,1]);
+neither:threePointFormula(lhs3,[3/2,3/3,3/4]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+four-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+closed:fourPointFormula(lhs3,[0,1,2,3]);
+open:fourPointFormula(lhs5,[1,2,3,4]);
+neither:fourPointFormula(lhs3,[3/2,3/3,3/4,3/5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+five-point formulas
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+closed:fivePointFormula(lhs4,[0,1,2,3,4]);
+open:fivePointFormula(lhs6,[1,2,3,4,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Gaussian Quadrature
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lhs:ratsimp([integrate(1,x,x0-h,x0+h), integrate(x,x,x0-h,x0+h), integrate(x^2,x,x0-h,x0+h), integrate(x^3,x,x0-h,x0+h), integrate(x^4,x,x0-h,x0+h), integrate(x^5,x,x0-h,x0+h), integrate(x^6,x,x0-h,x0+h), integrate(x^7,x,x0-h,x0+h), integrate(x^8,x,x0-h,x0+h), integrate(x^9,x,x0-h,x0+h)])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+two-point
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(x^2-1/3);
+s:[-1/sqrt(3),1/sqrt(3)]$
+formula:twoPointFormula(lhs,s)[1];
+theta0:s[1]$
+theta1:s[2]$
+sub1:f(ratsimp(x0+theta0*h))=f(x0)+theta0*h*fp(x0)+1/2*(theta0*h)^2*fpp(x0)+1/6*(theta0*h)^3*fppp(x0)+1/24*(theta0*h)^4*fpppp(x0)+1/120*(theta0*h)^5*fppppp(x0)$
+sub2:f(ratsimp(x0+theta1*h))=f(x0)+theta1*h*fp(x0)+1/2*(theta1*h)^2*fpp(x0)+1/6*(theta1*h)^3*fppp(x0)+1/24*(theta1*h)^4*fpppp(x0)+1/120*(theta1*h)^5*fppppp(x0)$
+approx:expand(subst([sub1,sub2,theta0=-1/sqrt(3),theta1=1/sqrt(3)],formula))$
+exact:ratsimp(integrate(f(x0)+(x-x0)*fp(x0)+1/2*(x-x0)^2*fpp(x0)+1/6*(x-x0)^3*fppp(x0)+1/24*(x-x0)^4*fpppp(x0)+1/120*(x-x0)^5*fppppp(x0),x,x0-h,x0+h))$
+ratsimp(exact-approx);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+three-point
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(x^3-3/5*x);
+s:[-sqrt(3/5),0,sqrt(3/5)]$
+formula:threePointFormula(lhs,s)[1];
+theta0:s[1]$
+theta1:s[2]$
+theta2:s[3]$
+sub1:f(ratsimp(x0+theta0*h))=f(x0)+theta0*h*fp(x0)+1/2*(theta0*h)^2*fpp(x0)+1/6*(theta0*h)^3*fppp(x0)+1/24*(theta0*h)^4*fpppp(x0)+1/120*(theta0*h)^5*fppppp(x0)+1/720*(theta0*h)^6*fpppppp(x0)+1/5040*(theta0*h)^7*fppppppp(x0)$
+sub2:f(ratsimp(x0+theta1*h))=f(x0)+theta1*h*fp(x0)+1/2*(theta1*h)^2*fpp(x0)+1/6*(theta1*h)^3*fppp(x0)+1/24*(theta1*h)^4*fpppp(x0)+1/120*(theta1*h)^5*fppppp(x0)+1/720*(theta1*h)^6*fpppppp(x0)+1/5040*(theta1*h)^7*fppppppp(x0)$
+sub3:f(ratsimp(x0+theta2*h))=f(x0)+theta2*h*fp(x0)+1/2*(theta2*h)^2*fpp(x0)+1/6*(theta2*h)^3*fppp(x0)+1/24*(theta2*h)^4*fpppp(x0)+1/120*(theta2*h)^5*fppppp(x0)+1/720*(theta2*h)^6*fpppppp(x0)+1/5040*(theta2*h)^7*fppppppp(x0)$
+approx:expand(subst([sub1,sub2,sub3,theta0=-sqrt(3/5),theta1=0,theta2=sqrt(3/5)],formula))$
+exact:ratsimp(integrate(f(x0)+(x-x0)*fp(x0)+1/2*(x-x0)^2*fpp(x0)+1/6*(x-x0)^3*fppp(x0)+1/24*(x-x0)^4*fpppp(x0)+1/120*(x-x0)^5*fppppp(x0)+1/720*(x-x0)^6*fpppppp(x0)+1/5040*(x-x0)^7*fppppppp(x0),x,x0-h,x0+h))$
+ratsimp(exact-approx);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Gaussian derivatives
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+lhs:[0,1,0,0,0,0,0,0,0,0,0];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=1$
+rhs[1]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)$
+f(x):=x-x0$
+rhs[2]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)$
+f(x):=(x-x0)^2$
+rhs[3]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)$
+f(x):=(x-x0)^3$
+rhs[4]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)$
+for i:1 thru 4 do (
+    eq[i]:lhs[i]=rhs[i],
+    print(eq[i])
+)$
+solve([eq[1],eq[2],eq[3],eq[4]],[a0,a1,theta0,theta1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=1$
+rhs[1]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)$
+f(x):=x-x0$
+rhs[2]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)$
+f(x):=(x-x0)^2$
+rhs[3]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)$
+f(x):=(x-x0)^3$
+rhs[4]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)$
+f(x):=(x-x0)^4$
+rhs[5]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)$
+f(x):=(x-x0)^5$
+rhs[6]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)$
+for i:1 thru 6 do (
+    eq[i]:lhs[i]=rhs[i],
+    print(eq[i])
+)$
+solve([eq[1],eq[2],eq[3],eq[4],eq[5],eq[6]],[a0,a1,a2,theta0,theta1,theta2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=1$
+rhs[1]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+f(x):=x-x0$
+rhs[2]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+f(x):=(x-x0)^2$
+rhs[3]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+f(x):=(x-x0)^3$
+rhs[4]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+f(x):=(x-x0)^4$
+rhs[5]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+f(x):=(x-x0)^5$
+rhs[6]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+f(x):=(x-x0)^6$
+rhs[7]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+f(x):=(x-x0)^7$
+rhs[8]:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+for i:1 thru 8 do (
+    eq[i]:lhs[i]=rhs[i],
+    print(eq[i])
+)$
+solve([eq[1],eq[2],eq[3],eq[4],eq[5],eq[6],eq[7],eq[8]],[a0,a1,a2,a3,theta0,theta1,theta2,theta3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve((35*x^4-30*x^2+3)/35=0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+theta0:-sqrt(2*sqrt(30)+15)/sqrt(35);
+theta1:sqrt(2*sqrt(30)+15)/sqrt(35);
+theta2:−sqrt(15−2*sqrt(30))/sqrt(35);
+theta3:sqrt(15−2*sqrt(30))/sqrt(35);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(f)$
+soln:solve([eq[1],eq[2],eq[3],eq[4]],[a0,a1,a2,a3]);
+formula:a0*f(x0+theta0*h)+a1*f(x0+theta1*h)+a2*f(x0+theta2*h)+a3*f(x0+theta3*h)$
+formula:subst(soln[1],formula);
+f(x):=(x-x0)^5$
+ratsimp(ev(formula,noun));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

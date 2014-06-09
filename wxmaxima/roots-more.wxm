@@ -1,0 +1,102 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+f1(z):=rectform(z-exp(z));
+fp1(z):=rectform(subst(t=z,diff(f1(t),t)));
+g1(z):=rectform(z-f1(z)/fp1(z));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpprec:30$
+x:2.0-3.0*%i;
+x0:100000.0$
+i:1$
+while (i<100 and abs(x-x0)>10^-10) do (
+  x0:x,
+  x:g1(x0),
+  i:i+1,
+  print(x)
+);
+x;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f2(s):=s-exp(s)*cos(sqrt(exp(2*s)-s^2));
+fp2(s):=rectform(subst(t=s,diff(f2(t),t)));
+g2(s):=rectform(s-f2(s)/fp2(s));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0:2.4;
+x:g2(x0)$
+i:1$
+while (i<100 and abs(x-x0)>10^-10) do (
+  x0:x,
+  x:g2(x0),
+  i:i+1
+);
+x + %i * sqrt(exp(2*x)-x^2);
+exp(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+r
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+r1:.3181315052047642+1.33723570143069*%i;
+r2:2.062277729598284+7.588631178472513*%i;
+r3:2.653191974038697+13.94920833453322*%i;
+r4:3.020239708164501+20.27245764161522*%i;
+r5:3.287768611544094+26.58047149935915*%i;
+r6:3.498515212154103+32.8807214800689*%i;
+r7:39.17644002173525*%i+3.672450068709818;
+r8:45.46926540371086*%i+3.820554307813677;
+r9:51.76012200402071*%i+3.949522742422529;
+r10:58.04957343447749*%i+4.06374170279183;
+r11:64.33798412035902*%i+4.166242447528417;
+r12:70.62560080213726*%i+4.259207855939036;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+r2-r1;
+r3-r2;
+r4-r3;
+r5-r4;
+r6-r5;
+r7-r6;
+r8-r7;
+r9-r8;
+s0:imagpart(r10-r9);
+s1:imagpart(r11-r10);
+s2:imagpart(r12-r11);
+lim:2.0*%pi,numer;
+a:s0-(s1-s0)^2/(s2-2*s1+s0);
+abs(s2-lim);
+abs(a-lim);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+r1-exp(r1);
+r2-exp(r2);
+r3-exp(r3);
+r4-exp(r4);
+r5-exp(r5);
+r6-exp(r6);
+r7-exp(r7);
+r8-exp(r8);
+r9-exp(r9);
+r10-exp(r10);
+r11-exp(r11);
+r12-exp(r12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+[r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12];
+r2;
+exp(r2);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

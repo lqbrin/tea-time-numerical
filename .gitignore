@@ -1,0 +1,15 @@
+# .directory is added by KDE file browser
+.directory
+# I have no idea where this one came from
+.DS_Store
+# Not all of these references are open source or public domain.
+# Directory is excluded to protect copyrighted material.
+references/
+# This is material from Terri Bennett's MAT 322 class. It is
+# not mine to distribute
+fromTerri/
+# Ignore temporary and emergency files produced by LyX
+*~
+*#
+octave-workspace
+*DEFUNCT*

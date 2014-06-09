@@ -1,0 +1,28 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.09.0 ] */
+
+/* [wxMaxima: comment start ]
+SECTION 1.2 Taylor Polynomials
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1f)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=x*sin(x);
+fp(x):=subst(t=x,diff(f(t),t))$
+fpp(x):=subst(t=x,diff(f(t),t,2))$
+fppp(x):=subst(t=x,diff(f(t),t,3))$
+fpppp(x):=subst(t=x,diff(f(t),t,4))$
+fp(x);
+fpp(x);
+fppp(x);
+fpppp(x);
+x0:0$
+T3:f(x0)+fp(x0)*(x-x0)+fpp(x0)*(x-x0)^2/2!+fppp(x0)*(x-x0)^3/3!;
+R3:fpppp(xi)*(x-x0)^4/4!;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

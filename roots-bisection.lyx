@@ -1,0 +1,6293 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Root Finding
+\end_layout
+
+\begin_layout Section
+Bisection
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Bisection"
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bisection method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! bisection|see {bisection method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Taylor"
+
+\end_inset
+
+ (page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "equationToSolve"
+
+\end_inset
+
+), we claimed that 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ actually approximates 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ to within 
+\begin_inset Formula $0.1$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[3.296,13.13]$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+, with a promise that we would discuss the calculation later.
+ It is now later.
+ First, we rephrase the claim as 
+\begin_inset Quotes eld
+\end_inset
+
+the distance between 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ is less than or equal to 
+\begin_inset Formula $0.1$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in[3.296,13.13]$
+\end_inset
+
+.
+\begin_inset Quotes erd
+\end_inset
+
+ In other words, 
+\begin_inset Formula 
+\[
+|T_{2}(x)-\ln(x)|<\frac{1}{10}\quad\mbox{for all }x\in[3.296,13.13].
+\]
+
+\end_inset
+
+One way to begin solving this inequality is to consider the pair of equations
+ 
+\begin_inset Formula $T_{2}(x)-\ln(x)=\pm\frac{1}{10}$
+\end_inset
+
+.
+ With a focus on solving 
+\begin_inset Formula 
+\begin{equation}
+T_{2}(x)-\ln(x)=\frac{1}{10},\label{eq:bisectionExample}
+\end{equation}
+
+\end_inset
+
+recall that 
+\begin_inset Formula $T_{2}(x)=2+\frac{x-e^{2}}{e^{2}}-\frac{(x-e^{2})^{2}}{2e^{4}}$
+\end_inset
+
+.
+ We are thus looking to solve the equation
+\begin_inset Formula 
+\[
+2+\frac{x-e^{2}}{e^{2}}-\frac{(x-e^{2})^{2}}{2e^{4}}-\ln(x)=\frac{1}{10}.
+\]
+
+\end_inset
+
+Finally, having written the equation in full detail, it should come as no
+ surprise that we will not be solving for 
+\begin_inset Formula $x$
+\end_inset
+
+ exactly.
+ There is no analytic method for solving such an equation.
+ Generally, equations with both polynomial terms and transcendental terms
+ will not be solvable.
+ However, from the graph in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:taylor3"
+
+\end_inset
+
+, we can get a first approximation of the solution.
+ We are looking for the place where 
+\begin_inset Formula $T_{2}(x)$
+\end_inset
+
+ exceeds 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ by 
+\begin_inset Formula $0.1$
+\end_inset
+
+.
+ Since the two graphs essentially overlap at 
+\begin_inset Formula $x=6$
+\end_inset
+
+, we might aver that 
+\begin_inset Formula $T_{2}(6)$
+\end_inset
+
+ exceeds 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ by 
+\shape italic
+less than
+\shape default
+ 
+\begin_inset Formula $0.1$
+\end_inset
+
+ there.
+ Since there is a reasonably large gap between the graphs at 
+\begin_inset Formula $x=2$
+\end_inset
+
+, we might also aver that 
+\begin_inset Formula $T_{2}(2)$
+\end_inset
+
+ exceeds 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ by 
+\shape italic
+more than
+\shape default
+ 
+\begin_inset Formula $0.1$
+\end_inset
+
+ there.
+ In other words, 
+\begin_inset Formula $T_{2}(2)-\ln(2)>\frac{1}{10}$
+\end_inset
+
+ while 
+\begin_inset Formula $T_{2}(6)-\ln(6)<\frac{1}{10}$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $T_{2}(x)-\ln(x)$
+\end_inset
+
+ is continuous on the interval 
+\begin_inset Formula $[2,6]$
+\end_inset
+
+, the Intermediate Value theorem guarantees there is a value 
+\begin_inset Formula $c\in(2,6)$
+\end_inset
+
+ such that 
+\begin_inset Formula $T_{2}(c)-\ln(c)=\frac{1}{10}$
+\end_inset
+
+.
+ It is this value of 
+\begin_inset Formula $c$
+\end_inset
+
+ we are after.
+ And we know it is between 2 and 6.
+ It's a start, but we can do better!
+\end_layout
+
+\begin_layout Standard
+What about 4? Well, 
+\begin_inset Formula $T_{2}(4)-\ln(4)\approx.04986<0.1$
+\end_inset
+
+, so now we know 
+\begin_inset Formula $T_{2}(4)$
+\end_inset
+
+ exceeds 
+\begin_inset Formula $\ln(4)$
+\end_inset
+
+ by 
+\shape italic
+less than
+\shape default
+ 
+\begin_inset Formula $0.1$
+\end_inset
+
+.
+ Now the Intermediate Value theorem tells us that 
+\begin_inset Formula $c$
+\end_inset
+
+ is between 2 and 4 (
+\begin_inset Formula $T_{2}(2)$
+\end_inset
+
+ exceeds 
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+ by 
+\shape italic
+more than
+\shape default
+ 
+\begin_inset Formula $0.1$
+\end_inset
+
+).
+ Shall we check on 
+\begin_inset Formula $x=3$
+\end_inset
+
+? Yes.
+ 
+\begin_inset Formula $T_{2}(3)-\ln(3)\approx.131>0.1$
+\end_inset
+
+, so now we know 
+\begin_inset Formula $T_{2}(3)$
+\end_inset
+
+ exceeds 
+\begin_inset Formula $\ln(3)$
+\end_inset
+
+ by 
+\shape italic
+more than
+\shape default
+ 
+\begin_inset Formula $0.1$
+\end_inset
+
+.
+ Recapping, 
+\begin_inset Formula $T_{2}(4)-\ln(4)<0.1$
+\end_inset
+
+ while 
+\begin_inset Formula $T_{2}(3)\ln(3)>0.1$
+\end_inset
+
+.
+ By the Intermediate Value theorem again, we know 
+\begin_inset Formula $c$
+\end_inset
+
+ is between 3 and 4.
+ And we may continue the process, limited only by our patience.
+ This is the process we call the 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bisection method
+\end_layout
+
+\end_inset
+
+bisection method:
+\end_layout
+
+\begin_layout Enumerate
+Identify an interval 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ such that either 
+\begin_inset Formula $a$
+\end_inset
+
+ or 
+\begin_inset Formula $b$
+\end_inset
+
+ overshoots the mark while the other undershoots it.
+\end_layout
+
+\begin_layout Enumerate
+Calculate the midpoint, 
+\begin_inset Formula $m$
+\end_inset
+
+, of the identified interval.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+ both overshoot or both undershoot the mark, the desired value lies in 
+\begin_inset Formula $[m,b]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $b$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+ both overshoot or both undershoot the mark, the desired value lies in 
+\begin_inset Formula $[a,m]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Return to step 2 using the newly identified interval.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:bisection-1"
+
+\end_inset
+
+
+\begin_inset Formula $+$
+\end_inset
+
+ indicates 
+\begin_inset Formula $T_{2}(x)-\ln(x)>\frac{1}{10}$
+\end_inset
+
+ and 
+\begin_inset Formula $-$
+\end_inset
+
+ indicates 
+\begin_inset Formula $T_{2}(x)-\ln(x)<\frac{1}{10}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/roots-bisection1.pdf
+	width 5.5in
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Using a 
+\begin_inset Formula $+$
+\end_inset
+
+ sign for values of 
+\begin_inset Formula $x$
+\end_inset
+
+ for which 
+\begin_inset Formula $T_{2}(x)-\ln(x)$
+\end_inset
+
+ overshoots the desired value 
+\begin_inset Formula $\frac{1}{10}$
+\end_inset
+
+ and a 
+\begin_inset Formula $-$
+\end_inset
+
+ sign for values of 
+\begin_inset Formula $x$
+\end_inset
+
+ for which 
+\begin_inset Formula $T_{2}(x)-\ln(x)$
+\end_inset
+
+ undershoots the desired value 
+\begin_inset Formula $\frac{1}{10}$
+\end_inset
+
+, we may diagram this procedure, including the next two iterations, as in
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:bisection-1"
+
+\end_inset
+
+.
+ We might also reproduce the calculations in a table:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $m$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{2}(a)-\ln(a)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{2}(m)-\ln(m)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{2}(b)-\ln(b)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.3116$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.04986$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.002582$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.3116$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.131$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.04986$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.131$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0824$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.04986$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+No matter how the procedure is understood, the sequence of approximations
+ 
+\begin_inset Formula 
+\[
+4,\ 3,\ 3.5,\ 3.25,\ \ldots
+\]
+
+\end_inset
+
+is produced.
+ What is the next value? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:bisectionAnswer1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Not only do we have a sequence of numbers approaching the solution, we know
+ for certain that 
+\begin_inset Formula $4$
+\end_inset
+
+ is accurate to within 2 units of the exact value.
+ 
+\begin_inset Formula $3$
+\end_inset
+
+ is accurate to within 1 unit.
+ 
+\begin_inset Formula $3.5$
+\end_inset
+
+ is accurate to within 
+\begin_inset Formula $0.5$
+\end_inset
+
+ units.
+ And 
+\begin_inset Formula $3.25$
+\end_inset
+
+ is accurate to within 
+\begin_inset Formula $0.25$
+\end_inset
+
+ units.
+ In general, each approximation is accurate to within half the length of
+ the interval from which it was computed as midpoint.
+ After all, the exact value is guaranteed to lie within the interval.
+ The farthest the midpoint can possibly be from the exact value is half
+ the length of the interval.
+\end_layout
+
+\begin_layout Standard
+Though the method works perfectly well as described, normally the equation
+ to be solved is simplified so that one side is zero.
+ In that way, the other side can be thought of as a function whose roots
+ are desired.
+ Plus, it simplifies the implementation of the method slightly.
+ For example, we would consider solving the equation 
+\begin_inset Formula 
+\[
+T_{2}(x)-\ln(x)-\frac{1}{10}=0
+\]
+
+\end_inset
+
+instead of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bisectionExample"
+
+\end_inset
+
+.
+ Then the procedure boils down to finding a root of 
+\begin_inset Formula $f(x)=T_{2}(x)-\ln(x)-\frac{1}{10}$
+\end_inset
+
+.
+ This is why this method is called a root-finding method.
+ It is used to find zeros, or roots, of functions.
+ In this light, we might summarize the first 8 iterations of this procedure
+ as follows:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $m$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(a)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(m)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(b)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.375$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.3125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.375$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.28125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.3125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $>0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $<0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.28125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.296875$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.3125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Notice two things.
+ The actual values of 
+\begin_inset Formula $f(a)$
+\end_inset
+
+, 
+\begin_inset Formula $f(m)$
+\end_inset
+
+, and 
+\begin_inset Formula $f(b)$
+\end_inset
+
+ are not needed.
+ Only their sign is important because all we need to do is maintain one
+ endpoint where the function is greater than 0 (overshoots) and one where
+ the function is less than 0 (undershoots).
+ Furthermore, the 
+\begin_inset Formula $f(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)$
+\end_inset
+
+ columns are not strictly necessary either.
+ If the procedure is carried out faithfully, they will never change sign.
+ In fact, that's what it means to carry out the procedure faithfully! In
+ steps 3 and 4, you choose which subinterval to keep by maintaining opposite
+ signs of the function on opposite endpoints.
+ 
+\end_layout
+
+\begin_layout Standard
+As the last line indicates, the desired value is approximately 
+\begin_inset Formula $3.296$
+\end_inset
+
+ as promised.
+ The other value, 
+\begin_inset Formula $13.13$
+\end_inset
+
+, is determined by finding a root of the function 
+\begin_inset Formula $g(x)=T_{2}(x)-\ln(x)+\frac{1}{10}$
+\end_inset
+
+.
+ Give it a shot! Start with 
+\begin_inset Formula $a=10$
+\end_inset
+
+ and 
+\begin_inset Formula $b=14$
+\end_inset
+
+, for example.
+ Solution 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:bisectionAnswer2"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Though it works, the only real point of carrying out the procedure using
+ a table is to make sure you understand exactly how it works.
+ If we were actually to use the method in practice, we would write a short
+ computer program instead.
+ Computers are very good at repetitious calculations, something at which
+ humans are not particularly adept.
+ In this procedure, we need to calculate a midpoint, decide whether this
+ midpoint should then become the left or right endpoint, make it so, and
+ repeat.
+ 
+\end_layout
+
+\begin_layout Standard
+That leaves only one question---how many repetitions, or iterations, should
+ we compute? And that depends on the user.
+ Perhaps an answer to within 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+ of the exact value will suffice, and maybe only 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ accuracy will do.
+ The program we write should be flexible enough to calculate the answer
+ to whatever accuracy is desired, within reason.
+ With that in mind, here is some pseudo-code for the bisection method.
+ 
+\end_layout
+
+\begin_layout Subsection
+The Bisection Method (pseudo-code)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+bisection method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Though technically not necessary for coding, when we can, we will preface
+ each method's pseudo-code with mathematical assumptions that guarantee
+ success.
+ The implication is that if the method is run in a situation where the assumptio
+ns are not met, then the method should not be expected to provide dependable
+ results.
+ It may or may not give useful information.
+ The old adage 
+\begin_inset Quotes eld
+\end_inset
+
+garbage in...garbage out
+\begin_inset Quotes erd
+\end_inset
+
+ applies!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $f$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+ 
+\begin_inset Formula $f(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)$
+\end_inset
+
+ have opposite signs.
+\end_layout
+
+\begin_layout Description
+Input: Interval 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+; function 
+\begin_inset Formula $f$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $err=|b-a|$
+\end_inset
+
+; 
+\begin_inset Formula $L=f(a)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: For 
+\begin_inset Formula $j=1\ldots N$
+\end_inset
+
+ do Steps 3-5:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: Set 
+\begin_inset Formula $m=\frac{a+b}{2}$
+\end_inset
+
+; 
+\begin_inset Formula $M=f(m)$
+\end_inset
+
+; 
+\begin_inset Formula $err=err/2$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: If 
+\begin_inset Formula $M=0$
+\end_inset
+
+ or 
+\begin_inset Formula $err\leq tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $m$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: If 
+\begin_inset Formula $LM<0$
+\end_inset
+
+ then set 
+\begin_inset Formula $b=m$
+\end_inset
+
+; else set 
+\begin_inset Formula $a=m$
+\end_inset
+
+ and 
+\begin_inset Formula $L=M$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6: Print 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Maximum iterations exceeded.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $m$
+\end_inset
+
+ within 
+\begin_inset Formula $tol$
+\end_inset
+
+ of exact root, or message of failure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+As noted earlier, this method should calculate a midpoint (Step 3), decide
+ whether this midpoint should then become the left or right endpoint (Step
+ 5), make it so (Step 5), and repeat some number of times (Steps 1, 2, and
+ 4).
+ Much of the code is dedicated to determining when to stop.
+ This is typical of numerical methods.
+ The calculations are half the battle.
+ Controling the calculations is the other half.
+ If we didn't have to worry about stopping, the pseudo-code might look something
+ like this: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $L=f(a)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Set 
+\begin_inset Formula $m=\frac{a+b}{2}$
+\end_inset
+
+; 
+\begin_inset Formula $M=f(m)$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: If 
+\begin_inset Formula $LM<0$
+\end_inset
+
+ then set 
+\begin_inset Formula $b=m$
+\end_inset
+
+; else set 
+\begin_inset Formula $a=m$
+\end_inset
+
+ and 
+\begin_inset Formula $L=M$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Go to Step 2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+There would be no need for 
+\begin_inset Formula $j$
+\end_inset
+
+, 
+\begin_inset Formula $err$
+\end_inset
+
+, 
+\begin_inset Formula $tol$
+\end_inset
+
+, or 
+\begin_inset Formula $N$
+\end_inset
+
+, making the algorithm quite a bit simpler.
+ Of course, programmed this way, the program would never stop, so 
+\begin_inset Formula $j$
+\end_inset
+
+, 
+\begin_inset Formula $err$
+\end_inset
+
+, 
+\begin_inset Formula $tol$
+\end_inset
+
+, and 
+\begin_inset Formula $N$
+\end_inset
+
+, are indeed necessary.
+ Nonetheless, this pseudo-code without the ability to stop is important.
+ It can be thought of as the guts of the program.
+ This is the code that executes the method.
+ Sometimes it is easiest to start with the guts and then add the controls
+ afterward.
+ 
+\end_layout
+
+\begin_layout Standard
+As for determining whether the midpoint should become the left or right
+ endpoint, Step 5 (Step 3 of the guts) uses a somewhat slick method.
+ By slick, I mean short, efficient, and not immediately obvious.
+ The sign of 
+\begin_inset Formula $LM=f(a)\cdot f(m)$
+\end_inset
+
+ is checked.
+ If it is negative (
+\begin_inset Formula $LM<0$
+\end_inset
+
+) then 
+\begin_inset Formula $m$
+\end_inset
+
+ should become the right endpoint (should replace 
+\begin_inset Formula $b$
+\end_inset
+
+) because this means 
+\begin_inset Formula $f(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(m)$
+\end_inset
+
+ have opposite signs.
+ That's the only way 
+\begin_inset Formula $LM$
+\end_inset
+
+ can be negative.
+ On the other hand, if 
+\begin_inset Formula $LM>0$
+\end_inset
+
+ then we know 
+\begin_inset Formula $f(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(m)$
+\end_inset
+
+ have the same sign, so 
+\begin_inset Formula $m$
+\end_inset
+
+ should become the left endpoint (should replace 
+\begin_inset Formula $a$
+\end_inset
+
+).
+ In Step 3 the midpoint is calculated without any fanfare.
+\end_layout
+
+\begin_layout Standard
+The rest of the code is there to make sure the program doesn't do more than
+ necessary and doesn't end up spinning its wheels indefinitely.
+ It is important to be able to separate, at least in your mind, the guts
+ of the program from the stopping logic.
+ As for the stopping logic, in Step 4, we stop if 
+\begin_inset Formula $err\leq tol$
+\end_inset
+
+ as we should.
+ But we also check the unlikely event that 
+\begin_inset Formula $M=0$
+\end_inset
+
+ in which case we happened to hit the root exactly so should quit.
+ Though it could be argued overkill to set a maximum number of iterations,
+ 
+\begin_inset Formula $N$
+\end_inset
+
+, in this program, it's a good habit to get into.
+ Some numerical methods provide no guarantee the required tolerance will
+ ever be reached.
+ For these methods, a fallback exit criterion is needed.
+ Also, if 
+\begin_inset Formula $tol$
+\end_inset
+
+ were accidentally set to a negative value, it would certainly never be
+ reached.
+ The algorithm would have no way to stop without 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Analysis of the bisection method
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+bisection method ! analysis
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are two good reasons to study the bisection method.
+ First, its assumptions for guaranteed success are much simpler to verify
+ than those of other methods.
+ Even so, be somewhat cautious.
+ Faithful execution of any numerical method is subject to proper programming,
+ accurate computation, and proper input.
+ Programmers and users are not infallible.
+ Nor are computers.
+ Remember the lessons of Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Accuracy"
+
+\end_inset
+
+.
+ At the same time you should be wary of the results, you should temper your
+ skepticism with a good dose of confidence in the method.
+ It is only in rare circumstances that the computer will be the source of
+ any problems.
+\end_layout
+
+\begin_layout Standard
+Second, error analysis is straightforward.
+ Let 
+\begin_inset Formula $m_{1}=\frac{a+b}{2}$
+\end_inset
+
+, the midpoint of 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+ Let succeeding midpoints be 
+\begin_inset Formula $m_{2},\ m_{3},\ m_{4},$
+\end_inset
+
+ and so on.
+ Then the Intermediate Value theorem guarantees 
+\begin_inset Formula $|m_{j}-p|\leq\frac{b-a}{2^{j}}$
+\end_inset
+
+ for some root 
+\begin_inset Formula $p$
+\end_inset
+
+ of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ As we learned in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Speed"
+
+\end_inset
+
+, this means the sequence 
+\begin_inset Formula $\langle m_{n}\rangle$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ with linear order, and rate of convergence 
+\begin_inset Formula $O\left(\frac{1}{2^{n}}\right)$
+\end_inset
+
+.
+ This method should be considered slow to converge because it does so with
+ linear order.
+ But among those methods with linear order, it should be considered fast.
+ The error decays exponentially---faster than any polynomial decay.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Add digression on binary search.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Key Concepts
+\end_layout
+
+\begin_layout Description
+The
+\begin_inset space ~
+\end_inset
+
+Intermediate
+\begin_inset space ~
+\end_inset
+
+Value
+\begin_inset space ~
+\end_inset
+
+Theorem: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Intermediate Value
+\end_layout
+
+\end_inset
+
+Suppose 
+\begin_inset Formula $f$
+\end_inset
+
+ is a continuous function on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ is between 
+\begin_inset Formula $f(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)$
+\end_inset
+
+.
+ Then there is a number 
+\begin_inset Formula $c$
+\end_inset
+
+ between 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ such that 
+\begin_inset Formula $f(c)=y$
+\end_inset
+
+.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The word 
+\begin_inset Quotes eld
+\end_inset
+
+between
+\begin_inset Quotes erd
+\end_inset
+
+ in this theorem can be interpreted as inclusive or exclusive of the endpoint
+ values as long as the same interpretation is made for each instance of
+ the word.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Iteration: (1) Repeating a computation or other process, using the output
+ of one computation as the input of the next.
+\end_layout
+
+\begin_layout Description
+Iteration: (2) Any of the intermediate results of an iteration.
+ Also called an iterate.
+\end_layout
+
+\begin_layout Description
+The
+\begin_inset space ~
+\end_inset
+
+bisection
+\begin_inset space ~
+\end_inset
+
+method: Produces a sequence of approximations 
+\begin_inset Formula $\langle m_{j}\rangle$
+\end_inset
+
+ that converges to some root in 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Error
+\begin_inset space ~
+\end_inset
+
+bound
+\begin_inset space ~
+\end_inset
+
+for
+\begin_inset space ~
+\end_inset
+
+the
+\begin_inset space ~
+\end_inset
+
+bisection
+\begin_inset space ~
+\end_inset
+
+method: The error of approximation 
+\begin_inset Formula $m_{j}$
+\end_inset
+
+ is no more than 
+\begin_inset Formula $\frac{b-a}{2^{j}}$
+\end_inset
+
+.
+ That is, 
+\begin_inset Formula $|m_{j}-p|\leq\frac{b-a}{2^{j}}$
+\end_inset
+
+ for some root 
+\begin_inset Formula $p$
+\end_inset
+
+ of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Convergence
+\begin_inset space ~
+\end_inset
+
+for
+\begin_inset space ~
+\end_inset
+
+the
+\begin_inset space ~
+\end_inset
+
+bisection
+\begin_inset space ~
+\end_inset
+
+method: The bisection method converges with linear order and has rate of
+ convergence 
+\begin_inset Formula $O\left(\frac{1}{2^{n}}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Octave
+\end_layout
+
+\begin_layout Standard
+Roughly half the work in writing pseudo-code for the bisection method was
+ dedicated to the logic of the method---the determination of when to stop.
+ In programming, this type of logic is handled by 
+\family typewriter
+if then [else]
+\family default
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! 
+\family typewriter
+if then [else]
+\end_layout
+
+\end_inset
+
+ statements, and variations thereof.
+ It is common practice in programming to use square brackets to denote something
+ that is optional.
+ So the template 
+\family typewriter
+if then [else]
+\family default
+ should be read to mean that logic is handled by 
+\family typewriter
+if then
+\family default
+ statements or 
+\family typewriter
+if then else
+\family default
+ statements.
+ The exact syntax looks like this: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+if (condition)
+\end_layout
+
+\begin_layout Plain Layout
+
+  execute code here
+\end_layout
+
+\begin_layout Plain Layout
+
+[else
+\end_layout
+
+\begin_layout Plain Layout
+
+  execute code here]
+\end_layout
+
+\begin_layout Plain Layout
+
+end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+Again, the square brackets indicate optional code.
+ 
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+if then
+\family default
+ statement works as you might imagine.
+ In the 
+\family typewriter
+if then
+\family default
+ form of the statement, all code between 
+\family typewriter
+then
+\family default
+ and 
+\family typewriter
+end
+\family default
+ is executed whenever the 
+\family typewriter
+condition
+\family default
+ is true.
+ It is skipped whenever the 
+\family typewriter
+condition
+\family default
+ is false.
+ The 
+\family typewriter
+if then else
+\family default
+ form of the statement is similar.
+ All code between 
+\family typewriter
+then
+\family default
+ and 
+\family typewriter
+else
+\family default
+ is executed whenever the 
+\family typewriter
+condition
+\family default
+ is true.
+ The code between 
+\family typewriter
+else
+\family default
+ and 
+\family typewriter
+end
+\family default
+ is skipped in this case.
+ Exactly the reverse happens when the 
+\family typewriter
+condition
+\family default
+ is false.
+ The code between 
+\family typewriter
+then
+\family default
+ and 
+\family typewriter
+else
+\family default
+ is skipped while the code between 
+\family typewriter
+else
+\family default
+ and 
+\family typewriter
+end
+\family default
+ is executed.
+ The simplest use of an 
+\family typewriter
+if then else
+\family default
+ statement might look like this.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+if (n>10)
+\end_layout
+
+\begin_layout Plain Layout
+
+  disp('n is big')
+\end_layout
+
+\begin_layout Plain Layout
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+
+  disp('n is small')
+\end_layout
+
+\begin_layout Plain Layout
+
+end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In Octave, 
+\family typewriter
+if then [else]
+\family default
+ statements are written almost exactly as they are in pseudocode.
+ In fact, much of the pseudo-code in this text will translate nearly verbatim
+ into Octave.
+ One notable exception is the symbol used in the 
+\family typewriter
+condition
+\family default
+.
+ Octave requires a boolean operator in the condition.
+ That is, an operator that will evaluate to either true or false.
+ The 
+\family typewriter
+=
+\family default
+ operator assigns a value to a variable.
+ It is not a boolean operator so should not be used in an if condition.
+ Instead, 
+\family typewriter
+==
+\family default
+ (two equals signs) should be used.
+ This table summarizes the six most common boolean operators in Octave.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! boolean operators
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Octave ! comparison
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Comparison
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operator
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+greater than, less than
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+>
+\family default
+, 
+\family typewriter
+<
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+greater than or equal, less than or equal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+>=
+\family default
+, 
+\family typewriter
+<=
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+equal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+==
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+not equal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+!=
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+If you needed to check if 
+\begin_inset Formula $x\geq0$
+\end_inset
+
+, you would use 
+\family typewriter
+if (x>=0)
+\family default
+ in Octave.
+ If you needed to check if 
+\begin_inset Formula $t$
+\end_inset
+
+ equaled 1, you would use 
+\family typewriter
+if (t==1)
+\family default
+ in Octave.
+ And so on.
+\end_layout
+
+\begin_layout Standard
+Technically, an 
+\family typewriter
+if then
+\family default
+ statement is concluded with an 
+\family typewriter
+end
+\family default
+ statement.
+ However, to emphasize the type of statement being ended, we will make a
+ habit of ending an 
+\family typewriter
+if then
+\family default
+ statement with 
+\family typewriter
+end%if
+\family default
+ and ending a 
+\family typewriter
+for
+\family default
+ loop with 
+\family typewriter
+end%for
+\family default
+.
+ The 
+\family typewriter
+%if
+\family default
+ and 
+\family typewriter
+%for
+\family default
+ are just comments since they start with 
+\family typewriter
+%
+\family default
+.
+ Consequently, they are not strictly necessary, but they may aid in the
+ readability of your code, especially when you have nested constructs.
+ When you have an 
+\family typewriter
+if
+\family default
+ statement inside a 
+\family typewriter
+for
+\family default
+ loop or vice versa, using 
+\family typewriter
+end
+\family default
+ to end both of them is not as informative as using 
+\family typewriter
+end%if
+\family default
+ and 
+\family typewriter
+end%for
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+An Octave program to find a root of 
+\begin_inset Formula $f(x)=2+\frac{x-e^{2}}{e^{2}}-\frac{(x-e^{2})^{2}}{2e^{4}}-\ln(x)-\frac{1}{10}$
+\end_inset
+
+ between 2 and 6 to within 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ using the bisection method with a maximum of 100 iterations might look
+ like this.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+f = inline('2+(x-exp(2))/exp(2)-(x-exp(2))^2/(2*exp(4))-log(x)-1/10');
+\end_layout
+
+\begin_layout Plain Layout
+
+a=2;
+\end_layout
+
+\begin_layout Plain Layout
+
+b=6;
+\end_layout
+
+\begin_layout Plain Layout
+
+err=b-a;
+\end_layout
+
+\begin_layout Plain Layout
+
+L=f(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+for i=1:100
+\end_layout
+
+\begin_layout Plain Layout
+
+  m=(a+b)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+  M=f(m);
+\end_layout
+
+\begin_layout Plain Layout
+
+  err=err/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (M==0 || err<=10^-4)
+\end_layout
+
+\begin_layout Plain Layout
+
+    disp(m);
+\end_layout
+
+\begin_layout Plain Layout
+
+    return;
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (L*M<0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    b=m;
+\end_layout
+
+\begin_layout Plain Layout
+
+  else
+\end_layout
+
+\begin_layout Plain Layout
+
+    a=m;
+\end_layout
+
+\begin_layout Plain Layout
+
+    L=m;
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+disp('Method failed.
+ Maximum iterations exceeded.');
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ This code would produce the correct result, 
+\family typewriter
+3.2952
+\family default
+.
+ Compare this code to the pseudo-code.
+ You will see the main difference is syntax.
+ However, there is one major disadvantage to writing the code this way.
+ In order to change the function, the endpoints, the tolerance, or the maximum
+ number of iterations, the code needs to be modified in just the right place.
+ That is no real disadvantage if you never need to run the bisection method
+ again.
+ But, generally, we should imagine that we will be running the methods we
+ write many times over with different inputs.
+ Or that we will be handing our code over to someone else to run many times
+ over with different inputs.
+ Imagine me handing you this code and asking you to find a root of 
+\begin_inset Formula $f(x)=\cos x-x$
+\end_inset
+
+ between 0 and 3 to within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+.
+ It is not good practice to hard code the inputs to a method.
+ Instead, they should be given as inputs to a programmed function.
+ In Octave, this is done in a 
+\family typewriter
+.m
+\family default
+ file.
+ That doesn't mean that we will simply take the code as written and save
+ it in a 
+\family typewriter
+.m
+\family default
+ file.
+ The 
+\family typewriter
+.m
+\family default
+ file will assume that the inputs---interval 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+; function 
+\begin_inset Formula $f$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+---will be supplied from another source---the user.
+ The code inside the .m file should execute properly regardless of the (yet
+ unknown) inputs.
+ The syntax for an Octave function is: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+function result=name(input1,input2,...)
+\end_layout
+
+\begin_layout Plain Layout
+
+  execute these lines
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+function
+\family default
+ is a keyword that tells Octave a function is to be defined.
+ 
+\family typewriter
+result
+\family default
+ is the name of the variable that holds the answer, or result, of the function.
+ 
+\family typewriter
+name
+\family default
+ is the name of the function.
+ It must also be the name of the 
+\family typewriter
+.m
+\family default
+ file.
+ A completed 
+\family typewriter
+bisection.m
+\family default
+ file might look like this:
+\begin_inset CommandInset label
+LatexCommand label
+name "bisectionCode"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+%  Bisection method written by Leon Q.
+ Brin 09 July 2012  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%  Purpose: Implementation of the bisection method        %
+\end_layout
+
+\begin_layout Plain Layout
+
+%  INPUT: Interval [a,b]; function f; tolerance tol; and  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%         maximum number of iterations maxits.
+            %
+\end_layout
+
+\begin_layout Plain Layout
+
+%  OUTPUT: root res to within tol of exact or message of  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%         failure.
+                                        %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function res=bisection(a,b,f,tol,maxits)
+\end_layout
+
+\begin_layout Plain Layout
+
+  err=b-a;
+\end_layout
+
+\begin_layout Plain Layout
+
+  L=f(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=1:maxits
+\end_layout
+
+\begin_layout Plain Layout
+
+    m=(a+b)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    M=f(m);
+\end_layout
+
+\begin_layout Plain Layout
+
+    err=err/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (M==0 || err<=tol)
+\end_layout
+
+\begin_layout Plain Layout
+
+      res=m;
+\end_layout
+
+\begin_layout Plain Layout
+
+      return;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (L*M<0)
+\end_layout
+
+\begin_layout Plain Layout
+
+      b=m;
+\end_layout
+
+\begin_layout Plain Layout
+
+    else
+\end_layout
+
+\begin_layout Plain Layout
+
+      a=m;
+\end_layout
+
+\begin_layout Plain Layout
+
+      L=m;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  res='Method failed.
+ Maximum iterations exceeded.';
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+ Writing this way has not only the advantage of being easily reusable.
+ It is also simpler! No need to worry about what function the root of which
+ is desired; or over what interval; and so on.
+ And it more closely resembles the pseudo-code.
+ Once written and properly functioning, it can be saved as a 
+\family typewriter
+.m
+\family default
+ file and never be looked at again (except for study).
+ It just works! If you hand it off to someone to use, they should be able
+ to use it without modification.
+ Now finding a root of 
+\begin_inset Formula $f(x)=2+\frac{x-e^{2}}{e^{2}}-\frac{(x-e^{2})^{2}}{2e^{4}}-\ln(x)-\frac{1}{10}$
+\end_inset
+
+ between 2 and 6 to within 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ using the bisection method with a maximum of 100 iterations might look
+ like this.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:9> 
+\end_layout
+
+\begin_layout Plain Layout
+
+  f = inline('2+(x-exp(2))/exp(2)-(x-exp(2))^2/(2*exp(4))-log(x)-1/10');
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:10> bisection(2,6,f,10^-4,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  3.2952
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+After 
+\family typewriter
+bisection.m
+\family default
+ is written, the bisection() function becomes part of the Octave language.
+ It can be called just like any built-in function.
+ As a second example, we can find a root of 
+\begin_inset Formula $f(x)=\cos x-x$
+\end_inset
+
+ between 0 and 3 like so: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:12> bisection(0,3,inline('cos(x)-x'),10^-5,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =  0.73909
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisectionCode"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave function implementing the bisection method as shown 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "bisectionCode"
+
+\end_inset
+
+.
+ Save it as a 
+\family typewriter
+.m
+\family default
+ file for future use.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:bisectionExamples"
+
+\end_inset
+
+Use the Intermediate Value Theorem to show that the function has a root
+ in the indicated interval.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=3-x-\sin x$
+\end_inset
+
+; 
+\begin_inset Formula $[2,3]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
+\end_inset
+
+; 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection1"
+
+\end_inset
+
+
+\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
+\end_inset
+
+; 
+\begin_inset Formula $[0,0.9]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(x)=10-\cosh(x)$
+\end_inset
+
+; 
+\begin_inset Formula $[-3,-2]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:failure1"
+
+\end_inset
+
+
+\begin_inset Formula $f(t)=\sqrt{4+5\sin t}-2.5$
+\end_inset
+
+; 
+\begin_inset Formula $[-6,-5]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:failure2"
+
+\end_inset
+
+
+\begin_inset Formula $g(t)=\frac{3t^{2}\tan t}{1-t^{2}}$
+\end_inset
+
+; 
+\begin_inset Formula $[21.5,22.5]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:failure3"
+
+\end_inset
+
+
+\begin_inset Formula $h(t)=\ln(3\sin t)-\frac{3t}{5}$
+\end_inset
+
+; 
+\begin_inset Formula $[1,2]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(r)=e^{\sin r}-r$
+\end_inset
+
+; 
+\begin_inset Formula $[-20,20]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(r)=\sin(e^{r})+r$
+\end_inset
+
+; 
+\begin_inset Formula $[-3,3]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(r)=2^{\sin r}-3^{\cos r}$
+\end_inset
+
+; 
+\begin_inset Formula $[1,3]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection2"
+
+\end_inset
+
+Create a table showing three iterations of the bisection method with the
+ function and starting interval indicated in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:bisectionExamples"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection3"
+
+\end_inset
+
+Use your 
+\family typewriter
+bisection.m
+\family default
+ code to find a root of the function in the interval of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:bisectionExamples"
+
+\end_inset
+
+ to within 
+\begin_inset Formula $10^{-8}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection"
+
+\end_inset
+
+Use the bisection method to find 
+\begin_inset Formula $p_{3}$
+\end_inset
+
+ for the given function on the given interval.
+ Do this without a computer program.
+ Just use a pencil, paper, and a calculator.
+ You may check your answers with a computer program if you wish.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\sqrt{x}-\cos x$
+\end_inset
+
+ on 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=3(x+1)(x-\frac{1}{2})(x-1)$
+\end_inset
+
+ on 
+\begin_inset Formula $[-1.25,2.5]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:useBisection"
+
+\end_inset
+
+Use the Bisection Method to find 
+\begin_inset Formula $x_{4}$
+\end_inset
+
+ for 
+\begin_inset Formula $g(x)=x\sin x+1$
+\end_inset
+
+ on 
+\begin_inset Formula $[9,10]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Use the bisection method to find 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+ for the equation 
+\begin_inset Formula $x\cos x-\ln x=0$
+\end_inset
+
+ on the interval 
+\begin_inset Formula $[7,8]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Use the bisection method to find a root of 
+\begin_inset Formula $g(x)=\sin x-x^{2}$
+\end_inset
+
+ between 0 and 1 with absolute error no more than 
+\begin_inset Formula $1/4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Approximate the root of 
+\begin_inset Formula $g(x)=2+x-e^{x}$
+\end_inset
+
+ between 1 and 2 to within 
+\begin_inset Formula $0.05$
+\end_inset
+
+ of the exact value using the bisection method.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection-2"
+
+\end_inset
+
+There are 21 roots of the function 
+\begin_inset Formula $f(x)=\cos(x)$
+\end_inset
+
+ on the interval 
+\begin_inset Formula $[0,65]$
+\end_inset
+
+.
+ To which root will the bisection method converge, starting with 
+\begin_inset Formula $a=0$
+\end_inset
+
+ and 
+\begin_inset Formula $b=65$
+\end_inset
+
+?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection-1"
+
+\end_inset
+
+Find a bound on the number of iterations needed to achieve an approximation
+ with accuracy 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+ to the solution of 
+\begin_inset Formula $x^{3}+x-4=0$
+\end_inset
+
+ on the interval 
+\begin_inset Formula $[1,4]$
+\end_inset
+
+ using the bisection method.
+ Do not actually compute the approximation.
+ Just find the bound.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find a bound on the number of iterations needed to achieve an approximation
+ with accuracy 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ to the solution of 
+\begin_inset Formula $x^{3}-x-1=0$
+\end_inset
+
+ on the interval 
+\begin_inset Formula $[1,2]$
+\end_inset
+
+ using the bisection method.
+ Do not actually compute the approximation.
+ Just find the bound.
+\end_layout
+
+\begin_layout Enumerate
+The graph of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0.75,2]$
+\end_inset
+
+ is shown below.
+ Notice 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ has three roots on this interval: approximately 
+\begin_inset Formula $.795$
+\end_inset
+
+, 
+\begin_inset Formula $1.06$
+\end_inset
+
+, and 
+\begin_inset Formula $1.59$
+\end_inset
+
+.
+ To which of the three roots does the bisection method converge if we let
+ 
+\begin_inset Formula $a=.75$
+\end_inset
+
+ and 
+\begin_inset Formula $b=2$
+\end_inset
+
+? How do you know?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-bisection3.pdf
+	width 5.5cm
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suppose you are trying to find the root of 
+\begin_inset Formula $f(x)=x-e^{-x}$
+\end_inset
+
+ using the bisection method.
+ Find an integer 
+\begin_inset Formula $a$
+\end_inset
+
+ such that the interval 
+\begin_inset Formula $[a,a+2]$
+\end_inset
+
+ is an appropriate one in which to start the search.
+\end_layout
+
+\begin_layout Enumerate
+Find a lower bound on the number of iterations it would take to guarantee
+ accuracy of 
+\begin_inset Formula $10^{-20}$
+\end_inset
+
+ in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:useBisection"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection-3"
+
+\end_inset
+
+How many steps (iterations) of the bisection method are necessary to guarantee
+ a solution with 
+\begin_inset Formula $10^{-10}$
+\end_inset
+
+ accuracy if a root is known to be within 
+\begin_inset Formula $[4.5,5.3]$
+\end_inset
+
+?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Suppose you are using the bisection method on an interval of length 3.
+ How many iterations are necessary to guarantee accuracy of the approximation
+ to within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Suppose a function 
+\begin_inset Formula $g$
+\end_inset
+
+ satisfies the assumptions of the bisection method on the given interval.
+ Starting with that interval, how many iterations are needed to approximate
+ the root to within the given tolerance?
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $[-7,10]$
+\end_inset
+
+; 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[5,9]$
+\end_inset
+
+; 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[9,15]$
+\end_inset
+
+; 
+\begin_inset Formula $10^{-10}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[-6,-1]$
+\end_inset
+
+; 
+\begin_inset Formula $10^{-105}$
+\end_inset
+
+ (assume the computer calculates with 300 significant digits so round-off
+ error is not a problem)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $1$
+\end_inset
+
+ is a root of 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $f(x)=\ln(x^{4}\text{−}x^{3}\text{−}7x^{2}+13x\text{−}5)$
+\end_inset
+
+ that can not be found by the bisection method.
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use a graph of the function near 
+\begin_inset Formula $1$
+\end_inset
+
+ to explain why.
+ You may use the Octave code below to produce an appropriate graph
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Run the bisection method on 
+\begin_inset Formula $f$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0.8,1.2]$
+\end_inset
+
+ anyway.
+ What happens instead of finding the root?
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+x=0.8:.01:1.2;
+\end_layout
+
+\begin_layout Plain Layout
+
+f=inline("log(x.^4-x.^3-7*x.^2+13*x-5)");
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x,f(x)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $4$
+\end_inset
+
+ is a root of 
+\begin_inset Formula $g(x)=|\sin(\pi x)|$
+\end_inset
+
+ that can 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+not be found by the bisection method.
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use a graph of the function near 
+\begin_inset Formula $4$
+\end_inset
+
+ to explain why.
+ You may use the Octave code below to produce an appropriate graph
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Run the bisection method on 
+\begin_inset Formula $f$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0.8,1.2]$
+\end_inset
+
+ anyway.
+ What happens instead of finding the root?
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+x=3.5:.05:4.5;
+\end_layout
+
+\begin_layout Plain Layout
+
+f=inline("abs(sin(pi*x))");
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x,f(x)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection-4"
+
+\end_inset
+
+Let 
+\begin_inset Formula $f(x)=\sin(x^{2})$
+\end_inset
+
+.
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[4,5]$
+\end_inset
+
+, but 
+\begin_inset Formula $f(4)<0$
+\end_inset
+
+ and 
+\begin_inset Formula $f(5)<0$
+\end_inset
+
+, so the assumptions of the bisection method are not met.
+ Nonetheless, using the bisection method as described in the pseudo-code
+ on 
+\begin_inset Formula $f$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[4,5]$
+\end_inset
+
+ 
+\shape italic
+does
+\shape default
+ produce a root.
+ Explain.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The functions in questions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:failure1"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:failure2"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:failure3"
+
+\end_inset
+
+ all fail to meet the assumptions of the bisection method on the interval
+ 
+\begin_inset Formula $[-4,-0.5]$
+\end_inset
+
+.
+ For each one, explain how so.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection-5"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write an Octave function called 
+\family typewriter
+collatz
+\family default
+ that takes one integer input, 
+\begin_inset Formula $n$
+\end_inset
+
+, and returns 
+\begin_inset Formula $3n+1$
+\end_inset
+
+ if 
+\begin_inset Formula $n$
+\end_inset
+
+ is odd and 
+\begin_inset Formula $n/2$
+\end_inset
+
+ if 
+\begin_inset Formula $n$
+\end_inset
+
+ is even.
+ Save it as a 
+\family typewriter
+collatz.m
+\family default
+ file.
+ Use an 
+\family typewriter
+if then else
+\family default
+ statement in your function.
+ HINT: Use the Octave ceiling function.
+ If 
+\family typewriter
+ceil(n/2)
+\family default
+ equals 
+\family typewriter
+n/2
+\family default
+, then 
+\family typewriter
+n
+\family default
+ must be even (no remainder when divided by 2).
+ Use your 
+\family typewriter
+collatz
+\family default
+ function to calculate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family typewriter
+collatz(17)
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+collatz(10)
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+collatz(109)
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+collatz(344)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Write your own absolute value function called 
+\family typewriter
+absval
+\family default
+ (
+\family typewriter
+abs
+\family default
+ is already defined by Octave, so it is best to use a different name) that
+ takes a real number input and returns the absolute value of the input.
+ Use an 
+\family typewriter
+if then else
+\family default
+ statement in your function.
+ Save it as 
+\family typewriter
+absval.m
+\family default
+ and test it on the following computations.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $|-3|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $|123.2|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left|\pi-\frac{22}{7}\right|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $|10-\pi^{2}|$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bisection-6"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\sin(x^{2})$
+\end_inset
+
+ has five roots on the interval 
+\begin_inset Formula $[7,8]$
+\end_inset
+
+.
+ 
+\begin_inset Formula $f(7)<0$
+\end_inset
+
+, 
+\begin_inset Formula $f(8)>0$
+\end_inset
+
+, and 
+\begin_inset Formula $f$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[7,8]$
+\end_inset
+
+, so the assumptions of the bisection method are met.
+ The method will converge to a root.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use your 
+\family typewriter
+bisection.m
+\family default
+ file (Exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisectionCode"
+
+\end_inset
+
+) to determine which one.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find 4 different intervals for which the bisection method will converge
+ to the other four roots in 
+\begin_inset Formula $[7,8]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The function shown has roots at approximately 
+\begin_inset Formula $2.41$
+\end_inset
+
+, 
+\begin_inset Formula $4.11$
+\end_inset
+
+, 
+\begin_inset Formula $5.62$
+\end_inset
+
+, 
+\begin_inset Formula $7.01$
+\end_inset
+
+, 
+\begin_inset Formula $8.32$
+\end_inset
+
+, 
+\begin_inset Formula $9.57$
+\end_inset
+
+, 
+\begin_inset Formula $10.78$
+\end_inset
+
+, and 
+\begin_inset Formula $11.94$
+\end_inset
+
+.
+ To which root will the bisection method converge with the given starting
+ interval?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-bisection2.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[2,3]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[6,8]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[2,6]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[5,9]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $[10,12]$
+\end_inset
+
+ Note: the assumptions of the bisection are not met on this interval.
+ Nonetheless, the method as outlined in the pseudo-code 
+\shape italic
+will
+\shape default
+ converge to a root!
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find an interval of length 1 over which the bisection method may be applied
+ in order to find a root of 
+\begin_inset Formula $f(x)=x^{4}-7.6746x^{3}-40.7477022x^{2}+200.9894434x+319.0914281$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The following algorithm is one possible incarnation of the bisection method.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $f$
+\end_inset
+
+ is continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+ 
+\begin_inset Formula $f(a)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)$
+\end_inset
+
+ have opposite signs.
+\end_layout
+
+\begin_layout Description
+Input: Interval 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+; function 
+\begin_inset Formula $f$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: For 
+\begin_inset Formula $j=1\ldots15$
+\end_inset
+
+ do Steps 2 and 3:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Set 
+\begin_inset Formula $m=\frac{a+b}{2}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: If 
+\begin_inset Formula $f(a)f(m)<0$
+\end_inset
+
+ then set 
+\begin_inset Formula $b=m$
+\end_inset
+
+; else set 
+\begin_inset Formula $a=m$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Print 
+\begin_inset Formula $m$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $m$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Apply this algorithm to the function 
+\begin_inset Formula $f(x)=(x)(x-2)(x+2)$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[-3,3]$
+\end_inset
+
+.
+ Which root will this algorithm approximate?
+\end_layout
+
+\begin_layout Enumerate
+How accurate is the approximation guaranteed to be according to the formula
+\begin_inset Formula 
+\[
+|p_{n}-p|\leq\frac{b-a}{2^{n}}?
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+How accurate is the approximation in reality? Compare this to the bound
+ in (b).
+\end_layout
+
+\begin_layout Enumerate
+Modify the algorithm so it will approximate a different root using the same
+ starting interval.
+\end_layout
+
+\begin_layout Enumerate
+Modify the algorithm so it does not use multiplication.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "bisectionCode-1"
+
+\end_inset
+
+Use the following pseudo-code to write a slightly different implementation
+ of the bisection method.
+ Refer to Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:commonOctave"
+
+\end_inset
+
+ if you are unsure how to program the quantity 
+\begin_inset Formula $\lceil(\ln(b-a)-\ln(TOL))/\ln2\rceil$
+\end_inset
+
+.
+ The while loop is discussed 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sub:WhileLoop"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Input function 
+\begin_inset Formula $f$
+\end_inset
+
+, endpoints 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+; tolerance 
+\begin_inset Formula $TOL$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Return approximate solution 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $f(p)$
+\end_inset
+
+ and the number of iterations done 
+\begin_inset Formula $N_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1 Set 
+\begin_inset Formula $i=1$
+\end_inset
+
+; 
+\begin_inset Formula $FA=f(a)$
+\end_inset
+
+; 
+\begin_inset Formula $N_{0}=\lceil(\ln|b-a|-\ln(TOL))/\ln2\rceil$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2 While 
+\begin_inset Formula $i\leq N_{0}$
+\end_inset
+
+ do Steps 3-6.
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3 Set 
+\begin_inset Formula $p=(a+b)/2$
+\end_inset
+
+; 
+\begin_inset Formula $FP=f(p)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4 If 
+\begin_inset Formula $FP=0$
+\end_inset
+
+ then
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\qquad$
+\end_inset
+
+Return(
+\begin_inset Formula $p$
+\end_inset
+
+, 
+\begin_inset Formula $f(p)$
+\end_inset
+
+, 
+\begin_inset Formula $N_{0}$
+\end_inset
+
+); STOP.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5 Set 
+\begin_inset Formula $i=i+1$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6 If 
+\begin_inset Formula $FA\cdot FP>0$
+\end_inset
+
+ then
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\qquad$
+\end_inset
+
+Set 
+\begin_inset Formula $a=p$
+\end_inset
+
+; 
+\begin_inset Formula $FA=FP$
+\end_inset
+
+;
+\begin_inset Newline newline
+\end_inset
+
+else
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\qquad$
+\end_inset
+
+Set 
+\begin_inset Formula $b=p$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+7 Return(
+\begin_inset Formula $p$
+\end_inset
+
+, 
+\begin_inset Formula $f(p)$
+\end_inset
+
+, 
+\begin_inset Formula $N_{0}$
+\end_inset
+
+);
+\begin_inset Newline newline
+\end_inset
+
+STOP.
+\end_layout
+
+\begin_layout Enumerate
+Discuss the advantages/disadvantages of this algorithm compared to the one
+ in the class slides.
+\end_layout
+
+\begin_layout Enumerate
+Where does the calculation 
+\begin_inset Formula $N_{0}=\lceil(\ln(b-a)-\ln(TOL))/\ln2\rceil$
+\end_inset
+
+ come from?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use the code you wrote for question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "bisectionCode-1"
+
+\end_inset
+
+ to find solutions accurate to within 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ for the following problems.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x-2^{x}=0$
+\end_inset
+
+ on 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $e^{x}-x^{2}+3x-2=0$
+\end_inset
+
+ on 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $2x\cos(2x)-(x+1)^{2}=0$
+\end_inset
+
+ on 
+\begin_inset Formula $[-3,-2]$
+\end_inset
+
+ and on 
+\begin_inset Formula $[-1,0]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find an approximation of 
+\begin_inset Formula $\sqrt{3}$
+\end_inset
+
+ correct to within 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ using the bisection method.
+ Write an essay on how you solved this problem.
+ Include your bisection code, what function and what interval you used and
+ why.
+\end_layout
+
+\begin_layout Enumerate
+A trough of length 
+\begin_inset Formula $L$
+\end_inset
+
+ has a cross section in the shape of a semicircle with radius 
+\begin_inset Formula $r$
+\end_inset
+
+.
+ When filled with water to within a distance 
+\begin_inset Formula $h$
+\end_inset
+
+ of the top, the volume 
+\begin_inset Formula $V$
+\end_inset
+
+ of water is 
+\begin_inset Formula 
+\[
+V=L\left[0.5\pi r^{2}-r^{2}\arcsin\left(\frac{h}{r}\right)-h\sqrt{r^{2}-h^{2}}\right]
+\]
+
+\end_inset
+
+Suppose 
+\begin_inset Formula $L=10$
+\end_inset
+
+ ft, 
+\begin_inset Formula $r=1$
+\end_inset
+
+ ft, and 
+\begin_inset Formula $V=12.4$
+\end_inset
+
+ ft
+\begin_inset Formula $^{3}$
+\end_inset
+
+.
+ Find the depth of the water in the trough to within 0.01 ft.
+ Note: In Octave, use 
+\family typewriter
+asin(x)
+\family default
+ for 
+\begin_inset Formula $\arcsin(x)$
+\end_inset
+
+ and 
+\family typewriter
+pi
+\family default
+ for 
+\begin_inset Formula $\pi$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Answers
+\end_layout
+
+\begin_layout Description
+What
+\begin_inset space ~
+\end_inset
+
+is
+\begin_inset space ~
+\end_inset
+
+the
+\begin_inset space ~
+\end_inset
+
+next
+\begin_inset space ~
+\end_inset
+
+value?: 
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:bisectionAnswer1"
+
+\end_inset
+
+ 
+\begin_inset Formula $T_{2}(3.25)-\ln(3.25)\approx.10429$
+\end_inset
+
+, which overshoots the mark.
+ So 
+\begin_inset Formula $3.25$
+\end_inset
+
+ becomes the new left endpoint, and the next value is 
+\begin_inset Formula $\frac{3.25+3.5}{2}=3.375$
+\end_inset
+
+, the midpoint of 
+\begin_inset Formula $3.25$
+\end_inset
+
+ and 
+\begin_inset Formula $3.5$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+The
+\begin_inset space ~
+\end_inset
+
+right
+\begin_inset space ~
+\end_inset
+
+endpoint
+\begin_inset space ~
+\end_inset
+
+is
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $13.13$
+\end_inset
+
+: 
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:bisectionAnswer2"
+
+\end_inset
+
+ Starting with 
+\begin_inset Formula $a=10$
+\end_inset
+
+ and 
+\begin_inset Formula $b=14$
+\end_inset
+
+, note that 
+\begin_inset Formula $g(a)\approx.088>0$
+\end_inset
+
+ and 
+\begin_inset Formula $g(b)\approx-.044<0$
+\end_inset
+
+, so 
+\begin_inset Formula $g$
+\end_inset
+
+ of the left endpoint should always be positive and 
+\begin_inset Formula $g$
+\end_inset
+
+ of the right endpoint should always be negative:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $m$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(m)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.044$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Rightarrow m$
+\end_inset
+
+ becomes left endpoint
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.006$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Rightarrow m$
+\end_inset
+
+ becomes left endpoint
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.017$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Rightarrow m$
+\end_inset
+
+ becomes right endpoint
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Rightarrow m$
+\end_inset
+
+ becomes right endpoint
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.0004$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Rightarrow m$
+\end_inset
+
+ becomes left endpoint
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.1875$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.002$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Rightarrow m$
+\end_inset
+
+ becomes right endpoint
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.15625$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.1875$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.0009$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Rightarrow m$
+\end_inset
+
+ becomes right endpoint
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.140625$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.15625$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.0002$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Rightarrow m$
+\end_inset
+
+ becomes right endpoint
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.1328125$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $13.140625$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,152 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: comment start ]
+IFS:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Fix:ai*x+ei;
+solve(Fix=xhat,x);
+Fi:ci*x+di*y+ei;
+Fjx:aj*x+ej;
+solve(Fjx=xhat,x);
+Fj:cj*x+dj*y+fj;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Function:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x)=ci*(x-ei)/ai+di*f((x-ei)/ai)+fi;
+f(x)=cj*(x-ej)/aj+dj*f((x-ej)/aj)+fj;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fp(x)=ci/ai+di/ai*fp((x-ei)/ai);
+subst(x=xj,%);
+fp(x)=cj/aj+dj/aj*fp((x-ej)/aj);
+subst(x=xj,%);
+need:(di*fp(xn)+ci)/ai=(dj*fp(x0)+cj)/aj;
+solve(%,dj);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Solve for d_i
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fp(x1)=c1/a1+d1/a1*fp(x1);
+sol0:solve(%,fp(x1));
+fp(xn)=cn/an+dn/an*fp(xn);
+soln:solve(%,fp(xn));
+need:subst([sol0[1],soln[1]],(di*fp(xn)+ci)/ai=(dj*fp(x1)+cj)/aj);
+factor(ratsimp(%));
+%*(aj*(d1-a1));
+subst(cj=(yj-yk-dj*(y1-ynp1))/(x1-xnp1),%);
+(aj*(d1−a1)*(ci*dn−cn*di−an*ci))/(ai*(dn−an))-(d1-a1)/(x1−xnp1)*(−yk+yj)=((d1-a1)/(x1−xnp1)*(−(y1−ynp1))−c1)*dj;
+%/((d1-a1)/(x1−xnp1)*(−(y1−ynp1))−c1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+c1:(y1-y2-d1*(y1-y3));
+c2:(y2-y3-d2*(y1-y3));
+eq:(c1*d2-c2*d1-a2*c1)/(a1*d2-a1*a2)=(c1*d2-c2*d1+a1*c2)/(a1*a2-a2*d1);
+solve(eq,d2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+c1:(y1-y2-d1*(y1-y4));
+c2:(y2-y3-d2*(y1-y4));
+c3:(y3-y4-d3*(y1-y4));
+a1:.26; a2:.39; a3:.35;
+eq1:(c1*d3-c3*d1-a3*c1)*(a1*a2-a2*d1)=(c1*d2-c2*d1+a1*c2)*(a1*d3-a1*a3);
+eq1:expand(eq1);
+eq2:(c2*d3-c3*d2-a3*c2)*(a1*a3-a3*d1)=(c1*d3-c3*d1+a1*c3)*(a2*d3-a2*a3);
+eq2:expand(eq2);
+solve([eq1,eq2],[d3,d2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+subc2:c2=(y2-y3-d2*(y1-y5))/(x1-x5)$
+eq1:(a1*a2-a2*d1)*(c1*d4-c4*d1-a4*c1)/(a1*d4-a1*a4)=(c1*d2-c2*d1+a1*c2)$
+eq1:subst(subc2,eq1)$
+subd2:solve(eq1,d2)[1];
+subc3:c3=(y3-y4-d3*(y1-y5))/(x1-x5)$
+eq2:(a1*a3-a3*d1)*(c2*d4-c4*d2-a4*c2)/(a2*d4-a2*a4)=(c1*d3-c3*d1+a1*c3)$
+eq2:subst([subc2,subd2,subc3],eq2)$
+
+subc4:c4=(y4-y5-d4*(y1-y5))/(x1-x5)$
+eq3:(a1*a4-a4*d1)*(c3*d4-c4*d3-a4*c3)/(a3*d4-a3*a4)=(c1*d4-c4*d1+a1*c4)$
+eq3:subst([subc2,subd2,subc3,subd3,subc4],eq3)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+x:[1.0, 3.0, 6.0, 8.0, 9.0]$
+y:[7.1, 6.8, 3.5, 0.0, 3.0]$
+n:length(x)-1$
+for i:1 thru n do (
+    a[i]:(x[i]-x[i+1])/(x[1]-x[n+1]),
+    e[i]:x[i]-a[i]*x[1]
+)$
+d[1]:-a[1]/2$
+c[1]:(y[1]-y[2]-d[1]*(y[1]-y[n+1]))/(x[1]-x[n+1])$
+f[1]:y[1]-c[1]*x[1]-d[1]*y[1]$
+dcalc(dguess):=(
+    cn:(y[n]-y[n+1]-dguess*(y[1]-y[n+1]))/(x[1]-x[n+1]),
+    for j:2 thru n do (
+        d[j]:((a[j]*(d[1]-a[1])*(c[j-1]*dguess-cn*d[j-1]-a[n]*c[j-1]))/(a[j-1]*(dguess-a[n]))-((d[1]-a[1])*(y[j]-y[j+1]))/(x[1]-x[n+1]))/(((d[1]-a[1])*(y[n+1]-y[1]))/(x[1]-x[n+1])-c[1]),
+        c[j]:(y[j]-y[j+1]-d[j]*(y[1]-y[n+1]))/(x[1]-x[n+1]),
+        f[j]:y[j]-c[j]*x[1]-d[j]*y[1]
+    ),
+    dguess-d[n]
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+l:-10.0$
+r:l+.1$
+fl:dcalc(l)$
+fr:dcalc(r)$
+while (r<10.0 and fl*fr>0) do (
+    l:r,
+    fl:fr,
+    r:r+.1,
+    fr:dcalc(r)
+)$
+m:l+(r-l)/2$
+if (r>=a[n]) then print("no dice! The following is garbage!") else
+    for i:1 thru 53 do (
+        m:l+(r-l)/2,
+        fm:dcalc(m),
+        if (fl*fm<0) then block (
+            r:m,
+            fr:dcalc(r)
+        ) else block (
+            l:m,
+            fl:dcalc(l)
+        )
+    )$
+dcalc(m);
+listarray(a);
+listarray(c);
+listarray(d);
+listarray(e);
+listarray(f);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fpx1:c[1]/(a[1]-d[1])$
+fpxnp1:c[n]/(a[n]-d[n])$
+for i:2 thru n do (
+    l:c[i-1]/a[i-1]+d[i-1]/a[i-1]*fpxnp1,
+    r:c[i]/a[i]+d[i]/a[i]*fpx1,
+    print(l," = ",r)
+);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

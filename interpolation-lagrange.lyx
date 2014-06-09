@@ -1,0 +1,5766 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:polynomialLagrange"
+
+\end_inset
+
+Lagrange Polynomials
+\end_layout
+
+\begin_layout Standard
+A function that is required to have a graph passing through some set of
+ prescribed points is called an interpolating function
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+interpolating function
+\end_layout
+
+\end_inset
+
+, and we say that such a function interpolates the prescribed points.
+ Further, the exercise of finding such a function is called interpolation.
+ 
+\end_layout
+
+\begin_layout Standard
+In exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "polynomials"
+
+\end_inset
+
+a of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:moreConvergenceDiagrams"
+
+\end_inset
+
+, you are asked to find a polynomial with roots at 
+\begin_inset Formula $-7,2$
+\end_inset
+
+, and 
+\begin_inset Formula $1\pm5i$
+\end_inset
+
+ (and no others).
+ The function, therefore, must be a polynomial and have a graph passing
+ through the points 
+\begin_inset Formula 
+\begin{equation}
+(-7,0),\ (2,0),\ (1+5i,0),\mbox{ and }(1-5i,0).\label{eq:interpolationExample}
+\end{equation}
+
+\end_inset
+
+In retrospect, then, the question could have been phrased as: find a polynomial
+ passing through the points 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:interpolationExample"
+
+\end_inset
+
+ (and not having any roots besides 
+\begin_inset Formula $-7$
+\end_inset
+
+, 
+\begin_inset Formula $2$
+\end_inset
+
+, 
+\begin_inset Formula $1+5i$
+\end_inset
+
+, and 
+\begin_inset Formula $1-5i$
+\end_inset
+
+), a question of interpolation.
+ We now expand upon this idea by considering polynomials with graphs passing
+ through points with arbitrary ordinates (not just 
+\begin_inset Formula $0$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+We start on familiar ground.
+ The polynomial 
+\begin_inset Formula $p(x)=(x+7)(x-2)$
+\end_inset
+
+ has roots 
+\begin_inset Formula $-7$
+\end_inset
+
+ and 
+\begin_inset Formula $2$
+\end_inset
+
+ so has a graph passing through 
+\begin_inset Formula $(-7,0)$
+\end_inset
+
+ and 
+\begin_inset Formula $(2,0)$
+\end_inset
+
+.
+ Suppose we want to modify 
+\begin_inset Formula $p$
+\end_inset
+
+ so it also passes through 
+\begin_inset Formula $(-1,1)$
+\end_inset
+
+.
+ That is, we want 
+\begin_inset Formula $p(-7)=0$
+\end_inset
+
+, 
+\begin_inset Formula $p(-1)=1$
+\end_inset
+
+, and 
+\begin_inset Formula $p(2)=0$
+\end_inset
+
+.
+ Beginning with 
+\begin_inset Formula $p(x)=(x+7)(x-2)$
+\end_inset
+
+, we already have 
+\begin_inset Formula $p(-7)=0$
+\end_inset
+
+ and 
+\begin_inset Formula $p(2)=0$
+\end_inset
+
+, so really we only need to concentrate on 
+\begin_inset Formula $p(-1)=1$
+\end_inset
+
+.
+ As is, 
+\begin_inset Formula $p(-1)=(-1+7)(-1-2)=6(-3)=-18$
+\end_inset
+
+, a far cry from 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $p(x)=(x+7)(x-2)$
+\end_inset
+
+ is not the only polynomial passing through 
+\begin_inset Formula $(-7,0)$
+\end_inset
+
+ and 
+\begin_inset Formula $(2,0)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $a$
+\end_inset
+
+ be any real number and note that 
+\begin_inset Formula $q(x)=a(x+7)(x-2)$
+\end_inset
+
+ also passes through 
+\begin_inset Formula $(-7,0)$
+\end_inset
+
+ and 
+\begin_inset Formula $(2,0)$
+\end_inset
+
+.
+ If we choose 
+\begin_inset Formula $a$
+\end_inset
+
+ such that 
+\begin_inset Formula $q(-1)=1$
+\end_inset
+
+, we have the desired function:
+\begin_inset Formula 
+\[
+q(-1)=a(-1+7)(-1-2)=-18a=1\Rightarrow a=-\frac{1}{18}.
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula $q(x)=-\frac{1}{18}(x+7)(x-2)$
+\end_inset
+
+ passes through all three of the points, 
+\begin_inset Formula $(-7,0)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,0)$
+\end_inset
+
+, and 
+\begin_inset Formula $(-1,1)$
+\end_inset
+
+.
+ But let us not lose sight of whence this came.
+ 
+\begin_inset Formula $-\frac{1}{18}=\frac{1}{p(-1)}$
+\end_inset
+
+, so, actually, the desired function can be written as 
+\begin_inset Formula $q(x)=\frac{p(x)}{p(-1)}$
+\end_inset
+
+.
+ Indeed, 
+\begin_inset Formula $q(-7)=\frac{p(-7)}{p(-1)}=0$
+\end_inset
+
+, 
+\begin_inset Formula $q(2)=\frac{p(2)}{p(-1)}=0$
+\end_inset
+
+, and 
+\begin_inset Formula $q(-1)=\frac{p(-1)}{p(-1)}=1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Now suppose we want a polynomial passing through 
+\begin_inset Formula $(-7,0)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,0)$
+\end_inset
+
+, and 
+\begin_inset Formula $(-1,\sqrt{2})$
+\end_inset
+
+.
+ As before, we know 
+\begin_inset Formula $p(x)=(x+7)(x-2)$
+\end_inset
+
+ has the desired roots and 
+\begin_inset Formula $q(x)=\frac{p(x)}{p(-1)}$
+\end_inset
+
+ has the nice feature that 
+\begin_inset Formula $q(-1)=1$
+\end_inset
+
+.
+ We use these two facts to come up with an answer.
+ In fact, without doing any calculation, we know the polynomial 
+\begin_inset Formula 
+\[
+l(x)=\frac{p(x)}{p(-1)}\sqrt{2}
+\]
+
+\end_inset
+
+is the desired function.
+ Take a moment to check that 
+\begin_inset Formula $l(-7)=0$
+\end_inset
+
+, 
+\begin_inset Formula $l(2)=0$
+\end_inset
+
+, and 
+\begin_inset Formula $l(-1)=\sqrt{2}$
+\end_inset
+
+, and understand its construction.
+ This idea is the seed for what is called the Lagrange form of interpolating
+ polynomials.
+\end_layout
+
+\begin_layout Standard
+We are now ready to let the ordinates fly! Suppose we would like a polynomial
+ passing through 
+\begin_inset Formula $(-7,y_{1}),$
+\end_inset
+
+ 
+\begin_inset Formula $(2,y_{2})$
+\end_inset
+
+, and 
+\begin_inset Formula $(-1,y_{3})$
+\end_inset
+
+.
+ We know the polynomial 
+\begin_inset Formula $p_{3}(x)=(x+7)(x-2)$
+\end_inset
+
+ has zeros at 
+\begin_inset Formula $-7$
+\end_inset
+
+ and 
+\begin_inset Formula $2$
+\end_inset
+
+, so the polynomial 
+\begin_inset Formula $l_{3}(x)=\frac{p_{3}(x)}{p_{3}(-1)}y_{3}$
+\end_inset
+
+ has zeros at 
+\begin_inset Formula $-7$
+\end_inset
+
+ and 
+\begin_inset Formula $2$
+\end_inset
+
+ and, conveniently, 
+\begin_inset Formula $l_{3}(-1)=y_{3}$
+\end_inset
+
+.
+ This is a good first step.
+ It has the correct ordinate at 
+\begin_inset Formula $-1$
+\end_inset
+
+ and zeros at 
+\begin_inset Formula $-7$
+\end_inset
+
+ and 
+\begin_inset Formula $2$
+\end_inset
+
+.
+ Similarly, we can construct the polynomial 
+\begin_inset Formula $p_{2}(x)=(x+7)(x+1)$
+\end_inset
+
+ with zeros at 
+\begin_inset Formula $-7$
+\end_inset
+
+ and 
+\begin_inset Formula $-1$
+\end_inset
+
+, from which we can construct the polynomial 
+\begin_inset Formula $l_{2}(x)=\frac{p_{2}(x)}{p_{2}(2)}y_{2}$
+\end_inset
+
+ with zeros at 
+\begin_inset Formula $-7$
+\end_inset
+
+ and 
+\begin_inset Formula $-1$
+\end_inset
+
+ and, conveniently, 
+\begin_inset Formula $l_{2}(2)=y_{2}$
+\end_inset
+
+.
+ This is a good second step.
+ It has the correct ordinate at 
+\begin_inset Formula $2$
+\end_inset
+
+ and zeros at 
+\begin_inset Formula $-7$
+\end_inset
+
+ and 
+\begin_inset Formula $-1$
+\end_inset
+
+.
+ Now consider the sum 
+\begin_inset Formula $(l_{3}+l_{2})$
+\end_inset
+
+.
+ 
+\begin_inset Formula $l_{3}(-1)=y_{3}$
+\end_inset
+
+ and 
+\begin_inset Formula $l_{2}(-1)=0$
+\end_inset
+
+, so 
+\begin_inset Formula $(l_{3}+l_{2})(-1)=y_{3}$
+\end_inset
+
+.
+ Similarly, 
+\begin_inset Formula $l_{3}(2)=0$
+\end_inset
+
+ and 
+\begin_inset Formula $l_{2}(2)=y_{2}$
+\end_inset
+
+, so 
+\begin_inset Formula $(l_{3}+l_{2})(2)=y_{2}$
+\end_inset
+
+.
+ Moreover, 
+\begin_inset Formula $(l_{3}+l_{2})(-7)=0$
+\end_inset
+
+.
+ We now have a polynomial passing through two of the three required points
+ and having a zero at the abscissa of the third point.
+ If we had a polynomial with the correct ordinate at 
+\begin_inset Formula $-7$
+\end_inset
+
+ and zeros at 
+\begin_inset Formula $2$
+\end_inset
+
+ and 
+\begin_inset Formula $-1$
+\end_inset
+
+, we could add it to the sum and be done.
+ But this is exactly the type of polynomial we have been constructing! We
+ let 
+\begin_inset Formula $p_{1}(x)=(x+1)(x-2)$
+\end_inset
+
+ and 
+\begin_inset Formula $l_{1}(x)=\frac{p_{1}(x)}{p_{1}(-7)}y_{1}$
+\end_inset
+
+, and note that 
+\begin_inset Formula $l_{1}$
+\end_inset
+
+ has the correct ordinate at 
+\begin_inset Formula $-7$
+\end_inset
+
+ and zeros at 
+\begin_inset Formula $2$
+\end_inset
+
+ and 
+\begin_inset Formula $-1$
+\end_inset
+
+, just as we needed.
+ Finally, the desired polynomial is 
+\begin_inset Formula $(l_{1}+l_{2}+l_{3})$
+\end_inset
+
+.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:interpolationExample"
+
+\end_inset
+
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:interpolationExample"
+
+\end_inset
+
+A polynomial passing through 
+\begin_inset Formula $(-7,y_{1})$
+\end_inset
+
+, 
+\begin_inset Formula $(2,y_{2})$
+\end_inset
+
+, and 
+\begin_inset Formula $(-1,y_{3})$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $l_{1}(x)=\frac{p_{1}(x)}{p_{1}(-7)}y_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $l_{2}(x)=\frac{p_{2}(x)}{p_{2}(2)}y_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $l_{3}(x)=\frac{p_{3}(x)}{p_{3}(-1)}y_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(l_{1}+l_{2}+l_{3})(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+summarizes the construction.
+\end_layout
+
+\begin_layout Standard
+And now we are ready for complete generalization.
+ Suppose 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{n}$
+\end_inset
+
+ are 
+\begin_inset Formula $n$
+\end_inset
+
+ distinct real numbers.
+ We use the notation 
+\begin_inset Formula $P_{n}(x)$
+\end_inset
+
+ for the polynomial of least degree interpolating the points
+\begin_inset Formula 
+\[
+(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Setting 
+\begin_inset Formula ${\displaystyle p_{i}(x)=\prod_{\substack{j=0\\
+j\neq i
+}
+}^{n}(x-x_{j})=(x-x_{0})\cdots(x-x_{i-1})(x-x_{i+1})\cdots(x-x_{n})}$
+\end_inset
+
+, one formula for 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\begin{equation}
+L_{n}(x)=\sum_{i=0}^{n}\frac{p_{i}(x)}{p_{i}(x_{i})}y_{i}.\label{eq:lagrangeInterpolatingPolynomial}
+\end{equation}
+
+\end_inset
+
+As written, 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+ is called the 
+\shape italic
+Lagrange form
+\shape default
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Lagrange form
+\end_layout
+
+\end_inset
+
+ of 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+.
+ For sake of brevity, it is often called the Lagrange interpolating polynomial,
+ or even Lagrange polynomial.
+ However, the interpolating polynomial of least degree by any other name
+ would be but 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+.
+ We will adhere to the practice of calling it the interpolating polynomial
+ of least degree, or use the notation 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+, when the form is unimportant and will add the phrase 
+\shape italic
+Lagrange form
+\shape default
+, or use the notation 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+, when it is.
+\end_layout
+
+\begin_layout Standard
+The main use for interpolating polynomials in numerical analysis is to approxima
+te non-polynomial functions in the following way.
+ Suppose we know the value of 
+\begin_inset Formula $f$
+\end_inset
+
+ at a selection of points.
+ That is, we know 
+\begin_inset Formula $f(x_{0})=y_{0},f(x_{1})=x_{1},\ldots,f(x_{n})=y_{n}$
+\end_inset
+
+ and perhaps not much more.
+ The interpolating polynomial of least degree passing through the 
+\begin_inset Formula $n+1$
+\end_inset
+
+ points
+\begin_inset Formula 
+\[
+(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})
+\]
+
+\end_inset
+
+will, by construction, agree with 
+\begin_inset Formula $f$
+\end_inset
+
+ at 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{n}$
+\end_inset
+
+ and we can say with some precision how closely this interpolating polynomial
+ agrees with 
+\begin_inset Formula $f$
+\end_inset
+
+ at other points as well.
+ The values of the interpolating polynomial at these 
+\begin_inset Quotes eld
+\end_inset
+
+other points
+\begin_inset Quotes erd
+\end_inset
+
+ are what we refer to as approximations of the non-polynomial function.
+\end_layout
+
+\begin_layout Standard
+Setting 
+\begin_inset Formula $a=\min(x_{0},\ldots,x_{n},x)$
+\end_inset
+
+ and 
+\begin_inset Formula $b=\max(x_{0},\ldots,x_{n},x)$
+\end_inset
+
+, we have the following result.
+ If 
+\begin_inset Formula $f$
+\end_inset
+
+ has 
+\begin_inset Formula $n+1$
+\end_inset
+
+ derivatives on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ and 
+\begin_inset Formula $f,f',f'',\ldots,f^{(n)}$
+\end_inset
+
+ are all continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+, then there is a value 
+\begin_inset Formula $\xi_{x}\in(a,b)$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\begin{equation}
+f(x)-P_{n}(x)=\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}(x-x_{0})(x-x_{1})\cdots(x-x_{n}).\label{eq:lagrangeInterpolatingPolynomialError}
+\end{equation}
+
+\end_inset
+
+Ironically, this result is proven by considering the Lagrange form of an
+ interpolating polynomial in 
+\begin_inset Formula $t$
+\end_inset
+
+ that is equal to the error at 
+\begin_inset Formula $x$
+\end_inset
+
+ and equal to zero at each 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+.
+ That polynomial is
+\begin_inset Formula 
+\[
+\Lambda(t)=\left[P_{n}(x)-f(x)\right]\frac{(t-x_{0})(t-x_{1})\cdots(t-x_{n})}{(x-x_{0})(x-x_{1})\cdots(x-x_{n})}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{$
+\backslash
+Lambda$} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ is the (capital) eleventh letter of the Greek alphabet and is pronounced
+ 
+\family typewriter
+\series bold
+lam
+\series default
+-d
+\shape italic
+uh
+\family default
+\shape default
+.
+ The lower case version, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, appears much more commonly in mathematics and often represents an eigenvalue.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Subtracting this polynomial from the error, 
+\begin_inset Formula $e(t)=P_{n}(t)-f(t)$
+\end_inset
+
+, we have a function,
+\begin_inset Formula 
+\[
+g(t)=e(t)-\Lambda(t),
+\]
+
+\end_inset
+
+that is zero for all 
+\begin_inset Formula $t=x_{0},x_{1},\ldots,x_{n},x$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $g,g',\ldots,g^{(n)}$
+\end_inset
+
+ are all continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ and 
+\begin_inset Formula $g^{(n+1)}$
+\end_inset
+
+ exists on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+, by Generalized Rolle's Theorem, there is a value 
+\begin_inset Formula $\xi_{x}\in(a,b)$
+\end_inset
+
+ such that 
+\begin_inset Formula $g^{(n+1)}(\xi_{x})=0$
+\end_inset
+
+.
+ On the other hand, 
+\begin_inset Formula 
+\begin{eqnarray*}
+g^{(n+1)}(\xi_{x}) & = & e^{(n+1)}(\xi_{x})-\Lambda^{(n+1)}(\xi_{x})\\
+ & = & P_{n}^{(n+1)}(\xi_{x})-f^{(n+1)}(\xi_{x})-\Lambda^{(n+1)}(\xi_{x}),
+\end{eqnarray*}
+
+\end_inset
+
+and 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ is a polynomial of degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Hence, 
+\begin_inset Formula $P_{n}^{(n+1)}(t)=0$
+\end_inset
+
+ for all 
+\begin_inset Formula $t$
+\end_inset
+
+ and we have 
+\begin_inset Formula $g^{(n+1)}(\xi_{x})=-f^{(n+1)}(\xi_{x})-\Lambda^{(n+1)}(\xi_{x})=0$
+\end_inset
+
+.
+ It follows that 
+\begin_inset Formula 
+\[
+f^{(n+1)}(\xi_{x})=-\Lambda^{(n+1)}(\xi_{x}).
+\]
+
+\end_inset
+
+But, 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ is a polynomial of degree 
+\begin_inset Formula $n+1$
+\end_inset
+
+ in 
+\begin_inset Formula $t$
+\end_inset
+
+, so its 
+\begin_inset Formula $(n+1)^{st}$
+\end_inset
+
+ derivative with respect to 
+\begin_inset Formula $t$
+\end_inset
+
+ is constant with respect to 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ We write 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+\Lambda(t)=\frac{P_{n}(x)-f(x)}{(x-x_{0})(x-x_{1})\cdots(x-x_{n})}\left[t^{n+1}+b_{n}t^{n}+\cdots+b_{0}t^{0}\right]
+\]
+
+\end_inset
+
+for some constants 
+\begin_inset Formula $b_{n},b_{n-1},\ldots,b_{0}$
+\end_inset
+
+, and consequently,
+\begin_inset Formula 
+\[
+\Lambda^{(n+1)}(t)=\frac{P_{n}(x)-f(x)}{(x-x_{0})(x-x_{1})\cdots(x-x_{n})}\cdot(n+1)!,
+\]
+
+\end_inset
+
+and we have, by substitution,
+\begin_inset Formula 
+\[
+f^{(n+1)}(\xi_{x})=\frac{f(x)-P_{n}(x)}{(x-x_{0})(x-x_{1})\cdots(x-x_{n})}\cdot(n+1)!
+\]
+
+\end_inset
+
+or, equivalently,
+\begin_inset Formula 
+\[
+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})(x-x_{1})\cdots(x-x_{n})=f(x)-P_{n}(x)
+\]
+
+\end_inset
+
+as desired.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Three-interpolating-functions."
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Three-interpolating-functions."
+
+\end_inset
+
+Three interpolating functions.
+ From top to bottom, 
+\begin_inset Formula $e^{\sin\left((x+1)^{2}\right)}$
+\end_inset
+
+, 
+\begin_inset Formula $\sin\left(e^{(x+1)^{2}}\right)$
+\end_inset
+
+, and a 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+fractal function as defined in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:rootFindingChallenge"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ is shown in black and the interpolant, 
+\begin_inset Formula $L_{6}$
+\end_inset
+
+, in red.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $L_{6}(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f^{(6)}(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-polynomials1.pdf
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-polynomials2.pdf
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-polynomials3.pdf
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-polynomials4.pdf
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/interpolation-polynomials5.pdf
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename figures/undefined.png
+	lyxscale 25
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ shows interpolating polynomials for three different functions.
+ The 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates of the prescribed points are the same for each interpolating
+ polynomial.
+ The 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates are 
+\begin_inset Formula 
+\[
+0,.1951846177977887,.3554400571592862,.4823905248516196,.9138095996128959,\mbox{ and }1.
+\]
+
+\end_inset
+
+The four numbers between 0 and 1 were selected by a random number generator.
+ The interpolating polynomial closely resembles the function only in the
+ first case.
+ The sixth derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+ helps explain why.
+ 
+\end_layout
+
+\begin_layout Standard
+Our error term, 
+\begin_inset Formula 
+\[
+\frac{f^{(6)}(\xi)}{6!}(x-x_{0})(x-x_{1})\cdots(x-x_{5})
+\]
+
+\end_inset
+
+implies that the sixth derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+ and the polynomial 
+\begin_inset Formula $h(x)=\frac{(x-x_{0})(x-x_{1})\cdots(x-x_{5})}{6!}$
+\end_inset
+
+ determine how much 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $L_{6}$
+\end_inset
+
+ will differ.
+ By bounding both 
+\begin_inset Formula $\left|f^{(6)}\right|$
+\end_inset
+
+ and 
+\begin_inset Formula $\left|h\right|$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+, we can get a bound on the difference between 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $L_{6}$
+\end_inset
+
+.
+ The graphs of 
+\begin_inset Formula $f^{(6)}$
+\end_inset
+
+ are shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Three-interpolating-functions."
+
+\end_inset
+
+.
+ The graph of 
+\begin_inset Formula $h$
+\end_inset
+
+ is
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/interpolation-polynomials6.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+so 
+\begin_inset Formula $\max_{x\in[0,1]}|h(x)|$
+\end_inset
+
+ occurs around 
+\begin_inset Formula $0.75$
+\end_inset
+
+.
+ We can use a root-finding method applied to 
+\begin_inset Formula $h'$
+\end_inset
+
+ to find that the maximum of 
+\begin_inset Formula $|h|$
+\end_inset
+
+ is approximately 
+\begin_inset Formula $h(.7409254943919)\approx2.506891519629(10)^{-6}$
+\end_inset
+
+, a relatively small number.
+ On the other hand, for 
+\begin_inset Formula $f(x)=e^{\sin\left((x+1)^{2}\right)}$
+\end_inset
+
+, we find 
+\begin_inset Formula $\max_{x\in[0,1]}\left|f^{(6)}(x)\right|\approx f^{(6)}(.6777170541644)\approx44013.74605321$
+\end_inset
+
+, a relatively large number.
+ Their product,
+\begin_inset Formula 
+\[
+\max_{x\in[0,1]}|h(x)|\cdot\max_{x\in[0,1]}\left|f^{(6)}(x)\right|\approx.11,
+\]
+
+\end_inset
+
+gives a bound on the error.
+ The absolute furthest 
+\begin_inset Formula $L_{6}$
+\end_inset
+
+ can be from 
+\begin_inset Formula $f$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ is 
+\begin_inset Formula $0.11$
+\end_inset
+
+, a relatively small number.
+ The actual error is considerably smaller, so can barely be noticed in the
+ top left graph of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Three-interpolating-functions."
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $f(x)=\sin\left(e^{(x+1)^{2}}\right)$
+\end_inset
+
+, we find 
+\begin_inset Formula $\max_{x\in[0,1]}\left|f^{(6)}(x)\right|\approx f^{(6)}(1)\approx8.552147927657737(10)^{13}$
+\end_inset
+
+, a relatively large number.
+ This time the product,
+\begin_inset Formula 
+\[
+\max_{x\in[0,1]}|h(x)|\cdot\max_{x\in[0,1]}\left|f^{(6)}(x)\right|\approx2.1439307114460004(10)^{8},
+\]
+
+\end_inset
+
+is a huge number relative to the values of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ So the theoretical error bound does not predict good results for this interpola
+tion.
+ In fact, it suggests that the interpolation could have been much much worse!
+ 
+\begin_inset Formula $L_{6}$
+\end_inset
+
+ might have differed from 
+\begin_inset Formula $f$
+\end_inset
+
+ by over 2 million, a fact that should be worrisome considering 
+\begin_inset Formula $f$
+\end_inset
+
+ takes values between 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ An approximation that is off by even 
+\begin_inset Formula $1$
+\end_inset
+
+ is completely useless for this particular 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ As it is, we should not be surprised that 
+\begin_inset Formula $L_{6}$
+\end_inset
+
+ is not a good approximation of 
+\begin_inset Formula $f$
+\end_inset
+
+ since the error term can be quite large.
+ Nonetheless, the method is sound.
+ Failure to approximate 
+\begin_inset Formula $f$
+\end_inset
+
+ well should not be seen as a flaw in the method.
+ Rather, it should be seen as a flaw in its application.
+ If we really wanted to approximate 
+\begin_inset Formula $f$
+\end_inset
+
+ well, we would need to find a different set of points over which to interpolate.
+\end_layout
+
+\begin_layout Standard
+For the fractal function in the bottom left of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Three-interpolating-functions."
+
+\end_inset
+
+, our error estimate is entirely irrelevant.
+ The sixth derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+ does not exist.
+ In fact, even the first derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+ does not exist.
+ We have no way to estimate the error except to look at the graphs.
+ And as we see, 
+\begin_inset Formula $L_{6}$
+\end_inset
+
+ again does a very poor job of approximating 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Failure, again, should not be seen as a flaw in the method, but rather
+ in its application.
+ Approximating a function with an interpolating polynomial presumes that
+ the function has sufficient derivatives.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Bernstein polynomials}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Bernstein polynomial
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Suppose 
+\begin_inset Formula $f$
+\end_inset
+
+ is a continuous function on the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+, and define the polynomial
+\begin_inset Formula 
+\[
+B_{n}(x)=\sum_{\nu=0}^{n}\begin{pmatrix}n\\
+\nu
+\end{pmatrix}f\left(\frac{\nu}{n}\right)x^{\nu}(1-x)^{n-\nu},\quad n=1,2,3,\ldots
+\]
+
+\end_inset
+
+Then 
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}B_{n}(x)=f(x)
+\]
+
+\end_inset
+
+uniformly.
+ That is, 
+\begin_inset Formula $\lim_{n\to\infty}\max\{|B_{n}(x)-f(x)|:x\in[0,1]\}=0$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $B_{n}$
+\end_inset
+
+ are Bernstein polynomials.
+ Shown below are 
+\begin_inset Formula $B_{4}$
+\end_inset
+
+, 
+\begin_inset Formula $B_{20}$
+\end_inset
+
+, 
+\begin_inset Formula $B_{100}$
+\end_inset
+
+, and 
+\begin_inset Formula $B_{500}$
+\end_inset
+
+ for the fractal function in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Three-interpolating-functions."
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename figures/interpolation-polynomials7.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+An application of interpolating polynomials
+\end_layout
+
+\begin_layout Standard
+Again we find ourselves connecting the content of the previous chapter with
+ that of the current.
+ The secant method is actually an application of interpolating polynomials
+ to root-finding.
+ The secant line whose slope is used to calculate any given iteration can
+ be viewed as an interpolating line! It passes through two points lying
+ on 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ Hence it is an approximation of 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Having taken this point of view, we can now imagine generalizing the method
+ by using the derivative of a higher degree interpolating polynomial to
+ approximate 
+\begin_inset Formula $g'$
+\end_inset
+
+ at each step.
+ Such a generalized method, which we will call Sidi's 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ degree Method
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Avram Sidi, 
+\shape italic
+Generalization Of The Secant Method For Nonlinear Equations
+\shape default
+, Applied Mathematics E-Notes, 8(2008), 115-123.
+ Applied Mathematics E-Notes, 8(2008), 115-123.
+ Available free at mirror sites of 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.math.nthu.edu.tw/~amen/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+,
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Sidi's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Sidi's|see{Sidi's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ is summarized by the formula 
+\begin_inset Formula 
+\[
+x_{n+1}=x_{n}-\frac{g(x_{n})}{p'_{n,k}(x_{n})}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $p_{n,k}$
+\end_inset
+
+ is the interpolating polynomial passing through the points 
+\begin_inset Formula 
+\[
+(x_{n},g(x_{n})),(x_{n-1},g(x_{n-1})),\ldots,(x_{n-k},g(x_{n-k})).
+\]
+
+\end_inset
+
+When 
+\begin_inset Formula $k=1$
+\end_inset
+
+, this is exactly the Secant Method.
+ When 
+\begin_inset Formula $k=2$
+\end_inset
+
+, this method uses the same parabola as does Müller's Method, but in a different
+ way.
+ In Müller's Method, the next iteration is found by locating a root of the
+ interpolating polynomial.
+ In this method, the next iteration is found by locating a root of a tangent
+ line to the interpolating polynomial.
+\end_layout
+
+\begin_layout Standard
+As 
+\begin_inset Formula $k$
+\end_inset
+
+ increases, more initial values are needed, but the order of convergence
+ increases as a benefit.
+ Letting 
+\begin_inset Formula $\alpha_{k}$
+\end_inset
+
+ be the order of convergence of Sidi's 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ degree method, we have 
+\begin_inset Formula $\alpha_{1}=\frac{1+\sqrt{5}}{2}\approx1.618$
+\end_inset
+
+, the order of convergence of the Secant Method, and
+\begin_inset Formula 
+\[
+\alpha_{2}\approx1.839,\ \alpha_{3}\approx1.928,\ \alpha_{4}\approx1.966.
+\]
+
+\end_inset
+
+For any 
+\begin_inset Formula $k$
+\end_inset
+
+, Sidi's Method has an order of convergence less than 2 (the order of convergenc
+e of Newton's Method) but it approaches 2 as 
+\begin_inset Formula $k$
+\end_inset
+
+ increases.
+\end_layout
+
+\begin_layout Standard
+At this point, you might wonder just how practical such a method might be.
+ After all, calculating a new Lagrange interpolating polynomial and evaluating
+ its derivative at each step can be a cumbersome process.
+ We will take up this issue in the next section.
+\end_layout
+
+\begin_layout Subsection
+Neville's Method
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Neville's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Neville's|see{Neville's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "NevillesMethodDiscussion"
+
+\end_inset
+
+The Lagrange form of an interpolating polynomial is as convenient as it
+ gets for a human.
+ With a little care and patience, it is possible to write down such a polynomial
+ without even the aid of a calculator.
+ However, adding points to the interpolation and evaluating the polynomial
+ for non-interpolated points can be cumbersome tasks.
+ Consider a simple example: the polynomial interpolating 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+ at 
+\begin_inset Formula $x=0,1,2$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+L_{2}(x) & = & \frac{(x-1)(x-2)}{(0-1)(0-2)}e^{0}+\frac{(x-0)(x-2)}{(1-0)(1-2)}e^{1}+\frac{(x-0)(x-1)}{(2-0)(2-1)}e^{2}\\
+ & = & \frac{(x-1)(x-2)}{2}+\frac{x(x-2)}{-1}e+\frac{x(x-1)}{2}e^{2}.
+\end{eqnarray*}
+
+\end_inset
+
+Evaluating 
+\begin_inset Formula $L_{2}(1.5)$
+\end_inset
+
+, for example, requires either 
+\end_layout
+
+\begin_layout Enumerate
+computing the values of the three separate terms, each a quadratic polynomial,
+ and adding:
+\begin_inset Formula 
+\begin{eqnarray*}
+L_{2}(1.5) & = & \frac{(1.5-1)(1.5-2)}{2}+\frac{1.5(1.5-2)}{-1}e+\frac{1.5(1.5-1)}{2}e^{2}\\
+ & = & -.125+.75e+.375e^{2}\\
+ & \approx & 4.684607408443278
+\end{eqnarray*}
+
+\end_inset
+
+or
+\end_layout
+
+\begin_layout Enumerate
+the unpleasant business of simplifying 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ into a simpler form and then evaluating:
+\begin_inset Formula 
+\begin{eqnarray*}
+L_{2}(x) & = & \frac{(x-1)(x-2)}{2}+\frac{x(x-2)}{-1}e+\frac{x(x-1)}{2}e^{2}\\
+ & = & \frac{1}{2}(x^{2}-3x+2)-e(x^{2}-2x)+\frac{e^{2}}{2}(x^{2}-x)\\
+ & = & \left(\frac{1}{2}-e+\frac{e^{2}}{2}\right)x^{2}+\left(-\frac{3}{2}+2e-\frac{e^{2}}{2}\right)x+1\\
+ & \approx & 1.47624622100628x^{2}+0.242035607452765x+1
+\end{eqnarray*}
+
+\end_inset
+
+so 
+\begin_inset Formula $L_{2}(1.5)\approx1.47624622100628(1.5)^{2}+0.242035607452765(1.5)+1=4.684607408443277$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Method 2 is better if you have more points at which to evaluate, and method
+ 1 is better if you plan to add points of interpolation.
+ However, neither method is particularly convenient.
+ Even less convenient than evaluating the polynomial is the task of requiring
+ another point of interpolation.
+ Previous work is of limited use.
+ And we haven't even begun to discuss the trouble of writing a computer
+ program to automate the calculations.
+ Neville's Method can be used to overcome these limitations when the value
+ of the polynomial at a specific point is required.
+\end_layout
+
+\begin_layout Standard
+Neville's Method is based on the observation that interpolating polynomials
+ can be constructed recursively.
+ Suppose 
+\begin_inset Formula $P_{k,l}$
+\end_inset
+
+ is the polynomial of degree at most 
+\begin_inset Formula $l$
+\end_inset
+
+ interpolating the data
+\begin_inset Formula 
+\[
+(x_{k},f(x_{k})),(x_{k+1},f(x_{k+1})),\ldots,(x_{k+l},f(x_{k+l})).
+\]
+
+\end_inset
+
+Then, by definition, 
+\begin_inset Formula $P_{0,n}$
+\end_inset
+
+ is the polynomial of degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ interpolating the data 
+\begin_inset Formula 
+\[
+(x_{0},f(x_{0})),(x_{1},f(x_{1})),\ldots,(x_{n},f(x_{n})).
+\]
+
+\end_inset
+
+Moreover, 
+\begin_inset Formula $P_{0,n}$
+\end_inset
+
+ can be computed using the recursive formula
+\begin_inset Formula 
+\begin{eqnarray}
+P_{i,m+1}(x) & = & \frac{(x-x_{i+m+1})P_{i,m}(x)-(x-x_{i})P_{i+1,m}(x)}{x_{i}-x_{i+m+1}}\nonumber \\
+P_{i,0}(x) & = & f(x_{i}),\qquad i=0,\ldots,n.\label{eq:NevillesRecursion}
+\end{eqnarray}
+
+\end_inset
+
+This claim can be checked by noting five things:
+\begin_inset CommandInset label
+LatexCommand label
+name "shellProofOfNevillesMethod"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P_{i,0}$
+\end_inset
+
+ is the degree 0 polynomial interpolating the one datum 
+\begin_inset Formula $(x_{i},f(x_{i}))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P_{i,m}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{i+1,m}$
+\end_inset
+
+ are polynomials of degree at most 
+\begin_inset Formula $m$
+\end_inset
+
+, so 
+\begin_inset Formula $P_{i,m+1}$
+\end_inset
+
+ is a polynomial of degree at most 
+\begin_inset Formula $m+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle P_{i,m+1}(x_{i})=\frac{(x_{i}-x_{i+m+1})P_{i,m}(x_{i})}{x_{i}-x_{i+m+1}}=P_{i,m}(x_{i})=f(x_{i})}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+For any 
+\begin_inset Formula $j=i+1,\ldots,i+m$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{i,m+1}(x_{j}) & = & \frac{(x_{j}-x_{i+m+1})P_{i,m}(x_{j})-(x_{j}-x_{i})P_{i+1,m}(x_{j})}{x_{i}-x_{i+m+1}}\\
+ & = & \frac{(x_{j}-x_{i+m+1})f(x_{j})-(x_{j}-x_{i})f(x_{j})}{x_{i}-x_{i+m+1}}\\
+ & = & \frac{f(x_{j})\left[(x_{j}-x_{i+m+1})-(x_{j}-x_{i})\right]}{x_{i}-x_{i+m+1}}\\
+ & = & f(x_{j}).
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle P_{i,m+1}(x_{i+m+1})=\frac{-(x_{i+m+1}-x_{i})P_{i+1,m}(x_{i+m+1})}{x_{i}-x_{i+m+1}}=P_{i+1,m}(x_{i+m+1})=f(x_{i+m+1})}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A rigorous proof by induction on 
+\begin_inset Formula $m$
+\end_inset
+
+, requested in the exercises, should follow closely these notes.
+ Points 1 and 2 establish that 
+\begin_inset Formula $P_{k,l}$
+\end_inset
+
+ has degree at most 
+\begin_inset Formula $l$
+\end_inset
+
+.
+ Points 3 through 5 establish that 
+\begin_inset Formula $P_{k,l}$
+\end_inset
+
+ interpolates the points 
+\begin_inset Formula $(x_{k},f(x_{k})),(x_{k+1},f(x_{k+1})),\ldots,(x_{k+l},f(x_{k+l}))$
+\end_inset
+
+.
+ Formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:NevillesRecursion"
+
+\end_inset
+
+ succinctly summarizes Neville's Method.
+\end_layout
+
+\begin_layout Standard
+While Neville's Method (formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:NevillesRecursion"
+
+\end_inset
+
+) can be used to find formulas for interpolating polynomials as in
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{0,1}(x) & = & \frac{(x-x_{1})P_{0,0}(x)-(x-x_{0})P_{1,0}(x)}{x_{0}-x_{1}}\\
+ & = & \frac{x-x_{1}}{x_{0}-x_{1}}f(x_{0})+\frac{x-x_{0}}{x_{1}-x_{0}}f(x_{1}),
+\end{eqnarray*}
+
+\end_inset
+
+it is normally used to find the value of an interpolating polynomial at
+ a specific point.
+ We earlier determined that 
+\begin_inset Formula $L_{2}(1.5)=4.684607408443277$
+\end_inset
+
+ for the polynomial, 
+\begin_inset Formula $L_{2}(x)$
+\end_inset
+
+, interpolating 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+ at 
+\begin_inset Formula $x=0,1,2$
+\end_inset
+
+.
+ We now find this value using Neville's Method.
+ 
+\begin_inset Formula $P_{0,0}(1.5)=f(0)=1$
+\end_inset
+
+, 
+\begin_inset Formula $P_{1,0}(1.5)=f(1)\approx2.718281828459045$
+\end_inset
+
+, and 
+\begin_inset Formula $P_{2,0}(1.5)=f(2)\approx7.38905609893065$
+\end_inset
+
+.
+ So
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{0,1}(1.5) & = & \frac{(1.5-x_{1})P_{0,0}(1.5)-(1.5-x_{0})P_{1,0}(1.5)}{x_{0}-x_{1}}\\
+ &  & =\frac{(1.5-1)(1)-(1.5-0)(2.718281828459045)}{0-1}\\
+ &  & \approx3.577422742688568\\
+P_{1,1}(1.5) & = & \frac{(1.5-x_{2})P_{1,0}(1.5)-(1.5-x_{1})P_{2,0}(1.5)}{x_{1}-x_{2}}\\
+ & = & \frac{(1.5-2)(2.718281828459045)-(1.5-1)(7.38905609893065)}{1-2}\\
+ & \approx & 5.053668963694848\\
+P_{0,2}(1.5) & = & \frac{(1.5-x_{2})P_{0,1}(1.5)-(1.5-x_{0})P_{1,1}(1.5)}{x_{0}-x_{2}}\\
+ & = & \frac{(1.5-2)(3.577422742688568)-(1.5-0)(5.053668963694848)}{0-2}\\
+ & \approx & 4.684607408443278.
+\end{eqnarray*}
+
+\end_inset
+
+A tabulation of the computation may make it easier to internalize the recursion
+ and imagine how this process might be automated.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:NevillesMethodExample"
+
+\end_inset
+
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:NevillesMethodExample"
+
+\end_inset
+
+Neville's Method example, calculating 
+\begin_inset Formula $P_{0,2}(1.5)$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{i,0}=f(x_{i})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{i,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{i,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.577422742688568$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.684607408443278$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.718281828459045$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.053668963694848$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.38905609893065$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ shows such a tabulation.
+ The use of this recursive formula may be more difficult than direct computation
+ for a human being, but for a computer, using the recursion is much quicker
+ and simpler as evidenced by a look at the pseudo-code.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Neville's method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "NevillesMethodPseudoCode"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $P_{n}(x)$
+\end_inset
+
+ is the degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ polynomial interpolating the data
+\begin_inset Formula 
+\[
+(x_{0},f(x_{0})),(x_{1},f(x_{1})),\ldots,(x_{n},f(x_{n}))
+\]
+
+\end_inset
+
+and the value 
+\begin_inset Formula $P_{n}(\hat{x})$
+\end_inset
+
+ is desired.
+\end_layout
+
+\begin_layout Description
+Input: Value 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+; abscissas 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{n}$
+\end_inset
+
+; ordinates 
+\begin_inset Formula $f(x_{0}),f(x_{1}),\ldots,f(x_{n})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: For 
+\begin_inset Formula $i=0\ldots n$
+\end_inset
+
+ do Step 2:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Set 
+\begin_inset Formula $P_{i,0}=f(x_{i})$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: For 
+\begin_inset Formula $j=1\ldots n$
+\end_inset
+
+ do Steps 4-5:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: For 
+\begin_inset Formula $i=0\ldots n-j$
+\end_inset
+
+ do Step 5:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: Set 
+\begin_inset Formula $P_{i,,j}=\frac{(\hat{x}-x_{i+j})P_{i,j-1}-(\hat{x}-x_{i})P_{i+1,j-1}}{x_{i}-x_{i+j}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+Output: Table of values, 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ 
+\begin_inset Formula $P_{0,n}$
+\end_inset
+
+ holds the desired value, 
+\begin_inset Formula $L_{n}(\hat{x})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Uniqueness
+\end_layout
+
+\begin_layout Standard
+There are some subtleties we have thus far glossed over.
+ When we introduced the Lagrange form, we casually stated 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $L_{n}$
+\end_inset
+
+ is called the 
+\shape italic
+Lagrange form
+\shape default
+ of 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+, implying that the Lagrange form gives the interpolating polynomial 
+\shape italic
+of least degree
+\shape default
+ (since 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ is defined as such)! This fact is far from obvious.
+ Nonetheless, we went on as if it were obvious that 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ were one and the same polynomial.
+ Worse yet, when we came around to discussing Neville's Method, we calculated
+ 
+\begin_inset Formula $P_{0,2}(1.5)$
+\end_inset
+
+ and compared it to 
+\begin_inset Formula $L_{2}(1.5)$
+\end_inset
+
+ from earlier with the implication that they should be the same, again as
+ if it were simply given that 
+\begin_inset Formula $P_{0,2}$
+\end_inset
+
+ and 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ should be the same polynomial.
+ The following result shows that our blind faith that 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+, 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+, and 
+\begin_inset Formula $P_{0,n}$
+\end_inset
+
+ amount to different names for the same object was not misplaced (by virtue
+ of the fact that they all interpolate the same data and have degree at
+ most 
+\begin_inset Formula $n$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:interpolatingPolynomialUniqueness"
+
+\end_inset
+
+The polynomial, 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+, of least degree interpolating the data 
+\begin_inset Formula $(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})$
+\end_inset
+
+ exists and is unique.
+ Moreover, any interpolating polynomial of degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ is equal to 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+By construction, 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+ interpolates the data.
+ Moreover, the degree of 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+ is at most 
+\begin_inset Formula $n$
+\end_inset
+
+ since it is the sum of polynomials 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ each with degree exactly 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ exists and has degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ [at this point, we must admit that the degree of 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ may be less than that of 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+].
+ Now suppose 
+\begin_inset Formula $q$
+\end_inset
+
+ is any polynomial interpolating 
+\begin_inset Formula $(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})$
+\end_inset
+
+ with degree 
+\begin_inset Formula $n$
+\end_inset
+
+ or less.
+ Then the polynomial 
+\begin_inset Formula $f=P_{n}-q$
+\end_inset
+
+ also has degree 
+\begin_inset Formula $n$
+\end_inset
+
+ or less.
+ Moreover, 
+\begin_inset Formula $f(x_{i})=P_{n}(x_{i})-q(x_{i})=y_{i}-y_{i}=0$
+\end_inset
+
+ for all 
+\begin_inset Formula $i-0,\ldots,n$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $f$
+\end_inset
+
+ has 
+\begin_inset Formula $n+1$
+\end_inset
+
+ roots.
+ Alas, the only way 
+\begin_inset Formula $f$
+\end_inset
+
+ can have 
+\begin_inset Formula $n+1$
+\end_inset
+
+ roots and have degree 
+\begin_inset Formula $n$
+\end_inset
+
+ or less is if 
+\begin_inset Formula $f$
+\end_inset
+
+ is identically 0.
+ Hence 
+\begin_inset Formula $f(x)=P_{n}(x)-q(x)=0$
+\end_inset
+
+, implying 
+\begin_inset Formula $P_{n}(x)=q(x)$
+\end_inset
+
+ for all 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Octave
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "NevillesMethodOctaveCode"
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Neville's method ! Octave code
+\end_layout
+
+\end_inset
+
+The indices presented in the pseudo-code are predicated on indexing starting
+ with 0, as in the mathematical description.
+ In Octave, however, indices can not be 0.
+ They are always positive integers.
+ A slight modification of the indices is required to accommodate this discrepanc
+y.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Leon Brin                           22 March 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: This function implements Neville's method for       %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        computing the value P(xhat) of the interpolating      %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        polynomial P passing through the data (x(1),y(1)),    %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        (x(2),y(2)),...,(x(n),y(n)).
+                          %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: value xhat; array x of abscissas; array y of          %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        ordinates.
+                                            %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: table of values Q; Q(1,n)=P(xhat).
+                   %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function Q = nevilles(xhat,x,y)
+\end_layout
+
+\begin_layout Plain Layout
+
+  n=length(x);
+\end_layout
+
+\begin_layout Plain Layout
+
+  for i=1:n
+\end_layout
+
+\begin_layout Plain Layout
+
+    Q(i,1)=y(i);
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  for j=2:n
+\end_layout
+
+\begin_layout Plain Layout
+
+    for i=1:n+1-j
+\end_layout
+
+\begin_layout Plain Layout
+
+      Q(i,j)=((xhat-x(i+j-1))*Q(i,j-1)-(xhat-x(i))*Q(i+1,j-1))/(x(i)-x(i+j-1));
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Interpolating
+\begin_inset space ~
+\end_inset
+
+function: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+interpolating function
+\end_layout
+
+\end_inset
+
+A function whose graph is required to pass through a set of prescribed points.
+\end_layout
+
+\begin_layout Description
+Interpolating
+\begin_inset space ~
+\end_inset
+
+polynomial: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+interpolating polynomial
+\end_layout
+
+\end_inset
+
+A polynomial whose graph is required to pass through a set of prescribed
+ points.
+ 
+\end_layout
+
+\begin_layout Description
+Interpolating
+\begin_inset space ~
+\end_inset
+
+polynomial
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+least
+\begin_inset space ~
+\end_inset
+
+degree: The polynomial of least degree interpolating a given set of 
+\begin_inset Formula $n+1$
+\end_inset
+
+ data points is unique.
+ We denote this polynomial by 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Interpolating
+\begin_inset space ~
+\end_inset
+
+polynomial
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+degree
+\begin_inset space ~
+\end_inset
+
+at
+\begin_inset space ~
+\end_inset
+
+most
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $n$
+\end_inset
+
+: The polynomial interpolating 
+\begin_inset Formula $n+1$
+\end_inset
+
+ distinct points has degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ and is equal to the polynomial of least degree interpolating the points.
+\end_layout
+
+\begin_layout Description
+Generalized
+\begin_inset space ~
+\end_inset
+
+Rolle's
+\begin_inset space ~
+\end_inset
+
+theorem: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Generalized Rolle's
+\end_layout
+
+\end_inset
+
+Suppose that 
+\begin_inset Formula $f$
+\end_inset
+
+ has 
+\begin_inset Formula $n$
+\end_inset
+
+ derivatives on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ and 
+\begin_inset Formula $f,f',f'',\ldots,f^{(n-1)}$
+\end_inset
+
+ are all continuous on 
+\begin_inset Formula $[x_{0},x_{n}]$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $f(x_{0})=f(x_{1})=\cdots=f(x_{n})$
+\end_inset
+
+ for some 
+\begin_inset Formula $x_{0}<x_{1}<\cdots<x_{n}$
+\end_inset
+
+, then there exists 
+\begin_inset Formula $\xi\in(a,b)$
+\end_inset
+
+ such that 
+\begin_inset Formula $f^{(n)}(\xi)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Lagrange
+\begin_inset space ~
+\end_inset
+
+form
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+an
+\begin_inset space ~
+\end_inset
+
+interpolating
+\begin_inset space ~
+\end_inset
+
+polynomial: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Lagrange form
+\end_layout
+
+\end_inset
+
+The Lagrange form, 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+, of the polynomial of degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ interpolating the points 
+\begin_inset Formula $(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})$
+\end_inset
+
+ is given by the formula
+\begin_inset Formula 
+\[
+L_{n}(x)=\sum_{i=0}^{n}\frac{p_{i}(x)}{p_{i}(x_{i})}y_{i},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula ${\displaystyle p_{i}(x)=\prod_{\substack{j=0\\
+j\neq i
+}
+}^{n}(x-x_{j})=(x-x_{0})\cdots(x-x_{i-1})(x-x_{i+1})\cdots(x-x_{n})}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Interpolation
+\begin_inset space ~
+\end_inset
+
+error: For 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+, the interpolating polynomial of least degree passing through the 
+\begin_inset Formula $n+1$
+\end_inset
+
+ points 
+\begin_inset Formula $(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})$
+\end_inset
+
+, there is a value 
+\begin_inset Formula $\xi_{x}\in(a,b)$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+f(x)-P_{n}(x)=\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}(x-x_{0})(x-x_{1})\cdots(x-x_{n}),
+\]
+
+\end_inset
+
+assuming 
+\begin_inset Formula $f$
+\end_inset
+
+ has 
+\begin_inset Formula $n+1$
+\end_inset
+
+ derivatives on 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ and 
+\begin_inset Formula $f,f',f'',\ldots,f^{(n)}$
+\end_inset
+
+ are all continuous on 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+, and where 
+\begin_inset Formula $a=\min(x_{0},\ldots,x_{n},x)$
+\end_inset
+
+ and 
+\begin_inset Formula $b=\max(x_{0},\ldots,x_{n},x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Sidi's
+\begin_inset space ~
+\end_inset
+
+Method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Sidi's method
+\end_layout
+
+\end_inset
+
+A root-finding method summarized by the formula 
+\begin_inset Formula 
+\[
+x_{n+1}=x_{n}-\frac{f(x_{n})}{p'_{n,k}(x_{n})}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p_{n,k}$
+\end_inset
+
+ is the interpolating polynomial passing through the points
+\begin_inset Formula 
+\[
+(x_{n},f(x_{n})),(x_{n-1},f(x_{n-1})),\ldots,(x_{n-k},f(x_{n-k})).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Neville's
+\begin_inset space ~
+\end_inset
+
+Method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Neville's method
+\end_layout
+
+\end_inset
+
+A method for computing the interpolating polynomial of least degree or values
+ of it based on the recursive relation
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{i,m+1}(x) & = & \frac{(x-x_{i+m+1})P_{i,m}(x)-(x-x_{i})P_{i+1,m}(x)}{x_{i}-x_{i+m+1}}\\
+P_{i,0}(x) & = & f(x_{i})
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $P_{k,l}$
+\end_inset
+
+ is the polynomial of least degree interpolating the data
+\begin_inset Formula 
+\[
+(x_{k},f(x_{k})),(x_{k+1},f(x_{k+1})),\ldots,(x_{k+l},f(x_{k+l})).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Write down the Lagrange interpolating polynomial passing through 
+\begin_inset Formula $(1,2)$
+\end_inset
+
+, 
+\begin_inset Formula $(1.5,-0.83)$
+\end_inset
+
+, and 
+\begin_inset Formula $(2.11,-1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a polynomial that passes through the four points
+\begin_inset Formula 
+\[
+(0,0),\ (1,2),\ (4,-3),\mbox{ and }(10,-1).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange"
+
+\end_inset
+
+Construct the (at most) quadratic Lagrange Polynomial interpolating the
+ data.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(1,1)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,1)$
+\end_inset
+
+, and 
+\begin_inset Formula $(3,2)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(0,10)$
+\end_inset
+
+, 
+\begin_inset Formula $(30,58)$
+\end_inset
+
+, 
+\begin_inset Formula $(1029,-32)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-8"
+
+\end_inset
+
+
+\begin_inset Formula $(-10,10)$
+\end_inset
+
+, 
+\begin_inset Formula $(20,58)$
+\end_inset
+
+, 
+\begin_inset Formula $(1019,-32)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $15$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $200$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $15$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $15$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $15$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-7"
+
+\end_inset
+
+Suppose the data from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange"
+
+\end_inset
+
+ were taken from an appropriately differentiable function 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Use the interpolating polynomial you found in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange"
+
+\end_inset
+
+ to estimate 
+\begin_inset Formula $f(1.3)$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-2"
+
+\end_inset
+
+Find the estimate in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-7"
+
+\end_inset
+
+ using Neville's Method.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Given the following data for 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, approximate 
+\begin_inset Formula $f(0.3)$
+\end_inset
+
+ using an interpolating polynomial of degree at most
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+1
+\end_layout
+
+\begin_layout Enumerate
+2
+\end_layout
+
+\begin_layout Enumerate
+3
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.75$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-9"
+
+\end_inset
+
+Given the following data for 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, approximate 
+\begin_inset Formula $f(3)$
+\end_inset
+
+ using an interpolating polynomial of degree at most
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+1
+\end_layout
+
+\begin_layout Enumerate
+2
+\end_layout
+
+\begin_layout Enumerate
+3
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.75$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-6"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use interpolating polynomials of degrees one, two, and three to approximate
+ each of the following:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(0.43)$
+\end_inset
+
+ if 
+\begin_inset Formula $f(0)=1$
+\end_inset
+
+, 
+\begin_inset Formula $f(0.25)=1.64872$
+\end_inset
+
+, 
+\begin_inset Formula $f(0.5)=2.71828$
+\end_inset
+
+, 
+\begin_inset Formula $f(0.75)=4.48169$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-10"
+
+\end_inset
+
+
+\begin_inset Formula $f(0.18)$
+\end_inset
+
+ if 
+\begin_inset Formula $f(0.1)=-0.29004986$
+\end_inset
+
+, 
+\begin_inset Formula $f(0.2)=-0.56079734$
+\end_inset
+
+, 
+\begin_inset Formula $f(0.3)=-0.81401972$
+\end_inset
+
+, 
+\begin_inset Formula $f(0.4)=-1.0526302$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-11"
+
+\end_inset
+
+
+\begin_inset Formula $f(2.26)$
+\end_inset
+
+ if 
+\begin_inset Formula $f(1)=1.654$
+\end_inset
+
+, 
+\begin_inset Formula $f(1.5)=-2.569$
+\end_inset
+
+, 
+\begin_inset Formula $f(2)=-1.329$
+\end_inset
+
+, 
+\begin_inset Formula $f(2.5)=1.776$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(11.26)$
+\end_inset
+
+ if 
+\begin_inset Formula $f(10)=-0.7865$
+\end_inset
+
+, 
+\begin_inset Formula $f(11)=-1.2352$
+\end_inset
+
+, 
+\begin_inset Formula $f(12)=-0.8765$
+\end_inset
+
+, 
+\begin_inset Formula $f(13)=0.0021$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-4"
+
+\end_inset
+
+Let 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+, 
+\begin_inset Formula $x_{1}=1.25$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{2}=1.6$
+\end_inset
+
+.
+ Using data at these 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+, construct interpolating polynomials of degrees at most one and at most
+ two and use them to approximate 
+\begin_inset Formula $f(1.4)$
+\end_inset
+
+.
+ Find the absolute errors.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-12"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\sin\pi x$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\sqrt[3]{x-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=e^{2x-4}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=\ln(10x)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-13"
+
+\end_inset
+
+Use formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrangeInterpolatingPolynomialError"
+
+\end_inset
+
+ to find theoretical error bounds for the approximations in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-4"
+
+\end_inset
+
+.
+ Compare the bound to the actual error.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-3"
+
+\end_inset
+
+A Lagrange interpolating polynomial is constructed for the function 
+\begin_inset Formula $f(x)=(\sqrt{2})^{x}$
+\end_inset
+
+ using 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+, 
+\begin_inset Formula $x_{1}=1$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}=2$
+\end_inset
+
+, 
+\begin_inset Formula $x_{3}=3$
+\end_inset
+
+.
+ It is used to approximate 
+\begin_inset Formula $f(1.5)$
+\end_inset
+
+.
+ Find a bound on the error in this approximation.
+\end_layout
+
+\begin_layout Enumerate
+Find the polynomial referred to in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-3"
+
+\end_inset
+
+.
+ Then
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+use the polynomial to approximate 
+\begin_inset Formula $f(1.5)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+calculate the actual error of this approximation, and compare it to the
+ bound you calculated in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-3"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use Neville's Method to find the approximation in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-3"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The height of a model rocket is given at several times in the following
+ table.
+ Approximate the height of the rocket at time 
+\begin_inset Formula $t=0.6$
+\end_inset
+
+ sec using at least two different sets of points.
+ Comment on which approximation is likely most accurate.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Time (sec)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Height (ft)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.53238$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $30.0534$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.56040$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $32.7929$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.58842$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $35.4956$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.61644$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $38.1575$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-5"
+
+\end_inset
+
+The following table results from using Neville's Method to approximate 
+\begin_inset Formula $f(0.4)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{0,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.016$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.25$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{1,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.96$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{2,0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.75$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Determine 
+\begin_inset Formula $f(0.5)$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-14"
+
+\end_inset
+
+
+\begin_inset Formula $L_{3}(x)=-7x^{3}+57x^{2}-134x+78$
+\end_inset
+
+ is the degree (at most) 3 interpolating polynomial for the data in the
+ table.
+ Find 
+\begin_inset Formula $\omega$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.8$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\omega$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $24.375$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.696$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-17.088$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $P_{3}(x)$
+\end_inset
+
+ be the interpolating polynomial for the data 
+\begin_inset Formula $(0,0)$
+\end_inset
+
+, 
+\begin_inset Formula $(0.5,y)$
+\end_inset
+
+, 
+\begin_inset Formula $(1,3)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,2)$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $y$
+\end_inset
+
+ if the coefficient of 
+\begin_inset Formula $x^{3}$
+\end_inset
+
+ in 
+\begin_inset Formula $P_{3}(x)$
+\end_inset
+
+ is 6.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=\sqrt{x-x^{2}}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{2}(x)$
+\end_inset
+
+ be the interpolating polynomial on 
+\begin_inset Formula $x_{0}=0,$
+\end_inset
+
+ 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{2}=1$
+\end_inset
+
+.
+ Find the largest value of 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ in 
+\begin_inset Formula $(0,1)$
+\end_inset
+
+ for which 
+\begin_inset Formula $f(0.5)-P_{2}(0.5)=-0.25$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-1"
+
+\end_inset
+
+The interpolating polynomial on 
+\begin_inset Formula $n+1$
+\end_inset
+
+ points does not always have degree 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ It has degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Plot the data 
+\begin_inset Formula $(1,1)$
+\end_inset
+
+, 
+\begin_inset Formula $(2,3)$
+\end_inset
+
+, 
+\begin_inset Formula $(3,5)$
+\end_inset
+
+, and 
+\begin_inset Formula $(4,7)$
+\end_inset
+
+, and make a conjecture as to the degree of the polynomial interpolating
+ these four points.
+ What led you to your conjecture? 
+\end_layout
+
+\begin_layout Enumerate
+Use Neville's Method to find the polynomial described in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:interpolation-lagrange-1"
+
+\end_inset
+
+.
+ Does it have the degree you expected?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:interpolation-lagrange-15"
+
+\end_inset
+
+Let
+\begin_inset Formula 
+\begin{eqnarray*}
+x_{j} & = & 1-\frac{1}{j+1}\quad\mbox{for }j=0,1,2,\ldots\\
+f(x) & = & 5+3x^{2014}\\
+P_{n}(x) & = & \mbox{the interpolating polynomial}\\
+ &  & \mbox{passing through}\\
+ &  & (x_{0},f(x_{0})),\ldots,(x_{n},f(x_{n})).
+\end{eqnarray*}
+
+\end_inset
+
+Find 
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}P_{n}(1).
+\]
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $f(x)=e^{-x}$
+\end_inset
+
+.
+ Two different numbers are chosen at random from the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+, say 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+.
+ Then the points 
+\begin_inset Formula $(x_{0},f(x_{0}))$
+\end_inset
+
+ and 
+\begin_inset Formula $(x_{1},f(x_{1}))$
+\end_inset
+
+ are used to get a linear Lagrange interpolation approximation to 
+\begin_inset Formula $f$
+\end_inset
+
+ over the interval 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+.
+ Find a bound (good for the entire interval and every pair of points 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+) for the error in using this approximation.
+\end_layout
+
+\begin_layout Enumerate
+Supply the inductive proof that 
+\begin_inset Formula $P_{0,n}$
+\end_inset
+
+ is the polynomial of degree at most 
+\begin_inset Formula $n$
+\end_inset
+
+ interpolating the data 
+\begin_inset Formula $(x_{0},f(x_{0})),(x_{1},f(x_{1})),\ldots,(x_{n},f(x_{n}))$
+\end_inset
+
+.
+ See notes 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "shellProofOfNevillesMethod"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

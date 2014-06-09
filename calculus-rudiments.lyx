@@ -1,0 +1,4762 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Numerical Calculus
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Numerical-Calculus"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:NumericalRudiments"
+
+\end_inset
+
+Rudiments of Numerical Calculus
+\end_layout
+
+\begin_layout Subsection
+The basic idea
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $g(x)=x-\frac{2\pi}{3}\sin(x)$
+\end_inset
+
+ has a root between 
+\begin_inset Formula $0$
+\end_inset
+
+ and 
+\begin_inset Formula $\pi$
+\end_inset
+
+.
+ You are trying various methods and become interested in how the choice
+ of initial value affects the results.
+ Using Newton's Method, you do some research into how the choice of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ affects 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+.
+ You run some tests and come up with the following data.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $93/70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.084603181618954$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $95/70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.055494116570853$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $97/70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.030278824314539$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $99/70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.009751835391139$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $101/70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.993574976724822$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $103/70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.981091507449763$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $105/70$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.971614474758557$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Using fixed point iteration on 
+\begin_inset Formula $f(x)=\frac{2\pi}{3}\sin(x)$
+\end_inset
+
+, you decide to examine how the choice of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ affects 
+\begin_inset Formula $x_{10}$
+\end_inset
+
+, not 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ since fixed point iteration generally converges slowly.
+ You run some tests on this method and come up with the following data.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{10}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1/7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.949880891899200$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2/7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.951091775564697$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3/7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.923339403354019$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4/7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.941460911122824$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5/7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.960870620285721$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6/7$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.965674866641883$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.961228252911260$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the Newton's Method experiment, 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ is a function of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, and in the fixed point iteration experiment, 
+\begin_inset Formula $x_{10}$
+\end_inset
+
+ is a function of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ So you start to think of them completely independently from the original
+ root-finding question.
+ As they sit in their tabular form, they are just two functions for which
+ you know a handful of values and not much more.
+ What do these functions look like? Do we have enough information to perhaps
+ find their derivatives, and hence local extrema? Can we find their antiderivati
+ves? This is the stuff of numerical calculus.
+ We can certainly approximate these things.
+ 
+\end_layout
+
+\begin_layout Standard
+In chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Interpolation"
+
+\end_inset
+
+ we learned how to approximate functions by interpolation, so we know we
+ can use the tabular data to approximate the functions themselves.
+ But what about their derivatives and integrals? Well, polynomials are easy
+ to differentiate and integrate.
+ Perhaps we can use the derivatives and integrals of interpolating polynomials
+ to approximate the derivatives and integrals of 
+\begin_inset Formula $x_{2}(x_{0})$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{10}(x_{0})$
+\end_inset
+
+.
+ Indeed we can! 
+\end_layout
+
+\begin_layout Standard
+In order to avoid the confusion of using 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ for multiple purposes, we will rename our functions 
+\begin_inset Formula $\nu(x)$
+\end_inset
+
+ for 
+\begin_inset Formula $x_{2}(x_{0})$
+\end_inset
+
+ and 
+\begin_inset Formula $\varphi(x)$
+\end_inset
+
+ for 
+\begin_inset Formula $x_{10}(x_{0})$
+\end_inset
+
+.
+ Hence we have 
+\begin_inset Formula $\nu(93/70)=2.0846\ldots$
+\end_inset
+
+, 
+\begin_inset Formula $\nu(95/70)=2.0554\ldots$
+\end_inset
+
+, and so on.
+ Similarly, we have now 
+\begin_inset Formula $\varphi(1/7)=1.9498\ldots$
+\end_inset
+
+, 
+\begin_inset Formula $\varphi(2/7)=1.9510\ldots$
+\end_inset
+
+, and so on.
+ We will also take up the practice of calling the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates of the prescribed interpolation points nodes.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+node
+\end_layout
+
+\end_inset
+
+ Hence the nodes we have for 
+\begin_inset Formula $\nu$
+\end_inset
+
+ are 
+\begin_inset Formula $93/70$
+\end_inset
+
+, 
+\begin_inset Formula $95/70$
+\end_inset
+
+, and so on.
+ The nodes we have for 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ are 
+\begin_inset Formula $1/7$
+\end_inset
+
+, 
+\begin_inset Formula $2/7$
+\end_inset
+
+, and so on.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{$
+\backslash
+nu$ and $
+\backslash
+varphi$} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $\nu$
+\end_inset
+
+ is the (lower case) thirteenth letter of the Greek alphabet and is pronounced
+ 
+\family typewriter
+noo
+\family default
+.
+ 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ is the (lower case) twenty-first letter of the Greek alphabet and is pronounced
+ 
+\family typewriter
+fee
+\family default
+.
+ The letter 
+\family typewriter
+fee
+\family default
+ is also written 
+\begin_inset Formula $\phi$
+\end_inset
+
+, but in mathematics it is much more common to see the variant 
+\begin_inset Formula $\varphi$
+\end_inset
+
+, perhaps to avoid confusion between 
+\family typewriter
+fee
+\family default
+ and the empty set, 
+\begin_inset Formula $\emptyset$
+\end_inset
+
+.
+ The capital versions of 
+\begin_inset Formula $\nu$
+\end_inset
+
+ and 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ are 
+\begin_inset Formula $N$
+\end_inset
+
+ and 
+\begin_inset Formula $\Phi$
+\end_inset
+
+, respectively.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We begin by considering interpolating polynomials on three nodes.
+ For 
+\begin_inset Formula $\nu$
+\end_inset
+
+, we use the nodes 
+\begin_inset Formula $93/70$
+\end_inset
+
+, 
+\begin_inset Formula $99/70$
+\end_inset
+
+, and 
+\begin_inset Formula $1.5$
+\end_inset
+
+, and get
+\begin_inset Formula 
+\[
+P_{2,\nu}(x)=.07673215587088045x^{2}\text{−}.07445530457646088x+1.95895140161684.
+\]
+
+\end_inset
+
+For 
+\begin_inset Formula $\varphi$
+\end_inset
+
+, we use the nodes 
+\begin_inset Formula $1/7$
+\end_inset
+
+, 
+\begin_inset Formula $4/7$
+\end_inset
+
+, and 
+\begin_inset Formula $1$
+\end_inset
+
+, and get
+\begin_inset Formula 
+\[
+P_{2,\varphi}(x)=2.498590686342254x^{2}-7.726543017101505x+7.939599956140455.
+\]
+
+\end_inset
+
+We have added a second subscript to 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ in order to distinguish the interpolating polynomial for 
+\begin_inset Formula $\nu$
+\end_inset
+
+ from that for 
+\begin_inset Formula $\varphi$
+\end_inset
+
+.
+ Now we can approximate derviatives and integrals for both 
+\begin_inset Formula $\nu$
+\end_inset
+
+ and 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ using 
+\begin_inset Formula $P_{2,\nu}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{2,\varphi}$
+\end_inset
+
+, respectively:
+\begin_inset Formula 
+\begin{eqnarray*}
+\nu'(x) & \approx & P_{2,\nu}'(x)=4.997181372684508x-7.726543017101505\\
+\varphi'(x) & \approx & P_{2,\varphi}'(x)=.1534643117417609x-.07445530457646088\\
+\int\nu\, dx & \approx & \int P_{2,\nu}dx=.8328635621140847x^{3}-3.863271508550753x^{2}+7.939599956140455x+C\\
+\int\varphi\, dx & \approx & \int P_{2,\varphi}dx=.02557738529029348x^{3}-.03722765228823044x^{2}+1.95895140161684x+D.
+\end{eqnarray*}
+
+\end_inset
+
+So, for example,
+\begin_inset Formula 
+\begin{eqnarray*}
+\nu'(1.4) & \approx & P_{2,\nu}'(1.4)\\
+ & = & 4.997181372684508(1.4)-7.726543017101505\\
+ & = & -.7304890953431942\\
+\varphi'(0.5) & \approx & P_{2,\varphi}'(0.5)\\
+ & = & .1534643117417609(0.5)-.07445530457646088\\
+ & = & .002276851294419568
+\end{eqnarray*}
+
+\end_inset
+
+ and 
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{1.4}^{1.5}\nu(x)dx & \approx & \int_{1.4}^{1.5}P_{2,\nu}(x)dx\\
+ & = & \left[.8328635621140847x^{3}-3.863271508550753x^{2}+7.939599956140455x\right]_{1.4}^{1.5}\\
+ & = & .1991481658283149\\
+\int_{0}^{1}\varphi(x)dx & \approx & \int_{0}^{1}P_{2,\varphi}(x)dx\\
+ & = & \left[.02557738529029348x^{3}-.03722765228823044x^{2}+1.95895140161684x\right]_{0}^{1}\\
+ & = & 1.947301134618903.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+That's it! This exercise encapsulates the entire strategy.
+ Given some values of an otherwise unknown function, we will approximate
+ the unkown function with a polynomial.
+ We will then approximate derivatives and integrals of the unknown function
+ by differentiating and integrating the polynomial.
+ There is very little more to be said about the idea.
+ There is, however, a lot more to be said about automation, accuracy, and
+ efficiency, the focus of the rest of the chapter.
+ But before we tackle those issues, we will have another look and 
+\begin_inset Formula $\nu$
+\end_inset
+
+ and 
+\begin_inset Formula $\varphi$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Using all the nodes of 
+\begin_inset Formula $\nu$
+\end_inset
+
+, and the help of a computer algebra system, we compute the sixth degree
+ interpolating polynomial
+\begin_inset CommandInset label
+LatexCommand label
+name "integrationWithP6"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{6,\nu}(x) & = & -1342.393417879939x^{6}+11632.43754466623x^{5}-41996.4789301455x^{4}\\
+ &  & +80851.91317212582x^{3}-87536.60487741232x^{2}+50528.3026241064x\\
+ &  & -12144.27629915625.
+\end{eqnarray*}
+
+\end_inset
+
+Using all the nodes of 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ (and a comuter algebra system) we compute the sixth degree interpolating
+ polynomial
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{6,\varphi}(x) & = & -25.41848741926543x^{6}+97.00017832506126x^{5}-147.1805326076494x^{4}\\
+ &  & +111.7996194440324x^{3}-43.71110414341027x^{2}+8.049781257197147x\\
+ &  & +1.421773396945804.
+\end{eqnarray*}
+
+\end_inset
+
+Again we have added a second subscript in order to distinguish the interpolating
+ polynomial for 
+\begin_inset Formula $\nu$
+\end_inset
+
+ from that for 
+\begin_inset Formula $\varphi$
+\end_inset
+
+.
+ Now we can get second estimates for 
+\begin_inset Formula $\nu'(1.4)$
+\end_inset
+
+, 
+\begin_inset Formula $\varphi'(0.6)$
+\end_inset
+
+, 
+\begin_inset Formula $\int_{1.4}^{1.5}\nu\, dx$
+\end_inset
+
+, and 
+\begin_inset Formula $\int_{0}^{1}\varphi\: dx$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+\nu'(1.4) & \approx & P_{6,\nu}'(1.4)\approx-.7178145479410887\\
+\varphi'(0.5) & \approx & P_{6,\varphi}'(0.5)\approx.1729311759579151\\
+\int_{1.4}^{1.5}\nu(x)dx & \approx & \int_{1.4}^{1.5}P_{6,\nu}(x)dx\approx.1991932206801721\\
+\int_{0}^{1}\varphi(x)dx & \approx & \int_{0}^{1}P_{6,\varphi}(x)dx\approx1.925578216262883.
+\end{eqnarray*}
+
+\end_inset
+
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:numericalCalcFirstStab"
+
+\end_inset
+
+ summarizes the eight estimates we have made so far.
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:numericalCalcFirstStab"
+
+\end_inset
+
+Estimating the derivatives and integrals of 
+\begin_inset Formula $\nu$
+\end_inset
+
+ and 
+\begin_inset Formula $\varphi$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+quantity
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+using 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+using 
+\begin_inset Formula $P_{6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\nu'(1.4)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.7304890953431942$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.7178145479410887$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\varphi'(0.5)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.002276851294419568$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.1447147284558277$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\int_{1.4}^{1.5}\nu(x)dx$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.1991481658283149$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $.1991932206801721$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\int_{0}^{1}\varphi(x)dx$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.947301134618903$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.925578216262883$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The first four digits of the estimates of 
+\begin_inset Formula $\int_{1.4}^{1.5}\nu(x)dx$
+\end_inset
+
+ agree, and the first two of 
+\begin_inset Formula $\int_{0}^{1}\varphi(x)dx$
+\end_inset
+
+ agree.
+ So there is some agreement for the estimates of the integrals.
+ The estimates for the derivatives don't agree quite as well, however.
+ The estimates for 
+\begin_inset Formula $\nu'(1.4)$
+\end_inset
+
+ only agree in their first significant digit.
+ They both suggest 
+\begin_inset Formula $\nu'(1.4)\approx-.7$
+\end_inset
+
+.
+ But there is essentially no agreement between the estimates of 
+\begin_inset Formula $\varphi'(0.5)$
+\end_inset
+
+.
+ One approximation is more than 60 times the other! Based on this simple
+ analysis, we should have a hard time believing either estimate of 
+\begin_inset Formula $\varphi'(0.5)$
+\end_inset
+
+.
+ And we should only trust the first few digits of the others.
+ We will see later that we can use this type of comparison to have the computer
+ decide whether an approximation is good or not.
+\end_layout
+
+\begin_layout Subsection
+Issues
+\end_layout
+
+\begin_layout Standard
+There are three issues with the method of estimating derivatives and integrals
+ just outlined.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Efficiency.
+
+\series default
+ For illustrative purposes and understanding the basic concept of numerical
+ calculus, it is a good idea to calculate some interpolating polynomials
+ as done in the previous subsection.
+ However, it is cumbersome and time-consuming to do so.
+ We will dedicate significant energy into finding shortcuts to this direct
+ method, thus making it more efficient and practical.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Automation.
+
+\series default
+ Numerical methods are meant to be run by a computer, not a human with a
+ calculator.
+ We need to find ways that a computer can handle interpolating polynomials.
+ This issue has intimate ties with efficiency.
+ After all, what will make an algorithm efficient is if it can be executed
+ quickly by a computer!
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Accuracy.
+
+\series default
+ So far we have done very little to determine how accurate our approximations
+ are.
+ We need to get a better handle on the error terms in order to understand
+ how to use the method accurately.
+\end_layout
+
+\begin_layout Standard
+Presently, we make strides toward addressing all three of these issues,
+ but we leave the bulk of it for the upcoming sections.
+\end_layout
+
+\begin_layout Standard
+In chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Interpolation"
+
+\end_inset
+
+ we labeled the nodes of an interpolating function 
+\begin_inset Formula $x_{0},x_{1},\ldots,x_{n}$
+\end_inset
+
+.
+ It will be beneficial to begin calling them 
+\begin_inset Formula $x_{0}+\theta_{0}h,x_{0}+\theta_{1}h,\ldots,x_{0}+\theta_{n}h$
+\end_inset
+
+ instead.
+ And for most of our analysis, we will use 
+\begin_inset Formula $x_{0}+\theta h$
+\end_inset
+
+ instead of 
+\begin_inset Formula $x$
+\end_inset
+
+ for the point at which we desire an estimate.
+ One might call this substitution a change of variables or a recalibration
+ of the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis.
+\end_layout
+
+\begin_layout Standard
+To see how this helps with the analysis, consider the degree at most 2 interpola
+ting polynomial of 
+\begin_inset Formula $f$
+\end_inset
+
+ with nodes 
+\begin_inset Formula 
+\[
+x_{0}+\theta_{0}h,\ x_{0}+\theta_{1}h,\mbox{ and }x_{0}+\theta_{n}h.
+\]
+
+\end_inset
+
+In the notation of chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Interpolation"
+
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\[
+P_{2}(x)=\frac{(x-x_{1})(x-x_{2})}{(x_{0}-x_{1})(x_{0}-x_{2})}f(x_{0})+\frac{(x-x_{0})(x-x_{2})}{(x_{1}-x_{0})(x_{1}-x_{2})}f(x_{1})+\frac{(x-x_{0})(x-x_{1})}{(x_{2}-x_{0})(x_{2}-x_{1})}f(x_{2}),
+\]
+
+\end_inset
+
+ but with the new notation, we replace 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ by 
+\begin_inset Formula $x_{0}+\theta_{0}h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ by 
+\begin_inset Formula $x_{0}+\theta_{1}h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ by 
+\begin_inset Formula $x_{0}+\theta_{2}h$
+\end_inset
+
+, and 
+\begin_inset Formula $x$
+\end_inset
+
+ by 
+\begin_inset Formula $x_{0}+\theta h$
+\end_inset
+
+, giving us
+\begin_inset Formula 
+\begin{eqnarray}
+P_{2}(x_{0}+\theta h) & = & \frac{(\theta-\theta_{1})(\theta-\theta_{2})}{(\theta_{0}-\theta_{1})(\theta_{0}-\theta_{2})}f(x_{0}+\theta_{0}h)\nonumber \\
+ &  & +\frac{(\theta-\theta_{0})(\theta-\theta_{2})}{(\theta_{1}-\theta_{0})(\theta_{1}-\theta_{2})}f(x_{0}+\theta_{1}h)\nonumber \\
+ &  & +\frac{(\theta-\theta_{0})(\theta-\theta_{1})}{(\theta_{2}-\theta_{0})(\theta_{2}-\theta_{1})}f(x_{0}+\theta_{2}h).\label{eq:p2relative}
+\end{eqnarray}
+
+\end_inset
+
+For the most part, we have just swapped 
+\begin_inset Formula $x$
+\end_inset
+
+ for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ for 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+.
+ This benign-looking change is actually a huge step forward! This formula
+ makes it apparent that the actual values of the 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ are not important.
+ It is only their location relative to some base point, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, measured by some characteristic length, 
+\begin_inset Formula $h$
+\end_inset
+
+, that matters.
+ 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and the 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ are those measures.
+ Essentially this makes 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ the origin and 
+\begin_inset Formula $h$
+\end_inset
+
+ the unit of measure on the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis.
+ We measure all values by how many lengths of 
+\begin_inset Formula $h$
+\end_inset
+
+ they are from 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To illustrate the benefit, let us assume that we have three nodes, equally
+ spaced, so the least and greatest nodes are the same distance from the
+ third, middle node.
+ Setting the central node as the base point, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, and the characteristic length, 
+\begin_inset Formula $h$
+\end_inset
+
+, to the distance from this central node to the others, we can then label
+ them
+\begin_inset Formula 
+\[
+x_{0}-h,\ x_{0},\mbox{ and }x_{0}+h.
+\]
+
+\end_inset
+
+And we have already arrived at the essential point.
+ It doesn't matter if the set of nodes is 
+\begin_inset Formula $\{1,2,3\}$
+\end_inset
+
+ or 
+\begin_inset Formula $\{80,90,100\}$
+\end_inset
+
+ or 
+\begin_inset Formula $\{-4.3,-4.2,-4.1\}$
+\end_inset
+
+.
+ In each of these sets, we have three nodes, one of which is the midpoint
+ of the other two.
+ Each set of nodes is equal to the set 
+\begin_inset Formula $\{x_{0}-h,x_{0},x_{0}+h\}$
+\end_inset
+
+ for some values of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ Hence, if we can do any analysis with the set 
+\begin_inset Formula $\{x_{0}-h,x_{0},x_{0}+h\}$
+\end_inset
+
+, then we get information about working with any of the sets of nodes 
+\begin_inset Formula $\{1,2,3\}$
+\end_inset
+
+ or 
+\begin_inset Formula $\{80,90,100\}$
+\end_inset
+
+ or 
+\begin_inset Formula $\{-4.3,-4.2,-4.1\}$
+\end_inset
+
+ and so on.
+ 
+\end_layout
+
+\begin_layout Standard
+Back to the set of nodes 
+\begin_inset Formula $\{x_{0}-h,x_{0},x_{0}+h\}$
+\end_inset
+
+.
+ For this set of nodes, we have 
+\begin_inset Formula $\theta_{0}=-1$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{1}=0$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta_{2}=1$
+\end_inset
+
+.
+ Substituting into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2relative"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{2}(x_{0}+\theta h) & = & \frac{(\theta)(\theta-1)}{(-1)(-2)}f(x_{0}-h)+\frac{(\theta+1)(\theta-1)}{(1)(-1)}f(x_{0})+\frac{(\theta+1)(\theta)}{(2)(1)}f(x_{0}+h)\\
+ & = & \frac{\theta^{2}-\theta}{2}f(x_{0}-h)+(1-\theta^{2})f(x_{0})+\frac{\theta^{2}+\theta}{2}f(x_{0}+h).
+\end{eqnarray*}
+
+\end_inset
+
+Now this formula can be used to get the interpolating parabola over any
+ set of three equally spaced nodes.
+ 
+\end_layout
+
+\begin_layout Standard
+In an attempt to apply this formula to 
+\begin_inset Formula $\nu$
+\end_inset
+
+, consider the nodes 
+\begin_inset Formula $93/70$
+\end_inset
+
+, 
+\begin_inset Formula $99/70$
+\end_inset
+
+, and 
+\begin_inset Formula $105/70$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $\frac{99}{70}-\frac{93}{70}=\frac{105}{70}-\frac{99}{70}$
+\end_inset
+
+, we have a set of nodes of the form 
+\begin_inset Formula $\{x_{0}-h,x_{0},x_{0}+h\}$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=\frac{99}{70}$
+\end_inset
+
+ and 
+\begin_inset Formula $h=\frac{6}{70}=\frac{3}{35}$
+\end_inset
+
+.
+ It just so happens that 
+\begin_inset Formula $1.4=\frac{99}{70}-\frac{1}{6}\cdot\frac{3}{35}$
+\end_inset
+
+, so we use 
+\begin_inset Formula $\theta=-\frac{1}{6}$
+\end_inset
+
+ to calculate 
+\begin_inset Formula $P_{2,\nu}(1.4)$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{2,\nu}(1.4) & = & P_{2,\nu}\left(x_{0}-\frac{1}{6}h\right)\\
+ & = & \frac{\left(-\frac{1}{6}\right)^{2}+\frac{1}{6}}{2}\nu\left(\frac{93}{70}\right)+\left(1-\left(-\frac{1}{6}\right)^{2}\right)\nu\left(\frac{99}{70}\right)+\frac{\left(-\frac{1}{6}\right)^{2}-\frac{1}{6}}{2}\nu\left(\frac{105}{70}\right)\\
+ & = & \frac{7\nu\left(\frac{93}{70}\right)+70\nu\left(\frac{99}{70}\right)-5\nu\left(\frac{105}{70}\right)}{72}\\
+ & = & \frac{7(2.084603181618954)+70(2.009751835391139)-5(1.971614474758557)}{72}\\
+ & = & 2.019677477429439.
+\end{eqnarray*}
+
+\end_inset
+
+This seems a pretty good estimate since it is between 
+\begin_inset Formula $\nu(93/70)\approx2.085$
+\end_inset
+
+ and 
+\begin_inset Formula $\nu(99/70)\approx2.009$
+\end_inset
+
+ but significantly closer to 
+\begin_inset Formula $2.009$
+\end_inset
+
+.
+ After all, 
+\begin_inset Formula $1.4$
+\end_inset
+
+ is between 
+\begin_inset Formula $93/70\approx1.328$
+\end_inset
+
+ and 
+\begin_inset Formula $99/70\approx1.414$
+\end_inset
+
+ but significantly closer to 
+\begin_inset Formula $1.414$
+\end_inset
+
+.
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrangeInterpolatingPolynomialError"
+
+\end_inset
+
+ gives us some idea how good we might expect this estimate to be.
+\end_layout
+
+\begin_layout Standard
+But let's back this calculation up just a couple steps.
+ The constants of the 
+\begin_inset Formula $\frac{7\nu\left(\frac{93}{70}\right)+70\nu\left(\frac{99}{70}\right)-5\nu\left(\frac{105}{70}\right)}{72}$
+\end_inset
+
+ step were determined purely from the values of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and the 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+.
+ And the 
+\begin_inset Formula $\frac{93}{70}$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{99}{70}$
+\end_inset
+
+, and 
+\begin_inset Formula $\frac{105}{70}$
+\end_inset
+
+ are just the three nodes, 
+\begin_inset Formula $x_{0}-h,x_{0},x_{x+h}$
+\end_inset
+
+, so what we really have here is a prescription, or formula, for the value
+ 
+\begin_inset Formula $P_{2}(x_{0}-\frac{1}{6}h)$
+\end_inset
+
+ for 
+\shape italic
+any
+\shape default
+ degree at most 2 interpolating polynomial over the nodes 
+\begin_inset Formula $x_{0}-h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\nu\left(x_{0}-\frac{1}{6}h\right)\approx P_{2,\nu}\left(x_{0}-\frac{1}{6}h\right)=\frac{7\nu(x_{0}-h)+70\nu(x_{0})-5\nu(x_{0}+h)}{72}.
+\]
+
+\end_inset
+
+And there is nothing special about the particular 
+\begin_inset Formula $\nu$
+\end_inset
+
+ in this formula either.
+ None of the constants 
+\begin_inset Formula $-\frac{1}{6}$
+\end_inset
+
+, 
+\begin_inset Formula $7$
+\end_inset
+
+, 
+\begin_inset Formula $70$
+\end_inset
+
+, 
+\begin_inset Formula $-5$
+\end_inset
+
+, nor 
+\begin_inset Formula $72$
+\end_inset
+
+ is dependent on 
+\begin_inset Formula $\nu$
+\end_inset
+
+, but rather only dependent on the spacing of the nodes.
+ Therefore, given any function 
+\begin_inset Formula $f$
+\end_inset
+
+, we can extract from this calculation the succinct approximation formula
+\begin_inset Formula 
+\begin{equation}
+f\left(x_{0}-\frac{1}{6}h\right)\approx\frac{7f(x_{0}-h)+70f(x_{0})-5f(x_{0}+h)}{72}.\label{eq:p2formula}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+This formula illustrates the real purpose in reframing the values of the
+ 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $h$
+\end_inset
+
+, and the 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+.
+ This way, we get formulas applicable to a whole class of nodes, not just
+ one particular set of nodes.
+\end_layout
+
+\begin_layout Standard
+As for 
+\begin_inset Formula $\varphi$
+\end_inset
+
+, the nodes 
+\begin_inset Formula $\frac{1}{7}$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{4}{7}$
+\end_inset
+
+, and 
+\begin_inset Formula $1$
+\end_inset
+
+ are equally spaced, so the set 
+\begin_inset Formula $\{\frac{1}{7},\frac{4}{7},1\}$
+\end_inset
+
+ has the form 
+\begin_inset Formula $\{x_{0}-h,x_{0},x_{0}+h\}$
+\end_inset
+
+ where 
+\begin_inset Formula $x_{0}=\frac{4}{7}$
+\end_inset
+
+ and 
+\begin_inset Formula $h=\frac{3}{7}$
+\end_inset
+
+.
+ Not by accident, it happens that 
+\begin_inset Formula $\frac{4}{7}-\frac{1}{6}\cdot\frac{3}{7}=0.5$
+\end_inset
+
+, so 
+\begin_inset Formula $\varphi(0.5)=\varphi(x_{0}-\frac{1}{6}h)$
+\end_inset
+
+ where 
+\begin_inset Formula $x_{0}=\frac{4}{7}$
+\end_inset
+
+ and 
+\begin_inset Formula $h=\frac{3}{7}$
+\end_inset
+
+.
+ Now we can use formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2formula"
+
+\end_inset
+
+ to approximate 
+\begin_inset Formula $\varphi(0.5)$
+\end_inset
+
+!
+\begin_inset Formula 
+\begin{eqnarray*}
+\varphi(0.5) & \approx & P_{2,\varphi}(0.5)=\frac{7\varphi(x_{0}-h)+70\varphi(x_{0})-5\varphi(x_{0}+h)}{72}\\
+ & = & \frac{7(1.9498808918992)+70(1.941460911122824)-5(1.96122825291126)}{72}\\
+ & = & 1.94090678829633.
+\end{eqnarray*}
+
+\end_inset
+
+This time, we have completely circumvented any direct calculation and evaluation
+ of 
+\begin_inset Formula $P_{2,\varphi}$
+\end_inset
+
+.
+ Formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2formula"
+
+\end_inset
+
+ allows us to calculate 
+\begin_inset Formula $P_{2,\varphi}(0.5)$
+\end_inset
+
+ directly from the values of 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ at the three nodes.
+ No need to calculate, refer back to, evaluate, or simplify 
+\begin_inset Formula $P_{2,\varphi}$
+\end_inset
+
+! All of that has been done in deriving the formula.
+ Very quick.
+ Very efficient.
+\end_layout
+
+\begin_layout Subsection
+Stencils
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+stencil
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A formula such as 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2formula"
+
+\end_inset
+
+ is only applicable to a set of nodes and point of evaluation with the same
+ geometry (relative positioning) as those used to derive the formula.
+ Therefore, it will be important to keep track of the geometry used to derive
+ such formulas.
+ To that end, we often refer to a particular set of nodes with its corresponding
+ point of evaluation as a stencil.
+ For example, the nodes 
+\begin_inset Formula $x_{0}-h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+ with point of evaluation 
+\begin_inset Formula $x_{0}-\frac{1}{6}h$
+\end_inset
+
+ form a stencil---a relative positioning of points that can be scaled (by
+ changing the value of 
+\begin_inset Formula $h$
+\end_inset
+
+) and translated (by changing the value of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+).
+ On a number line, this particular stencil looks like
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments01.pdf
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ can be located anywhere and 
+\begin_inset Formula $h$
+\end_inset
+
+ can be any size, even negative.
+ It is this flexibility that makes formulas like 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2formula"
+
+\end_inset
+
+ useful.
+\end_layout
+
+\begin_layout Standard
+Now let's suppose we do not have evenly spaced data, but we are interested
+ in a point midway between two others.
+ An appropriate three-point stencil would use the nodes 
+\begin_inset Formula $x_{0}-h$
+\end_inset
+
+, the leftmost node, 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+, the rightmost node, 
+\begin_inset Formula $x_{0}+\theta_{1}h$
+\end_inset
+
+ for some 
+\begin_inset Formula $\theta_{1}$
+\end_inset
+
+ between 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+, the middle node, and point of evaluation 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, the point midway between the leftmost and rightmost nodes.
+ For 
+\begin_inset Formula $\theta_{1}=\frac{1}{3}$
+\end_inset
+
+, this stencil looks like
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments02.pdf
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+And we can derive a formula for 
+\begin_inset Formula $P_{2}(x_{0})$
+\end_inset
+
+ based on the values of 
+\begin_inset Formula $f$
+\end_inset
+
+ at the three nodes.
+ Plugging 
+\begin_inset Formula $\theta=0$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{0}=-1$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{1}=\frac{1}{3}$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta_{2}=1$
+\end_inset
+
+ into equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2relative"
+
+\end_inset
+
+, we get
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{2}(x_{0}) & = & \frac{(-\frac{1}{3})(-1)}{(-\frac{4}{3})(-2)}f(x_{0}-h)+\frac{(1)(-1)}{(\frac{4}{3})(-\frac{2}{3})}f(x_{0}+\frac{1}{3}h)+\frac{(1)(-\frac{1}{3})}{(2)(\frac{2}{3})}f(x_{0}+h)\\
+ & = & \frac{f(x_{0}-h)+9f(x_{0}+\frac{1}{3}h)-2f(x_{0}+h)}{8},
+\end{eqnarray*}
+
+\end_inset
+
+again a succinct formula applicable to any function 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ No need to calculate the interpolating polynomial or evaluate it directly
+ for any data that fit this stencil.
+ That part has already been done and simplified.
+\end_layout
+
+\begin_layout Subsection
+Derivatives
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Derivatives"
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+numerical differentiation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Derivative formulas can be derived likewise.
+ Once derived for a given stencil, they can be used very easily and efficiently
+ for other data fitting the same stencil.
+ We now find the formula for the first derivative, 
+\begin_inset Formula $P_{2}'(x_{0}-\frac{1}{6}h)$
+\end_inset
+
+, over the stencil
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments01.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+used earlier.
+ We begin by recognizing that in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2relative"
+
+\end_inset
+
+ 
+\begin_inset Formula $x$
+\end_inset
+
+ is a function of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ In particular, 
+\begin_inset Formula $x(\theta)=x_{0}+h\theta$
+\end_inset
+
+, so 
+\begin_inset Formula $\frac{d}{d\theta}x(\theta)=h$
+\end_inset
+
+.
+ By the chain rule, 
+\begin_inset Formula $\frac{d}{d\theta}P_{2}(\theta)=\frac{d}{dx}P_{2}(x)\cdot\frac{d}{d\theta}x(\theta)=h\frac{d}{dx}P_{2}(x)$
+\end_inset
+
+.
+ From equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2relative"
+
+\end_inset
+
+, we then have 
+\begin_inset Formula 
+\begin{eqnarray}
+\frac{d}{dx}P_{2}(x) & = & \frac{\frac{d}{d\theta}P_{2}(\theta)}{h}\nonumber \\
+ & = & \frac{(\theta-\theta_{1})+(\theta-\theta_{2})}{h(\theta_{0}-\theta_{1})(\theta_{0}-\theta_{2})}f(x_{0}+\theta_{0}h)\nonumber \\
+ &  & +\frac{(\theta-\theta_{0})+(\theta-\theta_{2})}{h(\theta_{1}-\theta_{0})(\theta_{1}-\theta_{2})}f(x_{0}+\theta_{1}h)\nonumber \\
+ &  & +\frac{(\theta-\theta_{0})+(\theta-\theta_{1})}{h(\theta_{2}-\theta_{0})(\theta_{2}-\theta_{1})}f(x_{0}+\theta_{2}h).\label{eq:p2relativeDerivative}
+\end{eqnarray}
+
+\end_inset
+
+In particular, when 
+\begin_inset Formula $\theta_{0}=-1$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{1}=0$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{2}=1$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta=-\frac{1}{6}$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{eqnarray}
+P_{2}'\left(x_{0}-\frac{1}{6}h\right) & = & \frac{-\frac{1}{6}-\frac{7}{6}}{h(-1)(-2)}f(x_{0}-h)+\frac{\frac{5}{6}-\frac{7}{6}}{h(1)(-1)}f(x_{0})+\frac{\frac{5}{6}-\frac{1}{6}}{h(2)(1)}f(x_{0}+h)\label{eq:derivativeDumb}\\
+ & = & \frac{-2f(x_{0}-h)+f(x_{0})+f(x_{0}+h)}{3h}.\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+We now have a formula for 
+\begin_inset Formula $P_{2}'(x_{0}-\frac{1}{6}h)\approx f'(x_{0}-\frac{1}{6}h)$
+\end_inset
+
+ for the stencil with nodes 
+\begin_inset Formula $x_{0}-h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+ and 
+\begin_inset Formula $x=x_{0}-\frac{1}{6}h$
+\end_inset
+
+.
+ We can now apply this formula to approximate 
+\begin_inset Formula $\nu'(1.4)$
+\end_inset
+
+ and 
+\begin_inset Formula $\varphi'(0.5)$
+\end_inset
+
+.
+\begin_inset Formula 
+\begin{eqnarray*}
+\nu'(1.4) & \approx & \frac{-2\nu(\frac{93}{70})+\nu(\frac{99}{70})+\nu(\frac{105}{70})}{3(\frac{3}{35})}\\
+ & = & \frac{-2(2.084603181618954)+2.009751835391139+1.971614474758557)}{9/35}\\
+ & = & -.7304890953430477.
+\end{eqnarray*}
+
+\end_inset
+
+Notice this is not exactly what we got in table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:numericalCalcFirstStab"
+
+\end_inset
+
+ for 
+\begin_inset Formula $\nu'(1.4)$
+\end_inset
+
+ using 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+.
+ The two estimates differ in the last few digits.
+ This is due to floating-point error affecting the calculations in different
+ ways.
+ Generally there is more error in calculating directly from the interpolating
+ polynomial because the data are processed much more heavily.
+ Best not to trust the last several digits in either calculation, however.
+ Now
+\begin_inset Formula 
+\begin{eqnarray*}
+\varphi'(0.5) & \approx & \frac{-2\varphi(\frac{1}{7})+\varphi(\frac{4}{7})+\varphi(1)}{3(\frac{3}{7})}\\
+ & = & \frac{-2(1.9498808918992)+1.941460911122824+1.96122825291126)}{9/7}\\
+ & = & .002276851294420679.
+\end{eqnarray*}
+
+\end_inset
+
+Again, this is close to the approximation in table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:numericalCalcFirstStab"
+
+\end_inset
+
+, but not exactly the same due to different floating-point errors for the
+ two calculations.
+ But the point is made.
+ Using a formula based on a stencil is preferable to working directly from
+ the interpolating polynomial.
+ It is easier, more efficient, and can be automated.
+\end_layout
+
+\begin_layout Standard
+Before moving on to integration, we make one more observation.
+ When trying to approximate 
+\begin_inset Formula $f$
+\end_inset
+
+ using an interpolating polynomial, it does not make much sense to consider
+ a stencil like
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments03.pdf
+
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\noindent
+where the point of evaluation is one of the nodes.
+ We know, by definition of 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+, that 
+\begin_inset Formula $P_{n}(x_{i})=f(x_{i})$
+\end_inset
+
+ for each node 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+.
+ Hence the 
+\begin_inset Quotes eld
+\end_inset
+
+formula
+\begin_inset Quotes erd
+\end_inset
+
+ would be 
+\begin_inset Formula $f(x_{i})=P_{2}(x_{i})$
+\end_inset
+
+, and it would be exact, not an approximation.
+ And not particularly informative since this is one of the facts from which
+ we calculated 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+! On the other hand, it does make sense to consider such a stencil when
+ trying to approximate derivatives of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ There is no guarantee the derivative of 
+\begin_inset Formula $P_{n}$
+\end_inset
+
+ will agree with the derivative of 
+\begin_inset Formula $f$
+\end_inset
+
+ anywhere, even at the nodes.
+ Substituting 
+\begin_inset Formula $\theta_{0}=-1$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{1}=0$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{2}=1$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta=0$
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2relativeDerivative"
+
+\end_inset
+
+, we find
+\begin_inset Formula 
+\begin{eqnarray}
+P_{2}'(x_{0}) & = & \frac{1}{h(-1)(-2)}f(x_{0}-h)+\frac{1+(-1)}{h(1)(-1)}f(x_{0})+\frac{1}{h(2)(1)}f(x_{0}+h)\nonumber \\
+ & = & \frac{f(x_{0}+h)-f(x_{0}-h)}{2h},\label{eq:centeredDifferenceNaive}
+\end{eqnarray}
+
+\end_inset
+
+for example.
+\end_layout
+
+\begin_layout Subsection
+Integrals
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+numerical integration
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+numerical integration|seealso{quadrature}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For integration formulas, we use a modified stencil.
+ We need the nodes plus the endpoints of integration, which will be identified
+ by square brackets, 
+\begin_inset Formula $[$
+\end_inset
+
+ for the left endpoint and 
+\begin_inset Formula $]$
+\end_inset
+
+ for the right endpoint.
+ But the process is analogous.
+ We find a formula for the interpolating polynomial and, in place of integrating
+ the unknown function, we integrate the interpolating polynomial.
+\end_layout
+
+\begin_layout Standard
+Following this procedure, we can derive a formula for the integral of 
+\begin_inset Formula $f$
+\end_inset
+
+ over the stencil 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments04.pdf
+
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\noindent
+for example.
+ The algebra is straightforward but tedious, so we do not show it here.
+ It is best to use a computer algebra system to derive such a formula.
+ The result, an approximation of the integral over 
+\begin_inset Formula $[x_{0}+2.5h,x_{0}+6h]$
+\end_inset
+
+ using nodes 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+2h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+3h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+4h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+5h$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}+6h$
+\end_inset
+
+, is
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{x_{0}+2.5h}^{x_{0}+6h}f(x)dx & \approx & \frac{h}{138240}\left[42056f(x_{0}+6h)+201831f(x_{0}+5h)+63357f(x_{0}+4h)\right.\\
+ &  & \left.+195902f(x_{0}+3h)-28518f(x_{0}+2h)+10731f(x_{0}+h)-1519f(x_{0})\right].
+\end{eqnarray*}
+
+\end_inset
+
+This formula can now be used to approximate 
+\begin_inset Formula $\int_{1.4}^{1.5}\nu(x)dx$
+\end_inset
+
+ instead of integrating the interpolating polynomial directly as done 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "integrationWithP6"
+
+\end_inset
+
+.
+ You are invited to plug in the appropriate values of 
+\begin_inset Formula $\nu$
+\end_inset
+
+ and compare your answer to the one in table 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "tab:numericalCalcFirstStab"
+
+\end_inset
+
+.
+ Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:integralFormula1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The stencil for the approximation of 
+\begin_inset Formula $\int_{0}^{1}\varphi(x)dx$
+\end_inset
+
+ using 
+\begin_inset Formula $P_{6,\varphi}$
+\end_inset
+
+ looks like 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments05.pdf
+
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\noindent
+different from the one we used to approximate 
+\begin_inset Formula $\int_{1.4}^{1.5}\nu(x)dx$
+\end_inset
+
+.
+ Consequently, the approximation formula is different too.
+ We need a formula for the integral over 
+\begin_inset Formula $[x_{0}-h,x_{0}+6h]$
+\end_inset
+
+ with nodes 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+2h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+3h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+4h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+5h$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}+6h$
+\end_inset
+
+.
+ The nodes are the same as before, but the interval of integration is different.
+ The result is
+\begin_inset Formula 
+\begin{eqnarray}
+\int_{x_{0}-h}^{x_{0}+6h}f(x)dx & \approx & \frac{h}{8640}\left[5257f(x_{0}+6h)-5880f(x_{0}+5h)+59829f(x_{0}+4h)\right.\nonumber \\
+ &  & \left.-81536f(x_{0}+3h)+102459f(x_{0}+2h)-50568f(x_{0}+h)+30919f(x_{0})\right].\label{eq:integral7dumb}
+\end{eqnarray}
+
+\end_inset
+
+Again, a computer algebra system should be used to derive such a formula.
+ You are now invited to plug in the appropriate values of 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $\int_{0}^{1}\varphi(x)dx$
+\end_inset
+
+ and compare your result to the one in table 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "tab:numericalCalcFirstStab"
+
+\end_inset
+
+.
+ Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:integralFormula2"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+node: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+node
+\end_layout
+
+\end_inset
+
+the abscissa (first coordinate) of a data point used in interpolation.
+\end_layout
+
+\begin_layout Description
+polynomial
+\begin_inset space ~
+\end_inset
+
+approximation: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+polynomial approximation
+\end_layout
+
+\end_inset
+
+approximating the value of a function, its derivative or integral based
+ on the corresponding value of an interpolating polynomial.
+\end_layout
+
+\begin_layout Description
+stencil: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+stencil
+\end_layout
+
+\end_inset
+
+relative positioning of the abscissas used in a polynomial approximation.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments"
+
+\end_inset
+
+Derive an approximation formula for the first derivative over the stencil
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments06.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+following these steps.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Write down 
+\begin_inset Formula $L_{1}(x)$
+\end_inset
+
+, the Lagrange form of the interpolating polynomial passing through the
+ points
+\begin_inset Formula 
+\[
+(x_{0},f(x_{0}))\quad\mbox{and}\quad(x_{1},f(x_{1})).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Calculate the derivative 
+\begin_inset Formula $L_{1}'(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Substitute 
+\begin_inset Formula $x_{0}+\frac{1}{2}h$
+\end_inset
+
+ for 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+ for 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ in your formula from (b) and simplify.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Derive an approximation formula for the first derivative over the stencil
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments06.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+following these steps.
+\end_layout
+
+\begin_layout Enumerate
+Write down 
+\begin_inset Formula $L_{1}(x(\theta))=L_{1}(x_{0}+\theta h)$
+\end_inset
+
+, the Lagrange form of the interpolating polynomial passing through the
+ points
+\begin_inset Formula 
+\[
+(x_{0},f(x_{0}))\quad\mbox{and}\quad(x_{0}+h,f(x_{0}+h))
+\]
+
+\end_inset
+
+in terms of 
+\begin_inset Formula $\theta$
+\end_inset
+
+, 
+\begin_inset Formula $h$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Calculate the derivative 
+\begin_inset Formula $\frac{d}{dx}L_{1}(x(\theta))$
+\end_inset
+
+.
+ Remember, 
+\begin_inset Formula $x(\theta)=x_{0}+\theta h$
+\end_inset
+
+, and use the chain rule.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-4"
+
+\end_inset
+
+Substitute 
+\begin_inset Formula $\theta=\frac{1}{2}$
+\end_inset
+
+ into your formula from (b) and simplify.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Derive an approximation formula for the first derivative over the stencil
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments21.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+following these steps.
+\end_layout
+
+\begin_layout Enumerate
+Calculate 
+\begin_inset Formula $N_{2}(x)$
+\end_inset
+
+, the Newton form of the interpolating polynomial passing through the points
+\begin_inset Formula 
+\[
+(x_{0},f(x_{0})),\ (x_{1},f(x_{1})),\ \mbox{and}\ (x_{2},f(x_{2})).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Calculate the derivative 
+\begin_inset Formula $N_{2}'(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-5"
+
+\end_inset
+
+Substitute 
+\begin_inset Formula $x_{0}+\frac{1}{2}h$
+\end_inset
+
+ for 
+\begin_inset Formula $x$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+ for 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}+2h$
+\end_inset
+
+ for 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ in your formula from (b) and simplify.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-6"
+
+\end_inset
+
+Derive an approximation formula for the second derivative over the stencil
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments21.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+following these steps.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Calculate 
+\begin_inset Formula $N_{2}(x(\theta))=N_{2}(x_{0}+\theta h)$
+\end_inset
+
+, the Newton form of the interpolating polynomial passing through the points
+\begin_inset Formula 
+\[
+\begin{gathered}(x_{0},f(x_{0})),\ (x_{0}+h,f(x_{0}+h)),\\
+\mbox{and}\ (x_{0}+2h,f(x_{0}+2h))
+\end{gathered}
+\]
+
+\end_inset
+
+in terms of 
+\begin_inset Formula $\theta$
+\end_inset
+
+, 
+\begin_inset Formula $h$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Calculate the derivative 
+\begin_inset Formula $\frac{d^{2}}{dx^{2}}N_{2}(x(\theta))$
+\end_inset
+
+.
+ Remember, 
+\begin_inset Formula $x(\theta)=x_{0}+\theta h$
+\end_inset
+
+, and use the chain rule.
+\end_layout
+
+\begin_layout Enumerate
+Substitute 
+\begin_inset Formula $\theta=\frac{1}{2}$
+\end_inset
+
+ into your formula from (b) and simplify.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:centeredDifferenceNaive"
+
+\end_inset
+
+ and the formula you got from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments"
+
+\end_inset
+
+ should be different.
+ However, they were derived over essentially the same stencil---two nodes
+ with the point of evaluation centered between them.
+ Only the labels on the stencils were different.
+ In other words, they were derived from the same geometry, so, in some sense,
+ must be the same.
+ In question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments"
+
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ plays the same role as 
+\begin_inset Formula $x_{0}-h$
+\end_inset
+
+ does in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:centeredDifferenceNaive"
+
+\end_inset
+
+.
+ Moreover, in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments"
+
+\end_inset
+
+, the distance from the point of evaluation to either node is 
+\begin_inset Formula $\frac{h}{2}$
+\end_inset
+
+ while in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:centeredDifferenceNaive"
+
+\end_inset
+
+, that distance is 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ Make the substitution 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ for 
+\begin_inset Formula $x_{0}-h$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:centeredDifferenceNaive"
+
+\end_inset
+
+.
+ Then make the substitution 
+\begin_inset Formula $\frac{h}{2}$
+\end_inset
+
+ for the 
+\begin_inset Formula $h$
+\end_inset
+
+ in the denominator of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:centeredDifferenceNaive"
+
+\end_inset
+
+.
+ With these substitutions, formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:centeredDifferenceNaive"
+
+\end_inset
+
+ should match exactly the formula you got in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments"
+
+\end_inset
+
+.
+ In other words, different labelings in a stencil produce different labelings
+ in the associated formula.
+ Nothing more.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-1"
+
+\end_inset
+
+Use formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:integral7dumb"
+
+\end_inset
+
+ to approximate the integral.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-7"
+
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula ${\displaystyle \int_{-4}^{3}e^{x}dx}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{-1}^{6}\sin x\, dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-8"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{10}^{17}\frac{1}{x-5}dx}$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{-3}^{4}\left(x^{5}-4\right)dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-9"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{0}^{1}e^{-x}dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{-\pi/2}^{\pi/2}\cos x\, dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-10"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{1}^{2}\frac{1}{x}dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{4}^{6.1}\left(9-x^{4}\right)dx}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-11"
+
+\end_inset
+
+For each integral in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-1"
+
+\end_inset
+
+, (i) calculate the integral exactly, and (ii) calculate the absolute error
+ in the approximation.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-2"
+
+\end_inset
+
+Let 
+\begin_inset Formula $f(x)=(x-1)^{2}\sin x$
+\end_inset
+
+.
+ Use formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:derivativeDumb"
+
+\end_inset
+
+ to approximate 
+\begin_inset Formula $f'(0)$
+\end_inset
+
+ using
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $h=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-12"
+
+\end_inset
+
+
+\begin_inset Formula $h=\frac{1}{2}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h=\frac{1}{4}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h=\frac{1}{8}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-13"
+
+\end_inset
+
+Calculate the absolute error in each approximation of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-2"
+
+\end_inset
+
+.
+ Does the error get smaller as 
+\begin_inset Formula $h$
+\end_inset
+
+ gets smaller?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-28"
+
+\end_inset
+
+Derive an approximation formula over the stencil
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments07.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+for the value of the function.
+\end_layout
+
+\begin_layout Enumerate
+for the first derivative.
+\end_layout
+
+\begin_layout Enumerate
+for the second derivative.
+\end_layout
+
+\begin_layout Enumerate
+for the third derivative.
+ What can you say about this formula?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The polynomial 
+\begin_inset Formula $p(x)=3x^{4}-2x^{2}+x-7$
+\end_inset
+
+ is an interpolating polynomial for 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Use 
+\begin_inset Formula $p$
+\end_inset
+
+ to approximate
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(1)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-14"
+
+\end_inset
+
+
+\begin_inset Formula $f(2)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f'(1)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-15"
+
+\end_inset
+
+
+\begin_inset Formula $f'(2)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{0}^{1}f(x)dx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-16"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{0}^{2}f(x)dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The polynomial 
+\begin_inset Formula $q(x)=-7x^{4}+3x^{2}-x+4$
+\end_inset
+
+ is an interpolating polynomial for 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ Use 
+\begin_inset Formula $q$
+\end_inset
+
+ to approximate
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-17"
+
+\end_inset
+
+
+\begin_inset Formula $g(1)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(2)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-18"
+
+\end_inset
+
+
+\begin_inset Formula $g'(1)$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g'(2)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-19"
+
+\end_inset
+
+
+\begin_inset Formula ${\displaystyle \int_{0}^{1}g(x)dx}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \int_{0}^{2}g(x)dx}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2relativeDerivative"
+
+\end_inset
+
+ to find the formula for the first derivative over the stencil
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments08.pdf
+	rotateOrigin leftBaseline
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-20"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments10.pdf
+	rotateOrigin center
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments11.pdf
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-21"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments09.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments12.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-22"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments15.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments13.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-23"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments14.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-3"
+
+\end_inset
+
+Find a general approximation formula for the integral using two nodes by
+ doing the following.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Write down the (linear) interpolating polynomial with nodes 
+\begin_inset Formula $x_{0}+\theta_{2}h$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}+\theta_{3}h$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Integrate the polynomial over the interval 
+\begin_inset Formula $[x_{0}+\theta_{0}h,x_{0}+\theta_{1}h]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-24"
+
+\end_inset
+
+Simplify.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use the general approximation formula you derived in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-3"
+
+\end_inset
+
+ to find an approximation formula over the stencil.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-25"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments16.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments17.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-26"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments18.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments19.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\backslash
+medskip 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:rudiments-27"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+raisepic{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/calculus-rudiments20.pdf
+	rotateOrigin leftBottom
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+A general three point formula for the first derivative using 
+\begin_inset Formula $f(x_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $f(x_{0}+\alpha h)$
+\end_inset
+
+, and 
+\begin_inset Formula $f(x_{0}+2h)$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha\neq0$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha\neq2$
+\end_inset
+
+, is given by
+\begin_inset Formula 
+\begin{eqnarray*}
+f'(x_{0}) & = & \frac{1}{2h}\left[-\frac{2+\alpha}{\alpha}f(x_{0})\right.\\
+ &  & \qquad+\frac{4}{\alpha(2-\alpha)}f(x_{0}+\alpha h)\\
+ &  & \qquad\left.-\frac{\alpha}{2-\alpha}f(x_{0}+2h)\right]+O(h^{2})
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Use Taylor expansions of 
+\begin_inset Formula $f(x_{0}+\alpha h)$
+\end_inset
+
+ and 
+\begin_inset Formula $f(x_{0}+2h)$
+\end_inset
+
+ to derive the given formula.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Answers
+\end_layout
+
+\begin_layout Description
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\int_{x_{0}+2.5h}^{x_{0}+6h}f(x)dx$
+\end_inset
+
+:
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:integralFormula1"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\begin{gathered}\frac{1/35}{138240}\left[42056(1.971614474758557)+201831(1.981091507449763)\right.\\
++63357(1.993574976724822)+195902(2.009751835391139)\\
+-28518(2.030278824314539)+10731(2.055494116570853)\\
+\left.-1519(2.084603181618954)\right]
+\end{gathered}
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\int_{x_{0}-h}^{x_{0}+6h}f(x)dx$
+\end_inset
+
+:
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:integralFormula2"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\begin{gathered}\frac{1/7}{8640}\left[5257(1.96122825291126)-5880(1.965674866641883)\right.\\
++59829(1.960870620285721)-81536(1.941460911122824)\\
++102459(1.923339403354019)-50568(1.951091775564697)\\
+\left.+30919(1.9498808918992)\right]
+\end{gathered}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
