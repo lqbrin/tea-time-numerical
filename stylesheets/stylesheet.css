@@ -3,7 +3,7 @@ Slate Theme for GitHub Pages
 by Jason Costello, @jsncostello
 *******************************************************************************/
 
-@import url(pygment_trac.css);
+/*@import url(pygment_trac.css);
 
 /*******************************************************************************
 MeyerWeb Reset
@@ -52,7 +52,7 @@ body {
   box-sizing: border-box;
   color:#373737;
   background: #212121;
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -67,13 +67,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
 }
 
 h2 {
   padding-bottom: 10px;
-  font-size: 32px;
+  font-size: 28px;
   background: url('../images/bg_hr.png') repeat-x bottom;
 }
 
@@ -99,6 +99,7 @@ p {
 
 footer p {
   color: #f2f2f2;
+  font-size: 11px;
 }
 
 a {
@@ -138,7 +139,7 @@ img {
   margin: 0 auto;
   max-width: 739px;
   padding: 5px;
-  margin: 10px 0 10px 0;
+  margin: 10px 0px 10px 0;
   border: 1px solid #ebebeb;
 
   box-shadow: 0 0 5px #ebebeb;
@@ -163,7 +164,7 @@ pre, code {
   background-color: #fff;
 
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: 14px;
+  font-size: 13px;
 
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -264,20 +265,51 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
-  padding: 20px 10px;
+  max-width: 800px;
+  min-width: 640px;
+  padding: 10px 10px;
   margin: 0 auto;
 }
 
-#forkme_banner {
+.navstrip {
+  position: relative;
+  margin: auto;
+}
+
+.pagenav {
+  width:100px;
+  padding: 5px 5px;
+  margin: 10px 2px 10px 2px;
+  color: #fff;
+  background: #0090ff;
+  font-weight: 300;
+  border-radius: 2px;
+}
+
+#download_book {
   display: block;
   position: absolute;
   top:0;
-  right: 10px;
+  right: 30px;
   z-index: 10;
   padding: 10px 50px 10px 10px;
   color: #fff;
-  background: url('../images/blacktocat.png') #0090ff no-repeat 95% 50%;
+  background: url('../images/down_arrow.png') #0090ff no-repeat 95% 50%;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+#go_home {
+  display: block;
+  position: absolute;
+  top:0;
+  left: 30px;
+  z-index: 10;
+  padding: 10px 10px 10px 10px;
+  color: #fff;
+  background: #0090ff;
   font-weight: 700;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
@@ -294,20 +326,19 @@ Full-Width Styles
 }
 
 #header_wrap .inner {
-  padding: 50px 10px 30px 10px;
+  padding: 50px 10px 10px 10px;
 }
 
-#project_title {
+#book_title {
   margin: 0;
   color: #fff;
-  font-size: 42px;
   font-weight: 700;
+  background: none;
   text-shadow: #111 0px 0px 10px;
 }
 
-#project_tagline {
+#book_subtitle {
   color: #fff;
-  font-size: 24px;
   font-weight: 300;
   background: none;
   text-shadow: #111 0px 0px 10px;
@@ -359,7 +390,7 @@ Full-Width Styles
 }
 
 #main_content {
-  padding-top: 40px;
+  padding-top: 10px;
 }
 
 #footer_wrap {
