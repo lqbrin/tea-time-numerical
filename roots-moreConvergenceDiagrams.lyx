@@ -2584,25 +2584,18 @@ reference "polynomials"
 .
  Make sure you capture a region that shows at least a small area converging
  to each root.
- Download Octave code from 
-\begin_inset CommandInset href
-LatexCommand href
-name "SourceForge"
-target "http://sourceforge.net/p/teatimenumericalanalysis/wiki/Newton%27s%20Method%20Convergence%20Diagrams/"
-
-\end_inset
-
-.
-\begin_inset Note Note
-status open
+ Octave code may be downloaded at 
+\begin_inset Flex URL
+status collapsed
 
 \begin_layout Plain Layout
-TODO: Redo this link?
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
 \end_layout
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -3155,25 +3148,18 @@ reference "polynomials"
 .
  Make sure you capture a region that shows at least a small area converging
  to each root.
- Download Octave code from 
-\begin_inset CommandInset href
-LatexCommand href
-name "SourceForge"
-target "http://sourceforge.net/p/teatimenumericalanalysis/wiki/Seeded%20Secant%20Method%20Convergence%20Diagrams/"
-
-\end_inset
-
-.
-\begin_inset Note Note
-status open
+ Octave code may be downloaded at 
+\begin_inset Flex URL
+status collapsed
 
 \begin_layout Plain Layout
-TODO: Redo this link?
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
 \end_layout
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate

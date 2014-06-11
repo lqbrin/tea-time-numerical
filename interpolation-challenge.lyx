@@ -1435,12 +1435,17 @@ end{verbatim}
 
 \end_inset
 
-This code may be downloaded at 
-\begin_inset Note Note
-status open
+
+\family typewriter
+fractalInterpolator.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
 
 \begin_layout Plain Layout
-TODO: give URL
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
 \end_layout
 
 \end_inset

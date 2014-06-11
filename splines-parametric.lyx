@@ -3032,6 +3032,18 @@ zier curves are intended to model smooth objects, software will provide
 \end_inset
 
  in this diagram).
+ You may view an interactive version of this diagram at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -3057,16 +3069,7 @@ Bezierline
 \end_inset
 
 .
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Post Bezier curve GeoGebra applets and give URL.
-\end_layout
-
-\end_inset
-
-
+ 
 \end_layout
 
 \begin_layout Subsubsection*

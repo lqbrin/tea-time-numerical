@@ -5399,7 +5399,22 @@ validation
  Most of the time, we will write code assuming the input is valid and will
  not do any error checking.
  This makes the programming simpler, but also allows for problems like never-end
-ing loops!
+ing loops! 
+\family typewriter
+bisectionWhile.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard

@@ -578,6 +578,7 @@ target "http://babbage.cs.qc.cuny.edu/IEEE-754/"
 \end_layout
 
 \begin_layout Standard
+\noindent
 
 \shape italic
 What Every Computer Scientist Should Know About Floating-Point Arithmetic

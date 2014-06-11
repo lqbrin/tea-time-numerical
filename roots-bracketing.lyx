@@ -1682,22 +1682,25 @@ end{verbatim}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\noindent
-Code for false position and bracketed Newton's may be retrieved at .
- 
-\begin_inset Note Note
-status open
+\family typewriter
+falsePosition.m
+\family default
+ and 
+\family typewriter
+bracketedNewton.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
 
 \begin_layout Plain Layout
-TODO: give URL
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
 \end_layout
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -3137,18 +3140,22 @@ c function
 \begin_inset Formula $g$
 \end_inset
 
-! Bracketed inverse quadratic interpolation code may be retrieved at .
- 
-\begin_inset Note Note
-status open
+! 
+\family typewriter
+bracketedInverseQuadratic.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
 
 \begin_layout Plain Layout
-TODO: give URL
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
 \end_layout
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsection

@@ -3,9 +3,9 @@
 % Purpose: Create a Newton Fractal for any function %
 %       whose roots are known (up to 12 of them)    %
 % INPUT: function f; its derivative fp; a list of   %
-%	roots of f; real lower bound r0; real upper %
-%	bound r1; imaginary center im; size of      %
-%	image to create (will be multiplied by 8).  %
+%	roots of f; real lower bound r0; real upper       %
+%	bound r1; imaginary center im; size of            %
+%	image to create (will be multiplied by 8).        %
 % OUTPUT: matrix of roots found; fractal image.     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

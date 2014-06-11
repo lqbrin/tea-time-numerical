@@ -2183,7 +2183,22 @@ reference "exc:recursion-1"
 
 \end_inset
 
-: (a)
+: (a) 
+\family typewriter
+trominos.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
 \begin_inset ERT
 status open
 
@@ -2532,6 +2547,22 @@ reference "exc:recursion-3"
 \end_inset
 
 (b) 
+\family typewriter
+hanoi.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
+ 
 \begin_inset ERT
 status open
 
@@ -5507,36 +5538,67 @@ Remark: The inequality must switch from
 \begin_inset Formula $x_{0}=-4$
 \end_inset
 
-, 
+,
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $x_{1}=f(x_{0})=-2.35$
 \end_inset
 
-, 
+,
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $x_{2}=f(x_{1})\approx-1.541336633663366$
 \end_inset
 
-, 
+,
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $x_{3}=f(x_{2})\approx-1.167517670666227$
 \end_inset
 
-, 
+,
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $x_{4}=f(x_{3})\approx-1.028014489100897$
 \end_inset
 
-, 
+,
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $x_{5}=f(x_{4})\approx-1.001085950365354$
 \end_inset
 
-, 
+,
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $x_{6}=f(x_{5})\approx-1.00000176318809$
 \end_inset
 
-, and 
+, and
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $x_{7}=f(x_{6})\approx-1.000000000004663$
 \end_inset
 
 .
- It takes 7 iterations to come up with an estimate within 
+\begin_inset Newline newline
+\end_inset
+
+It takes 7 iterations to come up with an estimate within 
 \begin_inset Formula $10^{-11}$
 \end_inset
 
@@ -16257,6 +16319,21 @@ end{verbatim}
 \end_inset
 
 
+\family typewriter
+compositeTrapezoidal.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description
@@ -19084,6 +19161,22 @@ b(n)
 \end_inset
 
  at the end of the program eliminates this potential variation.
+ 
+\family typewriter
+clampedCubicSpline.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description

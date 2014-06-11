@@ -2,7 +2,7 @@
 %  maxOverMesh() written by Leon Q. Brin 21 January 2013  %
 %  INPUT: Interval [a,b]; function f; and number of       %
 %         subintervals n.                                 %
-%  OUTPUT: maximum value of the function over the end%     %
+%  OUTPUT: maximum value of the function over the end     %
 %         points of the subintervals.                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 function ans = maxOverMesh(f,a,b,n)

@@ -1088,6 +1088,21 @@ end{verbatim}
 \end_inset
 
 
+\family typewriter
+maxOverMesh.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1471,9 +1486,25 @@ if
 \family default
 , to mean conditional equals.
  
+\family typewriter
+recFactorial.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+\noindent
 \begin_inset ERT
 status open
 

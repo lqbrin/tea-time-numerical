@@ -255,6 +255,18 @@ fixed point
 \end_inset
 
 , the input and output of the cosine function are equal.
+ See a simulation of this iteration online at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard

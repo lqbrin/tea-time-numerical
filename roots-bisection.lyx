@@ -3473,6 +3473,22 @@ end{verbatim}
  file and never be looked at again (except for study).
  It just works! If you hand it off to someone to use, they should be able
  to use it without modification.
+ 
+\family typewriter
+bisection.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
  Now finding a root of 
 \begin_inset Formula $f(x)=2+\frac{x-e^{2}}{e^{2}}-\frac{(x-e^{2})^{2}}{2e^{4}}-\ln(x)-\frac{1}{10}$
 \end_inset

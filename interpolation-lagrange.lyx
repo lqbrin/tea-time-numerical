@@ -3329,10 +3329,21 @@ end{verbatim}
 \end_inset
 
 
+\family typewriter
+nevilles.m
+\family default
+ may be downloaded at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
 \end_layout
 
-\begin_layout Standard
+\end_inset
 
+.
 \end_layout
 
 \begin_layout Subsection
