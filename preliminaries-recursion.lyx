@@ -716,16 +716,15 @@ any
  grid minus one corner in your construction.
 \end_layout
 
-\begin_layout Subsubsection*
-Reference
-\end_layout
+\begin_layout Description
+Reference 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "golomb"
 
-\begin_layout Standard
-S.
- W.
- Golomb, "Checker Boards and Polyominoes," Amer.
- Math.
- Monthly, 61 (1954), 675-682.
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1092,13 +1091,10 @@ end{verbatim}
 maxOverMesh.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
@@ -1490,13 +1486,10 @@ if
 recFactorial.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 

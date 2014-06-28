@@ -82,20 +82,6 @@ figs-within-sections
 
 \begin_body
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Put copyright info here.
- ?
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Chapter*
 Preface
 \end_layout
@@ -159,8 +145,9 @@ Numerical Analysis
  As you might guess by the number of editions, this text is a classic.
  It is one of very few numerical analysis textbooks geared for the mathematician
 , not the scientist or engineer.
- In fact, I studied from an early edition in the mid 1990's! And there were
- a couple of freely available websites, notably the popular 
+ In fact, I studied from an early edition in the mid 1990's! Also in the
+ summer of 2012 there were a couple of freely available websites, notably
+ the popular 
 \begin_inset CommandInset href
 LatexCommand href
 target "http://nm.mathforcollege.com/"
@@ -242,8 +229,8 @@ haspartwithsolution
 
 \end_inset
 
-), contemplate their solutions, and then turn to the back of the book for
- full disclosure.
+), contemplate their solutions, solve them if they can, and then turn to
+ the back of the book for full disclosure.
  The hope is that, with their placement in the appendix, readers will be
  more apt to consider solving the exercises on their own before looking
  at the solutions.
@@ -254,13 +241,13 @@ The topical coverage in
 \shape italic
 Tea Time Numerical Analysis
 \shape default
- will be fairly typical.
+ is fairly typical.
  The book starts with an introductory chapter, followed by root finding
  methods, interpolation (part 1), numerical calculus, and interpolation
  (part 2).
  This covers what, at SCSU, constitutes a first semester course in numerical
  analysis.
- Future efforts may add chapters on linear algebra and differential equations,
+ Future efforts will add chapters on linear algebra and differential equations,
  making it a full year course.
  As this book is intended for use as a free download or an inexpensive print-on-
 demand volume, no effort has been made to keep the page count low or to
@@ -424,8 +411,92 @@ addcontentsline{toc}{section}{How to Get Octave}
 
 \end_layout
 
+\begin_layout Standard
+Octave is developed by the GNU Project for the GNU operating system, which
+ is most often paired with a Linux kernel.
+ At its core, Octave is therefore GNU/Linux software.
+ It runs natively on GNU/Linux machines.
+ It must be ported (converted somehow) to run on other operating systems
+ like Windows or OS X.
+ Ports (converted programs) do exist for these operating systems, but are
+ significantly more complicated to install than native Windows or native
+ OS X programs.
+ Nonetheless, the advantage to this approach is the end result which looks
+ and runs very much like a native application, desktop shortcut/alias and
+ all.
+ The disadvantage is the somewhat lengthy installation procedure with parts
+ that sometimes don't work together as expected, resulting in a failed installat
+ion.
+\end_layout
+
+\begin_layout Standard
+Windows and Mac users may also install hardware virtualizing software.
+ Such software is freely available as native Windows and native OS X software.
+ Then a complete GNU/Linux operating system can be installed inside the
+ virtualizer as a so-called virtual machine.
+ Octave can be installed in the virtual machine as a native program.
+ With some configuring, the virtual machine can be made to look and feel
+ almost like other Windows or OS X apps.
+ The advantage to this approach is that installation is relatively straightforwa
+rd.
+ The disadvantage is that it requires a lot of computing resources.
+ People with an old (slow) machine or a machine with little RAM (memory)
+ will likely be disappointed in performance.
+ Octave will be even slower than other programs if it runs at all.
+\end_layout
+
+\begin_layout Standard
+GNU/Linux can also be installed 
+\begin_inset Quotes eld
+\end_inset
+
+side-by-side
+\begin_inset Quotes erd
+\end_inset
+
+ with Windows or OS X, creating a dual-boot machine.
+ The advantage to this approach is it relieves all of the issues of the
+ other two methods.
+ Octave is installed as a native application and all computer resources
+ are dedicated to GNU/Linux so Octave will run as quickly as possible on
+ your machine.
+ The primary disadvantage to this approach is that you will have to decide
+ whether to run your usual (Windows or OS X) operating system or GNU/Linux
+ every time the computer starts.
+ You will not be able to switch between Octave and the apps you are used
+ to running.
+ For example, switching from iTunes to Octave, or from Word to Octave and
+ back, is not possible.
+ You get one or the other.
+ A secondary disadvantage is the need to repartition the computer's hard
+ drive (or the need to add an additional hard drive to the machine), making
+ the installation process potentially devastating to the machine.
+ A complete backup of your machine is required to maintain safety.
+\end_layout
+
+\begin_layout Standard
+All that may not mean much to you.
+ To see how it translates into advice and step-by-step instructions on installin
+g GNU Octave, see this textbook's companion website,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/more.html
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section*
-Where to Get the Code
+How to Get the Code
 \end_layout
 
 \begin_layout Standard
@@ -436,12 +507,39 @@ status open
 
 
 \backslash
-addcontentsline{toc}{section}{Where to Get the Code}
+addcontentsline{toc}{section}{How to Get the Code}
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+All the code appearing in the textbook can be downloaded from this textbook's
+ companion website,
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lqbrin.github.io/tea-time-numerical/ancillaries.html
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+The code printed within and accompanying Tea Time Numerical Analysis electronica
+lly is distributed under the GNU Public License (GPL).
+ Details are available at the website.
 \end_layout
 
 \begin_layout Section*
@@ -462,6 +560,21 @@ addcontentsline{toc}{section}{Acknowledgments}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+I gratefully acknowledge the generous support I received during the writing
+ of this textbook, from the patience my immediate family, Amy, Cecelia,
+ and Victorija exercised while I was absorbed by my laptop's screen to the
+ willingness of my Spring 2013 Seminar class, Elizabeth Field, Rachael Ivison,
+ Amanda Reyher, and Steven Warner to read and criticize an early version
+ of the first chapter.
+ In between, the Woodbridge Public Library staff, especially Pamela Wilonski,
+ helped provide a peaceful and inspirational environment for writing the
+ bulk of the text.
+ Many thanks to Dick Pelosi and Terri Bennett for their reviews, with an
+ extra dose of thanks to Dick for the many kind words and encouragements
+ throughout the endeavor.
 \end_layout
 
 \end_body

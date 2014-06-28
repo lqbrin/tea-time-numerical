@@ -2585,13 +2585,10 @@ reference "polynomials"
  Make sure you capture a region that shows at least a small area converging
  to each root.
  Octave code may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
@@ -3149,13 +3146,10 @@ reference "polynomials"
  Make sure you capture a region that shows at least a small area converging
  to each root.
  Octave code may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 

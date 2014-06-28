@@ -1,0 +1,34 @@
+TEXTBOOK LICENSE
+
+Tea Time Numerical Analysis is a complete first semester numerical
+analysis textbook. Discussion of and sample Octave coding is included.
+
+Enjoy!
+
+Tea Time Numerical Analysis by Leon Q. Brin is distributed under the
+Creative Commons Attribution ShareAlike 4.0 international license.
+License details may be viewed at
+
+       http://creativecommons.org/licenses/by-sa/4.0/
+
+A text version of this license should also have been included in the
+distribution of the manuscript source.
+
+CODE LICENSE
+
+The code printed within and accompanying the textbook electronically
+is distributed under the GNU Public License (GPL). 
+
+This code is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The code is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Tea Time Numerical Analysis.  If not, see
+<http://www.gnu.org/licenses/>.

@@ -2188,13 +2188,10 @@ reference "exc:recursion-1"
 trominos.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
@@ -2551,13 +2548,10 @@ reference "exc:recursion-3"
 hanoi.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
@@ -16323,13 +16317,10 @@ end{verbatim}
 compositeTrapezoidal.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
@@ -19166,13 +19157,10 @@ b(n)
 clampedCubicSpline.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 

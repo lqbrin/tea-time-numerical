@@ -235,6 +235,7 @@ f_{2}=-\frac{75891}{550000},\ c_{2}=\frac{317391}{550000},\ d_{2}=\frac{67}{550}
 \end_layout
 
 \begin_layout Standard
+\noindent
 \begin_inset ERT
 status open
 
@@ -515,30 +516,20 @@ as long as
 , then the derivative will exist and will be continuous.
 \end_layout
 
-\begin_layout Subsubsection*
-Reference
-\end_layout
-
-\begin_layout Standard
-Michael F.
- Barnsley, 
-\shape italic
-Fractals Everywhere
-\shape default
-, 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Publisher?
-\end_layout
+\begin_layout Description
+Reference 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "ch. VI"
+key "barnsley"
 
 \end_inset
 
-, chapter VI.
+
 \end_layout
 
 \begin_layout Standard
+\noindent
 \begin_inset ERT
 status open
 
@@ -1440,13 +1431,10 @@ end{verbatim}
 fractalInterpolator.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 

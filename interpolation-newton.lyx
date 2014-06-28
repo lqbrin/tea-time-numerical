@@ -2150,13 +2150,10 @@ end{verbatim}
 sidi.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 

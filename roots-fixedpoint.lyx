@@ -256,13 +256,10 @@ fixed point
 
 , the input and output of the cosine function are equal.
  See a simulation of this iteration online at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
@@ -609,7 +606,7 @@ web diagram
 status open
 
 \begin_layout Plain Layout
-TODO: References
+TODO: References (Jurgens, Saupe, ...)?
 \end_layout
 
 \end_inset

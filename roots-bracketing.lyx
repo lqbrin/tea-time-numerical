@@ -1690,13 +1690,10 @@ falsePosition.m
 bracketedNewton.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
@@ -2538,21 +2535,14 @@ You may recognize this as the order of convergence for Müller's Method.
 \end_layout
 
 \begin_layout Description
-Reference: 
-\series bold
-A Family of Methods for Solving Nonlinear Equations Using Quadratic Interpolatio
-n
-\series default
-, J.
- R.
- Sharma, 
-\shape italic
-Computers & Mathematics with Applications
-\shape default
-, Vol.
- 48, No.
- 5-6 (Sep., 2004), pp.
- 709-714.
+Reference 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sharma"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3145,13 +3135,10 @@ c function
 bracketedInverseQuadratic.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 

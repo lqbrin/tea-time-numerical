@@ -3033,13 +3033,10 @@ zier curves are intended to model smooth objects, software will provide
 
  in this diagram).
  You may view an interactive version of this diagram at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
@@ -3072,131 +3069,22 @@ Bezierline
  
 \end_layout
 
-\begin_layout Subsubsection*
-References
-\end_layout
-
-\begin_layout Standard
+\begin_layout Description
+References 
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-TODO: Get these paper references, read them, and modify the intro above.
+TODO: Get these paper references (de Casteljau and Bezier), read them, and
+ modify the intro above.
 \end_layout
 
 \end_inset
 
-Barnhill, Robert E.
- and Riesenfeld, Richard F.
- editors, 
-\begin_inset Quotes eld
-\end_inset
-
-Computer aided geometric design : proceedings of a conference held at the
- University of Utah, Salt Lake City, Utah, March 18-21, 1974
-\begin_inset Quotes erd
-\end_inset
-
-, Academic Press, New York, 1974.
-\begin_inset Newline newline
-\end_inset
-
-de Casteljau, Paul de Faget, 
-\begin_inset Quotes eld
-\end_inset
-
-De Casteljau's autobiography: My time at Citro
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-"e
-\end_layout
-
-\end_inset
-
-n
-\begin_inset Quotes erd
-\end_inset
-
-, 
-\shape italic
-Computer Aided Geometric Design
-\shape default
  
-\series bold
-16
-\series default
- (7): 583–586, August 1999.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Move this reference to a reference for the book, not this crumpet.
-\end_layout
-
-\end_inset
-
-AMS: 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://www.ams.org/samplings/feature-column/fcarc-bezier
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Inkscape: 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://www.inkscape.org/
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Dia: 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://sourceforge.net/projects/dia-installer/
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-LibreOffice: 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://www.libreoffice.org/
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bezier,decasteljau,amsbezier,inkscape,dia,libreoffice"
 
 \end_inset
 

@@ -464,6 +464,7 @@ error ! floating-point
 \end_layout
 
 \begin_layout Standard
+\noindent
 \begin_inset ERT
 status open
 
@@ -558,42 +559,23 @@ or
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Description
 References
-\end_layout
-
-\begin_layout Standard
-
 \shape italic
-IEEE-754 Analysis
+ 
 \shape default
-, 
-\begin_inset CommandInset href
-LatexCommand href
-target "http://babbage.cs.qc.cuny.edu/IEEE-754/"
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cunyieee754,goldberg"
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Standard
 \noindent
-
-\shape italic
-What Every Computer Scientist Should Know About Floating-Point Arithmetic
-\shape default
-, David Goldberg, 
-\begin_inset CommandInset href
-LatexCommand href
-target "http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1483,7 +1465,7 @@ ons that makes these two computations turn out drastically different.
 status open
 
 \begin_layout Plain Layout
-TODO: Add references
+TODO: Add reference (Edward Lorenz)
 \end_layout
 
 \end_inset
@@ -1659,32 +1641,15 @@ As these examples show, sometimes floating-point error and sometimes algorithmic
  In almost all cases, the lion's share of the error will be algorithmic.
 \end_layout
 
-\begin_layout Subsubsection
-References
-\end_layout
+\begin_layout Description
+References 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rump,loh"
 
-\begin_layout Standard
-Rump, 
-\shape italic
-Algorithms for Verified Inclusions: Theory and Practice
-\shape default
-, Moore, R.
- E.
- (ed.), Reliability in Computing: The Role of Interval Methods in Scientific
- Computing, Academic Press, Boston, 1988, pp.
- 109–126.
-\end_layout
+\end_inset
 
-\begin_layout Standard
-\noindent
-Loh and Walster, 
-\shape italic
-Rump's Example Revisited
-\shape default
-, Reliable Computing, Vol.
- 8, No.
- 3 (2002), pp.
- 245-248.
+
 \end_layout
 
 \begin_layout Subsection

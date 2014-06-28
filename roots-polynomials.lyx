@@ -3205,7 +3205,7 @@ status open
 
 
 \backslash
-begin{digression}{Order of convergence for Müller's Method}
+begin{digression}{Orders of convergence}
 \end_layout
 
 \end_inset
@@ -3244,23 +3244,18 @@ The order of convergence of Müller's Method to a simple root (one that is
 
 \end_inset
 
-
+ The method of Laguerre converges to a simple root with order 3.
 \end_layout
 
 \begin_layout Description
-Reference: 
-\series bold
-A Method for Solving Algebraic Equations Using an Automatic Computer
-\series default
-, David E.
- Muller, 
-\shape italic
-Mathematical Tables and Other Aids to Computation
-\shape default
-, Vol.
- 10, No.
- 56 (Oct., 1956), pp.
- 208-215.
+Reference 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "muller"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3268,7 +3263,8 @@ Mathematical Tables and Other Aids to Computation
 status open
 
 \begin_layout Plain Layout
-Mention Laguerre's Method or Jenkins-Traub or Brent's?
+TODO: Add more info about Laguerre's method.
+ Order of convergence to double root? Reference!
 \end_layout
 
 \end_inset
@@ -4564,51 +4560,16 @@ Find all the roots of
 
 \end_deeper
 \begin_layout Enumerate
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Reference Burden and Faires for problems taken from their book
-\end_layout
-
-\end_inset
-
-In 1224, Leonardo of Pisa, better known as Fibonacci, answered a mathematical
- challenge of John of Palermo in the presence of Emperor Frederick II: Find
- a root of the equation 
+About 800 years ago John of Palermo challenged mathematicians to find a
+ solution of the equation 
 \begin_inset Formula $x^{3}+2x^{2}+10x=20$
 \end_inset
 
 .
- He first showed that the equation had no rational roots and no Euclidean
- irrational roots---that is, no root in any of the forms 
-\begin_inset Formula $a\pm\sqrt{b}$
-\end_inset
-
-, 
-\begin_inset Formula $\sqrt{a}\pm\sqrt{b}$
-\end_inset
-
-, 
-\begin_inset Formula $\sqrt{a\pm\sqrt{b}}$
-\end_inset
-
-, or 
-\begin_inset Formula $\sqrt{\sqrt{a}\pm\sqrt{b}}$
-\end_inset
-
-, where 
-\begin_inset Formula $a$
-\end_inset
-
- and 
-\begin_inset Formula $b$
-\end_inset
-
- are rational numbers.
- He then approximated the only real root using an algebraic technique of
- Omar Khayyam involving the intersection of a circle and a parabola.
- His answer was given in the base 60 number system as
+ In 1224, Fibonacci answered the call in the presence of Emperor Frederick
+ II.
+ He approximated the only real root using a geometric technique of Omar
+ Khayyam (1048-1131), arriving at the estimate
 \begin_inset Formula 
 \[
 \begin{gathered}1+22\left(\frac{1}{60}\right)+7\left(\frac{1}{60}\right)^{2}+42\left(\frac{1}{60}\right)^{3}+\\
@@ -4621,6 +4582,20 @@ In 1224, Leonardo of Pisa, better known as Fibonacci, answered a mathematical
 How accurate was his approximation?
 \end_layout
 
+\begin_deeper
+\begin_layout Description
+Reference 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "pg. 96 ex. 10"
+key "burdenfaires"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 \begin_inset ERT
 status open

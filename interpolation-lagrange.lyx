@@ -2001,30 +2001,10 @@ Having taken this point of view, we can now imagine generalizing the method
 \begin_inset Formula $k^{th}$
 \end_inset
 
- degree Method
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Avram Sidi, 
-\shape italic
-Generalization Of The Secant Method For Nonlinear Equations
-\shape default
-, Applied Mathematics E-Notes, 8(2008), 115-123.
- Applied Mathematics E-Notes, 8(2008), 115-123.
- Available free at mirror sites of 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://www.math.nthu.edu.tw/~amen/
-\end_layout
-
-\end_inset
-
-.
-\end_layout
+ degree Method 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sidi"
 
 \end_inset
 
@@ -3333,13 +3313,10 @@ end{verbatim}
 nevilles.m
 \family default
  may be downloaded at 
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/ancillaries.html
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 
 \end_inset
 
