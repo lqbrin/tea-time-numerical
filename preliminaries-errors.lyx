@@ -1329,6 +1329,7 @@ Perhaps this error seems small, but it is very large compared to the algorithmic
 \end_layout
 
 \begin_layout Standard
+\noindent
 \begin_inset ERT
 status open
 
@@ -1356,19 +1357,23 @@ Lorenz, Edward
 
 \end_inset
 
- was perhaps the first to recognize the mathematical phenomenon now called
+, a meteorologist at the Massachusetts Institute of Technology, was among
+ the first to recognize and study the mathematical phenomenon now called
  chaos.
- In the 1960's he was busy trying to model weather systems in an attempt
+ In the early 1960's he was busy trying to model weather systems in an attempt
  to improve weather forecasting.
- As the story goes, he was running a simulation when he needed to leave
- briefly.
- When he came back, the simulation was complete, but he wanted to rerun
- the simulation from a certain point just to double check.
- He programmed the computer to restart the simulation, only this time he
- rounded off his numbers a bit.
- When the simulation ran again, he noticed a completely different result!
- Was this a case of floating-point error? No.
- Here's an egregiously simplified version of what happened.
+ As one version of the story goes, he wanted to repeat a calculation he
+ had just made.
+ In an effort to save some time, he used the same initial conditions he
+ had the first time, only rounded off to three significant digits instead
+ of six.
+ Fully expecting the new calculation to be similar to the old, he went out
+ for a cup of coffee and came back to look.
+ To his astonishment, he noticed a completely different result! He repeated
+ the procedure several times, each time finding that small initial variations
+ led to large long-term variations.
+ Was this a simple case of floating-point error? No.
+ Here's a rather simplified version of what happened.
  Let 
 \begin_inset Formula $f(x)=4x(1-x)$
 \end_inset
@@ -1405,7 +1410,7 @@ Lorenz, Edward
 \end_inset
 
  (so we can run the same computation only with an initial value that differs
- from the original by 
+ from the original by the tiny amount, 
 \begin_inset Formula $10^{-12}$
 \end_inset
 
@@ -1456,17 +1461,35 @@ ons that makes these two computations turn out drastically different.
  nor would any more precise calculation.
  This is a demonstration of what's known as sensitivity to initial conditions,
  a feature of all chaotic systems including the weather.
- Now you know why long-term weather prediction is simply not possible.
- The errors are algorithmic.
+ Tiny variations at some point lead to vast variations later on.
+ And the 
+\begin_inset Quotes eld
+\end_inset
+
+errors
+\begin_inset Quotes erd
+\end_inset
+
+ are algorithmic.
+ This is the basic principle that makes long-range weather forecasting impossibl
+e.
+ In the words of Edward Lorenz, 
+\begin_inset Quotes eld
+\end_inset
+
+In view of the inevitable inaccuracy and incompleteness of weather observations,
+ precise very-long-range forecasting would seem non-existent.
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Add reference (Edward Lorenz)
-\end_layout
+\begin_layout Description
+References 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lorenz,gulick,mirror"
 
 \end_inset
 

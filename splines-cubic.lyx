@@ -413,17 +413,6 @@ s at the joints.
  to our definition of spline.
  However, other sources will give a more restrictive definition of spline
  where matching both derivatives is required.
- Additionally, the most common use of splines does include this matching.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Find at least one such reference? 
-\end_layout
-
-\end_inset
-
  As a matter of convention, we focus on cubic splines where both first and
  second derivatives of adjacent cubics agree at the joints.
 \end_layout

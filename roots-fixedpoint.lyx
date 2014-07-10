@@ -600,17 +600,14 @@ web diagram
 
 \end_inset
 
-, and is commonly used to illustrate the concept of iteration.
  
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: References (Jurgens, Saupe, ...)?
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "barnsley"
 
 \end_inset
 
+, and is commonly used to illustrate the concept of iteration.
  That the path of the web diagram tends toward 
 \begin_inset Formula $(0.739085\ldots,0.739085\ldots)$
 \end_inset

@@ -3248,24 +3248,10 @@ The order of convergence of Müller's Method to a simple root (one that is
 \end_layout
 
 \begin_layout Description
-Reference 
+References 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "muller"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Add more info about Laguerre's method.
- Order of convergence to double root? Reference!
-\end_layout
+key "muller,recipes"
 
 \end_inset
 

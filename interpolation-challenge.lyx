@@ -106,9 +106,9 @@ A root-finding challenge
 \begin_layout Standard
 We open this chapter by combining its content with that of the previous
  chapter.
- In the present chapter, we will discuss interpolating functions, functions
- whose graphs must contain a prescribed set of points, and interpolation,
- the exercise of finding such a function.
+ In the present chapter, we will discuss interpolating functions (functions
+ whose graphs must contain a prescribed set of points) and interpolation
+ (the exercise of finding such a function).
  In the previous chapter, we discussed approximating roots of functions
  by numerical computation.
  Putting these ideas together in the present section, we present an interpolatin
@@ -137,6 +137,28 @@ g function, which we will call
  Should you accept the challenge, be prepared to use all of what you know
  about root-finding and Octave.
  This problem is not easily solved!
+\end_layout
+
+\begin_layout Standard
+If you would like to get right to it, you can skip most of the content of
+ this section.
+ Use the three graphs and the Octave code as a starting point to find the
+ roots of 
+\begin_inset Formula $F$
+\end_inset
+
+, 
+\begin_inset Formula $f$
+\end_inset
+
+, and, 
+\begin_inset Formula $f'$
+\end_inset
+
+.
+ The rest of the material is here to help you understand the definition
+ and construction of the functions, but is not prerequisite to taking the
+ challenge.
 \end_layout
 
 \begin_layout Subsection
@@ -520,8 +542,7 @@ as long as
 Reference 
 \begin_inset CommandInset citation
 LatexCommand cite
-after "ch. VI"
-key "barnsley"
+key "barnsleyInterpolation"
 
 \end_inset
 

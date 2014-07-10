@@ -3071,17 +3071,6 @@ Bezierline
 
 \begin_layout Description
 References 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Get these paper references (de Casteljau and Bezier), read them, and
- modify the intro above.
-\end_layout
-
-\end_inset
-
- 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "bezier,decasteljau,amsbezier,inkscape,dia,libreoffice"

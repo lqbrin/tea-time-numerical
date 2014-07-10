@@ -2181,7 +2181,14 @@ method ! Brent's|see{Brent's method}
  method that combines bisection, the secant method, and inverse quadratic
  interpolation, all the while checking to make sure the high order method
  is making sufficiently quick progress toward a root.
- The result is what is now known as Brent's method.
+ The result is what is now known as Brent's method 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "brent"
+
+\end_inset
+
+.
  It does not require knowledge of the derivative.
  It is fast.
  It is guaranteed to converge.
@@ -2189,6 +2196,18 @@ method ! Brent's|see{Brent's method}
  a bracket when the derivative is not accessible.
  The full details of Brent's method will not be presented here, but a significan
 t step toward that method will.
+ The method presented here is similar to the MATLAB function 
+\family typewriter
+fzero
+\family default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "moler"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
