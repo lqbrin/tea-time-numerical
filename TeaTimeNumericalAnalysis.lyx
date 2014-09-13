@@ -17,9 +17,9 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
@@ -60,10 +60,10 @@ figs-within-sections
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 4cm
-\topmargin 1.5cm
+\leftmargin 2.5cm
+\topmargin 1.9cm
 \rightmargin 1.5cm
-\bottommargin 1.5cm
+\bottommargin 1.9cm
 \secnumdepth 1
 \tocdepth 2
 \paragraph_separation indent
@@ -175,7 +175,7 @@ vfill
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename figures/cc-by-sa-88x31.png
+	filename figures/cc-by-sa.eps
 
 \end_inset
 

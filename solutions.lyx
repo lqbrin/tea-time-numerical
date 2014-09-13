@@ -13014,16 +13014,20 @@ reference "exc:calculusErrors-2"
 
 \end_inset
 
-a: Midpoint Rule for integral approximation is 
+a: The Midpoint Rule for integral approximation is 
 \begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx=2hf(x_{0}+h)}$
 \end_inset
 
 .
  To apply it to the integral 
-\begin_inset Formula ${\displaystyle \int_{-0.5}^{0}x\ln(x+1)dx}$
+\begin_inset Formula 
+\[
+{\displaystyle \int_{-0.5}^{0}x\ln(x+1)dx},
+\]
+
 \end_inset
 
- we need to identify 
+we need to identify 
 \begin_inset Formula $f$
 \end_inset
 
@@ -13115,7 +13119,11 @@ reference "exc:calculusErrors-38"
 \end_inset
 
 a: See above for the exact evaluation of the integral.
- The error follows as 
+ The error follows as
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $|0.08664339756999316-0.05256980729002053|\approx0.034073$
 \end_inset
 
@@ -13130,7 +13138,11 @@ reference "exc:calculusErrors-39"
 \end_inset
 
 a: See above for the exact evaluation of the integral.
- The error follows as 
+ The error follows as
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $|0.03596025905647261-0.05256980729002053|\approx0.016609$
 \end_inset
 
@@ -14470,7 +14482,11 @@ reference "exc:calculusErrors-16"
 
 \end_inset
 
-: Five-point formulas for the second derivative have error term 
+: Five-point formulas for the 
+\begin_inset Formula $2^{nd}$
+\end_inset
+
+ derivative have error term 
 \begin_inset Formula $O(h^{3}f^{(5)}(\xi_{h}))$
 \end_inset
 

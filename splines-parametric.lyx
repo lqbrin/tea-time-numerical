@@ -3108,10 +3108,14 @@ osculating
 
 polynomial: A polynomial whose graph is required to pass through a set of
  prescribed points 
-\begin_inset Formula $(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})$
+\begin_inset Formula 
+\[
+(x_{0},y_{0}),(x_{1},y_{1}),\ldots,(x_{n},y_{n})
+\]
+
 \end_inset
 
- and whose first 
+and whose first 
 \begin_inset Formula $m_{i}$
 \end_inset
 

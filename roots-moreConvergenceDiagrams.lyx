@@ -1377,10 +1377,14 @@ reference "fig:verticalLineAndCircle"
 \end_inset
 
 The interesting thing is 
-\begin_inset Formula $e^{2.439940377216816+11.2098911414971i}\approx2.439940377216816-11.2098911414971i$
+\begin_inset Formula 
+\[
+e^{2.439940377216816+11.2098911414971i}\approx2.439940377216816-11.2098911414971i
+\]
+
 \end_inset
 
- and 
+and 
 \family roman
 \series medium
 \shape up
@@ -1393,11 +1397,14 @@ The interesting thing is
 \noun off
 \color none
 
-\begin_inset Formula $e^{2.439940377216816-11.2098911414971i}\approx2.439940377216816+11.2098911414971i$
+\begin_inset Formula 
+\[
+e^{2.439940377216816-11.2098911414971i}\approx2.439940377216816+11.2098911414971i.
+\]
+
 \end_inset
 
-.
- The two points are images of one another under the exponential function!
+The two points are images of one another under the exponential function!
  What we have found here are called periodic points.
  If we let 
 \begin_inset Formula $z_{1}=2.439940377216816-11.2098911414971i$

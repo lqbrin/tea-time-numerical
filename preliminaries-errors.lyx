@@ -1538,12 +1538,15 @@ You will probably get a number like
 \begin_inset Formula $-1.180591620717411(10)^{21}$
 \end_inset
 
- even though the exact value is 
-\begin_inset Formula $-\frac{54767}{66192}\approx-.8273960599468214$
+ even though the exact value is
+\begin_inset Formula 
+\[
+-\frac{54767}{66192}\approx-.8273960599468214.
+\]
+
 \end_inset
 
-.
- That's an incredible error! But it's not because your calculator or computer
+That's an incredible error! But it's not because your calculator or computer
  has any problem calculating each term to a reasonable degree of accuracy.
  Try it.
 \begin_inset Formula 

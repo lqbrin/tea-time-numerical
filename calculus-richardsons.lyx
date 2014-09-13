@@ -1087,15 +1087,15 @@ whose exact value is
 
 \end_inset
 
-We should expect 
+We should expect the error 
 \begin_inset Formula $\left|\int_{0}^{1}\sin x\, dx-T_{5}(0,1)\right|$
 \end_inset
 
- to be about four times 
+ to be about four times the error 
 \begin_inset Formula $\left|\int_{0}^{1}\sin x\, dx-T_{10}(0,1)\right|$
 \end_inset
 
- and nine times 
+ and nine times the error 
 \begin_inset Formula $\left|\int_{0}^{1}\sin x\, dx-T_{15}(0,1)\right|$
 \end_inset
 
