@@ -99,14 +99,14 @@ In this section, we are interested in an efficient automated process for
  and paper calculations, not computer automation.
  Neville's method is well suited for computing the value of an interpolating
  polynomial at a particular point, not calculation of the polynomial itself.
- True, Neville's Method 
+ True, Neville's method 
 \shape italic
 can
 \shape default
  be used to calculate the interpolating polynomials themselves, but it lends
  itself to this task no better than the Lagrange form.
  Presently, we will discover how the same recursive formula used in Neville's
- Method is used to derive a very efficient, computer-friendly method for
+ method is used to derive a very efficient, computer-friendly method for
  calculating interpolating polynomials themselves.
  The result of the computation is a set of coefficients for the Newton form
  of a polynomial.
@@ -148,7 +148,7 @@ We now wish to compute the polynomial
 \end_inset
 
 and we would like to recycle the work we have already done (much the same
- way we could add a point of interpolation in Neville's Method and reuse
+ way we could add a point of interpolation in Neville's method and reuse
  all previous work)! One way to attack the problem is to find a polynomial
  
 \begin_inset Formula $q(x)$
@@ -401,7 +401,7 @@ P_{i,0}(x) & = & f(x_{i})
 
 \end_inset
 
-used in devising Neville's Method comes in handy.
+used in devising Neville's method comes in handy.
  In as much as 
 \begin_inset Formula $P_{i,m}$
 \end_inset
@@ -444,7 +444,7 @@ used in devising Neville's Method comes in handy.
 \end_inset
 
 .
- Therefore the coefficient of the 
+ Therefore, the coefficient of the 
 \begin_inset Formula $x^{m+1}$
 \end_inset
 
@@ -483,7 +483,7 @@ used in devising Neville's Method comes in handy.
 \end_inset
 
 .
- Hence the potential leading coefficient 
+ Hence, the potential leading coefficient 
 \begin_inset Formula $f_{i,m+1}$
 \end_inset
 
@@ -643,7 +643,7 @@ It can not be stressed enough that we have not discovered a new polynomial.
 \end_inset
 
 .
- They are therefore equal by theorem 
+ They are, therefore, equal by theorem 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:interpolatingPolynomialUniqueness"
@@ -715,9 +715,9 @@ divided difference
  recursive formula, an approach that takes considerably more work to develop.
  There are reasons to do so, however.
  Refraining from the use of Neville's formula follows more closely the historica
-l development of the subject since Newton (1643–1727) preceeded Neville
- (1889-1961) by over 200 years! Moreover, following the historical development
- more naturally leads to further study of divided differences.
+l development of the subject since Newton (1643–1727) preceded Neville (1889-196
+1) by over 200 years! Moreover, following the historical development more
+ naturally leads to further study of divided differences.
 \end_layout
 
 \begin_layout Standard
@@ -752,7 +752,7 @@ As an example, take the polynomial interpolating
 \begin_inset Formula $x=0,1,2$
 \end_inset
 
-, as we did in the discussion of Neville's Method 
+, as we did in the discussion of Neville's method 
 \begin_inset CommandInset ref
 LatexCommand vpageref
 reference "NevillesMethodDiscussion"
@@ -805,7 +805,7 @@ Therefore,
 \begin_inset Formula $f_{i,j}$
 \end_inset
 
- as they are computed (just as is the case for Neville's Method).
+ as they are computed (just as is the case for Neville's method).
  This is true for both humans and computers! A tabulation of the computation
  makes it easier to internalize the recursion and imagine how this process
  might be automated.
@@ -816,7 +816,7 @@ reference "tab:NewtonPolyExample"
 
 \end_inset
 
-, which is is called a table of divided differences (or divided difference
+, which is called a table of divided differences (or divided difference
  table),
 \begin_inset Index idx
 status collapsed
@@ -1100,7 +1100,7 @@ hrule
 
  shows such a tabulation.
  Adding a data point to the interpolation is as easy as computing another
- diagonal of coefficients (just like Neville's Method).
+ diagonal of coefficients (just like Neville's method).
 \end_layout
 
 \begin_layout Subsection
@@ -1319,7 +1319,7 @@ end{pseudocode}
 \noindent
 While this pseudo-code is good as far as it goes, it is far from complete.
  The most obvious deficiency is that it only executes one step of Sidi's
- Method.
+ method.
  A less obvious deficiency is that its input and output do not match in
  type or quantity, so at the end of the routine, the computer is still not
  ready to compute another iteration.
@@ -1403,7 +1403,7 @@ Step
 \begin_inset Formula $x_{k+1}$
 \end_inset
 
- according to Sidi's Method applied to 
+ according to Sidi's method applied to 
 \begin_inset Formula $x_{0},x_{1},\ldots,x_{k}$
 \end_inset
 
@@ -1490,7 +1490,7 @@ This new pseudo-code, which utilizes the previous pseudo-code in its first
  step is an improvement.
  Now the input and output match in type and quantity, meaning the output
  of this routine may be used as input for the next iteration.
- However, this routine still only calculates one step of Sidi's Method.
+ However, this routine still only calculates one step of Sidi's method.
  Moreover, we have been ignoring another issue.
  Each of the routines spelled out in pseudo-code so far assume we have the
  diagonal entries of the corresponding divided difference table.
@@ -1656,7 +1656,7 @@ Step
 \begin_inset Formula $x=x_{k+1}$
 \end_inset
 
- according to Sidi's Method applied to 
+ according to Sidi's method applied to 
 \begin_inset Newline newline
 \end_inset
 
@@ -1807,14 +1807,14 @@ As complete as this latest pseudo-code is, it leaves one item unaddressed.
  degree method.
  When we encountered the secant method, we noted that needing two initial
  values as opposed to one was a disadvantage.
- The disadvantage is only magnified in Sidi's Method where 
+ The disadvantage is only magnified in Sidi's method where 
 \begin_inset Formula $k+1$
 \end_inset
 
  initial values are required.
  However, just as with the secant method, we can automatically generate
  initial values if needed.
- If Sidi's Method is given one initial value, 
+ If Sidi's method is given one initial value, 
 \begin_inset Formula $x_{0}$
 \end_inset
 
@@ -1849,7 +1849,7 @@ Much less is known about Sidi's method and how the selection of intial values
 \begin_inset Formula $k+1-j$
 \end_inset
 
- intial values can be found using Sidi's Method of degree 
+ intial values can be found using Sidi's method of degree 
 \begin_inset Formula $j$
 \end_inset
 
@@ -1861,7 +1861,7 @@ Much less is known about Sidi's method and how the selection of intial values
 \begin_inset Formula $x_{j+1}$
 \end_inset
 
- followed by using Sidi's Method of degree 
+ followed by using Sidi's method of degree 
 \begin_inset Formula $j+1$
 \end_inset
 
@@ -1873,7 +1873,7 @@ Much less is known about Sidi's method and how the selection of intial values
 \begin_inset Formula $x_{j+2}$
 \end_inset
 
- followed by using Sidi's Method of degree 
+ followed by using Sidi's method of degree 
 \begin_inset Formula $j+2$
 \end_inset
 
@@ -1907,7 +1907,7 @@ Sidi's method ! Octave code
 \end_layout
 
 \begin_layout Standard
-As is the case with Neville's Method, the Octave code follows identically
+As is the case with Neville's method, the Octave code follows identically
  its corresponding pseudo-code except that indices have been modified to
  accommodate indexing beginning with 1, not 0.
 \end_layout
@@ -2184,7 +2184,7 @@ Divided difference tables are generally computed for the sake of finding
  may be reused should more data be added.
  This same property can be thought of in reverse.
  Suppose you have a divided difference table computed over 4 data values
- but you are only interested in an at most degree 2 interpolating polynomial.
+ but you are only interested in an at-most-degree-2 interpolating polynomial.
  The divided difference table
 \end_layout
 
@@ -2437,7 +2437,7 @@ Divided difference tables are generally computed for the sake of finding
 
 \begin_layout Standard
 \noindent
-actually gives us two different at most quadratic interpolating polynomials
+actually gives us two different at-most-quadratic interpolating polynomials
  with four representations for each! First, the table was devised to compute
  the interpolating polynomial
 \begin_inset Formula 
@@ -2869,7 +2869,7 @@ The bottom diagonals of each truncated table give degree at most 2 interpolating
 \end_inset
 
 .
- Hence 
+ Hence, 
 \begin_inset Formula 
 \[
 \tilde{Q}_{2}(x)=f_{3,0}+f_{2,1}(x-x_{3})+f_{1,2}(x-x_{3})(x-x_{2})
@@ -3012,7 +3012,7 @@ to give a representation of the polynomial interpolating over
 \begin_inset Formula $x_{0},x_{1},x_{2}$
 \end_inset
 
- (which therefore must equal 
+ (which, therefore, must equal 
 \begin_inset Formula $P_{2}$
 \end_inset
 
@@ -3139,7 +3139,7 @@ for
 \end_layout
 
 \begin_layout Description
-potential
+Potential
 \begin_inset space ~
 \end_inset
 
@@ -3169,7 +3169,7 @@ For an interpolating polynomial on
 \end_layout
 
 \begin_layout Description
-divided
+Divided
 \begin_inset space ~
 \end_inset
 
@@ -3192,7 +3192,7 @@ Exercises
 \end_layout
 
 \begin_layout Enumerate
-Modify the Neville's Method pseudo-code 
+Modify the Neville's method pseudo-code 
 \begin_inset CommandInset ref
 LatexCommand vpageref
 reference "NevillesMethodPseudoCode"
@@ -3228,7 +3228,7 @@ octave
 
 \end_inset
 
-Modify the Neville's Method Octave code 
+Modify the Neville's method Octave code 
 \begin_inset CommandInset ref
 LatexCommand vpageref
 reference "NevillesMethodOctaveCode"
@@ -3339,8 +3339,8 @@ name "exc:interpolation-newton-5"
 
 \end_inset
 
-Use the method of divided differences to find the at most second degree
- polynomial interpolataing the points 
+Use the method of divided differences to find the at-most-second-degree
+ polynomial interpolating the points 
 \begin_inset Formula $(0,10)$
 \end_inset
 
@@ -3436,7 +3436,7 @@ name "exc:interpolation-newton-6"
 
 \end_inset
 
-Use divided differences to find the at most cubic polynomial of exercise
+Use divided differences to find the at-most-cubic polynomial of exercise
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3475,7 +3475,7 @@ name "exc:interpolation-newton-2"
 
 \end_inset
 
-Find the degree at most two interpolationg polynomial of the form 
+Find the degree at most two interpolating polynomial of the form 
 \begin_inset Formula 
 \[
 p_{n}(x)=a_{0}+a_{1}(x-x_{0})+a_{2}(x-x_{0})(x-x_{1})+\cdots+a_{n}(x-x_{0})(x-x_{1})\cdots(x-x_{n-1})
@@ -4072,8 +4072,8 @@ name "exc:interpolation-newton-10"
 
 Buck spilled coffee on his divided differences table, obscuring several
  numbers.
- Nevertheless, there is enough legible information to find the at most degree
- 3 polynomial interpolating the data.
+ Nevertheless, there is enough legible information to find the at-most-degree-3
+ polynomial interpolating the data.
  Find it.
 \begin_inset ERT
 status open

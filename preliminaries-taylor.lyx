@@ -93,7 +93,7 @@ Taylor Polynomials
 \end_layout
 
 \begin_layout Standard
-One of the cornerstones of numerical analysis is Taylor's Theorem about
+One of the cornerstones of numerical analysis is Taylor's theorem about
  which you learned in Calculus.
  A short study bears repeating here, however.
 \end_layout
@@ -274,7 +274,7 @@ Now define
 \end_inset
 
 .
- Hence 
+ Hence, 
 \begin_inset Formula 
 \begin{eqnarray*}
 F(x_{0}) & = & -F'(\xi)\frac{(x-x_{0})^{n+1}}{(n+1)(x-\xi)^{n}}\\
@@ -496,7 +496,7 @@ The most important thing to understand about the remainder term is that
 \end_inset
 
 .
- Therefore 
+ Therefore, 
 \begin_inset Formula 
 \begin{eqnarray*}
 |T_{n}(x)-f(x)|=|R_{n}(x)| & \leq & \max_{\xi}\left|\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}\right|\\
@@ -518,7 +518,7 @@ The remainder term is precisely the error in using
 \end_inset
 
 .
- Hence it is sometimes referred to as the error term 
+ Hence, it is sometimes referred to as the error term
 \begin_inset Index idx
 status collapsed
 
@@ -773,7 +773,7 @@ After you have convinced yourself these formulas are correct, suppose that
 
 , they attain their maximum values on a closed interval at the lower endpoint
  of that interval.
- Hence for 
+ Hence, for 
 \begin_inset Formula $x\geq e^{2}$
 \end_inset
 
@@ -1439,7 +1439,7 @@ term:
 \end_layout
 
 \begin_layout Description
-error
+Error
 \begin_inset space ~
 \end_inset
 
@@ -1494,7 +1494,7 @@ Methodus Incrementorum Directa & Inversa
 Methodus
 \shape default
 , it appears as the second corollary to Proposition VII Theorem III, bearing
- faint resemblence to any modern statement of the theorem.
+ faint resemblance to any modern statement of the theorem.
  
 \end_layout
 
@@ -3046,7 +3046,7 @@ Find the remainder term,
 \begin_inset Formula $R_{2}(0.5)$
 \end_inset
 
-, and the the actual error in using 
+, and the actual error in using 
 \begin_inset Formula $P_{2}(0.5)$
 \end_inset
 
@@ -3311,7 +3311,7 @@ For
 \[
 f^{(n)}(0)=\begin{cases}
 0 & \textrm{if }n\textrm{ is even}\\
-(-1)^{(n-1)/2}(n-1)! & \textrm{if }n\textrm{ is odd}
+(-1)^{(n-1)/2}(n-1)! & \textrm{if }n\textrm{ is odd}.
 \end{cases}
 \]
 
@@ -3357,7 +3357,7 @@ Suppose you are approximating
 \begin_inset Formula $f(x)=e^{x}$
 \end_inset
 
- using the tenth Maclaurin Polynomial.
+ using the tenth Maclaurin polynomial.
  Find the largest interval over which the approximation is guaranteed to
  be accurate to within 
 \begin_inset Formula $10^{-3}$
@@ -3658,7 +3658,7 @@ l for the function
 \begin_inset Formula $10^{-20}$
 \end_inset
 
-? Ignore roundoff error.
+? Ignore round-off error.
 \end_layout
 
 \begin_layout Enumerate

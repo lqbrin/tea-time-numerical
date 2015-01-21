@@ -154,8 +154,8 @@ Numerical methods are designed to approximate one thing or another.
  Sometimes accuracy comes down to careful algebraic analysis---sometimes
  careful analysis of the calculus, and often careful analysis of Taylor
  polynomials.
- But before we can tackle those details, we should discuss just how error,
- and therefore accuracy, is measured.
+ But before we can tackle those details, we should discuss just how error
+ and, therefore, accuracy are measured.
 \end_layout
 
 \begin_layout Standard
@@ -318,7 +318,7 @@ The absolute error in approximating
 \begin_inset Formula $\frac{22}{7}\approx3.14285$
 \end_inset
 
- while 
+, while 
 \begin_inset Formula $\pi^{5}\approx306.01968$
 \end_inset
 
@@ -376,7 +376,7 @@ But there is something more going on here.
  Therein lies the essence of relative errors---weighing the absolute error
  against the magnitude of the number being approximated.
  This is done by computing the ratio of the error to the exact value.
- Hence the relative error in approximating 
+ Hence, the relative error in approximating 
 \begin_inset Formula $\pi$
 \end_inset
 
@@ -495,7 +495,7 @@ floating-point arithmetic
  values are stored in binary.
  According to the IEEE Standard 754, which most computers use, the mantissa
  (or significand) is stored using 52 bits, or binary places.
- Since the leading bit is always assumed to be 1 (and therefore not actually
+ Since the leading bit is always assumed to be 1 (and, therefore, not actually
  stored), each floating point number is represented using 53 consecutive
  binary place values.
  Now let's consider how 
@@ -548,7 +548,7 @@ or
 \begin_inset Formula $1/7$
 \end_inset
 
- is therefore
+ is, therefore,
 \begin_inset Formula 
 \begin{eqnarray*}
 \left|\frac{2573485501354569}{18014398509481984}-\frac{1}{7}\right| & = & \frac{1}{126100789566373888}\approx7.93(10)^{-18}.
@@ -603,7 +603,7 @@ In floating-point arithmetic, a calculator or computer typically stores
 \begin_inset Formula $0.1428571428571428$
 \end_inset
 
- while the exact value is 
+, while the exact value is 
 \begin_inset Formula $0.1428571428571428\ldots$
 \end_inset
 
@@ -612,7 +612,7 @@ In floating-point arithmetic, a calculator or computer typically stores
 \begin_inset Formula $142857$
 \end_inset
 
- repeats without cease while in the floating point value, the repetition
+ repeats without cease, while in the floating point value, the repetition
  ceases after the third 8.
  The value is chopped to 16 decimal places in the floating-point representation.
  So the floating point error in calculating 
@@ -1598,8 +1598,8 @@ The reason the calculation is so poor is that nearly equal values are subtracted
  But the computation needs to be carried out to 37 significant digits to
  realize this.
  Calculation using only about 16 significant digits, as most calculators
- and computers do, results in 0 signifcant digits of accuracy since 36 digits
- of accuracy are lost during the calculation.
+ and computers do, results in 0 significant digits of accuracy since 36
+ digits of accuracy are lost during the calculation.
  That's why you can get a number like 
 \begin_inset Formula $-1.180591620717411(10)^{21}$
 \end_inset
@@ -1905,7 +1905,7 @@ t arithmetic,
 \end_layout
 
 \begin_layout Description
-Roundoff
+Round-off
 \begin_inset space ~
 \end_inset
 
@@ -1914,7 +1914,7 @@ error
 status collapsed
 
 \begin_layout Plain Layout
-error ! roundoff
+error ! round-off
 \end_layout
 
 \end_inset
@@ -3450,7 +3450,7 @@ Exercises
 \end_layout
 
 \begin_layout Enumerate
-Besides roundoff error, how may the accuracy of a numerical calculation
+Besides round-off error, how may the accuracy of a numerical calculation
  be adversely affected?
 \end_layout
 
@@ -4077,12 +4077,12 @@ sin(0)==0
 \family typewriter
 ans=1
 \family default
- means true (the two sides are equal according to Octave---no roundoff error)
- and 
+ means true (the two sides are equal according to Octave---no round-off
+ error) and 
 \family typewriter
 ans=0
 \family default
- means false (the two sides are not equal according to Octave---roundoff
+ means false (the two sides are not equal according to Octave---round-off
  error).
 \end_layout
 

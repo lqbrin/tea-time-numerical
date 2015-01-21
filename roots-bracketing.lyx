@@ -142,7 +142,7 @@ Bracketing means maintaining an interval in which a root is known to lie.
  Bracketing is used in the bisection method.
  With each iteration, the root is known to lie between the two latest approximat
 ions.
- Bracketing is not used in the secant method or Newton's method.
+ Bracketing is not used in the secant method nor Newton's method.
  There is no guarantee a root remains near the latest approximations.
  
 \end_layout
@@ -190,7 +190,7 @@ bracketed Newton's method
 
 \end_inset
 
- provides a slighlty more advanced example because it is entirely possible
+ provides a slightly more advanced example because it is entirely possible
  an iteration of Newton's method will land outside the bracket.
 \end_layout
 
@@ -2548,7 +2548,7 @@ end{verbatim}
 
 \end_inset
 
-You may recognize this as the order of convergence for Müller's Method.
+You may recognize this as the order of convergence for Müller's method.
  Indeed, any quadratic interpolation method converges to a simple root with
  this order.
 \end_layout
@@ -2586,7 +2586,7 @@ The
 \begin_inset Formula $x$
 \end_inset
 
--axis crossing is therefore 
+-axis crossing is, therefore, 
 \begin_inset Formula 
 \begin{eqnarray*}
 x & = & q(0)\\
@@ -4223,7 +4223,7 @@ octave
 Use your code from question 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "exc:bracketing-8-1"
+reference "exc:bracketing-8"
 
 \end_inset
 

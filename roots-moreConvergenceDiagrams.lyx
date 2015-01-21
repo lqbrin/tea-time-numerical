@@ -334,8 +334,8 @@ This division shows that
 
 \begin_layout Standard
 Of course this is all fascinating, but what does this have to do with numerical
- analysis? What may surprise you is that Fixed Point Iteration (and therefore
- Newton's Method), the Secant Method, and Steffensen's Method can all be
+ analysis? What may surprise you is that fixed point iteration (and, therefore,
+ Newton's method), the secant method, and Steffensen's method can all be
  used to find complex roots just as well as real ones! In fact, the algorithms
  need no modification! The programming language used to implement the methods,
  of course, does need to be able to handle complex number arithmetic.
@@ -364,11 +364,11 @@ reference "que:whyEquivalent"
 \begin_inset Formula $x_{0}=-1+i$
 \end_inset
 
- and applying Newton's Method and the Secant Method to 
+ and applying Newton's method and the secant method to 
 \begin_inset Formula $g(x)=1-x^{3}$
 \end_inset
 
-, and Steffensen's Method to 
+, and Steffensen's method to 
 \begin_inset Formula $f(x)=1/x^{2}$
 \end_inset
 
@@ -936,7 +936,7 @@ Each sequence quickly converges to the complex root
 \begin_inset Formula $1+i$
 \end_inset
 
-, Newton's Method converges to 
+, Newton's method converges to 
 \begin_inset Formula $1$
 \end_inset
 
@@ -955,15 +955,15 @@ reference "fig:complexConvergenceDiagram1"
 
 \end_inset
 
- shows convergence diagrams for Newton's Method with 
+ shows convergence diagrams for Newton's method with 
 \begin_inset Formula $g(x)=1-x^{3}$
 \end_inset
 
-, the Seeded Secant Method with 
+, the seeded secant method with 
 \begin_inset Formula $g(x)=1-x^{3}$
 \end_inset
 
-, and Steffensen's Method with 
+, and Steffensen's method with 
 \begin_inset Formula $f(x)=1/x^{2}$
 \end_inset
 
@@ -1012,7 +1012,7 @@ From top to bottom:
 \begin_inset Newline newline
 \end_inset
 
-Newton's Method with
+Newton's method with
 \begin_inset Formula 
 \[
 g(x)=1-x^{3}
@@ -1024,7 +1024,7 @@ and dwell 20;
 \begin_inset Newline newline
 \end_inset
 
-Seeded Secant Method with
+seeded secant method with
 \begin_inset Formula 
 \[
 g(x)=1-x^{3}
@@ -1036,7 +1036,7 @@ and dwell 40;
 \begin_inset Newline newline
 \end_inset
 
-Steffensen's Method with
+Steffensen's method with
 \begin_inset Formula 
 \[
 f(x)=\frac{1}{x^{2}}
@@ -1163,7 +1163,7 @@ Each diagram covers the part of the complex plane with real parts in
 \end_inset
 
 .
- The center of each diagram represents the the initial value 
+ The center of each diagram represents the initial value 
 \begin_inset Formula $0$
 \end_inset
 
@@ -1189,12 +1189,12 @@ Each diagram covers the part of the complex plane with real parts in
 \begin_inset Formula $x_{0}=5-3.75i$
 \end_inset
 
-, Newton's Method and the Seeded Secant Method both converge to 
+, Newton's method and the seeded secant method both converge to 
 \begin_inset Formula $-\frac{1}{2}+\frac{\sqrt{3}}{2}i$
 \end_inset
 
 , because the upper right hand corner of each diagram is colored green.
- Steffensen's Method, on the other hand, fails to converge to any root if
+ Steffensen's method, on the other hand, fails to converge to any root if
  begun with 
 \begin_inset Formula $x_{0}=5-3.75i$
 \end_inset
@@ -1215,11 +1215,11 @@ The dwell represents the maximum number of iterations allowed, so actually
 
 \begin_layout Standard
 Two things are very striking about these convergence diagrams.
- First, the Seeded Secant Method and Newton's Method converge for a much
- larger set of initial values than does Steffensen's Method.
+ First, the seeded secant method and Newton's method converge for a much
+ larger set of initial values than does Steffensen's method.
  This is, at least in part, due to the function chosen.
  For other functions, there may be a fixed point scheme for which Steffensen's
- Method converges on large sets of initial values too.
+ method converges on large sets of initial values too.
  Second, the patterns of colors are extremely intricate, even fractal in
  nature.
  Predicting to which root a method will converge for a given initial value,
@@ -1274,7 +1274,7 @@ To that end, fix a real number
 \begin_inset Formula $b$
 \end_inset
 
- parametrizes the circle about the origin with radius 
+ parameterizes the circle about the origin with radius 
 \begin_inset Formula $e^{a_{0}}$
 \end_inset
 
@@ -1368,7 +1368,7 @@ reference "fig:verticalLineAndCircle"
 \end_inset
 
 .
- The coordinates of the two instersections are 
+ The coordinates of the two intersections are 
 \begin_inset Formula 
 \[
 (2.439940377216816,\pm11.2098911414971).
@@ -1423,7 +1423,7 @@ The two points are images of one another under the exponential function!
 \end_inset
 
 .
- Hence if we iterate 
+ Hence, if we iterate 
 \begin_inset Formula $z_{2}=f(z_{1})$
 \end_inset
 
@@ -1678,15 +1678,15 @@ More convergence diagrams over the complex plane.
 \series bold
 From left to right:
 \series default
- Newton's Method with 
+ Newton's method with 
 \begin_inset Formula $g(z)=z-e^{z}$
 \end_inset
 
- and dwell 20; Secant Method with 
+ and dwell 20; secant method with 
 \begin_inset Formula $g(z)=z-e^{z}$
 \end_inset
 
- and dwell 40; Steffensen's Method with 
+ and dwell 40; Steffensen's method with 
 \begin_inset Formula $f(z)=e^{z}$
 \end_inset
 
@@ -1938,7 +1938,7 @@ reference "fig:complexConvergenceDiagram2"
 \end_inset
 
 , one for each of the 12 different colors.
- The coordiantes of each fixed point can be approximated by locating the
+ The coordinates of each fixed point can be approximated by locating the
  spot of greatest intensity within each colored band.
  
 \end_layout
@@ -1951,7 +1951,7 @@ reference "fig:complexConvergenceDiagram2"
 
 \end_inset
 
-, convergence diagrams for the Secant Method can be created by setting 
+, convergence diagrams for the secant method can be created by setting 
 \begin_inset Formula $x_{1}=x_{0}+\delta$
 \end_inset
 
@@ -1974,19 +1974,19 @@ reference "fig:complexConvergenceDiagram2"
 \end_inset
 
  alone, just as is done for the other convergence diagrams.
- You will notice that the convergence diagram for the Secant Method and
- the convergence diagram for Newton's Method are quite similar.
+ You will notice that the convergence diagram for the secant method and
+ the convergence diagram for Newton's method are quite similar.
  For sufficiently small 
 \begin_inset Formula $\delta$
 \end_inset
 
 , this will be the case in general.
- The Secant Method convergence diagram and the Newton's Method convergence
+ The secant method convergence diagram and the Newton's method convergence
  diagram for the same function over the same region will look very much
  the same.
  The only significant difference will be the number of iterations needed
  for convergence.
- The Secant Method will need more iterations to converge.
+ The secant method will need more iterations to converge.
 \end_layout
 
 \begin_layout Standard
@@ -2017,7 +2017,7 @@ name "exc:more"
 
 \end_inset
 
-Match the function with its Newton's Method convergence diagram.
+Match the function with its Newton's method convergence diagram.
  The real axis passes through the center of each diagram, and the imaginary
  axis is represented, but is not necessarily centered.
 \begin_inset ERT
@@ -2251,7 +2251,7 @@ name "exc:more-1"
 
 \end_inset
 
-Match the function with its Newton's Method convergence diagram.
+Match the function with its Newton's method convergence diagram.
  The real axis passes through the center of each diagram, and the imaginary
  axis is represented, but is not necessarily centered.
  
@@ -2580,7 +2580,7 @@ name "newton"
 
 \end_inset
 
-Create Newton's Method convergence diagrams for the polynomials of question
+Create Newton's method convergence diagrams for the polynomials of question
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2679,7 +2679,7 @@ name "exc:more-3"
 
 \end_inset
 
-Match the function with its Seeded Secant method convergence diagram.
+Match the function with its seeded secant method convergence diagram.
  The real axis passes through the center of each diagram, and the imaginary
  axis is represented, but is not necessarily centered.
 \begin_inset ERT
@@ -2913,7 +2913,7 @@ name "exc:more-5"
 
 \end_inset
 
-Match the function with its Seeded Secant method convergence diagram.
+Match the function with its seeded secant method convergence diagram.
  The real axis passes through the center of each diagram, and the imaginary
  axis is represented, but is not necessarily centered.
 \begin_inset ERT
@@ -3141,7 +3141,7 @@ l(x) & = & (\ln x)(x^{3}+1)
 
 \end_deeper
 \begin_layout Enumerate
-Create Seeded Secant method convergence diagrams for the polynomials of
+Create seeded secant method convergence diagrams for the polynomials of
  question 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3166,10 +3166,10 @@ target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
 \begin_layout Enumerate
 The Newton's method convergence diagram for one polynomial is much like
  the Newton's method convergence diagram for another.
- Interesting changes in the Newton's method convergence diagrams and Seeded
- Secant method convergence diagrams can be achieved by multiplying a polynomial
+ Interesting changes in the Newton's method convergence diagrams and seeded
+ secant method convergence diagrams can be achieved by multiplying a polynomial
  by a non-polynomial function with no roots.
- Create Newton's method and Seeded Secant method convergence diagrams for
+ Create Newton's method and seeded secant method convergence diagrams for
  products of functions in question 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3188,8 +3188,8 @@ reference "noroot"
 \end_layout
 
 \begin_layout Enumerate
-Discuss the relative strengths and weaknesses of Newton's Method, the Secant
- Method, and the Seeded Secant Method.
+Discuss the relative strengths and weaknesses of Newton's method, the secant
+ method, and the seeded secant method.
 \end_layout
 
 \begin_layout Standard

@@ -1757,8 +1757,8 @@ is a huge number relative to the values of
 .
  So the theoretical error bound does not predict good results for this interpola
 tion.
- In fact, it suggests that the interpolation could have been much much worse!
- 
+ In fact, it suggests that the interpolation could have been much, much
+ worse! 
 \begin_inset Formula $L_{6}$
 \end_inset
 
@@ -1802,8 +1802,8 @@ tion.
 \begin_inset Formula $f$
 \end_inset
 
- well should not be seen as a flaw in the method.
- Rather, it should be seen as a flaw in its application.
+ well should not be seen as a flaw in the method, but rather a flaw in its
+ application.
  If we really wanted to approximate 
 \begin_inset Formula $f$
 \end_inset
@@ -1982,7 +1982,7 @@ Again we find ourselves connecting the content of the previous chapter with
 \end_inset
 
 .
- Hence it is an approximation of 
+ Hence, it is an approximation of 
 \begin_inset Formula $g$
 \end_inset
 
@@ -2001,7 +2001,7 @@ Having taken this point of view, we can now imagine generalizing the method
 \begin_inset Formula $k^{th}$
 \end_inset
 
- degree Method 
+ degree method 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "sidi"
@@ -2062,14 +2062,14 @@ When
 \begin_inset Formula $k=1$
 \end_inset
 
-, this is exactly the Secant Method.
+, this is exactly the secant method.
  When 
 \begin_inset Formula $k=2$
 \end_inset
 
-, this method uses the same parabola as does Müller's Method, but in a different
+, this method uses the same parabola as does Müller's method, but in a different
  way.
- In Müller's Method, the next iteration is found by locating a root of the
+ In Müller's method, the next iteration is found by locating a root of the
  interpolating polynomial.
  In this method, the next iteration is found by locating a root of a tangent
  line to the interpolating polynomial.
@@ -2094,7 +2094,7 @@ As
 \begin_inset Formula $\alpha_{1}=\frac{1+\sqrt{5}}{2}\approx1.618$
 \end_inset
 
-, the order of convergence of the Secant Method, and
+, the order of convergence of the secant method, and
 \begin_inset Formula 
 \[
 \alpha_{2}\approx1.839,\ \alpha_{3}\approx1.928,\ \alpha_{4}\approx1.966.
@@ -2106,8 +2106,8 @@ For any
 \begin_inset Formula $k$
 \end_inset
 
-, Sidi's Method has an order of convergence less than 2 (the order of convergenc
-e of Newton's Method) but it approaches 2 as 
+, Sidi's method has an order of convergence less than 2 (the order of convergenc
+e of Newton's method) but it approaches 2 as 
 \begin_inset Formula $k$
 \end_inset
 
@@ -2239,12 +2239,12 @@ Method 2 is better if you have more points at which to evaluate, and method
  Previous work is of limited use.
  And we haven't even begun to discuss the trouble of writing a computer
  program to automate the calculations.
- Neville's Method can be used to overcome these limitations when the value
+ Neville's method can be used to overcome these limitations when the value
  of the polynomial at a specific point is required.
 \end_layout
 
 \begin_layout Standard
-Neville's Method is based on the observation that interpolating polynomials
+Neville's method is based on the observation that interpolating polynomials
  can be constructed recursively.
  Suppose 
 \begin_inset Formula $P_{k,l}$
@@ -2399,11 +2399,11 @@ reference "eq:NevillesRecursion"
 
 \end_inset
 
- succinctly summarizes Neville's Method.
+ succinctly summarizes Neville's method.
 \end_layout
 
 \begin_layout Standard
-While Neville's Method (formula 
+While Neville's method (formula 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:NevillesRecursion"
@@ -2438,7 +2438,7 @@ it is normally used to find the value of an interpolating polynomial at
 \end_inset
 
 .
- We now find this value using Neville's Method.
+ We now find this value using Neville's method.
  
 \begin_inset Formula $P_{0,0}(1.5)=f(0)=1$
 \end_inset
@@ -2506,7 +2506,7 @@ name "tab:NevillesMethodExample"
 
 \end_inset
 
-Neville's Method example, calculating 
+Neville's method example, calculating 
 \begin_inset Formula $P_{0,2}(1.5)$
 \end_inset
 
@@ -2971,7 +2971,7 @@ of least degree
 \end_inset
 
  were one and the same polynomial.
- Worse yet, when we came around to discussing Neville's Method, we calculated
+ Worse yet, when we came around to discussing Neville's method, we calculated
  
 \begin_inset Formula $P_{0,2}(1.5)$
 \end_inset
@@ -3135,7 +3135,7 @@ By construction,
 \end_inset
 
  is identically 0.
- Hence 
+ Hence, 
 \begin_inset Formula $f(x)=P_{n}(x)-q(x)=0$
 \end_inset
 
@@ -3619,7 +3619,7 @@ Sidi's
 \begin_inset space ~
 \end_inset
 
-Method: 
+method: 
 \begin_inset Index idx
 status collapsed
 
@@ -3657,7 +3657,7 @@ Neville's
 \begin_inset space ~
 \end_inset
 
-Method: 
+method: 
 \begin_inset Index idx
 status collapsed
 
@@ -4132,7 +4132,7 @@ reference "exc:interpolation-lagrange-7"
 
 \end_inset
 
- using Neville's Method.
+ using Neville's method.
 \begin_inset ERT
 status open
 
@@ -4839,7 +4839,7 @@ use the polynomial to approximate
 \begin_inset Formula $f(1.5)$
 \end_inset
 
-.
+; and
 \end_layout
 
 \begin_layout Enumerate
@@ -4870,7 +4870,7 @@ octave
 
 \end_inset
 
-Use Neville's Method to find the approximation in question 
+Use Neville's method to find the approximation in question 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "exc:interpolation-lagrange-3"
@@ -5038,7 +5038,7 @@ name "exc:interpolation-lagrange-5"
 
 \end_inset
 
-The following table results from using Neville's Method to approximate 
+The following table results from using Neville's method to approximate 
 \begin_inset Formula $f(0.4)$
 \end_inset
 
@@ -5609,7 +5609,7 @@ The interpolating polynomial on
 \end_layout
 
 \begin_layout Enumerate
-Use Neville's Method to find the polynomial described in question 
+Use Neville's method to find the polynomial described in question 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "exc:interpolation-lagrange-1"

@@ -95,7 +95,7 @@ Speed
 \begin_layout Standard
 Besides accuracy, there is nothing more important about a numerical method
  than speed.
- There is almost always a trade off between one and the other, however.
+ There is almost always a trade-off between one and the other, however.
  Fast computations are often not particularly accurate, and accurate calculation
 s are often not particularly fast.
  There are certain algorithms that produce accurate results quickly, however.
@@ -1032,9 +1032,9 @@ reference "tab:convergenceTo2.718281828..."
 .
  And that is correct as we will see soon.
  But just like knowing which cars are faster than which is different from
- knowing has fast each is going, knowing which sequences canverge faster
+ knowing how fast each is going, knowing which sequences converge faster
  than which is different from knowing how quickly each one converges.
- To measure the speed of a given car, you need access to its spedometer
+ To measure the speed of a given car, you need access to its speedometer
  or a radar gun.
  To measure the order of convergence (speed) of a sequence, you need a definitio
 n and a little algebra.
@@ -1208,7 +1208,7 @@ a contradiction.
 \end_inset
 
  is large.
- Hence 
+ Hence, 
 \begin_inset Formula $\lim_{n\to\infty}\frac{|p_{n+1}-p|}{|p_{n}-p|^{\alpha}}\cdot|p_{n}-p|^{\alpha-1}$
 \end_inset
 
@@ -1294,7 +1294,7 @@ Therefore,
 \begin_inset Formula $\langle|p_{n}-p|\rangle$
 \end_inset
 
- diverges, and therefore 
+ diverges, and, therefore, 
 \begin_inset Formula $\langle p_{n}\rangle$
 \end_inset
 
@@ -1418,7 +1418,7 @@ If you attempted to calculate the orders of convergence yourself, you may
 \end_inset
 
 .
- All of these terms in the table are equal so the formula for 
+ All of these terms in the table are equal, so the formula for 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -2212,7 +2212,7 @@ hrule
 
 \end_inset
 
- In additon to making it easier to calculate 
+ In addition to making it easier to calculate 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -2223,7 +2223,7 @@ hrule
 \end_layout
 
 \begin_layout Standard
-So now we can calculate orders of convergence 
+So now we can calculate orders of convergence
 \begin_inset Index idx
 status collapsed
 
@@ -2382,7 +2382,7 @@ and so on.
  more significant digits of accuracy than the previous.
  More sensibly, this means the sequence will show about one more significant
  digit of accuracy every ten terms.
- This is born out by observing that 
+ This is borne out by observing that 
 \begin_inset Formula $q_{0}$
 \end_inset
 
@@ -2445,7 +2445,7 @@ and so on.
 \end_inset
 
  significant digits of accuracy.
- Again this is born out by the table as 
+ Again this is borne out by the table as 
 \begin_inset Formula $\log\left|\frac{e}{r_{8}-e}\right|=\log\left|\frac{e}{2.113(10)^{-8}}\right|\approx8.1$
 \end_inset
 
@@ -3255,7 +3255,7 @@ convergence ! order of
 
 \end_inset
 
- The sequence 
+: The sequence 
 \begin_inset Formula $\langle p_{n}\rangle$
 \end_inset
 
@@ -3288,7 +3288,7 @@ Absolute
 \begin_inset space ~
 \end_inset
 
-error For a sequence 
+error: For a sequence 
 \begin_inset Formula $\langle p_{n}\rangle$
 \end_inset
 
@@ -3328,7 +3328,7 @@ of
 \begin_inset space ~
 \end_inset
 
-accuracy 
+accuracy: 
 \begin_inset Index idx
 status collapsed
 
@@ -3402,7 +3402,7 @@ convergence ! rate of
 
 \end_inset
 
- The sequence 
+: The sequence 
 \begin_inset Formula $\langle p_{n}\rangle$
 \end_inset
 

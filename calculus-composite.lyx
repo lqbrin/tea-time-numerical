@@ -115,7 +115,7 @@ reference "sec:calculusErrorAnalysis"
 \end_inset
 
 .
- As a prime example, the Trapezoidal Rule, 
+ As a prime example, the trapezoidal rule, 
 \begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)dx=\frac{h}{2}\left[f(x_{0})+f(x_{0}+h)\right]+O(h^{3}f''(\xi_{h}))}$
 \end_inset
 
@@ -339,7 +339,7 @@ As for using the trapezoidal rule to do the approximating, the error in
 \end_inset
 
 .
- The error in the above sum is therefore bounded by 
+ The error in the above sum is, therefore, bounded by 
 \begin_inset Formula $\sum_{i=1}^{n}M\left(\frac{h}{n}\right)^{3}f''(\xi_{i})=Mh\left(\frac{h}{n}\right)^{2}\cdot\frac{1}{n}\sum_{i=1}^{n}f''(\xi_{i})$
 \end_inset
 
@@ -999,7 +999,7 @@ ies associated with the normal distribution.
 \begin_layout Standard
 Computer algebra systems will have the error function built-in just as they
  do the sine or logarithm functions.
- Hence the easiest way to evaluate 
+ Hence, the easiest way to evaluate 
 \begin_inset Formula $\int_{0}^{3}e^{-x^{2}}dx$
 \end_inset
 
@@ -1145,7 +1145,7 @@ Just remember, if
 \begin_inset Formula $f''(\xi_{n})$
 \end_inset
 
- is constant could be a bad one no matter how many subintervals are used.
+ is constant could be a bad one, no matter how many subintervals are used.
  The more common case is when 
 \begin_inset Formula $f''$
 \end_inset
@@ -1172,7 +1172,7 @@ Taking this lesson to heart, we approximate
 
 \end_inset
 
-using the trapezoidal rule with 50 subintervals and find that it is accuracte
+using the trapezoidal rule with 50 subintervals and find that it is accurate
  to within about 
 \begin_inset Formula $10^{-1}$
 \end_inset
@@ -1427,7 +1427,7 @@ To harness this knowledge, we need to incorporate this estimate into our
 \begin_layout Standard
 The simplest way to code this algorithm is to use a recursive function.
  It is possible to do without, but the record keeping is burdensome.
- Depending on the programming language you are using, the trade off may
+ Depending on the programming language you are using, the trade-off may
  be simplicity for speed.
  Some languages do not handle recursive functions quickly.
 \end_layout
@@ -2288,8 +2288,8 @@ The calculation in the table requires 7 evaluations of
  with essentially the same amount of computation.
  But remember, it is not necessarily efficiency we are after.
  It is automatic error estimates.
- The adaptive Trapezoidal Rule does something the conventional composite
- Trapezoidal Rule does not.
+ The adaptive trapezoidal rule does something the conventional composite
+ trapezoidal rule does not.
  It monitors itself for accuracy, so when the routine completes, you not
  only get an estimate, but you can have some confidence in its accuracy
  
@@ -2695,7 +2695,7 @@ Use the (simple) trapezoidal rule on
 \shape italic
 composite
 \shape default
- Trapezoidal rule.
+ trapezoidal rule.
  NOTE: 
 \begin_inset Formula $\int_{0}^{\pi}\sin^{4}x\, dx=\frac{3}{8}\pi$
 \end_inset
@@ -2781,7 +2781,7 @@ Derive a summation formula for the composite version of
 
 \begin_deeper
 \begin_layout Enumerate
-the Midpoint Rule.
+the midpoint rule.
 \end_layout
 
 \begin_layout Enumerate
@@ -2791,7 +2791,7 @@ name "exc:calculus-composite-15"
 
 \end_inset
 
-Simpson's Rule.
+Simpson's rule.
 \begin_inset ERT
 status open
 
@@ -2818,7 +2818,7 @@ Simpson's
 \begin_inset Formula $\frac{3}{8}$
 \end_inset
 
- Rule.
+ rule.
 \begin_inset ERT
 status open
 
@@ -2852,7 +2852,7 @@ the quadrature formula
 \end_deeper
 \begin_layout Enumerate
 Based on our discussion of composite integration, the error term for composite
- Simpson's Rule applied to 
+ Simpson's rule applied to 
 \begin_inset Formula $\int_{a}^{b}f(x)\, dx$
 \end_inset
 
@@ -2889,7 +2889,7 @@ Based on our discussion of composite integration, the error term for composite
 
 \end_inset
 
-using (composite) Simpson's Rule with 
+using (composite) Simpson's rule with 
 \begin_inset Formula $h=0.1$
 \end_inset
 
@@ -2959,7 +2959,7 @@ name "exc:calculus-composite-18"
 
 \end_inset
 
-Use adaptive Simpson's Method to approximate 
+Use adaptive Simpson's method to approximate 
 \begin_inset Formula ${\displaystyle \int_{0}^{1}\ln(x+1)dx}$
 \end_inset
 
@@ -3007,7 +3007,7 @@ using unspecified nodes
 \begin_inset Quotes eld
 \end_inset
 
-General Trapezoidal Rule
+general trapezoidal rule
 \begin_inset Quotes erd
 \end_inset
 
@@ -3046,7 +3046,7 @@ reference "exc:calculus-composite-6"
 \begin_inset Formula $x_{1}-x_{0}=h$
 \end_inset
 
-, and show that it thus reduces to the Trapezoidal Rule.
+, and show that it thus reduces to the trapezoidal rule.
 \end_layout
 
 \begin_layout Enumerate
@@ -3082,7 +3082,7 @@ Approximate
 \begin_inset Formula $I$
 \end_inset
 
- using the Midpoint Rule.
+ using the Midpoint rule.
 \end_layout
 
 \begin_layout Enumerate
@@ -3130,7 +3130,7 @@ Approximate
 \begin_inset Formula $I$
 \end_inset
 
- using Simpson's Rule.
+ using Simpson's rule.
 \end_layout
 
 \begin_layout Enumerate
@@ -3415,7 +3415,7 @@ name "exc:calculus-composite-5"
 
 \end_inset
 
-Write an Octave function that implements adaptive Simpson's Rule as a recursive
+Write an Octave function that implements adaptive Simpson's rule as a recursive
  function.
  Some notes about the structure:
 \begin_inset ERT
@@ -3662,7 +3662,7 @@ octave
 
 \end_inset
 
-Write an Octave function that implements the General Trapezoidal Rule of
+Write an Octave function that implements the general trapezoidal rule of
  question 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3729,8 +3729,8 @@ octave
 
 \end_inset
 
-Do some numerical experiments to compare the (standard) composite Trapezoidal
- Rule to the (random) composite Trapezoidal Rule of question 
+Do some numerical experiments to compare the (standard) composite trapezoidal
+ rule to the (random) composite trapezoidal rule of question 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "exc:calculus-composite-4"

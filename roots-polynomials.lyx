@@ -825,7 +825,7 @@ p'(x)=q'(x)\cdot(x-t)+q(x).
 
 \end_inset
 
-Hence 
+Hence, 
 \begin_inset Formula $p'(t)=q'(t)\cdot(t-t)+q(t)=q(t)$
 \end_inset
 
@@ -1229,7 +1229,7 @@ When we happen upon a root of the polynomial
 \begin_inset Formula $p(x)$
 \end_inset
 
-, the result of the synthetic divsion, 
+, the result of the synthetic division, 
 \begin_inset Formula $p(x)=q(x)(x-t)+p(t)$
 \end_inset
 
@@ -2092,13 +2092,13 @@ end{pseudocode}
 
 \begin_layout Standard
 To refine the pseudo-pseudo-code into pseudo-code, we will use Newton's
- Method, assisted by Horner's Method, in Step 2.
- The usual drawback of Newton's Method, the requirement that the derivative
- be known and calculated, is but a small inconvenience when Horner's Method
+ method, assisted by Horner's method, in Step 2.
+ The usual drawback of Newton's method, the requirement that the derivative
+ be known and calculated, is but a small inconvenience when Horner's method
  is employed.
  But how do we represent polynomials in a computer program so that we can
  accomplish Steps 4 and 5? The same way we implement code to execute Horner's
- Method.
+ method.
  Pseudo-code for Horner's method, with an array:
 \begin_inset Index idx
 status collapsed
@@ -2248,7 +2248,7 @@ As in synthetic division, there is no need to retain the variable to various
  exponents.
  Only the coefficients are needed to define a polynomial.
  So, in the program, a polynomial is represented by an array of numbers.
- Putting together our pseudo-pseudo code, Newton's Method and Horner's Method
+ Putting together our pseudo-pseudo code, Newton's method and Horner's method
  into a single program, we have a method for finding all the roots of a
  polynomial:
 \end_layout
@@ -2594,8 +2594,8 @@ end{pseudocode}
 
 \begin_layout Standard
 \noindent
-Steps 4 through 12 implement Newton's Method to find a single root, using
- Horner's Method in Steps 7 through 10 to calculte the value of the polynomial
+Steps 4 through 12 implement Newton's method to find a single root, using
+ Horner's method in Steps 7 through 10 to calculte the value of the polynomial
  and its derivative at 
 \begin_inset Formula $x_{0}$
 \end_inset
@@ -2755,7 +2755,7 @@ Newton's method
 
 \end_inset
 
-There is one more issue to address regarding the use of Newton's Method
+There is one more issue to address regarding the use of Newton's method
  for finding roots of polynomials.
  For a polynomial with real coefficients, if 
 \begin_inset Formula $x_{0}$
@@ -2783,7 +2783,7 @@ There is one more issue to address regarding the use of Newton's Method
 
 \begin_layout Standard
 The fix is not difficult, with one proviso.
- Mathematically, Newton's method and Horner's Method work just as well with
+ Mathematically, Newton's method and Horner's method work just as well with
  complex numbers as they do with real numbers.
  As long as the programming language you are using can handle complex numbers,
  just begin with a complex (not purely real) initial approximation 
@@ -2798,7 +2798,7 @@ The fix is not difficult, with one proviso.
 \begin_inset Formula $x_{0}$
 \end_inset
 
- will be purely real due to roundoff error.
+ will be purely real due to round-off error.
  The complex roots will generally be found.
 \end_layout
 
@@ -3224,7 +3224,7 @@ Müller's method ! order of convergence
 
 \end_inset
 
-The order of convergence of Müller's Method to a simple root (one that is
+The order of convergence of Müller's method to a simple root (one that is
  not repeated) is
 \end_layout
 
@@ -3276,7 +3276,7 @@ end{digression}
 
 \begin_layout Standard
 The following chart summarizes the relative strengths and weaknesses of
- Newton's Method, the Secant Method, and Müller's Method.
+ Newton's method, the secant method, and Müller's method.
 \end_layout
 
 \begin_layout Standard
@@ -3584,7 +3584,7 @@ Horner's
 \begin_inset space ~
 \end_inset
 
-Method: 
+method: 
 \begin_inset Index idx
 status collapsed
 
@@ -3603,7 +3603,7 @@ Müller's
 \begin_inset space ~
 \end_inset
 
-Method: 
+method: 
 \begin_inset Index idx
 status collapsed
 
@@ -3613,7 +3613,7 @@ Müller's method
 
 \end_inset
 
-A root-finding method similar to the Secant Method where instead of using
+A root-finding method similar to the secant method where instead of using
  a secant line a parabola is used.
 \end_layout
 
@@ -4206,7 +4206,7 @@ Compute
 \begin_inset Formula $x_{2}$
 \end_inset
 
- of Newton's Method by hand (using Horner's method/synthetic division) for
+ of Newton's method by hand (using Horner's method/synthetic division) for
  
 \begin_inset Formula $f(x)=x^{3}+4x-8$
 \end_inset
@@ -4223,7 +4223,7 @@ Find
 \begin_inset Formula $x_{2}$
 \end_inset
 
- of Newton's Method by hand (using Horner's method/synthetic division) for
+ of Newton's method by hand (using Horner's method/synthetic division) for
  
 \begin_inset Formula $f(x)=x^{4}-2x^{3}-4x^{2}+4x+4$
 \end_inset
@@ -4236,8 +4236,8 @@ Find
 \end_layout
 
 \begin_layout Enumerate
-Using Horner's Method as an aid, and not using your calculator, find the
- first iteration of Newton's Method for the function 
+Using Horner's method as an aid, and not using your calculator, find the
+ first iteration of Newton's method for the function 
 \begin_inset Formula $f(x)=2x^{3}-10x+1$
 \end_inset
 
@@ -4249,7 +4249,7 @@ Using Horner's Method as an aid, and not using your calculator, find the
 \end_layout
 
 \begin_layout Enumerate
-Demonstrate two iterations of Newton's Method (using Horner's method/synthetic
+Demonstrate two iterations of Newton's method (using Horner's method/synthetic
  division) applied to 
 \begin_inset Formula $f(x)=5x^{3}-2x^{2}+7x-3$
 \end_inset
@@ -5194,7 +5194,7 @@ status open
 
 \end_inset
 
-ller's Method
+ller's method
 \end_layout
 
 \begin_deeper

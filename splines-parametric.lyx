@@ -271,7 +271,7 @@ l.
 \begin_inset Formula $1$
 \end_inset
 
- at each node before we added an unkown coefficient.
+ at each node before we added an unknown coefficient.
  Of course, 
 \begin_inset Formula $\hat{g}(t)=\frac{g(t)}{(t_{0}-t_{1})^{2}}$
 \end_inset
@@ -536,7 +536,7 @@ For the cubic Hermite polynomial
 \begin_inset Formula $t_{1}$
 \end_inset
 
-, the table looks like so,
+, the table looks like so:
 \end_layout
 
 \begin_layout Standard
@@ -808,10 +808,6 @@ p(t) & = & y_{1}+\left[\dot{y}_{1}\right](t-t_{1})+\left[\frac{\dot{y}_{1}}{t_{1
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Just as we had for interpolating polynomials, we have two ways to find cubic
  Hermite osculating polynomials.
  One way is convenient for humans and the other for computers.
@@ -999,7 +995,7 @@ One the other hand, if we allow
 \begin_inset Formula $y$
 \end_inset
 
- to be quadratic, there are infinitely many (paramteric) pairs of functions
+ to be quadratic, there are infinitely many (parametric) pairs of functions
  connecting 
 \begin_inset Formula $(-1,2)$
 \end_inset
@@ -1627,13 +1623,13 @@ zier curve from
  Then
 \begin_inset Formula 
 \begin{equation}
-B_{j,i}(t)=(1-t)\cdot\vec{B}_{j-1,i}(t)+(t)\cdot\vec{B}_{j-1,i+1}(t),\qquad j=2,3,\ldots,n;\ i=0,1,\ldots,n-j.\label{eq:bezierPart2}
+\vec{B}_{j,i}(t)=(1-t)\cdot\vec{B}_{j-1,i}(t)+(t)\cdot\vec{B}_{j-1,i+1}(t),\qquad j=2,3,\ldots,n;\ i=0,1,\ldots,n-j.\label{eq:bezierPart2}
 \end{equation}
 
 \end_inset
 
 Note that 
-\begin_inset Formula $B_{2,i}(t)$
+\begin_inset Formula $\vec{B}_{2,i}(t)$
 \end_inset
 
  is the quadratic B
@@ -1663,10 +1659,10 @@ zier curve connecting
 
 .
  With a little algebra, you can confirm that 
-\begin_inset Formula $B_{3,i}(t)$
+\begin_inset Formula $\vec{B}_{3,i}(t)$
 \end_inset
 
- is at most cubic and connects 
+ is at-most-cubic and connects 
 \begin_inset Formula $\vec{P}_{i}$
 \end_inset
 
@@ -1676,10 +1672,10 @@ zier curve connecting
 
 .
  An inductive proof will show that 
-\begin_inset Formula $B_{j,i}(t)$
+\begin_inset Formula $\vec{B}_{j,i}(t)$
 \end_inset
 
- is an at most degree 
+ is an at-most-degree-
 \begin_inset Formula $j$
 \end_inset
 
@@ -1692,9 +1688,16 @@ zier curve connecting
 \end_inset
 
 .
- Can you provide it? Answer on page .
+ Can you provide it? Answer on page 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ans:bezierProof"
+
+\end_inset
+
+.
  It follows that 
-\begin_inset Formula $B_{n,0}(t)$
+\begin_inset Formula $\vec{B}_{n,0}(t)$
 \end_inset
 
  is the degree at most 
@@ -2144,8 +2147,8 @@ reference "fig:bezierViaLinearInterpolation"
 
 \end_inset
 
- may help you grasp the recursion, but maybe more importantly may help you
- understand the relationship between the control points and the 
+ may help you grasp the recursion, but maybe more importantly, may help
+ you understand the relationship between the control points and the 
 \family roman
 \series medium
 \shape up
@@ -2332,7 +2335,7 @@ so
 
 \end_inset
 
-Hence 
+Hence, 
 \begin_inset Formula $\frac{d}{dt}\vec{B}_{3,0}(t)=-3(1-t)^{2}\vec{P}_{0}+3\left[(1-t)^{2}-2t(1-t)\right]\vec{P}_{1}+3\left[2t(1-t)-t^{2}\right]\vec{P}_{2}+3t^{2}\vec{P}_{3}$
 \end_inset
 
@@ -2353,7 +2356,7 @@ Indeed, the derivative of
 \begin_inset Formula $0$
 \end_inset
 
- is in the directon of the line segment from 
+ is in the direction of the line segment from 
 \begin_inset Formula $\vec{P}_{1}$
 \end_inset
 
@@ -5328,7 +5331,7 @@ Complete the following code.
 \end_layout
 
 \begin_layout LyX-Code
-#      interploating polynomial at z.
+#      interpolating polynomial at z.
  #
 \end_layout
 
@@ -5419,6 +5422,205 @@ f_{0,3} & = & \frac{f_{1,2}-f_{0,2}}{t_{1}-t_{0}}=\frac{\dot{y}_{1}+\dot{y}_{0}}
 
 \end_layout
 
+\begin_layout Description
+Bezier
+\begin_inset space ~
+\end_inset
+
+curve
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $\vec{B}_{j,i}(t)$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+is
+\begin_inset space ~
+\end_inset
+
+an
+\begin_inset space ~
+\end_inset
+
+at-most-degree-
+\begin_inset Formula $j$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+polynomial
+\begin_inset space ~
+\end_inset
+
+connecting
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $\vec{P_{i}}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+to
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $\vec{P_{i+j}}$
+\end_inset
+
+: 
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:bezierProof"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Proof
+We proceed by induction on 
+\begin_inset Formula $j$
+\end_inset
+
+, beginning with 
+\begin_inset Formula $j=1$
+\end_inset
+
+: Since
+\begin_inset Formula 
+\[
+\vec{B}_{1,i}(t)=(1-t)\vec{P}_{i}+(t)\vec{P}_{i+1},\qquad i=0,1,\ldots,n-1,
+\]
+
+\end_inset
+
+
+\begin_inset Formula $\vec{B}_{1,i}(0)=\vec{P}_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $B_{1,i}(1)=\vec{P}_{i+1}$
+\end_inset
+
+ so 
+\begin_inset Formula $\vec{B}_{1,i}$
+\end_inset
+
+ connects 
+\begin_inset Formula $\vec{P}_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P}_{i+1}$
+\end_inset
+
+.
+ Furthermore, 
+\begin_inset Formula $\vec{B}_{1,i}(t)=\vec{P}_{i}+t(\vec{P}_{i+1}-\vec{P}_{i})$
+\end_inset
+
+, so 
+\begin_inset Formula $\vec{B}_{1,i}$
+\end_inset
+
+ is an at-most-degree-1 polynomial.
+ Now assume 
+\begin_inset Formula $\vec{B}_{j,i}(t)$
+\end_inset
+
+ is an at-most-degree-
+\begin_inset Formula $j$
+\end_inset
+
+ polynomial connecting 
+\begin_inset Formula $\vec{P_{i}}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P_{i+j}}$
+\end_inset
+
+ for some 
+\begin_inset Formula $j\geq1$
+\end_inset
+
+ (and all applicable 
+\begin_inset Formula $i$
+\end_inset
+
+).
+ By definition, 
+\begin_inset Formula $\vec{B}_{j+1,i}(0)=\vec{B}_{j,i}(0)$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{B}_{j+1,i}(1)=\vec{B}_{j,i+1}(1)$
+\end_inset
+
+.
+ By the inductive hypothesis, 
+\begin_inset Formula $\vec{B}_{j,i}(0)=\vec{P}_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{B}_{j,i+1}(1)=\vec{P}_{i+j+1}$
+\end_inset
+
+, so 
+\begin_inset Formula $\vec{B}_{j+1,i}$
+\end_inset
+
+ connects 
+\begin_inset Formula $\vec{P}_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $\vec{P}_{i+j+1}$
+\end_inset
+
+.
+ Furthermore,
+\begin_inset Formula 
+\[
+\vec{B}_{j+1,i}(t)=(1-t)\cdot\vec{B}_{j,i}(t)+(t)\cdot\vec{B}_{j,i+1}(t)
+\]
+
+\end_inset
+
+has degree at most 
+\begin_inset Formula $j+1$
+\end_inset
+
+ because 
+\begin_inset Formula $\vec{B}_{j,i}(t)$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{B}_{j,i+1}(t)$
+\end_inset
+
+ have at most degree 
+\begin_inset Formula $j$
+\end_inset
+
+ (by the inductive hypothesis).
+ This completes the proof.
+\end_layout
+
+\end_deeper
 \begin_layout Description
 B
 \begin_inset ERT

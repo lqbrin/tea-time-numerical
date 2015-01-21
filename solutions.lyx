@@ -611,7 +611,7 @@ reference "exc:taylor1"
 \end_inset
 
 .
- Therefore 
+ Therefore, 
 \begin_inset Formula $f(x_{0})=\sin(0)=0$
 \end_inset
 
@@ -668,7 +668,7 @@ Also from Taylor's Theorem, we know
 \end_inset
 
 .
- Hence
+ Hence,
 \begin_inset Formula 
 \[
 R_{3}(x)=\frac{\sin(\xi)}{24}x^{4}.
@@ -737,7 +737,7 @@ reference "exc:taylor2"
 \end_inset
 
 .
- Therefore 
+ Therefore, 
 \begin_inset Formula $f(x_{0})=\sin(\pi)=0$
 \end_inset
 
@@ -794,7 +794,7 @@ Also from Taylor's Theorem, we know
 \end_inset
 
 .
- Hence
+ Hence,
 \begin_inset Formula 
 \[
 R_{3}(x)=\frac{\sin(\xi)}{24}(x-\pi)^{4}.
@@ -1059,7 +1059,7 @@ reference "exc:taylor4"
 \end_inset
 
 .
- Therefore 
+ Therefore, 
 \begin_inset Formula $f(x_{0})=\frac{1}{5}$
 \end_inset
 
@@ -1112,7 +1112,7 @@ T_{2}(x) & = & \frac{1}{5}+\left(-\frac{1}{25}\right)\cdot(x-5)+\frac{2/125}{2!}
 \end_inset
 
 .
- Hence
+ Hence,
 \begin_inset Formula 
 \begin{eqnarray*}
 R_{2}(x) & = & \frac{-6/\xi^{4}}{6}(x-5)^{3}\\
@@ -1260,7 +1260,7 @@ R_{2}(x) & = & \frac{-6/\xi^{4}}{6}(x-5)^{3}\\
 \end_inset
 
  values.
- The only change is that we now must minimize this funtion over the interval.
+ The only change is that we now must minimize this function over the interval.
  So 
 \begin_inset Formula $|f(1)-T_{2}(1)|\geq{\displaystyle \min_{\xi\in[1,5]}\frac{64}{\xi^{4}}}$
 \end_inset
@@ -1993,7 +1993,7 @@ reference "exc:convergence-8"
 \end_inset
 
 , and exponential functions dominate polynomial functions.
- Hence we can use any rate of convergence of the form 
+ Hence, we can use any rate of convergence of the form 
 \begin_inset Formula $O\left(\frac{1}{(2-\varepsilon)^{n}}\right)$
 \end_inset
 
@@ -2596,8 +2596,8 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-%  INPUT: posititive integer n.
-                         %
+%  INPUT: positive integer n.
+                           %
 \end_layout
 
 \begin_layout Plain Layout
@@ -2746,7 +2746,7 @@ reference "exc:recursion-5"
 Note that this is also the list of all partitions where one of the sets
  has exactly three elements.
  Here is the list of partitions where one of the sets has exactly two elements
- (and therefore the other set also has two elements):
+ (and, therefore, the other set also has two elements):
 \begin_inset Formula 
 \[
 \{\{\alpha,\beta\},\{\gamma,\delta\}\},\ \{\{\alpha,\gamma\},\{\beta,\delta\}\},\ \{\{\alpha,\delta\},\{\beta,\gamma\}\}
@@ -2893,7 +2893,7 @@ reference "exc:recursion-8"
 \begin_inset Formula $n$
 \end_inset
 
--inch high stacks is just the the number of 
+-inch high stacks is just the number of 
 \begin_inset Formula $(n-1)$
 \end_inset
 
@@ -4065,8 +4065,8 @@ reference "exc:bisection-4"
 \begin_inset Formula $4.5$
 \end_inset
 
-, the assumptions of the bisection method will be met from her on.
- It will work as prescribed starting with the second iteration, and therefore
+, the assumptions of the bisection method will be met from here on.
+ It will work as prescribed starting with the second iteration, and, therefore,
  will return a root.
 \end_layout
 
@@ -4120,7 +4120,7 @@ reference "exc:fixedpt"
 \end_inset
 
  is a polynomial, it is continuous over all real numbers.
- Therefore 
+ Therefore, 
 \begin_inset Formula $g$
 \end_inset
 
@@ -4335,7 +4335,7 @@ x & = & \log_{3}5.
 
 \end_inset
 
-Therefore there is one fixed point of 
+Therefore, there is one fixed point of 
 \begin_inset Formula $h$
 \end_inset
 
@@ -4516,8 +4516,8 @@ reference "exc:fixedpt-10"
 
 \end_inset
 
-: We are asked to calculate the first 5 iterations of the Fixed Point Iteration
- Method applied to 
+: We are asked to calculate the first 5 iterations of the fixed point iteration
+ method applied to 
 \begin_inset Formula $g(x)=10+x-\cosh(x)$
 \end_inset
 
@@ -4834,7 +4834,7 @@ reference "prop:uniquenessOfFixedPoint"
 \end_inset
 
 .
- Hence 
+ Hence, 
 \begin_inset Formula $f([-4,-.9])\subseteq[-2.35,-1]\subseteq[-4,-0.9]$
 \end_inset
 
@@ -4925,7 +4925,7 @@ The graph of the function does not leave the view through the top (no values
 \end_inset
 
 .
- Hence 
+ Hence, 
 \begin_inset Formula $-\frac{51}{98}\leq f'(x)\leq\frac{99}{200}$
 \end_inset
 
@@ -5045,7 +5045,7 @@ reference "exc:fixedpt-13"
 \end_inset
 
 .
- It remains to show that the Fixed Point Iteration Method will converge
+ It remains to show that the fixed point iteration method will converge
  to a fixed point of 
 \begin_inset Formula $f$
 \end_inset
@@ -5475,7 +5475,7 @@ reference "sec:Fixedpt"
 \end_inset
 
 .
- Hence we have 
+ Hence, we have 
 \begin_inset Formula $M=\frac{51}{98}$
 \end_inset
 
@@ -5502,7 +5502,7 @@ k & > & \frac{-\ln\left(3.1(10)^{11}\right)}{\ln\left(\frac{51}{98}\right)}\appr
 
 \end_inset
 
-Hence 41 iterations will suffice for any initial value in 
+Hence, 41 iterations will suffice for any initial value in 
 \begin_inset Formula $[-4,-.9]$
 \end_inset
 
@@ -5937,7 +5937,7 @@ reference "exc:orderOfConvergence-8"
 
 \end_inset
 
-: The tenth iteration of Steffensen's Method is 
+: The tenth iteration of Steffensen's method is 
 \begin_inset Formula $0.01462973293$
 \end_inset
 
@@ -5976,7 +5976,7 @@ reference "exc:newton-2"
 
 \end_inset
 
-: Newton's (fixed point iteration) Method requires iteration of the function
+: Newton's (fixed point iteration) method requires iteration of the function
  
 \begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
 \end_inset
@@ -6046,7 +6046,7 @@ reference "exc:newton-3"
 
 \end_inset
 
-: The formula for the Secant Method is
+: The formula for the secant method is
 \begin_inset Formula 
 \[
 x_{n+1}=x_{n}-g(x_{n})\frac{x_{n}-x_{n-1}}{g(x_{n})-g(x_{n-1})}.
@@ -6096,7 +6096,7 @@ reference "exc:newton-6"
 
 \end_inset
 
-: Since Newton's Method is a fixed point iteration method, we may use the
+: Since Newton's method is a fixed point iteration method, we may use the
  fixed point convergence theorem to find such an interval.
  As indicated in exercise 
 \begin_inset CommandInset ref
@@ -6127,7 +6127,7 @@ reference "enu:convergenceStrengthened"
 \end_inset
 
 .
- Hence
+ Hence,
 \begin_inset Formula 
 \begin{eqnarray*}
 f'(x) & = & 1-\frac{(4x^{3}+6x^{2}-1)^{2}-(12x^{2}+12x)(x^{4}+2x^{3}-x-3)}{(4x^{3}+6x^{2}-1)^{2}}\\
@@ -6239,7 +6239,7 @@ The real solutions of this equation are, in decreasing order, approximately
 \begin_inset Formula $28x^{6}+84x^{5}+60x^{4}-20x^{3}-60x^{2}-36x+1$
 \end_inset
 
- will point you in the right direction, and Newton's Method can be used
+ will point you in the right direction, and Newton's method can be used
  to find these roots.
  The one we seek is 
 \begin_inset Formula $0.871748$
@@ -6272,7 +6272,7 @@ The real solutions of this equation are, in decreasing order, approximately
 \end_inset
 
 .
- Again, a graph will point you in the right direction, and Newton's Method
+ Again, a graph will point you in the right direction, and Newton's method
  can be used to find these roots.
  There are no solutions of 
 \begin_inset Formula $f'(x)=\pm1$
@@ -6291,7 +6291,7 @@ The real solutions of this equation are, in decreasing order, approximately
 \begin_inset Formula $x\in(0.87175,\infty)$
 \end_inset
 
-, so Newton's Method will converge to 
+, so Newton's method will converge to 
 \begin_inset Formula $\hat{x}\approx1.097740792$
 \end_inset
 
@@ -6324,7 +6324,7 @@ we see that the interval from the asymptote around
 \end_inset
 
  to the root maps into the interval from the root to infinity.
- Therefore, Newton's Method converges to 
+ Therefore, Newton's method converges to 
 \begin_inset Formula $1.097740792$
 \end_inset
 
@@ -6337,7 +6337,7 @@ we see that the interval from the asymptote around
 \end_inset
 
  as well.
- Finally, we use Newton's Method to get a more accurate value for the asymptote
+ Finally, we use Newton's method to get a more accurate value for the asymptote
  near 
 \begin_inset Formula $0.4$
 \end_inset
@@ -6347,7 +6347,7 @@ we see that the interval from the asymptote around
 \begin_inset Formula $0.366025403784439$
 \end_inset
 
-, so we conclude that Newton's Method will converge to the root 
+, so we conclude that Newton's method will converge to the root 
 \begin_inset Formula $\hat{x}\approx1.097740792$
 \end_inset
 
@@ -6452,7 +6452,7 @@ reference "exc:newton-11"
 \end_inset
 
 .
- Hence we need to solve the system
+ Hence, we need to solve the system
 \begin_inset Formula 
 \begin{eqnarray*}
 x+y & = & 20\\
@@ -6490,7 +6490,7 @@ or
  assumption that they are between 0 and 20, it is not clear what initial
  values to use.
  With a few different attempts, you are likely to find some that work.
- For example, applying the Secant Method to 
+ For example, applying the secant method to 
 \begin_inset Formula $g(x)=(x+\sqrt{x})(20-x+\sqrt{20-x})-172.2$
 \end_inset
 
@@ -6534,7 +6534,7 @@ reference "exc:newton-12"
 
 \end_inset
 
-: Newton's Method will fail to find a root of 
+: Newton's method will fail to find a root of 
 \begin_inset Formula $g$
 \end_inset
 
@@ -6616,7 +6616,7 @@ Remark: The equation
 \end_inset
 
  as in the following Octave code does not fail, however! There is enough
- roundoff error that 
+ round-off error that 
 \begin_inset Formula $x_{1}$
 \end_inset
 
@@ -6771,7 +6771,7 @@ reference "exc:more"
 \begin_inset Formula $h$
 \end_inset
 
- are polynomials of degree 5 and therefore have at most 5 distinct roots.
+ are polynomials of degree 5 and, therefore, have at most 5 distinct roots.
  
 \begin_inset Formula $l$
 \end_inset
@@ -9001,12 +9001,12 @@ reference "exc:interpolation-lagrange-9"
 .
  For the degree at most 3 polynomial we have no choice but to use all of
  the data.
- Here is where Neville's Method shines! The first estimate uses the first
+ Here is where Neville's method shines! The first estimate uses the first
  two data points.
  The second estimate uses these same two plus a third.
  The last estimate uses these three plus a fourth.
  We can reuse each of the first two calculations in the next by creating
- a single Neville's Method table.
+ a single Neville's method table.
  With the data in the table in the order in which we would like to use them,
  we get
 \end_layout
@@ -9428,12 +9428,12 @@ reference "exc:interpolation-lagrange-10"
 .
  For the degree at most 3 polynomial we have no choice but to use all of
  the data.
- Here is where Neville's Method shines! The first estimate uses the first
+ Here is where Neville's method shines! The first estimate uses the first
  two data points.
  The second estimate uses these same two plus a third.
  The last estimate uses these three plus a fourth.
  We can reuse each of the first two calculations in the next by creating
- a single Neville's Method table.
+ a single Neville's method table.
  With the data listed in the Octave function in the order in which we would
  like to use them, we get 
 \begin_inset ERT
@@ -9560,12 +9560,12 @@ reference "exc:interpolation-lagrange-11"
 .
  For the degree at most 3 polynomial we have no choice but to use all of
  the data.
- Here is where Neville's Method shines! The first estimate uses the last
+ Here is where Neville's method shines! The first estimate uses the last
  two data points.
  The second estimate uses these same two plus a third.
  The final uses these three plus a fourth.
  We can reuse each of the first two calculations in the next by creating
- a single Neville's Method table.
+ a single Neville's method table.
  With the data listed in the Octave function in the order in which we would
  like to use them, we get 
 \begin_inset ERT
@@ -9675,7 +9675,7 @@ reference "exc:interpolation-lagrange-12"
 .
  For the degree at most 2 polynomial, we have no choice but to use all of
  the data.
- We can use Neville's Method or the Langrange form in this case.
+ We can use Neville's method or the Langrange form in this case.
  Neither method provides obvious advantage over the other.
  To begin, 
 \begin_inset Formula $f(1)=\sin\pi=0$
@@ -10054,7 +10054,7 @@ reference "tab:NewtonPolyExample"
 .
  Answers will depend on the order in which the data are listed in the table
  and on how the data are read from the table.
- Placing the data in the table in the order given in the question, we have
+ Placing the data in the table in the order given in the question, we have:
 \end_layout
 
 \begin_deeper
@@ -10432,7 +10432,7 @@ Reading the coefficients across the first row, we use
 \end_inset
 
 .
- Therefore one answer is
+ Therefore, one answer is
 \begin_inset Formula 
 \begin{eqnarray*}
 P_{0,3}(x) & = & 2+0(x-1)-1(x-1)(x-2)+\frac{2}{3}(x-1)(x-2)(x-3)\\
@@ -10483,7 +10483,8 @@ The sequence of coefficients
  prove, that any sequence of coefficients starting in the first column and
  progressing to the right one column at a time and either jumping up one
  row or remaining in the same row with each change of column forms a valid
- sequence.For example, we can use coefficients 
+ sequence.
+ For example, we can use coefficients 
 \begin_inset Formula $f_{2,0}$
 \end_inset
 
@@ -10550,7 +10551,7 @@ The sequence of coefficients
 \end_inset
 
  monomials must appear in the same order.
- Therefore another answer is
+ Therefore, another answer is
 \begin_inset Formula 
 \begin{eqnarray*}
 P_{0,3}(x) & = & 0-2(x-3)+1(x-3)(x-2)+\frac{2}{3}(x-3)(x-2)(x-4)\\
@@ -10867,7 +10868,7 @@ Reading the coefficients across the first row, we use
 \end_inset
 
 .
- Therefore one answer is
+ Therefore, one answer is
 \begin_inset Formula 
 \begin{eqnarray*}
 P_{0,2}(x) & = & .987-.925(x-1)+.809375(x-1)(x-2.2).
@@ -10969,7 +10970,7 @@ The sequence of coefficients
 \end_inset
 
  monomials must appear in the same order.
- Therefore another answer is
+ Therefore, another answer is
 \begin_inset Formula 
 \begin{eqnarray*}
 P_{0,2}(x) & = & -.123-.925(x-2.2)+.809375(x-2.2)(x-1)
@@ -11009,7 +11010,7 @@ reference "exc:interpolation-newton-7"
 
 : Answers will depend on the order in which the data are listed in the Octave
  call and on how the data are read from the table.
- Placing the data in the Ocatve command in the same order they are listed
+ Placing the data in the Octave command in the same order they are listed
  in the question, your Octave code should produce something like 
 \begin_inset ERT
 status open
@@ -11182,7 +11183,7 @@ Since all derivatives are bounded between
 \begin_inset Formula $|f^{(3)}(\xi_{2})|\leq2$
 \end_inset
 
- and therefore the error has bound
+ and, therefore, the error has bound
 \begin_inset Formula 
 \[
 |f(x)-P_{n}(x)|\leq\frac{2}{30}=\frac{1}{15}=.0\overline{6}.
@@ -11226,7 +11227,7 @@ reference "exc:interpolation-newton-11"
 \end_inset
 
 .
- Hence
+ Hence,
 \begin_inset Formula 
 \begin{eqnarray*}
 f(.75) & = & N_{3}(.75)\\
@@ -11610,7 +11611,7 @@ reference "exc:rudiments-8"
 \begin_inset Formula $x_{0}+6h=17$
 \end_inset
 
-, a system of two equations with two unknows whose solution is 
+, a system of two equations with two unknowns whose solution is 
 \begin_inset Formula $x_{0}=11$
 \end_inset
 
@@ -11652,7 +11653,7 @@ c: (i)
 \begin_inset Formula $\int_{10}^{17}\frac{1}{x-5}dx=\left.\ln|x-5|\right|_{10}^{17}=\ln(12)-\ln(5)=\ln\frac{12}{5}\approx0.8754687373539001$
 \end_inset
 
- (ii) The absoute error is the absolute value of the difference between
+ (ii) The absolute error is the absolute value of the difference between
  the approximation and the exact value: 
 \begin_inset Formula $|\ln\frac{12}{5}-0.8753962951271979|\approx7.24(10)^{-5}$
 \end_inset
@@ -11719,7 +11720,7 @@ reference "exc:rudiments-21"
 
 \end_inset
 
-: To use this formula, we only need substitute proper values for 
+: To use this formula, we need only to substitute proper values for 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -11966,7 +11967,7 @@ reference "eq:systemGenericDerivative"
 \end_inset
 
 .
- Therefore the system we need to solve is 
+ Therefore, the system we need to solve is 
 \begin_inset Formula 
 \begin{eqnarray*}
 p_{0}'\left(x_{0}+\frac{1}{2}h\right) & = & a_{0}p_{0}(x_{0})+a_{1}p_{0}(x_{0}+h)\\
@@ -12118,7 +12119,7 @@ reference "eq:systemGenericDerivative"
 \end_inset
 
 .
- Therefore the system we need to solve is 
+ Therefore, the system we need to solve is 
 \begin_inset Formula 
 \begin{eqnarray*}
 p_{0}'\left(x_{0}+\frac{1}{2}h\right) & = & a_{0}p_{0}(x_{0})+a_{1}p_{0}(x_{0}+h)+a_{2}p_{0}(x_{0}+\frac{3}{2}h)+a_{3}p_{0}(x_{0}+2h)\\
@@ -12383,7 +12384,7 @@ reference "eq:systemGenericDerivative"
 \end_inset
 
 .
- Therefore the system we need to solve is 
+ Therefore, the system we need to solve is 
 \begin_inset Formula 
 \begin{eqnarray*}
 p_{0}''\left(x_{0}+\frac{1}{2}h\right) & = & a_{0}p_{0}(x_{0})+a_{1}p_{0}(x_{0}+h)+a_{2}p_{0}(x_{0}+\frac{3}{2}h)+a_{3}p_{0}(x_{0}+2h)\\
@@ -12614,7 +12615,7 @@ reference "eq:systemGenericIntegral"
 \end_inset
 
 .
- Therefore the 
+ Therefore, the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -12732,7 +12733,7 @@ reference "eq:systemGenericIntegral"
 \end_inset
 
 .
- Therefore the system we need to solve is 
+ Therefore, the system we need to solve is 
 \begin_inset Formula 
 \begin{eqnarray*}
 \int_{x_{0}}^{x_{0}+2h}p_{0}(x)dx & = & a_{0}p_{0}(x_{0})+a_{1}p_{0}(x_{0}+h)+a_{2}p_{0}(x_{0}+2h)\\
@@ -12851,7 +12852,7 @@ reference "eq:integralApprox"
 
 \end_inset
 
-You may recognize this formula as Simpson's Rule!
+You may recognize this formula as Simpson's rule!
 \end_layout
 
 \begin_layout Section*
@@ -12872,7 +12873,7 @@ reference "exc:calculusErrors-5"
 
 \end_inset
 
-: Simpson's Rule for integral approximation is 
+: Simpson's rule for integral approximation is 
 \begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx=\frac{h}{3}\left[f(x_{0})+4f(x_{0}+h)+f(x_{0}+2h)\right]}$
 \end_inset
 
@@ -12926,7 +12927,7 @@ reference "exc:calculusErrors-5"
 
 .
  With the parameters identified, we plug them into the right side of Simpson's
- Rule and we have our estimate:
+ rule and we have our estimate:
 \begin_inset Formula 
 \begin{eqnarray*}
 {\displaystyle \int_{-0.5}^{0}x\ln(x+1)dx} & \approx & \frac{.25}{3}\left[-0.5\ln(0.5)+4(-0.25)\ln(.75)+0\ln(1)\right]\\
@@ -12945,7 +12946,7 @@ reference "exc:calculusErrors-1"
 
 \end_inset
 
-a: Trapezoidal Rule for integral approximation is 
+a: Trapezoidal rule for integral approximation is 
 \begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)dx=\frac{h}{2}\left[f(x_{0})+f(x_{0}+h)\right]}$
 \end_inset
 
@@ -12995,7 +12996,7 @@ a: Trapezoidal Rule for integral approximation is
 
 .
  With the parameters identified, we plug them into the right side of the
- Trapezoidal Rule and we have our estimate:
+ trapezoidal rule and we have our estimate:
 \begin_inset Formula 
 \begin{eqnarray*}
 {\displaystyle \int_{-0.5}^{0}x\ln(x+1)dx} & \approx & \frac{.5}{2}\left[-0.5\ln(0.5)+0\ln(1)\right]\\
@@ -13014,7 +13015,7 @@ reference "exc:calculusErrors-2"
 
 \end_inset
 
-a: The Midpoint Rule for integral approximation is 
+a: The midpoint rule for integral approximation is 
 \begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx=2hf(x_{0}+h)}$
 \end_inset
 
@@ -13072,7 +13073,7 @@ we need to identify
 
 .
  With the parameters identified, we plug them into the right side of the
- Trapezoidal Rule and we have our estimate:
+ trapezoidal rule and we have our estimate:
 \begin_inset Formula 
 \begin{eqnarray*}
 {\displaystyle \int_{-0.5}^{0}x\ln(x+1)dx} & \approx & 2(.25)(-0.25\ln(0.75))\\
@@ -13248,7 +13249,7 @@ But
 \end_inset
 
 .
- Hence we have the error between 
+ Hence, we have the error between 
 \begin_inset Formula $\frac{.01}{6}e^{1.9}$
 \end_inset
 
@@ -13507,7 +13508,7 @@ for some
  Subtracting the two sides, we know all terms with derivative lower than
  the third will drop out since none of those terms have changed since our
  discovery.
- The error is therefore
+ The error is, therefore,
 \begin_inset Formula 
 \[
 \int_{x_{0}}^{x_{0}+h}\frac{1}{6}(x-x_{0})^{3}f'''(\xi_{x})dx-\frac{h}{4}\cdot3\cdot\frac{4}{81}h^{3}f'''(\xi_{1}).
@@ -13586,7 +13587,7 @@ for some
 \end_inset
 
 ).
- Hence the error is 
+ Hence, the error is 
 \begin_inset Formula $O(h^{4}f'''(\xi_{h}))$
 \end_inset
 
@@ -13913,7 +13914,7 @@ for some
 \end_inset
 
 ).
- Hence the error is 
+ Hence, the error is 
 \begin_inset Formula $O(h^{2}f'''(\xi_{h}))$
 \end_inset
 
@@ -14062,7 +14063,7 @@ so the error term is
 \end_inset
 
 .
- The error is therefore bounded by 
+ The error is, therefore, bounded by 
 \begin_inset Formula 
 \[
 k(.01)^{2}\max_{x\in[3,3.04]}\left|f^{(5)}(x)\right|
@@ -14092,7 +14093,7 @@ method
 
 \end_inset
 
-A bound on the error is therefore 
+A bound on the error is, therefore, 
 \begin_inset Formula $0.0001k\cos(3.04)$
 \end_inset
 
@@ -14141,7 +14142,7 @@ with
 \end_inset
 
 .
- The error is therefore bounded by 
+ The error is, therefore, bounded by 
 \begin_inset Formula 
 \[
 k(.5)^{5}\max_{x\in[3,4]}\left|f^{(4)}(x)\right|
@@ -14171,7 +14172,7 @@ method
 
 \end_inset
 
-A bound on the error is therefore 
+A bound on the error is, therefore, 
 \begin_inset Formula $0.03125k\sin(4)$
 \end_inset
 
@@ -14270,7 +14271,7 @@ reference "tab:firstDerivativeFormulas"
 \end_inset
 
 .
- Hence
+ Hence,
 \begin_inset Formula 
 \begin{eqnarray*}
 f'(2) & \approx & \frac{-.2381-8(-.3125)+8(-.8333)-(-5)}{12(1)}\\
@@ -14408,7 +14409,7 @@ The area of trapezoid
 \begin_inset Formula $CD$
 \end_inset
 
-, the approximation by Simpson's Rule will not be (very nearly) exact.
+, the approximation by Simpson's rule will not be (very nearly) exact.
  Other examples can be created similarly.
  To summarize, any example of a smooth function where the following occur
  will work.
@@ -14446,10 +14447,10 @@ REMARK: Non-smooth functions with the two properties above also provide
  examples.
  The reason we chose to give a smooth example is because the errors for
  non-smooth functions are completely unpredictable (since they don't possess
- the required number of derivatives), and hence it is not as surprising
- in that case that we can find examples where the Trapezoidal Rule outdoes
- Simpson's Rule.
- The Trapezoidal Rule and Simpson's Rule can not be applied reliably to
+ the required number of derivatives), and, hence, it is not as surprising
+ in that case that we can find examples where the trapezoidal rule outdoes
+ Simpson's rule.
+ The trapezoidal rule and Simpson's rule can not be applied reliably to
  functions without sufficient derivatives.
 \end_layout
 
@@ -16477,7 +16478,7 @@ so
 
 \end_inset
 
-Therefore we need to find 
+Therefore, we need to find 
 \begin_inset Formula $a$
 \end_inset
 
@@ -16608,7 +16609,7 @@ Both
 \end_inset
 
  approximation.
- Unfortunately the Richardson's extrapolation formula does not apply.
+ Unfortunately, the Richardson's extrapolation formula does not apply.
  It assumes the same constants in each approximation.
  But the general idea does.
  We need to combine these approximations
@@ -18107,7 +18108,7 @@ b_{2} & = & -29+0-3+13=-19.
 
 \end_inset
 
-The spline is therefore
+The spline is, therefore,
 \begin_inset Formula 
 \[
 S(x)=\begin{cases}
@@ -18279,7 +18280,7 @@ d_{2} & = & \frac{\frac{13}{8}-\left(-\frac{5}{2}\right)}{6}=\frac{11}{16}.
 
 \end_inset
 
-The spline is therefore
+The spline is, therefore,
 \begin_inset Formula 
 \[
 S(x)=\begin{cases}

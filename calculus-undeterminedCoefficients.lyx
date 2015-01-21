@@ -194,7 +194,7 @@ reference "eq:lagrangeInterpolatingPolynomialError"
 \end_inset
 
 .
- They are exact becuase 
+ They are exact because 
 \begin_inset Formula $P_{n}=f$
 \end_inset
 
@@ -265,7 +265,7 @@ approximation
 \begin_inset Formula $n+1$
 \end_inset
 
- unkowns, 
+ unknowns, 
 \begin_inset Formula $a_{0},a_{1},\ldots,a_{n}$
 \end_inset
 
@@ -811,7 +811,7 @@ For this stencil,
 \end_inset
 
 .
- Therefore we will have a system of seven equations in the seven unknowns.
+ Therefore, we will have a system of seven equations in the seven unknowns.
  First, the left-hand sides:
 \end_layout
 
@@ -962,7 +962,7 @@ As for their derivation, the main advantage of the method of undetermined
  polynomials.
  Formulas with up to three or four nodes can be handled this way with pencil
  and paper.
- The trade off is the necessity of solving a system of equations, again
+ The trade-off is the necessity of solving a system of equations, again
  a simpler task than differentiating and simplifying interpolating polynomials
  of degree 3 or 4.
  As a final benefit to the method of undetermined coefficients, it is a
@@ -1232,7 +1232,7 @@ Notice the similarities between Maxima code and Octave code.
 
 \begin_layout Standard
 Also notice the main difference between Maxima and Octave.
- Maxima was designed for synbolic manipulation while Octave was designed
+ Maxima was designed for symbolic manipulation while Octave was designed
  for numerical computation.
  Octave can be made to do symbolic calculation and Maxima can be made to
  do numerical computation, but the old carpenter's adage 
@@ -1972,7 +1972,7 @@ Indeed, when
 \begin_layout Standard
 Because numerical differentiation is so sensitive to floating-point error,
  we say that it is unstable.
- The root-finding methods and numerical integration we have discussed are
+ The root finding methods and numerical integration we have discussed are
  all stable methods.
  Their sensitivity to floating-point error is commensurate with that of
  calculating 

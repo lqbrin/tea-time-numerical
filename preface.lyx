@@ -178,8 +178,11 @@ tea time
  Much of the material will be presented as if it were being told to a student
  during tea time at University, but with the benefit of careful planning.
  There will be no big blue boxes highlighting the main points, no stream
- of examples after a short introduction to a topic, and no theorem-proof
- theorem-proof structure.
+ of examples after a short introduction to a topic, and no theorem\SpecialChar \ldots{}
+proof\SpecialChar \ldots{}
+theorem\SpecialChar \ldots{}
+pr
+oof structure.
  Instead, the necessary terms and definitions and theorems and examples
  will be woven into a more conversational style.
  My hope is that this blend of formal and informal mathematics will be easier
@@ -259,7 +262,7 @@ demand volume, no effort has been made to keep the page count low or to
  and may be of interest to some readers.
  Most of these passages will be presented as digressions, so they will be
  easy to identify.
- For example, Taylor's Theorem plays such a central role in the subject
+ For example, Taylor's theorem plays such a central role in the subject
  that not only its statement is presented.
  Its proof and a bit of history are added as 
 \begin_inset Quotes eld
@@ -414,7 +417,7 @@ addcontentsline{toc}{section}{How to Get Octave}
 \begin_layout Standard
 Octave is developed by the GNU Project for the GNU operating system, which
  is most often paired with a Linux kernel.
- At its core, Octave is therefore GNU/Linux software.
+ At its core, Octave is, therefore, GNU/Linux software.
  It runs natively on GNU/Linux machines.
  It must be ported (converted somehow) to run on other operating systems
  like Windows or OS X.
@@ -565,10 +568,10 @@ addcontentsline{toc}{section}{Acknowledgments}
 \begin_layout Standard
 I gratefully acknowledge the generous support I received during the writing
  of this textbook, from the patience my immediate family, Amy, Cecelia,
- and Victorija exercised while I was absorbed by my laptop's screen to the
- willingness of my Spring 2013 Seminar class, Elizabeth Field, Rachael Ivison,
- Amanda Reyher, and Steven Warner to read and criticize an early version
- of the first chapter.
+ and Victorija exercised while I was absorbed by my laptop's screen, to
+ the willingness of my Spring 2013 Seminar class, Elizabeth Field, Rachael
+ Ivison, Amanda Reyher, and Steven Warner to read and criticize an early
+ version of the first chapter.
  In between, the Woodbridge Public Library staff, especially Pamela Wilonski,
  helped provide a peaceful and inspirational environment for writing the
  bulk of the text.

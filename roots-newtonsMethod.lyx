@@ -425,7 +425,7 @@ Newton's method
 
 \end_inset
 
- Newton's Method.
+ Newton's method.
 \end_layout
 
 \begin_layout Subsection
@@ -435,7 +435,7 @@ A Geometric Derivation of Newton's Method
 \begin_layout Standard
 \noindent
 The following figure shows how to compute the first two iterations of Newton's
- Method on 
+ method on 
 \begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
 \end_inset
 
@@ -506,7 +506,7 @@ To compute
 \end_inset
 
 .
- Hence the 
+ Hence, the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -603,7 +603,7 @@ Similar calculation shows
 \end_inset
 
 .
- This recurrence relation describes Newton's Method---iterating the function
+ This recurrence relation describes Newton's method---iterating the function
  
 \begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
 \end_inset
@@ -626,7 +626,7 @@ Newton's method ! pseudo-code
 \end_layout
 
 \begin_layout Standard
-Unlike Steffensen's Method, the denominator appearing in Newton's Method
+Unlike Steffensen's method, the denominator appearing in Newton's method
  is not expected to approach zero as the iterates converge, so generally
  there is much less trouble with stability of the calculation and no intermediat
 e checks are done before computing one iteration from the previous.
@@ -832,25 +832,25 @@ method ! secant|see{secant method}
 \end_layout
 
 \begin_layout Standard
-The greatest weakness of Newton's Method is the requirement that 
+The greatest weakness of Newton's method is the requirement that 
 \begin_inset Formula $g'$
 \end_inset
 
  be known and used in the calculation.
  The derivative is not always accessible or manageable or even known, though.
- In such a case, it is better to use Steffensen's Method or the Secant Method.
- The Secant Method is derived by replacing the 
+ In such a case, it is better to use Steffensen's method or the secant method.
+ The secant method is derived by replacing the 
 \begin_inset Formula $g'$
 \end_inset
 
- of Newton's Method with a difference quotient.
+ of Newton's method with a difference quotient.
  In order for this to make any sense, though, we will need to restate Newton's
- Method in terms of 
+ method in terms of 
 \begin_inset Formula $x_{n}$
 \end_inset
 
 .
- In Newton's Method we are iterating 
+ In Newton's method we are iterating 
 \begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
 \end_inset
 
@@ -903,7 +903,7 @@ Now suppose you have a function
 \begin_inset Formula $g'(x_{n})$
 \end_inset
 
- in Newton's Method.
+ in Newton's method.
  This yields the 
 \begin_inset Index idx
 status collapsed
@@ -914,7 +914,7 @@ secant method
 
 \end_inset
 
- Secant Method, 
+ secant method, 
 \begin_inset Formula $x_{n+1}=x_{n}-g(x_{n})/\left(\frac{g(x_{n})-g(x_{n-1})}{x_{n}-x_{n-1}}\right)$
 \end_inset
 
@@ -934,7 +934,7 @@ two
  values, not one.
  The analysis we've done so far does not apply, but there's hope that convergenc
 e will be fast since this method is a reasonable approximation of Newton's
- Method near a root, assuming 
+ method near a root, assuming 
 \begin_inset Formula $g$
 \end_inset
 
@@ -971,7 +971,7 @@ name "tab:secantDemo"
 
 \end_inset
 
- The Secant Method applied to 
+ The secant method applied to 
 \begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
 \end_inset
 
@@ -1599,7 +1599,7 @@ reference "tab:secantDemo"
 
 \end_inset
 
- provides evidence that the Secant Method indeed converges quickly.
+ provides evidence that the secant method indeed converges quickly.
  In the particular case of 
 \begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
 \end_inset
@@ -1625,7 +1625,7 @@ status open
 
 
 \backslash
-begin{digression}{The Secant Method converges with order $
+begin{digression}{The secant method converges with order $
 \backslash
 frac{1+
 \backslash
@@ -1677,7 +1677,7 @@ Suppose
 \begin_inset Formula $x_{0},x_{1},x_{2},\ldots$
 \end_inset
 
- be a sequence derived from the Secant Method (
+ be a sequence derived from the secant method (
 \begin_inset Formula $x_{n+1}=x_{n}-g(x_{n})\frac{x_{n}-x_{n-1}}{g(x_{n})-g(x_{n-1})}$
 \end_inset
 
@@ -1714,7 +1714,7 @@ e_{n+1}=e_{n}-g(\hat{x}+e_{n})\frac{e_{n}-e_{n-1}}{g(\hat{x}+e_{n})-g(\hat{x}+e_
 
 \end_inset
 
-Taylor's Theorem allows 
+Taylor's theorem allows 
 \begin_inset Formula $g(\hat{x}+e_{k})=g(\hat{x})+e_{k}g'(\hat{x})+\frac{1}{2}e_{k}^{2}g''(\hat{x})+O(e_{k}^{3})$
 \end_inset
 
@@ -1771,7 +1771,7 @@ But
 \end_inset
 
 .
- Hence 
+ Hence, 
 \begin_inset Formula $\lim_{n\to\infty}e_{n}^{1-\alpha}e_{n-1}$
 \end_inset
 
@@ -1840,7 +1840,7 @@ end{digression}
 \end_layout
 
 \begin_layout Standard
-So far we have only applied Newton's Method and the Secant Method to the
+So far we have only applied Newton's method and the secant method to the
  cubic polynomial 
 \begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
 \end_inset
@@ -2407,7 +2407,7 @@ reference "fig:rootFindingExample"
 
 \end_inset
 
-and can be found by Newton's Method with initial values 
+and can be found by Newton's method with initial values 
 \begin_inset Formula $0,1.5,2,2.4,2.6,\ldots$
 \end_inset
 
@@ -2437,7 +2437,7 @@ secant method ! pseudo-code
 \end_layout
 
 \begin_layout Standard
-A straightforward implementation of the Secant Method can easily be inefficient
+A straightforward implementation of the secant method can easily be inefficient
  due to the number of times 
 \begin_inset Formula $g$
 \end_inset
@@ -2701,7 +2701,7 @@ seeded secant method ! pseudo-code
 \end_layout
 
 \begin_layout Standard
-The greatest drawback to the Secant Method is the necessity of two initial
+The greatest drawback to the secant method is the necessity of two initial
  values.
  They should be near one another, but how near, and how do you determine?
  These are tough questions, and the answers are complicated at best.
@@ -2996,7 +2996,7 @@ Newton's
 \begin_inset space ~
 \end_inset
 
-Method: 
+method: 
 \begin_inset Index idx
 status collapsed
 
@@ -3031,7 +3031,7 @@ Secant
 \begin_inset space ~
 \end_inset
 
-Method: 
+method: 
 \begin_inset Index idx
 status collapsed
 
@@ -3074,11 +3074,11 @@ Seeded
 \begin_inset space ~
 \end_inset
 
-Secant
+secant
 \begin_inset space ~
 \end_inset
 
-Method: 
+method: 
 \begin_inset Index idx
 status collapsed
 
@@ -3088,7 +3088,7 @@ seeded secant method
 
 \end_inset
 
- A modification of the Secant method where 
+ A modification of the secant method where 
 \begin_inset Formula $x_{0}$
 \end_inset
 
@@ -3166,7 +3166,7 @@ name "enu:secantMethodCode"
 
 \end_inset
 
-Write Octave code that implements the Secant method as a function.
+Write Octave code that implements the secant method as a function.
 \end_layout
 
 \begin_layout Enumerate
@@ -3191,7 +3191,7 @@ name "enu:seededSecantMethodCode"
 
 \end_inset
 
-Write Octave code that implements the Seeded Secant method as a function.
+Write Octave code that implements the seeded secant method as a function.
 \end_layout
 
 \begin_layout Enumerate
@@ -3216,7 +3216,7 @@ name "secant"
 
 \end_inset
 
-Use your Secant method function from question 
+Use your secant method function from question 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:secantMethodCode"
@@ -3405,7 +3405,7 @@ reference "secant"
 
 \end_inset
 
- using your Seeded Secant method code from question 
+ using your seeded secant method code from question 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:seededSecantMethodCode"
@@ -3588,7 +3588,7 @@ Let
 \begin_inset Formula $x_{3}$
 \end_inset
 
- using the Secant Method with
+ using the secant method with
 \end_layout
 
 \begin_deeper
@@ -3656,7 +3656,7 @@ reference "newton-1"
 \end_layout
 
 \begin_layout Enumerate
-Compute the first three iterations of Newton's Method applied to 
+Compute the first three iterations of Newton's method applied to 
 \begin_inset Formula $g(x)=x-(\sqrt{2})^{x}$
 \end_inset
 
@@ -3672,7 +3672,7 @@ Find a value of
 \begin_inset Formula $x_{0}$
 \end_inset
 
- for which Newton's Method will fail to converge to a root of 
+ for which Newton's method will fail to converge to a root of 
 \begin_inset Formula $g(x)=2+x-e^{x}$
 \end_inset
 
@@ -3680,7 +3680,7 @@ Find a value of
 \end_layout
 
 \begin_layout Enumerate
-Explain why Newton's Method fails to converge for the the function 
+Explain why Newton's method fails to converge for the the function 
 \begin_inset Formula $g(x)=x^{2}+x+1$
 \end_inset
 
@@ -3774,7 +3774,7 @@ Let
 \begin_inset Formula $p_{10}$
 \end_inset
 
- using Newton's Method.
+ using Newton's method.
  HINT: 
 \begin_inset Formula $g'(x)=3e^{3x}-18(x+x^{2})e^{2x}+27(x^{4}+4x^{3})e^{x}-162x^{5}$
 \end_inset
@@ -3797,7 +3797,7 @@ hasananswer
 \end_layout
 
 \begin_layout Enumerate
-Newton's Method does not introduce spurious solutions.
+Newton's method does not introduce spurious solutions.
  Suppose 
 \begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
 \end_inset
@@ -3851,7 +3851,7 @@ The polynomial
 \begin_inset Formula $\hat{x}$
 \end_inset
 
- such that Newton's Method converges to 
+ such that Newton's method converges to 
 \begin_inset Formula $\hat{x}$
 \end_inset
 
@@ -3891,7 +3891,7 @@ octave
 
 \end_inset
 
-Use Newton's Method to find a negative solution of 
+Use Newton's method to find a negative solution of 
 \begin_inset Formula 
 \[
 0=12x^{4}-13x^{3}+7x^{2}+x-130
@@ -3932,7 +3932,7 @@ Consider the function
 \end_inset
 
 .
- Construct the Aitken's delta-squared sequence 
+ Construct the Aitken's delta squared sequence 
 \begin_inset Formula $\langle a_{n}\rangle$
 \end_inset
 
@@ -3960,7 +3960,7 @@ name "exc:newton-8"
 
 \end_inset
 
-As with Newton's Method, the Secant Method can easily be described geometrically
+As with Newton's method, the secant method can easily be described geometrically
 : Draw the line through the two points 
 \begin_inset Formula $(x_{0},f(x_{0}))$
 \end_inset
@@ -4006,7 +4006,7 @@ As with Newton's Method, the Secant Method can easily be described geometrically
 \begin_inset Formula $p(x)=x^{3}-3x+3$
 \end_inset
 
-, and demonstrate the first iteration of the Secant Method graphically for
+, and demonstrate the first iteration of the secant method graphically for
  
 \begin_inset Formula $x_{0}=-1$
 \end_inset
@@ -4033,7 +4033,7 @@ hasasolution
 \end_layout
 
 \begin_layout Enumerate
-Suppose you are using the Secant Method with 
+Suppose you are using the secant method with 
 \begin_inset Formula $x_{0}=1$
 \end_inset
 
@@ -4143,7 +4143,7 @@ hasananswer
 \end_layout
 
 \begin_layout Enumerate
-To which root will Newton's Method converge if 
+To which root will Newton's method converge if 
 \begin_inset Formula $x_{0}=2.5$
 \end_inset
 
@@ -4163,7 +4163,7 @@ Find a positive integer value of
 \begin_inset Formula $x_{0}$
 \end_inset
 
- for which Newton's Method will converge to 
+ for which Newton's method will converge to 
 \begin_inset Formula $2\pi$
 \end_inset
 
@@ -4175,7 +4175,7 @@ Find a negative value of
 \begin_inset Formula $x_{0}$
 \end_inset
 
- for which Newton's Method will converge to 
+ for which Newton's method will converge to 
 \begin_inset Formula $2\pi$
 \end_inset
 
@@ -4188,7 +4188,7 @@ Graph the polynomial
 \begin_inset Formula $p(x)=x^{3}-3x+3$
 \end_inset
 
-, and demonstrate Newton's Method graphically for 
+, and demonstrate Newton's method graphically for 
 \begin_inset Formula $x_{0}=-1$
 \end_inset
 
@@ -4220,7 +4220,7 @@ name "exc:newton-10"
 Use your code from question 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "enu:falsePositionCode"
+reference "enu:secantMethodCode"
 
 \end_inset
 
@@ -4243,7 +4243,7 @@ reference "enu:bisectionExamples"
 \end_inset
 
 .
- Compare your answer to that from question from question 
+ Compare your answer to that from question 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "exc:bisection3"
@@ -4312,7 +4312,7 @@ Find a value of
 \begin_inset Formula $x_{0}$
 \end_inset
 
- for which Newton's Method will fail to converge to a root of 
+ for which Newton's method will fail to converge to a root of 
 \begin_inset Formula $f(x)=2+x-e^{x}$
 \end_inset
 
@@ -4326,7 +4326,7 @@ name "exc:newton-12"
 
 \end_inset
 
-Find an example of a situation in which Newton's Method will fail on the
+Find an example of a situation in which Newton's method will fail on the
  second iteration (i.e., 
 \begin_inset Formula $x_{1}$
 \end_inset
@@ -4384,7 +4384,7 @@ For what values of
 \begin_inset Formula $x_{0}$
 \end_inset
 
-, approximately, will Newton's Method converge to 
+, approximately, will Newton's method converge to 
 \begin_inset Formula $-2.5$
 \end_inset
 
@@ -4421,7 +4421,7 @@ reference "graph"
 \begin_inset Formula $x_{3}$
 \end_inset
 
- for the Secant method with 
+ for the secant method with 
 \begin_inset Formula $x_{0}=-10$
 \end_inset
 

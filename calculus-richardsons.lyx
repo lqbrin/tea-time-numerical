@@ -93,7 +93,7 @@ Extrapolation
 \end_layout
 
 \begin_layout Standard
-In calculus you undboubtedly encountered Euler's constant, 
+In calculus, you undoubtedly encountered Euler's constant, 
 \begin_inset Formula $e$
 \end_inset
 
@@ -268,7 +268,7 @@ Sadly, this sequence of approximations is not converging very quickly.
  that was generally a better approximation than any of the original three.
  We will do something similar here, combining inadequate approximations
  to find better ones.
- We will name the various new approxmations for continued reuse.
+ We will name the various new approximations for continued reuse.
 \begin_inset Formula 
 \begin{eqnarray}
 2\tilde{e}(0.005)-\tilde{e}(0.01) & \equiv & \tilde{e}_{1}(0.01)=2.718220416437056\nonumber \\
@@ -333,7 +333,7 @@ Then
 
 \end_inset
 
-Now if we multiply the second equation by 
+Now, if we multiply the second equation by 
 \begin_inset Formula $\alpha^{-m_{1}}$
 \end_inset
 
@@ -524,7 +524,7 @@ for some constants
 \end_inset
 
 .
- This calculation is the basis for Richardson's Extrapolation.
+ This calculation is the basis for Richardson's extrapolation.
 \begin_inset Index idx
 status collapsed
 
@@ -654,7 +654,7 @@ for some constants
 \begin_inset Formula $\tilde{e}_{2}(h)$
 \end_inset
 
- is the formula that gave us the round of approximtions accurate to 7 to
+ is the formula that gave us the round of approximations accurate to 7 to
  9 significant digits.
  We can again use formula 
 \begin_inset CommandInset ref
@@ -739,7 +739,7 @@ reference "eTilde4"
 \end_layout
 
 \begin_layout Standard
-As a special case, Richardson's Extrapolation with 
+As a special case, Richardson's extrapolation with 
 \begin_inset Formula $\alpha=\frac{1}{2}$
 \end_inset
 
@@ -930,7 +930,7 @@ so
 
 \end_inset
 
-Hence 
+Hence, 
 \begin_inset Formula 
 \begin{eqnarray*}
 f'(x_{0})-\frac{-f(x_{0})+f(x_{0}+h)}{h} & = & -\frac{1}{2}hf''(x_{0})-\frac{1}{6}h^{2}f'''(x_{0})-\cdots\\
@@ -991,7 +991,7 @@ will be an
 
 \end_inset
 
-Hence we have 
+Hence, we have 
 \begin_inset Formula $f'(x_{0})=\frac{-3f(x_{0})+4f(x_{0}+h)-f(x_{0}+2h)}{2h}+O(h^{2})$
 \end_inset
 
@@ -1162,7 +1162,7 @@ T_{40}(0,1) & \approx & .4596737512942187.
 
 \end_inset
 
-Hence
+Hence,
 \begin_inset Formula 
 \begin{eqnarray*}
 T_{5,1}(0,1) & = & \frac{4T_{10}(0,1)-T_{5}(0,1)}{3}\approx.4596979498238206\\
@@ -1272,7 +1272,7 @@ reference "t35"
 
 \begin_layout Standard
 The method of combining Richardson's extrapolation with the trapezoidal
- rule is known as Romberg's Method or Romberg integration.
+ rule is known as Romberg's method or Romberg integration.
 \begin_inset Index idx
 status collapsed
 
@@ -1322,7 +1322,7 @@ name "tab:Romberg"
 
 \end_inset
 
-Romberg's Method
+Romberg's method
 \end_layout
 
 \end_inset
@@ -1721,7 +1721,7 @@ so each refinement increases the least degree in the error term by 2, not
 \end_inset
 
  must be for this method to work.
- For this reason, it is advisable to use Romberg's Method only when the
+ For this reason, it is advisable to use Romberg's method only when the
  integrand is known to have sufficient derivatives.
 \end_layout
 
@@ -1819,7 +1819,7 @@ Therefore,
 \end_inset
 
 .
- Use Richardson's Extrapolation to derive an 
+ Use Richardson's extrapolation to derive an 
 \begin_inset Formula $O(h^{4})$
 \end_inset
 
@@ -2128,7 +2128,7 @@ Compute
 \begin_inset Formula $N_{1}(1.0)$
 \end_inset
 
-, the first Richardson's Extrapolation, assuming
+, the first Richardson's extrapolation, assuming
 \end_layout
 
 \begin_deeper

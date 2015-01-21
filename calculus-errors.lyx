@@ -235,7 +235,7 @@ for some
 \end_inset
 
 .
- Hence
+ Hence,
 \begin_inset Formula 
 \[
 f'(x)-P_{n}'(x)=\frac{d}{dx}\left[\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}\right]w(x)+\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}w'(x).
@@ -461,7 +461,7 @@ It is tempting to think we can simply repeat the procedure we used with
 \end_inset
 
  to find the error for third derivative estimates, and so on.
- Alas the matter is not so simple.
+ Alas, the matter is not so simple.
  Higher derivatives of 
 \begin_inset Formula $f(x)-P_{n}(x)=\frac{f^{(n+1)}(\xi_{x})}{(n+1)!}w(x)$
 \end_inset
@@ -770,7 +770,7 @@ reference "eq:generalApprox"
 
 \begin_layout Standard
 \noindent
-Hence we have 
+Hence, we have 
 \begin_inset Formula 
 \begin{eqnarray*}
 \frac{-2f(x_{0}-h)+f(x_{0})+f(x_{0}+h)}{3h} & = & \frac{3hf'(x_{0})-\frac{1}{2}h^{2}f''(x_{0})+\frac{1}{2}h^{3}f'''(x_{0})-\frac{1}{24}h^{4}f^{(4)}(x_{0})+\cdots}{3h}\\
@@ -1229,7 +1229,7 @@ has for its only root,
 \end_inset
 
 .
- Hence we seek a formula of the form 
+ Hence, we seek a formula of the form 
 \begin_inset Formula 
 \[
 \int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx a_{0}f(x_{0})
@@ -1259,7 +1259,7 @@ or
 \end_inset
 
 .
- Hence we have
+ Hence, we have
 \begin_inset Formula 
 \[
 \int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx2hf(x_{0}),
@@ -1310,7 +1310,7 @@ and
 \end_inset
 
 so it is not exact for all degree two polynomials.
- Therefore its degree of precision is 1.
+ Therefore, its degree of precision is 1.
  Note the formula 
 \begin_inset Formula ${\displaystyle \int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx2hf(x_{0})}$
 \end_inset
@@ -1352,7 +1352,7 @@ which has roots
 \end_inset
 
 .
- Hence we seek a formula of the form 
+ Hence, we seek a formula of the form 
 \begin_inset Formula 
 \[
 \int_{x_{0}-h}^{x_{0}+h}f(x)dx\approx a_{0}f\left(x_{0}-\sqrt{\frac{3}{5}}h\right)+a_{1}f(x_{0})+a_{2}f\left(x_{0}+\sqrt{\frac{3}{5}}h\right)
@@ -3630,7 +3630,7 @@ Gaussian quadrature formulas
 \end_inset
 
 .
- Hence the stencil 
+ Hence, the stencil 
 \end_layout
 
 \begin_layout Standard
@@ -3809,7 +3809,7 @@ Assume that
 \begin_inset Formula $g$
 \end_inset
 
- never changes sign and is nonnegative in 
+ never changes sign and is non-negative in 
 \begin_inset Formula $[a,b]$
 \end_inset
 

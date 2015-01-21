@@ -184,7 +184,7 @@ Mathemagician:
  bed sheet.
  This time already folded.
  Crystal! The bed sheet please ...
- (Crystal brings out the bedsheet, already folded).
+ (Crystal brings out the bed sheet, already folded).
  Again, an ordinary bed sheet.
  This time folded.
  I shall now fold it in half as I have done before and ask again, how many
@@ -225,7 +225,7 @@ Audience:
 \shape smallcaps
 Mathemagician:
 \shape default
- ...but I can tell you it has twice as many as it had before!
+ ...but I can tell you it is twice as many layers thick as it was before!
 \end_layout
 
 \begin_layout Labeling
@@ -332,8 +332,8 @@ Connect three squares edge-to-edge in the shape of an L, and you have a
  tromino.
  Trominos aren't used in games like dominoes are, but are often used in
  interesting mathematical questions involving tiling.
- Tiling means covering without overlapping trominos and without having any
- parts of trominos lying outside the shape being tiled.
+ Tiling with trominos means covering without overlapping trominos and without
+ having any parts of trominos lying outside the shape being tiled.
  For example, a 
 \begin_inset Formula $2\times3$
 \end_inset
@@ -342,7 +342,7 @@ Connect three squares edge-to-edge in the shape of an L, and you have a
 \begin_inset Formula $6\times9$
 \end_inset
 
- grid
+ grid.
 \begin_inset Float figure
 wide false
 sideways false
@@ -393,7 +393,6 @@ name "fig:recursion1"
 
 \end_inset
 
-.
  See Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -704,7 +703,7 @@ Golomb ! Solomon
 any
 \shape default
  single square (not necessarily a corner), called a deficient square, can
- be tiled by trominoes.
+ be tiled by trominos.
  Can you construct a (recursive) tiling of a 
 \begin_inset Formula $2^{n}\times2^{n}$
 \end_inset
@@ -1471,7 +1470,7 @@ if
 \begin_inset Formula $x$
 \end_inset
 
- is unkown.
+ is unknown.
  In Octave the distinction is made by using a single equals sign, 
 \family typewriter
 =

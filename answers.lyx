@@ -937,7 +937,7 @@ reference "exc:orderOfConvergence-7"
 \end_inset
 
 : No.
- Aitken's delta-squared Method is designed to speed up linearly convergent
+ Aitken's delta-squared method is designed to speed up linearly convergent
  sequences, not superlinearly convergent sequences.
 \end_layout
 
@@ -1290,7 +1290,7 @@ reference "exc:newton-9"
 \begin_inset Formula $\pi$
 \end_inset
 
- (b) Newton's Method will fail because 
+ (b) Newton's method will fail because 
 \begin_inset Formula $g'(0)=0$
 \end_inset
 

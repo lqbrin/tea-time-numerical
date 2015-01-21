@@ -122,7 +122,7 @@ The basic idea
 .
  You are trying various methods and become interested in how the choice
  of initial value affects the results.
- Using Newton's Method, you do some research into how the choice of 
+ Using Newton's method, you do some research into how the choice of 
 \begin_inset Formula $x_{0}$
 \end_inset
 
@@ -601,7 +601,7 @@ Using fixed point iteration on
 \end_layout
 
 \begin_layout Standard
-In the Newton's Method experiment, 
+In the Newton's method experiment, 
 \begin_inset Formula $x_{2}$
 \end_inset
 
@@ -623,8 +623,8 @@ In the Newton's Method experiment,
  As they sit in their tabular form, they are just two functions for which
  you know a handful of values and not much more.
  What do these functions look like? Do we have enough information to perhaps
- find their derivatives, and hence local extrema? Can we find their antiderivati
-ves? This is the stuff of numerical calculus.
+ find their derivatives, and, hence, local extrema? Can we find their antideriva
+tives? This is the stuff of numerical calculus.
  We can certainly approximate these things.
  
 \end_layout
@@ -676,7 +676,7 @@ In order to avoid the confusion of using
 \end_inset
 
 .
- Hence we have 
+ Hence, we have 
 \begin_inset Formula $\nu(93/70)=2.0846\ldots$
 \end_inset
 
@@ -708,7 +708,7 @@ node
 
 \end_inset
 
- Hence the nodes we have for 
+ Hence, the nodes we have for 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -898,7 +898,7 @@ We have added a second subscript to
 \end_inset
 
 .
- Now we can approximate derviatives and integrals for both 
+ Now we can approximate derivatives and integrals for both 
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -958,7 +958,7 @@ So, for example,
 \noindent
 That's it! This exercise encapsulates the entire strategy.
  Given some values of an otherwise unknown function, we will approximate
- the unkown function with a polynomial.
+ the unknown function with a polynomial.
  We will then approximate derivatives and integrals of the unknown function
  by differentiating and integrating the polynomial.
  There is very little more to be said about the idea.
@@ -1002,7 +1002,7 @@ Using all the nodes of
 \begin_inset Formula $\varphi$
 \end_inset
 
- (and a comuter algebra system) we compute the sixth degree interpolating
+ (and a computer algebra system) we compute the sixth degree interpolating
  polynomial
 \begin_inset Formula 
 \begin{eqnarray*}
@@ -1429,7 +1429,7 @@ reference "chap:Interpolation"
 
 \end_inset
 
- we labeled the nodes of an interpolating function 
+, we labeled the nodes of an interpolating function 
 \begin_inset Formula $x_{0},x_{1},\ldots,x_{n}$
 \end_inset
 
@@ -2462,7 +2462,7 @@ where the point of evaluation is one of the nodes.
 \end_inset
 
 .
- Hence the 
+ Hence, the 
 \begin_inset Quotes eld
 \end_inset
 

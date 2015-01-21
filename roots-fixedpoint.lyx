@@ -685,7 +685,7 @@ reference "fig:cosine-fixed-point"
  And our web diagram implies that further iteration will lead to the fixed
  point.
  So, regardless of the initial value, iteration leads to the fixed point.
- And the preceeding argument forms the seed for a proof of this fact.
+ And the preceding argument forms the seed for a proof of this fact.
 \end_layout
 
 \begin_layout Standard
@@ -1291,7 +1291,7 @@ If
 \end_inset
 
 .
- Hence it is impossible that 
+ Hence, it is impossible that 
 \begin_inset Formula $c_{1}$
 \end_inset
 
@@ -1303,13 +1303,13 @@ If
 \end_layout
 
 \begin_layout Standard
-Hence we can reasonably expect that when the derivative at a fixed point
+Hence, we can reasonably expect that when the derivative at a fixed point
  has magnitude less than 1, iteration is a viable method for approximating
  (finding) the fixed point, but when the derivative at a fixed point has
  magnitude greater than 1, iteration is not a viable method of approximating
  the fixed point.
  We must be careful, though, not to take this rule of thumb as absolute.
- It only applies to so called well-behaved functions.
+ It only applies to so-called well-behaved functions.
  In this case, that the function has a continuous first derivative in the
  neighborhood of the fixed point is well-behaved enough.
  The following theorem establishes that fixed point iteration will converge
@@ -1491,7 +1491,7 @@ reference "prop:contractive"
 \end_inset
 
 .
- Hence we have 
+ Hence, we have 
 \begin_inset Formula $0\leq|\hat{x}-x_{k}|\leq M^{k}|\hat{x}-x_{0}|$
 \end_inset
 
@@ -1650,7 +1650,7 @@ If
 \end_inset
 
 ; or may have no neighborhood in which all initial values lead to convergence
- and no neighboorhood in which all values other than 
+ and no neighborhood in which all values other than 
 \begin_inset Formula $\hat{x}$
 \end_inset
 
@@ -1941,7 +1941,7 @@ name "fig:basinOfAttractionExplanation"
 \begin_inset Formula $2$
 \end_inset
 
- for anhy initial value in the interval 
+ for any initial value in the interval 
 \begin_inset Formula $(-0.61,6.61)$
 \end_inset
 
@@ -1967,7 +1967,7 @@ reference "fig:basinOfAttractionExplanation"
 
 \end_inset
 
- are indispensible and should always be consulted when trying to understand
+ are indispensable and should always be consulted when trying to understand
  fixed point iteration, but they should not be relied upon as proof.
  For that, we need to rely on theorems like the Fixed Point Convergence
  Theorem.
@@ -2238,7 +2238,7 @@ Suppose we want the roots of
 \end_layout
 
 \begin_layout Standard
-Can you see what has been done for each one? Thus we have five candidates
+Can you see what has been done for each one? Thus, we have five candidates
  for fixed point iteration, 
 \begin_inset Formula $f_{1}(x)=-x^{3}+5x^{2}-3x-6$
 \end_inset
@@ -2479,7 +2479,7 @@ reference "fig:SixConvergenceDiagrams"
 \begin_inset Formula $f_{6}$
 \end_inset
 
- provides convergence for, as far as we can tell, every intial value in
+ provides convergence for, as far as we can tell, every initial value in
  
 \begin_inset Formula $[-2,5]$
 \end_inset
@@ -3780,7 +3780,7 @@ Show that
 \end_layout
 
 \begin_layout Enumerate
-Use fixed-point iteration to find an approximation to the fixed point that
+Use fixed point iteration to find an approximation to the fixed point that
  is accurate to within 
 \begin_inset Formula $10^{-2}$
 \end_inset
@@ -3818,7 +3818,7 @@ Show that
 \end_layout
 
 \begin_layout Enumerate
-Use fixed-point iteration to find an approximation to the fixed point that
+Use fixed point iteration to find an approximation to the fixed point that
  is accurate to within 
 \begin_inset Formula $10^{-2}$
 \end_inset
@@ -3834,7 +3834,7 @@ name "exc:fixedpt-13"
 
 \end_inset
 
-Show that the Fixed Point Iteration Method applied to 
+Show that the fixed point iteration method applied to 
 \begin_inset Formula $f(x)=\sqrt[3]{8-4x}$
 \end_inset
 
@@ -3926,7 +3926,7 @@ State the initial value you used and how many iterations it took to get
 
 \end_deeper
 \begin_layout Enumerate
-Use Fixed Point Iteration with 
+Use fixed point iteration with 
 \begin_inset Formula $p_{0}=-1$
 \end_inset
 
@@ -3942,7 +3942,7 @@ Use Fixed Point Iteration with
 \end_layout
 
 \begin_layout Enumerate
-Use a fixed-point iteration method to find an approximation of 
+Use a fixed point iteration method to find an approximation of 
 \begin_inset Formula $\sqrt{3}$
 \end_inset
 
@@ -4518,7 +4518,7 @@ reference "fig:SixConvergenceDiagrams"
 \begin_inset Formula $3x^{2}\text{−}10x+4=0$
 \end_inset
 
- to find two intial values for which fixed point iteration will fail (since
+ to find two initial values for which fixed point iteration will fail (since
  the first iteration will be undefined).
  They are 
 \begin_inset Formula $x=\frac{5\pm\sqrt{13}}{3}\approx.4648\mbox{ and }2.868$

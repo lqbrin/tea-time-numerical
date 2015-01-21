@@ -2018,7 +2018,7 @@ As noted earlier, this method should calculate a midpoint (Step 3), decide
  Much of the code is dedicated to determining when to stop.
  This is typical of numerical methods.
  The calculations are half the battle.
- Controling the calculations is the other half.
+ Controlling the calculations is the other half.
  If we didn't have to worry about stopping, the pseudo-code might look something
  like this: 
 \end_layout
@@ -2558,7 +2558,7 @@ Roughly half the work in writing pseudo-code for the bisection method was
 \family typewriter
 if then [else]
 \family default
- 
+
 \begin_inset Index idx
 status collapsed
 
@@ -2771,7 +2771,7 @@ In Octave,
 \family typewriter
 if then [else]
 \family default
- statements are written almost exactly as they are in pseudocode.
+ statements are written almost exactly as they are in pseudo-code.
  In fact, much of the pseudo-code in this text will translate nearly verbatim
  into Octave.
  One notable exception is the symbol used in the 

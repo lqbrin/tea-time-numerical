@@ -409,12 +409,11 @@ The most common spline in use is the cubic spline.
 s at the joints.
  In fact, there are enough coefficients in the set of cubics that both first
  and second derivatives are matched.
- Matching both first and second derivatives is not strictly necessary according
- to our definition of spline.
- However, other sources will give a more restrictive definition of spline
- where matching both derivatives is required.
- As a matter of convention, we focus on cubic splines where both first and
- second derivatives of adjacent cubics agree at the joints.
+ Note that, according to our definition of spline, matching both first and
+ second derivatives at the joints is not strictly necessary, however.
+ Other sources will give a more restrictive definition of spline where matching
+ both derivatives is required.
+ As a matter of convention, we focus on such splines.
 \end_layout
 
 \begin_layout Standard
@@ -450,7 +449,8 @@ A cubic spline required to interpolate
 \end_inset
 
  more conditions.
- Requiring second derivative matching at the joints gives an addtional 
+ Requiring second derivative matching at the joints gives an additional
+ 
 \begin_inset Formula $n-1$
 \end_inset
 
@@ -718,9 +718,8 @@ The natural (cubic) spline passing through the eight points presented in
 \begin_layout Standard
 \noindent
 Finally, a function that is as unspectacular as the data set itself! How
- was it calculated, you ask.
- The short answer is the 28 simultaneous equations resulting from the definition
- of natural cubic spline were solved.
+ was it calculated, you ask? The short answer is, the 28 simultaneous equations
+ resulting from the definition of natural cubic spline were solved.
  The solution provided the coefficients 
 \begin_inset Formula $a_{i},b_{i},c_{i},d_{i}$
 \end_inset
@@ -969,7 +968,7 @@ reference "eq:firstDerivativeRequirement"
 \end_inset
 
 .
- Hence we still have to incorporate
+ Hence, we still have to incorporate
 \begin_inset Formula 
 \begin{equation}
 b_{1}=b_{2}+2c_{2}h_{2}+3d_{2}h_{2}^{2}\label{eq:lastEquation}
@@ -1585,7 +1584,7 @@ Ahlberg and Nilson, The Theory of Splines and their Applications, Elsevier,
  But the shapes modeled by splines often include large deflections, and
  unless the draftsman's spline is damaged in some way, its shape will be
  an infinitely differentiable curve.
- Cubic splines generally lack continuity in their third derivative, hence
+ Cubic splines generally lack continuity in their third derivative, hence,
  do not have higher order derivatives.
  Moreover, the endpoint conditions 
 \begin_inset Formula $S_{0}''(x_{0})=S_{n}''(x_{n})=0$

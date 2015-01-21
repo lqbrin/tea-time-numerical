@@ -340,7 +340,7 @@ An elementary induction proof (requested in the exercises) will establish
 \begin_inset Formula $|f(x_{k})-\hat{x}|\leq M|x_{k}-\hat{x}|$
 \end_inset
 
-, and therefore that 
+, and, therefore, that 
 \begin_inset Formula $|x_{k+1}-\hat{x}|\leq M|x_{k}-\hat{x}|$
 \end_inset
 
@@ -490,15 +490,15 @@ name "tab:fixedPointOrderComparison"
 \end_inset
 
 Comparing order of convergence for fixed point iteration when the derivative
- at the fixed point is not zero, 
+ at the fixed point is not zero (
 \begin_inset Formula $s_{n}$
 \end_inset
 
-, to that when the derivative at the fixed point is zero, 
+) to that when the derivative at the fixed point is zero (
 \begin_inset Formula $t_{n}$
 \end_inset
 
-.
+).
 \end_layout
 
 \end_inset
@@ -1002,7 +1002,7 @@ name "FixedPointIterationConvergesQuadratically"
 
 \end_inset
 
-Taylor's Theorem will provide the proof we need that this convergence really
+Taylor's theorem will provide the proof we need that this convergence really
  is quadratic.
  Suppose 
 \begin_inset Formula $f$
@@ -1018,7 +1018,7 @@ Taylor's Theorem will provide the proof we need that this convergence really
 \end_inset
 
 .
- Then according to Taylor's Theorem, 
+ Then according to Taylor's theorem, 
 \begin_inset Formula $\hat{x}=f(\hat{x})=f(x_{n}+e_{n})=f(x_{n})+e_{n}f'(x_{n})+\frac{1}{2}e_{n}^{2}f''(x_{n})+O(e_{n}^{3})$
 \end_inset
 
@@ -1035,7 +1035,7 @@ Taylor's Theorem will provide the proof we need that this convergence really
 
 \end_inset
 
-Also from Taylor's Theorem, 
+Also from Taylor's theorem, 
 \begin_inset Formula $f'(\hat{x})=f'(x_{n}+e_{n})=f'(x_{n})+e_{n}f''(x_{n})+O(e_{n}^{2})$
 \end_inset
 
@@ -1075,7 +1075,7 @@ e_{n+1} & = & e_{n}(-e_{n}f''(x_{n})-O(e_{n}^{2}))+\frac{1}{2}e_{n}^{2}f''(x_{n}
 
 \end_inset
 
-Hence 
+Hence, 
 \begin_inset Formula $\frac{\hat{x}-x_{n+1}}{(\hat{x}-x_{n})^{2}}=\frac{e_{n+1}}{e_{n^{2}}}=-\frac{1}{2}f''(x_{n})+O(e_{n})$
 \end_inset
 
@@ -2187,7 +2187,7 @@ Therefore, we may take any three consecutive terms of
 \end_inset
 
 , so the numerator of our approximation is nearly zero.
- Of course that means the denominator must be nearly zero as well since
+ Of course, that means the denominator must be nearly zero as well, since
  the quotient is 
 \begin_inset Formula $p$
 \end_inset
@@ -3355,12 +3355,12 @@ method ! Steffensen's|see{Steffensen's method}
 
 \end_inset
 
- Steffensen's Method and the convergence is quadratic as long as 
+ Steffensen's method and the convergence is quadratic as long as 
 \begin_inset Formula $\langle s_{n}\rangle$
 \end_inset
 
  is convergent.
- The following is a heuristic argument that Steffensen's Method gives quadratic
+ The following is a heuristic argument that Steffensen's method gives quadratic
  convergence.
  As seen, the error in 
 \begin_inset Formula $s_{2}$
@@ -3478,7 +3478,7 @@ name "tab:steffensens2"
 
 \end_inset
 
-Steffensen's Method applied to 
+Steffensen's method applied to 
 \begin_inset Formula $f(x)=\cos x$
 \end_inset
 
@@ -3975,7 +3975,7 @@ and, consequently, that the sequence
 Finally, we have two ways to get quick convergence from fixed point iteration.
  One, we simply iterate when the function has derivative zero at the fixed
  point.
- Two, we use Steffensen's Method.
+ Two, we use Steffensen's method.
 \end_layout
 
 \begin_layout Subsection
@@ -3997,7 +3997,7 @@ Speeding up fixed point iteration only takes care of one deficiency of the
  method.
  There is still the problem of divergence from fixed points where the derivative
  of the function has magnitude equal to or greater than 1.
- Steffensen's Method helps.
+ Steffensen's method helps.
  Compare Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -4013,7 +4013,7 @@ reference "fig:SixConvergenceDiagrams"
 \end_inset
 
 .
- The convergence diagrams for Steffensen's Method show convergence over
+ The convergence diagrams for Steffensen's method show convergence over
  larger intervals of initial values.
  Moreover, where 
 \begin_inset Formula $f_{1}$
@@ -4023,7 +4023,7 @@ reference "fig:SixConvergenceDiagrams"
 \begin_inset Formula $f_{2}$
 \end_inset
 
- are concerned, Steffensen's Method finds all three fixed points, just as
+ are concerned, Steffensen's method finds all three fixed points, just as
  fixed point iteration on 
 \begin_inset Formula $f_{6}$
 \end_inset
@@ -4046,7 +4046,7 @@ name "fig:FiveConvergenceDiagrams"
 \end_inset
 
 Convergence diagrams for 5 functions with the same fixed points---Steffensen's
- Method.
+ method.
 \end_layout
 
 \end_inset
@@ -4168,7 +4168,7 @@ Steffensen's method ! pseudo-code
 \end_layout
 
 \begin_layout Standard
-Since Steffensen's Method is particularly prone to floating-point error,
+Since Steffensen's method is particularly prone to floating-point error,
  we do a preliminary check for convergence before the Aitken's delta-squared
  step.
  This helps prevent large errors or division by zero in Step 4.
@@ -4362,7 +4362,7 @@ delta-squared
 \begin_inset space ~
 \end_inset
 
-Method: If 
+method: If 
 \begin_inset Formula $\langle p_{n}\rangle$
 \end_inset
 
@@ -4543,7 +4543,7 @@ Steffensen's
 \begin_inset space ~
 \end_inset
 
-Method: 
+method: 
 \begin_inset Index idx
 status collapsed
 
@@ -5474,7 +5474,7 @@ are algebraically equivalent.
 \end_layout
 
 \begin_layout Enumerate
-Write an Octave function that implements Steffensen's Method.
+Write an Octave function that implements Steffensen's method.
 \end_layout
 
 \begin_layout Enumerate
@@ -6001,7 +6001,7 @@ name "exc:orderOfConvergence-5"
 
 \end_inset
 
-Use Steffensen's Method to find the root of 
+Use Steffensen's method to find the root of 
 \begin_inset Formula $g(x)=x^{4}-2x^{3}-4x^{2}+4x+4$
 \end_inset
 
@@ -6040,7 +6040,7 @@ Compute
 \begin_inset Formula $a_{2}$
 \end_inset
 
- of Aitken's delta-squared Method for the sequence in problem 
+ of Aitken's delta-squared method for the sequence in problem 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:linearConvergenceExample"
@@ -6187,7 +6187,7 @@ name "exc:orderOfConvergence-7"
 
 \end_inset
 
-the sequence 
+The sequence 
 \begin_inset Formula $\langle a_{n}\rangle$
 \end_inset
 
@@ -6213,7 +6213,7 @@ reference "enu:linearConvergenceExample"
 \end_inset
 
 .
- If you were to apply Aitken's delta-squared Method to the sequence 
+ If you were to apply Aitken's delta-squared method to the sequence 
 \begin_inset Formula $\langle a_{n}\rangle$
 \end_inset
 
@@ -6293,7 +6293,7 @@ Fixed point iteration applied to
 \end_inset
 
 .
- How many iterations does it take Steffensen's Method with 
+ How many iterations does it take Steffensen's method with 
 \begin_inset Formula $x_{0}=1$
 \end_inset
 
@@ -6358,7 +6358,7 @@ hasananswer
 \end_layout
 
 \begin_layout Enumerate
-Compute the first three iterations of Steffensen's Method applied to 
+Compute the first three iterations of Steffensen's method applied to 
 \begin_inset Formula $g(x)=(\sqrt{2})^{x}$
 \end_inset
 
@@ -6428,7 +6428,7 @@ Find the fixed point of
 \begin_inset Formula $[5,6]$
 \end_inset
 
- using Steffensen's Method.
+ using Steffensen's method.
 \begin_inset ERT
 status open
 
