@@ -29,6 +29,7 @@
 	    <li><a href="#installingOctave">Installing Octave</a></li>
 	    <li><a href="#bookSource">Book Source</a></li>
 	    <li><a href="#whosUsing">Who uses Tea Time Numerical Analysis?</a></li>
+	    <li><a href="#contact">Contact the Author</a></li>
 	    <li><a href="#oldEditions">Previous Editions</a></li>
 	  </ol>
 	<a name="installingOctave"></a>
@@ -36,10 +37,10 @@
 	  <p>Octave is developed by the GNU Project for the GNU operating system, which is most often paired with a Linux kernel. At its core, Octave is therefore GNU/Linux software. It runs natively on GNU/Linux machines. It must be ported (converted somehow) to run on other operating systems like Windows or OS X. Ports (converted programs) do exist for these operating systems, but are significantly more complicated to install than native Windows or native OS X programs. The advantage to this approach is the end result which looks and runs very much like a native application, desktop shortcut/alias and all. The disadvantage is the somewhat lengthy installation procedure with parts that sometimes don't work together as expected, resulting in a failed installation.</p>
 	  <p>Windows and Mac users may also install hardware virtualizing software. Such software is freely available as native Windows and native OS X software. Then a complete GNU/Linux operating system can be installed inside the virtualizer as a so-called virtual machine. Octave can be installed in the virtual machine as a native program. With some configuring, the virtual machine can be made to look and feel almost like other Windows or OS X apps. The advantage to this approach is that installation is relatively straightforward. The disadvantage is that it requires a lot of computing resources. People with an old (slow) machine or a machine with little RAM (memory) will likely be disappointed in performance. Octave will be even slower than other programs if it runs at all.</p>
 	  <p>GNU/Linux can also be installed &quot;side-by-side&quot; with Windows or OS X, creating a dual-boot machine. The advantage to this approach is it relieves all of the issues of the other two methods. Octave is installed as a native application and all computer resources are dedicated to GNU/Linux so Octave will run as quickly as possible on your machine. The primary disadvantage  to this approach is that you will have to decide whether to run your usual (Windows or OS X) operating system or GNU/Linux every time the computer starts. You will not be able to switch between Octave and the apps you are used to running. For example, switching from iTunes to Octave, or from Word to Octave and back, is not possible. You get one or the other. A secondary disadvantage is the need to repartition the computer's hard drive (or the need to add an additional hard drive to the machine), making the installation process potentially devastating to the machine. A complete backup of your machine is required to maintain safety.</p>
-	  <p>If you are not sure what to make of all this or just want Octave to run on your Mac or Windows machine without all the hallabaloo, here are some recommendations.</p>
+	  <p>If you are not sure what to make of all this or just want Octave to run on your Mac or Windows machine without all the hallabaloo, here are some options, listed in order of recommendation for each OS.</p>
 	  <ul>
 	    <li><strong>Windows: </strong>
-	      <ol>
+	      <ul>
 		<li>The easiest way to install Octave in Windows is through Cygwin, a large collection of open source programs. Each program in the collection is packaged for easy installation and deinstallation. Get step-by-step instructions <a href="octaveWindows.html">here</a>.
 		</li>
 		<li>If your computer has plenty of speed (is no older than 2 or 3 years) and memory (at least 4 GB) and hard disk space (at least 30 GB available), and you are interested in other mathematics-related software, you may choose to install a virtual machine. Take these steps.
@@ -52,10 +53,10 @@
 		</li>
 		<li>If you know what you are doing or can get any required help, install <a href="http://www.ubuntu.com/" target="_blank">Ubuntu</a>, <a href="http://www.kubuntu.org/" target="_blank">Kubuntu</a>, or <a href="http://lubuntu.net/" target="_blank">Lubuntu</a> desktop edition, creating a dual-boot machine. Then boot your *buntu OS and install <a href="http://www.mathbuntu.org/" target="_blank">Mathbuntu</a> using the Mathbuntu script.
 		</li>
-	      </ol>
+	      </ul>
 	    </li>
 	    <li><strong>MacOS X: </strong>
-	      <ol>
+	      <ul>
 		<li>The most dependable way to install Octave in MacOS X is through a virtual machine. If your computer has enough memory (at least 3 GB) and hard disk space (at least 30 GB available), install a virtual machine following these steps.
 		  <ol type="a">
 		    <li>Find out if your computer has enough resources following <a href="resourceReport.html">these instructions</a>.</li>
@@ -66,14 +67,14 @@
 		</li>
 		<li>If your computer does not have sufficient memory or hard disk space for a virtual machine, try using a package manager, a program specifically designed to make installations like this one easier. Get step-by-step insructions <a href="octaveMac.html">here</a>.</li>
 		<li>If you know what you are doing or can get any required help, install <a href="http://www.ubuntu.com/" target="_blank">Ubuntu</a>, <a href="http://www.kubuntu.org/" target="_blank">Kubuntu</a>, or <a href="http://lubuntu.net/" target="_blank">Lubuntu</a> desktop edition, creating a dual-boot machine. Then boot your *buntu OS and install <a href="http://www.mathbuntu.org/" target="_blank">Mathbuntu</a> using the Mathbuntu script.</li>
-	      </ol>
+	      </ul>
 	    </li>
 	    <li><strong>Linux: </strong>
-	      <ol>
+	      <ul>
 		<li>The easiest way to install Octave in GNU/Linux is to use your distribution's package manager. Distributions known to package Octave include: Debian, Fedora, Gentoo, and SuSE. You may, however, find that the packaged version is far out of date. Anything before 3.8 will <strong>not</strong> include an IDE, for example. The combination of a text editor and a terminal window can substitute for an IDE, but if you find yourself with an old version and want the Octave IDE, there are options.</li>
 		<li>Compile Octave from source. The <a href="octaveSource.html">source files</a> can be obtained from the GNU project. This is not recommended if you are unfamiliar with compiling from source. Compilers and other command-line development tools are needed as are several general use computational libraries.</li>
 		<li>If you are running Ubuntu or some derivative, install <a href="http://www.mathbuntu.org/" target="_blank">Mathbuntu</a> using the Mathbuntu script. Octave is one of many mathematical programs that will be installed.</li>
-	      </ol>
+	      </ul>
 	    </li>
 	  </ul>
 	<a name="bookSource"></a>
@@ -96,7 +97,16 @@
 	<p>Alternatively, you can download individual software packages from the websites of <a target="_blank" href="http://www.lyx.org/">LyX</a>, <a target="_blank" href="http://www.geogebra.org/cms/en/">GeoGebra</a>, <a target="_blank" href="http://andrejv.github.io/wxmaxima/">wxMaxima</a>, <a href="http://www.gimp.org/">GIMP</a> and <a href="http://www.gnu.org/software/octave/">Octave</a>. With the exception of Octave, each website has both Winows and Mac installers for download. Octave presents a bit more of a challenge. You can follow the advice at the Octave website or, for more verbose and advisory instructions, <a href="more.html#installingOctave">click here</a>.
 	<a name="whosUsing"></a>
 	<h4>Who uses Tea Time Numerical Analysis?</h4>
-	<p>Tea Time Numerical Analysis was specifically designed for use at Southern Connecticut State University but with a mind to make it more generally useful. If you are using it elsewhere or know of someone who is, please <a href="mailto:brinl1@southernct.edu">drop me a note</a>.</p>
+	<p>Tea Time Numerical Analysis was specifically designed for use at Southern Connecticut State University but with a mind to make it more generally useful. If you are using it elsewhere or know of someone who is, please drop me a note.</p>
+	<a name="contact"></a>
+	<h4>Contact the Author</h4>
+	<strong>Dr. Leon Brin</strong>, Professor & Assistant Chairperson<br />
+	Department of Mathematics<br />
+	<strong>Southern Connecticut State University</strong><br />
+	501 Crescent Street<br />
+	New Haven, CT 06515<br />
+	203-392-7166<br />
+	<a href="mailto:brinl1@southernct.edu">brinl1@southernct.edu</a>
 	<a name="oldEditions"></a>
 	<h4>Previous Editions</h4>
 	<strong>May 2014:</strong> Premiere edition (Unedited):
