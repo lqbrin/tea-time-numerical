@@ -20,7 +20,7 @@ function res=bisectionBasic(a,b,f,tol,maxits)
       b=m;
     else
       a=m;
-      L=m;
+      L=M;
     end%if
   end%for
   res='Method failed. Maximum iterations exceeded.';

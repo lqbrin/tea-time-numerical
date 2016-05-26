@@ -356,7 +356,7 @@ exact
 , the system of equations becomes
 \begin_inset Formula 
 \begin{equation}
-p_{j}^{(k)}(x_{0}+\theta h)=\sum_{i=0}^{n}(\theta_{i}h)^{j}a_{i}\label{eq:systemGenericDerivative}
+p_{j}^{(k)}(x_{0}+\theta h)=a_{0}+\sum_{i=1}^{n}(\theta_{i}h)^{j}a_{i}\label{eq:systemGenericDerivative}
 \end{equation}
 
 \end_inset
@@ -766,7 +766,7 @@ The approximation will be exact for all polynomials of degree
  Therefore, the system of equations
 \begin_inset Formula 
 \begin{equation}
-\int_{a}^{b}p_{j}(x)dx=\sum_{i=0}^{n}(\theta_{i}h)^{j}a_{i}\qquad j=0,1,\ldots,n\label{eq:systemGenericIntegral}
+\int_{a}^{b}p_{j}(x)dx=a_{0}+\sum_{i=1}^{n}(\theta_{i}h)^{j}a_{i}\qquad j=0,1,\ldots,n\label{eq:systemGenericIntegral}
 \end{equation}
 
 \end_inset
@@ -1227,7 +1227,7 @@ Notice the similarities between Maxima code and Octave code.
  The syntax for these things is not the same, but the principles behind
  them are.
  Once you have learned how to do these things in one language, learning
- how to do them in another is usually straightforward
+ how to do them in another is usually straightforward.
 \end_layout
 
 \begin_layout Standard
@@ -2843,7 +2843,7 @@ name "exc:undetermined-2"
 \end_inset
 
 Use the method of undetermined coefficients to derive an approximation formula
- over the stencil.
+ for the integral over the stencil.
 \end_layout
 
 \begin_deeper

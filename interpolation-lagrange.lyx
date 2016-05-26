@@ -5631,7 +5631,7 @@ Let
 \begin_inset Formula 
 \begin{eqnarray*}
 x_{j} & = & 1-\frac{1}{j+1}\quad\mbox{for }j=0,1,2,\ldots\\
-f(x) & = & 5+3x^{2014}\\
+f(x) & = & 5+3x^{2018}\\
 P_{n}(x) & = & \mbox{the interpolating polynomial}\\
  &  & \mbox{passing through}\\
  &  & (x_{0},f(x_{0})),\ldots,(x_{n},f(x_{n})).

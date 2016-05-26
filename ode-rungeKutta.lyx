@@ -83,14 +83,2120 @@ figs-within-sections
 \begin_body
 
 \begin_layout Section
-Runge-Kutta Methods
+Foundations for Runge-Kutta Methods
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Approximations of Taylor Methods.
- Euler's method, Midpoint method, Improved Euler's, Heun's.
- RK-4 and the order 4 half of RK45.
- Higher order?
+In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:TaylorMethods"
+
+\end_inset
+
+, Taylor polynomials, and therefore derivatives, were used to generate approxima
+te solutions of ordinary differential equations.
+ Another way to generate approximate solutions is to integrate.
+ An o.d.e.
+ of the form
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{y} & = & f(t,y)\\
+y(t_{0}) & = & y_{0}
+\end{eqnarray*}
+
+\end_inset
+
+has an exact solution that can be written in terms of an integral.
+ For any value 
+\begin_inset Formula $\tilde{t}$
+\end_inset
+
+, we can find an expression for 
+\begin_inset Formula $y(\tilde{t})$
+\end_inset
+
+ by integrating both sides of 
+\begin_inset Formula $\dot{y}=f(t,y)$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $t$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{t_{0}}^{\tilde{t}}\dot{y}\, dt & = & \int_{t_{0}}^{\tilde{t}}f(t,y)\, dt\\
+y(\tilde{t})-y(t_{0}) & = & \int_{t_{0}}^{\tilde{t}}f(t,y)\, dt\\
+y(\tilde{t}) & = & y(t_{0})+\int_{t_{0}}^{\tilde{t}}f(t,y)\, dt.
+\end{eqnarray*}
+
+\end_inset
+
+So we need to add 
+\begin_inset Formula $\int_{t_{0}}^{\tilde{t}}f(t,y)\, dt$
+\end_inset
+
+ to the known value 
+\begin_inset Formula $y(t_{0})$
+\end_inset
+
+ in order to compute 
+\begin_inset Formula $y(t_{1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As done with Taylor methods, we will create approximate solutions little
+ by little, computing 
+\begin_inset Formula $y(t_{1})$
+\end_inset
+
+ from knowledge of 
+\begin_inset Formula $y(t_{0})$
+\end_inset
+
+, 
+\begin_inset Formula $y(t_{2})$
+\end_inset
+
+ from knowledge of 
+\begin_inset Formula $y(t_{1})$
+\end_inset
+
+, 
+\begin_inset Formula $y(t_{3})$
+\end_inset
+
+ from knowledge of 
+\begin_inset Formula $y(t_{2})$
+\end_inset
+
+, and so on, eventually computing 
+\begin_inset Formula $y(t_{n})=y(\tilde{t})$
+\end_inset
+
+.
+ With this in mind, we rewrite the integral representation in terms of 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{i+1}$
+\end_inset
+
+ instead of 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{t}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{equation}
+y(t_{i+1})=y(t_{i})+\int_{t_{i}}^{t_{i+1}}f(t,y)\, dt.\label{eq:integralEquation}
+\end{equation}
+
+\end_inset
+
+Therefore, finding one approximation from the last boils down to approximating
+ 
+\begin_inset Formula $\int_{t_{i}}^{t_{i+1}}f(t,y)\, dt$
+\end_inset
+
+.
+ Luckily about half of chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Numerical-Calculus"
+
+\end_inset
+
+ is dedicated to exactly this task! Every numerical integration formula
+ is a candidate for use here, but let's start simple.
+ We know 
+\begin_inset Formula $y(t_{i})$
+\end_inset
+
+, the value of the function at the left endpoint of integration, at least
+ approximately, so it makes sense to use a stencil that includes the left
+ endpoint of integration as one of the nodes.
+ And to make our first stab as easy as possible, let's let that node be
+ the only one! That is, let's find an integration formula for the stencil
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-rungekutta01.pdf
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Using the method of undetermined coefficients, we calculate the left hand
+ side of system 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:systemGenericIntegral"
+
+\end_inset
+
+ (which for us will only be one equation since we only have one node):
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{a}^{b}p_{0}(x)dx=\int_{x_{0}}^{x_{0}+h}p_{0}(x)dx & = & \int_{x_{0}}^{x_{0}+h}1dx=\left.(x-x_{0})\right|_{x_{0}}^{x_{0}+h}=h
+\end{eqnarray*}
+
+\end_inset
+
+and the right hand side:
+\begin_inset Formula 
+\[
+\sum_{i=0}^{0}(\theta_{i}h)^{0}a_{i}=a_{0}.
+\]
+
+\end_inset
+
+So 
+\begin_inset Formula $a_{0}=h$
+\end_inset
+
+ and we get the formula 
+\begin_inset Formula 
+\[
+\int_{x_{0}}^{x_{0}+h}f(x)dx\approx hf(x_{0}).
+\]
+
+\end_inset
+
+Consequently, 
+\begin_inset Formula $\int_{t_{i}}^{t_{i+1}}f(t,y)\, dt\approx(t_{i+1}-t_{i})f(t_{i},y(t_{i}))$
+\end_inset
+
+, and equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:integralEquation"
+
+\end_inset
+
+ becomes
+\begin_inset Formula 
+\[
+y(t_{i+1})=y(t_{i})+f(t_{i},y(t_{i}))\cdot(t_{i+1}-t_{i}).
+\]
+
+\end_inset
+
+Adopting the notation 
+\begin_inset Formula $y_{i}=y(t_{i})$
+\end_inset
+
+ and 
+\begin_inset Formula $f=\dot{y}$
+\end_inset
+
+ from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:TaylorMethods"
+
+\end_inset
+
+, this formula becomes
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+\dot{y}(t_{i},y_{i})\cdot(t_{i+1}-t_{i}).
+\]
+
+\end_inset
+
+Wait a minute! We've seen this before.
+ This is exactly equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:EulersMethodGeneral"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+So the search for new methods of approximating solutions of o.d.e.s by integrating
+ has not yielded anything yet.
+ It has to be different, however.
+ Integration formulas include evaluation of the integrand at various points
+ while Taylor methods involve evaluation of derivatives.
+ Let's push on.
+ Perhaps the next simplest integration formula that includes the left endpoint
+ of integration is the trapezoidal rule (see section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:calculusErrorAnalysis"
+
+\end_inset
+
+),
+\begin_inset Formula 
+\[
+{\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)dx=\frac{h}{2}\left[f(x_{0})+f(x_{0}+h)\right]+O(h^{3}f''(\xi_{h}))}
+\]
+
+\end_inset
+
+over the stencil
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-errors15.pdf
+	scale 167
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Translating the trapezoidal rule to the current notation,
+\begin_inset Formula 
+\[
+{\displaystyle \int_{t_{i}}^{t_{i+1}}f(t,y)\, dt=\frac{t_{i+1}-t_{i}}{2}\left[f(t_{i},y_{i})+f(t_{i+1},y_{i+1})\right]+O((t_{i+1}-t_{i})^{3}).}
+\]
+
+\end_inset
+
+Therefore our new approximation formula is
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+\frac{t_{i+1}-t_{i}}{2}\left[f(t_{i},y_{i})+f(t_{i+1},y_{i+1})\right].
+\]
+
+\end_inset
+
+This equation is great except the right hand side includes 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+, the quantity we are trying to approximate! One theory is to leave it at
+ that and use it as an implicit method.
+ That is, the equation for 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+ is implicit in nature and that's alright.
+ Some root finding method could be used to determine 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+ for each step of the method.
+ While this path is not impossible, it is also not the simplest solution.
+ Since the step size 
+\begin_inset Formula $(t_{i+1}-t_{i})$
+\end_inset
+
+ is likely to be small, perhaps using Euler's method to approximate 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+ on the right side will not cause irreparable harm to the overall approximation.
+ Giving it a shot, we let 
+\begin_inset Formula $y_{i+1}=y_{i}+(t_{i+1}-t_{i})\cdot f(t_{i},y_{i})$
+\end_inset
+
+ on the right hand side to get the new formula 
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+\frac{t_{i+1}-t_{i}}{2}\left[f(t_{i},y_{i})+f(t_{i+1},y_{i}+(t_{i+1}-t_{i})\cdot f(t_{i},y_{i}))\right].
+\]
+
+\end_inset
+
+Pausing for a moment to consider what we have, we might conclude the formula
+ is getting a little unwieldy.
+ Let's see if we can tidy it up a bit.
+ First, substituting 
+\begin_inset Formula $h$
+\end_inset
+
+ for 
+\begin_inset Formula $t_{i+1}-t_{i}$
+\end_inset
+
+ makes it a little nicer:
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+\frac{h}{2}\left[f(t_{i},y_{i})+f(t_{i+1},y_{i}+h\cdot f(t_{i},y_{i}))\right].
+\]
+
+\end_inset
+
+Second, letting 
+\begin_inset Formula $k_{1}=f(t_{i},y_{i})$
+\end_inset
+
+ and 
+\begin_inset Formula $k_{2}=f(t_{i+1},y_{i}+h\cdot f(t_{i},y_{i}))=f(t_{i+1},y_{i}+h\cdot k_{1})$
+\end_inset
+
+, we get a nice, neat, three-step computation:
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f(t_{i+1},y_{i}+hk_{1})\\
+y_{i+1} & = & y_{i}+\frac{h}{2}(k_{1}+k_{2}).
+\end{eqnarray*}
+
+\end_inset
+
+Before getting too carried away with the clean formulation, though, it would
+ be nice to have some evidence that this 
+\begin_inset Quotes eld
+\end_inset
+
+advanced
+\begin_inset Quotes erd
+\end_inset
+
+ method gives a reasonable approximation of the solution to an o.d.e.
+ as expected.
+ Let's have Octave compute approximate solutions of o.d.e.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:sampleODE"
+
+\end_inset
+
+ using both Euler's method and this method based on the trapezoidal rule,
+ and compare them to the exact solution, 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $y(t)=\frac{t^{3}}{4}+\frac{16}{t}$
+\end_inset
+
+.
+ The following code snippets, while specific to this one task can be generalized
+ to find approximate solutions of other o.d.e.s as well.
+\end_layout
+
+\begin_layout Subsubsection
+O.D.E.
+ solver test code
+\end_layout
+
+\begin_layout LyX-Code
+t=4;
+\end_layout
+
+\begin_layout LyX-Code
+h=-1/4;
+\end_layout
+
+\begin_layout LyX-Code
+f=inline("-y/t+t^2");
+\end_layout
+
+\begin_layout LyX-Code
+exact=inline("t^3/4+16/t");
+\end_layout
+
+\begin_layout LyX-Code
+euler=20;
+\end_layout
+
+\begin_layout LyX-Code
+trap=20;
+\end_layout
+
+\begin_layout LyX-Code
+disp('             Euler   Trapezoid       Exact   Euler err    Trap err')
+\end_layout
+
+\begin_layout LyX-Code
+disp('        -------------------------------------------------------------')
+\end_layout
+
+\begin_layout LyX-Code
+for i=1:8
+\end_layout
+
+\begin_layout LyX-Code
+  euler=euler+h*f(t,euler);
+\end_layout
+
+\begin_layout LyX-Code
+  k1=f(t,trap);
+\end_layout
+
+\begin_layout LyX-Code
+  k2=f(t+h,trap+h*k1);
+\end_layout
+
+\begin_layout LyX-Code
+  trap=trap+h/2*(k1+k2);
+\end_layout
+
+\begin_layout LyX-Code
+  t=t+h;
+\end_layout
+
+\begin_layout LyX-Code
+  x=exact(t);
+\end_layout
+
+\begin_layout LyX-Code
+  sprintf('%12.5g%12.5g%12.5g%12.5g%12.5g',euler,trap,x,abs(euler-x),abs(trap-x))
+\end_layout
+
+\begin_layout LyX-Code
+end%for
+\end_layout
+
+\begin_layout Standard
+The only part of this code that may appear unfamiliar to you at this point
+ is the 
+\family typewriter
+sprintf()
+\family default
+ command.
+ The first argument, 
+\family typewriter
+'%12.5g%12.5g%12.5g%12.5g%12.5g'
+\family default
+, is the formatting string.
+ This particular string means to string together 5 floating point numbers
+ using 12 spaces each and displaying 5 significant digits.
+ In the 
+\family typewriter
+sprintf
+\family default
+ command, 
+\family typewriter
+%12.5g
+\family default
+ means 
+\begin_inset Quotes eld
+\end_inset
+
+general
+\begin_inset Quotes erd
+\end_inset
+
+ formatting of a floating point number with 12 spaces and 5.
+ The computer will decide whether to use scientific notation in the output.
+ Since it is repeated 5 times, this particular command will format five
+ such floating point values.
+ The rest of the arguments are the five numbers to print (formatted).
+ The command 
+\family typewriter
+sprintf
+\family default
+ should not be read as 
+\begin_inset Quotes eld
+\end_inset
+
+sprint-eff
+\begin_inset Quotes erd
+\end_inset
+
+ but rather 
+\begin_inset Quotes eld
+\end_inset
+
+ess-print-eff
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+string print formatted
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The 
+\family typewriter
+s
+\family default
+ is for string and the 
+\family typewriter
+f
+\family default
+ is for formatted.
+ This type of print formatting command originated in the C programming language
+ during the 1970s!
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+See 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://en.wikipedia.org/wiki/Printf_format_string
+\end_layout
+
+\end_inset
+
+ for some details.
+\end_layout
+
+\end_inset
+
+ The output of running this Octave code is
+\end_layout
+
+\begin_layout LyX-Code
+             Euler   Trapezoid       Exact   Euler err    Trap err
+\end_layout
+
+\begin_layout LyX-Code
+        -------------------------------------------------------------
+\end_layout
+
+\begin_layout LyX-Code
+ans =        17.25      17.442       17.45     0.20026   0.0080729
+\end_layout
+
+\begin_layout LyX-Code
+ans =       14.884      15.273       15.29      0.4058    0.016741
+\end_layout
+
+\begin_layout LyX-Code
+ans =       12.885      13.479      13.505     0.62006    0.026142
+\end_layout
+
+\begin_layout LyX-Code
+ans =       11.236      12.047      12.083     0.84776    0.036458
+\end_layout
+
+\begin_layout LyX-Code
+ans =       9.9219      10.969      11.017      1.0955     0.04794
+\end_layout
+
+\begin_layout LyX-Code
+ans =       8.9332      10.245      10.306       1.373    0.060938
+\end_layout
+
+\begin_layout LyX-Code
+ans =       8.2641      9.8828      9.9588      1.6947    0.075955
+\end_layout
+
+\begin_layout LyX-Code
+ans =       7.9167      9.9062          10      2.0833     0.09375
+\end_layout
+
+\begin_layout Standard
+Our method based on the trapezoidal rule, which we will call trapezoidal-ode,
+ seems to do a better job of approximating the solution of this o.d.e.
+ than does Euler's method.
+ The last two columns contain the absolute errors for each approximation.
+ The errors in trapeziodal-ode are roughly 0.01 to 0.1 while the errors for
+ Euler's method are roughly 0.2 to 2.
+ All of the errors in trapezoidal-ode are smaller than all the errors in
+ Euler's method.
+ Of course trapezoidal-ode requires two evaluations of 
+\begin_inset Formula $f$
+\end_inset
+
+ per step, so it better deliver better results for the extra work if it
+ is to be useful at all.
+\end_layout
+
+\begin_layout Standard
+Buoyed by this success, perhaps it is worth investing some time in other
+ integration formulas, like Simpson's Rule, for example.
+ Recall from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:calculusErrorAnalysis"
+
+\end_inset
+
+, Simpson's Rule states
+\begin_inset Formula 
+\[
+{\displaystyle \int_{x_{0}}^{x_{0}+2h}f(x)dx=\frac{h}{3}\left[f(x_{0})+4f(x_{0}+h)+f(x_{0}+2h)\right]+O(h^{5}f^{(4)}(\xi_{h}))},
+\]
+
+\end_inset
+
+which in the notation of this section we might write as
+\begin_inset Formula 
+\[
+\int_{t_{i}}^{t_{i+1}}f(t,y)\, dt=\frac{h}{6}\left[f(t_{i},y_{i})+4f(t_{i+1/2},y_{i+1/2})+f(t_{i+1},y_{i+1})\right],
+\]
+
+\end_inset
+
+ignoring the error term, and using the notation 
+\begin_inset Formula $t_{i+1/2}$
+\end_inset
+
+ to mean 
+\begin_inset Formula $t_{i}+\frac{1}{2}h$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{i+1/2}$
+\end_inset
+
+ to mean 
+\begin_inset Formula $y(t_{i}+\frac{1}{2}h)$
+\end_inset
+
+.
+ That would make our newest method
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+\frac{h}{6}\left[f(t_{i},y_{i})+4f(t_{i+1/2},y_{i+1/2})+f(t_{i+1},y_{i+1})\right].
+\]
+
+\end_inset
+
+Again, this is an implicit formula.
+ Again, we can use Euler's method to estimate 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+, and, in fact, we can use Euler's method to estimate 
+\begin_inset Formula $y_{i+1/2}$
+\end_inset
+
+ too.
+ Since 
+\begin_inset Formula $t_{i+1/2}$
+\end_inset
+
+ is closer to 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ than is 
+\begin_inset Formula $t_{i+1}$
+\end_inset
+
+, we estimate 
+\begin_inset Formula $y_{i+1/2}$
+\end_inset
+
+ first.
+ That is, we replace 
+\begin_inset Formula $y_{i+1/2}$
+\end_inset
+
+ by 
+\begin_inset Formula $y_{i}+\frac{h}{2}f(t_{i},y_{i})$
+\end_inset
+
+.
+ Using a multiple-step calculation as before, that gives us
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{2},y_{i}+\frac{h}{2}k_{1}\right)
+\end{eqnarray*}
+
+\end_inset
+
+so far.
+ This takes care of the first two terms in brackets.
+ Now we estimate 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+ by approximating 
+\begin_inset Formula $f(t_{i+1},y_{i+1})$
+\end_inset
+
+.
+ But we now have an estimate of 
+\begin_inset Formula $f$
+\end_inset
+
+ at 
+\begin_inset Formula $t_{i}+\frac{h}{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $t_{i}+\frac{h}{2}$
+\end_inset
+
+ is closer to 
+\begin_inset Formula $t_{i+1}$
+\end_inset
+
+ than is 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+.
+ So, even though we could use 
+\begin_inset Formula $y_{i}+hf(t_{i},y_{i})=y_{i}+hk_{1}$
+\end_inset
+
+ to approximate 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+ (as done before), we might expect 
+\begin_inset Formula $y_{i}+hk_{2}$
+\end_inset
+
+ to be a better estimate.
+ With this hope in hand, we complete the method by calculating as follows:
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{2},y_{i}+\frac{h}{2}k_{1}\right)\\
+k_{3} & = & f(t_{i+1},y_{i}+hk_{2})\\
+y_{i+1} & = & y_{i}+\frac{h}{6}\left[k_{1}+4k_{2}+k_{3}\right].
+\end{eqnarray*}
+
+\end_inset
+
+For now, we will refer to this method as Simpson's-ode.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Before trying to assess whether this new method is better than the previous
+ ones, let's derive a couple more, and compare them all together.
+ The formula
+\begin_inset Formula 
+\[
+{\displaystyle \int_{x_{0}}^{x_{0}+3h}f(x)dx=\frac{3h}{2}\left[f(x_{0}+h)+f(x_{0}+2h)\right]+O(h^{3}f''(\xi_{h}))}
+\]
+
+\end_inset
+
+ (an open Newton-Cotes formula from section 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:calculusErrorAnalysis"
+
+\end_inset
+
+) leads to the method
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{2h}{3},y_{i}+\frac{2h}{3}k_{2}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{2}\left[k_{2}+k_{3}\right].
+\end{eqnarray*}
+
+\end_inset
+
+Can you fill in the steps to derive this method? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:fill-in"
+
+\end_inset
+
+.
+ We will call this method open-ode.
+ Finally, we use the stencil
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-rungekutta02.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+to derive yet another integration formula.
+ This is not an open Newton-Cotes formula nor is it a closed Newton-Cotes
+ formula.
+ It is not one that was covered in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:calculusErrorAnalysis"
+
+\end_inset
+
+.
+ Perhaps it might be called a 
+\begin_inset Quotes eld
+\end_inset
+
+clopen
+\begin_inset Quotes erd
+\end_inset
+
+ (half open and half closed) Newton-Cotes formula.
+ Can you derive the corresponding integration method? Details 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:clopenNewtonCotes"
+
+\end_inset
+
+.
+ The result is
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+\int_{x_{0}}^{x_{0}+3h}f(x)dx\approx\frac{3h}{4}\left[f(x_{0})+3f(x_{0}+2h)\right],
+\]
+
+\end_inset
+
+disregarding the error term.
+ This leads to the o.d.e.
+ solution approximating method
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{2h}{3},y_{i}+\frac{2h}{3}k_{2}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{4}\left[k_{1}+3k_{3}\right].
+\end{eqnarray*}
+
+\end_inset
+
+We will call this method clopen-ode.
+ Notice two things.
+ First, even though 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ is not used in the final line, it is still computed since it is used to
+ compute 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+.
+ Second, the calculations of 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+ are identical to those in the open-ode method.
+ The only difference is how the 
+\begin_inset Formula $k_{j}$
+\end_inset
+
+ are combined.
+ The integration methods combine the values of the function at the nodes
+ differently.
+ This idea of using the same 
+\begin_inset Formula $k_{j}$
+\end_inset
+
+ for different purposes will come up again!.
+\end_layout
+
+\begin_layout Standard
+So now we have three new methods to test out---one based on Simpson's rule
+ (Simpson's-ode), one based on an open Newton-Cotes formula (open-ode),
+ and a third based on a 
+\begin_inset Quotes eld
+\end_inset
+
+clopen
+\begin_inset Quotes erd
+\end_inset
+
+ Newton-Cotes formula (clopen-ode).
+ Can you write test code similar to that used to compare Euler's method
+ and trapezoidal-ode for the three new formulas? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:testCode"
+
+\end_inset
+
+.
+ Results are summarized in the following Octave output:
+\end_layout
+
+\begin_layout LyX-Code
+        Simpsons  Open      Clopen    Simp err  Open err  Clop err
+\end_layout
+
+\begin_layout LyX-Code
+        ------------------------------------------------------------
+\end_layout
+
+\begin_layout LyX-Code
+ans =   17.44806  17.44999  17.45022   0.00220   0.00028   0.00004
+\end_layout
+
+\begin_layout LyX-Code
+ans =   15.28557  15.28953  15.29008   0.00461   0.00065   0.00010
+\end_layout
+
+\begin_layout LyX-Code
+ans =   13.49781  13.50395  13.50494   0.00730   0.00116   0.00017
+\end_layout
+
+\begin_layout LyX-Code
+ans =   12.07297  12.08146  12.08307   0.01036   0.00187   0.00027
+\end_layout
+
+\begin_layout LyX-Code
+ans =   11.00347  11.01450  11.01700   0.01393   0.00290   0.00040
+\end_layout
+
+\begin_layout LyX-Code
+ans =   10.28804  10.30185  10.30566   0.01821   0.00440   0.00059
+\end_layout
+
+\begin_layout LyX-Code
+ans =    9.93523   9.95208   9.95789   0.02354   0.00669   0.00088
+\end_layout
+
+\begin_layout LyX-Code
+ans =    9.96952   9.98969   9.99866   0.03048   0.01031   0.00134
+\end_layout
+
+\begin_layout Standard
+Simpson's-ode does the poorest job of finding an approximate solution and
+ clopen-ode does the best.
+ But why?
+\end_layout
+
+\begin_layout Standard
+We've done a pretty thorough job of sweeping error analysis under the rug
+ up until now.
+ The bulk of that investigation will happen in the next section, but we
+ can do a quick analysis now.
+ From section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:calculusErrorAnalysis"
+
+\end_inset
+
+, we know that the trapezoidal rule and the open Newton-Cotes formula we
+ used here both have error terms of 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+ while Simpson's rule has error term 
+\begin_inset Formula $O(h^{5})$
+\end_inset
+
+.
+ The integration methods based on the stencils
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-rungekutta01.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-rungekutta02.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+(which led to Euler's method and the clopen method) have yet undetermined
+ error terms.
+ Can you show that their error terms are 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ and 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+, respectively? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "ans:errorTerms"
+
+\end_inset
+
+.
+ Based on the order of convergence of the underlying integration method,
+ we should expect these o.d.e.
+ solvers to be, in order from least accurate to most accurate, Euler's method,
+ open-ode, clopen-ode, and Simpson's-ode, with trapezoidal-ode to be on
+ par with open-ode.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:odeCompare"
+
+\end_inset
+
+ shows the errors in calculating 
+\begin_inset Formula $y(2)$
+\end_inset
+
+ for 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:sampleODE"
+
+\end_inset
+
+ for the five methods of this section using various values of 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:odeCompare"
+
+\end_inset
+
+A comparison of absolute errors for five o.d.e.
+ solvers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Euler's
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Trap-ode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Open-ode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Clopen-ode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simpson's-ode
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-\frac{1}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.0833$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.09375$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.010311$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0013444$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.030482$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-\frac{1}{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.0809$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.023437$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0025929$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.00017446$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0077168$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-\frac{1}{16}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.55114$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0058594$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.00064977$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.2207(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0019412$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-\frac{1}{32}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.27837$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0014648$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.00016261$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.8008(10)^{-6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.00048679$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-\frac{1}{64}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.1399$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.00036621$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.0672(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.5166(10)^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.00012188$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-\frac{1}{128}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.07013$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.1553(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.017(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.4055(10)^{-8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.0494(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Since the value of 
+\begin_inset Formula $h$
+\end_inset
+
+ in each row is half that of the previous row, we would expect the ratio
+ of the errors in consecutive rows to be approximately 
+\begin_inset Formula $\left(\frac{1}{2}\right)^{\ell}$
+\end_inset
+
+ where the order of the method is 
+\begin_inset Formula $O(h^{\ell})$
+\end_inset
+
+.
+ For Euler's method, dividing the error in row 3 by that of row 2, we get
+ 
+\begin_inset Formula $\left(\frac{1}{2}\right)^{\ell}\approx\frac{.55114}{1.0809}\approx\frac{1}{2}$
+\end_inset
+
+ and dividing the error in row 6 by that in row 5, we get 
+\begin_inset Formula $\left(\frac{1}{2}\right)^{\ell}\approx\frac{.07013}{.1399}\approx\frac{1}{2}$
+\end_inset
+
+.
+ This evidence suggests that 
+\begin_inset Formula $\ell=1$
+\end_inset
+
+ for Euler's method, and therefore, Euler's method has a 
+\begin_inset Formula $O(h)$
+\end_inset
+
+ error term.
+ Repeating the same procedure for the other methods yields Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:odeMethodOrders"
+
+\end_inset
+
+.
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:odeMethodOrders"
+
+\end_inset
+
+The error terms of five o.d.e solvers and their underlying integration methods
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Euler's
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Trap-ode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Open-ode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Clopen-ode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simpson's-ode
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Integration Method
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{5})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+O.D.E.
+ solver
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With the exception of Simpson's-ode, Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:odeMethodOrders"
+
+\end_inset
+
+ suggests that o.d.e.
+ solvers have an error term of one less degree than their underlying (single
+ step) integration formula.
+ In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Composite"
+
+\end_inset
+
+ we noted that composite integration formulas also have error terms of one
+ less degree than their corresponding single-step integration formulas.
+ There is reason to believe in this parallel as the methods proposed in
+ this section are essentially composite integration techniques.
+ So, it should be a little troubling that Simpson's-ode does not fit the
+ pattern.
+ A deeper exploration of the error term, which we will do in the next section,
+ is needed to explain this anomaly.
 \end_layout
 
 \begin_layout Standard
@@ -149,10 +2255,6 @@ reference "exc:ode-taylor"
 .
 \end_layout
 
-\begin_layout Enumerate
-
-\end_layout
-
 \begin_layout Standard
 \noindent
 \begin_inset ERT
@@ -168,6 +2270,808 @@ finishexercises
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Answers
+\end_layout
+
+\begin_layout Description
+Filling
+\begin_inset space \space{}
+\end_inset
+
+in
+\begin_inset space \space{}
+\end_inset
+
+the
+\begin_inset space \space{}
+\end_inset
+
+gaps: 
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:fill-in"
+
+\end_inset
+
+Beginning with the integration formula
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+{\displaystyle \int_{x_{0}}^{x_{0}+3h}f(x)dx=\frac{3h}{2}\left[f(x_{0}+h)+f(x_{0}+2h)\right]+O(h^{3}f''(\xi_{h}))},
+\]
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+we 
+\begin_inset Quotes eld
+\end_inset
+
+shrink
+\begin_inset Quotes erd
+\end_inset
+
+ the interval of integration to 
+\begin_inset Formula $[x_{0},x_{0}+s]$
+\end_inset
+
+ by making the substitution 
+\begin_inset Formula $s=3h$
+\end_inset
+
+:
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+{\displaystyle \int_{x_{0}}^{x_{0}+s}f(x)dx=\frac{s}{2}\left[f(x_{0}+\frac{1}{3}s)+f(x_{0}+\frac{2}{3}s)\right]+O(s^{3}f''(\xi_{k}))}.
+\]
+
+\end_inset
+
+With the integration formula rephrased in terms of step size 
+\begin_inset Formula $s$
+\end_inset
+
+, the o.d.e.
+ solving method is
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+\frac{h}{2}\left[f(t_{i+1/3},y_{i+1/3})+f(t_{i+2/3},y_{i+2/3})\right],
+\]
+
+\end_inset
+
+where we revert to using 
+\begin_inset Formula $h$
+\end_inset
+
+ for step size.
+ We then use Euler's method to estimate 
+\begin_inset Formula $y_{i+1/3}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{i+2/3}$
+\end_inset
+
+, starting with 
+\begin_inset Formula $y_{i+1/3}$
+\end_inset
+
+.
+ That is, we replace 
+\begin_inset Formula $y_{i+1/3}$
+\end_inset
+
+ by 
+\begin_inset Formula $y_{i}+\frac{h}{3}f(t_{i},y_{i})$
+\end_inset
+
+.
+ Then we estimate 
+\begin_inset Formula $y_{i+2/3}$
+\end_inset
+
+.
+ Using a multiple-step calculation as before, that gives us
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1}\right),
+\end{eqnarray*}
+
+\end_inset
+
+taking care of the first term in brackets.
+ It remains to estimate 
+\begin_inset Formula $f(t_{i+2/3},y_{i+2/3})$
+\end_inset
+
+.
+ But we now have an estimate of 
+\begin_inset Formula $f$
+\end_inset
+
+ (the derivative of 
+\begin_inset Formula $y$
+\end_inset
+
+) at 
+\begin_inset Formula $t_{i}+\frac{h}{3}$
+\end_inset
+
+, and 
+\begin_inset Formula $t_{i}+\frac{h}{3}$
+\end_inset
+
+ is closer to 
+\begin_inset Formula $t_{i+2/3}$
+\end_inset
+
+ than is 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+.
+ So, we approximate 
+\begin_inset Formula $y_{i+2/3}$
+\end_inset
+
+ by 
+\begin_inset Formula $y_{i}+\frac{2}{3}hk_{2}$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1}\right)\\
+k_{3} & = & f(t_{i}+\frac{2h}{3},y_{i}+\frac{2h}{3}k_{2})\\
+y_{i+1} & = & y_{i}+\frac{h}{2}\left[k_{2}+k_{3}\right].
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Clopen
+\begin_inset space \space{}
+\end_inset
+
+Newton-Cotes: 
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:clopenNewtonCotes"
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figures/ode-rungekutta02.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+For this stencil, 
+\begin_inset Formula $a=x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $b=x_{0}+3h$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta_{i}=ih$
+\end_inset
+
+, 
+\begin_inset Formula $i=0,1,2$
+\end_inset
+
+.
+ Therefore, we will have a system of three equations in the three unknowns.
+ First, the left-hand sides:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{a}^{b}p_{0}(x)dx=\int_{x_{0}}^{x_{0}+3h}p_{0}(x)dx & = & \int_{x_{0}}^{x_{0}+3h}1dx=\left.(x-x_{0})\right|_{x_{0}}^{x_{0}+3h}=3h\\
+\int_{a}^{b}p_{1}(x)dx=\int_{x_{0}}^{x_{0}+3h}p_{1}(x)dx & = & \int_{x_{0}}^{x_{0}+3h}(x-x_{0})dx=\left.\frac{1}{2}(x-x_{0})^{2}\right|_{x_{0}}^{x_{0}+3h}=\frac{9}{2}h^{2}\\
+\int_{a}^{b}p_{2}(x)dx=\int_{x_{0}}^{x_{0}+3h}p_{2}(x)dx & = & \int_{x_{0}}^{x_{0}+3h}(x-x_{0})^{2}dx=\left.\frac{1}{3}(x-x_{0})^{3}\right|_{x_{0}}^{x_{0}+3h}=9h^{3}
+\end{eqnarray*}
+
+\end_inset
+
+Now putting them together with the right-hand sides (and swapping sides):
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i=0}^{2}(\theta_{i}h)^{0}a_{i} & = & a_{0}+a_{1}+a_{2}=3h\\
+\sum_{i=0}^{2}(\theta_{i}h)^{1}a_{i} & = & ha_{1}+2ha_{2}=\frac{9}{2}h^{2}\\
+\sum_{i=0}^{2}(\theta_{i}h)^{2}a_{i} & = & h^{2}a_{1}+4h^{2}a_{2}=9h^{3}
+\end{eqnarray*}
+
+\end_inset
+
+This system is small enough to solve by hand (without the use of a computer
+ algebra system):
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h^{2}a_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+4h^{2}a_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9h^{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(h^{2}a_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+2h^{2}a_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{9}{2}h^{3})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2h^{2}a_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{9}{2}h^{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow a_{2}=\frac{9}{4}h$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+Substituting 
+\begin_inset Formula $a_{2}=\frac{9}{4}h$
+\end_inset
+
+ into 
+\begin_inset Formula $ha_{1}+2ha_{2}=\frac{9}{2}h^{2}$
+\end_inset
+
+, we can solve for 
+\begin_inset Formula $a_{1}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+ha_{1}+2h\cdot\frac{9}{4}h & = & \frac{9}{2}h^{2}\\
+ha_{1}+\frac{9}{2}h^{2} & = & \frac{9}{2}h^{2}\quad\Rightarrow a_{1}=0.\\
+ha_{1} & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+Substituting 
+\begin_inset Formula $a_{1}=0$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{2}=\frac{9}{4}h$
+\end_inset
+
+ into 
+\begin_inset Formula $a_{0}+a_{1}+a_{2}=3h$
+\end_inset
+
+, we can solve for 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+a_{0}+0+\frac{9}{4}h & = & 3h\\
+a_{0} & = & 3h-\frac{9}{4}h\quad\Rightarrow a_{0}=\frac{3}{4}h.
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $\sum_{i=0}^{2}a_{i}f(x_{0}+\theta_{i}h)=\frac{3}{4}h\cdot f(x_{0})+0\cdot f(x_{0}+h)+\frac{9}{4}h\cdot f(x_{0}+2h)$
+\end_inset
+
+ and the integration formula is
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+\int_{x_{0}}^{x_{0}+3h}f(x)dx\approx\frac{3h}{4}\left[f(x_{0})+3f(x_{0}+2h)\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Test
+\begin_inset space \space{}
+\end_inset
+
+code: 
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:testCode"
+
+\end_inset
+
+Comparing Simpson's, open, and clopen methods:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+t=4;
+\end_layout
+
+\begin_layout LyX-Code
+h=-1/4;
+\end_layout
+
+\begin_layout LyX-Code
+f=inline("-y/t+t^2");
+\end_layout
+
+\begin_layout LyX-Code
+exact=inline("t^3/4+16/t");
+\end_layout
+
+\begin_layout LyX-Code
+simp=20;
+\end_layout
+
+\begin_layout LyX-Code
+open=20;
+\end_layout
+
+\begin_layout LyX-Code
+clop=20;
+\end_layout
+
+\begin_layout LyX-Code
+disp('        Simpsons  Open      Clopen    Simp err  Open err  Clop err')
+\end_layout
+
+\begin_layout LyX-Code
+disp('        ------------------------------------------------------------')
+\end_layout
+
+\begin_layout LyX-Code
+for i=1:8
+\end_layout
+
+\begin_layout LyX-Code
+  k1simp=f(t,simp);
+\end_layout
+
+\begin_layout LyX-Code
+  k1open=f(t,open);
+\end_layout
+
+\begin_layout LyX-Code
+  k1clop=f(t,clop);
+\end_layout
+
+\begin_layout LyX-Code
+  k2simp=f(t+h/2,simp+h/2*k1simp);
+\end_layout
+
+\begin_layout LyX-Code
+  k2open=f(t+h/3,open+h/3*k1open);
+\end_layout
+
+\begin_layout LyX-Code
+  k2clop=f(t+h/3,clop+h/3*k1clop);
+\end_layout
+
+\begin_layout LyX-Code
+  k3simp=f(t+h,simp+h*k2simp);
+\end_layout
+
+\begin_layout LyX-Code
+  k3open=f(t+2*h/3,open+2*h/3*k2open);
+\end_layout
+
+\begin_layout LyX-Code
+  k3clop=f(t+2*h/3,clop+2*h/3*k2clop);
+\end_layout
+
+\begin_layout LyX-Code
+  simp=simp+h/6*(k1simp+4*k2simp+k3simp);
+\end_layout
+
+\begin_layout LyX-Code
+  open=open+h/2*(k2open+k3open);
+\end_layout
+
+\begin_layout LyX-Code
+  clop=clop+h/4*(k1clop+3*k3clop);
+\end_layout
+
+\begin_layout LyX-Code
+  t=t+h;
+\end_layout
+
+\begin_layout LyX-Code
+  x=exact(t);
+\end_layout
+
+\begin_layout LyX-Code
+  sierr=abs(simp-x);
+\end_layout
+
+\begin_layout LyX-Code
+  operr=abs(open-x);
+\end_layout
+
+\begin_layout LyX-Code
+  clerr=abs(clop-x);
+\end_layout
+
+\begin_layout LyX-Code
+  sprintf('%12.5g%12.5g%12.5g%12.5g%12.5g%12.5g',simp,open,clop,sierr,operr,clerr)
+\end_layout
+
+\begin_layout LyX-Code
+end%for
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Error
+\begin_inset space \space{}
+\end_inset
+
+terms: 
+\begin_inset CommandInset label
+LatexCommand label
+name "ans:errorTerms"
+
+\end_inset
+
+The error term for
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+\int_{x_{0}}^{x_{0}+3h}f(x)dx\approx\frac{3h}{4}\left[f(x_{0})+3f(x_{0}+2h)\right]
+\]
+
+\end_inset
+
+is derived in the section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:calculusErrorAnalysis"
+
+\end_inset
+
+ solutions.
+ See 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "sol:exc:calculusErrors-11"
+
+\end_inset
+
+.
+ The error term for
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula 
+\[
+\int_{x_{0}}^{x_{0}+h}f(x)dx\approx hf(x_{0})
+\]
+
+\end_inset
+
+is derived similarly.
+ We are given that the error is 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+, so we can skip the discovery.
+ Expanding 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ in a Taylor polynomial with error term,
+\begin_inset Formula 
+\[
+f(x)=f(x_{0})+(x-x_{0})f'(\xi_{x}).
+\]
+
+\end_inset
+
+So
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{x_{0}}^{x_{0}+h}f(x)dx-hf(x_{0}) & = & \int_{x_{0}}^{x_{0}+h}\left(f(x_{0})+(x-x_{0})f'(\xi_{x})\right)dx-hf(x_{0})\\
+ & = & \left.xf(x_{0})\right|_{x_{0}}^{x_{0}+h}+\int_{x_{0}}^{x_{0}+h}(x-x_{0})f'(\xi_{x})dx-hf(x_{0})\\
+ & = & hf(x_{0})+\int_{x_{0}}^{x_{0}+h}(x-x_{0})f'(\xi_{x})dx-hf(x_{0})\\
+ & = & \int_{x_{0}}^{x_{0}+h}(x-x_{0})f'(\xi_{x})dx.
+\end{eqnarray*}
+
+\end_inset
+
+By the weighted mean value theorem, there exists 
+\begin_inset Formula $c\in(x_{0},x_{0}+h)$
+\end_inset
+
+ such that 
+\begin_inset Formula $\int_{x_{0}}^{x_{0}+h}(x-x_{0})f'(\xi_{x})dx=f'(c)\int_{x_{0}}^{x_{0}+h}(x-x_{0})dx=\frac{1}{2}f'(c)h^{2}$
+\end_inset
+
+.
+ Hence 
+\begin_inset Formula 
+\[
+\int_{x_{0}}^{x_{0}+h}f(x)dx-hf(x_{0})=\frac{1}{2}f'(c)h^{2}\leq Mh^{2}f'(\xi_{h})
+\]
+
+\end_inset
+
+where we have replaced 
+\begin_inset Formula $c$
+\end_inset
+
+ by 
+\begin_inset Formula $\xi_{h}$
+\end_inset
+
+.
+ 
 \end_layout
 
 \end_body

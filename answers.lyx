@@ -4710,5 +4710,1461 @@ reference "exc:bracketing-14"
  error than it does checking absolute error.
 \end_layout
 
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:OdePendulum"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum"
+
+\end_inset
+
+: one
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-1"
+
+\end_inset
+
+: two
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-3"
+
+\end_inset
+
+: two
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-4"
+
+\end_inset
+
+: 
+\begin_inset Formula $\dot{y}(t)=e^{t}$
+\end_inset
+
+.
+ Substituting into 
+\begin_inset Formula $\dot{y}=y$
+\end_inset
+
+ yields 
+\begin_inset Formula $e^{t}=e^{t}$
+\end_inset
+
+, a true statement.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-5"
+
+\end_inset
+
+: 
+\begin_inset Formula $\dot{s}(t)=\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)-\sin\left(\frac{\sqrt{3}}{2}t\right)\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\ddot{s}(t)=-\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)+\sin\left(\frac{\sqrt{3}}{2}t\right)\right)$
+\end_inset
+
+.
+ Substituting into 
+\begin_inset Formula $\ddot{s}+\dot{s}+s=0$
+\end_inset
+
+ yields 
+\begin_inset Formula $-\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)+\sin\left(\frac{\sqrt{3}}{2}t\right)\right)+\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)-\sin\left(\frac{\sqrt{3}}{2}t\right)\right)+e^{-t/2}\sin\left(\frac{\sqrt{3}}{2}t\right)=0$
+\end_inset
+
+, a true statement.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-7"
+
+\end_inset
+
+: 
+\begin_inset Formula $\dot{r}(t)=\frac{1}{2\sqrt{t}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\ddot{r}(t)=-\frac{1}{4t\sqrt{t}}$
+\end_inset
+
+.
+ Substituting into 
+\begin_inset Formula $\ddot{r}\dot{r}t^{2}=-\frac{1}{8}$
+\end_inset
+
+ yields 
+\begin_inset Formula $\left(-\frac{1}{4t\sqrt{t}}\right)\left(\frac{1}{2\sqrt{t}}\right)t^{2}=-\frac{1}{8}$
+\end_inset
+
+, a true statement for 
+\begin_inset Formula $t>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-8"
+
+\end_inset
+
+: 
+\begin_inset Formula $\dot{y}(t)=4e^{t}$
+\end_inset
+
+.
+ Substituting into 
+\begin_inset Formula $\dot{y}=y$
+\end_inset
+
+ yields 
+\begin_inset Formula $4e^{t}=4e^{t}$
+\end_inset
+
+, a true statement.
+ Furthermore, 
+\begin_inset Formula $y(0)=4e^{0}=4$
+\end_inset
+
+ as required.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-9"
+
+\end_inset
+
+: 
+\begin_inset Formula $\dot{s}(t)=-te^{-t^{2}}$
+\end_inset
+
+.
+ Substituting into 
+\begin_inset Formula $\dot{s}=(1-2s)t$
+\end_inset
+
+ yields 
+\begin_inset Formula $-te^{-t^{2}}=\left(1-2\times\frac{1}{2}\left(1+e^{-t^{2}}\right)\right)t$
+\end_inset
+
+, a true statement.
+ Furthermore, 
+\begin_inset Formula $s(0)=\frac{1}{2}(1+e^{0})=1$
+\end_inset
+
+ as required.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-11"
+
+\end_inset
+
+: 
+\begin_inset Formula $\dot{r}(t)=\frac{1}{2\sqrt{t}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\ddot{r}(t)=-\frac{1}{4t\sqrt{t}}$
+\end_inset
+
+.
+ Substituting into 
+\begin_inset Formula $\ddot{r}\dot{r}t^{2}=-\frac{1}{8}$
+\end_inset
+
+ yields 
+\begin_inset Formula $\left(-\frac{1}{4t\sqrt{t}}\right)\left(\frac{1}{2\sqrt{t}}\right)t^{2}=-\frac{1}{8}$
+\end_inset
+
+, a true statement for 
+\begin_inset Formula $t>0$
+\end_inset
+
+.
+ Furthermore, 
+\begin_inset Formula $r(9)=\sqrt{9}-3=0$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{r}(9)=\frac{1}{2\sqrt{9}}=\frac{1}{6}$
+\end_inset
+
+ as required.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-12"
+
+\end_inset
+
+: 
+\begin_inset Formula $y(x)=x^{5}+C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-14"
+
+\end_inset
+
+: 
+\begin_inset Formula $y(t)=\ln|t|+C$
+\end_inset
+
+, 
+\begin_inset Formula $t<0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-15"
+
+\end_inset
+
+: 
+\begin_inset Formula $s(t)=3(t-1)e^{t}+C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-16"
+
+\end_inset
+
+: From the graphs of the exact and approximate solutions, it appears the
+ approximation is reasonable, but gets progressively worse as 
+\begin_inset Formula $t$
+\end_inset
+
+ increases.
+ The greatest error occurs at 
+\begin_inset Formula $1$
+\end_inset
+
+, and to be more precise, the relative error there is about 
+\begin_inset Formula $0.099$
+\end_inset
+
+, less than 10%.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum03.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-17"
+
+\end_inset
+
+: From the graphs of the exact and approximate solutions, it appears the
+ approximation is very good at 
+\begin_inset Formula $t=0$
+\end_inset
+
+ and 
+\begin_inset Formula $t=2$
+\end_inset
+
+, but is not particularly accurate between.
+ To be more precise, the relative errors at 
+\begin_inset Formula $t=0.5,\ 1,\ 1.5$
+\end_inset
+
+ are about 
+\begin_inset Formula $.124$
+\end_inset
+
+, 
+\begin_inset Formula $.097$
+\end_inset
+
+, and 
+\begin_inset Formula $.095$
+\end_inset
+
+.
+ At three of the five points, the relative error is 
+\begin_inset Formula $9.5$
+\end_inset
+
+% or more.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum04.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-19"
+
+\end_inset
+
+: From the graphs of the exact and approximate solutions, the approximation
+ looks very good for all values of 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ The greatest errors seem to occur at 
+\begin_inset Formula $t=11$
+\end_inset
+
+ and 
+\begin_inset Formula $t=13$
+\end_inset
+
+.
+ To get an idea of just how good the approximation is, the absolute errors
+ at 
+\begin_inset Formula $t=11$
+\end_inset
+
+ and 
+\begin_inset Formula $t=13$
+\end_inset
+
+ are about 
+\begin_inset Formula $.0066$
+\end_inset
+
+ and 
+\begin_inset Formula $.0044$
+\end_inset
+
+, respectively.
+ The relative errors are about 
+\begin_inset Formula $.021$
+\end_inset
+
+ and 
+\begin_inset Formula $.0073$
+\end_inset
+
+, respectively.
+ All small errors.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum05.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-20"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum06.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-21"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum07.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-23"
+
+\end_inset
+
+: 
+\begin_inset Formula $F_{applied}$
+\end_inset
+
+ and 
+\begin_inset Formula $F_{friction}$
+\end_inset
+
+ may be swapped.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum08.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-25"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum09.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-26"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum10.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-27"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum07.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-28"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum10.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-29"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum11.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-31"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum12.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-32"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum13.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-34"
+
+\end_inset
+
+: (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-20"
+
+\end_inset
+
+) 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\ddot{\theta}+\frac{g}{\ell}\sin\theta=0$
+\end_inset
+
+; (
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-21"
+
+\end_inset
+
+) with dowhnill as the positive direction: 
+\begin_inset Formula $\ddot{s}=g(\sin\alpha-\mu\cos\alpha)$
+\end_inset
+
+; (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-23"
+
+\end_inset
+
+) 
+\begin_inset Formula $\ddot{s}=\frac{1}{m}F_{applied}-\mu g$
+\end_inset
+
+; (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-25"
+
+\end_inset
+
+) with uphill as the positive direction: 
+\begin_inset Formula $\ddot{s}=\frac{1}{m}F_{applied}\cos(\beta-\alpha)-g(\sin\alpha+\mu\cos\alpha)$
+\end_inset
+
+; (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-26"
+
+\end_inset
+
+) with the direction of the sled's motion as the positive direction: 
+\begin_inset Formula $\ddot{s}=-\mu g$
+\end_inset
+
+; (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-27"
+
+\end_inset
+
+) with downhill as the positive direction: 
+\begin_inset Formula $\ddot{s}=g(\sin\alpha-\mu\cos\alpha)$
+\end_inset
+
+; (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-28"
+
+\end_inset
+
+) with the direction of the puck's motion as the positive direction: 
+\begin_inset Formula $\ddot{s}=-\mu g$
+\end_inset
+
+; (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-29"
+
+\end_inset
+
+) with up as the positive direction: 
+\begin_inset Formula $\ddot{s}=\frac{c}{m}\dot{s}-g$
+\end_inset
+
+; (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-31"
+
+\end_inset
+
+) with up as the positive direction: 
+\begin_inset Formula $\ddot{s}=\frac{c}{m}\dot{s}-g$
+\end_inset
+
+; (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-32"
+
+\end_inset
+
+) with up as the positive direction: 
+\begin_inset Formula $\ddot{s}=-g$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-33"
+
+\end_inset
+
+: Kinetic friction: 
+\begin_inset Formula $\mu mg$
+\end_inset
+
+ versus 
+\begin_inset Formula $\mu(mg+F_{applied}\sin20^{\circ})$
+\end_inset
+
+.
+ Necessary applied force to overcome friction: 
+\begin_inset Formula $\mu mg$
+\end_inset
+
+ versus 
+\begin_inset Formula $\frac{\mu mg}{\cos20^{\circ}-\mu\sin20^{\circ}}$
+\end_inset
+
+.
+ The applied force pushing parallel to the floor will need to be only 
+\begin_inset Formula $(\cos20^{\circ}-\mu\sin20^{\circ})$
+\end_inset
+
+ times as great as when pushing at 
+\begin_inset Formula $20^{\circ}$
+\end_inset
+
+ from parallel.
+ For example, when 
+\begin_inset Formula $\mu=.3$
+\end_inset
+
+, 
+\begin_inset Formula $\cos20^{\circ}-\mu\sin20^{\circ}\approx.837$
+\end_inset
+
+ so the necessary force pushing parallel to the floor is only 83.7% of that
+ needed pushing at 
+\begin_inset Formula $20^{\circ}$
+\end_inset
+
+ from parallel.
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:TaylorMethods"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-7"
+
+\end_inset
+
+: 
+\begin_inset Formula $y(2)\approx1.3125$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-9"
+
+\end_inset
+
+c: 
+\begin_inset Formula $y(2)\approx1.88671875$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-10"
+
+\end_inset
+
+c: 
+\begin_inset Formula $y(2)\approx2.126953125$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-1"
+
+\end_inset
+
+: 
+\begin_inset Formula $y(1.5)\approx0.8203125$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-11"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: The solution of the o.d.e.
+ exists and is unique on the interval from 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ to 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Input: Differential equation 
+\begin_inset Formula $\dot{y}=f(t,y)$
+\end_inset
+
+; formula 
+\begin_inset Formula $\ddot{y}(t,y)$
+\end_inset
+
+; initial condition 
+\begin_inset Formula $y(t_{0})=y_{0}$
+\end_inset
+
+; numbers 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+; number of steps 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space \space{}
+\end_inset
+
+1: Set 
+\begin_inset Formula $t=t_{0}$
+\end_inset
+
+; 
+\begin_inset Formula $y=y_{0}$
+\end_inset
+
+; 
+\begin_inset Formula $h=(t_{1}-t_{0})/N$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: For 
+\begin_inset Formula $j=1\ldots N$
+\end_inset
+
+ do Steps 3-4:
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: Set 
+\begin_inset Formula $y=y+hf(t,y)+\frac{1}{2}h^{2}\ddot{y}(t,y)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Set 
+\begin_inset Formula $t=t_{0}+\frac{i}{N}(t_{1}-t_{0})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $y$
+\end_inset
+
+ of the solution at 
+\begin_inset Formula $t=t_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-3"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                          13 November 2015 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements Taylor's method of order 2   %
+\end_layout
+
+\begin_layout LyX-Code
+%        where the step size is calculated and held constant.
+    %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); function (df/dx)(x,y); interval [a,b]; %
+\end_layout
+
+\begin_layout LyX-Code
+%        y(a); steps n                                           %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = taylor2ode(f,ft,a,ya,b,n)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  x(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  h = (b-a)/n;
+\end_layout
+
+\begin_layout LyX-Code
+  while (i<=n)
+\end_layout
+
+\begin_layout LyX-Code
+    y(i+1) = y(i) + h*(f(x(i),y(i)) + 0.5*h*ft(x(i),y(i)));
+\end_layout
+
+\begin_layout LyX-Code
+    x(i+1) = a + (b-a)*i/n;
+\end_layout
+
+\begin_layout LyX-Code
+    i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+end%function 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-12"
+
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+y(2)\approx2.3125,\,2.28814697265625,\,2.28469446951954,\,2.28402793464698
+\]
+
+\end_inset
+
+ absolute errors are approximately 
+\begin_inset Formula 
+\[
+0.02866617919084,\,0.004313151847096,\,8.606487103870(10)^{-4},\,1.941138378267(10)^{-4}
+\]
+
+\end_inset
+
+ error ratios are approximately 
+\begin_inset Formula $6.6,\,5.0,\,4.4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+a: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & -\frac{g}{\ell}\sin\theta\\
+\dot{\theta} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+b: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & g(\sin\alpha-\mu\cos\alpha)\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+e: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & \frac{1}{m}F_{applied}-\mu g\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+g: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & \frac{1}{m}F_{applied}\cos(\beta-\alpha)-g(\sin\alpha+\mu\cos\alpha)\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+h: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & -\mu g\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+i: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & g(\sin\alpha-\mu\cos\alpha)\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+j: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & -\mu g\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+l: 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & \frac{c}{m}u-g\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-21"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $-0.6656470478206087$
+\end_inset
+
+ (b) 
+\begin_inset Formula $0.2384138557742662$
+\end_inset
+
+ (e) 
+\begin_inset Formula $0.05695982142857142$
+\end_inset
+
+ (g) 
+\begin_inset Formula $0.2313498206324268$
+\end_inset
+
+ (h) 
+\begin_inset Formula $14.979875$
+\end_inset
+
+ (i) 
+\begin_inset Formula $5.988821238748838$
+\end_inset
+
+ (j) 
+\begin_inset Formula $43.9939625$
+\end_inset
+
+ (l) 
+\begin_inset Formula $4.387767857142857$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-15"
+
+\end_inset
+
+: 
+\begin_inset Formula $y(x)=\frac{3}{2}x-\frac{5}{4}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-16"
+
+\end_inset
+
+: 
+\begin_inset Formula $y(x)=\frac{2}{7}x^{2}+\frac{11}{7}x+\frac{143}{49}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-17"
+
+\end_inset
+
+: 
+\begin_inset Formula $y(t)=t^{4}-8t^{3}+48t^{2}-192t+385$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-20"
+
+\end_inset
+
+: 
+\begin_inset Formula $\theta(t)=-\frac{2}{5}e^{-t}\sin t-\frac{1}{5}e^{-t}\cos t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-19"
+
+\end_inset
+
+: 
+\begin_inset Formula $x(t)=\frac{1}{12}te^{7t}-\frac{1}{35}$
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

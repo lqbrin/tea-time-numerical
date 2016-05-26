@@ -1,0 +1,3570 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Ordinary Differential Equations
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="5cm">
+<column alignment="left" valignment="top" width="5cm">
+<row>
+<cell multicolumn="1" alignment="right" valignment="top" usebox="none" width="10cm">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\shape italic
+The gate and key to the sciences is mathematics.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+--Roger Bacon (
+\shape italic
+Opus Majus)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="5cm">
+<column alignment="left" valignment="top" width="5cm">
+<row>
+<cell multicolumn="1" alignment="right" valignment="top" usebox="none" width="10cm">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\shape italic
+If I were again beginning my studies, I would follow the advice of Plato
+ and start with mathematics.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\ $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+--Galileo Galilei
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:OdePendulum"
+
+\end_inset
+
+The Motion of a Pendulum
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+pendulum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+A brief history
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+pendulum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Christiaan Huygens
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Huygens, Christiaan
+\end_layout
+
+\end_inset
+
+ (1629-1695) is credited with inventing the pendulum clock in 1656, and
+ Galileo
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Galileo
+\end_layout
+
+\end_inset
+
+ Galilei (1564-1642) is credited with the first scientific study of the
+ properties of pendula.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "naylor,scienceuk"
+
+\end_inset
+
+ In a famous letter to Guidobaldo del Monte in 1602, Galileo asserts that
+ the period of a swinging pendulum (the time it takes to swing one way and
+ back) is independent of the amplitude of the swing (how far it swings left
+ and right).
+ Del Monte famously argued that the physical evidence did not support the
+ claim.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "matthews"
+
+\end_inset
+
+ And he was right---it does not, and Galileo's claim is actually false.
+ The period of a pendulum varies with the amplitude of its swing (all else
+ equal).
+ 
+\end_layout
+
+\begin_layout Standard
+Historians are generally willing to forgive Galileo for this error, though,
+ likely due, in part, to the fact that the period of a pendulum is nearly
+ constant for small amplitudes, and in part, to the fact that Galileo
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Galileo
+\end_layout
+
+\end_inset
+
+ was the main figure in the scientific revolution (the birth of modern science)
+ in the 17th century.
+ His results regarding pendular motion account for only a small part of
+ his total contribution to the sciences.
+ The way he utilized idealized mathematical models of the physical world
+ to inform his claims and experiments, a method of scientific study that
+ directly contrasted with the generally held wisdom of his day, forms the
+ basis for the scientific revolution, and as such was at least as important
+ to science as any of his individual scientific discoveries.
+ As for the pendulum, he put in motion the investigations which would one
+ day (some years after his death) lead to a method of determining longitude
+ at sea, an accomplishment that would change the world! With the ability
+ to calculate their longitude, sailors were able to sail the seas, discover
+ new places, and map the globe.
+ Perhaps the biggest impact was the European colonization of foreign lands.
+\end_layout
+
+\begin_layout Standard
+The thought of a pendulum
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+pendulum
+\end_layout
+
+\end_inset
+
+ today most likely brings to mind the grandfather clock.
+ While arguably less important than its contribution to science and navigation,
+ the timekeeping accuracy that pendulum clocks brought to the world had
+ a substantial impact on broad society.
+ With accurate timekeeping, time-based labor, transit and trade schedules,
+ announced starting times for religious or other meetings, and every other
+ clock-based phenomenon we take for granted today became possible.
+ In the 17th century, these things were novel.
+ To put into some perspective just how important the clock, and therefore
+ the pendulum became to society, consider Mumford's claim: 
+\begin_inset Quotes eld
+\end_inset
+
+the clock, not the steam-engine, is the key-machine of the modern industrial
+ age.
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mumford"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{The Pendulum Clock}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Galileo
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Galileo
+\end_layout
+
+\end_inset
+
+ never implemented the pendulum
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+pendulum
+\end_layout
+
+\end_inset
+
+ as a timekeeping mechanism.
+ It was around 15 years after Galileo's death that the pendulum clock became
+ a reality.
+ Even though his first pendulum clock (1656) was more accurate than any
+ other clock at the time, Huygens
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Huygens, Christiaan
+\end_layout
+
+\end_inset
+
+ strived to improve upon its design.
+ During his quest, he built a clock with a modified pendulum and published
+ the classic work, 
+\shape italic
+Horologium Oscillatorium
+\shape default
+, where mathematical details of the isochronism of the cycloid were laid
+ out for the first time, in 1673.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "scienceuk,tsbts"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Today, we take for granted that the cycloid is the path a falling object
+ must follow in order for its travel to a given point to happen in the same
+ time regardless of its starting position.
+ And we also take for granted that the period of a simple pendulum varies
+ with its amplitude.
+ We have over 400 years of physical and mathematical hindsight that tell
+ us so! 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The equation of motion
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+pendulum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hopefully having justified an interest in the pendulum, let us turn to a
+ modern derivation of the motion of a pendulum by appealing to the free
+ body diagram
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+free body diagram
+\end_layout
+
+\end_inset
+
+, a mechanical engineering mainstay.
+ In a free body diagram, a body, in this case the bob of a pendulum, is
+ isolated from everything except the forces acting on it.
+ Those forces are indicated by vectors, and Newton's second law of motion
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton ! second law of motion
+\end_layout
+
+\end_inset
+
+ (the acceleration of an object is directly proportional to the magnitude
+ of the net force applied to the object, in the same direction as the net
+ force, and inversely proportional to the mass of the object, or 
+\begin_inset Formula $F=ma$
+\end_inset
+
+) is applied.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Free-body-diagram"
+
+\end_inset
+
+Free body diagram for a pendulum.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum01.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Free-body-diagram"
+
+\end_inset
+
+ shows the three forces acting on a pendulum---the force of gravity
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! gravitational
+\end_layout
+
+\end_inset
+
+; the tension
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! tension
+\end_layout
+
+\end_inset
+
+ in the rod or string holding the bob to the pivot; and a third force called
+ drag
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! drag
+\end_layout
+
+\end_inset
+
+, which is due to air resistance---along with the directions normal (
+\begin_inset Formula $\vec{N}$
+\end_inset
+
+) and tangential (
+\begin_inset Formula $\vec{T}$
+\end_inset
+
+) to the path of the pendulum.
+ Technically only the bob and the three forces are part of the free body
+ diagram.
+ Nothing else is part of the free body diagram, but is added in dashed lines
+ to help describe the motion.
+ The length of the pendulum is taken to be 
+\begin_inset Formula $\ell$
+\end_inset
+
+, and we will apply Newton's second law in the direction tangent to the
+ motion.
+ That is, in the direction 
+\begin_inset Formula $\vec{T}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The speed of the bob is the product of the length of the pendulum and the
+ angular speed, 
+\begin_inset Formula $\ell\dot{\theta}$
+\end_inset
+
+.
+ The acceleration of the bob, the derivative of speed, is 
+\begin_inset Formula $\frac{d}{dt}\left(\ell\dot{\theta}\right)=\ell\ddot{\theta}$
+\end_inset
+
+.
+ Therefore, the 
+\begin_inset Formula $ma$
+\end_inset
+
+ (mass times acceleration) term of Newton's second law for the motion of
+ a pendulum
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+pendulum
+\end_layout
+
+\end_inset
+
+ is 
+\begin_inset Formula $ml\ddot{\theta}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Gravity
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! gravitational
+\end_layout
+
+\end_inset
+
+ causes a constant downward force on the bob with magnitude equal to the
+ weight of the bob, 
+\begin_inset Formula $mg$
+\end_inset
+
+.
+ The magnitude of this force in the 
+\begin_inset Formula $\vec{T}$
+\end_inset
+
+ direction, however, is 
+\begin_inset Formula $mg\sin\theta$
+\end_inset
+
+.
+ It is worth taking a moment to make sure we have the correct sign.
+ For values of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ between 0 and 
+\begin_inset Formula $\pi$
+\end_inset
+
+, the bob is to the right of the pivot, so the force of gravity tends to
+ accelerate the bob in the clockwise (negative with respect to 
+\begin_inset Formula $\theta$
+\end_inset
+
+) direction.
+ Since 
+\begin_inset Formula $mg\sin\theta$
+\end_inset
+
+ is positive for values of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ between 0 and 
+\begin_inset Formula $\pi$
+\end_inset
+
+, the force due to gravity is actually 
+\begin_inset Formula $-mg\sin\theta$
+\end_inset
+
+.
+ For values of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ between 
+\begin_inset Formula $-\pi$
+\end_inset
+
+ and 0, the bob is to the left of the pivot, so the force of gravity tends
+ to accelerate the bob in the counterclockwise (positive with respect to
+ 
+\begin_inset Formula $\theta$
+\end_inset
+
+) direction.
+ Since 
+\begin_inset Formula $mg\sin\theta$
+\end_inset
+
+ is negative for values of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ between 
+\begin_inset Formula $-\pi$
+\end_inset
+
+ and 0, the force due to gravity is again 
+\begin_inset Formula $-mg\sin\theta$
+\end_inset
+
+.
+ Similar analysis for any other angle will lead to the same conclusion.
+\end_layout
+
+\begin_layout Standard
+The damping or drag force (air resistance)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! drag
+\end_layout
+
+\end_inset
+
+ is taken as a force proportional to the speed of the bob, 
+\begin_inset Formula $\ell\dot{\theta}$
+\end_inset
+
+, so has magnitude 
+\begin_inset Formula $c\ell\dot{\theta}$
+\end_inset
+
+.
+ Damping forces are always taken to directly oppose the motion, so the magnitude
+ of damping in the direction of 
+\begin_inset Formula $\vec{T}$
+\end_inset
+
+, is its entirety.
+ It only remains to choose the right sign.
+ Since 
+\begin_inset Formula $\dot{\theta}$
+\end_inset
+
+ indicates the direction of motion, the damping force must have the opposite
+ sign.
+ The damping constant 
+\begin_inset Formula $c$
+\end_inset
+
+ is taken to be positive, and of course 
+\begin_inset Formula $\ell$
+\end_inset
+
+ is positive, so the damping force must be 
+\begin_inset Formula $-c\ell\dot{\theta}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The tension
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! tension
+\end_layout
+
+\end_inset
+
+ acting on the bob is irrelevant because it is always perpendicular to the
+ motion.
+ The component of tension in the tangential direction is always zero.
+\end_layout
+
+\begin_layout Standard
+Substituting the sum of these the tangential forces for 
+\begin_inset Formula $F$
+\end_inset
+
+, Newton's second law applied to the pendulum becomes 
+\begin_inset Formula $-mg\sin\theta-c\ell\dot{\theta}-0=m\ell\ddot{\theta}$
+\end_inset
+
+ or
+\begin_inset Formula 
+\begin{equation}
+\ddot{\theta}+\frac{c}{m}\dot{\theta}+\frac{g}{\ell}\sin\theta=0.\label{eq:pendulum}
+\end{equation}
+
+\end_inset
+
+Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pendulum"
+
+\end_inset
+
+ is known as a differential equation
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+differential equation
+\end_layout
+
+\end_inset
+
+ because it is an equation that involves derivatives (or differentials).
+ To be more precise, it is a second degree ordinary differential equation
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+differential equation ! ordinary
+\end_layout
+
+\end_inset
+
+ (o.d.e.)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+o.d.e.|see{differential equation, ordinary}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Second degree
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+differential equation ! degree
+\end_layout
+
+\end_inset
+
+ because the highest degree derivative is the second and ordinary because
+ it involves only one independent variable (time 
+\begin_inset Formula $t$
+\end_inset
+
+).
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+pendulum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The simplest differential equations are considered in calculus, though the
+ term 
+\begin_inset Quotes eld
+\end_inset
+
+differential equation
+\begin_inset Quotes erd
+\end_inset
+
+ is rarely used.
+ When first discussing the idea of antidifferentiation, the question of
+ 
+\begin_inset Quotes eld
+\end_inset
+
+What function has a derivative equal to ...
+ ?
+\begin_inset Quotes erd
+\end_inset
+
+ inevitably comes up.
+ For example, one might be faced with the question of what function's derivative
+ equals 
+\begin_inset Formula $x$
+\end_inset
+
+? This question can also be asked, what function 
+\begin_inset Formula $y$
+\end_inset
+
+ satisfies the (differential) equation 
+\begin_inset Formula $y'=x$
+\end_inset
+
+? The answer can be arrived at by integrating the equation:
+\begin_inset Formula 
+\begin{eqnarray*}
+\int y'\, dx & = & \int x\, dx\\
+y & = & \frac{1}{2}x^{2}+C
+\end{eqnarray*}
+
+\end_inset
+
+ (don't forget the constant of integration!)
+\end_layout
+
+\begin_layout Subsection
+Forces in a free body diagram
+\end_layout
+
+\begin_layout Standard
+The derivation of the equation of motion for the pendulum touches on three
+ forces typically found in a free body diagram: gravity, drag, and tension.
+ There are several other forces that may creep into a free body diagram.
+ Most typical is the normal force a surface applies to a body lying upon
+ it.
+ In summary, here are the forces that should be considered when constructing
+ a free body diagram.
+ 
+\end_layout
+
+\begin_layout Description
+Gravity: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+gravity|see{force ! graviational}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+gravitational force|see{force ! gravitational}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! gravitational
+\end_layout
+
+\end_inset
+
+always acts directly downward with magnitude equal to the weight of the
+ body, 
+\begin_inset Formula $mg$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Description
+Drag: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+drag force|see{force ! drag}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! drag
+\end_layout
+
+\end_inset
+
+always acts directly opposite the direction of motion with a magnitude approxima
+ted in different ways depending on the application.
+ This force is perhaps the most complicated to account for.
+ It depends on the geometry of the body, the speed of the body, and the
+ viscosity of the fluid relative to which the body moves.
+ For slowly moving objects in low viscosity fluids, such as pendula in air,
+ drag (air resistance) is taken proportional to the speed of the object.
+ For faster moving objects in low viscosity fluids, drag is often taken
+ proportional to the square of the speed of the object.
+ In reality, drag is not exactly proportional to any power of speed, but
+ rather varies in a very complicated way as the body moves through the fluid.
+ For sake of tractability, though, it is almost always modeled as proportional
+ to an appropriate power of speed.
+ For our purposes, that power will simply be given.
+\end_layout
+
+\begin_layout Description
+Tension/compression: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+tensile force|see{force ! tension}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! tension
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+compression force|see{force ! compression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! compression
+\end_layout
+
+\end_inset
+
+tension is transmited through a rope, wire, chain, or other similar object
+ by pulling on its ends (in opposite directions).
+ The magnitude of the tension is constant within the object assuming, as
+ we often do, that the rope, wire, or chain is massless.
+ Tension is always directed along the rope, wire, or chain.
+ The opposite of tension is compression.
+ Rigid objects such as rods, dowels, or poles are capable of transmitting
+ compressive forces by pushing on their ends.
+ Ropes, wires, chains, and other objects that simply slacken when pushed
+ are not capable of transmitting compression.
+\end_layout
+
+\begin_layout Description
+Spring: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+spring force|see{force ! spring}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! spring
+\end_layout
+
+\end_inset
+
+a spring exerts a force proportional to the deflection of the spring, in
+ the direction opposite the deflection.
+\end_layout
+
+\begin_layout Description
+Normal: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+normal force|see{force ! normal}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! normal
+\end_layout
+
+\end_inset
+
+when a body lies atop a solid surface and the body is not floating away
+ from the surface nor sinking into the surface, there must be a balance
+ between the forces perpendicular (normal) to the surface.
+ The force that the surface applies to a body to keep it from sinking into
+ the surface is called the normal force and always acts normal (perpendicular)
+ to and away from the surface.
+ The magnitude of the normal force is always equal to the net magnitude
+ of all other forces in the normal direction.
+ Often the normal component of gravity is the only other force acting normal
+ to the surface.
+\end_layout
+
+\begin_layout Description
+Friction: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+frictional force|see{force ! frictional}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! frictional
+\end_layout
+
+\end_inset
+
+when a body lies in contact with a surface, friction opposes motion with
+ a magnitude proportional to the normal force.
+ The constant of proportionality is called the coefficient of friction and
+ is denoted by 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ For any body/surface combination, there are two types of friction to consider--
+-static friction and kinetic friction.
+ A body at rest on a surface is capable of resisting a greater force than
+ is the same body sliding across the same surface (with the same normal
+ force).
+ You may be familiar with this phenomenon if you've ever tried to slide
+ an oven into or out if its usual position in a kitchen.
+ It's much harder to get it to start moving than it is to keep it moving
+ once it budges.
+ Whether the friction is static or kinetic, it always resists motion tangential
+ to the surface.
+\end_layout
+
+\begin_layout Description
+Applied: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+applied force|see{force ! applied}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+force ! applied
+\end_layout
+
+\end_inset
+
+a force that is applied to a body by another body, such as a person pushing
+ a sofa or an engine accelerating a vehicle.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Anti-lock braking systems}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The anti-lock braking system (ABS) of an automobile is designed to take
+ advantage of the fact that the static friction between a tire and the road
+ can stop a car more quickly than the kinetic friction between the same
+ tire and the same road.
+ A tire that is not skidding is capable of applying a greater braking (frictiona
+l) force than the same tire skidding.
+ When the ABS senses that a wheel has locked (ceased rotation) while the
+ car is still moving, it forces the driver to let up on the brake enough
+ so the wheel will start spinning again, though very briefly.
+ If the driver continues to hold down the brake hard enough to skid, the
+ ABS will force the driver to let up again.
+ The ABS rapidly alternates between forcing the driver to let up and allowing
+ the driver to do as (s)he will.
+ The quick alternation between making the driver let up and allowing the
+ driver to brake hard is what causes the vibration or pulsing you feel when
+ the ABS kicks in.
+ If the ABS is working properly, a vehicle will come to a halt more quickly
+ than it would have if it were allowed to skid to a stop.
+ Also, it's much easier to steer a car when it is not skidding than when
+ it is skidding! 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Solutions of ordinary differential equations
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+differential equation ! solution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The solution of a differential equation is, in one way, very much like the
+ solution of an algebraic equation but, in another way, entirely different.
+ For an algebraic equation in 
+\begin_inset Formula $x$
+\end_inset
+
+, for example, we say that we have a solution 
+\begin_inset Formula $x=s$
+\end_inset
+
+ if substituting 
+\begin_inset Formula $s$
+\end_inset
+
+ for 
+\begin_inset Formula $x$
+\end_inset
+
+ in the equation makes the equation true.
+ Likewise, for a differential equation in 
+\begin_inset Formula $\theta$
+\end_inset
+
+, for example, we say that we have a solution 
+\begin_inset Formula $\theta=s$
+\end_inset
+
+ if substituting 
+\begin_inset Formula $s$
+\end_inset
+
+ for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ in the equation makes the equation true.
+ The difference is 
+\begin_inset Formula $s$
+\end_inset
+
+ is a 
+\shape italic
+number
+\shape default
+ in the case of an algebraic equation while 
+\begin_inset Formula $s$
+\end_inset
+
+ is a 
+\shape italic
+function
+\shape default
+ in the case of a differential equation.
+ We would say that 
+\begin_inset Formula $x=2$
+\end_inset
+
+ is a solution of the algebraic equation 
+\begin_inset Formula $3x^{2}-8x+4=0$
+\end_inset
+
+ since, substituting 
+\begin_inset Formula $2$
+\end_inset
+
+ for 
+\begin_inset Formula $x$
+\end_inset
+
+ gives
+\begin_inset Formula 
+\[
+3(2)^{2}-8(2)+4=0,
+\]
+
+\end_inset
+
+a true statement.
+ Analogously, we would say that 
+\begin_inset Formula $\theta=e^{2t}$
+\end_inset
+
+ is a solution of the differential equation 
+\begin_inset Formula $3\ddot{\theta}-8\dot{\theta}+4\theta=0$
+\end_inset
+
+ since, substituting 
+\begin_inset Formula $e^{2t}$
+\end_inset
+
+ for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ gives
+\begin_inset Formula 
+\[
+3(4e^{2t})-8(2e^{2t})+4(e^{2t})=0,
+\]
+
+\end_inset
+
+again a true statement.
+ Notice that the derivatives 
+\begin_inset Formula $\dot{\theta}$
+\end_inset
+
+ and 
+\begin_inset Formula $\ddot{\theta}$
+\end_inset
+
+ need to be calculated in order to complete the substitution.
+\end_layout
+
+\begin_layout Standard
+Approximate solutions
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+differential equation ! approximate solution
+\end_layout
+
+\end_inset
+
+ of differential equations, then, must be approximations of functions.
+ In fact, for any given ode, we settle for the crudest approximation, a
+ set of points that, if our approximation is good, lie near the graph of
+ an exact solution.
+ Hence the set 
+\begin_inset Formula $\{(0,1),(.25,1.5),(.5,2.25),(.75,3.375),(1,5.0625)\}$
+\end_inset
+
+ might qualify as an approximate solution of the equation 
+\begin_inset Formula $3\ddot{\theta}-8\dot{\theta}+4\theta=0$
+\end_inset
+
+ for 
+\begin_inset Formula $t\in[0,1]$
+\end_inset
+
+.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:odeApproxSolution"
+
+\end_inset
+
+Approximate solution of 
+\begin_inset Formula $3\ddot{\theta}-8\dot{\theta}+4\theta=0$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum02.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+See figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:odeApproxSolution"
+
+\end_inset
+
+.
+ The approximation is good for values of 
+\begin_inset Formula $t$
+\end_inset
+
+ near zero but not as good for values of 
+\begin_inset Formula $t$
+\end_inset
+
+ near 1.
+ 
+\end_layout
+
+\begin_layout Subsection
+Initial Value Problems
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+initial value problem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As with algebraic equations, differential equations may have more than one
+ solution.
+ We already saw that 
+\begin_inset Formula $\theta=e^{2t}$
+\end_inset
+
+ is a solution of 
+\begin_inset Formula $3\ddot{\theta}-8\dot{\theta}+4\theta=0$
+\end_inset
+
+.
+ So are 
+\begin_inset Formula $\theta=5e^{2t}$
+\end_inset
+
+, 
+\begin_inset Formula $\theta=-2.1e^{2t}$
+\end_inset
+
+, and 
+\begin_inset Formula $\theta=\sqrt{7\pi}e^{2t}$
+\end_inset
+
+.
+ In fact, 
+\begin_inset Formula $\theta=ce^{2t}$
+\end_inset
+
+ is a solution for any constant 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ The ode 
+\begin_inset Formula $3\ddot{\theta}-8\dot{\theta}+4\theta=0$
+\end_inset
+
+ has infinitely many solutions! It is a straightforward exercise to check.
+ For 
+\begin_inset Formula $\theta=ce^{2t}$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{\theta}=2ce^{2t}$
+\end_inset
+
+ and 
+\begin_inset Formula $\ddot{\theta}=4ce^{2t}$
+\end_inset
+
+, so
+\begin_inset Formula 
+\begin{eqnarray*}
+3\ddot{\theta}-8\dot{\theta}+4\theta & = & 3(4ce^{2t})-8(2ce^{2t})+4(ce^{2t})\\
+ & = & 12c(e^{2t})-16c(e^{2t})+4c(e^{2t})\\
+ & = & (12c-16c+4c)e^{2t}\\
+ & = & 0.
+\end{eqnarray*}
+
+\end_inset
+
+Even more, 
+\begin_inset Formula $\theta=ae^{2t/3}$
+\end_inset
+
+ is a solution for any constant 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ This solution can be verified just as the solution 
+\begin_inset Formula $\theta=ce^{2t}$
+\end_inset
+
+ was verified.
+ Can you do it? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "odeMoreSolutions"
+
+\end_inset
+
+.
+ Finally, 
+\begin_inset Formula $\theta=ce^{2t}+ae^{2t/3}$
+\end_inset
+
+ is also a solution for any pair of constants 
+\begin_inset Formula $c$
+\end_inset
+
+ and 
+\begin_inset Formula $a$
+\end_inset
+
+! Can you show it? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "odeEvenMoreSolutions"
+
+\end_inset
+
+.
+ It is not uncommon for a differential equation to have infinitely many
+ solutions.
+ 
+\end_layout
+
+\begin_layout Standard
+Another differential equation with infinitely many solutions is 
+\begin_inset Formula 
+\[
+\dot{y}=\frac{t}{y}.
+\]
+
+\end_inset
+
+The solutions are 
+\begin_inset Formula $y=\sqrt{t^{2}+c}$
+\end_inset
+
+ and 
+\begin_inset Formula $y=-\sqrt{t^{2}+a}$
+\end_inset
+
+, valid for any constants 
+\begin_inset Formula $c$
+\end_inset
+
+ and 
+\begin_inset Formula $a$
+\end_inset
+
+ as long as 
+\begin_inset Formula $y\neq0$
+\end_inset
+
+.
+ Complex solutions are valid! However, if we also require 
+\begin_inset Formula $y(0)=1$
+\end_inset
+
+, there is only one solution! 
+\begin_inset Formula $y=-\sqrt{t^{2}+c}$
+\end_inset
+
+ is no longer a solution because it gives negative values of 
+\begin_inset Formula $y$
+\end_inset
+
+ for all values of 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ And 
+\begin_inset Formula $y=\sqrt{t^{2}+c}$
+\end_inset
+
+ is only a solution if 
+\begin_inset Formula $c=1$
+\end_inset
+
+.
+ The 
+\shape italic
+one and only
+\shape default
+ solution is 
+\begin_inset Formula $y=\sqrt{t^{2}+1}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The requirement 
+\begin_inset Formula $y(0)=1$
+\end_inset
+
+ is called an initial value, or initial condition, and the pair of equations
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{y} & = & \frac{t}{y}\\
+y(0) & = & 1
+\end{eqnarray*}
+
+\end_inset
+
+ is called an initial value problem.
+ More generally, the pair of equations
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{y} & = & f(y,t)\\
+y(t_{0}) & = & y_{0}
+\end{eqnarray*}
+
+\end_inset
+
+forms what is knows as a first order initial value problem.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+initial value problem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{There is exactly one solution of $
+\backslash
+dot y=
+\backslash
+frac{t}{y}$ such that $y(0)=1$.}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Setting 
+\begin_inset Formula $y=\sqrt{t^{2}+1}$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{y}=\frac{1}{2}\frac{1}{\sqrt{t^{2}+1}}(2t)=\frac{t}{\sqrt{t^{2}+1}}$
+\end_inset
+
+.
+ Hence the equation 
+\begin_inset Formula $\dot{y}=\frac{t}{y}$
+\end_inset
+
+ becomes
+\begin_inset Formula 
+\[
+\frac{t}{\sqrt{t^{2}+1}}=\frac{t}{\sqrt{t^{2}+1}},
+\]
+
+\end_inset
+
+an undeniably true statement.
+ Hence 
+\begin_inset Formula $y=\sqrt{t^{2}+1}$
+\end_inset
+
+ is a solution of 
+\begin_inset Formula $\dot{y}=\frac{t}{y}$
+\end_inset
+
+.
+ Moreover 
+\begin_inset Formula $y(0)=\sqrt{0^{2}+1}=1$
+\end_inset
+
+, so the particular solution 
+\begin_inset Formula $y=\sqrt{t^{2}+1}$
+\end_inset
+
+ satisfies the requirement that 
+\begin_inset Formula $y(0)=1$
+\end_inset
+
+ also.
+ Hence 
+\begin_inset Formula $y=\sqrt{t^{2}+1}$
+\end_inset
+
+ is 
+\shape italic
+one
+\shape default
+ solution---and the only solution of the form 
+\begin_inset Formula $y=\sqrt{t^{2}+c}$
+\end_inset
+
+ or 
+\begin_inset Formula $y=-\sqrt{t^{2}+a}$
+\end_inset
+
+.
+ But is it 
+\shape italic
+the only
+\shape default
+ solution of any form? Perhaps there are other functions that satisfy the
+ differential equation.
+ A little bit of calculus should help settle the issue.
+ The demonstration hinges on showing that 
+\begin_inset Formula $y=\sqrt{t^{2}+c}$
+\end_inset
+
+ and 
+\begin_inset Formula $y=-\sqrt{t^{2}+a}$
+\end_inset
+
+ are 
+\shape italic
+the only
+\shape default
+ solutions of 
+\begin_inset Formula $\dot{y}=\frac{t}{y}$
+\end_inset
+
+.
+ The following sequence of equations show it.
+ Each line implies the next.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{dy}{dt} & = & \frac{t}{y},\qquad y\neq0\\
+y\, dy & = & t\, dt,\qquad y\neq0\\
+\int y\, dy & = & C+\int t\: dt,\qquad y\neq0\\
+\frac{1}{2}y^{2} & = & C+\frac{1}{2}t^{2},\qquad y\neq0\\
+y^{2} & = & 2C+t^{2},\qquad y\neq0\\
+y & = & \pm\sqrt{t^{2}+2C},\qquad y\neq0.
+\end{eqnarray*}
+
+\end_inset
+
+Replacing the constant 
+\begin_inset Formula $2C$
+\end_inset
+
+ with 
+\begin_inset Formula $c$
+\end_inset
+
+ or 
+\begin_inset Formula $a$
+\end_inset
+
+ does not change the fact that the term is an arbitrary constant, so 
+\begin_inset Formula $y=\sqrt{t^{2}+c}$
+\end_inset
+
+ and 
+\begin_inset Formula $y=-\sqrt{t^{2}+a}$
+\end_inset
+
+ are the only solutions of 
+\begin_inset Formula $\dot{y}=\frac{t}{y}$
+\end_inset
+
+.
+ This method of solving the differential equation is called separation of
+ variables
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+separation of variables
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Approximate
+\begin_inset space \space{}
+\end_inset
+
+solution
+\begin_inset space \space{}
+\end_inset
+
+of
+\begin_inset space \space{}
+\end_inset
+
+a
+\begin_inset space \space{}
+\end_inset
+
+differential
+\begin_inset space \space{}
+\end_inset
+
+equation: a set of points that, ideally, lie near the graph of an exact
+ solution.
+\end_layout
+
+\begin_layout Description
+Degree
+\begin_inset space \space{}
+\end_inset
+
+of
+\begin_inset space \space{}
+\end_inset
+
+a
+\begin_inset space \space{}
+\end_inset
+
+differential
+\begin_inset space \space{}
+\end_inset
+
+equation: equal to the highest order derivative appearing in the equation.
+\end_layout
+
+\begin_layout Description
+Differential
+\begin_inset space \space{}
+\end_inset
+
+equation: an equation with derivatives (or differentials) in it.
+\end_layout
+
+\begin_layout Description
+Free
+\begin_inset space \space{}
+\end_inset
+
+body
+\begin_inset space \space{}
+\end_inset
+
+diagram: An engineering diagram consisting of only a body and the forces
+ acting on it.
+\end_layout
+
+\begin_layout Description
+Initial
+\begin_inset space \space{}
+\end_inset
+
+value
+\begin_inset space \space{}
+\end_inset
+
+problem: a differential equation coupled with a required value of the solution.
+\end_layout
+
+\begin_layout Description
+Newton's
+\begin_inset space \space{}
+\end_inset
+
+second
+\begin_inset space \space{}
+\end_inset
+
+law
+\begin_inset space \space{}
+\end_inset
+
+of
+\begin_inset space \space{}
+\end_inset
+
+motion: the acceleration of an object is directly proportional to the magnitude
+ of the net force applied to the object, in the same direction as the net
+ force, and inversely proportional to the mass of the object---often summarized
+ by the equation 
+\begin_inset Formula $F=ma$
+\end_inset
+
+.
+ This equation assumes the mass of the object is constant.
+\end_layout
+
+\begin_layout Description
+Ordinary
+\begin_inset space \space{}
+\end_inset
+
+differential
+\begin_inset space \space{}
+\end_inset
+
+equation
+\begin_inset space \space{}
+\end_inset
+
+(o.d.e.): a differential equation with only one independent variable.
+\end_layout
+
+\begin_layout Description
+Solution
+\begin_inset space \space{}
+\end_inset
+
+of
+\begin_inset space \space{}
+\end_inset
+
+a
+\begin_inset space \space{}
+\end_inset
+
+differential
+\begin_inset space \space{}
+\end_inset
+
+equation: a function that, when substituted for the dependent variable,
+ makes the equation a true statement.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+State the degree of the differential equation.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum"
+
+\end_inset
+
+
+\begin_inset Formula $\dot{y}=y$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $y''=6x+\sin x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-1"
+
+\end_inset
+
+
+\begin_inset Formula $\ddot{s}+\dot{s}+s=0$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-2"
+
+\end_inset
+
+
+\begin_inset Formula $f'+\frac{f}{x}=x^{2}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(2h+x)h'+h=4x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-3"
+
+\end_inset
+
+
+\begin_inset Formula $\ddot{r}\dot{r}t^{2}=-\frac{1}{8}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Verify that the function is a solution of the differential equation.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-4"
+
+\end_inset
+
+
+\begin_inset Formula $y(t)=e^{t}$
+\end_inset
+
+; 
+\begin_inset Formula $\dot{y}=y$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $y(x)=x^{3}-26.83x-\sin x$
+\end_inset
+
+; 
+\begin_inset Formula $y''=6x+\sin x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-5"
+
+\end_inset
+
+
+\begin_inset Formula $s(t)=e^{-t/2}\sin\left(\frac{\sqrt{3}}{2}t\right)$
+\end_inset
+
+; 
+\begin_inset Formula $\ddot{s}+\dot{s}+s=0$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-6"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\frac{x^{3}}{4}+\frac{4}{x}$
+\end_inset
+
+, 
+\begin_inset Formula $x>0$
+\end_inset
+
+; 
+\begin_inset Formula $f'+\frac{f}{x}=x^{2}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(x)=-2x$
+\end_inset
+
+; 
+\begin_inset Formula $(2h+x)h'+h=4x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-7"
+
+\end_inset
+
+
+\begin_inset Formula $r(t)=\sqrt{t}$
+\end_inset
+
+, 
+\begin_inset Formula $t>0$
+\end_inset
+
+; 
+\begin_inset Formula $\ddot{r}\dot{r}t^{2}=-\frac{1}{8}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Verify that the function is a solution of the initial value problem.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-8"
+
+\end_inset
+
+
+\begin_inset Formula $y(t)=4e^{t}$
+\end_inset
+
+; 
+\begin_inset Formula $\dot{y}=y$
+\end_inset
+
+, 
+\begin_inset Formula $y(0)=4$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $y(x)=x^{3}-\sin x-\pi^{3}$
+\end_inset
+
+; 
+\begin_inset Formula $y'=3x^{2}-\cos x$
+\end_inset
+
+, 
+\begin_inset Formula $y(\pi)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-9"
+
+\end_inset
+
+
+\begin_inset Formula $s(t)=\frac{1}{2}\left(1+e^{-t^{2}}\right)$
+\end_inset
+
+; 
+\begin_inset Formula $\dot{s}=(1-2s)t$
+\end_inset
+
+, 
+\begin_inset Formula $s(0)=1$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-10"
+
+\end_inset
+
+
+\begin_inset Formula $f(x)=\frac{x^{3}}{4}+\frac{16}{x}$
+\end_inset
+
+, 
+\begin_inset Formula $x>0$
+\end_inset
+
+; 
+\begin_inset Formula $f'=-\frac{f}{x}+x^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $f(4)=20$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(x)=-2x-1$
+\end_inset
+
+; 
+\begin_inset Formula $h'=\frac{1+4x-h}{2h+x+1}$
+\end_inset
+
+, 
+\begin_inset Formula $h(0)=-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-11"
+
+\end_inset
+
+
+\begin_inset Formula $r(t)=\sqrt{t}-3$
+\end_inset
+
+, 
+\begin_inset Formula $t>0$
+\end_inset
+
+; 
+\begin_inset Formula $\ddot{r}\dot{r}t^{2}=-\frac{1}{8}$
+\end_inset
+
+, 
+\begin_inset Formula $r(9)=0$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{r}(9)=\frac{1}{6}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+ HINT: The solution must satisfy the o.d.e.
+ and both conditions, 
+\begin_inset Formula $r(9)=0$
+\end_inset
+
+ and 
+\begin_inset Formula $\dot{r}(9)=\frac{1}{6}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Solve the differential equation.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-12"
+
+\end_inset
+
+
+\begin_inset Formula $y'=5x^{4}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $y'=3xe^{x^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-13"
+
+\end_inset
+
+
+\begin_inset Formula $\dot{y}=t-\sin t$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-14"
+
+\end_inset
+
+
+\begin_inset Formula $\dot{y}=\frac{1}{t}$
+\end_inset
+
+, 
+\begin_inset Formula $t<0$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $s'=1-\ln x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-15"
+
+\end_inset
+
+
+\begin_inset Formula $\dot{s}=3te^{t}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Given are an initial value problem, its exact solution, and an approximate
+ solution.
+ Comment on how well the approximate solution approximates the exact solution.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-16"
+
+\end_inset
+
+
+\begin_inset Formula $\dot{y}=y$
+\end_inset
+
+, 
+\begin_inset Formula $y(0)=4$
+\end_inset
+
+; 
+\begin_inset Formula $y(t)=4e^{t}$
+\end_inset
+
+; 
+\begin_inset Formula $\{(0,4),(.25,5),(.5,6.3),(.75,7.8),(1,9.8)\}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $y'=3x^{2}-\cos x$
+\end_inset
+
+, 
+\begin_inset Formula $y(\pi)=0$
+\end_inset
+
+; 
+\begin_inset Formula $y(x)=x^{3}-\sin x-\pi^{3}$
+\end_inset
+
+; 
+\begin_inset Formula $\{(\pi,0),(\frac{5}{4}\pi,30),(\frac{3}{2}\pi,74),(\frac{7}{4}\pi,135),(2\pi,216)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-17"
+
+\end_inset
+
+
+\begin_inset Formula $\dot{s}=(1-2s)t$
+\end_inset
+
+, 
+\begin_inset Formula $s(0)=1$
+\end_inset
+
+; 
+\begin_inset Formula $s(t)=\frac{1}{2}\left(1+e^{-t^{2}}\right)$
+\end_inset
+
+; 
+\begin_inset Formula $\{(0,1),(.5,1),(1,.75),(1.5,.5),(2,.5)\}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-18"
+
+\end_inset
+
+
+\begin_inset Formula $f'=-\frac{f}{x}+x^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $f(4)=20$
+\end_inset
+
+; 
+\begin_inset Formula $f(x)=\frac{x^{3}}{4}+\frac{16}{x}$
+\end_inset
+
+; 
+\begin_inset Formula $\{(4,20),(4.25,23),(4.5,26),(4.75,30),(5,34)\}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h'=\frac{1+4x-h}{2h+x+1}$
+\end_inset
+
+, 
+\begin_inset Formula $h(0)=-1$
+\end_inset
+
+; 
+\begin_inset Formula $h(x)=-2x-1$
+\end_inset
+
+; 
+\begin_inset Formula $\{(0,-1),(.25,-1.5),(.5,-2),(.75,-2.5),(1,-3)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-19"
+
+\end_inset
+
+
+\begin_inset Formula $\ddot{r}\dot{r}t^{2}=-\frac{1}{8}$
+\end_inset
+
+, 
+\begin_inset Formula $r(9)=0$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{r}(9)=-\frac{1}{6}$
+\end_inset
+
+; 
+\begin_inset Formula $r(t)=\sqrt{t}-3$
+\end_inset
+
+; 
+\begin_inset Formula $\{(9,0),(10,.16),(11,.31),(12,.46),(13,.61)\}$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:fbd"
+
+\end_inset
+
+Draw a free body diagram for the situation.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-20"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "dom-start"
+
+\end_inset
+
+Pendular motion ignoring air resistance (no damping).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-21"
+
+\end_inset
+
+A block sliding down an inclined plane.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-22"
+
+\end_inset
+
+A block sitting on an inclined plane (not moving).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+A block being pushed up an inclined plane.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-23"
+
+\end_inset
+
+A sofa being pushed across a level floor where the applied force is parallel
+ to the floor.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-24"
+
+\end_inset
+
+A sofa being pushed across a level floor where the applied force is not
+ parallel to the floor.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-25"
+
+\end_inset
+
+A sofa being pushed up an old, slanted hardwood floor.
+ The applied force may or may not be parallel to the floor.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-26"
+
+\end_inset
+
+A sledder has reached the bottom of a hill (and is now traveling on level
+ snow) and is coasting to a stop.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-27"
+
+\end_inset
+
+A sledder sledding down a hill.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-28"
+
+\end_inset
+
+A hockey puck sliding across an ice rink.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "dom-end"
+
+\end_inset
+
+A hockey puck sliding across ice at constant speed (ignoring friction).
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-29"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "vert-start"
+
+\end_inset
+
+A sky diver falling.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-30"
+
+\end_inset
+
+A sky diver whose parachute just opened.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-31"
+
+\end_inset
+
+A sky diver whose parachute just opened while a constant breeze is blowing
+ sideways.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-32"
+
+\end_inset
+
+A football originally kicked at a 40 degree angle just as it reaches its
+ peak, ignoring drag.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "vert-end"
+
+\end_inset
+
+A football moving up and to the right approaching its peak, ignoring drag.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-34"
+
+\end_inset
+
+Use the free body diagram from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:fbd"
+
+\end_inset
+
+ to find the equation of motion in the tangential direction for (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "dom-start"
+
+\end_inset
+
+)-(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "dom-end"
+
+\end_inset
+
+), and in the vertical direction for (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "vert-start"
+
+\end_inset
+
+)-(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "vert-end"
+
+\end_inset
+
+).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:odePendulum-33"
+
+\end_inset
+
+How much easier is it to slide a sofa by pushing parallel to the floor as
+ opposed to slightly toward the floor? Compare the kinetic friction for
+ a sofa being pushed parallel to the floor to one being pushed at an angle
+ of 20 degrees from parallel.
+ Then calculate the necessary applied force to overcome kinetic friction
+ in each case.
+ Assume the floor is level.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Answers
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset label
+LatexCommand label
+name "odeMoreSolutions"
+
+\end_inset
+
+
+\begin_inset Formula $\theta=ae^{2t/3}$
+\end_inset
+
+
+\begin_inset space \space{}
+\end_inset
+
+is
+\begin_inset space \space{}
+\end_inset
+
+a
+\begin_inset space \space{}
+\end_inset
+
+solution
+\begin_inset space \space{}
+\end_inset
+
+of 
+\begin_inset Formula $3\ddot{\theta}-8\dot{\theta}+4\theta=0$
+\end_inset
+
+: 
+\begin_inset Formula $\dot{\theta}=\frac{2}{3}ae^{2t/3}$
+\end_inset
+
+ and 
+\begin_inset Formula $\ddot{\theta}=\frac{4}{9}ae^{2t/3}$
+\end_inset
+
+ so 
+\begin_inset Formula 
+\begin{eqnarray*}
+3\ddot{\theta}-8\dot{\theta}+4\theta & = & 3\left(\frac{4}{9}ae^{2t/3}\right)-8\left(\frac{2}{3}ae^{2t/3}\right)+4\left(ae^{2t/3}\right)\\
+ & = & \frac{4}{3}a(e^{2t/3})-\frac{16}{3}a(e^{2t/3})+\frac{12}{3}a(e^{2t/3})\\
+ & = & \left(\frac{4}{3}a-\frac{16}{3}a+\frac{12}{3}a\right)e^{2t/3}\\
+ & = & 0.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset label
+LatexCommand label
+name "odeEvenMoreSolutions"
+
+\end_inset
+
+
+\begin_inset Formula $\theta=ce^{2t}+ae^{2t/3}$
+\end_inset
+
+
+\begin_inset space \space{}
+\end_inset
+
+is
+\begin_inset space \space{}
+\end_inset
+
+a
+\begin_inset space \space{}
+\end_inset
+
+solution
+\begin_inset space \space{}
+\end_inset
+
+of
+\begin_inset space \space{}
+\end_inset
+
+
+\begin_inset Formula $3\ddot{\theta}-8\dot{\theta}+4\theta=0$
+\end_inset
+
+: 
+\begin_inset Formula $\dot{\theta}=2ce^{2t}+\frac{2}{3}ae^{2t/3}$
+\end_inset
+
+ and 
+\begin_inset Formula $\ddot{\theta}=4ce^{2t}+\frac{4}{9}ae^{2t/3}$
+\end_inset
+
+ so 
+\begin_inset Formula 
+\begin{eqnarray*}
+3\ddot{\theta}-8\dot{\theta}+4\theta & = & 3\left(4ce^{2t}+\frac{4}{9}ae^{2t/3}\right)-8\left(2ce^{2t}+\frac{2}{3}ae^{2t/3}\right)+4\left(ce^{2t}+ae^{2t/3}\right)\\
+ & = & 12c(e^{2t})+\frac{4}{3}a(e^{2t/3})-16c(e^{2t})-\frac{16}{3}a(e^{2t/3})+4c(e^{2t})+\frac{12}{3}a(e^{2t/3})\\
+ & = & (12c-16c+4c)e^{2t}+\left(\frac{4}{3}a-\frac{16}{3}a+\frac{12}{3}a\right)e^{2t/3}\\
+ & = & 0.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

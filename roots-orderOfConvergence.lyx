@@ -5878,7 +5878,7 @@ hasasolution
 \begin_layout Enumerate
 Find a bound on the number of iterations required to approximate the fixed
  point to with 
-\begin_inset Formula $10^{-2}$
+\begin_inset Formula $10^{-11}$
 \end_inset
 
  accuracy using fixed point iteration with any initial value in 
@@ -5896,7 +5896,7 @@ Use fixed point iteration with
 
  to find an approximation to the fixed point that is accurate to within
  
-\begin_inset Formula $10^{-2}$
+\begin_inset Formula $10^{-11}$
 \end_inset
 
 .
@@ -5913,8 +5913,27 @@ Compare the bound to the actual number of iterations needed.
 
 \end_deeper
 \begin_layout Enumerate
-Show that 
+Let 
 \begin_inset Formula $g(x)=\pi+0.5\sin(x/2)$
+\end_inset
+
+.
+ In exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:ShowPart2"
+
+\end_inset
+
+ of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Fixedpt"
+
+\end_inset
+
+, you were asked to show that 
+\begin_inset Formula $g$
 \end_inset
 
  has a unique fixed point on 
@@ -5922,7 +5941,6 @@ Show that
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_deeper
@@ -6466,12 +6484,6 @@ reference "Steffensens"
 \end_inset
 
  a root?
-\end_layout
-
-\begin_layout Enumerate
-Of the root finding methods we have surveyed so far (Bisection, Fixed Point,
- Newton's, Secant, and Steffensen's), which one do you feel is the best?
- Why?
 \end_layout
 
 \begin_layout Enumerate

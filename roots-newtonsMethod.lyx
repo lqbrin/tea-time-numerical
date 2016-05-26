@@ -2305,18 +2305,22 @@ end{digression}
 \begin_layout Standard
 For an equation you most likely did not see in pre-calculus, or calculus
  for that matter, consider 
-\begin_inset Formula $x-e^{x}\cos\sqrt{e^{2x}-x^{2}}=0$
-\end_inset
-
-.
 \begin_inset CommandInset label
 LatexCommand label
 name "interestingNewton"
 
 \end_inset
 
- You might try to solve this equation exactly, with a pencil and paper,
- but you would soon run into a dead end.
+ 
+\begin_inset Formula 
+\[
+x-e^{x}\cos\sqrt{e^{2x}-x^{2}}=0.
+\]
+
+\end_inset
+
+You might try to solve this equation exactly, with a pencil and paper, but
+ you would soon run into a dead end.
  This equation can not be solved explicitly.
  The best you can hope for is to approximate the solutions with a numerical
  method.
@@ -4308,18 +4312,6 @@ hasasolution
 \end_layout
 
 \begin_layout Enumerate
-Find a value of 
-\begin_inset Formula $x_{0}$
-\end_inset
-
- for which Newton's method will fail to converge to a root of 
-\begin_inset Formula $f(x)=2+x-e^{x}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
 \begin_inset CommandInset label
 LatexCommand label
 name "exc:newton-12"
@@ -4465,6 +4457,12 @@ hasananswer
 \end_inset
 
 
+\end_layout
+
+\begin_layout Enumerate
+Of the root finding methods we have surveyed so far (Bisection, Fixed Point,
+ Newton's, Secant, and Steffensen's), which one do you feel is the best?
+ Why?
 \end_layout
 
 \begin_layout Standard

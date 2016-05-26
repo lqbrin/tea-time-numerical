@@ -153,7 +153,7 @@ with the first
 
 \begin_layout Standard
 One useful type of osculating polynomial is the Hermite polynomial in which
- the values of the polynomial and its first derivative are both given at
+ the value of the polynomial and its first derivative are both given at
  each node.
  Even more specifically,  third degree, or cubic, Hermite polynomials play
  an important role in approximation theory.

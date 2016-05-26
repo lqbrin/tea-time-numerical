@@ -1,0 +1,121 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 15.08.2 ] */
+
+/* [wxMaxima: input   start ] */
+f(t,y):=t+y;
+de:'diff(y,t)=f(t,y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+generalsoln:ode2(de, y, t);
+particularsoln:ic1(generalsoln, t=0, y=1);
+float(subst(t=1,particularsoln))$
+exact:subst(%,y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Classic Runge-Kutta order 4
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+trk:0.0$ yrk:1.0$ n:32$ h:1.0/n$
+for i:1 thru n do (
+    k1:f(trk,yrk),
+    k2:f(trk+0.5*h,yrk+0.5*h*k1),
+    k3:f(trk+0.5*h,yrk+0.5*h*k2),
+    k4:f(trk+h,yrk+h*k3),
+    trk:trk+h,
+    yrk:yrk+h/6.0*(k1+2.0*k2+2.0*k3+k4)
+)$
+yrk;
+exact-yrk;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+"Runge-Kutta 3" (order 2)
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+trk:0.0$ yrk:1.0$ n:2$ h:1.0/n$
+for i:1 thru n do (
+    k1:f(trk,yrk),
+    k2:f(trk+0.5*h,yrk+0.5*h*k1),
+    k3:f(trk+h,yrk+h*k2),
+    trk:trk+h,
+    yrk:yrk+h/6.0*(k1+4.0*k2+k3)
+)$
+yrk;
+exact-yrk;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Euler (order 1)
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+trk:0.0$ yrk:1.0$ n:320$ h:1.0/n$
+for i:1 thru n do (
+    k1:f(trk,yrk),
+    trk:trk+h,
+    yrk:yrk+h*k1
+)$
+yrk;
+exact-yrk;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Gaussian Integration Formula
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+del1:float((sqrt(3)-1)/(2*sqrt(3)));
+del2:float((sqrt(3)+1)/(2*sqrt(3)));
+trk:0.0$ yrk:1.0$ n:8$ h:1.0/n$
+for i:1 thru n do (
+    k1:f(trk,yrk),
+    k2:f(trk+del1*h,yrk+del1*h*k1),
+    k3:f(trk+del2*h,yrk+del2*h*k2),
+    trk:trk+h,
+    yrk:yrk+h/2.0*(k2+k3)
+)$
+yrk;
+exact-yrk;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Runge-Kutta order 3
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+trk:0.0$ yrk:1.0$ n:64$ h:1.0/n$
+for i:1 thru n do (
+    k1:f(trk,yrk),
+    k2:f(trk+2/3*h,yrk+2/3*h*k1),
+    k3:f(trk+2/3*h,yrk+2/3*h*k2),
+    trk:trk+h,
+    yrk:yrk+h/8.0*(2.0*k1+3.0*k2+3.0*k3)
+)$
+yrk;
+exact-yrk;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Runge-Kutta embedded order 3
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+trk:0.0$ yrk:1.0$ n:1$ h:1.0/n$
+for i:1 thru n do (
+    k1:f(trk,yrk),
+    k2:f(trk+0.5*h,yrk+0.5*h*k1),
+    k3:f(trk+0.5*h,yrk+0.5*h*k2),
+    k4:f(trk+h,yrk+h*k3),
+    trk:trk+h,
+    yrk:yrk+h/6.0*(k1+2.0*k2+2.0*k3+k4)
+)$
+yrk;
+exact-yrk;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

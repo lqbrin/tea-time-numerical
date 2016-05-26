@@ -530,7 +530,7 @@ Let
 \end_inset
 
  and let 
-\begin_inset Formula $S_{i}(x)=a_{i,}+b_{i}(x-x_{i})+c_{i}(x-x_{i})^{2}+d_{i}(x-x_{i})^{3}$
+\begin_inset Formula $S_{i}(x)=a_{i}+b_{i}(x-x_{i})+c_{i}(x-x_{i})^{2}+d_{i}(x-x_{i})^{3}$
 \end_inset
 
  for 

@@ -1829,7 +1829,7 @@ But let's back this calculation up just a couple steps.
 \end_inset
 
  are just the three nodes, 
-\begin_inset Formula $x_{0}-h,x_{0},x_{x+h}$
+\begin_inset Formula $x_{0}-h,x_{0},x_{0}+h$
 \end_inset
 
 , so what we really have here is a prescription, or formula, for the value

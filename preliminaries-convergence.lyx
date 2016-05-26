@@ -5143,30 +5143,6 @@ hasananswer
 
 \end_deeper
 \begin_layout Enumerate
-Find the rate of convergence of
-\begin_inset Formula 
-\[
-\lim_{h\to0}(2-e^{h})=1.
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Find the rate of convergence of
-\begin_inset Formula 
-\[
-\lim_{h\to0}\frac{\sin(h)-e^{h}+1}{h}=0.
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
 Find the rates of convergence of the following sequences as 
 \begin_inset Formula $n\to\infty$
 \end_inset
@@ -5203,9 +5179,82 @@ Find the rates of convergence of the following sequences as
 
 \end_layout
 
+\begin_layout Standard
+For questions 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "exc:firstFunctionROC"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "exc:lastFunctionROC"
+
+\end_inset
+
+, use the following definition for rate of convergence for a function.
+ For a function 
+\begin_inset Formula $f(h)$
+\end_inset
+
+, we say 
+\begin_inset Formula $\lim_{h\to a}f(h)=L$
+\end_inset
+
+ with rate of convergence 
+\begin_inset Formula $g(h)$
+\end_inset
+
+ if 
+\begin_inset Formula $|f(h)-L|\leq\lambda|g(h)|$
+\end_inset
+
+ for some 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+ and all sufficiently small 
+\begin_inset Formula $|h-a|$
+\end_inset
+
+.
+\end_layout
+
 \end_deeper
 \begin_layout Enumerate
-Find the rates of convergence of the following functions as 
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:firstFunctionROC"
+
+\end_inset
+
+ Use a Taylor polynomial to find the rate of convergence of
+\begin_inset Formula 
+\[
+\lim_{h\to0}(2-e^{h})=1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Use a Taylor polynomial to find the rate of convergence of
+\begin_inset Formula 
+\[
+\lim_{h\to0}\frac{\sin(h)-e^{h}+1}{h}=0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find rates of convergence for the following functions as 
 \begin_inset Formula $h\to0$
 \end_inset
 
@@ -5255,6 +5304,12 @@ Find the rate of convergence of
 \end_layout
 
 \begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:lastFunctionROC"
+
+\end_inset
+
 Show that 
 \begin_inset Formula 
 \[
@@ -5543,7 +5598,7 @@ end
 \begin_inset Newline newline
 \end_inset
 
-diss(sum)
+disp(sum)
 \end_layout
 
 \end_deeper

@@ -2966,6 +2966,131 @@ if (t==1)
 \family default
  in Octave.
  And so on.
+ Logical operators are often needed as well.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Logical Operator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Octave Code
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+and
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+&&
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+or
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+||
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+For example, if you need to check whether 
+\begin_inset Formula $x$
+\end_inset
+
+ is between 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+, as in 
+\begin_inset Formula $a\leq x<b$
+\end_inset
+
+, a logical operator is needed.
+ In this case, we need logical 
+\begin_inset Quotes eld
+\end_inset
+
+and
+\begin_inset Quotes erd
+\end_inset
+
+ since 
+\begin_inset Formula $a\leq x<b$
+\end_inset
+
+ means 
+\begin_inset Formula $a\leq x$
+\end_inset
+
+ and 
+\begin_inset Formula $x<b$
+\end_inset
+
+.
+ The Octave code would be 
+\family typewriter
+if (a<=x && x<b)
+\family default
+ or something logically equivalent.
 \end_layout
 
 \begin_layout Standard
@@ -3143,7 +3268,7 @@ for i=1:100
 
 \begin_layout Plain Layout
 
-    L=m;
+    L=M;
 \end_layout
 
 \begin_layout Plain Layout
@@ -3429,7 +3554,7 @@ function res=bisection(a,b,f,tol,maxits)
 
 \begin_layout Plain Layout
 
-      L=m;
+      L=M;
 \end_layout
 
 \begin_layout Plain Layout
@@ -3890,7 +4015,7 @@ name "exc:bisection"
 \end_inset
 
 Use the bisection method to find 
-\begin_inset Formula $p_{3}$
+\begin_inset Formula $m_{3}$
 \end_inset
 
  for the given function on the given interval.
@@ -3945,7 +4070,7 @@ name "enu:useBisection"
 \end_inset
 
 Use the Bisection Method to find 
-\begin_inset Formula $x_{4}$
+\begin_inset Formula $m_{4}$
 \end_inset
 
  for 
@@ -3961,7 +4086,7 @@ Use the Bisection Method to find
 
 \begin_layout Enumerate
 Use the bisection method to find 
-\begin_inset Formula $x_{3}$
+\begin_inset Formula $m_{3}$
 \end_inset
 
  for the equation 
@@ -4520,7 +4645,7 @@ Run the bisection method on
 \end_inset
 
  over the interval 
-\begin_inset Formula $[0.8,1.2]$
+\begin_inset Formula $[3.5,4.5]$
 \end_inset
 
  anyway.
@@ -5436,7 +5561,14 @@ STOP.
 
 \begin_layout Enumerate
 Discuss the advantages/disadvantages of this algorithm compared to the one
- in the class slides.
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "bisectionCode"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate

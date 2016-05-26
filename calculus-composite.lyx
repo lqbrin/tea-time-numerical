@@ -340,11 +340,15 @@ As for using the trapezoidal rule to do the approximating, the error in
 
 .
  The error in the above sum is, therefore, bounded by 
-\begin_inset Formula $\sum_{i=1}^{n}M\left(\frac{h}{n}\right)^{3}f''(\xi_{i})=Mh\left(\frac{h}{n}\right)^{2}\cdot\frac{1}{n}\sum_{i=1}^{n}f''(\xi_{i})$
+\begin_inset Formula $\sum_{i=1}^{n}M\left(\frac{h}{n}\right)^{3}f''(\mu_{i})=Mh\left(\frac{h}{n}\right)^{2}\cdot\frac{1}{n}\sum_{i=1}^{n}f''(\mu_{i})$
 \end_inset
 
- where 
-\begin_inset Formula $x_{0}+(i-1)\frac{h}{n}<\xi_{i}<x_{0}+i\frac{h}{n}$
+ for some 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}+(i-1)\frac{h}{n}<\mu_{i}<x_{0}+i\frac{h}{n}$
 \end_inset
 
 .
@@ -357,7 +361,7 @@ As for using the trapezoidal rule to do the approximating, the error in
 \end_inset
 
 , the intermediate value theorem allows us to replace 
-\begin_inset Formula $\frac{1}{n}\sum_{i=1}^{n}f''(\xi_{i})$
+\begin_inset Formula $\frac{1}{n}\sum_{i=1}^{n}f''(\mu_{i})$
 \end_inset
 
  with 
@@ -369,19 +373,19 @@ As for using the trapezoidal rule to do the approximating, the error in
 \end_inset
 
  because 
-\begin_inset Formula $\frac{1}{n}\sum_{i=1}^{n}f''(\xi_{i})$
+\begin_inset Formula $\frac{1}{n}\sum_{i=1}^{n}f''(\mu_{i})$
 \end_inset
 
  is the average of the 
-\begin_inset Formula $f''(\xi_{i})$
+\begin_inset Formula $f''(\mu_{i})$
 \end_inset
 
 , which is no more than the maximum of the 
-\begin_inset Formula $f''(\xi_{i})$
+\begin_inset Formula $f''(\mu_{i})$
 \end_inset
 
  and no less than the minimum of the 
-\begin_inset Formula $f''(\xi_{i})$
+\begin_inset Formula $f''(\mu_{i})$
 \end_inset
 
 .

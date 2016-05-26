@@ -5709,7 +5709,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.561988756944332$
+\begin_inset Formula $0.2586844276$
 \end_inset
 
 
@@ -5732,7 +5732,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.601278729299872$
+\begin_inset Formula $0.2004262431$
 \end_inset
 
 
@@ -5744,7 +5744,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.561866608212375$
+\begin_inset Formula $0.2576132107$
 \end_inset
 
 
@@ -5767,7 +5767,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.537085822867345$
+\begin_inset Formula $0.2727490651$
 \end_inset
 
 
@@ -5779,7 +5779,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.561825316563408$
+\begin_inset Formula $0.2575358323$
 \end_inset
 
 
@@ -5802,7 +5802,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.577447787437750$
+\begin_inset Formula $0.2536071566$
 \end_inset
 
 
@@ -5814,7 +5814,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.561806983439330$
+\begin_inset Formula $0.2575306600$
 \end_inset
 
 
@@ -5837,7 +5837,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.551960054193125$
+\begin_inset Formula $0.2585503763$
 \end_inset
 
 
@@ -5849,7 +5849,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.561800167282529$
+\begin_inset Formula $0.2575303107$
 \end_inset
 
 
@@ -5872,7 +5872,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.568006282119217$
+\begin_inset Formula $0.2572656363$
 \end_inset
 
 
@@ -5904,7 +5904,7 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $0.557885998713916$
+\begin_inset Formula $0.2575989852$
 \end_inset
 
 
@@ -10003,9 +10003,9 @@ The actual absolute error is
  so our bound is
 \begin_inset Formula 
 \begin{eqnarray*}
-|f(1.4)-P_{2}(1.4)| & \leq & .002\max_{x\in[1.25,1.6]}|\pi^{3}\cos\pi x|\\
- & = & .002\pi^{3}\cos(1.25\pi)\\
- & < & .0439
+|f(1.4)-P_{2}(1.4)| & \leq & .002\max_{x\in[1,1.6]}|\pi^{3}\cos\pi x|\\
+ & = & .002\pi^{3}\\
+ & < & .0620
 \end{eqnarray*}
 
 \end_inset
@@ -10014,7 +10014,7 @@ The actual absolute error is
 \begin_inset Formula $|f(1.4)-P_{2}(1.4)|=|\sin(1.4\pi)+.918232|\approx.0328$
 \end_inset
 
-, which is again reasonably close to the bound.
+, which is of the same order of magnitude as the bound.
 \end_layout
 
 \begin_layout Section*
@@ -11935,7 +11935,7 @@ reference "eq:systemGenericDerivative"
 \end_inset
 
 , and point of evaluation 
-\begin_inset Formula $x_{0}+\frac{1}{2}h$
+\begin_inset Formula $x_{0}+\frac{3}{4}h$
 \end_inset
 
 , so in system 
@@ -11958,7 +11958,7 @@ reference "eq:systemGenericDerivative"
 \end_inset
 
 , and 
-\begin_inset Formula $\theta=\frac{1}{2}$
+\begin_inset Formula $\theta=\frac{3}{4}$
 \end_inset
 
 .
@@ -11970,8 +11970,8 @@ reference "eq:systemGenericDerivative"
  Therefore, the system we need to solve is 
 \begin_inset Formula 
 \begin{eqnarray*}
-p_{0}'\left(x_{0}+\frac{1}{2}h\right) & = & a_{0}p_{0}(x_{0})+a_{1}p_{0}(x_{0}+h)\\
-p_{1}'\left(x_{0}+\frac{1}{2}h\right) & = & a_{0}p_{1}(x_{0})+a_{1}p_{1}(x_{0}+h).
+p_{0}'\left(x_{0}+\frac{3}{4}h\right) & = & a_{0}p_{0}(x_{0})+a_{1}p_{0}(x_{0}+h)\\
+p_{1}'\left(x_{0}+\frac{3}{4}h\right) & = & a_{0}p_{1}(x_{0})+a_{1}p_{1}(x_{0}+h).
 \end{eqnarray*}
 
 \end_inset
@@ -11981,7 +11981,7 @@ Now,
 \end_inset
 
  so 
-\begin_inset Formula $p_{0}'(x_{0}+\frac{1}{2}h)=0;$
+\begin_inset Formula $p_{0}'(x_{0}+\frac{3}{4}h)=0;$
 \end_inset
 
  and 
@@ -11989,7 +11989,7 @@ Now,
 \end_inset
 
  so 
-\begin_inset Formula $p_{1}'(x_{0}+\frac{1}{2}h)=1$
+\begin_inset Formula $p_{1}'(x_{0}+\frac{3}{4}h)=1$
 \end_inset
 
 .
@@ -12026,7 +12026,7 @@ reference "eq:derivApprox"
 , becomes
 \begin_inset Formula 
 \begin{eqnarray*}
-f'\left(x_{0}+\frac{1}{2}h\right) & \approx & -\frac{1}{h}f(x_{0})+\frac{1}{h}f(x_{0}+h)\\
+f'\left(x_{0}+\frac{3}{4}h\right) & \approx & -\frac{1}{h}f(x_{0})+\frac{1}{h}f(x_{0}+h)\\
  & = & \frac{f(x_{0}+h)-f(x_{0})}{h}.
 \end{eqnarray*}
 
@@ -13388,7 +13388,14 @@ reference "exc:calculusErrors-11"
 
 \end_inset
 
-: The error in any approximation formula is the difference between the two
+: 
+\begin_inset CommandInset label
+LatexCommand label
+name "sol:exc:calculusErrors-11"
+
+\end_inset
+
+The error in any approximation formula is the difference between the two
  sides.
  One side holds the exact quantity and the other holds the approximation.
  To find the error, we subtract the two sides from one another, expand each
@@ -22297,5 +22304,2446 @@ so
 \end_layout
 
 \end_deeper
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:OdePendulum"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-2"
+
+\end_inset
+
+: The degree of the differential equation equals the degree of the highest
+ degree derivative in the equation.
+ The only appearance of a derivative in the equation is the 
+\begin_inset Formula $f'$
+\end_inset
+
+ term.
+ That makes the highest degree derivative 1, so the degree of the differential
+ equation is 1.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-6"
+
+\end_inset
+
+: In the differential equation 
+\begin_inset Formula $f'+\frac{f}{x}=x^{2}$
+\end_inset
+
+, both 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $f'$
+\end_inset
+
+ appear.
+ To verify that a given function 
+\begin_inset Formula $f$
+\end_inset
+
+ is a solution, we need to substitute both 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $f'$
+\end_inset
+
+ into the equation.
+ 
+\begin_inset Formula $f'$
+\end_inset
+
+ is not given, so we calculate it:
+\begin_inset Formula 
+\[
+f'(x)=\frac{3x^{2}}{4}-\frac{4}{x^{2}}.
+\]
+
+\end_inset
+
+Now that we have everything needed, we substitute 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $f'$
+\end_inset
+
+ into the differential equation and verify that the equation is true.
+ Substituting:
+\begin_inset Formula 
+\begin{eqnarray*}
+\left(\frac{3x^{2}}{4}-\frac{4}{x^{2}}\right)+\frac{\left(\frac{x^{3}}{4}+\frac{4}{x}\right)}{x} & = & x^{2}.
+\end{eqnarray*}
+
+\end_inset
+
+It is not obvious that this equation is true, so we need to do a little
+ work.
+ To finish the verification, we must show that the two sides are equal using
+ algebra.
+ Adding or subtracting or doing anything else to both sides simultaneously
+ supposes that the two sides are equal, so these things are not allowed!
+ Instead, we need to manipulate the two sides separately.
+ Working with the left side only:
+\begin_inset Formula 
+\begin{eqnarray*}
+\left(\frac{3x^{4}}{4x^{2}}-\frac{16}{4x^{2}}\right)+\left(\frac{x^{3}}{4x}+\frac{4}{x^{2}}\right) & = & x^{2}\\
+\frac{3x^{4}}{4x^{2}}-\frac{16}{4x^{2}}+\frac{x^{4}}{4x^{2}}+\frac{16}{4x^{2}} & = & x^{2}\\
+\frac{4x^{4}}{4x^{2}} & = & x^{2}.
+\end{eqnarray*}
+
+\end_inset
+
+Almost done, but technically, this equation is not true! It is false when
+ 
+\begin_inset Formula $x=0$
+\end_inset
+
+ because the left side is undefined for 
+\begin_inset Formula $x=0$
+\end_inset
+
+.
+ Luckily we do not have to worry about that case.
+ It was given that 
+\begin_inset Formula $x>0$
+\end_inset
+
+, so we know 
+\begin_inset Formula $x\neq0$
+\end_inset
+
+ and we can reduce 
+\begin_inset Formula $\frac{4x^{4}}{4x^{2}}$
+\end_inset
+
+ to 
+\begin_inset Formula $x^{2}$
+\end_inset
+
+, which finishes the verification.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-10"
+
+\end_inset
+
+: In order to verify that a function is a solution of an initial value problem,
+ we need to verify that it solves the differential equation and satisfies
+ the initial value requirement.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Showing that 
+\begin_inset Formula $f(x)=\frac{x^{3}}{4}+\frac{16}{x}$
+\end_inset
+
+, 
+\begin_inset Formula $x>0$
+\end_inset
+
+, is a solution of 
+\begin_inset Formula $f'=-\frac{f}{x}+x^{2}$
+\end_inset
+
+: In the differential equation 
+\begin_inset Formula $f'+\frac{f}{x}=x^{2}$
+\end_inset
+
+, both 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $f'$
+\end_inset
+
+ appear.
+ To verify that a given function 
+\begin_inset Formula $f$
+\end_inset
+
+ is a solution, we need to substitute both 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $f'$
+\end_inset
+
+ into the equation.
+ 
+\begin_inset Formula $f'$
+\end_inset
+
+ is not given, so we calculate it:
+\begin_inset Formula 
+\[
+f'(x)=\frac{3x^{2}}{4}-\frac{16}{x^{2}}.
+\]
+
+\end_inset
+
+Now that we have everything needed, we substitute 
+\begin_inset Formula $f$
+\end_inset
+
+ and 
+\begin_inset Formula $f'$
+\end_inset
+
+ into the differential equation and verify that the equation is true.
+ Substituting:
+\begin_inset Formula 
+\begin{eqnarray*}
+\left(\frac{3x^{2}}{4}-\frac{16}{x^{2}}\right)+\frac{\left(\frac{x^{3}}{4}+\frac{16}{x}\right)}{x} & = & x^{2}.
+\end{eqnarray*}
+
+\end_inset
+
+It is not obvious that this equation is true, so we need to do a little
+ work.
+ To finish the verification, we must show that the two sides are equal using
+ algebra.
+ Adding or subtracting or doing anything else to both sides simultaneously
+ supposes that the two sides are equal, so these things are not allowed!
+ Instead, we need to manipulate the two sides separately.
+ Working with the left side only:
+\begin_inset Formula 
+\begin{eqnarray*}
+\left(\frac{3x^{4}}{4x^{2}}-\frac{64}{4x^{2}}\right)+\left(\frac{x^{3}}{4x}+\frac{16}{x^{2}}\right) & = & x^{2}\\
+\frac{3x^{4}}{4x^{2}}-\frac{64}{4x^{2}}+\frac{x^{4}}{4x^{2}}+\frac{64}{4x^{2}} & = & x^{2}\\
+\frac{4x^{4}}{4x^{2}} & = & x^{2}.
+\end{eqnarray*}
+
+\end_inset
+
+Almost done, but technically, this equation is not true! It is false when
+ 
+\begin_inset Formula $x=0$
+\end_inset
+
+ because the left side is undefined for 
+\begin_inset Formula $x=0$
+\end_inset
+
+.
+ Luckily we do not have to worry about that case.
+ It was given that 
+\begin_inset Formula $x>0$
+\end_inset
+
+, so we know 
+\begin_inset Formula $x\neq0$
+\end_inset
+
+ and we can reduce 
+\begin_inset Formula $\frac{4x^{4}}{4x^{2}}$
+\end_inset
+
+ to 
+\begin_inset Formula $x^{2}$
+\end_inset
+
+, which finishes the verification.
+\end_layout
+
+\begin_layout Itemize
+Showing that 
+\begin_inset Formula $f(4)=20$
+\end_inset
+
+: To show that 
+\begin_inset Formula $f$
+\end_inset
+
+ satisfies the initial value requirement, we simply compute 
+\begin_inset Formula $f(4)$
+\end_inset
+
+ and show that it is 20 as required.
+ 
+\begin_inset Formula $f(4)=\frac{4^{3}}{4}+\frac{16}{4}=\frac{64}{4}+\frac{16}{4}=\frac{80}{4}=20$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-13"
+
+\end_inset
+
+: The given 
+\begin_inset Formula $\dot{y}=t-\sin t$
+\end_inset
+
+ can be restated as 
+\begin_inset Formula $y'(t)=t-\sin t$
+\end_inset
+
+.
+ In other words, we are given the derivative of 
+\begin_inset Formula $y$
+\end_inset
+
+ as a function of 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ The fundamental theorem of calculus tells us that 
+\begin_inset Formula $y$
+\end_inset
+
+ must be the integral (antiderivative) of the given function.
+ That is,
+\begin_inset Formula 
+\begin{eqnarray*}
+y(t) & = & \int(t-\sin t)dt\\
+ & = & \frac{1}{2}t^{2}+\cos t+C.
+\end{eqnarray*}
+
+\end_inset
+
+So the (infinitely many) solutions of the o.d.e.
+ are 
+\begin_inset Formula $y(t)=\frac{1}{2}t^{2}+\cos t+C$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-18"
+
+\end_inset
+
+: Though we could give them, this question is not asking for exact measurements
+ of the error.
+ It is simply requesting a comment on the accuracy of the approximate solution.
+ It will suffice to compare the graphs of the exact solution and approximate
+ solution over the interval covered by the approximate solution, 
+\begin_inset Formula $[4,5]$
+\end_inset
+
+, and do a calculation or two.
+ The graph of the exact solution is a graph of the function 
+\begin_inset Formula $f(x)=\frac{x^{3}}{4}+\frac{16}{x}$
+\end_inset
+
+ and the graph of the approximate solution is a graph of the set 
+\begin_inset Formula $\{(4,20),(4.25,23),(4.5,26),(4.75,30),(5,34)\}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum14.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+From the graphs, the only point in the approximation that is visually separate
+ from the graph of the exact solution is the point 
+\begin_inset Formula $(5,34)$
+\end_inset
+
+.
+ And it only misses by a small relative amount.
+ To be more precise, the relative error there is 
+\begin_inset Formula $\frac{|f(5)-34|}{|f(5)|}=\frac{9}{689}\approx0.013$
+\end_inset
+
+.
+ Any general comment on the accuracy of an approximation should take into
+ account the requirements of the situation.
+ In this case, there is no context to say whether we should hope for 
+\begin_inset Formula $10$
+\end_inset
+
+%, 
+\begin_inset Formula $1$
+\end_inset
+
+%, 
+\begin_inset Formula $.1\%$
+\end_inset
+
+, or smaller relative error or whether we should be more concerned about
+ absolute error.
+ Without any such context, we will simply use the visual representation,
+ which shows the points of the approximation very close to the graph of
+ the exact solution, and conclude the approximation is a good representation
+ of the exact solution.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-22"
+
+\end_inset
+
+: The forces acting on a stationary block on an inclined plane are gravity,
+ friction, and the normal force of the surface on which it is lying.
+ Gravity acts vertically downward.
+ Friction acts parallel to the surface and up the slope since it is resisting
+ gravity which pulls the block down the slope.
+ The normal force acts perpendicular to the surface.
+ Representing the block as a rectangle and each force by a vector, the free
+ body diagram should look something like this:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum07.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the line representing the surface is NOT part of the free body
+ diagram, so it is dashed.
+ It is only there to show the (potential) direction of motion.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-24"
+
+\end_inset
+
+: The forces acting on a sofa being pushed across a level floor are gravity,
+ friction, the normal force of the floor, and the applied force.
+ Gravity acts veritcally downward.
+ Friction acts parallel to the floor opposing the applied force.
+ The normal force acts perpendicular to the floor.
+ And the applied force acts in an unspecified direction not parallel to
+ the floor.
+ Representing the sofa as a rectangle and each force by a vector, the free
+ body diagram should look something like this:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum15.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that the line representing the floor is NOT part of the free body diagram,
+ so it is dashed.
+ It is only there to show the direction of motion.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-30"
+
+\end_inset
+
+: The forces acting on a sky diver---whether his parachute is open, closed,
+ or in the process of opening does not matter---are gravity and drag (air
+ resistance).
+ Gravity acts vertically downward and drag acts vertically upward.
+ Representing the sky diver as a rectangle and each force by a vector, the
+ free body diagram should look something like this:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum11.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-34"
+
+\end_inset
+
+c: (See solution of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-22"
+
+\end_inset
+
+ for free body diagram) Since the block is not moving, the net force in
+ any direction must be zero! That makes the equation of motion 
+\begin_inset Formula $s(t)=0$
+\end_inset
+
+.
+ The end.
+ This answers the question asked.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+In a situation where the block is moving, however, it is necessary to consider
+ the magnitudes of the forces acting in the direction of motion, friction
+ and gravity.
+ For sake of discussion, here is how they may be resolved.
+ The normal force acts normal to the motion so has zero tangential component.
+ Friction is proportional to the normal force, and by convention we use
+ 
+\begin_inset Formula $\mu$
+\end_inset
+
+ for the constant of proportionality, so the magnitude of friction is 
+\begin_inset Formula $\mu N$
+\end_inset
+
+.
+ Adding an auxiliary line perpendicular to the surface, we see that the
+ component of gravity in the tangential direction is 
+\begin_inset Formula $mg\sin\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum16.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Taking the positive direction to be down the slope, the forces acting tangential
+ (parallel) to the surface are 
+\begin_inset Formula $mg\sin\alpha-\mu N$
+\end_inset
+
+.
+ To complete the equation of motion, we need to compute 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ Since the block does not move in the normal direction, the net force in
+ that direction must be zero.
+ The only forces acting in the normal direction are the normal force itself
+ and a component of gravity.
+ Therefore, 
+\begin_inset Formula $N$
+\end_inset
+
+ must equal the magnitude of gravity in the normal direction.
+ Again using the auxiliary line, the component of gravity in the normal
+ direction is 
+\begin_inset Formula $mg\cos\alpha.$
+\end_inset
+
+ Hence 
+\begin_inset Formula $N=mg\cos\alpha$
+\end_inset
+
+.
+ Substituting this expression into the tangential forces, we have 
+\begin_inset Formula $mg\sin\alpha-\mu mg\cos\alpha$
+\end_inset
+
+ acting tangential to the surface.
+ By Newton's Second Law, this force must equal 
+\begin_inset Formula $ma$
+\end_inset
+
+, so the equation of motion is 
+\begin_inset Formula $m\ddot{s}=mg\sin\alpha-\mu mg\cos\alpha$
+\end_inset
+
+, which simplifies to 
+\begin_inset Formula 
+\[
+\ddot{s}=g(\sin\alpha-\mu\cos\alpha).
+\]
+
+\end_inset
+
+This equation can be used for a block in motion down an inclined plane.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-34"
+
+\end_inset
+
+f: (See solution of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-24"
+
+\end_inset
+
+ for free body diagram) Both gravity and the normal force act normal to
+ the motion, so have zero tangential components.
+ The only forces that act (with nonzero component) in the direction of motion
+ are friction and the applied force.
+ Friction is proportional to the normal force, and by convention we use
+ 
+\begin_inset Formula $\mu$
+\end_inset
+
+ for the constant of proportionality, so the magnitude of friction is 
+\begin_inset Formula $\mu N$
+\end_inset
+
+.
+ Adding an auxiliary line parallel to the surface, we mark the angle of
+ the applied force and see that the component of the applied force in the
+ tangential direction is 
+\begin_inset Formula $F_{applied}\cos\beta$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/ode-pendulum17.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Taking the positive direction to be left, the forces acting tangential (parallel
+) to the surface are 
+\begin_inset Formula $F_{applied}\cos\beta-\mu N$
+\end_inset
+
+.
+ To complete the equation of motion, we need to compute 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ Since the block does not move in the normal direction, the net force in
+ the normal direction must be zero.
+ The forces acting in that direction are 
+\begin_inset Formula $N$
+\end_inset
+
+ itself, gravity, and a component of the applied force.
+ Therefore, in the normal direction, we must have 
+\begin_inset Formula $N+F_{applied}\sin\beta=mg$
+\end_inset
+
+ or 
+\begin_inset Formula $N=mg-F_{applied}\sin\beta$
+\end_inset
+
+.
+ Substituting this expression into the tangential forces, we have 
+\begin_inset Formula $F_{applied}\cos\beta-\mu(mg-F_{applied}\sin\beta)$
+\end_inset
+
+ acting tangential to the surface.
+ By Newton's Second Law, this force must equal 
+\begin_inset Formula $ma$
+\end_inset
+
+, so the equation of motion is 
+\begin_inset Formula $m\ddot{s}=F_{applied}\cos\beta-\mu(mg-F_{applied}\sin\beta)$
+\end_inset
+
+, which simplifies to 
+\begin_inset Formula 
+\[
+\ddot{s}=\frac{F_{applied}}{m}(\cos\beta+\mu\sin\beta)-\mu g.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-34"
+
+\end_inset
+
+m: (See solution of 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:odePendulum-30"
+
+\end_inset
+
+ for free body diagram) Both forces in the free body diagram act in the
+ vertical direction, so the equation of motion is particularly simple in
+ this case.
+ No trigonometry is needed.
+ 
+\begin_inset Formula $F=ma$
+\end_inset
+
+ simply becomes 
+\begin_inset Formula $F_{drag}-mg=m\ddot{s}$
+\end_inset
+
+, taking upward to be the positive direction.
+ The drag force is taken to be proportional to speed but in the opposite
+ direction, so 
+\begin_inset Formula $F_{drag}$
+\end_inset
+
+ may be replaced by 
+\begin_inset Formula $-c\dot{s}$
+\end_inset
+
+ (for some positive constant 
+\begin_inset Formula $c$
+\end_inset
+
+) and the equation of motion becomes, more precisely, 
+\begin_inset Formula $-c\dot{s}-mg=m\ddot{s}$
+\end_inset
+
+.
+ With a little bit of algebra, this equation can be rewritten as
+\begin_inset Formula 
+\[
+\ddot{s}+\frac{c}{m}\dot{s}+g=0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:TaylorMethods"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-6"
+
+\end_inset
+
+: Replacing the 
+\begin_inset Formula $t$
+\end_inset
+
+ in Euler's Method 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:EulersMethodConstantStepSize"
+
+\end_inset
+
+ by 
+\begin_inset Formula $x$
+\end_inset
+
+, Euler's Method applied to this problem has the form 
+\begin_inset Formula $y_{i+1}=y_{i}+h\cdot y'(x_{i},y_{i})$
+\end_inset
+
+.
+ Because the initial condition is 
+\begin_inset Formula $y(1)=1$
+\end_inset
+
+, we begin with 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}=1$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{1} & = & y_{0}+0.5(3x_{0}-2y_{0})\\
+ & = & 1+0.5(3(1)-2(1))\\
+ & = & 1.5\\
+x_{1} & = & x_{0}+h=1+0.5=1.5
+\end{eqnarray*}
+
+\end_inset
+
+Now 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ can be forgotten as we compute 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{2} & = & y_{1}+0.5(3x_{1}-2y_{1})\\
+ & = & 1.5+0.5(3(1.5)-2(1.5))\\
+ & = & 2.25\\
+x_{2} & = & x_{1}+h=1.5+0.5=2.0
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we have 
+\begin_inset Formula $y(2)\approx2.25$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-8"
+
+\end_inset
+
+: Because the o.d.e.
+ is not written in the form 
+\begin_inset Formula $y'=f(t,y)$
+\end_inset
+
+, it is our job to rewrite it in that form, taking what is given and solving
+ for 
+\begin_inset Formula $y'$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+\cos(x)y'+\sin(x)y & = & 2\cos^{3}(x)\sin(x)-1\\
+\cos(x)y' & = & 2\cos^{3}(x)\sin(x)-1-\sin(x)y\\
+y' & = & \frac{2\cos^{3}(x)\sin(x)-1-\sin(x)y}{\cos(x)}\\
+ & = & 2\cos^{2}(x)\sin(x)-\sec(x)-y\tan(x)
+\end{eqnarray*}
+
+\end_inset
+
+So we have 
+\begin_inset Formula $f(x,y)=2\cos^{2}(x)\sin(x)-\sec(x)-y\tan(x)$
+\end_inset
+
+.
+ Now replacing the 
+\begin_inset Formula $t$
+\end_inset
+
+ in Euler's Method 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:EulersMethodConstantStepSize"
+
+\end_inset
+
+ by 
+\begin_inset Formula $x$
+\end_inset
+
+, Euler's Method applied to this problem has the form 
+\begin_inset Formula $y_{i+1}=y_{i}+h\cdot y'(x_{i},y_{i})$
+\end_inset
+
+.
+ Because the initial condition is 
+\begin_inset Formula $y(1)=0$
+\end_inset
+
+, we begin with 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}=0$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{1} & = & y_{0}+0.5f(x_{0},y_{0})\\
+ & = & 0+0.5f(1,0)\\
+ & = & 0.5(2\cos^{2}(1)\sin(1)-\sec(1))\\
+ & \approx & -0.67976011062352\\
+x_{1} & = & x_{0}+h=1+0.5=1.5
+\end{eqnarray*}
+
+\end_inset
+
+Now 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ can be forgotten as we compute 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{2} & = & y_{1}+0.5f(x_{1},y_{1})\\
+ & \approx & -0.67976+0.5f(1.5,-0.67976)\\
+ & \approx & -2.9503939532546\\
+x_{2} & = & x_{1}+h=1.5+0.5=2.0
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we have 
+\begin_inset Formula $y(2)\approx-2.9503939532546$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-9"
+
+\end_inset
+
+a: For Taylor's Method of degree 2, we will need the second derivative of
+ 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ The only thing we have to work with is the o.d.e.
+ itself, 
+\begin_inset Formula $\frac{dy}{dx}=3x-2y$
+\end_inset
+
+.
+ By implicit differentiation,
+\begin_inset Formula 
+\[
+\frac{d^{2}y}{dx^{2}}=3-2\frac{dy}{dx}.
+\]
+
+\end_inset
+
+However, this does not give us 
+\begin_inset Formula $y''$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ We must substitute 
+\begin_inset Formula $\frac{dy}{dx}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ But that's exactly what the o.d.e.
+ tells us! Substituting 
+\begin_inset Formula $\frac{dy}{dx}=3x-2y$
+\end_inset
+
+ into the expression for 
+\begin_inset Formula $\frac{d^{2}y}{dx^{2}}$
+\end_inset
+
+ yields
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{d^{2}y}{dx^{2}} & = & 3-2(3x-2y)\\
+ & = & 3-6x+4y.
+\end{eqnarray*}
+
+\end_inset
+
+Now we are ready.
+ Symbolically, Taylor's Method of degree 2 is
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{i+1} & = & y_{i}+h\cdot y'(x_{i},y_{i})+\frac{1}{2}h^{2}\cdot y''(x_{i},y_{i})\\
+x_{i+1} & = & x_{i}+h
+\end{eqnarray*}
+
+\end_inset
+
+Beginning with the initial conditions, 
+\begin_inset Formula $x_{0}=y_{0}=1$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{1} & = & y_{0}+h\cdot y'(x_{0},y_{0})+\frac{1}{2}h^{2}\cdot y''(x_{0},y_{0})\\
+ & = & 1+0.5(3\cdot1-2\cdot1)+\frac{1}{2}(0.5)^{2}\cdot(3-6\cdot1+4\cdot1)\\
+ & = & 1.625\\
+x_{1} & = & x_{0}+h=1+0.5=1.5
+\end{eqnarray*}
+
+\end_inset
+
+Now 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ can be forgotten as we compute 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{2} & = & y_{1}+h\cdot y'(x_{1},y_{1})+\frac{1}{2}h^{2}\cdot y''(x_{1},y_{1})\\
+ & = & 1.625+0.5(3\cdot1.5-2\cdot1.625)+\frac{1}{2}(0.5)^{2}\cdot(3-6\cdot1.5+4\cdot1.625)\\
+ & = & 2.3125\\
+x_{1} & = & x_{0}+h=1.5+0.5=2.0
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we have 
+\begin_inset Formula $y(2)=2.3125$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-9"
+
+\end_inset
+
+d: For Taylor's Method of degree 2, we will need the second derivative of
+ 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ The only thing we have to work with is the o.d.e.
+ itself (after it's been solved for 
+\begin_inset Formula $\frac{dy}{dx}$
+\end_inset
+
+: 
+\begin_inset Formula $\frac{dy}{dx}=2\cos^{2}(x)\sin(x)-\sec(x)-y\tan(x)$
+\end_inset
+
+.
+ By implicit differentiation,
+\begin_inset Formula 
+\[
+\frac{d^{2}y}{dx^{2}}=-\tan(x)\cdot\frac{dy}{dx}-\sec(x)\tan(x)-4\cos(x)\sin^{2}(x)-y\sec^{2}(x)+2\cos^{3}(x).
+\]
+
+\end_inset
+
+However, this does not give us 
+\begin_inset Formula $y''$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ We must substitute 
+\begin_inset Formula $\frac{dy}{dx}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ But that's exactly what the o.d.e.
+ tells us! Substituting 
+\begin_inset Formula $\frac{dy}{dx}=2\cos^{2}(x)\sin(x)-\sec(x)-y\tan(x)$
+\end_inset
+
+ into the expression for 
+\begin_inset Formula $\frac{d^{2}y}{dx^{2}}$
+\end_inset
+
+ (and simplifying a lot!) yields
+\begin_inset Formula 
+\[
+\frac{d^{2}y}{dx^{2}}=-y+8\cos^{3}(x)-6\cos(x)
+\]
+
+\end_inset
+
+Now we are ready.
+ Symbolically, Taylor's Method of degree 2 is
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{i+1} & = & y_{i}+h\cdot y'(x_{i},y_{i})+\frac{1}{2}h^{2}\cdot y''(x_{i},y_{i})\\
+x_{i+1} & = & x_{i}+h
+\end{eqnarray*}
+
+\end_inset
+
+Beginning with the initial conditions, 
+\begin_inset Formula $x_{0}=1,\ y_{0}=0$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{1} & = & y_{0}+h\cdot y'(x_{0},y_{0})+\frac{1}{2}h^{2}\cdot y''(x_{0},y_{0})\\
+ & = & 0+0.5(2\cos^{2}(1)\sin(1)-\sec(1))\\
+ &  & \quad+\frac{1}{2}(0.5)^{2}\cdot(8\cos^{3}(1)-6\cos(1))\\
+ & \approx & -0.92725823477363\\
+x_{1} & = & x_{0}+h=1+0.5=1.5
+\end{eqnarray*}
+
+\end_inset
+
+Now 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ can be forgotten as we compute 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{2} & = & y_{1}+h\cdot y'(x_{1},y_{1})+\frac{1}{2}h^{2}\cdot y''(x_{1},y_{1})\\
+ & \approx & -0.9272+0.5f(1.5,-0.9272)+\frac{1}{2}(0.5)^{2}\cdot y''(1.5,-0.9272)\\
+ & \approx & -1.3896462555267\\
+x_{1} & = & x_{0}+h=1.5+0.5=2.0
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we have 
+\begin_inset Formula $y(2)=-1.3896462555267$
+\end_inset
+
+.
+ If this exercise does not convince you that Taylor's Methods of degree
+ higher than 2 are not particularly user-friendly, just wait until you try
+ Taylor's Method of degree 3 on this problem.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-10"
+
+\end_inset
+
+a: For Taylor's Method of degree 3, we will need the second and third derivative
+s of 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ The only thing we have to work with is the o.d.e.
+ itself, 
+\begin_inset Formula $\frac{dy}{dx}=3x-2y$
+\end_inset
+
+.
+ By implicit differentiation,
+\begin_inset Formula 
+\[
+\frac{d^{2}y}{dx^{2}}=3-2\frac{dy}{dx}.
+\]
+
+\end_inset
+
+However, this does not give us 
+\begin_inset Formula $y''$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ We must substitute 
+\begin_inset Formula $\frac{dy}{dx}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ But that's exactly what the o.d.e.
+ tells us! Substituting 
+\begin_inset Formula $\frac{dy}{dx}=3x-2y$
+\end_inset
+
+ into the expression for 
+\begin_inset Formula $\frac{d^{2}y}{dx^{2}}$
+\end_inset
+
+ yields
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{d^{2}y}{dx^{2}} & = & 3-2(3x-2y)\\
+ & = & 3-6x+4y.
+\end{eqnarray*}
+
+\end_inset
+
+Implicitly differentiating the equation for 
+\begin_inset Formula $\frac{d^{2}y}{dx^{2}}$
+\end_inset
+
+ gives
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{d^{3}y}{dx^{3}} & = & -6+4\cdot\frac{dy}{dx}\\
+ & = & -6+4(3x-2y)\\
+ & = & 12x-8y-6.
+\end{eqnarray*}
+
+\end_inset
+
+Now we are ready.
+ Symbolically, Taylor's Method of degree 3 is
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{i+1} & = & y_{i}+h\cdot y'(x_{i},y_{i})+\frac{1}{2}h^{2}\cdot y''(x_{i},y_{i})+\frac{1}{6}h^{3}\cdot y'''(x_{i},y_{i})\\
+x_{i+1} & = & x_{i}+h
+\end{eqnarray*}
+
+\end_inset
+
+Beginning with the initial conditions, 
+\begin_inset Formula $x_{0}=y_{0}=1$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{1} & = & y_{0}+h\cdot y'(x_{0},y_{0})+\frac{1}{2}h^{2}\cdot y''(x_{0},y_{0})+\frac{1}{6}h^{3}\cdot y'''(x_{0},y_{0})\\
+ & = & 1+0.5(3\cdot1-2\cdot1)+\frac{1}{2}(0.5)^{2}\cdot(3-6\cdot1+4\cdot1)\\
+ &  & \qquad+\frac{1}{6}(0.5)^{3}(12\cdot1-8\cdot1-6)\\
+ & \approx & 1.5833333333333\\
+x_{1} & = & x_{0}+h=1+0.5=1.5
+\end{eqnarray*}
+
+\end_inset
+
+Now 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ can be forgotten as we compute 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{2} & = & y_{1}+h\cdot y'(x_{1},y_{1})+\frac{1}{2}h^{2}\cdot y''(x_{1},y_{1})+\frac{1}{6}h^{3}\cdot y'''(x_{1},y_{1})\\
+ & \approx & 1.583+0.5(3\cdot1.5-2\cdot1.583)+\frac{1}{2}(0.5)^{2}\cdot(3-6\cdot1.5+4\cdot1.583)\\
+ &  & \qquad+\frac{1}{6}(0.5)^{3}(12\cdot1.5-8\cdot1.583-6)\\
+ & \approx & 2.2777777777777\\
+x_{1} & = & x_{0}+h=1.5+0.5=2.0
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we have 
+\begin_inset Formula $y(2)=2.2777777777777$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-10"
+
+\end_inset
+
+d: For Taylor's Method of degree 3, we will need the second and third derivative
+s of 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ The only thing we have to work with is the o.d.e.
+ itself (after it's been solved for 
+\begin_inset Formula $\frac{dy}{dx}$
+\end_inset
+
+: 
+\begin_inset Formula $\frac{dy}{dx}=2\cos^{2}(x)\sin(x)-\sec(x)-y\tan(x)$
+\end_inset
+
+.
+ By implicit differentiation,
+\begin_inset Formula 
+\[
+\frac{d^{2}y}{dx^{2}}=-\tan(x)\cdot\frac{dy}{dx}-\sec(x)\tan(x)-4\cos(x)\sin^{2}(x)-y\sec^{2}(x)+2\cos^{3}(x).
+\]
+
+\end_inset
+
+However, this does not give us 
+\begin_inset Formula $y''$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ We must substitute 
+\begin_inset Formula $\frac{dy}{dx}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ But that's exactly what the o.d.e.
+ tells us! Substituting 
+\begin_inset Formula $\frac{dy}{dx}=2\cos^{2}(x)\sin(x)-\sec(x)-y\tan(x)$
+\end_inset
+
+ into the expression for 
+\begin_inset Formula $\frac{d^{2}y}{dx^{2}}$
+\end_inset
+
+ (and simplifying a lot!) yields
+\begin_inset Formula 
+\[
+\frac{d^{2}y}{dx^{2}}=-y+8\cos^{3}(x)-6\cos(x)
+\]
+
+\end_inset
+
+Implicitly differentiating the equation for 
+\begin_inset Formula $\frac{d^{2}y}{dx^{2}}$
+\end_inset
+
+ gives
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{d^{3}y}{dx^{3}} & = & -\frac{dy}{dx}-24\cos^{2}(x)\sin(x)+6\sin(x)\\
+ & = & y\tan(x)+(6-26\cos^{2}(x))\sin(x)+\sec(x)
+\end{eqnarray*}
+
+\end_inset
+
+Now we are ready.
+ Symbolically, Taylor's Method of degree 3 is
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{i+1} & = & y_{i}+h\cdot y'(x_{i},y_{i})+\frac{1}{2}h^{2}\cdot y''(x_{i},y_{i})+\frac{1}{6}h^{3}\cdot y'''(x_{i},y_{i})\\
+x_{i+1} & = & x_{i}+h
+\end{eqnarray*}
+
+\end_inset
+
+Beginning with the initial conditions, 
+\begin_inset Formula $x_{0}=1,\ y_{0}=0$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{1} & = & y_{0}+h\cdot y'(x_{0},y_{0})+\frac{1}{2}h^{2}\cdot y''(x_{0},y_{0})+\frac{1}{6}h^{3}\cdot y'''(x_{0},y_{0})\\
+ & = & 0+0.5(2\cos^{2}(1)\sin(1)-\sec(1))\\
+ &  & \quad+\frac{1}{2}(0.5)^{2}\cdot(8\cos^{3}(1)-6\cos(1))\\
+ &  & \quad+\frac{1}{6}(0.5)^{3}\cdot(\sec(1)+(6-26\cos^{2}(1))\sin(1))\\
+ & \approx & -0.91657489783846\\
+x_{1} & = & x_{0}+h=1+0.5=1.5
+\end{eqnarray*}
+
+\end_inset
+
+Now 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ can be forgotten as we compute 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{2} & = & y_{1}+h\cdot y'(x_{1},y_{1})+\frac{1}{2}h^{2}\cdot y''(x_{1},y_{1})+\frac{1}{6}h^{3}\cdot y'''(x_{1},y_{1})\\
+ & \approx & -0.9166+0.5f(1.5,-0.9166)+\frac{1}{2}(0.5)^{2}\cdot y''(1.5,-0.9166)\\
+ &  & \qquad+\frac{1}{6}(0.5)^{3}\cdot y'''(1.5,-0.9166)\\
+ & \approx & -1.3083937870918\\
+x_{1} & = & x_{0}+h=1.5+0.5=2.0
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we have 
+\begin_inset Formula $y(2)=-1.3083937870918$
+\end_inset
+
+.
+ If this exercise does not convince you that Taylor's Methods of degree
+ higher than 2 are not particularly user-friendly, nothing will!
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-2"
+
+\end_inset
+
+: Remember to document your code! In fact, the documentation for a function
+ should almost always be written before the function itself.
+ Putting down in print exactly what the intended inputs and outputs of the
+ function will be should help guide how it is written.
+ From the pseudo-code for Euler's Method, the inputs are the differential
+ equation 
+\begin_inset Formula $\dot{y}=f(t,y)$
+\end_inset
+
+; initial condition 
+\begin_inset Formula $y(t_{0})=y_{0}$
+\end_inset
+
+; numbers 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+; and the number of steps 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ A reasonable comment for the beginning of the function would list all of
+ these inputs and the output, plus document who wrote it when and for what
+ reason:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                           29 January 2012 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements Euler's method where the     %
+\end_layout
+
+\begin_layout LyX-Code
+%        step size is calculated and held constant.
+              %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Standard
+The declaration of the function has to have the five inputs as arguments
+ and the output as a return value.
+ Something like 
+\family typewriter
+function [y,x] = eulerode(f,a,ya,b,n)
+\family default
+ should do, where 
+\family typewriter
+ya
+\family default
+ of course is the input 
+\begin_inset Formula $y(a)$
+\end_inset
+
+.
+ The rest of the function should follow almost verbatim the pseudo-code.
+ I've used 
+\begin_inset Formula $x$
+\end_inset
+
+ instead of 
+\begin_inset Formula $t$
+\end_inset
+
+ for the independent variable.
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                           29 January 2012 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements Euler's method where the     %
+\end_layout
+
+\begin_layout LyX-Code
+%        step size is calculated and held constant.
+              %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = eulerode(f,a,ya,b,n)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  x(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  h = (b-a)/n;
+\end_layout
+
+\begin_layout LyX-Code
+  while (i<=n)
+\end_layout
+
+\begin_layout LyX-Code
+    y(i+1) = y(i) + h*f(x(i),y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    x(i+1) = a + (b-a)*i/n;
+\end_layout
+
+\begin_layout LyX-Code
+    i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+end%function 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+c: The equation of motion is 
+\begin_inset Formula $\ddot{s}=g(\sin\alpha-\mu\cos\alpha)$
+\end_inset
+
+.
+ It is a second order differential equation with dependent variable 
+\begin_inset Formula $s$
+\end_inset
+
+ and independent variable 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $g$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, and 
+\begin_inset Formula $\mu$
+\end_inset
+
+ appearing in the equation are constants.
+ We let 
+\begin_inset Formula $u=\dot{s}$
+\end_inset
+
+ so 
+\begin_inset Formula $\dot{u}=\ddot{s}=g(\sin\alpha-\mu\cos\alpha)$
+\end_inset
+
+, and the first order system becomes
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & g(\sin\alpha-\mu\cos\alpha)\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+f: The equation of motion is 
+\begin_inset Formula $\ddot{s}=\frac{F_{applied}}{m}(\cos\beta+\mu\sin\beta)-\mu g$
+\end_inset
+
+.
+ It is a second order differential equation with dependent variable 
+\begin_inset Formula $s$
+\end_inset
+
+ and independent variable 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $\beta$
+\end_inset
+
+, 
+\begin_inset Formula $m$
+\end_inset
+
+, 
+\begin_inset Formula $F_{applied}$
+\end_inset
+
+, and 
+\begin_inset Formula $\mu$
+\end_inset
+
+ appearing in the equation are constants.
+ We let 
+\begin_inset Formula $u=\dot{s}$
+\end_inset
+
+ so 
+\begin_inset Formula $\dot{u}=\ddot{s}=\frac{F_{applied}}{m}(\cos\beta+\mu\sin\beta)-\mu g$
+\end_inset
+
+, and the first order system becomes
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & \frac{F_{applied}}{m}(\cos\beta+\mu\sin\beta)-\mu g\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-13"
+
+\end_inset
+
+m: The equation of motion is 
+\begin_inset Formula $\ddot{s}+\frac{c}{m}\dot{s}+g=0$
+\end_inset
+
+.
+ It is a second order differential equation with dependent variable 
+\begin_inset Formula $s$
+\end_inset
+
+ and independent variable 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $c$
+\end_inset
+
+, 
+\begin_inset Formula $m$
+\end_inset
+
+, and 
+\begin_inset Formula $g$
+\end_inset
+
+ appearing in the equation are constants.
+ We let 
+\begin_inset Formula $u=\dot{s}$
+\end_inset
+
+ so 
+\begin_inset Formula $\dot{u}=\ddot{s}=-\frac{c}{m}\dot{s}-g$
+\end_inset
+
+, and the first order system becomes
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & -\frac{c}{m}u-g\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-21"
+
+\end_inset
+
+c: The system we are solving is 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & g(\sin\alpha-\mu\cos\alpha)\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+with initial conditions 
+\begin_inset Formula $s(0)=0$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{s}(0)=0$
+\end_inset
+
+ and parameter values 
+\begin_inset Formula $g=32.2$
+\end_inset
+
+ ft/s
+\begin_inset Formula $^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\mu=.21$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha=.25$
+\end_inset
+
+ rad.
+ No conversion of units is needed.
+ We plug the parameter values into the system to get the initial value problem
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & 1.41462169238826\\
+\dot{s} & = & u\\
+u_{0} & = & \dot{s}(0)=0\\
+s_{0} & = & s(0)=0
+\end{eqnarray*}
+
+\end_inset
+
+Applying Euler's method to this system means iterating
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{n+1} & = & u_{n}+h\dot{u}(u_{n},s_{n})=u_{n}+0.25(1.41462169238826)\\
+s_{n+1} & = & s_{n}+h\dot{s}(u_{n},s_{n})=s_{n}+0.25u_{n}\\
+t_{n+1} & = & t_{n}+h
+\end{eqnarray*}
+
+\end_inset
+
+In particular,
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{1} & = & u_{0}+0.25\dot{u}(u_{0},s_{0})\\
+ & = & 0+0.25(1.41462169238826)\approx0.353655423097065\\
+s_{1} & = & s_{0}+0.25u_{0}\\
+ & = & 0+0.25(0)=0\\
+t_{1} & = & t_{0}+0.25=.25
+\end{eqnarray*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{2} & = & u_{1}+0.25\dot{u}(u_{1},s_{1})\\
+ & \approx & 0.3536+0.25(1.414)\approx0.7073108461941298\\
+s_{2} & = & s_{1}+0.25u_{1}\\
+ & \approx & 0+0.25(0.3536)\approx0.08841385577426622\\
+t_{1} & = & t_{0}+0.25=.5
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $s(0.5)\approx0.08841385577426622$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-21"
+
+\end_inset
+
+f: The system we are solving is 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & \frac{F_{applied}}{m}(\cos\beta+\mu\sin\beta)-\mu g\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+with initial conditions 
+\begin_inset Formula $s(0)=0$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{s}(0)=.03$
+\end_inset
+
+ and parameter values 
+\begin_inset Formula $g=9.81$
+\end_inset
+
+ m/s
+\begin_inset Formula $^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\mu=.15$
+\end_inset
+
+, 
+\begin_inset Formula $\beta=\frac{\pi}{10}$
+\end_inset
+
+ rad, 
+\begin_inset Formula $m=35$
+\end_inset
+
+ kg, and 
+\begin_inset Formula $F_{applied}=75$
+\end_inset
+
+ N.
+ No conversion of units is needed.
+ We plug the parameter values into the system to get the initial value problem
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & \frac{75}{35}\left(\cos\left(\frac{\pi}{10}\right)+.15\sin\left(\frac{\pi}{10}\right)\right)-.15(9.81)\approx0.6658051402529905\\
+\dot{s} & = & u\\
+u_{0} & = & \dot{s}(0)=.03\\
+s_{0} & = & s(0)=0
+\end{eqnarray*}
+
+\end_inset
+
+Applying Euler's method to this system means iterating
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{n+1} & = & u_{n}+h\dot{u}(u_{n},s_{n})=u_{n}+0.25(0.6658051402529905)\\
+s_{n+1} & = & s_{n}+h\dot{s}(u_{n},s_{n})=s_{n}+0.25u_{n}\\
+t_{n+1} & = & t_{n}+h
+\end{eqnarray*}
+
+\end_inset
+
+In particular,
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{1} & = & u_{0}+0.25\dot{u}(u_{0},s_{0})\\
+ & = & .03+0.25(0.6658051402529905)\approx0.1964512850632476\\
+s_{1} & = & s_{0}+0.25u_{0}\\
+ & = & 0+0.25(.03)=0.0075\\
+t_{1} & = & t_{0}+0.25=.25
+\end{eqnarray*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{2} & = & u_{1}+0.25\dot{u}(u_{1},s_{1})\\
+ & \approx & 0.1964+0.25(0.6658)\approx0.3629025701264953\\
+s_{2} & = & s_{1}+0.25u_{1}\\
+ & \approx & 0.0075+0.25(0.1964)\approx0.05661282126581191\\
+t_{1} & = & t_{0}+0.25=.5
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $s(0.5)\approx0.05661282126581191$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-21"
+
+\end_inset
+
+m: The system we are solving is 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & -\frac{c}{m}u-g\\
+\dot{s} & = & u
+\end{eqnarray*}
+
+\end_inset
+
+with initial conditions 
+\begin_inset Formula $s(0)=2000$
+\end_inset
+
+, 
+\begin_inset Formula $\dot{s}(0)=-55$
+\end_inset
+
+ and parameter values 
+\begin_inset Formula $g=9.81$
+\end_inset
+
+ m/s
+\begin_inset Formula $^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $c=26$
+\end_inset
+
+, and 
+\begin_inset Formula $m=70$
+\end_inset
+
+ kg.
+ No conversion of units is needed.
+ We plug the parameter values into the system to get the initial value problem
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{u} & = & \frac{26}{70}u-9.81=-\frac{13}{35}u-9.81\\
+\dot{s} & = & u\\
+u_{0} & = & \dot{s}(0)=-55\\
+s_{0} & = & s(0)=2000
+\end{eqnarray*}
+
+\end_inset
+
+Applying Euler's method to this system means iterating
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{n+1} & = & u_{n}+h\dot{u}(u_{n},s_{n})=u_{n}+0.25\left(-\frac{13}{35}u_{n}-9.81\right)\\
+s_{n+1} & = & s_{n}+h\dot{s}(u_{n},s_{n})=s_{n}+0.25u_{n}\\
+t_{n+1} & = & t_{n}+h
+\end{eqnarray*}
+
+\end_inset
+
+In particular,
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{1} & = & u_{0}+0.25\dot{u}(u_{0},s_{0})\\
+ & = & -55+0.25\left(-\frac{13}{35}(-55)-9.81\right)\approx-52.34535714285715\\
+s_{1} & = & s_{0}+0.25u_{0}\\
+ & = & 2000+0.25(-55)=1986.25\\
+t_{1} & = & t_{0}+0.25=.25
+\end{eqnarray*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{2} & = & u_{1}+0.25\dot{u}(u_{1},s_{1})\\
+ & \approx & -52.34+0.25\left(-\frac{13}{35}(-52.34)-9.81\right)\approx-49.9372168367347\\
+s_{2} & = & s_{1}+0.25u_{1}\\
+ & \approx & 1986.25+0.25(-52.34)\approx1973.163660714286\\
+t_{1} & = & t_{0}+0.25=.5
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, 
+\begin_inset Formula $s(0.5)\approx1973.163660714286$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-14"
+
+\end_inset
+
+: A number of differential equations solution techniques require you to
+ have some idea what the solution will be before you know exactly what it
+ is.
+ You then take this 
+\begin_inset Quotes eld
+\end_inset
+
+rough guess
+\begin_inset Quotes erd
+\end_inset
+
+ and refine it by forcing it to solve the given differential equation.
+ The method of undetermined coefficients is an example of such a technique.
+ We know the solution will be a linear combination of certain functions,
+ but we don't know the right coefficients to use.
+ To find the coefficients, we plug the solution with unknown (undetermined)
+ coefficients into the differential equation and match the coefficients
+ of like terms.
+ This process leaves us with a linear system of equations to solve for the
+ unknowns.
+ In this particular example, we are given that 
+\begin_inset Formula $y(x)=Ax^{2}+Bx+C$
+\end_inset
+
+ is a solution of 
+\begin_inset Formula $y''+5y'-8y=3x^{2}$
+\end_inset
+
+, and it is our job to figure out the values of 
+\begin_inset Formula $A$
+\end_inset
+
+, 
+\begin_inset Formula $B$
+\end_inset
+
+, and 
+\begin_inset Formula $C$
+\end_inset
+
+.
+ We will find 
+\begin_inset Formula $y'$
+\end_inset
+
+ and 
+\begin_inset Formula $y''$
+\end_inset
+
+ and substitute them into the o.d.e.:
+\begin_inset Formula 
+\begin{eqnarray*}
+y'(x) & = & 2Ax+B\\
+y''(x) & = & 2A
+\end{eqnarray*}
+
+\end_inset
+
+Therefore
+\begin_inset Formula 
+\[
+y''+5y'-8y=2A+5(2Ax+B)-8(Ax^{2}+Bx+C).
+\]
+
+\end_inset
+
+Thus, if we are to have a solution of the o.d.e., we will need 
+\begin_inset Formula 
+\[
+2A+5(2Ax+B)-8(Ax^{2}+Bx+C)=3x^{2}
+\]
+
+\end_inset
+
+Simplifying, that is
+\begin_inset Formula 
+\[
+-8Ax^{2}+(10A-8B)x+(2A+5B-8C)=3x^{2}.
+\]
+
+\end_inset
+
+Matching the coefficients of like terms on the left and the right, we have
+\begin_inset Formula 
+\begin{eqnarray*}
+-8A & = & 3\\
+10A-8B & = & 0\\
+2A+5B-8C & = & 0.
+\end{eqnarray*}
+
+\end_inset
+
+The solution of this system is 
+\begin_inset Formula $A=-\frac{3}{8}$
+\end_inset
+
+, 
+\begin_inset Formula $B=-\frac{15}{32}$
+\end_inset
+
+, 
+\begin_inset Formula $C=-\frac{99}{256}$
+\end_inset
+
+.
+ Hence the solution of the o.d.e.
+ is 
+\begin_inset Formula $y(x)=-\frac{3}{8}x^{2}-\frac{15}{32}x-\frac{99}{256}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor-18"
+
+\end_inset
+
+: A number of differential equations solution techniques require you to
+ have some idea what the solution will be before you know exactly what it
+ is.
+ You then take this 
+\begin_inset Quotes eld
+\end_inset
+
+rough guess
+\begin_inset Quotes erd
+\end_inset
+
+ and refine it by forcing it to solve the given differential equation.
+ The method of undetermined coefficients is an example of such a technique.
+ We know the solution will be a linear combination of certain functions,
+ but we don't know the right coefficients to use.
+ To find the coefficients, we plug the solution with unknown (undetermined)
+ coefficients into the differential equation and match the coefficients
+ of like terms.
+ This process leaves us with a linear system of equations to solve for the
+ unknowns.
+ In this particular example, we are given that 
+\begin_inset Formula $\theta(t)=At\cos t+Bt\sin t+C\cos t+D\sin t$
+\end_inset
+
+ is a solution of 
+\begin_inset Formula $\ddot{\theta}+\frac{1}{10}\dot{\theta}+\theta=t\cos t$
+\end_inset
+
+, and it is our job to figure out the values of 
+\begin_inset Formula $A$
+\end_inset
+
+, 
+\begin_inset Formula $B$
+\end_inset
+
+, 
+\begin_inset Formula $C$
+\end_inset
+
+, and 
+\begin_inset Formula $D$
+\end_inset
+
+.
+ We will find 
+\begin_inset Formula $\dot{\theta}$
+\end_inset
+
+ and 
+\begin_inset Formula $\ddot{\theta}$
+\end_inset
+
+ and substitute them into the o.d.e.:
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{\theta(t)} & = & (D+A)\cos(t)+(B-C)\sin(t)+Bt\cos(t)-At\sin(t)\\
+\ddot{\theta}(t) & = & (2B-C)\cos(t)+(-D-2A)\sin(t)-At\cos(t)-Bt\sin(t)
+\end{eqnarray*}
+
+\end_inset
+
+Therefore
+\begin_inset Formula 
+\begin{eqnarray*}
+\ddot{\theta}+\frac{1}{10}\dot{\theta}+\theta & = & (2B-C)\cos(t)+(-D-2A)\sin(t)-At\cos(t)-Bt\sin(t)\\
+ &  & \quad+\frac{1}{10}\left((D+A)\cos(t)+(B-C)\sin(t)+Bt\cos(t)-At\sin(t)\right)\\
+ &  & \quad+At\cos t+Bt\sin t+C\cos t+D\sin t
+\end{eqnarray*}
+
+\end_inset
+
+Simplifying, that is
+\begin_inset Formula 
+\begin{eqnarray*}
+\ddot{\theta}+\frac{1}{10}\dot{\theta}+\theta & = & \left(\frac{1}{10}D+2B+\frac{1}{10}A\right)\cos(t)\\
+ &  & +\left(B-C-2A\right)\sin(t)\\
+ &  & +\frac{1}{10}Bt\cos(t)\\
+ &  & -\frac{1}{10}At\sin(t)
+\end{eqnarray*}
+
+\end_inset
+
+Thus, if we are to have a solution of the o.d.e., we will need 
+\begin_inset Formula 
+\begin{eqnarray*}
+\left(\frac{1}{10}D+2B+\frac{1}{10}A\right)\cos(t)\\
++\left(B-C-2A\right)\sin(t)\\
++\frac{1}{10}Bt\cos(t)\\
+-\frac{1}{10}At\sin(t) & = & t\cos t
+\end{eqnarray*}
+
+\end_inset
+
+Matching the coefficients of like terms on the left and the right, we have
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{1}{10}D+2B+\frac{1}{10}A & = & 0\\
+B-C-2A & = & 0\\
+\frac{1}{10}B & = & 1\\
+-\frac{1}{10}A & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+The solution of this system is 
+\begin_inset Formula $A=0$
+\end_inset
+
+, 
+\begin_inset Formula $B=10$
+\end_inset
+
+, 
+\begin_inset Formula $C=10$
+\end_inset
+
+, 
+\begin_inset Formula $D=-200$
+\end_inset
+
+.
+ Hence the solution of the o.d.e.
+ is 
+\begin_inset Formula $\theta(t)=10t\sin t-200\sin t+10\cos t$
+\end_inset
+
+.
+\end_layout
+
 \end_body
 \end_document

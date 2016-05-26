@@ -1,0 +1,94 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 15.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+diff('y(t),t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+yp:-'y(t)/t+t^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(yp,t);
+subst(diff('y(t),t)=yp,%);
+ypp:ratsimp(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(ypp,t);
+subst(diff('y(t),t)=yp,%);
+yppp:ratsimp(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst(['y(t)=20,t=4],ypp);
+subst(['y(t)=20,t=4],yppp);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T2(t):=20+11*(t-4)+13/4*(t-4)^2;
+T2(2);
+T2(5), float;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T2(t):=20+11*(t-4)+13/4*(t-4)^2+3/16*(t-4)^3;
+T2(2), float;
+T2(5), float;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(t,y):=-y/t+t^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+t0:4$ y0:20$
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+m:f(t0,y0);
+y0:y0+m*(-.25);
+t0:t0-.25;
+print("");
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+17.25+9.4625*(3.5-3.75);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

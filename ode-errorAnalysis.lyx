@@ -1,0 +1,2055 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Error Analysis
+\end_layout
+
+\begin_layout Standard
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+ ended with the mysterious (and unsettling?) observation that Simpson's-ode
+ did not live up to expectations.
+ Based on other o.d.e.
+ solvers, we would expect the truncation error of Simpson's-ode to be 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+ since Simpson's Rule, on which Simpson's-ode is based, has truncation error
+ 
+\begin_inset Formula $O(h^{5})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The explanation is rooted in the fact that we are solving an o.d.e.
+ of the form 
+\begin_inset Formula $\dot{y}=f(t,y)$
+\end_inset
+
+, in which the derivative is a function of two variables, 
+\begin_inset Formula $t$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ We will need heavy use of partial derivatives and the chain rule to understand
+ the error analysis.
+ As ever, we consult Taylor's theorem and write
+\begin_inset Formula 
+\[
+y(t_{0}+h)=y(t_{0})+h\dot{y}(t_{0})+\frac{1}{2}h^{2}\ddot{y}(t_{0})+\frac{1}{6}h^{3}\dddot{y}(t_{0})+\cdots.
+\]
+
+\end_inset
+
+Each derivative can be replaced by some function of 
+\begin_inset Formula $f$
+\end_inset
+
+ and its partial derivatives.
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{y} & = & f(t,y)\\
+\ddot{y}=\frac{d}{dt}\dot{y} & = & \frac{d}{dt}f(t,y)=f_{t}(t,y)+f_{y}(t,y)\dot{y}=f_{t}(t,y)+f_{y}(t,y)\cdot f(t,y)\\
+ & \vdots
+\end{eqnarray*}
+
+\end_inset
+
+Eliminating the explicit use of arguments 
+\begin_inset Formula $t$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{y} & = & f\\
+\ddot{y} & = & f_{t}+f_{y}f\\
+\dddot{y} & = & f_{tt}+f_{ty}f+(f_{yt}+f_{yy}f)f+f_{y}(f_{t}+f_{y}f)\\
+ & = & f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f\\
+ & \vdots
+\end{eqnarray*}
+
+\end_inset
+
+so 
+\begin_inset Formula $y(t_{0}+h)=y(t_{0})+h\dot{y}(t_{0})+\frac{1}{2}h^{2}\ddot{y}(t_{0})+\frac{1}{6}h^{3}\dddot{y}(t_{0})+\cdots$
+\end_inset
+
+ becomes
+\begin_inset Formula 
+\[
+y(t_{0}+h)=y(t_{0})+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f)+\cdots,
+\]
+
+\end_inset
+
+or in terms of an o.d.e.
+ solver,
+\begin_inset Formula 
+\begin{equation}
+y_{i+1}=y_{i}+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f)+\cdots,\label{eq:twoVariableTaylorSeries}
+\end{equation}
+
+\end_inset
+
+Rewriting high degree Taylor polynomials in terms of 
+\begin_inset Formula $f$
+\end_inset
+
+ quickly becomes complicated.
+ We will focus on the analysis requiring only 
+\begin_inset Formula $\dot{y}$
+\end_inset
+
+, 
+\begin_inset Formula $\ddot{y}$
+\end_inset
+
+, and 
+\begin_inset Formula $\dddot{y}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The o.d.e.
+ solvers of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+ have the form
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\begin{eqnarray}
+k_{1} & = & f(t_{i},y_{i})\nonumber \\
+k_{2} & = & f\left(t_{i}+\beta_{2}h,y_{i}+\beta_{2}hk_{1}\right)\nonumber \\
+k_{3} & = & f(t_{i}+\beta_{3}h,y_{i}+\beta_{3}hk_{2})\nonumber \\
+ & \vdots\nonumber \\
+k_{s} & = & f(t_{i}+\beta_{s}h,y_{i}+\beta_{s}hk_{s-1})\nonumber \\
+y_{i+1} & = & y_{i}+h\left[\alpha_{1}k_{1}+\alpha_{2}k_{2}+\alpha_{3}k_{3}+\cdots+\alpha_{s}k_{s}\right].\label{eq:rungeKuttaGeneral}
+\end{eqnarray}
+
+\end_inset
+
+We did not actually see any o.d.e.
+ solvers with 
+\begin_inset Formula $s>3$
+\end_inset
+
+ in 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+, but the process we followed would clearly require it should there be more
+ than three nodes in the underlying integration formula.
+ 
+\end_layout
+
+\begin_layout Standard
+The difference between 
+\begin_inset Formula $y(t_{0}+h)$
+\end_inset
+
+ from (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:twoVariableTaylorSeries"
+
+\end_inset
+
+) and 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+ from (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rungeKuttaGeneral"
+
+\end_inset
+
+) is the local truncation error of the o.d.e.
+ solver (the error in taking a single step).
+ In order to write this truncation error in the form 
+\begin_inset Formula $O(h^{\ell})$
+\end_inset
+
+, though, we need to expand each 
+\begin_inset Formula $k_{j}$
+\end_inset
+
+ in its Taylor polynomial.
+ Taylor's theorem in two variables is needed.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:twoVariableTaylors"
+
+\end_inset
+
+Suppose 
+\begin_inset Formula $f(t,y)$
+\end_inset
+
+ and all its partial derivatives of order 
+\begin_inset Formula $n+1$
+\end_inset
+
+ and lower are continuous on the rectangle 
+\begin_inset Formula $D=\{(t,y):a\leq t\leq b,c\leq y\leq d\}$
+\end_inset
+
+, and let 
+\begin_inset Formula $(t_{0},y_{0})\in D$
+\end_inset
+
+.
+ Then for every 
+\begin_inset Formula $(t,y)\in D$
+\end_inset
+
+, there exist 
+\begin_inset Formula $\xi\in(a,b)$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu\in(c,d)$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\begin{eqnarray*}
+f(t,y) & = & f(t_{0},y_{0})+\left[(t-t_{0})\cdot f_{t}(t_{0},y_{0})+(y-y_{0})\cdot f_{y}(t_{0},y_{0})\right]\\
+ &  & +\frac{1}{2}\left[(t-t_{0})^{2}f_{tt}(t_{0},y_{0})+2(t-t_{0})(y-y_{0})\cdot f_{ty}(t_{0},y_{0})+(y-y_{0})^{2}f_{yy}(t_{0},y_{0})\right]\\
+ &  & +\cdots+\\
+ &  & \frac{1}{n!}\left[\sum_{j=0}^{n}\left(\begin{array}{c}
+n\\
+j
+\end{array}\right)(t-t_{0})^{n-j}(y-y_{0})^{j}\frac{\partial^{n}f}{\partial t^{n-j}\partial y^{j}}(t_{0},y_{0})\right]\\
+ &  & +\frac{1}{(n+1)!}\left[\sum_{j=0}^{n+1}\left(\begin{array}{c}
+n+1\\
+j
+\end{array}\right)(t-t_{0})^{n+1-j}(y-y_{0})^{j}\frac{\partial^{n+1}f}{\partial t^{n+1-j}\partial y^{j}}(\xi,\mu)\right].
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As with Taylor's theorem (of one variable), the first 
+\begin_inset Formula $n+1$
+\end_inset
+
+ terms form the Taylor polynomial and the last term is the remainder term.
+ 
+\end_layout
+
+\begin_layout Standard
+To illustrate, we let 
+\begin_inset Formula $f(t,y)=-\frac{y}{t}+t^{2}$
+\end_inset
+
+ and compute its second Taylor polynomial with remainder term expanded about
+ 
+\begin_inset Formula $(t_{0},y_{0})=(1,1)$
+\end_inset
+
+.
+ For this, we will need all partial derivatives of 
+\begin_inset Formula $f$
+\end_inset
+
+ up to and including order 2.
+\begin_inset Formula 
+\begin{eqnarray*}
+f_{t} & = & \frac{y}{t^{2}}+2t\\
+f_{y} & = & -\frac{1}{t}\\
+f_{tt} & = & -2\frac{y}{t^{3}}+2\\
+f_{ty}=f_{yt} & = & \frac{1}{t^{2}}\\
+f_{yy} & = & 0\\
+f_{ttt} & = & 6\frac{y}{t^{4}}\\
+f_{tty}=f_{tyt}=f_{ytt} & = & -\frac{2}{t^{3}}\\
+f_{tyy}=f_{yty}=f_{yyt} & = & 0\\
+f_{yyy} & = & 0.
+\end{eqnarray*}
+
+\end_inset
+
+It follows that
+\begin_inset Formula 
+\begin{eqnarray*}
+f(1,1) & = & 0\\
+f_{t}(1,1) & = & 3\\
+f_{y}(1,1) & = & -1\\
+f_{tt}(1,1) & = & 0\\
+f_{ty}(1,1) & = & 1\\
+f_{yy}(1,1) & = & 0\\
+f_{ttt}(\xi,\mu) & = & 6\frac{\mu}{\xi^{4}}\\
+f_{tty}(\xi,\mu) & = & -\frac{2}{\xi^{3}}\\
+f_{tyy}(\xi,\mu) & = & 0\\
+f_{yyy}(\xi,\mu) & = & 0.
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, the second Taylor polynomial for 
+\begin_inset Formula $f(t,y)$
+\end_inset
+
+ is
+\begin_inset Formula 
+\begin{eqnarray*}
+T_{2}(t,y) & = & f(1,1)+\left[(t-1)\cdot f_{t}(1,1)+(y-1)\cdot f_{y}(1,1)\right]\\
+ &  & +\frac{1}{2}\left[(t-1)^{2}f_{tt}(1,1)+2(t-1)(y-1)\cdot f_{ty}(1,1)+(y-1)^{2}f_{yy}(1,1)\right]\\
+ & = & 0+3(t-1)-(y-1)+0(t-1)^{2}+(t-1)(y-1)+0(y-1)^{2}\\
+ & = & 3(t-1)-(y-1)+(t-1)(y-1)
+\end{eqnarray*}
+
+\end_inset
+
+with remainder term
+\begin_inset Formula 
+\begin{eqnarray*}
+R_{2}(t,y) & = & \frac{1}{6}\left[(t-1)^{3}f_{ttt}(\xi,\mu)+3(t-1)^{2}(y-1)f_{tty}(\xi,\mu)+3(t-1)(y-1)^{2}f_{tyy}(\xi,\mu)+(y-1)^{3}f_{yyy}(\xi,\mu)\right]\\
+ & = & \frac{1}{6}\left[(t-1)^{3}\cdot6\frac{\mu}{\xi^{4}}-3(t-1)^{2}(y-1)\cdot\frac{2}{\xi^{3}}+3(t-1)(y-1)^{2}\cdot0+(y-1)^{3}\cdot0\right]\\
+ & = & (t-1)^{3}\frac{\mu}{\xi^{4}}-(t-1)^{2}(y-1)\frac{1}{\xi^{3}}.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+More generally, suppose we are interested in Taylor polynomial expansions
+ of expressions like 
+\begin_inset Formula $f(t_{i}+\beta_{j}h,y_{i}+\beta_{j}hk_{j-1})$
+\end_inset
+
+, as we have in our o.d.e.
+ solvers.
+ Expanding about 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+, we let 
+\begin_inset Formula $t_{0}=t_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{0}=y_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $t=t_{i}+\beta_{j}h$
+\end_inset
+
+, and 
+\begin_inset Formula $y=y_{i}+\beta_{j}hk_{j-1}$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $t-t_{0}=\beta_{j}h$
+\end_inset
+
+ and 
+\begin_inset Formula $y-y_{0}=\beta_{j}hk_{j-1}$
+\end_inset
+
+, and the second Taylor polynomial without explicit listing of the arguments
+ 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ on the right-hand side is 
+\begin_inset Formula 
+\begin{eqnarray*}
+f(t_{i}+\beta_{j}h,y_{i}+\beta_{j}hk_{j-1}) & = & f+h\beta_{j}\left[f_{t}+k_{j-1}f_{y}\right]+\frac{1}{2}h^{2}\beta_{j}^{2}\left[f_{tt}+2k_{j-1}f_{ty}+k_{j-1}^{2}f_{yy}\right]
+\end{eqnarray*}
+
+\end_inset
+
+with remainder term 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+In particular, when we set 
+\begin_inset Formula $j=1$
+\end_inset
+
+, 
+\begin_inset Formula $\beta_{j}=\beta_{1}=0$
+\end_inset
+
+, we get
+\begin_inset Formula 
+\[
+k_{1}=f(t_{i},y_{i})=f.
+\]
+
+\end_inset
+
+When we set 
+\begin_inset Formula $j=2$
+\end_inset
+
+, 
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{2} & = & f\left(t_{i}+\beta_{2}h,y_{i}+\beta_{2}hk_{1}\right)\\
+ & = & f+h\beta_{2}\left[f_{t}+ff_{y}\right]+\frac{1}{2}h^{2}\beta_{2}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]+O(h^{3}).
+\end{eqnarray*}
+
+\end_inset
+
+The calculation of 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+ is a little bit messier since it involves 
+\begin_inset Formula $k_{2}^{2}$
+\end_inset
+
+.
+ Before diving in headlong, though, consider what we will do with 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+ first.
+ After computing 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+, we will substitute each into the formula
+\begin_inset Formula 
+\begin{equation}
+y_{i+1}=y_{i}+h\left[\alpha_{1}k_{1}+\alpha_{2}k_{2}+\alpha_{3}k_{3}\right]\label{eq:rungeKutta3ks}
+\end{equation}
+
+\end_inset
+
+and subtract the result from (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:twoVariableTaylorSeries"
+
+\end_inset
+
+).
+ For purposes of this discussion, we will seek a method with local truncation
+ error 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+.
+ Therefore, we need only retain constant terms and terms containing a factor
+ of 
+\begin_inset Formula $h^{3}$
+\end_inset
+
+, 
+\begin_inset Formula $h^{2}$
+\end_inset
+
+, or 
+\begin_inset Formula $h$
+\end_inset
+
+ in equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rungeKutta3ks"
+
+\end_inset
+
+).
+ Terms with higher powers of 
+\begin_inset Formula $h$
+\end_inset
+
+ are irrelevant.
+ They will be assumed (or should I say consumed?) by the 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+.
+ Since the sum 
+\begin_inset Formula $\alpha_{1}k_{1}+\alpha_{2}k_{2}+\alpha_{3}k_{3}$
+\end_inset
+
+ is multiplied by 
+\begin_inset Formula $h$
+\end_inset
+
+, we need only retain terms with factors of up to 
+\begin_inset Formula $h^{2}$
+\end_inset
+
+ in 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+.
+ Taking a look at the expansion of 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{3} & = & f\left(t_{i}+\beta_{3}h,y_{i}+\beta_{3}hk_{2}\right)\\
+ & = & f+h\beta_{3}\left[f_{t}+k_{2}f_{y}\right]+\frac{1}{2}h^{2}\beta_{3}^{2}\left[f_{tt}+2k_{2}f_{ty}+k_{2}^{2}f_{yy}\right]
+\end{eqnarray*}
+
+\end_inset
+
+we see only the term 
+\begin_inset Formula $\frac{1}{2}h^{2}\beta_{3}^{2}\cdot k_{2}^{2}f$
+\end_inset
+
+ contains 
+\begin_inset Formula $k_{2}^{2}$
+\end_inset
+
+, and it already has a factor of 
+\begin_inset Formula $h^{2}$
+\end_inset
+
+.
+ Consequently, we only need to include the constant term of 
+\begin_inset Formula $k_{2}^{2}$
+\end_inset
+
+.
+ The rest of the terms of 
+\begin_inset Formula $k_{2}^{2}$
+\end_inset
+
+ become part of the 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+.
+ That's not so bad!
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{2}^{2} & = & f^{2}+O(h).
+\end{eqnarray*}
+
+\end_inset
+
+Similarly, when we substitute expressions for 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ into 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+, we will be careful to avoid any terms that would give a factor of 
+\begin_inset Formula $h$
+\end_inset
+
+ to any power greater than 2:
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{3} & = & f+h\beta_{3}\left[f_{t}+\left(f+h\beta_{2}\left[f_{t}+ff_{y}\right]\right)f_{y}\right]\\
+ &  & +\frac{1}{2}h^{2}\beta_{3}^{2}\left[f_{tt}+2(f)f_{ty}+\left(f^{2}\right)f_{yy}\right]+O(h^{3})\\
+ & = & f+h\beta_{3}f_{t}+h\beta_{3}ff_{y}+h^{2}\beta_{2}\beta_{3}(f_{t}f_{y}+ff_{y}^{2})\\
+ &  & +\frac{1}{2}h^{2}\beta_{3}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]+O(h^{3}).
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After all that detailed computation, now is a good time to lean back and
+ take a look at what we have so far.
+ We have expanded all the terms of (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rungeKuttaGeneral"
+
+\end_inset
+
+) for 
+\begin_inset Formula $s=3$
+\end_inset
+
+ and are ready to compare the result to the Taylor expansion of the o.d.e.
+ in (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:twoVariableTaylorSeries"
+
+\end_inset
+
+).
+ The difference of the two is the truncation error, so we will be interested
+ in the least power of 
+\begin_inset Formula $h$
+\end_inset
+
+ that remains after subtraction.
+ Copying the two equations here for convenience, we are subtracting
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f)+O(h^{4})
+\]
+
+\end_inset
+
+from
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{i+1} & = & y_{i}+h\left[\alpha_{1}k_{1}+\alpha_{2}k_{2}+\alpha_{3}k_{3}\right]\\
+ & = & y_{i}+h\alpha_{1}k_{1}+h\alpha_{2}k_{2}+h\alpha_{3}k_{3}\\
+ & = & y_{i}+h\alpha_{1}f\\
+ &  & +h\alpha_{2}\left(f+h\beta_{2}\left[f_{t}+ff_{y}\right]+\frac{1}{2}h^{2}\beta_{2}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]+O(h^{3})\right)\\
+ &  & +h\alpha_{3}\left(f+h\beta_{3}f_{t}+h\beta_{3}ff_{y}+h^{2}\beta_{2}\beta_{3}(f_{t}f_{y}+ff_{y}^{2})+\frac{1}{2}h^{2}\beta_{3}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]+O(h^{3})\right).
+\end{eqnarray*}
+
+\end_inset
+
+The constant term (term containing no factor of 
+\begin_inset Formula $h$
+\end_inset
+
+) for each equation is simply 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+, so no constant will remain after subtraction.
+ The difference of the terms involving 
+\begin_inset Formula $h$
+\end_inset
+
+ is 
+\begin_inset Formula $hf-(h\alpha_{1}f+h\alpha_{2}f+h\alpha_{3}f)=hf(1-(\alpha_{1}+\alpha_{2}+\alpha))$
+\end_inset
+
+, so if there is to be no 
+\begin_inset Formula $h$
+\end_inset
+
+ left in the difference, we must have 
+\begin_inset Formula 
+\[
+\alpha_{1}+\alpha_{2}+\alpha_{3}=1.
+\]
+
+\end_inset
+
+The difference of the terms involving 
+\begin_inset Formula $h^{2}f_{t}$
+\end_inset
+
+ is 
+\begin_inset Formula $\frac{1}{2}h^{2}f_{t}-(h^{2}\alpha_{2}\beta_{2}f_{t}+h^{2}\alpha_{3}\beta_{3}f_{t})=h^{2}f_{t}(\frac{1}{2}-(\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3}))$
+\end_inset
+
+, so if there is to be no 
+\begin_inset Formula $h^{2}f_{t}$
+\end_inset
+
+ left in the difference, we must have
+\begin_inset Formula 
+\[
+\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3}=\frac{1}{2}.
+\]
+
+\end_inset
+
+Similarly, we consider the differences of the rest of the terms to get the
+ following conditions on the 
+\begin_inset Formula $\alpha_{j}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+term
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+leads to condition
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h^{2}f_{y}f$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3}=\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h^{3}f_{tt}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2}=\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h^{3}f_{ty}f$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2}=\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h^{3}f_{yy}f^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2}=\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h^{3}f_{t}f_{y}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{3}\beta_{2}\beta_{3}=\frac{1}{6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $h^{3}f_{y}^{2}f$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{3}\beta_{2}\beta_{3}=\frac{1}{6}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+We have considered all 8 different terms, but have only arrived at 4 distinct
+ conditions:
+\begin_inset Formula 
+\begin{eqnarray}
+\alpha_{1}+\alpha_{2}+\alpha_{3} & = & 1\nonumber \\
+\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3} & = & \frac{1}{2}\nonumber \\
+\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2} & = & \frac{1}{3}\nonumber \\
+\alpha_{3}\beta_{2}\beta_{3} & = & \frac{1}{6}.\label{eq:rk3conditions}
+\end{eqnarray}
+
+\end_inset
+
+Since we have 5 variables and only 4 conditions, we should think that there
+ are multiple o.d.e.
+ solvers of the form (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rungeKuttaGeneral"
+
+\end_inset
+
+) with 
+\begin_inset Formula $s=3$
+\end_inset
+
+ and local truncation error 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Evidence from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+ suggests that clopen-ode should have local truncation error 
+\begin_inset Formula $O(h^{4}$
+\end_inset
+
+).
+ Let's check.
+ For that method, we have
+\begin_inset Formula 
+\[
+\begin{gathered}\alpha_{1}=\frac{1}{4},\quad\alpha_{2}=0,\quad\alpha_{3}=\frac{3}{4}\\
+\beta_{2}=\frac{1}{3},\quad\beta_{3}=\frac{2}{3},
+\end{gathered}
+\]
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{eqnarray*}
+\alpha_{1}+\alpha_{2}+\alpha_{3} & = & \frac{1}{4}+0+\frac{3}{4}=1\\
+\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3} & = & 0\cdot\frac{1}{3}+\frac{3}{4}\cdot\frac{2}{3}=\frac{1}{2}\\
+\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2} & = & 0\left(\frac{1}{3}\right)^{2}+\frac{3}{4}\left(\frac{2}{3}\right)^{2}=\frac{1}{3}\\
+\alpha_{3}\beta_{2}\beta_{3} & = & \frac{3}{4}\cdot\frac{1}{3}\cdot\frac{2}{3}=\frac{1}{6}.
+\end{eqnarray*}
+
+\end_inset
+
+Indeed, clopen-ode satisfies all the conditions of an o.d.e.
+ solver with local truncation error (at least) 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+.
+ We would actually have to show that at least one term containing an 
+\begin_inset Formula $h^{4}$
+\end_inset
+
+ remains in the difference to prove that the local truncation error is not
+ of greater degree.
+\end_layout
+
+\begin_layout Standard
+Before finally answering the question of what happened to Simpson's-ode,
+ our hard work so far is sufficient to check that trapezoidal-ode and open-ode
+ have local truncation error 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+ and that Euler's method has local truncation error 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+.
+ For trapezoidal-ode, we have 
+\begin_inset Formula $\alpha_{1}=\frac{1}{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{2}=\frac{1}{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{3}=0$
+\end_inset
+
+, 
+\begin_inset Formula $\beta_{2}=1$
+\end_inset
+
+, and 
+\begin_inset Formula $\beta_{3}$
+\end_inset
+
+ undefined (we may assign any particular number we choose since having 
+\begin_inset Formula $\alpha_{3}=0$
+\end_inset
+
+ makes 
+\begin_inset Formula $\beta_{3}$
+\end_inset
+
+ irrelevant to the method), which gives us
+\begin_inset Formula 
+\begin{eqnarray*}
+\alpha_{1}+\alpha_{2}+\alpha_{3} & = & \frac{1}{2}+\frac{1}{2}+0=1\\
+\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3} & = & \frac{1}{2}\cdot1+0=\frac{1}{2}\\
+\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2} & = & \frac{1}{2}\left(\frac{1}{3}\right)^{2}+0=\frac{1}{18}\neq\frac{1}{3}\\
+\alpha_{3}\beta_{2}\beta_{3} & = & 0\neq\frac{1}{6}.
+\end{eqnarray*}
+
+\end_inset
+
+So the first two conditions are satisfied, but the last two are not.
+ Recall, though, that the first two conditions were derived from the 
+\begin_inset Formula $h$
+\end_inset
+
+ and 
+\begin_inset Formula $h^{2}$
+\end_inset
+
+ terms while the last two conditions were derived from the 
+\begin_inset Formula $h^{3}$
+\end_inset
+
+ terms.
+ So, for trapezoidal-ode, the local truncation error is 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For Euler's method, we have 
+\begin_inset Formula $\alpha_{1}=1$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{2}=\alpha_{3}=0$
+\end_inset
+
+, and 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{3}$
+\end_inset
+
+ undefined (or whatever we choose), which gives us
+\begin_inset Formula 
+\begin{eqnarray*}
+\alpha_{1}+\alpha_{2}+\alpha_{3} & = & 1+0+0=1\\
+\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3} & = & 0+0=0\neq\frac{1}{2}\\
+\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2} & = & 0+0=0\neq\frac{1}{3}\\
+\alpha_{3}\beta_{2}\beta_{3} & = & 0\neq\frac{1}{6}.
+\end{eqnarray*}
+
+\end_inset
+
+The second equation, which was derived from terms involving 
+\begin_inset Formula $h^{2}$
+\end_inset
+
+, is not satisfied but the first equation, which was derived from terms
+ involving 
+\begin_inset Formula $h$
+\end_inset
+
+, is, so the local truncation error for Euler's method is 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Finally, for Simpson's-ode, we have 
+\begin_inset Formula $\alpha_{1}=\frac{1}{6}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{2}=\frac{2}{3}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{3}=\frac{1}{6}$
+\end_inset
+
+, 
+\begin_inset Formula $\beta_{2}=\frac{1}{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $\beta_{3}=1$
+\end_inset
+
+, which gives us
+\begin_inset Formula 
+\begin{eqnarray*}
+\alpha_{1}+\alpha_{2}+\alpha_{3} & = & \frac{1}{6}+\frac{2}{3}+\frac{1}{6}=1\\
+\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3} & = & \frac{2}{3}\cdot\frac{1}{2}+\frac{1}{6}\cdot1=\frac{1}{2}\\
+\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2} & = & \frac{2}{3}\left(\frac{1}{2}\right)^{2}+\frac{1}{6}(1)^{2}=\frac{1}{3}\\
+\alpha_{3}\beta_{2}\beta_{3} & = & \frac{1}{6}\cdot\frac{1}{2}\cdot1\neq\frac{1}{6}.
+\end{eqnarray*}
+
+\end_inset
+
+The first two equations are satisfied, so the local truncation error is
+ (at least) 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+, but the last equation is not satisfied, so the local truncation error
+ is no more than 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+ No terms containing factors of 
+\begin_inset Formula $h$
+\end_inset
+
+ or 
+\begin_inset Formula $h^{2}$
+\end_inset
+
+ (that don't also contain higher powers of 
+\begin_inset Formula $h$
+\end_inset
+
+) appear in the local truncation error, but the term 
+\begin_inset Formula $h^{3}\alpha_{3}\beta_{2}\beta_{3}(f_{t}f_{y}+ff_{y}^{2})=\frac{1}{6}h^{3}(f_{t}f_{y}+ff_{y}^{2})$
+\end_inset
+
+ does, so it is 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+A Note About Convention and Practice
+\end_layout
+
+\begin_layout Standard
+We have derived five o.d.e.
+ solvers so far with little nod to established practice.
+ It's time to fix that.
+ What we have been calling trapezoidal-ode (since it was derived from the
+ trapezoidal rule) is better known as the modified Euler method.
+ What we have been calling clopen-ode is better known as Heun's method.
+ These methods can easily be found in the literature.
+ They are prototypical examples of efficient methods.
+ The modified Euler method requires two function evaluations per step and
+ gives a local truncation error 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+ Heun's method requires three function evaluations per step and gives a
+ local truncation error 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+What we have been calling open-ode has not been named as it would never
+ be used in practice.
+ It is not an efficient method, requiring three function evaluations but
+ having a local truncation error of only 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+ Consequently, you are not likely to see it appear in the literature as
+ it is not a useful method in practice.
+ Heun's method or the modified Euler method would both be preferable to
+ open-ode.
+ Heun's method gives a smaller truncation error for the same amount of computati
+on (three function evaluations) and the modified Euler's method gives the
+ same truncation error for less computation (two function evaluations).
+ Simpson's-ode has the same shortcomings as open-ode, and thus you are not
+ likely to see it in the literature either.
+ It is also an inefficient method.
+\end_layout
+
+\begin_layout Standard
+Methods of the form 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rungeKuttaGeneral"
+
+\end_inset
+
+) are part of a class of methods called Runge-Kutta methods, named after
+ the German mathematicians Carl Runge and Martin Kutta.
+ The basic idea for such methods was laid out by Runge in a paper published
+ in 1895, where he introduced the improved Euler method and others.
+ His work was continued by Heun, whose paper of 1900 brought us Heun's method
+ and others.
+ In 1901, Kutta derives the most famous Runge-Kutta method, what is sometimes
+ now referred to as the classic Runge-Kutta method or the Runge-Kutta method
+ of order 4, RK4.
+ We will see shortly that it is a modification of Simpson's-ode.
+\end_layout
+
+\begin_layout Subsection
+Higher Order Methods
+\end_layout
+
+\begin_layout Standard
+Higher order Runge-Kutta methods can be derived by considering methods of
+ the form 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rungeKuttaGeneral"
+
+\end_inset
+
+) with a number of stages, 
+\begin_inset Formula $s>3$
+\end_inset
+
+.
+ Of course higher order methods must satisfy more conditions.
+ In fact, the number of conditions grows faster as the desired order increases
+ than does the number of variables as the number of stages increases.
+ In other words, there is a point where the number of stages to achieve
+ order 
+\begin_inset Formula $p$
+\end_inset
+
+ exceeds 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Order 1 methods can be derived with one stage (Euler's method) and no less.
+ Order 2 methods can be derived with two stages (improved Euler's method)
+ and no less.
+ Order 3 methods can be derived with three stages (Heun's method) and no
+ less.
+ Order 4 methods can be derived with four stages (example upcoming) and
+ no less.
+ However, order 
+\begin_inset Formula $p$
+\end_inset
+
+ methods with 
+\begin_inset Formula $p>4$
+\end_inset
+
+ require a number of stages 
+\begin_inset Formula $s>p$
+\end_inset
+
+, which, in turn means more than 
+\begin_inset Formula $p$
+\end_inset
+
+ function evaluations.
+ So, the most efficient methods are to be found with order 4 or less.
+\end_layout
+
+\begin_layout Standard
+Simpson's-ode failed to live up to its potential because it did not have
+ enough stages, not because there is no Simpson's-rule-derived formula with
+ local truncation error 
+\begin_inset Formula $O(h^{5})$
+\end_inset
+
+.
+ The classic Runge-Kutta method of order 4 (local truncation error 
+\begin_inset Formula $O(h^{5})$
+\end_inset
+
+) has four stages and is given by
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{2},y_{i}+\frac{h}{2}k_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{h}{2},y_{i}+\frac{h}{2}k_{2}\right)\\
+k_{4} & = & f\left(t_{i}+h,y_{i}+hk_{3}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{6}\left[k_{1}+2k_{2}+2k_{3}+k_{4}\right].
+\end{eqnarray*}
+
+\end_inset
+
+Compare this to Simpson's-ode:
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{2},y_{i}+\frac{h}{2}k_{1}\right)\\
+k_{3} & = & f(t_{i+1},y_{i}+hk_{2})\\
+y_{i+1} & = & y_{i}+\frac{h}{6}\left[k_{1}+4k_{2}+k_{3}\right].
+\end{eqnarray*}
+
+\end_inset
+
+The second stage of Simpson's-ode is separated into two stages in Runge-Kutta's
+ order 4 method.
+ That is the difference.
+ Both stages 2 and 3 are used to approximate 
+\begin_inset Formula $\dot{y}(t_{i}+\frac{h}{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Derivation of The (Classic) Runge-Kutta Order 4}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+To derive any Runge-Kutta method of order 4, the stages of the computation
+ must be expanded in a third Taylor polynomial: 
+\begin_inset Formula 
+\begin{eqnarray*}
+f(t_{i}+\beta_{j}h,y_{i}+\beta_{j}hk_{j-1}) & = & f+h\beta_{j}\left[f_{t}+k_{j-1}f_{y}\right]+\frac{1}{2}h^{2}\beta_{j}^{2}\left[f_{tt}+2k_{j-1}f_{ty}+k_{j-1}^{2}f_{yy}\right]\\
+ &  & +\frac{1}{6}h^{3}\beta_{j}^{3}\left[f_{ttt}+3k_{j-1}f_{tty}+3k_{j-1}^{2}f_{tyy}+k_{j-1}^{3}f_{yyy}\right]+O(h^{4})
+\end{eqnarray*}
+
+\end_inset
+
+and 
+\begin_inset Formula $f(t_{0},y_{0})$
+\end_inset
+
+ must be expanded in a fourth Taylor polynomial:
+\begin_inset Formula 
+\[
+y(t_{0}+h)=y(t_{0})+h\dot{y}(t_{0})+\frac{1}{2}h^{2}\ddot{y}(t_{0})+\frac{1}{6}h^{3}\dddot{y}(t_{0})+\frac{1}{24}h^{4}\ddddot{y}(t_{0})+O(h^{5}).
+\]
+
+\end_inset
+
+But 
+\begin_inset Formula $\ddddot{y}$
+\end_inset
+
+, in terms of 
+\begin_inset Formula $f$
+\end_inset
+
+, is
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{d}{dt}(\dddot{y}) & = & \frac{d}{dt}\left(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f\right)\\
+ & = & f_{yyy}f^{3}+3f_{tyy}f^{2}+4f_{y}f_{yy}f^{2}+3f_{tty}f+5f_{ty}f_{y}f+f_{y}^{3}f\\
+ &  & +3f_{t}f_{yy}f+f_{t}f_{y}^{2}+f_{tt}f_{y}+f_{ttt}+3f_{t}f_{ty}
+\end{eqnarray*}
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{i+1} & = & y_{i}+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f)\\
+ &  & +\frac{1}{24}h^{4}\left(f_{yyy}f^{3}+3f_{tyy}f^{2}+4f_{y}f_{yy}f^{2}+3f_{tty}f+5f_{ty}f_{y}f+f_{y}^{3}f\right.\\
+ &  & \qquad\qquad\left.+3f_{t}f_{yy}f+f_{t}f_{y}^{2}+f_{tt}f_{y}+f_{ttt}+3f_{t}f_{ty}\right)+O(h^{5}).
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Furthermore,
+\begin_inset Formula 
+\[
+k_{1}=f(t_{i},y_{i})=f
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{2} & = & f\left(t_{i}+\beta_{2}h,y_{i}+\beta_{2}hk_{1}\right)\\
+ & = & f+h\beta_{2}\left[f_{t}+ff_{y}\right]+\frac{1}{2}h^{2}\beta_{2}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]\\
+ &  & +\frac{1}{6}h^{3}\beta_{2}^{3}\left[f_{ttt}+3ff_{tty}+3f^{2}f_{tyy}+f^{3}f_{yyy}\right]+O(h^{4}).
+\end{eqnarray*}
+
+\end_inset
+
+Consequently, 
+\begin_inset Formula $k_{2}^{2}=f^{2}+2h\beta_{2}\left[f_{t}+ff_{y}\right]f+O(h^{2})$
+\end_inset
+
+ and 
+\begin_inset Formula $k_{2}^{3}=f^{3}+O(h)$
+\end_inset
+
+.
+ Therefore
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{3} & = & f+h\beta_{3}\left[f_{t}+k_{2}f_{y}\right]+\frac{1}{2}h^{2}\beta_{3}^{2}\left[f_{tt}+2k_{2}f_{ty}+k_{2}^{2}f_{yy}\right]\\
+ &  & +\frac{1}{6}h^{3}\beta_{3}^{3}\left[f_{ttt}+3k_{2}f_{tty}+3k_{2}^{2}f_{tyy}+k_{2}^{3}f_{yyy}\right]\\
+ & = & f+h\beta_{3}\left[f_{t}+\left(f+h\beta_{2}\left[f_{t}+ff_{y}\right]+\frac{1}{2}h^{2}\beta_{2}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]\right)f_{y}\right]\\
+ &  & +\frac{1}{2}h^{2}\beta_{3}^{2}\left[f_{tt}+2\left(f+h\beta_{2}\left[f_{t}+ff_{y}\right]\right)f_{ty}+\left(f^{2}+2h\beta_{2}\left[f_{t}+ff_{y}\right]f\right)f_{yy}\right]\\
+ &  & +\frac{1}{6}h^{3}\beta_{3}^{3}\left[f_{ttt}+3ff_{tty}+3f^{2}f_{tyy}+f^{3}f_{yyy}\right]+O(h^{4})\\
+ & = & f+h\beta_{3}\left[f_{t}+ff_{y}\right]+h^{2}\beta_{2}\beta_{3}\left[f_{t}+ff_{y}\right]f_{y}+\frac{1}{2}h^{2}\beta_{3}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]\\
+ &  & +\frac{1}{2}h^{3}\beta_{3}\beta_{2}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]f_{y}+h^{3}\beta_{3}^{2}\beta_{2}\left[f_{t}+ff_{y}\right]\left[f_{ty}+ff_{yy}\right]\\
+ &  & +\frac{1}{6}h^{3}\beta_{3}^{3}\left[f_{ttt}+3ff_{tty}+3f^{2}f_{tyy}+f^{3}f_{yyy}\right]+O(h^{4}).
+\end{eqnarray*}
+
+\end_inset
+
+So, 
+\begin_inset Formula $k_{3}^{2}=f^{2}+2h\beta_{3}\left[f_{t}+ff_{y}\right]f+O(h^{2})$
+\end_inset
+
+ and 
+\begin_inset Formula $k_{3}^{3}=f^{3}+O(h)$
+\end_inset
+
+.
+ Therefore
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{4} & = & f+h\beta_{4}\left[f_{t}+k_{3}f_{y}\right]+\frac{1}{2}h^{2}\beta_{4}^{2}\left[f_{tt}+2k_{3}f_{ty}+k_{3}^{2}f_{yy}\right]\\
+ &  & +\frac{1}{6}h^{3}\beta_{4}^{3}\left[f_{ttt}+3k_{3}f_{tty}+3k_{3}^{2}f_{tyy}+k_{3}^{3}f_{yyy}\right]+O(h^{4})\\
+ & = & f+h\beta_{4}\left[f_{t}+\left(f+h\beta_{3}\left[f_{t}+ff_{y}\right]+h^{2}\beta_{2}\beta_{3}\left[f_{t}+ff_{y}\right]f_{y}+\frac{1}{2}h^{2}\beta_{3}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]\right)f_{y}\right]\\
+ &  & +\frac{1}{2}h^{2}\beta_{4}^{2}\left[f_{tt}+2\left(f+h\beta_{3}\left[f_{t}+ff_{y}\right]\right)f_{ty}+\left(f^{2}+2h\beta_{3}\left[f_{t}+ff_{y}\right]f\right)f_{yy}\right]\\
+ &  & +\frac{1}{6}h^{3}\beta_{4}^{3}\left[f_{ttt}+3ff_{tty}+3f^{2}f_{tyy}+f^{3}f_{yyy}\right]+O(h^{4})\\
+ & = & f+h\beta_{4}\left[f_{t}+ff_{y}\right]+h^{2}\beta_{3}\beta_{4}\left[f_{t}+ff_{y}\right]f_{y}+\frac{1}{2}h^{2}\beta_{4}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]\\
+ &  & +h^{3}\beta_{2}\beta_{3}\beta_{4}\left[f_{t}+ff_{y}\right]f_{y}^{2}+\frac{1}{2}h^{3}\beta_{4}\beta_{3}^{2}\left[f_{tt}+2ff_{ty}+f^{2}f_{yy}\right]f_{y}\\
+ &  & +h^{3}\beta_{4}^{2}\beta_{3}\left[f_{t}+ff_{y}\right]\left[f_{ty}+ff_{yy}\right]+\frac{1}{6}h^{3}\beta_{4}^{3}\left[f_{ttt}+3ff_{tty}+3f^{2}f_{tyy}+f^{3}f_{yyy}\right]+O(h^{4}).
+\end{eqnarray*}
+
+\end_inset
+
+Matching coefficients in 
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{i+1} & = & y_{i}+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f)\\
+ &  & +\frac{1}{24}h^{4}\left(f_{yyy}f^{3}+3f_{tyy}f^{2}+4f_{y}f_{yy}f^{2}+3f_{tty}f+5f_{ty}f_{y}f+f_{y}^{3}f\right.\\
+ &  & \qquad\qquad\left.+3f_{t}f_{yy}f+f_{t}f_{y}^{2}+f_{tt}f_{y}+f_{ttt}+3f_{t}f_{ty}\right)+O(h^{5}).
+\end{eqnarray*}
+
+\end_inset
+
+with coefficients in 
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+h\left[\alpha_{1}k_{1}+\alpha_{2}k_{2}+\alpha_{3}k_{3}+\alpha_{4}k_{4}\right]
+\]
+
+\end_inset
+
+up to order 4 yields the conditions 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula 
+\begin{eqnarray}
+\alpha_{1}+\alpha_{2}+\alpha_{3}+\alpha_{4} & = & 1\label{eq:rk4cond1}\\
+\alpha_{2}\beta_{2}+\alpha_{3}\beta_{3}+\alpha_{4}\beta_{4} & = & \frac{1}{2}\label{eq:rk4cond2}\\
+\alpha_{2}\beta_{2}^{2}+\alpha_{3}\beta_{3}^{2}+\alpha_{4}\beta_{4}^{2} & = & \frac{1}{3}\label{eq:rk4cond3}\\
+\alpha_{3}\beta_{2}\beta_{3}+\alpha_{4}\beta_{3}\beta_{4} & = & \frac{1}{6}\label{eq:rk4cond4}\\
+\alpha_{2}\beta_{2}^{3}+\alpha_{3}\beta_{3}^{3}+\alpha_{4}\beta_{4}^{3} & = & \frac{1}{4}\label{eq:rk4cond5}\\
+\alpha_{3}\beta_{3}^{2}\beta_{2}+\alpha_{4}\beta_{4}^{2}\beta_{3} & = & \frac{1}{8}\label{eq:rk4cond6}\\
+2\alpha_{3}\beta_{3}^{2}\beta_{2}+2\alpha_{4}\beta_{4}^{2}\beta_{3}+\alpha_{3}\beta_{3}\beta_{2}^{2}+\alpha_{4}\beta_{4}\beta_{3}^{2} & = & \frac{1}{3}\label{eq:rk4cond7}\\
+\alpha_{3}\beta_{3}^{2}\beta_{2}+\alpha_{4}\beta_{4}^{2}\beta_{3}+\alpha_{3}\beta_{3}\beta_{2}^{2}+\alpha_{4}\beta_{4}\beta_{3}^{2} & = & \frac{5}{24}\label{eq:rk4cond8}\\
+\alpha_{3}\beta_{3}\beta_{2}^{2}+\alpha_{4}\beta_{4}\beta_{3}^{2} & = & \frac{1}{12}\label{eq:rk4cond9}\\
+\alpha_{4}\beta_{2}\beta_{3}\beta_{4} & = & \frac{1}{24}.\label{eq:rk4cond10}
+\end{eqnarray}
+
+\end_inset
+
+Any four-stage (
+\begin_inset Formula $s=4$
+\end_inset
+
+) fourth order Runge-Kutta method of the form (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rungeKuttaGeneral"
+
+\end_inset
+
+) will have to satisfy these 10 equations with only 7 degrees of freedom
+ (7 variables).
+ Either the equations form a dependent set or solutions will be rare.
+ In an attempt to solve the system, we solve (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond10"
+
+\end_inset
+
+) for 
+\begin_inset Formula $\alpha_{4}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\alpha_{4}=\frac{1}{24\beta_{2}\beta_{3}\beta_{4}}.
+\]
+
+\end_inset
+
+Substituting our formula for 
+\begin_inset Formula $\alpha_{4}$
+\end_inset
+
+ into (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond4"
+
+\end_inset
+
+) and solving for 
+\begin_inset Formula $\alpha_{3}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\alpha_{3}=\frac{4\beta_{2}-1}{24\beta_{2}^{2}\beta_{3}}.
+\]
+
+\end_inset
+
+Substituting our formulas for 
+\begin_inset Formula $\alpha_{3}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{4}$
+\end_inset
+
+ into (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond9"
+
+\end_inset
+
+) and solving for 
+\begin_inset Formula $\beta_{3}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\beta_{3}=-4\beta_{2}^{2}+3\beta_{2}.
+\]
+
+\end_inset
+
+Substituting our formulas for 
+\begin_inset Formula $\alpha_{3}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{4}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{3}$
+\end_inset
+
+ into (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond6"
+
+\end_inset
+
+) and solving for 
+\begin_inset Formula $\beta_{4}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\beta_{4}=(6-16\beta_{2}+16\beta_{2}^{2})\beta_{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Substituting our formulas for 
+\begin_inset Formula $\alpha_{3}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{4}$
+\end_inset
+
+, 
+\begin_inset Formula $\beta_{3}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{4}$
+\end_inset
+
+ into (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond2"
+
+\end_inset
+
+) and solving for 
+\begin_inset Formula $\alpha_{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\alpha_{2}=\frac{2-16\beta_{2}+52\beta_{2}^{2}-48\beta_{2}^{3}}{24\beta_{2}^{3}\left(3-4\beta_{2}\right)}.
+\]
+
+\end_inset
+
+Substituting our formulas for 
+\begin_inset Formula $\alpha_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{3}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{4}$
+\end_inset
+
+, 
+\begin_inset Formula $\beta_{3}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{4}$
+\end_inset
+
+ into (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond3"
+
+\end_inset
+
+) and simplifying:
+\begin_inset Formula 
+\[
+16\beta_{2}^{3}-12\beta_{2}^{2}+4\beta_{2}-1=0.
+\]
+
+\end_inset
+
+The roots of this last equation are 
+\begin_inset Formula $\beta_{2}=\frac{1}{2},\frac{1\pm i\sqrt{7}}{8}$
+\end_inset
+
+, so we conclude that 
+\begin_inset Formula $\beta_{2}=\frac{1}{2}$
+\end_inset
+
+.
+ Back substituting, we find
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta_{2} & = & \frac{1}{2}\\
+\alpha_{2} & = & \frac{1}{3}\\
+\beta_{4} & = & 1\\
+\beta_{3} & = & \frac{1}{2}\\
+\alpha_{3} & = & \frac{1}{3}\\
+\alpha_{4} & = & \frac{1}{6}.
+\end{eqnarray*}
+
+\end_inset
+
+Substituting these values of 
+\begin_inset Formula $\alpha_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{3}$
+\end_inset
+
+, and 
+\begin_inset Formula $\alpha_{4}$
+\end_inset
+
+ into (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond1"
+
+\end_inset
+
+), we find
+\begin_inset Formula 
+\[
+\alpha_{1}=\frac{1}{6}.
+\]
+
+\end_inset
+
+These seven values are the unique simultaneous real solution of the equations
+ (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond10"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond4"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond9"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond6"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond2"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond3"
+
+\end_inset
+
+), and (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond1"
+
+\end_inset
+
+).
+ So the seven parameters are determined by 7 of the ten conditions.
+ It remains to show that these seven values also satisfy (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond5"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond7"
+
+\end_inset
+
+), and (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond8"
+
+\end_inset
+
+), which they do.
+ Finally, note that these are the values of the parameters for the (classic)
+ Runge-Kutta method of order 4.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+Explain geometrically, and in your own words, modified Euler's method.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

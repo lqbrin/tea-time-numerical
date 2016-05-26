@@ -264,18 +264,38 @@ f'(x_{0})-P_{n}'(x_{0})=\frac{f^{(n+1)}(\xi_{x_{0}})}{(n+1)!}w'(x_{0}).
 
 \end_inset
 
-This expression can be simplified further by noting that 
+From here on, the error formula is only valid at a node! This last expression
+ can be simplified further by noting that 
 \begin_inset Formula 
 \[
 w'(x)=\sum_{i=0}^{n}\prod_{\substack{j=0\\
 i\neq j
 }
-}^{n}(x-x_{j})=\sum_{i=0}^{n}p_{i}(x).
+}^{n}(x-x_{j})=\sum_{i=0}^{n}p_{i}(x),
 \]
 
 \end_inset
 
-But 
+where 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ is as defined for equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrangeInterpolatingPolynomial"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "eq:lagrangeInterpolatingPolynomial"
+
+\end_inset
+
+.
+ But 
 \begin_inset Formula $p_{i}(x_{0})=0$
 \end_inset
 
@@ -330,7 +350,7 @@ Making the substitutions
 :
 \begin_inset Formula 
 \[
-f'(x_{0}+\theta_{0}h)-P_{n}'(x_{0}+\theta_{0}h)=\frac{f^{(n+1)}(\xi_{x_{0}})}{(n+1)!}(-\theta_{1}h)(-\theta_{2}h)\cdots(-\theta_{n}h).
+f'(x_{0})-P_{n}'(x_{0})=\frac{f^{(n+1)}(\xi_{x_{0}})}{(n+1)!}(-\theta_{1}h)(-\theta_{2}h)\cdots(-\theta_{n}h).
 \]
 
 \end_inset
@@ -394,7 +414,8 @@ For the stencil
 
 \end_inset
 
-Error terms for the first derivative over other stencils are computed similarly.
+Error terms for the first derivative over other stencils are computed similarly
+ as long as the derivative is evaluated at a node.
  Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -918,6 +939,43 @@ The final formality is that of converting this expression into big-oh notation:
 \[
 e(h)=O(h^{2}f'''(\xi_{h})).
 \]
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Terri says 
+\begin_inset Quotes eld
+\end_inset
+
+Can use IVT to show 
+\begin_inset Formula $\exists\xi\in[x_{0},x_{n}]$
+\end_inset
+
+ s.t.
+ 
+\begin_inset Formula $f^{(n)}(\xi)=\frac{f^{(n)}(\xi_{1})+\cdots+f^{(n)}(\xi_{n})}{n}$
+\end_inset
+
+.
+ This method [the one used here] does not produce the same constants 
+\begin_inset Formula $M$
+\end_inset
+
+ in the table.
+ Let 
+\begin_inset Formula $\xi$
+\end_inset
+
+ be the same as in Lagrange and it is the same.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -3011,7 +3069,7 @@ reference "tab:integrationFormulas"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -3849,6 +3907,13 @@ begin{small}
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Exercises
 \end_layout
@@ -4404,7 +4469,7 @@ name "exc:calculusErrors-1"
 Do question 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "exc:calculusErrors-1"
+reference "exc:calculusErrors"
 
 \end_inset
 
@@ -4436,7 +4501,7 @@ name "exc:calculusErrors-2"
 Do question 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "exc:calculusErrors-1"
+reference "exc:calculusErrors"
 
 \end_inset
 
