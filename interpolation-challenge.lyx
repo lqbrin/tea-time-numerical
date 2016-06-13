@@ -542,7 +542,8 @@ as long as
 Reference 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "barnsleyInterpolation"
+after "Chapter 6"
+key "barnsley"
 
 \end_inset
 

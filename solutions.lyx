@@ -16192,6 +16192,16 @@ This comes from the fact that increasing the number of intervals by a factor
 
 \begin_layout Description
 REMARK: We have used the Octave code
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+composite trapezoidal rule ! code
+\end_layout
+
+\end_inset
+
+
 \begin_inset ERT
 status open
 
@@ -23952,6 +23962,35 @@ ya
 \end_inset
 
  for the independent variable.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Euler's method ! code
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+eulerode.m
+\family default
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "code:euler"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout LyX-Code
@@ -23981,10 +24020,6 @@ ya
 
 \begin_layout LyX-Code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end_layout
-
-\begin_layout LyX-Code
-
 \end_layout
 
 \begin_layout LyX-Code
@@ -24745,5 +24780,4800 @@ The solution of this system is
 .
 \end_layout
 
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-1"
+
+\end_inset
+
+: Each o.d.e.
+ solver has the form
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+h(\mbox{weighted average of evaluations of }f).
+\]
+
+\end_inset
+
+It is the integration formula that gives us the weighted average.
+ In this case, the formula 
+\begin_inset Formula $\frac{h}{4}\left(f(x_{0})+3f\left(x_{0}+\frac{2}{3}h\right)\right)$
+\end_inset
+
+ tells us to average 
+\begin_inset Formula $f(x_{0})$
+\end_inset
+
+, the value of 
+\begin_inset Formula $f$
+\end_inset
+
+ at the first node, with 
+\begin_inset Formula $f(x_{0}+\frac{2}{3}h)$
+\end_inset
+
+ in a 
+\begin_inset Formula $1:3$
+\end_inset
+
+ ratio.
+ That is, we sum one 
+\begin_inset Formula $f(x_{0})$
+\end_inset
+
+ with three 
+\begin_inset Formula $f(x_{0}+\frac{2}{3}h)$
+\end_inset
+
+ and divide by 4.
+ Unfortunately, we are using 
+\begin_inset Formula $f$
+\end_inset
+
+ here in two different settings.
+ The 
+\begin_inset Formula $f$
+\end_inset
+
+ in an o.d.e.
+ solver is not the same 
+\begin_inset Formula $f$
+\end_inset
+
+ used in deriving the integration formulas.
+ The 
+\begin_inset Formula $f$
+\end_inset
+
+ from the integration formulas is a function of one variable, 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $f$
+\end_inset
+
+ we need in an o.d.e.
+ solver is a function of two variables, 
+\begin_inset Formula $t$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Nevertheless, they play the same role.
+ They each hold the values of the function we are integrating.
+ If we need to sum one 
+\begin_inset Formula $f(x_{0})$
+\end_inset
+
+ with three 
+\begin_inset Formula $f(x_{0}+\frac{2}{3}h)$
+\end_inset
+
+ in the integration formula, then we need to sum one 
+\begin_inset Formula $f(t_{i},y_{i})$
+\end_inset
+
+ with three 
+\begin_inset Formula $f(t_{i+2/3},y_{i+2/3})$
+\end_inset
+
+ in the o.d.e.
+ solver.
+ Generally, 
+\begin_inset Formula $f(x_{0}+\alpha h)$
+\end_inset
+
+ in an integration formula translates to 
+\begin_inset Formula $f(t_{i+\alpha},y_{i+\alpha})$
+\end_inset
+
+ in the o.d.e.
+ solver as long as the integration formula is written for an interval of
+ length 
+\begin_inset Formula $h$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Each o.d.e.
+ solver begins with 
+\begin_inset Formula $k_{1}=f(t_{i},y_{i})$
+\end_inset
+
+ where 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+ is the last point approximated.
+ Each successive value in the o.d.e.
+ solver is obtained by using Euler's method with initial condition (starting
+ point) 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+.
+ For this particular integration formula, there is only one node other than
+ 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, so we will need only one more stage.
+ We approximate 
+\begin_inset Formula $y_{i+2/3}$
+\end_inset
+
+ by 
+\begin_inset Formula $y_{i}+\frac{2h}{3}k_{1}$
+\end_inset
+
+ (Euler's method using starting point 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+ and approximate slope 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+).
+ This makes 
+\begin_inset Formula $k_{2}=f(t_{i}+\frac{2h}{3},y_{i}+\frac{2h}{3}k_{1})$
+\end_inset
+
+.
+ The final step is to compute the weighted average.
+ As discussed, we need to sum one 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+ with three 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ and divide by 4.
+ In summary, the o.d.e.
+ solver suggested by this integration formula is
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{2h}{3},y_{i}+\frac{2h}{3}k_{1}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{4}\left[k_{1}+3k_{2}\right].
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-5"
+
+\end_inset
+
+: Each o.d.e.
+ solver has the form
+\begin_inset Formula 
+\[
+y_{i+1}=y_{i}+h(\mbox{weighted average of evaluations of }f).
+\]
+
+\end_inset
+
+It is the integration formula that gives us the weighted average.
+ In this case, the formula 
+\begin_inset Formula $\frac{h}{4}\left(3f\left(x_{0}+\frac{1}{3}h\right)+f(x_{0}+h)\right)$
+\end_inset
+
+ tells us to average 
+\begin_inset Formula $f(x_{0}+\frac{1}{3}h)$
+\end_inset
+
+, the value of 
+\begin_inset Formula $f$
+\end_inset
+
+ at the first node, with 
+\begin_inset Formula $f(x_{0}+h)$
+\end_inset
+
+ in a 
+\begin_inset Formula $3:1$
+\end_inset
+
+ ratio.
+ That is, we sum three 
+\begin_inset Formula $f(x_{0}+\frac{1}{3}h)$
+\end_inset
+
+ with one 
+\begin_inset Formula $f(x_{0}+h)$
+\end_inset
+
+ and divide by 4.
+ Unfortunately, we are using 
+\begin_inset Formula $f$
+\end_inset
+
+ here in two different settings.
+ The 
+\begin_inset Formula $f$
+\end_inset
+
+ in an o.d.e.
+ solver is not the same 
+\begin_inset Formula $f$
+\end_inset
+
+ used in deriving the integration formulas.
+ The 
+\begin_inset Formula $f$
+\end_inset
+
+ from the integration formulas is a function of one variable, 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $f$
+\end_inset
+
+ we need in an o.d.e.
+ solver is a function of two variables, 
+\begin_inset Formula $t$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Nevertheless, they play the same role.
+ They each hold the values of the function we are integrating.
+ If we need to sum three 
+\begin_inset Formula $f(x_{0}+\frac{1}{3}h)$
+\end_inset
+
+ with one 
+\begin_inset Formula $f(x_{0}+h)$
+\end_inset
+
+ in the integration formula, then we need to sum three 
+\begin_inset Formula $f(t_{i+1/3},y_{i+1/3})$
+\end_inset
+
+ with one 
+\begin_inset Formula $f(t_{i+1},y_{i+1})$
+\end_inset
+
+ in the o.d.e.
+ solver.
+ Generally, 
+\begin_inset Formula $f(x_{0}+\alpha h)$
+\end_inset
+
+ in an integration formula translates to 
+\begin_inset Formula $f(t_{i+\alpha},y_{i+\alpha})$
+\end_inset
+
+ in the o.d.e.
+ solver as long as the integration formula is written for an interval of
+ length 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Each o.d.e.
+ solver begins with 
+\begin_inset Formula $k_{1}=f(t_{i},y_{i})$
+\end_inset
+
+ where 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+ is the last point approximated.
+ Each successive value in the o.d.e.
+ solver is obtained by using Euler's method with initial condition (starting
+ point) 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+.
+ For this particular integration formula, there are two nodes other than
+ 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, so we will need two more stages.
+ We approximate 
+\begin_inset Formula $y_{i+1/3}$
+\end_inset
+
+ by 
+\begin_inset Formula $y_{i}+\frac{h}{3}k_{1}$
+\end_inset
+
+ (Euler's method using starting point 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+ and approximate slope 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+).
+ This makes 
+\begin_inset Formula $k_{2}=f(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1})$
+\end_inset
+
+.
+ We then approximate 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+ by 
+\begin_inset Formula $y_{i}+hk_{2}$
+\end_inset
+
+ (Euler's method using starting point 
+\begin_inset Formula $(t_{i},y_{i})$
+\end_inset
+
+ and approximate slope 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+).
+ The final step is to compute the weighted average.
+ As discussed, we need to sum three 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ with one 
+\begin_inset Formula $k_{3}$
+\end_inset
+
+ and divide by 4.
+ In summary, the o.d.e.
+ solver suggested by this integration formula is
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1}\right)\\
+k_{3} & = & f\left(t_{i}+h,y_{i}+hk_{2}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{4}\left[3k_{2}+k_{3}\right].
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-16"
+
+\end_inset
+
+a: We will modify the test code from the text in two essential ways.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+It will be adapted for the o.d.e.
+ solver
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{2h}{3},y_{i}+\frac{2h}{3}k_{1}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{4}\left[k_{1}+3k_{2}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+An extra loop will be added so it approximates 
+\begin_inset Formula $y(2)$
+\end_inset
+
+ for a number of step sizes.
+\end_layout
+
+\begin_layout Standard
+These modifications will make it a simple matter to determine the rate of
+ convergence.
+\end_layout
+
+\begin_layout LyX-Code
+t0=4;
+\end_layout
+
+\begin_layout LyX-Code
+h=-1/4;
+\end_layout
+
+\begin_layout LyX-Code
+n=8;
+\end_layout
+
+\begin_layout LyX-Code
+f=inline("-y/t+t^2");
+\end_layout
+
+\begin_layout LyX-Code
+exact=inline("t^3/4+16/t");
+\end_layout
+
+\begin_layout LyX-Code
+y0=20;
+\end_layout
+
+\begin_layout LyX-Code
+disp('                 h           y       Error')
+\end_layout
+
+\begin_layout LyX-Code
+disp('      ------------------------------------')
+\end_layout
+
+\begin_layout LyX-Code
+for j=1:6
+\end_layout
+
+\begin_layout LyX-Code
+  t=t0;
+\end_layout
+
+\begin_layout LyX-Code
+  y=y0;
+\end_layout
+
+\begin_layout LyX-Code
+  for i=1:n
+\end_layout
+
+\begin_layout LyX-Code
+    k1=f(t,y);
+\end_layout
+
+\begin_layout LyX-Code
+    k2=f(t+2*h/3,y+2*h/3*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    y=y+h/4*(k1+3*k2);
+\end_layout
+
+\begin_layout LyX-Code
+    t=t+h;
+\end_layout
+
+\begin_layout LyX-Code
+  end%for
+\end_layout
+
+\begin_layout LyX-Code
+  x=exact(t);
+\end_layout
+
+\begin_layout LyX-Code
+  sprintf('%12.5g%12.5g%12.5g',h,y,abs(y-x))
+\end_layout
+
+\begin_layout LyX-Code
+  n=n*2;
+\end_layout
+
+\begin_layout LyX-Code
+  h=h/2;
+\end_layout
+
+\begin_layout LyX-Code
+end%for
+\end_layout
+
+\begin_layout Standard
+The output from this code is
+\end_layout
+
+\begin_layout LyX-Code
+                 h           y       Error
+\end_layout
+
+\begin_layout LyX-Code
+      ------------------------------------
+\end_layout
+
+\begin_layout LyX-Code
+ans =        -0.25      9.9391    0.060922
+\end_layout
+
+\begin_layout LyX-Code
+ans =       -0.125      9.9846    0.015433
+\end_layout
+
+\begin_layout LyX-Code
+ans =      -0.0625      9.9961   0.0038827
+\end_layout
+
+\begin_layout LyX-Code
+ans =     -0.03125       9.999  0.00097364
+\end_layout
+
+\begin_layout LyX-Code
+ans =    -0.015625      9.9998  0.00024378
+\end_layout
+
+\begin_layout LyX-Code
+ans =   -0.0078125      9.9999   6.099e-05
+\end_layout
+
+\begin_layout Standard
+The ratio of the step size on one line to the next is 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+, and the ratio of consecutive errors is about 
+\begin_inset Formula $\frac{1}{4}=\left(\frac{1}{2}\right)^{2}$
+\end_inset
+
+, so it appears the o.d.e.
+ solver has rate of convergence 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+.
+ The integration method has rate of convergence 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+ so we would expect the o.d.e.
+ solver to be 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+ Our experiment does not show the expected rate of convergence.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-16"
+
+\end_inset
+
+e: An extra loop will be added so it approximates 
+\begin_inset Formula $y(2)$
+\end_inset
+
+ for a number of step sizes.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+These modifications will make it a simple matter to determine the rate of
+ convergence.
+\end_layout
+
+\begin_layout LyX-Code
+t0=4;
+\end_layout
+
+\begin_layout LyX-Code
+h=-1/4;
+\end_layout
+
+\begin_layout LyX-Code
+n=8;
+\end_layout
+
+\begin_layout LyX-Code
+f=inline("-y/t+t^2");
+\end_layout
+
+\begin_layout LyX-Code
+exact=inline("t^3/4+16/t");
+\end_layout
+
+\begin_layout LyX-Code
+y0=20;
+\end_layout
+
+\begin_layout LyX-Code
+disp('                 h           y       Error')
+\end_layout
+
+\begin_layout LyX-Code
+disp('      ------------------------------------')
+\end_layout
+
+\begin_layout LyX-Code
+for j=1:6
+\end_layout
+
+\begin_layout LyX-Code
+  t=t0;
+\end_layout
+
+\begin_layout LyX-Code
+  y=y0;
+\end_layout
+
+\begin_layout LyX-Code
+  for i=1:n
+\end_layout
+
+\begin_layout LyX-Code
+    k1=f(t,y);
+\end_layout
+
+\begin_layout LyX-Code
+    k2=f(t+h/3,y+h/3*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    k3=f(t+h,y+h*k2);
+\end_layout
+
+\begin_layout LyX-Code
+    y=y+h/4*(3*k2+k3);
+\end_layout
+
+\begin_layout LyX-Code
+    t=t+h;
+\end_layout
+
+\begin_layout LyX-Code
+  end%for
+\end_layout
+
+\begin_layout LyX-Code
+  x=exact(t);
+\end_layout
+
+\begin_layout LyX-Code
+  sprintf('%12.5g%12.5g%12.5g',h,y,abs(y-x))
+\end_layout
+
+\begin_layout LyX-Code
+  n=n*2;
+\end_layout
+
+\begin_layout LyX-Code
+  h=h/2;
+\end_layout
+
+\begin_layout LyX-Code
+end%for
+\end_layout
+
+\begin_layout Standard
+The output from this code is
+\end_layout
+
+\begin_layout LyX-Code
+                 h           y       Error
+\end_layout
+
+\begin_layout LyX-Code
+      ------------------------------------
+\end_layout
+
+\begin_layout LyX-Code
+ans =        -0.25      9.9697     0.03027
+\end_layout
+
+\begin_layout LyX-Code
+ans =       -0.125      9.9923   0.0076889
+\end_layout
+
+\begin_layout LyX-Code
+ans =      -0.0625      9.9981   0.0019376
+\end_layout
+
+\begin_layout LyX-Code
+ans =     -0.03125      9.9995  0.00048634
+\end_layout
+
+\begin_layout LyX-Code
+ans =    -0.015625      9.9999  0.00012183
+\end_layout
+
+\begin_layout LyX-Code
+ans =   -0.0078125          10  3.0487e-05
+\end_layout
+
+\begin_layout Standard
+The ratio of the step size on one line to the next is 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+, and the ratio of consecutive errors is about 
+\begin_inset Formula $\frac{1}{4}=\left(\frac{1}{2}\right)^{2}$
+\end_inset
+
+, so it appears the o.d.e.
+ solver has rate of convergence 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+.
+ The integration method has rate of convergence 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+ so we would expect the o.d.e.
+ solver to be 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+ Our experiment does not show the expected rate of convergence.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-17"
+
+\end_inset
+
+a: The Octave function we wrote to implement Euler's method takes 5 arguments.
+ As explained in the comment preceding the function declaration,
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = eulerode(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+they are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('3*x-2*y')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = 3*x-2*y
+\end_layout
+
+\begin_layout LyX-Code
+>> eulerode(f,1,1,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 4:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.00000000000000   1.05000000000000   1.10250000000000   1.15725000000000
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 5 through 8:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.21402500000000   1.27262250000000   1.33286025000000   1.39457422500000
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 9 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.45761680250000   1.52185512225000   1.58716961002500   1.65345264902250
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 16:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.72060738412025   1.78854664570823   1.85719198113740   1.92647278302366
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 17 through 20:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.99632550472130   2.06669295424917   2.13752365882425   2.20877129294183
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Column 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.28039416364764
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx2.28039416364764$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx2.20877129294183$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=eulerode(f,1,1,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-17"
+
+\end_inset
+
+d: The Octave function we wrote to implement Euler's method takes 5 arguments.
+ As explained in the comment preceding the function declaration,
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = eulerode(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+they are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+\end_layout
+
+\begin_layout LyX-Code
+>> eulerode(f,1,0,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 3:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   0.000000000000000  -0.063348127711403  -0.133556806761731
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 4 through 6:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.210091730766547  -0.292335849279218  -0.379594108676440
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 7 through 9:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.471098428249811  -0.566012332190405  -0.663433947473280
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 10 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.762393924730387  -0.861836463006993  -0.960521838453174
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 15:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.055901027787366  -1.150767311038156  -1.243138035592362
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 16 through 18:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.331810188637979  -1.415726818259857  -1.493905125626401
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 19 through 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.565422860316011  -1.629418404020635  -1.685095172485204
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx-1.685095172485204$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx-1.629418404020635$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=eulerode(f,1,0,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-18"
+
+\end_inset
+
+a: The Octave functions we wrote to implement other methods take 5 arguments.
+ Here, we imagine a similar function for trapezoidal-ode has been written
+ and looks like
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = trapode(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+The arguments are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('3*x-2*y')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = 3*x-2*y
+\end_layout
+
+\begin_layout LyX-Code
+>> trapode(f,1,1,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 4:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.00000000000000   1.05125000000000   1.10475625000000   1.16030440625000
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 5 through 8:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.21770048765625   1.27676894132891   1.33735089190266   1.39930255717191
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 9 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.46249381424058   1.52680690188772   1.59213524620839   1.65838239781859
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 16:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.72546107002583   1.79329226837337   1.86180450287790   1.93093307510450
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 17 through 20:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.00061943296957   2.07081058683746   2.14145858108790   2.21252001588455
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Column 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.28395561437552
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx2.28395561437552$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx2.21252001588455$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=trapode(f,1,1,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-18"
+
+\end_inset
+
+d: The Octave functions we wrote to implement other methods take 5 arguments.
+ Here, we imagine a similar function for trapezoidal-ode has been written
+ and looks like
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = trapode(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+The arguments are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+\end_layout
+
+\begin_layout LyX-Code
+>> trapode(f,1,0,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 3:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   0.000000000000000  -0.066778403380866  -0.139846898631295
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 4 through 6:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.218610595984683  -0.302399307505556  -0.390473688925680
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 7 through 9:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.482031924143591  -0.576216643912361  -0.672121275727591
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 10 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.768792826665983  -0.865212265743696  -0.959857757799220
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 15:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.056576584732967  -1.151350240932434  -1.242238115924874
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 16 through 18:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.328187356783625  -1.408239476567505  -1.481492346014993
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 19 through 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.547099820528092  -1.604277373646634  -1.652308958787397
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx-1.652308958787397$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx-1.604277373646634$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=trapode(f,1,0,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-19"
+
+\end_inset
+
+a: The Octave functions we wrote to implement other methods take 5 arguments.
+ Here, we imagine a similar function for clopen-ode has been written and
+ looks like
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = clopen(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+The arguments are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('3*x-2*y')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = 3*x-2*y
+\end_layout
+
+\begin_layout LyX-Code
+>> clopen(f,1,1,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 4:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.00000000000000   1.05120833333333   1.10468084027778   1.16020204697801
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 5 through 8:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.21757698550727   1.27662924238649   1.33719919281938   1.39914240296940
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 9 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.46232818428681   1.52663828541552   1.59196570858681   1.65821363865296
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 16:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.72529447404116   1.79312894992824   1.86164534486007   1.93077876287422
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 17 through 20:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.00047048394069   2.07066737621900   2.14132136424883   2.21238894775115
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Column 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.28383076622349
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx2.28383076622349$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx2.21238894775115$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=clopen(f,1,1,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-19"
+
+\end_inset
+
+d: The Octave functions we wrote to implement other methods take 5 arguments.
+ Here, we imagine a similar function for clopen-ode has been written and
+ looks like
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = clopen(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+The arguments are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+\end_layout
+
+\begin_layout LyX-Code
+>> clopen(f,1,0,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 3:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   0.000000000000000  -0.066674788135152  -0.139650010793905
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 4 through 6:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.218333343735571  -0.302057681694326  -0.390087513340042
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 7 through 9:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.481626032825074  -0.575822930559361  -0.671782830658695
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 10 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.768574489070735  -0.865241984556076  -0.960839121780159
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 15:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.051332254162207  -1.136768664871208  -1.218181121459446
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 16 through 18:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.294632701999881  -1.365219285669536  -1.429077386836689
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 19 through 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.485393339498179  -1.533411938658838  -1.572444496803329
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx-1.572444496803329$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx-1.533411938658838$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=clopen(f,1,0,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-20"
+
+\end_inset
+
+a: The Octave function we wrote to implement the midpoint method takes 5
+ arguments.
+ As explained in the comment preceding the function declaration,
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = midpoint(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+they are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('3*x-2*y')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = 3*x-2*y
+\end_layout
+
+\begin_layout LyX-Code
+>> midpoint(f,1,1,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 4:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.00000000000000   1.05125000000000   1.10475625000000   1.16030440625000
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 5 through 8:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.21770048765625   1.27676894132891   1.33735089190266   1.39930255717191
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 9 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.46249381424058   1.52680690188772   1.59213524620839   1.65838239781859
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 16:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.72546107002582   1.79329226837337   1.86180450287790   1.93093307510450
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 17 through 20:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.00061943296957   2.07081058683746   2.14145858108790   2.21252001588455
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Column 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.28395561437552
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx2.28395561437552$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx2.21252001588455$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=midpoint(f,1,1,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-20"
+
+\end_inset
+
+d: The Octave function we wrote to implement the midpoint method takes 5
+ arguments.
+ As explained in the comment preceding the function declaration,
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = midpoint(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+they are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+\end_layout
+
+\begin_layout LyX-Code
+>> midpoint(f,1,0,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 3:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   0.000000000000000  -0.066766774094073  -0.139831999606821
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 4 through 6:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.218600428030388  -0.302401486830318  -0.390495486389841
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 7 through 9:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.482080439082276  -0.576299298636036  -0.672247230148908
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 10 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.768977840728485  -0.865503930033315  -0.960754716787988
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 15:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.057757600117324  -1.154510687305015  -1.247336119828964
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 16 through 18:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.335197000042218  -1.417135309027307  -1.492245593754752
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 19 through 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.559677244661507  -1.618640905170988  -1.668415622421331
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx-1.668415622421331$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx-1.618640905170988$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=midpoint(f,1,0,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-21"
+
+\end_inset
+
+a: The Octave function we wrote to implement Ralston's method takes 5 arguments.
+ As explained in the comment preceding the function declaration,
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = ralston(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+they are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('3*x-2*y')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = 3*x-2*y
+\end_layout
+
+\begin_layout LyX-Code
+>> raslston(f,1,1,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 4:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.00000000000000   1.05125000000000   1.10475625000000   1.16030440625000
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 5 through 8:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.21770048765625   1.27676894132891   1.33735089190266   1.39930255717191
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 9 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.46249381424058   1.52680690188772   1.59213524620839   1.65838239781859
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 16:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   1.72546107002583   1.79329226837337   1.86180450287790   1.93093307510450
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 17 through 20:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.00061943296957   2.07081058683746   2.14145858108790   2.21252001588455
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Column 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   2.28395561437552
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx2.28395561437552$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx2.21252001588455$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=ralston(f,1,1,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-21"
+
+\end_inset
+
+d: The Octave function we wrote to implement Ralston's method takes 5 arguments.
+ As explained in the comment preceding the function declaration,
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = ralston(f,a,ya,b,n) 
+\end_layout
+
+\begin_layout Standard
+they are, in order, (
+\family typewriter
+f
+\family default
+) the function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ appearing on the right side of the o.d.e., (
+\family typewriter
+a
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+ya
+\family default
+) the 
+\begin_inset Formula $y$
+\end_inset
+
+-coordinate of the initial condition, (
+\family typewriter
+b
+\family default
+) the 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the desired solution, and (
+\family typewriter
+n
+\family default
+) the number of steps that should be taken.
+ From the Octave command line, the solution can be found this way:
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+\end_layout
+
+\begin_layout LyX-Code
+>> ralston(f,1,0,2,20)
+\end_layout
+
+\begin_layout LyX-Code
+ans =
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 1 through 3:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   0.000000000000000  -0.066770300283373  -0.139836235303672
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 4 through 6:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.218602682516778  -0.302399209595394  -0.390486264578185
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 7 through 9:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.482061961403970  -0.576269242338981  -0.672202937226713
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 10 through 12:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -0.768915255605024  -0.865412688887274  -0.960565629810385
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 13 through 15:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.056164950925061  -1.150218643526626  -1.240368616917767
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 16 through 18:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.325575733886901  -1.404886704290576  -1.477402196316258
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+ Columns 19 through 21:
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+  -1.542278061151791  -1.598731451393269  -1.646047861531770
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The value in Column 21 is the desired result, so 
+\begin_inset Formula $y(2)\approx-1.646047861531770$
+\end_inset
+
+.
+ The rest of the output gives approximations for the solution at other points.
+ For example, 
+\begin_inset Formula $y(1.95)\approx-1.598731451393269$
+\end_inset
+
+.
+ Use 
+\family typewriter
+[y,x]=ralston(f,1,0,2,20)
+\family default
+ to see all the corresponding 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinates.
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Error-Analysis"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis"
+
+\end_inset
+
+a: The o.d.e.
+ solver previously derived is 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{2h}{3},y_{i}+\frac{2h}{3}k_{1}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{4}\left[k_{1}+3k_{2}\right],
+\end{eqnarray*}
+
+\end_inset
+
+making 
+\begin_inset Formula $\beta_{2}=\frac{2}{3}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{1}=\frac{1}{4}$
+\end_inset
+
+, and 
+\begin_inset Formula $\alpha_{2}=\frac{3}{4}$
+\end_inset
+
+.
+ Plugging these values (plus 
+\begin_inset Formula $\beta_{3}=\alpha_{3}=0$
+\end_inset
+
+) into equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk3conditions"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{1}{4}+\frac{3}{4}+0 & = & 1\\
+\frac{3}{4}\cdot\frac{2}{3}+0\cdot0 & = & \frac{1}{2}\\
+\frac{3}{4}\cdot\left(\frac{2}{3}\right)^{2}+0\cdot0^{2} & = & \frac{1}{3}\\
+0\cdot\frac{2}{3}\cdot0 & \neq & \frac{1}{6}.
+\end{eqnarray*}
+
+\end_inset
+
+Since the only unsatisfied equation was derived from 
+\begin_inset Formula $h^{3}$
+\end_inset
+
+ terms, we conclude that this method has local truncation error 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+ The integration formula from which it was derived has local truncation
+ error 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+, so it is not quite as accurate as an o.d.e.
+ solver.
+ However, local truncation error 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+ is consistent with the experimentally determined 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ rate of convergence.
+ In fact, it is this local truncation error that leads to the 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ rate of convergence.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis"
+
+\end_inset
+
+e: The o.d.e.
+ solver previously derived is 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1}\right)\\
+k_{3} & = & f\left(t_{i}+h,y_{i}+hk_{2}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{4}\left[3k_{2}+k_{3}\right].
+\end{eqnarray*}
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+making 
+\begin_inset Formula $\beta_{2}=\frac{1}{3}$
+\end_inset
+
+, 
+\begin_inset Formula $\beta_{3}=1$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{1}=0$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{2}=\frac{3}{4}$
+\end_inset
+
+, and 
+\begin_inset Formula $\alpha_{3}=\frac{1}{4}$
+\end_inset
+
+.
+ Plugging these values into equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk3conditions"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+0+\frac{3}{4}+\frac{1}{4} & = & 1\\
+\frac{3}{4}\cdot\frac{1}{3}+\frac{1}{4}\cdot1 & = & \frac{1}{2}\\
+\frac{3}{4}\cdot\left(\frac{1}{3}\right)^{2}+\frac{1}{4}\cdot1^{2} & = & \frac{1}{3}\\
+\frac{1}{4}\cdot\frac{1}{3}\cdot1 & \neq & \frac{1}{6}.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the only unsatisfied equation was derived from 
+\begin_inset Formula $h^{3}$
+\end_inset
+
+ terms, we conclude that this method has local truncation error 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+ The integration formula from which it was derived has local truncation
+ error 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+, so it is not quite as accurate as an o.d.e.
+ solver.
+ However, local truncation error 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+ is consistent with the experimentally determined 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ rate of convergence.
+ In fact, it is this local truncation error that leads to the 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+ rate of convergence.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis-1"
+
+\end_inset
+
+: From the initial value problem, 
+\begin_inset Formula $f(t,y)=ty$
+\end_inset
+
+ and 
+\begin_inset Formula $y(1)=\frac{1}{2}$
+\end_inset
+
+.
+ For the o.d.e.
+ solver, this means 
+\begin_inset Formula $t_{0}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{0}=\frac{1}{2}$
+\end_inset
+
+.
+ To compute 
+\begin_inset Formula $y(2)$
+\end_inset
+
+ in one step, 
+\begin_inset Formula $h=1$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})=1\cdot\frac{1}{2}=\frac{1}{2}\\
+k_{2} & = & f(t_{i}+\frac{1}{2}h,\, y_{i}+\frac{1}{2}hk_{1})=\left(1+\frac{1}{2}\cdot1\right)\left(\frac{1}{2}+\frac{1}{2}\cdot1\cdot\frac{1}{2}\right)=\frac{9}{8}\\
+k_{3} & = & f(t_{i}+\frac{1}{2}h,\, y_{i}+\frac{1}{2}hk_{2})=\left(1+\frac{1}{2}\cdot1\right)\left(\frac{1}{2}+\frac{1}{2}\cdot1\cdot\frac{9}{8}\right)=\frac{51}{32}\\
+k_{4} & = & f(t_{i}+h,\ y_{i}+hk_{3})=(1+1)\left(\frac{1}{2}+1\cdot\frac{51}{32}\right)=\frac{67}{16}\\
+y_{1} & = & y_{0}+\frac{1}{6}h(k_{1}+2k_{2}+2k_{3}+k_{4})\\
+ & = & \frac{1}{2}+\frac{1}{6}\cdot1\left(\frac{1}{2}+2\cdot\frac{9}{8}+2\cdot\frac{51}{32}+\frac{67}{16}\right)\\
+ & = & \frac{35}{16}=2.1875\\
+t_{1} & = & t_{0}+h=1+1=2
+\end{eqnarray*}
+
+\end_inset
+
+Thus 
+\begin_inset Formula $y(2)\approx2.1875$
+\end_inset
+
+.
+ Euler's method with two steps yielded 
+\begin_inset Formula $y(2)\approx1.3125$
+\end_inset
+
+.
+ Since the exact solution is 
+\begin_inset Formula $y(2)=\frac{e^{3/2}}{2}\approx2.240844535169032$
+\end_inset
+
+, RK4 did a much better job in one step than did Euler's method in two steps.
+ Incidentally, even four steps of Euler's method (which means 4 function
+ evaluations---just as many as one step of RK4), yields 
+\begin_inset Formula $y(2)\approx1.621398925781250$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Adaptive-Runge-Kutta-Methods"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-4"
+
+\end_inset
+
+: The blanks in the table are to be read as zeros, so 
+\begin_inset Formula $\beta_{11}=\beta_{12}=0$
+\end_inset
+
+, for example.
+ The only non-zero value for the 
+\begin_inset Formula $\beta_{ij}$
+\end_inset
+
+ is 
+\begin_inset Formula $\beta_{21}=1$
+\end_inset
+
+.
+ The values in the left column are the 
+\begin_inset Formula $\delta_{i}$
+\end_inset
+
+, so 
+\begin_inset Formula $\delta_{2}=1$
+\end_inset
+
+.
+ The values in the bottom row are the 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+, so 
+\begin_inset Formula $\alpha_{1}=\alpha_{2}=\frac{1}{2}$
+\end_inset
+
+.
+ In summary,
+\begin_inset Formula 
+\[
+\delta_{2}=1,\ \beta_{21}=1,\ \alpha_{1}=\alpha_{2}=\frac{1}{2}.
+\]
+
+\end_inset
+
+Because the tableau has two rows above the row of 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+, it is a two-stage method.
+ Therefore, the method takes the form
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f(t_{i}+\delta_{2}h,\, y_{i}+\beta_{21}hk_{1})\\
+y_{i+1} & = & y_{i}+h[\alpha_{1}k_{1}+\alpha_{2}k_{2}].
+\end{eqnarray*}
+
+\end_inset
+
+See equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Runge-Kutta-explicit"
+
+\end_inset
+
+.
+ Plugging in the parameter values, this tableau represents the method
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f(t_{i}+h,\, y_{i}+hk_{1})\\
+y_{i+1} & = & y_{i}+h\left[\frac{1}{2}k_{1}+\frac{1}{2}k_{2}\right].
+\end{eqnarray*}
+
+\end_inset
+
+This last equation simplifies to 
+\begin_inset Formula $y_{i+1}=y_{i}+\frac{h}{2}[k_{1}+k_{2}]$
+\end_inset
+
+.
+ These equations are exactly those in equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:trapezoidal-ode"
+
+\end_inset
+
+, trapezoidal-ode, or the improved Euler method.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-9"
+
+\end_inset
+
+: First, decoding the table into the form 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Runge-Kutta-explicit"
+
+\end_inset
+
+, we see this is a 4-stage method with formula
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{2}{7}h,\, y_{i}+\frac{2}{7}hk_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{4}{7}h,\, y_{i}-\frac{8}{35}hk_{1}+\frac{4}{5}hk_{2}\right)\\
+k_{4} & = & f\left(t_{i}+\frac{6}{7}h,\, y_{i}+\frac{29}{42}hk_{1}-\frac{2}{3}hk_{2}+\frac{5}{6}hk_{3}\right)\\
+y_{i+1} & = & y_{i}+h\left[\frac{1}{6}k_{1}+\frac{1}{6}k_{2}+\frac{5}{12}k_{3}+\frac{1}{4}k_{4}\right].
+\end{eqnarray*}
+
+\end_inset
+
+Code similar to the samples in sections 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Error-Analysis"
+
+\end_inset
+
+ might look like 
+\family typewriter
+thirdOrder.m, which
+\family default
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                               9 June 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements a 3rd order Runge-Kutta      %
+\end_layout
+
+\begin_layout LyX-Code
+%        method where the step size is calculated and held       %
+\end_layout
+
+\begin_layout LyX-Code
+%        constant.
+                                               %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = thirdOrder(f,a,ya,b,n)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  x(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  h = (b-a)/n;
+\end_layout
+
+\begin_layout LyX-Code
+  while (i<=n)
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(x(i), y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(x(i)+2*h/7, y(i)+2*h/7*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    k3 = f(x(i)+4*h/7, y(i)+h/35*(-8*k1+28*k2));
+\end_layout
+
+\begin_layout LyX-Code
+    k4 = f(x(i)+6*h/7, y(i)+h/42*(29*k1-28*k2+35*k3));
+\end_layout
+
+\begin_layout LyX-Code
+    y(i+1) = y(i) + h/12*(2*k1+2*k2+5*k3+3*k4);
+\end_layout
+
+\begin_layout LyX-Code
+    x(i+1) = a + (b-a)*i/n;
+\end_layout
+
+\begin_layout LyX-Code
+    i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+end%function 
+\end_layout
+
+\begin_layout Standard
+Applying this code to the test o.d.e.
+ used in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{y} & = & -\frac{y}{t}+t^{2}\\
+y(4) & = & 20,
+\end{eqnarray*}
+
+\end_inset
+
+to approximate 
+\begin_inset Formula $y(2)$
+\end_inset
+
+, which we know has exact value 
+\begin_inset Formula $10$
+\end_inset
+
+, with various step sizes yields
+\end_layout
+
+\begin_layout LyX-Code
+>> format('long')
+\end_layout
+
+\begin_layout LyX-Code
+>> f=inline('-y/t+t^2')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(t, y) = -y/t+t^2
+\end_layout
+
+\begin_layout LyX-Code
+>> [y,x]=thirdOrder(f,4,20,2,5);
+\end_layout
+
+\begin_layout LyX-Code
+>> abs(10-y(length(y)))
+\end_layout
+
+\begin_layout LyX-Code
+ans =    4.14600417808941e-04
+\end_layout
+
+\begin_layout LyX-Code
+>> [y,x]=thirdOrder(f,4,20,2,10);
+\end_layout
+
+\begin_layout LyX-Code
+>> abs(10-y(length(y)))
+\end_layout
+
+\begin_layout LyX-Code
+ans =    5.20403883292886e-05
+\end_layout
+
+\begin_layout LyX-Code
+>> [y,x]=thirdOrder(f,4,20,2,20);
+\end_layout
+
+\begin_layout LyX-Code
+>> abs(10-y(length(y)))
+\end_layout
+
+\begin_layout LyX-Code
+ans =    6.48395888624975e-06
+\end_layout
+
+\begin_layout LyX-Code
+>> [y,x]=thirdOrder(f,4,20,2,40);
+\end_layout
+
+\begin_layout LyX-Code
+>> abs(10-y(length(y)))
+\end_layout
+
+\begin_layout LyX-Code
+ans =    8.08029787080500e-07
+\end_layout
+
+\begin_layout Standard
+Since the number of steps is doubling from one call of 
+\family typewriter
+thirdOrder
+\family default
+ to the next, the step size is halving.
+ As the step size is halved, the error is decreasing by a factor of 8, or
+ by 
+\begin_inset Formula $(\frac{1}{2})^{3}$
+\end_inset
+
+, lending numerical evidence that the rate of convergence is 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-12"
+
+\end_inset
+
+: First, decoding the table into the form 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Runge-Kutta-explicit"
+
+\end_inset
+
+, we see the embedded methods have 5 and 4 stages with formulas
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{1}{4}h,\, y_{i}+\frac{1}{4}hk_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{3}{4}h,\, y_{i}-\frac{9}{4}hk_{1}+3hk_{2}\right)\\
+k_{4} & = & f\left(t_{i}+\frac{1}{2}h,\, y_{i}+\frac{1}{18}hk_{1}+\frac{5}{12}hk_{2}+\frac{1}{36}hk_{3}\right)\\
+k_{5} & = & f\left(t_{i}+h,\, y_{i}+\frac{7}{9}hk_{1}-\frac{5}{3}hk_{2}-\frac{1}{9}hk_{3}+2hk_{4}\right)\\
+\{\mbox{first method}\}\quad y_{i+1} & = & y_{i}+h\left[\frac{1}{6}k_{1}+\frac{2}{3}k_{4}+\frac{1}{6}k_{5}\right]\\
+\{\mbox{second method}\}\quad y_{i+1} & = & y_{i}+h\left[\frac{7}{9}k_{1}-\frac{5}{3}k_{2}-\frac{1}{9}k_{3}+2k_{4}\right].
+\end{eqnarray*}
+
+\end_inset
+
+The difference of the two methods will be used as an error estimate:
+\begin_inset Formula 
+\begin{eqnarray*}
+\mbox{error} & \approx & h\left[\frac{1}{6}k_{1}+\frac{2}{3}k_{4}+\frac{1}{6}k_{5}\right]-h\left[\frac{7}{9}k_{1}-\frac{5}{3}k_{2}-\frac{1}{9}k_{3}+2k_{4}\right]\\
+ & = & \frac{h}{18}\left[-11k_{1}+30k_{2}+2k_{3}-24k_{4}+3k_{5}\right].
+\end{eqnarray*}
+
+\end_inset
+
+Since we are told this is an RK3(4) method, it has rate of convergence (order)
+ 3 and therefore has local truncation error 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+.
+ This means the error will scale with the fourth power of 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ This is important when adjusting the step size.
+ We will need to use a fourth root, not a third root as in RK2(3).
+ Besides this change and the formula changes, the code of RK2(3) can be
+ shared.
+ 
+\family typewriter
+rk34butcher.m
+\family default
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RK3(4) method ! code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                                 9 June 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements an adaptive rk3(4) method of   %
+\end_layout
+
+\begin_layout LyX-Code
+%        Butcher where the step size is controlled by the routine.
+ %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); initial step       %
+\end_layout
+
+\begin_layout LyX-Code
+%        size h; tolerance eps; maximum steps N;                   %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y)   %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,t] = rk34butcher(f,a,ya,b,h,eps,N)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  t(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  done = 0;
+\end_layout
+
+\begin_layout LyX-Code
+  while (!done && i<=N)
+\end_layout
+
+\begin_layout LyX-Code
+    if ((b-t(i)-h)*(b-a)<=0)
+\end_layout
+
+\begin_layout LyX-Code
+      h=b-t(i);
+\end_layout
+
+\begin_layout LyX-Code
+      done = 1;
+\end_layout
+
+\begin_layout LyX-Code
+    endif
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(t(i), y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(t(i)+h/4, y(i)+h/4*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    k3 = f(t(i)+3*h/4, y(i)+h/4*(-9*k1+12*k2));
+\end_layout
+
+\begin_layout LyX-Code
+    k4 = f(t(i)+h/2, y(i)+h/36*(2*k1+15*k2+k3));
+\end_layout
+
+\begin_layout LyX-Code
+    k5 = f(t(i)+h, y(i)+h/9*(7*k1-15*k2-k3+18*k4));
+\end_layout
+
+\begin_layout LyX-Code
+    err = abs(h/18*(-11*k1+30*k2+2*k3-24*k4+3*k5));
+\end_layout
+
+\begin_layout LyX-Code
+    if (done || err<=eps)
+\end_layout
+
+\begin_layout LyX-Code
+      y(i+1) = y(i) + h/6*(k1+4*k4+k5);
+\end_layout
+
+\begin_layout LyX-Code
+      t(i+1) = t(i) + h;
+\end_layout
+
+\begin_layout LyX-Code
+      if (t(i+1) == t(i))
+\end_layout
+
+\begin_layout LyX-Code
+        disp("Procedure failed.
+ Step size reached zero.")
+\end_layout
+
+\begin_layout LyX-Code
+        return
+\end_layout
+
+\begin_layout LyX-Code
+      endif
+\end_layout
+
+\begin_layout LyX-Code
+      i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+    endif
+\end_layout
+
+\begin_layout LyX-Code
+    q = 0.9*realpow(eps/err,1/4);
+\end_layout
+
+\begin_layout LyX-Code
+    q = max(q,0.1);
+\end_layout
+
+\begin_layout LyX-Code
+    q = min(5.0,q);
+\end_layout
+
+\begin_layout LyX-Code
+    h = q*h;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+  if (!done)
+\end_layout
+
+\begin_layout LyX-Code
+    disp("Procedure failed.
+ Maximum number of iterations reached.")
+\end_layout
+
+\begin_layout LyX-Code
+  endif
+\end_layout
+
+\begin_layout LyX-Code
+end%function
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-20"
+
+\end_inset
+
+: The method of exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-10"
+
+\end_inset
+
+ shares the first three stages with this method.
+ All we need to do is append the line of 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ values from that table to this one, noting that we need to add a zero at
+ the end:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{3}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{3}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{2}{9}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{4}{9}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{7}{24}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{2}{9}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{4}{9}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-25"
+
+\end_inset
+
+: There are two difficulties with this problem.
+ The more straightforward of the two is knowing what the error of the approximat
+ion really is.
+ This o.d.e.
+ is not solvable exactly, so we can't compute the exact solution.
+ We can certainly run the method with a tolerance of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+, but this is only a 
+\shape italic
+local
+\shape default
+ truncation error.
+ It does not necessarily translate into any estimate of the 
+\shape italic
+global
+\shape default
+ error (the total accumulated error at the last step).
+ Often times, they will be similar in magnitude, but there is far from any
+ guarantee of it.
+ In any case, here are the results of running the method with initial step
+ size 
+\begin_inset Formula $\frac{1}{10}$
+\end_inset
+
+ and tolerance 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+>> f=inline('(x+2*exp(y)*cos(exp(x)))/(1+exp(y))')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = (x+2*exp(y)*cos(exp(x)))/(1+exp(y))
+\end_layout
+
+\begin_layout LyX-Code
+>> [y,x]=rk23(f,0,2,4,1/10,1e-4,100000);
+\end_layout
+
+\begin_layout LyX-Code
+>> y(length(y))
+\end_layout
+
+\begin_layout LyX-Code
+ans =  2.37564101044550
+\end_layout
+
+\begin_layout LyX-Code
+>> length(y)
+\end_layout
+
+\begin_layout LyX-Code
+ans =  152
+\end_layout
+
+\begin_layout Standard
+suggesting that 
+\begin_inset Formula $y(4)\approx2.37564$
+\end_inset
+
+.
+ Though we should have some confidence that this is a reasonable estimate
+ (say with error no more than 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+), we should certainly not claim that the error is less than, or really
+ all that close to 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+ The algorithm took 152 steps to arrive at the result, so the error had
+ a chance to accumulate.
+ If it is extremely important to know that the estimate is accurate to the
+ nearest 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ or better, it could be compared to a second run with a smaller tolerance:
+\end_layout
+
+\begin_layout LyX-Code
+>> [y,x]=rk23(f,0,2,4,1/10,1e-5,100000);
+\end_layout
+
+\begin_layout LyX-Code
+>> y(length(y))
+\end_layout
+
+\begin_layout LyX-Code
+ans =  2.37616344347848
+\end_layout
+
+\begin_layout Standard
+The difference between the estimates is about 
+\begin_inset Formula $5.22(10)^{-4}$
+\end_inset
+
+.
+ This would suggest that the error in the first estimate is likely a bit
+ more than 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+ But even this evidence is far from iron-clad.
+ The second difficulty is that small adjustments in the tolerance can lead
+ to large changes in the global error.
+ Global error as a function of tolerance is very rough and discontinuous
+ (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rk23-global-error"
+
+\end_inset
+
+).
+ The oscillatory nature of the solution exacerbates this problem with adaptive
+ Runge-Kutta methods.
+ If the global error scaled perfectly with the truncation error, Figure
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rk23-global-error"
+
+\end_inset
+
+log-log plot of tolerance versus global error
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/rk23globalError.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rk23-global-error"
+
+\end_inset
+
+ would show a perfectly straight line parallel to the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+, shown in red.
+ This figure shows that most tolerances between 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ and 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+ would suffice to give a global error of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ or less, though there are some exceptions, most notably one right around
+ 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+ Figure 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:oscillatory"
+
+\end_inset
+
+Solution of equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:oscillatory"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/oscillatorySolution.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:oscillatory"
+
+\end_inset
+
+ shows the solution over the interval 
+\begin_inset Formula $[0,4]$
+\end_inset
+
+, illustrating its oscillations.
+ Generally speaking, comparing multiple approximations using different tolerance
+s is not how global error is controlled.
+ Global error can be reasonably well controlled by scaling the tolerance
+ relative to the step size as the solution progresses or using relative
+ errors instead of absolute.
+ Either way, this concern adds another layer of complexity to the method.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-28"
+
+\end_inset
+
+: There are two difficulties with this problem.
+ The more straightforward of the two is knowing what the error of the approximat
+ion really is.
+ This o.d.e.
+ is not solvable exactly, so we can't compute the exact solution.
+ We can certainly run the method with a tolerance of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+, but this is only a 
+\shape italic
+local
+\shape default
+ truncation error.
+ It does not necessarily translate into any estimate of the 
+\shape italic
+global
+\shape default
+ error (the total accumulated error at the last step).
+ Often times, they will be similar in magnitude, but there is far from any
+ guarantee of it.
+ In any case, here are the results of running the method with initial step
+ size 
+\begin_inset Formula $\frac{1}{10}$
+\end_inset
+
+ and tolerance 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+>> f=inline('(x^2+y)/(x-y^2)')
+\end_layout
+
+\begin_layout LyX-Code
+f = f(x, y) = (x^2+y)/(x-y^2)
+\end_layout
+
+\begin_layout LyX-Code
+>> [y,x]=rk23(f,0,5,3,1/10,1e-4,100000);
+\end_layout
+
+\begin_layout LyX-Code
+>> y(length(y))
+\end_layout
+
+\begin_layout LyX-Code
+ans =  3.66765768487404
+\end_layout
+
+\begin_layout LyX-Code
+>> length(y)
+\end_layout
+
+\begin_layout LyX-Code
+ans =  17
+\end_layout
+
+\begin_layout Standard
+suggesting that 
+\begin_inset Formula $y(4)\approx3.66765$
+\end_inset
+
+.
+ Though we should have some confidence that this is a reasonable estimate
+ (say with error no more than 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+), we should certainly not claim that the error is less than, or really
+ all that close to 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+ The algorithm took 17 steps to arrive at the result, so the error had a
+ small chance to accumulate.
+ If it is extremely important to know that the estimate is accurate to the
+ nearest 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ or better, it could be compared to a second run with a smaller tolerance:
+\end_layout
+
+\begin_layout LyX-Code
+>> [y,x]=rk23(f,0,5,3,1/10,1e-5,100000);
+\end_layout
+
+\begin_layout LyX-Code
+>> y(length(y))
+\end_layout
+
+\begin_layout LyX-Code
+ans =  3.66757804370410
+\end_layout
+
+\begin_layout Standard
+The difference between the estimates is about 
+\begin_inset Formula $7.96(10)^{-5}$
+\end_inset
+
+.
+ This would suggest that the error in the first estimate is likely right
+ around 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+ But even this evidence is far from iron-clad.
+ The second difficulty is that small adjustments in the tolerance can lead
+ to large changes in the global error.
+ Global error as a function of tolerance is rough and discontinuous (see
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rk23-global-error-2"
+
+\end_inset
+
+).
+ If the global error scaled perfectly with the truncation error, Figure
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rk23-global-error-2"
+
+\end_inset
+
+log-log plot of tolerance versus global error
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/rk23globalError2.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rk23-global-error-2"
+
+\end_inset
+
+ would show a perfectly straight line parallel to the line 
+\begin_inset Formula $y=x$
+\end_inset
+
+, shown in red.
+ This figure shows that most tolerances between 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ and 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+ would suffice to give a global error of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ or less, though there may be some exceptions not plotted.
+ Figure 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:non-oscillatory"
+
+\end_inset
+
+Solution of equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:non-oscillatory"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/non-oscillatory.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:non-oscillatory"
+
+\end_inset
+
+ shows the solution over the interval 
+\begin_inset Formula $[0,3]$
+\end_inset
+
+.
+ Generally speaking, comparing multiple approximations using different tolerance
+s is not how global error is controlled.
+ Global error can be reasonably well controlled by scaling the tolerance
+ relative to the step size as the solution progresses or using relative
+ errors instead of absolute.
+ Either way, this concern adds another layer of complexity to the method.
+\end_layout
+
+\end_deeper
 \end_body
 \end_document

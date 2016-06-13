@@ -809,7 +809,7 @@ force ! tension
 \end_layout
 
 \begin_layout Standard
-Substituting the sum of these the tangential forces for 
+Substituting the sum of these tangential forces for 
 \begin_inset Formula $F$
 \end_inset
 
@@ -946,7 +946,7 @@ y & = & \frac{1}{2}x^{2}+C
 
 \end_inset
 
- (don't forget the constant of integration!)
+ (don't forget the constant of integration!).
 \end_layout
 
 \begin_layout Subsection
@@ -1267,9 +1267,8 @@ when a body lies in contact with a surface, friction opposes motion with
  is the same body sliding across the same surface (with the same normal
  force).
  You may be familiar with this phenomenon if you've ever tried to slide
- an oven into or out if its usual position in a kitchen.
- It's much harder to get it to start moving than it is to keep it moving
- once it budges.
+ an oven into or out of its usual position in a kitchen.
+ It's much harder to get it started moving than it is to keep it moving.
  Whether the friction is static or kinetic, it always resists motion tangential
  to the surface.
 \end_layout

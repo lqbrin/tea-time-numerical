@@ -5,7 +5,6 @@
 % INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
 % OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 function [y,x] = eulerode(f,a,ya,b,n)
   i = 1;
   x(i) = a;

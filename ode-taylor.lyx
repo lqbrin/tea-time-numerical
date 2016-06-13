@@ -91,6 +91,36 @@ name "sec:TaylorMethods"
 \end_inset
 
 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Taylor's|see {Taylor's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -128,8 +158,8 @@ reference "exc:odePendulum-10"
 .
  For the time being, let us try to forget that we know the exact solution,
  and study a method for approximating it.
- This way we will have an immediate way to check how the approximation is
- going.
+ We will recall that we have the exact solution when we are ready to check
+ how the approximation is going.
  The initial condition, 
 \begin_inset Formula $y(4)=20$
 \end_inset
@@ -1142,6 +1172,42 @@ reference "eq:EulersMethodGeneral"
 
  repeatedly to compute a sequence of points approximately on the solution
  of an ordinary differential equation is most often called Euler's method.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "butcher"
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Euler's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Euler's|see {Euler's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
  It may also be referred to as the Taylor method of degree 1 since it uses
  Taylor polynomials of degree 1 at each step.
  The value 
@@ -1167,6 +1233,16 @@ where
 
 \begin_layout Subsection
 Euler's Method (pseudo-code)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Euler's method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1525,6 +1601,16 @@ reference "eq:sampleODE"
 
 \begin_layout Subsection
 Taylor's Method of Degree 3 (pseudo-code)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor's method of degree 3 ! pseudo-code
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2091,11 +2177,21 @@ reference "sec:Composite"
 \end_layout
 
 \begin_layout Subsection
-Reducing a second order equation to a first order system
+Reducing a second order equation to a first order system 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+differential equation ! second order
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Taylor's Methods and the upcoming Runge-Kutta methods are all designed to
+Taylor's methods and the upcoming Runge-Kutta methods are all designed to
  work on first order differential equations.
  However, all the equations of motion we have developed are second order
  differential equations.
@@ -2209,7 +2305,17 @@ Taylor
 \begin_inset space \space{}
 \end_inset
 
-method: A method for approximating the solution of a first order o.d.e.
+method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor's method
+\end_layout
+
+\end_inset
+
+A method for approximating the solution of a first order o.d.e.
  in which a Taylor polynomial of some predetermined order is used at each
  step to compute the next.
 \end_layout
@@ -2219,7 +2325,17 @@ Euler's
 \begin_inset space \space{}
 \end_inset
 
-method: Another name for the first order Taylor method, having formula 
+method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Euler's method
+\end_layout
+
+\end_inset
+
+Another name for the first order Taylor method, having formula 
 \begin_inset Formula $y_{i+1}=y_{i}+h\cdot\dot{y}(t_{i},y_{i})$
 \end_inset
 
@@ -2254,7 +2370,7 @@ name "exc:ode-taylor"
 
 \end_inset
 
-Use Euler's Method with step size 
+Use Euler's method with step size 
 \begin_inset Formula $h=0.5$
 \end_inset
 
@@ -2401,11 +2517,8 @@ reference "exc:ode-taylor"
 
 \end_inset
 
- using Taylor's Method of order 2.
-
+ using Taylor's method of order 2.
  
-\lang english
-
 \begin_inset ERT
 status open
 
@@ -2448,7 +2561,7 @@ reference "exc:ode-taylor"
 
 \end_inset
 
- using Taylor's Method of order 3.
+ using Taylor's method of order 3.
  
 \begin_inset ERT
 status open
@@ -2524,7 +2637,7 @@ name "exc:ode-taylor-11"
 
 \end_inset
 
-Write pseudo-code for Taylor's Method of order 2.
+Write pseudo-code for Taylor's method of order 2.
 \begin_inset ERT
 status open
 
@@ -2541,7 +2654,7 @@ hasananswer
 \end_layout
 
 \begin_layout Enumerate
-Write pseudo-code for Taylor's Method of order 4.
+Write pseudo-code for Taylor's method of order 4.
 \end_layout
 
 \begin_layout Enumerate
@@ -2566,7 +2679,7 @@ octave
 
 \end_inset
 
-Write an Octave function that implements Euler's Method.
+Write an Octave function that implements Euler's method.
  
 \begin_inset ERT
 status open
@@ -2605,7 +2718,7 @@ octave
 
 \end_inset
 
-Write an Octave function that implements Taylor's Method of degree 2.
+Write an Octave function that implements Taylor's method of degree 2.
 \begin_inset ERT
 status open
 
@@ -2643,7 +2756,7 @@ octave
 
 \end_inset
 
-Write an Octave functon that implements Taylor's Method of degree 3.
+Write an Octave functon that implements Taylor's method of degree 3.
 \end_layout
 
 \begin_layout Enumerate
@@ -2668,7 +2781,7 @@ octave
 
 \end_inset
 
-Write an Octave functon that implements Taylor's Method of degree 4.
+Write an Octave functon that implements Taylor's method of degree 4.
 \end_layout
 
 \begin_layout Enumerate
@@ -2714,7 +2827,7 @@ reference "exc:ode-taylor-6"
 \begin_inset Formula $\frac{9+e^{-2}}{4}$
 \end_inset
 
- to verify that Taylor's Method of degree 2 is an order 2 numerical method.
+ to verify that Taylor's method of degree 2 is an order 2 numerical method.
 \begin_inset ERT
 status open
 
@@ -2767,7 +2880,7 @@ reference "exc:ode-taylor-6"
 \begin_inset Formula $\frac{9+e^{-2}}{4}$
 \end_inset
 
- to verify that Taylor's Method of degree 3 is an order 3 numerical method.
+ to verify that Taylor's method of degree 3 is an order 3 numerical method.
 \end_layout
 
 \begin_layout Enumerate
@@ -2807,7 +2920,7 @@ reference "exc:ode-taylor-6"
 \begin_inset Formula $\frac{9+e^{-2}}{4}$
 \end_inset
 
- to verify that Taylor's Method of degree 4 is an order 4 numerical method.
+ to verify that Taylor's method of degree 4 is an order 4 numerical method.
 \end_layout
 
 \begin_layout Enumerate
@@ -2868,7 +2981,7 @@ name "exc:ode-taylor-21"
 \end_inset
 
 Given the following parameter values and initial conditions for the referenced
- system, use Euler's Method with a step size 
+ system, use Euler's method with a step size 
 \begin_inset Formula $h=0.25$
 \end_inset
 
@@ -3503,7 +3616,7 @@ Undetermined Coefficients.
 \series default
 
 \begin_inset Index idx
-status open
+status collapsed
 
 \begin_layout Plain Layout
 undetermined coefficients

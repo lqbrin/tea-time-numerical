@@ -84,6 +84,23 @@ figs-within-sections
 
 \begin_layout Section
 Error Analysis
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Runge-Kutta-Error-Analysis"
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Runge-Kutta method
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -97,12 +114,13 @@ reference "sec:Runge-Kutta-Methods"
  ended with the mysterious (and unsettling?) observation that Simpson's-ode
  did not live up to expectations.
  Based on other o.d.e.
- solvers, we would expect the truncation error of Simpson's-ode to be 
+ solvers, we would expect the rate of convergence of Simpson's-ode to be
+ 
 \begin_inset Formula $O(h^{4})$
 \end_inset
 
- since Simpson's Rule, on which Simpson's-ode is based, has truncation error
- 
+ since Simpson's rule, on which Simpson's-ode is based, has local truncation
+ error 
 \begin_inset Formula $O(h^{5})$
 \end_inset
 
@@ -124,8 +142,8 @@ The explanation is rooted in the fact that we are solving an o.d.e.
 \end_inset
 
 .
- We will need heavy use of partial derivatives and the chain rule to understand
- the error analysis.
+ To understand the error analysis, heavy use of partial derivatives and
+ the chain rule are required.
  As ever, we consult Taylor's theorem and write
 \begin_inset Formula 
 \[
@@ -134,11 +152,20 @@ y(t_{0}+h)=y(t_{0})+h\dot{y}(t_{0})+\frac{1}{2}h^{2}\ddot{y}(t_{0})+\frac{1}{6}h
 
 \end_inset
 
-Each derivative can be replaced by some function of 
+Each derivative of 
+\begin_inset Formula $y$
+\end_inset
+
+ can be replaced by some function of 
 \begin_inset Formula $f$
 \end_inset
 
- and its partial derivatives.
+ and its partial derivatives, starting with 
+\begin_inset Formula $\dot{y}$
+\end_inset
+
+, which is given by the o.d.e.
+ we are trying to solve.
 \begin_inset Formula 
 \begin{eqnarray*}
 \dot{y} & = & f(t,y)\\
@@ -172,7 +199,11 @@ so
 \begin_inset Formula $y(t_{0}+h)=y(t_{0})+h\dot{y}(t_{0})+\frac{1}{2}h^{2}\ddot{y}(t_{0})+\frac{1}{6}h^{3}\dddot{y}(t_{0})+\cdots$
 \end_inset
 
- becomes
+ in terms of 
+\begin_inset Formula $f$
+\end_inset
+
+ is
 \begin_inset Formula 
 \[
 y(t_{0}+h)=y(t_{0})+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f)+\cdots,
@@ -180,11 +211,27 @@ y(t_{0}+h)=y(t_{0})+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f
 
 \end_inset
 
-or in terms of an o.d.e.
- solver,
+and as an o.d.e.
+ solver (replacing 
+\begin_inset Formula $y(t_{0})$
+\end_inset
+
+ by 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $y(t_{0}+h)$
+\end_inset
+
+ by 
+\begin_inset Formula $y_{i+1}$
+\end_inset
+
+),
 \begin_inset Formula 
 \begin{equation}
-y_{i+1}=y_{i}+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f)+\cdots,\label{eq:twoVariableTaylorSeries}
+y_{i+1}=y_{i}+hf+\frac{1}{2}h^{2}(f_{t}+f_{y}f)+\frac{1}{6}h^{3}(f_{tt}+2f_{ty}f+f_{yy}f^{2}+f_{t}f_{y}+f_{y}^{2}f)+\cdots.\label{eq:twoVariableTaylorSeries}
 \end{equation}
 
 \end_inset
@@ -194,7 +241,7 @@ Rewriting high degree Taylor polynomials in terms of
 \end_inset
 
  quickly becomes complicated.
- We will focus on the analysis requiring only 
+ We will focus on analysis requiring only 
 \begin_inset Formula $\dot{y}$
 \end_inset
 
@@ -316,6 +363,16 @@ name "thm:twoVariableTaylors"
 
 \end_inset
 
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Taylor's two variable
+\end_layout
+
+\end_inset
+
 Suppose 
 \begin_inset Formula $f(t,y)$
 \end_inset
@@ -367,6 +424,7 @@ j
 \end_layout
 
 \begin_layout Standard
+\noindent
 As with Taylor's theorem (of one variable), the first 
 \begin_inset Formula $n+1$
 \end_inset
@@ -390,7 +448,7 @@ To illustrate, we let
 \begin_inset Formula $f$
 \end_inset
 
- up to and including order 2.
+ up to and including order 3.
 \begin_inset Formula 
 \begin{eqnarray*}
 f_{t} & = & \frac{y}{t^{2}}+2t\\
@@ -585,7 +643,7 @@ reference "eq:twoVariableTaylorSeries"
 \end_inset
 
 ).
- For purposes of this discussion, we will seek a method with local truncation
+ For purposes of this discussion, we seek a method with local truncation
  error 
 \begin_inset Formula $O(h^{4})$
 \end_inset
@@ -744,8 +802,8 @@ reference "eq:twoVariableTaylorSeries"
 \end_inset
 
 ).
- The difference of the two is the truncation error, so we will be interested
- in the least power of 
+ The difference of the two is the local truncation error, so we will be
+ interested in the least power of 
 \begin_inset Formula $h$
 \end_inset
 
@@ -1156,7 +1214,7 @@ Before finally answering the question of what happened to Simpson's-ode,
 
 \end_inset
 
-So the first two conditions are satisfied, but the last two are not.
+The first two conditions are satisfied, but the last two are not.
  Recall, though, that the first two conditions were derived from the 
 \begin_inset Formula $h$
 \end_inset
@@ -1296,18 +1354,107 @@ We have derived five o.d.e.
  solvers so far with little nod to established practice.
  It's time to fix that.
  What we have been calling trapezoidal-ode (since it was derived from the
- trapezoidal rule) is better known as the modified Euler method.
- What we have been calling clopen-ode is better known as Heun's method.
+ trapezoidal rule) is better known as the improved Euler method,
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+improved Euler method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! improved Euler|see {improved Euler method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ though some will refer to it as the explicit trapezoidal method.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+explicit trapezoidal method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! explicit trapezoidal|see {explicit trapezoidal method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ What we have been calling clopen-ode is better known as Heun's third order
+ method.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Heun's third order method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Heun's third order|see {Heun's third order method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
  These methods can easily be found in the literature.
  They are prototypical examples of efficient methods.
- The modified Euler method requires two function evaluations per step and
+ The improved Euler method requires two function evaluations per step and
  gives a local truncation error 
 \begin_inset Formula $O(h^{3})$
 \end_inset
 
 .
- Heun's method requires three function evaluations per step and gives a
- local truncation error 
+ Heun's third order method requires three function evaluations per step
+ and gives a local truncation error 
 \begin_inset Formula $O(h^{4})$
 \end_inset
 
@@ -1325,11 +1472,12 @@ What we have been calling open-ode has not been named as it would never
 .
  Consequently, you are not likely to see it appear in the literature as
  it is not a useful method in practice.
- Heun's method or the modified Euler method would both be preferable to
- open-ode.
- Heun's method gives a smaller truncation error for the same amount of computati
-on (three function evaluations) and the modified Euler's method gives the
- same truncation error for less computation (two function evaluations).
+ Heun's third order method or the improved Euler method would both be preferable
+ to open-ode.
+ Heun's third order method gives a smaller truncation error for the same
+ amount of computation (three function evaluations) and the improved Euler's
+ method gives the same truncation error for less computation (two function
+ evaluations).
  Simpson's-ode has the same shortcomings as open-ode, and thus you are not
  likely to see it in the literature either.
  It is also an inefficient method.
@@ -1356,15 +1504,51 @@ reference "eq:rungeKuttaGeneral"
 \end_inset
 
 ) are part of a class of methods called Runge-Kutta methods, named after
- the German mathematicians Carl Runge and Martin Kutta.
+ the German mathematicians Carl Runge
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Runge ! Carl
+\end_layout
+
+\end_inset
+
+ and Martin Kutta
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Kutta ! Martin
+\end_layout
+
+\end_inset
+
+.
  The basic idea for such methods was laid out by Runge in a paper published
- in 1895, where he introduced the improved Euler method and others.
- His work was continued by Heun, whose paper of 1900 brought us Heun's method
- and others.
+ in 1895, where Runge introduced the improved Euler method and others.
+ His work was continued by Heun
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Heun ! Karl
+\end_layout
+
+\end_inset
+
+, whose paper of 1900 brought us Heun's third order method and others.
  In 1901, Kutta derives the most famous Runge-Kutta method, what is sometimes
  now referred to as the classic Runge-Kutta method or the Runge-Kutta method
  of order 4, RK4.
  We will see shortly that it is a modification of Simpson's-ode.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "butcher"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1413,8 +1597,8 @@ reference "eq:rungeKuttaGeneral"
  Order 1 methods can be derived with one stage (Euler's method) and no less.
  Order 2 methods can be derived with two stages (improved Euler's method)
  and no less.
- Order 3 methods can be derived with three stages (Heun's method) and no
- less.
+ Order 3 methods can be derived with three stages (Heun's third order method)
+ and no less.
  Order 4 methods can be derived with four stages (example upcoming) and
  no less.
  However, order 
@@ -1450,6 +1634,36 @@ Simpson's-ode failed to live up to its potential because it did not have
 \end_inset
 
 ) has four stages and is given by
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RK4 method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! RK4|see {RK4 method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \family roman
 \series medium
 \shape up
@@ -1484,14 +1698,15 @@ y_{i+1} & = & y_{i}+\frac{h}{6}\left[k_{1}+4k_{2}+k_{3}\right].
 
 \end_inset
 
-The second stage of Simpson's-ode is separated into two stages in Runge-Kutta's
- order 4 method.
+They are very similar.
+ If we separate the second stage of Simpson's-ode into two stages, we get
+ Runge-Kutta's order 4 method.
  That is the difference.
- Both stages 2 and 3 are used to approximate 
+ Two stages are used to approximate 
 \begin_inset Formula $\dot{y}(t_{i}+\frac{h}{2})$
 \end_inset
 
-.
+ instead of one!
 \end_layout
 
 \begin_layout Standard
@@ -1504,6 +1719,16 @@ status open
 
 \backslash
 begin{digression}{Derivation of The (Classic) Runge-Kutta Order 4}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RK4 method
 \end_layout
 
 \end_inset
@@ -2009,6 +2234,87 @@ end{digression}
 
 \end_layout
 
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Taylor's
+\begin_inset space ~
+\end_inset
+
+theorem
+\begin_inset space ~
+\end_inset
+
+in
+\begin_inset space ~
+\end_inset
+
+two
+\begin_inset space ~
+\end_inset
+
+variables: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Taylor's two variable
+\end_layout
+
+\end_inset
+
+Suppose 
+\begin_inset Formula $f(t,y)$
+\end_inset
+
+ and all its partial derivatives of order 
+\begin_inset Formula $n+1$
+\end_inset
+
+ and lower are continuous on the rectangle 
+\begin_inset Formula $D=\{(t,y):a\leq t\leq b,c\leq y\leq d\}$
+\end_inset
+
+, and let 
+\begin_inset Formula $(t_{0},y_{0})\in D$
+\end_inset
+
+.
+ Then for every 
+\begin_inset Formula $(t,y)\in D$
+\end_inset
+
+, there exist 
+\begin_inset Formula $\xi\in(a,b)$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu\in(c,d)$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\begin{eqnarray*}
+f(t,y) & = & f(t_{0},y_{0})+\left[(t-t_{0})\cdot f_{t}(t_{0},y_{0})+(y-y_{0})\cdot f_{y}(t_{0},y_{0})\right]\\
+ &  & +\frac{1}{2}\left[(t-t_{0})^{2}f_{tt}(t_{0},y_{0})+2(t-t_{0})(y-y_{0})\cdot f_{ty}(t_{0},y_{0})+(y-y_{0})^{2}f_{yy}(t_{0},y_{0})\right]\\
+ &  & +\cdots+\\
+ &  & \frac{1}{n!}\left[\sum_{j=0}^{n}\left(\begin{array}{c}
+n\\
+j
+\end{array}\right)(t-t_{0})^{n-j}(y-y_{0})^{j}\frac{\partial^{n}f}{\partial t^{n-j}\partial y^{j}}(t_{0},y_{0})\right]\\
+ &  & +\frac{1}{(n+1)!}\left[\sum_{j=0}^{n+1}\left(\begin{array}{c}
+n+1\\
+j
+\end{array}\right)(t-t_{0})^{n+1-j}(y-y_{0})^{j}\frac{\partial^{n+1}f}{\partial t^{n+1-j}\partial y^{j}}(\xi,\mu)\right].
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \noindent
 \begin_inset ERT
@@ -2031,7 +2337,334 @@ Exercises
 \end_layout
 
 \begin_layout Enumerate
-Explain geometrically, and in your own words, modified Euler's method.
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:ode-errorAnalysis"
+
+\end_inset
+
+Determine analytically the local truncation error for the o.d.e.
+ solver derived in exercise 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "exc:ode-rungeKutta"
+
+\end_inset
+
+.
+ Compare it to the local truncation error of the underlying integration
+ formula.
+ Are they the same? Also compare it to the experimentally determined rate
+ of convergence (see exercise 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "exc:ode-rungeKutta-16"
+
+\end_inset
+
+).
+ Is it one degree higher, as should be expected? 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:ode-errorAnalysis-1"
+
+\end_inset
+
+Execute one step of Runge-Kutta order four for solving 
+\begin_inset Formula $\dot{y}=ty$
+\end_inset
+
+ with 
+\begin_inset Formula $y(1)=0.5$
+\end_inset
+
+ and 
+\begin_inset Formula $h=1$
+\end_inset
+
+, thus approximating 
+\begin_inset Formula $y(2)$
+\end_inset
+
+.
+ Compare your answer to that of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:TaylorMethods"
+
+\end_inset
+
+ exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor"
+
+\end_inset
+
+c 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "exc:ode-taylor"
+
+\end_inset
+
+ in which you used Euler's method with two steps.
+ The exact solution is 
+\begin_inset Formula $y(2)=\frac{e^{3/2}}{2}\approx2.240844535169032$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Explain geometrically, and in your own words, improved Euler's method.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:ode-errorAnalysis-2"
+
+\end_inset
+
+Write an Octave function that implements improved Euler's method (same as
+ exercise 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "exc:ode-rungeKutta-12"
+
+\end_inset
+
+ except this time the method has a proper name).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:ode-errorAnalysis-3"
+
+\end_inset
+
+Write an Octave function that implements Heun's third order method (same
+ as exercise 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "exc:ode-rungeKutta-13"
+
+\end_inset
+
+ except this time the method has a proper name).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:ode-errorAnalysis-4"
+
+\end_inset
+
+Write an Octave function that implements RK4.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use your code from exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis-4"
+
+\end_inset
+
+ to compute 
+\begin_inset Formula $y(2)$
+\end_inset
+
+ for the o.d.e.
+ in exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-taylor"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "exc:ode-taylor"
+
+\end_inset
+
+ using step size 
+\begin_inset Formula $h=0.05$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithsolution 
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

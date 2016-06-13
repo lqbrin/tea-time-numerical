@@ -246,12 +246,10 @@ Tea Time Numerical Analysis
 \shape default
  is fairly typical.
  The book starts with an introductory chapter, followed by root finding
- methods, interpolation (part 1), numerical calculus, and interpolation
- (part 2).
- This covers what, at SCSU, constitutes a first semester course in numerical
- analysis.
- Future efforts will add chapters on linear algebra and differential equations,
- making it a full year course.
+ methods, interpolation (part 1), numerical calculus, interpolation (part
+ 2), and the second edition introduces a chapter on differential equations.
+ The first five chapters cover what, at SCSU, constitutes a first semester
+ course in numerical analysis.
  As this book is intended for use as a free download or an inexpensive print-on-
 demand volume, no effort has been made to keep the page count low or to
  spare copious diagrams and colors.

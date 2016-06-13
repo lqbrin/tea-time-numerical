@@ -1555,6 +1555,16 @@ reference "exc:polynomials-13"
 \begin_inset Formula $\ $
 \end_inset
 
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Horner's method ! code
+\end_layout
+
+\end_inset
+
  
 \begin_inset ERT
 status open
@@ -1920,6 +1930,512 @@ reference "exc:polynomials-15"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:RootsBracketing"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{4}=2.1806$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{10}=-502.19$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{3}=1.0079$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-1"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{5}=2.1798$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{9}=-502.19$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{6}=1.0079$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-2"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{7}=2.1798$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{6}=-499.98$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{5}=1.0080$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-3"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{7}=2.1798$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{2}=-499.98$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{3}=4.1495$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-4"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{9}=2.17975713685875$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{18}=-502.188059117229$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{4}=1.00794427892360$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-5"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{6}=2.17975706647997$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{10}=-502.188059235320$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{8}=1.00794427848101$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-6"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{6}=2.17975706647996$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{9}=-502.188059235320$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{4}=1.00794427848094$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-7"
+
+\end_inset
+
+: (a), (e), and (j): Bracketed inverse quadratic interpolation is at least
+ as fast or faster than false position or bracketed Newton's method.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-8"
+
+\end_inset
+
+: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Steffensen's method ! code
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+bracketedSteffensens.m
+\family default
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+% Written by Dr.
+ Len Brin         15 January 2014 %
+\end_layout
+
+\begin_layout Plain Layout
+
+% Purpose: Implementation of Steffensen's method  %
+\end_layout
+
+\begin_layout Plain Layout
+
+% INPUT: function f; initial value x0; tolerance  %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        TOL; maximum iterations N0               %
+\end_layout
+
+\begin_layout Plain Layout
+
+% OUTPUT: approximation x and number of           %
+\end_layout
+
+\begin_layout Plain Layout
+
+%        iterations i; or message of failure      %
+\end_layout
+
+\begin_layout Plain Layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+function [x,i] = bracketedSteffensens(f,a,b,TOL,N0)
+\end_layout
+
+\begin_layout Plain Layout
+
+  i=1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  A=f(a);
+\end_layout
+
+\begin_layout Plain Layout
+
+  B=f(b);
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (i<=N0)
+\end_layout
+
+\begin_layout Plain Layout
+
+    b
+\end_layout
+
+\begin_layout Plain Layout
+
+    x0=b;
+\end_layout
+
+\begin_layout Plain Layout
+
+    x1=B;
+\end_layout
+
+\begin_layout Plain Layout
+
+    x2=f(x1);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(x2-x1)<TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=x2;
+\end_layout
+
+\begin_layout Plain Layout
+
+      disp(" ");
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    x=x0-(x1-x0)^2/(x2-2*x1+x0);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (x<min([a,b]) || x>max([a,b]))
+\end_layout
+
+\begin_layout Plain Layout
+
+      x=a+(b-a)/2;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (abs(x-x2)<TOL)
+\end_layout
+
+\begin_layout Plain Layout
+
+      disp(" ");
+\end_layout
+
+\begin_layout Plain Layout
+
+      return
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    X=f(x);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if ((B<b && X>x) || (B>b && X<x))
+\end_layout
+
+\begin_layout Plain Layout
+
+      a=b; A=B;
+\end_layout
+
+\begin_layout Plain Layout
+
+    end%if
+\end_layout
+
+\begin_layout Plain Layout
+
+    b=x; B=X;
+\end_layout
+
+\begin_layout Plain Layout
+
+    i=i+1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  end%while
+\end_layout
+
+\begin_layout Plain Layout
+
+  x="Method failed---maximum number of iterations reached";
+\end_layout
+
+\begin_layout Plain Layout
+
+end%function 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-9"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{6}=2.17975706643814$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{11}=-502.188059386686$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{9}=1.00794427672537$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-13"
+
+\end_inset
+
+: (a), (e), and (j): Bracketed inverse quadratic interpolation is at least
+ as fast or faster than bracketed Steffensen's method, counting only number
+ of iterations.
+ However, bracketed Steffensen's requires two function evaluations per iteration
+, so for all practical purposes requires more than twice the computational
+ power of bracketed inverse quadratic interpolation.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-11"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $x_{6}=2.17975706647996$
+\end_inset
+
+ (e) 
+\begin_inset Formula $x_{8}=-502.188059227438$
+\end_inset
+
+ (j) 
+\begin_inset Formula $x_{4}=1.00794427848094$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-14"
+
+\end_inset
+
+: (a) and (j): Since the root is on the order of 
+\begin_inset Formula $1$
+\end_inset
+
+, there is no difference between testing absolute and relative errors.
+ (e) Since the root is around five hundred, the method stops when the absolute
+ error is only about 
+\begin_inset Formula $10^{-6}\cdot500=5(10)^{-4}$
+\end_inset
+
+.
+ Consequently, the method stops one iteration earlier when checking relative
+ error than it does checking absolute error.
 \end_layout
 
 \begin_layout Section*
@@ -3188,6 +3704,16 @@ reference "exc:calculus-composite-5"
 adaptSimp()
 \family default
 :
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+adaptive Simpson's rule ! code
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3548,7 +4074,11 @@ REMARK:
 \family typewriter
 aSimp()
 \family default
- and 
+ , 
+\family typewriter
+adaptSimp()
+\family default
+, and 
 \family typewriter
 adaptiveSimpsons()
 \family default
@@ -3565,6 +4095,16 @@ adaptiveSimpsons()
 adaptiveSimpsons()
 \family default
  is the only one that should be used directly.
+ The others are called by it.
+ Code may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
 \end_layout
 
 \end_deeper
@@ -3821,6 +4361,29 @@ reference "exc:calculus-extrapolation-8"
  that it already calculated last time it was called.
  Avoiding this repetition of work would make the routine much more efficient.
  Can you think of a way to accomplish this? 
+\family typewriter
+romberg.m
+\family default
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Romberg integration ! code
+\end_layout
+
+\end_inset
+
+ 
 \begin_inset ERT
 status open
 
@@ -4225,489 +4788,6 @@ end{verbatim}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section*
-Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:RootsBracketing"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{4}=2.1806$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{10}=-502.19$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{3}=1.0079$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-1"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{5}=2.1798$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{9}=-502.19$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{6}=1.0079$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-2"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{7}=2.1798$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{6}=-499.98$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{5}=1.0080$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-3"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{7}=2.1798$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{2}=-499.98$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{3}=4.1495$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-4"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{9}=2.17975713685875$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{18}=-502.188059117229$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{4}=1.00794427892360$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-5"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{6}=2.17975706647997$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{10}=-502.188059235320$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{8}=1.00794427848101$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-6"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{6}=2.17975706647996$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{9}=-502.188059235320$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{4}=1.00794427848094$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-7"
-
-\end_inset
-
-: (a), (e), and (j): Bracketed inverse quadratic interpolation is at least
- as fast or faster than false position or bracketed Newton's method.
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-8"
-
-\end_inset
-
-: 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end_layout
-
-\begin_layout Plain Layout
-
-% Written by Dr.
- Len Brin         15 January 2014 %
-\end_layout
-
-\begin_layout Plain Layout
-
-% Purpose: Implementation of Steffensen's method  %
-\end_layout
-
-\begin_layout Plain Layout
-
-% INPUT: function f; initial value x0; tolerance  %
-\end_layout
-
-\begin_layout Plain Layout
-
-%        TOL; maximum iterations N0               %
-\end_layout
-
-\begin_layout Plain Layout
-
-% OUTPUT: approximation x and number of           %
-\end_layout
-
-\begin_layout Plain Layout
-
-%        iterations i; or message of failure      %
-\end_layout
-
-\begin_layout Plain Layout
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end_layout
-
-\begin_layout Plain Layout
-
-function [x,i] = bracketedSteffensens(f,a,b,TOL,N0)
-\end_layout
-
-\begin_layout Plain Layout
-
-  i=1;
-\end_layout
-
-\begin_layout Plain Layout
-
-  A=f(a);
-\end_layout
-
-\begin_layout Plain Layout
-
-  B=f(b);
-\end_layout
-
-\begin_layout Plain Layout
-
-  while (i<=N0)
-\end_layout
-
-\begin_layout Plain Layout
-
-    b
-\end_layout
-
-\begin_layout Plain Layout
-
-    x0=b;
-\end_layout
-
-\begin_layout Plain Layout
-
-    x1=B;
-\end_layout
-
-\begin_layout Plain Layout
-
-    x2=f(x1);
-\end_layout
-
-\begin_layout Plain Layout
-
-    if (abs(x2-x1)<TOL)
-\end_layout
-
-\begin_layout Plain Layout
-
-      x=x2;
-\end_layout
-
-\begin_layout Plain Layout
-
-      disp(" ");
-\end_layout
-
-\begin_layout Plain Layout
-
-      return
-\end_layout
-
-\begin_layout Plain Layout
-
-    end%if
-\end_layout
-
-\begin_layout Plain Layout
-
-    x=x0-(x1-x0)^2/(x2-2*x1+x0);
-\end_layout
-
-\begin_layout Plain Layout
-
-    if (x<min([a,b]) || x>max([a,b]))
-\end_layout
-
-\begin_layout Plain Layout
-
-      x=a+(b-a)/2;
-\end_layout
-
-\begin_layout Plain Layout
-
-    end%if
-\end_layout
-
-\begin_layout Plain Layout
-
-    if (abs(x-x2)<TOL)
-\end_layout
-
-\begin_layout Plain Layout
-
-      disp(" ");
-\end_layout
-
-\begin_layout Plain Layout
-
-      return
-\end_layout
-
-\begin_layout Plain Layout
-
-    end%if
-\end_layout
-
-\begin_layout Plain Layout
-
-    X=f(x);
-\end_layout
-
-\begin_layout Plain Layout
-
-    if ((B<b && X>x) || (B>b && X<x))
-\end_layout
-
-\begin_layout Plain Layout
-
-      a=b; A=B;
-\end_layout
-
-\begin_layout Plain Layout
-
-    end%if
-\end_layout
-
-\begin_layout Plain Layout
-
-    b=x; B=X;
-\end_layout
-
-\begin_layout Plain Layout
-
-    i=i+1;
-\end_layout
-
-\begin_layout Plain Layout
-
-  end%while
-\end_layout
-
-\begin_layout Plain Layout
-
-  x="Method failed---maximum number of iterations reached";
-\end_layout
-
-\begin_layout Plain Layout
-
-end%function 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-9"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{6}=2.17975706643814$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{11}=-502.188059386686$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{9}=1.00794427672537$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-13"
-
-\end_inset
-
-: (a), (e), and (j): Bracketed inverse quadratic interpolation is at least
- as fast or faster than bracketed Steffensen's method, counting only number
- of iterations.
- However, bracketed Steffensen's requires two function evaluations per iteration
-, so for all practical purposes requires more than twice the computational
- power of bracketed inverse quadratic interpolation.
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-11"
-
-\end_inset
-
-: (a) 
-\begin_inset Formula $x_{6}=2.17975706647996$
-\end_inset
-
- (e) 
-\begin_inset Formula $x_{8}=-502.188059227438$
-\end_inset
-
- (j) 
-\begin_inset Formula $x_{4}=1.00794427848094$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-14"
-
-\end_inset
-
-: (a) and (j): Since the root is on the order of 
-\begin_inset Formula $1$
-\end_inset
-
-, there is no difference between testing absolute and relative errors.
- (e) Since the root is around five hundred, the method stops when the absolute
- error is only about 
-\begin_inset Formula $10^{-6}\cdot500=5(10)^{-4}$
-\end_inset
-
-.
- Consequently, the method stops one iteration earlier when checking relative
- error than it does checking absolute error.
 \end_layout
 
 \begin_layout Section*
@@ -5645,6 +5725,16 @@ begin{pseudocode}
 \end_inset
 
 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor's method of order 2 ! pseudo-code
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Description
@@ -5787,6 +5877,28 @@ reference "exc:ode-taylor-3"
 \end_inset
 
 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Taylor's method of order 2 ! code
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+taylor2ode.m
+\family default
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_deeper
@@ -6164,6 +6276,1969 @@ reference "exc:ode-taylor-19"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Methods"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-2"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{2},y_{i}+\frac{h}{2}k_{1}\right)\\
+y_{i+1} & = & y_{i}+hk_{2}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-3"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{2}\left[3k_{2}-k_{1}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-7"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{h}{3},y_{i}+\frac{h}{3}k_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{h}{2},y_{i}+\frac{h}{2}k_{2}\right)\\
+k_{4} & = & f\left(t_{i}+\frac{2h}{3},y_{i}+\frac{2h}{3}k_{1}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{2}\left[3k_{2}-4k_{3}+3k_{4}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-10"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\begin{eqnarray*}
+k_{1} & = & f(t_{i},y_{i})\\
+k_{2} & = & f\left(t_{i}+\frac{\sqrt{5}-\sqrt{3}}{2\sqrt{5}}h,y_{i}+\frac{\sqrt{5}-\sqrt{3}}{2\sqrt{5}}hk_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{h}{2},y_{i}+\frac{h}{2}k_{2}\right)\\
+k_{4} & = & f\left(t_{i}+\frac{\sqrt{5}+\sqrt{3}}{2\sqrt{5}}h,y_{i}+\frac{\sqrt{5}+\sqrt{3}}{2\sqrt{5}}hk_{1}\right)\\
+y_{i+1} & = & y_{i}+\frac{h}{18}\left[5k_{2}+8k_{3}+5k_{4}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-16"
+
+\end_inset
+
+b: 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+; Yes
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-16"
+
+\end_inset
+
+c: 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+; Yes
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-16"
+
+\end_inset
+
+g: 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+; No
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-16"
+
+\end_inset
+
+j: 
+\begin_inset Formula $O(h^{2})$
+\end_inset
+
+; No
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-14"
+
+\end_inset
+
+: 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "code:euler"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-11"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+midpoint method ! code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                               28 May 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements the Midpoint method where    %
+\end_layout
+
+\begin_layout LyX-Code
+%        the step size is calculated and held constant.
+          %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = midpoint(f,a,ya,b,n)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  x(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  h = (b-a)/n;
+\end_layout
+
+\begin_layout LyX-Code
+  while (i<=n)
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(x(i),y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(x(i)+h/2,y(i)+h/2*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    y(i+1) = y(i) + h*k2;
+\end_layout
+
+\begin_layout LyX-Code
+    x(i+1) = a + (b-a)*i/n;
+\end_layout
+
+\begin_layout LyX-Code
+    i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+end%function
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family roman
+This code may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-15"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Ralston's method ! code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                               28 May 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements Ralston's method where       %
+\end_layout
+
+\begin_layout LyX-Code
+%        the step size is calculated and held constant.
+          %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = ralston(f,a,ya,b,n)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  x(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  h = (b-a)/n;
+\end_layout
+
+\begin_layout LyX-Code
+  while (i<=n)
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(x(i),y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(x(i)+2*h/3,y(i)+2*h/3*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    y(i+1) = y(i) + h/4*(k1+3*k2);
+\end_layout
+
+\begin_layout LyX-Code
+    x(i+1) = a + (b-a)*i/n;
+\end_layout
+
+\begin_layout LyX-Code
+    i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+end%function
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family roman
+This code may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-17"
+
+\end_inset
+
+c: 
+\begin_inset Formula $2.071336302192492$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-18"
+
+\end_inset
+
+c: 
+\begin_inset Formula $2.237523715781341$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-19"
+
+\end_inset
+
+c: 
+\begin_inset Formula $2.240722979472185$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-20"
+
+\end_inset
+
+c: 
+\begin_inset Formula $2.235615854209425$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-rungeKutta-21"
+
+\end_inset
+
+c: 
+\begin_inset Formula $2.236251636584492$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Runge-Kutta-Error-Analysis"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis"
+
+\end_inset
+
+b: 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+; equal to that of underlying integration formula; yes, one degree higher
+ than rate of convergence.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis"
+
+\end_inset
+
+c: 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+; equal to that of underlying integration formula; yes, one degree higher
+ than rate of convergence.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis"
+
+\end_inset
+
+g: NOTE: Since this is a four-stage method, equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond1"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond10"
+
+\end_inset
+
+ must be used to determine the rate of convergence.
+ 
+\begin_inset Formula $O(h^{4})$
+\end_inset
+
+; less than that of underlying integration formula; yes, one degree higher
+ than rate of convergence.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis"
+
+\end_inset
+
+j: NOTE: Since this is a four-stage method, equations 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond1"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rk4cond10"
+
+\end_inset
+
+ must be used to determine the rate of convergence.
+ 
+\begin_inset Formula $O(h^{3})$
+\end_inset
+
+; less than that of underlying integration formula; yes, one degree higher
+ than rate of convergence.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis-2"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+improved Euler method ! code
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+eulerimp.m
+\family roman
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                               31 May 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements improved Euler's method      %
+\end_layout
+
+\begin_layout LyX-Code
+%        where the step size is calculated and held constant.
+    %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = eulerimp(f,a,ya,b,n)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  x(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  h = (b-a)/n;
+\end_layout
+
+\begin_layout LyX-Code
+  while (i<=n)
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(x(i),y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(x(i)+h,y(i) + h*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    y(i+1) = y(i) + h/2*(k1+k2);
+\end_layout
+
+\begin_layout LyX-Code
+    x(i+1) = a + (b-a)*i/n;
+\end_layout
+
+\begin_layout LyX-Code
+    i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+end%function
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis-3"
+
+\end_inset
+
+: 
+\begin_inset Formula $\ $
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Heun's third order method ! code
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+heun.m
+\family roman
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                               31 May 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements Heun's third order method    %
+\end_layout
+
+\begin_layout LyX-Code
+%        where the step size is calculated and held constant.
+    %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = heun(f,a,ya,b,n)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  x(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  h = (b-a)/n;
+\end_layout
+
+\begin_layout LyX-Code
+  while (i<=n)
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(x(i), y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(x(i)+h/3, y(i)+h/3*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    k3 = f(x(i)+2*h/3, y(i)+2*h/3*k2);
+\end_layout
+
+\begin_layout LyX-Code
+    y(i+1) = y(i) + h/4*(k1+3*k3);
+\end_layout
+
+\begin_layout LyX-Code
+    x(i+1) = a + (b-a)*i/n;
+\end_layout
+
+\begin_layout LyX-Code
+    i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+end%function
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-errorAnalysis-4"
+
+\end_inset
+
+: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RK4 method ! code
+\end_layout
+
+\end_inset
+
+
+\family typewriter
+ rk4.m
+\family roman
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                               1 June 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements Runge-Kutta 4th order (RK4)  %
+\end_layout
+
+\begin_layout LyX-Code
+%        where the step size is calculated and held constant.
+    %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); steps n          %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,x] = rk4(f,a,ya,b,n)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  x(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  h = (b-a)/n;
+\end_layout
+
+\begin_layout LyX-Code
+  while (i<=n)
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(x(i), y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(x(i)+h/2, y(i)+h/2*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    k3 = f(x(i)+h/2, y(i)+h/2*k2);
+\end_layout
+
+\begin_layout LyX-Code
+    k4 = f(x(i)+h, y(i)+h*k3);
+\end_layout
+
+\begin_layout LyX-Code
+    y(i+1) = y(i) + h/6*(k1+2*k2+2*k3+k4);
+\end_layout
+
+\begin_layout LyX-Code
+    x(i+1) = a + (b-a)*i/n;
+\end_layout
+
+\begin_layout LyX-Code
+    i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+end%function
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Adaptive-Runge-Kutta-Methods"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive"
+
+\end_inset
+
+: One way to code it would be the following.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+RK2(3) method ! code
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+rk23.m
+\family roman
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                               31 May 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements an adaptive rk2(3) method    %
+\end_layout
+
+\begin_layout LyX-Code
+%        where the step size is controlled by the routine.
+       %
+\end_layout
+
+\begin_layout LyX-Code
+%        Heun's third order method is combined with open-ode.
+    %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); initial step     %
+\end_layout
+
+\begin_layout LyX-Code
+%        size h; tolerance eps; maximum steps N;                 %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,t] = rk23(f,a,ya,b,h,eps,N)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  t(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  done = 0;
+\end_layout
+
+\begin_layout LyX-Code
+  while (!done && i<=N)
+\end_layout
+
+\begin_layout LyX-Code
+    if ((b-t(i)-h)*(b-a)<=0)
+\end_layout
+
+\begin_layout LyX-Code
+      h=b-t(i);
+\end_layout
+
+\begin_layout LyX-Code
+      done = 1;
+\end_layout
+
+\begin_layout LyX-Code
+    endif
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(t(i), y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(t(i)+h/3, y(i)+h/3*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    k3 = f(t(i)+2*h/3, y(i)+2*h/3*k2);
+\end_layout
+
+\begin_layout LyX-Code
+    err = abs(h/4*(k1-2*k2+k3));
+\end_layout
+
+\begin_layout LyX-Code
+    if (done || err<=eps)
+\end_layout
+
+\begin_layout LyX-Code
+      y(i+1) = y(i) + h/4*(k1+3*k3);
+\end_layout
+
+\begin_layout LyX-Code
+      t(i+1) = t(i) + h;
+\end_layout
+
+\begin_layout LyX-Code
+      if (t(i+1) == t(i))
+\end_layout
+
+\begin_layout LyX-Code
+        disp("Procedure failed.
+ Step size reached zero.")
+\end_layout
+
+\begin_layout LyX-Code
+        return
+\end_layout
+
+\begin_layout LyX-Code
+      endif
+\end_layout
+
+\begin_layout LyX-Code
+      i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+    endif
+\end_layout
+
+\begin_layout LyX-Code
+    q = 0.9*realpow(eps/err,1/3);
+\end_layout
+
+\begin_layout LyX-Code
+    q = max(q,0.1);
+\end_layout
+
+\begin_layout LyX-Code
+    q = min(5.0,q);
+\end_layout
+
+\begin_layout LyX-Code
+    h = q*h;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+  if (!done)
+\end_layout
+
+\begin_layout LyX-Code
+    disp("Procedure failed.
+ Maximum number of iterations reached.")
+\end_layout
+
+\begin_layout LyX-Code
+  endif
+\end_layout
+
+\begin_layout LyX-Code
+end%function
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-6"
+
+\end_inset
+
+: (a) and (d).
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-17"
+
+\end_inset
+
+: The Butcher tableau is
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{2}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-\frac{1}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{3}{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{3}{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-15"
+
+\end_inset
+
+: One way to code it would be the following.
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Merson method ! code
+\end_layout
+
+\end_inset
+
+ 
+\family typewriter
+merson.m
+\family roman
+ may be downloaded at 
+\begin_inset CommandInset href
+LatexCommand href
+name "the companion website"
+target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+% Written by Leon Brin                               9 June 2016 %
+\end_layout
+
+\begin_layout LyX-Code
+% Purpose: This function implements the method of Merson (1957)  %
+\end_layout
+
+\begin_layout LyX-Code
+%        where the step size is controlled by the routine.
+       %
+\end_layout
+
+\begin_layout LyX-Code
+% INPUT: function f(x,y); interval [a,b]; y(a); initial step     %
+\end_layout
+
+\begin_layout LyX-Code
+%        size h; tolerance eps; maximum steps N;                 %
+\end_layout
+
+\begin_layout LyX-Code
+% OUTPUT: approximation (x(i),y(i)) of the solution of y'=f(x,y) %
+\end_layout
+
+\begin_layout LyX-Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout LyX-Code
+function [y,t] = merson(f,a,ya,b,h,eps,N)
+\end_layout
+
+\begin_layout LyX-Code
+  i = 1;
+\end_layout
+
+\begin_layout LyX-Code
+  t(i) = a;
+\end_layout
+
+\begin_layout LyX-Code
+  y(i) = ya;
+\end_layout
+
+\begin_layout LyX-Code
+  done = 0;
+\end_layout
+
+\begin_layout LyX-Code
+  while (!done && i<=N)
+\end_layout
+
+\begin_layout LyX-Code
+    if ((b-t(i)-h)*(b-a)<=0)
+\end_layout
+
+\begin_layout LyX-Code
+      h=b-t(i);
+\end_layout
+
+\begin_layout LyX-Code
+      done = 1;
+\end_layout
+
+\begin_layout LyX-Code
+    endif
+\end_layout
+
+\begin_layout LyX-Code
+    k1 = f(t(i), y(i));
+\end_layout
+
+\begin_layout LyX-Code
+    k2 = f(t(i)+h/3, y(i)+h/3*k1);
+\end_layout
+
+\begin_layout LyX-Code
+    k3 = f(t(i)+h/3, y(i)+h/6*(k1+k2));
+\end_layout
+
+\begin_layout LyX-Code
+    k4 = f(t(i)+h/2, y(i)+h/8*(k1+3*k3));
+\end_layout
+
+\begin_layout LyX-Code
+    k5 = f(t(i)+h, y(i)+h/2*(k1-3*k3+4*k4));
+\end_layout
+
+\begin_layout LyX-Code
+    err = abs(h/30*(2*k1-9*k3+8*k4-k5));
+\end_layout
+
+\begin_layout LyX-Code
+    if (done || err<=eps)
+\end_layout
+
+\begin_layout LyX-Code
+      y(i+1) = y(i) + h/6*(k1+4*k4+k5);
+\end_layout
+
+\begin_layout LyX-Code
+      t(i+1) = t(i) + h;
+\end_layout
+
+\begin_layout LyX-Code
+      if (t(i+1) == t(i))
+\end_layout
+
+\begin_layout LyX-Code
+        disp("Procedure failed.
+ Step size reached zero.")
+\end_layout
+
+\begin_layout LyX-Code
+        return
+\end_layout
+
+\begin_layout LyX-Code
+      endif
+\end_layout
+
+\begin_layout LyX-Code
+      i = i+1;
+\end_layout
+
+\begin_layout LyX-Code
+    endif
+\end_layout
+
+\begin_layout LyX-Code
+    q = 0.9*realpow(eps/err,1/4);
+\end_layout
+
+\begin_layout LyX-Code
+    q = max(q,0.1);
+\end_layout
+
+\begin_layout LyX-Code
+    q = min(5.0,q);
+\end_layout
+
+\begin_layout LyX-Code
+    h = q*h;
+\end_layout
+
+\begin_layout LyX-Code
+  end%while
+\end_layout
+
+\begin_layout LyX-Code
+  if (!done)
+\end_layout
+
+\begin_layout LyX-Code
+    disp("Procedure failed.
+ Maximum number of iterations reached.")
+\end_layout
+
+\begin_layout LyX-Code
+  endif
+\end_layout
+
+\begin_layout LyX-Code
+end%function
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-26"
+
+\end_inset
+
+: As can be seen from the diagram, most tolerances greater than 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ do not produce a global error of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ or less, though there are exceptions.
+ If just guessing and checking, likely you will end up with a tolerance
+ of 
+\begin_inset Formula $5(10)^{-5}$
+\end_inset
+
+ or less.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/cashKarpGlobalError.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-27"
+
+\end_inset
+
+: As can be seen from the diagram, tolerances less than 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ produce a global error of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ or less, as do some slightly greater tolerances.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/cashKarpGlobalError2.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-29"
+
+\end_inset
+
+: As can be seen from the diagram, most tolerances less than 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+ produce a global error of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ or less, though there are exceptions.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/rk24globalError.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-30"
+
+\end_inset
+
+: As can be seen from the diagram, most tolerances greater than 
+\begin_inset Formula $5(10)^{-3}$
+\end_inset
+
+ produce a global error of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ or less, as do some slightly greater tolerances.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/rk24globalError2.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-24"
+
+\end_inset
+
+: (a) 
+\begin_inset Formula $y(5)\approx6.40926980783945$
+\end_inset
+
+; 
+\begin_inset Formula $\mbox{error}\approx1.75(10)^{-4}$
+\end_inset
+
+, 75% greater than the tolerance.
+ (b) 
+\begin_inset Formula $y(5)\approx6.40708478227220$
+\end_inset
+
+; 
+\begin_inset Formula $\mbox{error}\approx2.36(10)^{-3}$
+\end_inset
+
+, nearly 24 times the tolerance.
+ (c) 
+\begin_inset Formula $y(5)\approx6.40937679658180$
+\end_inset
+
+; 
+\begin_inset Formula $\mbox{error}\approx6.82(10)^{-5}$
+\end_inset
+
+, about 68% of the tolerance.
+ (d) 
+\begin_inset Formula $y(5)\approx6.40885618182156$
+\end_inset
+
+; 
+\begin_inset Formula $\mbox{error}\approx5.88(10)^{-4}$
+\end_inset
+
+, nearly 6 times the tolerance.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:ode-adaptive-33"
+
+\end_inset
+
+: In order from most to least efficient: Cash-Karp, Merson, RK2(3), Bogacki-Sham
+pine, with evaluations 42, 50, 69, and 138, respectively.
 \end_layout
 
 \end_body
