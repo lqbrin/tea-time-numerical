@@ -4862,23 +4862,31 @@ reference "exc:odePendulum-5"
 \end_inset
 
 : 
-\begin_inset Formula $\dot{s}(t)=\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)-\sin\left(\frac{\sqrt{3}}{2}t\right)\right)$
+\begin_inset Formula $\ $
 \end_inset
 
- and 
-\begin_inset Formula $\ddot{s}(t)=-\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)+\sin\left(\frac{\sqrt{3}}{2}t\right)\right)$
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{s}(t) & = & \frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)-\sin\left(\frac{\sqrt{3}}{2}t\right)\right)\\
+\ddot{s}(t) & = & -\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)+\sin\left(\frac{\sqrt{3}}{2}t\right)\right)
+\end{eqnarray*}
+
 \end_inset
 
-.
  Substituting into 
 \begin_inset Formula $\ddot{s}+\dot{s}+s=0$
 \end_inset
 
  yields 
-\begin_inset Formula $-\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)+\sin\left(\frac{\sqrt{3}}{2}t\right)\right)+\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)-\sin\left(\frac{\sqrt{3}}{2}t\right)\right)+e^{-t/2}\sin\left(\frac{\sqrt{3}}{2}t\right)=0$
+\begin_inset Formula 
+\[
+-\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)+\sin\left(\frac{\sqrt{3}}{2}t\right)\right)+\frac{1}{2}e^{-t/2}\left(\sqrt{3}\cos\left(\frac{\sqrt{3}}{2}t\right)-\sin\left(\frac{\sqrt{3}}{2}t\right)\right)+e^{-t/2}\sin\left(\frac{\sqrt{3}}{2}t\right)=0,
+\]
+
 \end_inset
 
-, a true statement.
+a true statement.
 \end_layout
 
 \begin_layout Description
@@ -8079,9 +8087,8 @@ reference "exc:ode-adaptive-26"
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename figures/cashKarpGlobalError.png
-	lyxscale 50
-	scale 35
+	filename figures/cashKarpGlobalError.pdf
+	scale 75
 
 \end_inset
 
@@ -8096,24 +8103,23 @@ reference "exc:ode-adaptive-27"
 
 \end_inset
 
-: As can be seen from the diagram, tolerances less than 
-\begin_inset Formula $10^{-4}$
+: As can be seen from the diagram, most tolerances less than 
+\begin_inset Formula $10^{-3}$
 \end_inset
 
  produce a global error of 
 \begin_inset Formula $10^{-4}$
 \end_inset
 
- or less, as do some slightly greater tolerances.
+ or less, as do some greater tolerances.
 \end_layout
 
 \begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename figures/cashKarpGlobalError2.png
-	lyxscale 50
-	scale 35
+	filename figures/rk24globalError.pdf
+	scale 75
 
 \end_inset
 
@@ -8128,24 +8134,23 @@ reference "exc:ode-adaptive-29"
 
 \end_inset
 
-: As can be seen from the diagram, most tolerances less than 
-\begin_inset Formula $10^{-2}$
+: As can be seen from the diagram, tolerances less than 
+\begin_inset Formula $10^{-4}$
 \end_inset
 
  produce a global error of 
 \begin_inset Formula $10^{-4}$
 \end_inset
 
- or less, though there are exceptions.
+ or less, as do some slightly higher tolerances.
 \end_layout
 
 \begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename figures/rk24globalError.png
-	lyxscale 50
-	scale 35
+	filename figures/cashKarpGlobalError2.pdf
+	scale 75
 
 \end_inset
 
@@ -8160,7 +8165,7 @@ reference "exc:ode-adaptive-30"
 
 \end_inset
 
-: As can be seen from the diagram, most tolerances greater than 
+: As can be seen from the diagram, most tolerances less than about 
 \begin_inset Formula $5(10)^{-3}$
 \end_inset
 
@@ -8175,9 +8180,8 @@ reference "exc:ode-adaptive-30"
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename figures/rk24globalError2.png
-	lyxscale 50
-	scale 35
+	filename figures/rk24globalError2.pdf
+	scale 75
 
 \end_inset
 

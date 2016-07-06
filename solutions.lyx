@@ -24809,7 +24809,11 @@ y_{i+1}=y_{i}+h(\mbox{weighted average of evaluations of }f).
 
 It is the integration formula that gives us the weighted average.
  In this case, the formula 
-\begin_inset Formula $\frac{h}{4}\left(f(x_{0})+3f\left(x_{0}+\frac{2}{3}h\right)\right)$
+\begin_inset Formula 
+\[
+\frac{h}{4}\left(f(x_{0})+3f\left(x_{0}+\frac{2}{3}h\right)\right)
+\]
+
 \end_inset
 
  tells us to average 
@@ -25003,7 +25007,11 @@ y_{i+1}=y_{i}+h(\mbox{weighted average of evaluations of }f).
 
 It is the integration formula that gives us the weighted average.
  In this case, the formula 
-\begin_inset Formula $\frac{h}{4}\left(3f\left(x_{0}+\frac{1}{3}h\right)+f(x_{0}+h)\right)$
+\begin_inset Formula 
+\[
+\frac{h}{4}\left(3f\left(x_{0}+\frac{1}{3}h\right)+f(x_{0}+h)\right)
+\]
+
 \end_inset
 
  tells us to average 
@@ -25992,13 +26000,13 @@ ans =
 \end_deeper
 \begin_layout Standard
 The value in Column 21 is the desired result, so 
-\begin_inset Formula $y(2)\approx-1.685095172485204$
+\begin_inset Formula $y(2)\approx-1.685095172485$
 \end_inset
 
 .
  The rest of the output gives approximations for the solution at other points.
  For example, 
-\begin_inset Formula $y(1.95)\approx-1.629418404020635$
+\begin_inset Formula $y(1.95)\approx-1.629418404020$
 \end_inset
 
 .
@@ -26428,13 +26436,13 @@ ans =
 \end_deeper
 \begin_layout Standard
 The value in Column 21 is the desired result, so 
-\begin_inset Formula $y(2)\approx-1.652308958787397$
+\begin_inset Formula $y(2)\approx-1.652308958787$
 \end_inset
 
 .
  The rest of the output gives approximations for the solution at other points.
  For example, 
-\begin_inset Formula $y(1.95)\approx-1.604277373646634$
+\begin_inset Formula $y(1.95)\approx-1.604277373646$
 \end_inset
 
 .
@@ -27300,13 +27308,13 @@ ans =
 \end_deeper
 \begin_layout Standard
 The value in Column 21 is the desired result, so 
-\begin_inset Formula $y(2)\approx-1.668415622421331$
+\begin_inset Formula $y(2)\approx-1.668415622421$
 \end_inset
 
 .
  The rest of the output gives approximations for the solution at other points.
  For example, 
-\begin_inset Formula $y(1.95)\approx-1.618640905170988$
+\begin_inset Formula $y(1.95)\approx-1.618640905170$
 \end_inset
 
 .
@@ -27734,13 +27742,13 @@ ans =
 \end_deeper
 \begin_layout Standard
 The value in Column 21 is the desired result, so 
-\begin_inset Formula $y(2)\approx-1.646047861531770$
+\begin_inset Formula $y(2)\approx-1.6460478615317$
 \end_inset
 
 .
  The rest of the output gives approximations for the solution at other points.
  For example, 
-\begin_inset Formula $y(1.95)\approx-1.598731451393269$
+\begin_inset Formula $y(1.95)\approx-1.598731451393$
 \end_inset
 
 .
@@ -29202,9 +29210,8 @@ log-log plot of tolerance versus global error
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/rk23globalError.png
-	lyxscale 50
-	scale 35
+	filename figures/rk23globalError.pdf
+	scale 75
 
 \end_inset
 
@@ -29277,9 +29284,8 @@ reference "eq:oscillatory"
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/oscillatorySolution.png
-	lyxscale 50
-	scale 35
+	filename figures/oscillatorySolution.pdf
+	scale 75
 
 \end_inset
 
@@ -29473,9 +29479,8 @@ log-log plot of tolerance versus global error
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/rk23globalError2.png
-	lyxscale 50
-	scale 35
+	filename figures/rk23globalError2.pdf
+	scale 75
 
 \end_inset
 
@@ -29543,9 +29548,8 @@ reference "eq:non-oscillatory"
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename figures/non-oscillatory.png
-	lyxscale 50
-	scale 35
+	filename figures/non-oscillatory.pdf
+	scale 75
 
 \end_inset
 
