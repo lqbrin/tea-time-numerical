@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -520,7 +537,7 @@ status open
 
 
 \backslash
-begin{digression}{DividedDifferences}
+begin{digression}{Divided Differences}
 \end_layout
 
 \end_inset
@@ -847,7 +864,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -877,10 +894,10 @@ Newton form example, calculating
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -1263,6 +1280,10 @@ Step
 \end_inset
 
  do Step 3:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1436,6 +1457,10 @@ Step
 \end_inset
 
  do Step 4:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1578,6 +1603,10 @@ Step
 \end_inset
 
  do Step 2:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1604,6 +1633,10 @@ Step
 \end_inset
 
  do Steps 4-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1617,6 +1650,10 @@ Step
 \end_inset
 
  do Step 5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1644,6 +1681,10 @@ Step
 \end_inset
 
  do Steps 7-11:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1774,7 +1815,7 @@ Output: Approximation
 \begin_inset Formula $x$
 \end_inset
 
- near exact fixed point, or message of failure.
+ near exact fixed point or message of failure.
 \end_layout
 
 \begin_layout Standard
@@ -2154,6 +2195,7 @@ sidi.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -2186,6 +2228,10 @@ Divided difference tables are generally computed for the sake of finding
  Suppose you have a divided difference table computed over 4 data values
  but you are only interested in an at-most-degree-2 interpolating polynomial.
  The divided difference table
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2193,11 +2239,11 @@ Divided difference tables are generally computed for the sake of finding
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
@@ -2485,6 +2531,10 @@ reverse engineer
  the table, simply erasing the bottom-most diagonal.
  The remaining table is still a legitimate divided difference table since
  none of the remaining entries depends on any of the erased entries:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2492,10 +2542,10 @@ reverse engineer
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
@@ -2657,6 +2707,10 @@ P_{2}(x)=f_{0,0}+f_{0,1}(x-x_{0})+f_{0,2}(x-x_{0})(x-x_{1})
 is one of the degree at most 2 interpolating polynomials.
  Erasing the top row of the table also leaves a legitimate divided difference
  table:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2664,10 +2718,10 @@ is one of the degree at most 2 interpolating polynomials.
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
@@ -3273,6 +3327,10 @@ Let
 
 .
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3415,6 +3473,10 @@ f(1.2)=2.2\quad f(1.4)=2.1\quad f(1.6)=2.3
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3484,24 +3546,52 @@ p_{n}(x)=a_{0}+a_{1}(x-x_{0})+a_{2}(x-x_{0})(x-x_{1})+\cdots+a_{n}(x-x_{0})(x-x_
 \end_inset
 
 for the data in the table.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="4">
+<lyxtabular version="3" rows="3" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $x$
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
 \end_inset
 
 
@@ -3521,7 +3611,33 @@ for the data in the table.
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3533,7 +3649,7 @@ for the data in the table.
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3551,7 +3667,7 @@ for the data in the table.
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $f(x)$
+\begin_inset Formula $f(x_{i})$
 \end_inset
 
 
@@ -3635,6 +3751,10 @@ reference "exc:interpolation-newton-3"
 
  to compute the interpolating polynomial of at most degree four for the
  data:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3643,8 +3763,8 @@ reference "exc:interpolation-newton-3"
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -3940,6 +4060,10 @@ reference "exc:interpolation-newton-2"
 \end_inset
 
 ,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3986,6 +4110,10 @@ status open
 hasananswer 
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -4088,6 +4216,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4106,6 +4238,10 @@ hasananswer
 \end_deeper
 \begin_layout Enumerate
 Show that the polynomial interpolating the following data has degree 3.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4114,13 +4250,13 @@ Show that the polynomial interpolating the following data has degree 3.
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="7">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4396,6 +4532,10 @@ l(x) & = & 56-152x+140x^{2}-17x^{3}-48x^{4}+9x^{5}
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4404,10 +4544,10 @@ l(x) & = & 56-152x+140x^{2}-17x^{3}-48x^{4}+9x^{5}
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -4630,6 +4770,10 @@ l(x) & = & (\ln x)(x^{3}+1)
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4638,10 +4782,10 @@ l(x) & = & (\ln x)(x^{3}+1)
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -4833,6 +4977,10 @@ l(x) & = & (\ln x)(x^{3}+1)
 \begin_layout Enumerate
 You have found the following Octave function with no comments (boo to the
  author of the function!).
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4940,6 +5088,10 @@ What is the output (
 ans
 \family default
 ) of the Octave command
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

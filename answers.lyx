@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -787,6 +804,10 @@ c: The web diagram over
 \end_inset
 
  is:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1005,6 +1026,42 @@ reference "sec:newtonsMethod"
 \begin_layout Description
 \begin_inset CommandInset ref
 LatexCommand ref
+reference "newton-1"
+
+\end_inset
+
+c: Using 
+\begin_inset Formula $x_{0}=2.5$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{6}=1.47883214733021$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton-1"
+
+\end_inset
+
+d: Using 
+\begin_inset Formula $x_{0}=3.5$
+\end_inset
+
+, we find 
+\begin_inset Formula $x_{7}=0.948434069919634$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "secant"
 
 \end_inset
@@ -1041,42 +1098,6 @@ d: Using
 
 , we find 
 \begin_inset Formula $x_{10}=0.948434069243393$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "newton-1"
-
-\end_inset
-
-c: Using 
-\begin_inset Formula $x_{0}=2.5$
-\end_inset
-
-, we find 
-\begin_inset Formula $x_{6}=1.47883214733021$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "newton-1"
-
-\end_inset
-
-d: Using 
-\begin_inset Formula $x_{0}=3.5$
-\end_inset
-
-, we find 
-\begin_inset Formula $x_{7}=0.948434069919634$
 \end_inset
 
 .
@@ -1225,13 +1246,20 @@ reference "exc:newton-4"
 
 \end_inset
 
-b: 
+b: In question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton1"
+
+\end_inset
+
+, 
 \begin_inset Formula $x_{14}=0.580055888962675$
 \end_inset
 
 .
- This is different from 
-\begin_inset Formula $0$
+ In this question, 
+\begin_inset Formula $x_{14}=0$
 \end_inset
 
 .
@@ -1689,12 +1717,20 @@ end{verbatim}
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Description
 Remark: This code is often successful, but can easily come up empty.
  For example,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2134,6 +2170,7 @@ bracketedSteffensens.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -3714,6 +3751,10 @@ adaptive Simpson's rule ! code
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4101,6 +4142,7 @@ adaptiveSimpsons()
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -4128,7 +4170,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
->> f=inline('log(sin(x))');
+>> f=@(x) log(sin(x));
 \end_layout
 
 \begin_layout Plain Layout
@@ -4178,7 +4220,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
->> f=inline('x*sin(x^2)');
+>> f=@(x) x*sin(x^2);
 \end_layout
 
 \begin_layout Plain Layout
@@ -4226,11 +4268,20 @@ reference "exc:calculus-extrapolation"
 
 \end_inset
 
-: 
-\begin_inset Formula ${\displaystyle \frac{8\sin\left(\frac{\pi h}{2}\right)-\sin(\pi h)}{3h}}$
+: Answers will vary.
+ For example, using 
+\begin_inset Formula $\alpha=\frac{1}{2}$
 \end_inset
 
+, 
+\begin_inset Formula ${\displaystyle N_{1}(h)=\frac{8\sin^{-1}\left(1-\frac{h^{4}}{16}\right)-2\sin^{-1}\left(1-h^{4}\right)}{3}}$
+\end_inset
 
+ has error 
+\begin_inset Formula $O(h^{6})$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description
@@ -4298,6 +4349,10 @@ reference "exc:calculus-extrapolation-3"
 \end_inset
 
 , just what would be expected if assumption (i) were true.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4369,6 +4424,7 @@ romberg.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -4537,7 +4593,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
->> romberg(inline('x*sin(x^2)'),0,2*pi,10^-5)
+>> romberg(@(x) x*sin(x^2),0,2*pi,10^-5)
 \end_layout
 
 \begin_layout Plain Layout
@@ -5084,6 +5140,10 @@ reference "exc:odePendulum-16"
 \end_inset
 
 , less than 10%.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5137,6 +5197,10 @@ reference "exc:odePendulum-17"
 \end_inset
 
 % or more.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5201,6 +5265,10 @@ reference "exc:odePendulum-19"
 
 , respectively.
  All small errors.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5223,6 +5291,10 @@ reference "exc:odePendulum-20"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5245,6 +5317,10 @@ reference "exc:odePendulum-21"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5275,6 +5351,10 @@ reference "exc:odePendulum-23"
 \end_inset
 
  may be swapped.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5297,6 +5377,10 @@ reference "exc:odePendulum-25"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5319,6 +5403,10 @@ reference "exc:odePendulum-26"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5341,6 +5429,10 @@ reference "exc:odePendulum-27"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5363,6 +5455,10 @@ reference "exc:odePendulum-28"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5385,6 +5481,10 @@ reference "exc:odePendulum-29"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5407,6 +5507,10 @@ reference "exc:odePendulum-31"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5429,6 +5533,10 @@ reference "exc:odePendulum-32"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5716,6 +5824,10 @@ reference "exc:ode-taylor-11"
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5816,6 +5928,10 @@ Step
 \end_inset
 
  do Steps 3-4:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5903,10 +6019,15 @@ taylor2ode.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6597,6 +6718,10 @@ function [y,x] = midpoint(f,a,ya,b,n)
 
 \begin_layout LyX-Code
 end%function
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6608,6 +6733,7 @@ This code may be downloaded at
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -6718,6 +6844,10 @@ function [y,x] = ralston(f,a,ya,b,n)
 
 \begin_layout LyX-Code
 end%function
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6729,6 +6859,7 @@ This code may be downloaded at
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -6937,10 +7068,17 @@ eulerimp.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
 .
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7056,10 +7194,17 @@ heun.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
 .
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7175,10 +7320,17 @@ RK4 method ! code
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
 .
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7309,10 +7461,17 @@ rk23.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
 .
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7503,6 +7662,10 @@ reference "exc:ode-adaptive-17"
 \end_inset
 
 : The Butcher tableau is
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7511,11 +7674,11 @@ reference "exc:ode-adaptive-17"
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -7880,10 +8043,17 @@ merson.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
 .
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -8081,6 +8251,10 @@ reference "exc:ode-adaptive-26"
 \end_inset
 
  or less.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -8112,6 +8286,10 @@ reference "exc:ode-adaptive-27"
 \end_inset
 
  or less, as do some greater tolerances.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -8143,6 +8321,10 @@ reference "exc:ode-adaptive-29"
 \end_inset
 
  or less, as do some slightly higher tolerances.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -8174,6 +8356,10 @@ reference "exc:ode-adaptive-30"
 \end_inset
 
  or less, as do some slightly greater tolerances.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper

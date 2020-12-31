@@ -1,7 +1,9 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -157,8 +174,8 @@ One useful type of osculating polynomial is the Hermite polynomial in which
  each node.
  Even more specifically,  third degree, or cubic, Hermite polynomials play
  an important role in approximation theory.
- Since a third degree polynomial has four parameters, data---the ordinate
- and first derivative---at two nodes is sufficient to specify such a polynomial.
+ Since a third degree polynomial has four parameters, data—the ordinate
+ and first derivative—at two nodes is sufficient to specify such a polynomial.
  So suppose we wish to find a polynomial 
 \begin_inset Formula $p$
 \end_inset
@@ -537,6 +554,10 @@ For the cubic Hermite polynomial
 \end_inset
 
 , the table looks like so:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -544,11 +565,11 @@ For the cubic Hermite polynomial
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -831,45 +852,6 @@ zier Curves
 \end_layout
 
 \begin_layout Standard
-Forcing 
-\begin_inset Formula $(x(0),y(0))=(-1,2)$
-\end_inset
-
-, we need 
-\begin_inset Formula 
-\begin{eqnarray*}
-x(0) & = & a_{x}=-1\\
-y(0) & = & a_{y}=2.
-\end{eqnarray*}
-
-\end_inset
-
-Forcing 
-\begin_inset Formula $(x(1),y(1))=(5,-2)$
-\end_inset
-
-, we need
-\begin_inset Formula 
-\begin{eqnarray*}
-x(1) & = & a_{x}+b_{x}+c_{x}=-1+b_{x}+c_{x}=5\\
-y(1) & = & a_{y}+b_{y}+c_{y}=2+b_{y}+c_{y}=-2
-\end{eqnarray*}
-
-\end_inset
-
-or
-\begin_inset Formula 
-\begin{eqnarray*}
-b_{x}+c_{x} & = & 6\\
-b_{y}+c_{y} & = & -4.
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 B
 \begin_inset ERT
 status open
@@ -987,7 +969,7 @@ which we choose to write down in Lagrange form.
 \end_layout
 
 \begin_layout Standard
-One the other hand, if we allow 
+On the other hand, if we allow 
 \begin_inset Formula $x$
 \end_inset
 
@@ -1036,7 +1018,7 @@ status open
 
 zier curves, but rather that we need to specify more than just the two points
  to be connected.
- Allowing the parameter function to be quadratic, we have say 
+ For example, we might let the parameter functions be 
 \begin_inset Formula 
 \begin{eqnarray*}
 x(t) & = & a_{x}+b_{x}t+c_{x}t^{2}\\
@@ -1046,7 +1028,72 @@ y(t) & = & a_{y}+b_{y}t+c_{y}t^{2},
 \end_inset
 
 giving six unknowns or undetermined coefficients, if you will.
- That leaves two conditions that may yet be imposed on the parameter functions.
+ 
+\end_layout
+
+\begin_layout Standard
+Forcing 
+\begin_inset Formula $(x(0),y(0))=(-1,2)$
+\end_inset
+
+, we need 
+\begin_inset Formula 
+\begin{eqnarray*}
+x(0) & = & a_{x}=-1\\
+y(0) & = & a_{y}=2.
+\end{eqnarray*}
+
+\end_inset
+
+Forcing 
+\begin_inset Formula $(x(1),y(1))=(5,-2)$
+\end_inset
+
+, we need
+\begin_inset Formula 
+\begin{eqnarray*}
+x(1) & = & a_{x}+b_{x}+c_{x}=-1+b_{x}+c_{x}=5\\
+y(1) & = & a_{y}+b_{y}+c_{y}=2+b_{y}+c_{y}=-2
+\end{eqnarray*}
+
+\end_inset
+
+or
+\begin_inset Formula 
+\begin{eqnarray*}
+b_{x}+c_{x} & = & 6\\
+b_{y}+c_{y} & = & -4.
+\end{eqnarray*}
+
+\end_inset
+
+Altogether that gives us 
+\begin_inset Formula $a_{x}=1$
+\end_inset
+
+, 
+\begin_inset Formula $b_{x}=6-c_{x}$
+\end_inset
+
+, 
+\begin_inset Formula $a_{y}=2$
+\end_inset
+
+, and 
+\begin_inset Formula $b_{y}=-4-c_{y}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $c_{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{y}$
+\end_inset
+
+ are free parameters, leaving us the flexibility to impose two more conditions
+ on the parameter functions.
 \end_layout
 
 \begin_layout Standard
@@ -1632,7 +1679,7 @@ Note that
 \begin_inset Formula $\vec{B}_{2,i}(t)$
 \end_inset
 
- is the quadratic B
+ is the at-most-quadratic B
 \begin_inset ERT
 status open
 
@@ -1905,7 +1952,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2970,6 +3017,10 @@ status open
 \end_inset
 
 zier curve, such as that shown here.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3040,6 +3091,7 @@ zier curves are intended to model smooth objects, software will provide
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -3077,6 +3129,7 @@ References
 \begin_inset CommandInset citation
 LatexCommand cite
 key "bezier,decasteljau,amsbezier,inkscape,dia,libreoffice"
+literal "true"
 
 \end_inset
 
@@ -3181,6 +3234,10 @@ Exercises
 
 \begin_layout Enumerate
 Find the cubic Hermite polynomial interpolating the data.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3189,9 +3246,9 @@ Find the cubic Hermite polynomial interpolating the data.
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -3301,6 +3358,10 @@ Find the cubic Hermite polynomial interpolating the data.
 \end_deeper
 \begin_layout Enumerate
 Find the Hermite polynomial of degree (at most) 5 interpolating the data.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3309,9 +3370,9 @@ Find the Hermite polynomial of degree (at most) 5 interpolating the data.
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -3454,6 +3515,10 @@ Let
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3547,6 +3612,10 @@ name "data"
 Construct the Hermite interpolating polynomial for the given data.
  Do this using a pencil, paper and calculator, or a spreadsheet.
  Do not use Octave code.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3555,9 +3624,9 @@ Construct the Hermite interpolating polynomial for the given data.
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -3742,6 +3811,10 @@ handles
 \end_inset
 
  are the four control points.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3840,6 +3913,10 @@ status collapsed
 \end_inset
 
 zier curve.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3869,6 +3946,10 @@ reference "data"
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3910,6 +3991,10 @@ Suppose
 \end_inset
 
  is a Hermite polynomial interpolating the data
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3918,9 +4003,9 @@ Suppose
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4081,6 +4166,10 @@ A Hermite polynomial
 \end_inset
 
  is constructed using the data
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4089,11 +4178,11 @@ A Hermite polynomial
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -4322,6 +4411,10 @@ The Hermite interpolating polynomial for the following data has the form
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4331,9 +4424,9 @@ The Hermite interpolating polynomial for the following data has the form
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4588,6 +4681,10 @@ status open
 \end_inset
 
 zier curves in the diagram, and why?
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4606,6 +4703,10 @@ zier curves in the diagram, and why?
 \end_deeper
 \begin_layout Enumerate
 Refer to the following graph.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4731,6 +4832,10 @@ zier curve is the unique (parametrized) cubic polar function
 \end_inset
 
  satisfying the following data.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4739,11 +4844,11 @@ zier curve is the unique (parametrized) cubic polar function
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -5038,6 +5143,10 @@ A car traveling along a straight road is clocked at a number of points.
  The data from the observations are given in the following table, where
  the time is in seconds, the distance is in feet, and the speed is in feet
  per second.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5046,12 +5155,12 @@ A car traveling along a straight road is clocked at a number of points.
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="6">
 <features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -5280,6 +5389,10 @@ octave
 \end_inset
 
 Complete the following code.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5484,6 +5597,10 @@ to
 LatexCommand label
 name "ans:bezierProof"
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 

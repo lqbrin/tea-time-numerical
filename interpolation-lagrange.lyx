@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -599,7 +616,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -637,11 +654,11 @@ A polynomial passing through
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -1359,7 +1376,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1418,8 +1435,8 @@ reference "sec:rootFindingChallenge"
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -1650,6 +1667,10 @@ reference "fig:Three-interpolating-functions."
 \end_inset
 
  is
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1936,6 +1957,10 @@ reference "fig:Three-interpolating-functions."
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2005,6 +2030,7 @@ Having taken this point of view, we can now imagine generalizing the method
 \begin_inset CommandInset citation
 LatexCommand cite
 key "sidi"
+literal "true"
 
 \end_inset
 
@@ -2278,14 +2304,10 @@ Then, by definition,
 
 \end_inset
 
-Moreover, 
-\begin_inset Formula $P_{0,n}$
-\end_inset
-
- can be computed using the recursive formula
+Moreover, this polynomial can be computed using the recursive formula
 \begin_inset Formula 
 \begin{eqnarray}
-P_{i,m+1}(x) & = & \frac{(x-x_{i+m+1})P_{i,m}(x)-(x-x_{i})P_{i+1,m}(x)}{x_{i}-x_{i+m+1}}\nonumber \\
+P_{i,m+1}(x) & = & \frac{(x-x_{i})P_{i+1,m}(x)-(x-x_{i+m+1})P_{i,m}(x)}{x_{i+m+1}-x_{i}}\nonumber \\
 P_{i,0}(x) & = & f(x_{i}),\qquad i=0,\ldots,n.\label{eq:NevillesRecursion}
 \end{eqnarray}
 
@@ -2336,7 +2358,7 @@ name "shellProofOfNevillesMethod"
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula ${\displaystyle P_{i,m+1}(x_{i})=\frac{(x_{i}-x_{i+m+1})P_{i,m}(x_{i})}{x_{i}-x_{i+m+1}}=P_{i,m}(x_{i})=f(x_{i})}$
+\begin_inset Formula ${\displaystyle P_{i,m+1}(x_{i})=\frac{-(x_{i}-x_{i+m+1})P_{i,m}(x_{i})}{x_{i+m+1}-x_{i}}=P_{i,m}(x_{i})=f(x_{i})}$
 \end_inset
 
 .
@@ -2350,9 +2372,9 @@ For any
 ,
 \begin_inset Formula 
 \begin{eqnarray*}
-P_{i,m+1}(x_{j}) & = & \frac{(x_{j}-x_{i+m+1})P_{i,m}(x_{j})-(x_{j}-x_{i})P_{i+1,m}(x_{j})}{x_{i}-x_{i+m+1}}\\
- & = & \frac{(x_{j}-x_{i+m+1})f(x_{j})-(x_{j}-x_{i})f(x_{j})}{x_{i}-x_{i+m+1}}\\
- & = & \frac{f(x_{j})\left[(x_{j}-x_{i+m+1})-(x_{j}-x_{i})\right]}{x_{i}-x_{i+m+1}}\\
+P_{i,m+1}(x_{j}) & = & \frac{(x_{j}-x_{i})P_{i+1,m}(x_{j})-(x_{j}-x_{i+m+1})P_{i,m}(x_{j})}{x_{i+m+1}-x_{i}}\\
+ & = & \frac{(x_{j}-x_{i})f(x_{j})-(x_{j}-x_{i+m+1})f(x_{j})}{x_{i+m+1}-x_{i}}\\
+ & = & \frac{f(x_{j})\left[(x_{j}-x_{i})-(x_{j}-x_{i+m+1})\right]}{x_{i+m+1}-x_{i}}\\
  & = & f(x_{j}).
 \end{eqnarray*}
 
@@ -2362,7 +2384,7 @@ P_{i,m+1}(x_{j}) & = & \frac{(x_{j}-x_{i+m+1})P_{i,m}(x_{j})-(x_{j}-x_{i})P_{i+1
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula ${\displaystyle P_{i,m+1}(x_{i+m+1})=\frac{-(x_{i+m+1}-x_{i})P_{i+1,m}(x_{i+m+1})}{x_{i}-x_{i+m+1}}=P_{i+1,m}(x_{i+m+1})=f(x_{i+m+1})}$
+\begin_inset Formula ${\displaystyle P_{i,m+1}(x_{i+m+1})=\frac{(x_{i+m+1}-x_{i})P_{i+1,m}(x_{i+m+1})}{x_{i+m+1}-x_{i}}=P_{i+1,m}(x_{i+m+1})=f(x_{i+m+1})}$
 \end_inset
 
 .
@@ -2413,7 +2435,7 @@ reference "eq:NevillesRecursion"
 ) can be used to find formulas for interpolating polynomials as in
 \begin_inset Formula 
 \begin{eqnarray*}
-P_{0,1}(x) & = & \frac{(x-x_{1})P_{0,0}(x)-(x-x_{0})P_{1,0}(x)}{x_{0}-x_{1}}\\
+P_{0,1}(x) & = & \frac{(x-x_{0})P_{1,0}(x)-(x-x_{1})P_{0,0}(x)}{x_{1}-x_{0}}\\
  & = & \frac{x-x_{1}}{x_{0}-x_{1}}f(x_{0})+\frac{x-x_{0}}{x_{1}-x_{0}}f(x_{1}),
 \end{eqnarray*}
 
@@ -2455,14 +2477,14 @@ it is normally used to find the value of an interpolating polynomial at
  So
 \begin_inset Formula 
 \begin{eqnarray*}
-P_{0,1}(1.5) & = & \frac{(1.5-x_{1})P_{0,0}(1.5)-(1.5-x_{0})P_{1,0}(1.5)}{x_{0}-x_{1}}\\
- &  & =\frac{(1.5-1)(1)-(1.5-0)(2.718281828459045)}{0-1}\\
+P_{0,1}(1.5) & = & \frac{(1.5-x_{0})P_{1,0}(1.5)-(1.5-x_{1})P_{0,0}(1.5)}{x_{1}-x_{0}}\\
+ &  & =\frac{(1.5-0)(2.718281828459045)-(1.5-1)(1)}{1-0}\\
  &  & \approx3.577422742688568\\
-P_{1,1}(1.5) & = & \frac{(1.5-x_{2})P_{1,0}(1.5)-(1.5-x_{1})P_{2,0}(1.5)}{x_{1}-x_{2}}\\
- & = & \frac{(1.5-2)(2.718281828459045)-(1.5-1)(7.38905609893065)}{1-2}\\
+P_{1,1}(1.5) & = & \frac{(1.5-x_{1})P_{2,0}(1.5)-(1.5-x_{2})P_{1,0}(1.5)}{x_{2}-x_{1}}\\
+ & = & \frac{(1.5-1)(7.38905609893065)-(1.5-2)(2.718281828459045)}{2-1}\\
  & \approx & 5.053668963694848\\
-P_{0,2}(1.5) & = & \frac{(1.5-x_{2})P_{0,1}(1.5)-(1.5-x_{0})P_{1,1}(1.5)}{x_{0}-x_{2}}\\
- & = & \frac{(1.5-2)(3.577422742688568)-(1.5-0)(5.053668963694848)}{0-2}\\
+P_{0,2}(1.5) & = & \frac{(1.5-x_{0})P_{1,1}(1.5)-(1.5-x_{2})P_{0,1}(1.5)}{x_{2}-x_{0}}\\
+ & = & \frac{(1.5-0)(5.053668963694848)-(1.5-2)(3.577422742688568)}{2-0}\\
  & \approx & 4.684607408443278.
 \end{eqnarray*}
 
@@ -2497,7 +2519,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2527,10 +2549,10 @@ Neville's method example, calculating
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -2838,6 +2860,10 @@ Step
 \end_inset
 
  do Step 2:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2864,6 +2890,10 @@ Step
 \end_inset
 
  do Steps 4-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2877,6 +2907,10 @@ Step
 \end_inset
 
  do Step 5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2886,7 +2920,7 @@ Step
 \end_inset
 
 5: Set 
-\begin_inset Formula $P_{i,,j}=\frac{(\hat{x}-x_{i+j})P_{i,j-1}-(\hat{x}-x_{i})P_{i+1,j-1}}{x_{i}-x_{i+j}}$
+\begin_inset Formula $P_{i,,j}=\frac{(\hat{x}-x_{i})P_{i+1,j-1}(\hat{x}-x_{i+j})P_{i,j-1}}{x_{i+j}-x_{i}}$
 \end_inset
 
 
@@ -3198,7 +3232,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-% Written by Leon Brin                           22 March 2014 %
+% Written by Leon Brin                        11 December 2020 %
 \end_layout
 
 \begin_layout Plain Layout
@@ -3281,7 +3315,7 @@ function Q = nevilles(xhat,x,y)
 
 \begin_layout Plain Layout
 
-      Q(i,j)=((xhat-x(i+j-1))*Q(i,j-1)-(xhat-x(i))*Q(i+1,j-1))/(x(i)-x(i+j-1));
+      Q(i,j)=((xhat-x(i))*Q(i+1,j-1)-(xhat-x(i+j-1))*Q(i,j-1))/(x(i+j-1)-x(i));
 \end_layout
 
 \begin_layout Plain Layout
@@ -3317,6 +3351,7 @@ nevilles.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -3671,7 +3706,7 @@ A method for computing the interpolating polynomial of least degree or values
  of it based on the recursive relation
 \begin_inset Formula 
 \begin{eqnarray*}
-P_{i,m+1}(x) & = & \frac{(x-x_{i+m+1})P_{i,m}(x)-(x-x_{i})P_{i+1,m}(x)}{x_{i}-x_{i+m+1}}\\
+P_{i,m+1}(x) & = & \frac{(x-x_{i})P_{i+1,m}(x)-(x-x_{i+m+1})P_{i,m}(x)}{x_{i+m+1}-x_{i}}\\
 P_{i,0}(x) & = & f(x_{i})
 \end{eqnarray*}
 
@@ -3749,6 +3784,10 @@ name "exc:interpolation-lagrange"
 
 Construct the (at most) quadratic Lagrange Polynomial interpolating the
  data.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3822,6 +3861,10 @@ hasasolution
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3830,8 +3873,8 @@ hasasolution
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -3949,6 +3992,10 @@ hasasolution
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3957,8 +4004,8 @@ hasasolution
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4158,6 +4205,10 @@ Given the following data for
 \end_inset
 
  using an interpolating polynomial of degree at most
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4178,11 +4229,11 @@ Given the following data for
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
@@ -4344,6 +4395,10 @@ hasasolution
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4364,11 +4419,11 @@ hasasolution
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
@@ -4525,6 +4580,10 @@ octave
 
 Use interpolating polynomials of degrees one, two, and three to approximate
  each of the following:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4694,6 +4753,10 @@ Let
 
 .
  Find the absolute errors.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4831,6 +4894,10 @@ reference "exc:interpolation-lagrange-3"
 
 .
  Then
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4889,6 +4956,10 @@ The height of a model rocket is given at several times in the following
 
  sec using at least two different sets of points.
  Comment on which approximation is likely most accurate.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4897,8 +4968,8 @@ The height of a model rocket is given at several times in the following
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -5043,6 +5114,10 @@ The following table results from using Neville's method to approximate
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5051,11 +5126,11 @@ The following table results from using Neville's method to approximate
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="5">
 <features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
@@ -5347,6 +5422,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5355,11 +5434,11 @@ hasananswer
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text

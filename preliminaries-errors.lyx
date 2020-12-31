@@ -1,7 +1,9 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/Book-Numerical/preamble
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -151,9 +168,8 @@ Numerical methods are designed to approximate one thing or another.
  or solutions of differential equations.
  As numerical methods produce only approximations to these things, it is
  important to have some idea how accurate they are.
- Sometimes accuracy comes down to careful algebraic analysis---sometimes
- careful analysis of the calculus, and often careful analysis of Taylor
- polynomials.
+ Sometimes accuracy comes down to careful algebraic analysis—sometimes careful
+ analysis of the calculus, and often careful analysis of Taylor polynomials.
  But before we can tackle those details, we should discuss just how error
  and, therefore, accuracy are measured.
 \end_layout
@@ -305,7 +321,7 @@ The absolute error in approximating
 \end_inset
 
  is 
-\begin_inset Formula $|\frac{16525}{54}-\pi|\approx0.00116$
+\begin_inset Formula $|\frac{16525}{54}-\pi^{5}|\approx0.00116$
 \end_inset
 
 .
@@ -348,13 +364,13 @@ But there is something more going on here.
 \end_inset
 
  accurate to the nearest one hundredth requires the approximation to agree
- with the exact value in only 3 place values---the ones, tenths, and hundredths.
+ with the exact value in only 3 place values—the ones, tenths, and hundredths.
  To approximate 
 \begin_inset Formula $\pi^{5}$
 \end_inset
 
  accurate to the nearest one hundredth requires the approximation to agree
- with the exact value in 5 place values---the hundreds, tens, ones, tenths,
+ with the exact value in 5 place values—the hundreds, tens, ones, tenths,
  and hundredths.
  To use more scientific language, we say that 
 \begin_inset Formula $\frac{22}{7}$
@@ -373,7 +389,7 @@ But there is something more going on here.
 \end_inset
 
  accurate to 5 significant digits.
- Therein lies the essence of relative errors---weighing the absolute error
+ Therein lies the essence of relative errors—weighing the absolute error
  against the magnitude of the number being approximated.
  This is done by computing the ratio of the error to the exact value.
  Hence, the relative error in approximating 
@@ -568,6 +584,7 @@ References
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cunyieee754,goldberg"
+literal "true"
 
 \end_inset
 
@@ -691,7 +708,7 @@ Use your calculator or computer to calculate the numbers
 \begin_inset Formula $p_{0},p_{1},p_{2},\ldots,p_{7}$
 \end_inset
 
- as prescribed here:
+ as prescribed here.
 \end_layout
 
 \begin_layout Itemize
@@ -756,6 +773,10 @@ According to your calculator or computer,
 \end_inset
 
  is probably something like one of these:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -763,8 +784,8 @@ According to your calculator or computer,
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -851,11 +872,16 @@ However, a little algebra will show that
 \begin_inset Formula $p_{7}=10000000000000\pi-31415926535897$
 \end_inset
 
- exactly (which is approximately 
+ exactly, which, accurate to 6 decimal places, is 
 \begin_inset Formula $0.932384$
 \end_inset
 
-).
+.
+ Compare this to the number you got for 
+\begin_inset Formula $p_{7}$
+\end_inset
+
+.
  Even though 
 \begin_inset Formula $p_{0}$
 \end_inset
@@ -864,8 +890,8 @@ However, a little algebra will show that
 \begin_inset Formula $\pi$
 \end_inset
 
-, after just a few (carefully selected) computations, round-off error has
- caused 
+ (accurate to about 16 decimal places), after just a few computations, round-off
+ error has caused 
 \begin_inset Formula $p_{7}$
 \end_inset
 
@@ -908,7 +934,7 @@ This experiment serves to highlight the most important cause of floating-point
  is represented with only 2 significant digits.
  We have repeatedly subtracted nearly equal numbers.
  Each time, some accuracy is lost.
- The error grows.
+ The floating-point error grows.
 \end_layout
 
 \begin_layout Standard
@@ -951,7 +977,7 @@ Therefore, we should expect, in general, that
 Experiment 2
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:derivativeExperiment"
+name "subsec:derivativeExperiment"
 
 \end_inset
 
@@ -977,6 +1003,10 @@ Using a calculator or computer, compute
 
 .
  Your results should be something like this:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -984,7 +1014,7 @@ Using a calculator or computer, compute
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
@@ -1436,7 +1466,7 @@ Lorenz, Edward
 \begin_inset Formula $p_{40}\approx0.91909$
 \end_inset
 
----a completely different result! If you go back and run the two calculations
+—a completely different result! If you go back and run the two calculations
  using 100 significant digit arithmetic, you will find that beginning with
  
 \begin_inset Formula $p_{0}=1/7$
@@ -1490,6 +1520,7 @@ References
 \begin_inset CommandInset citation
 LatexCommand cite
 key "lorenz,gulick,mirror"
+literal "true"
 
 \end_inset
 
@@ -1672,6 +1703,7 @@ References
 \begin_inset CommandInset citation
 LatexCommand cite
 key "rump,loh"
+literal "true"
 
 \end_inset
 
@@ -1869,7 +1901,7 @@ error ! truncation
 \end_inset
 
 : Algorithmic error due to use of a partial sum in place of a series.
- In this type of error, the tail of the series is truncated---thus the name.
+ In this type of error, the tail of the series is truncated—thus the name.
 \end_layout
 
 \begin_layout Description
@@ -2014,7 +2046,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2041,14 +2073,14 @@ Some common functions and their Octave abbreviations.
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="6">
+<lyxtabular version="3" rows="8" columns="6">
 <features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -2275,6 +2307,77 @@ exp(x)
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $\sec(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+sec(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\csc(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+csc(x)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\ln(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+log(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 \begin_inset Formula $\sin^{-1}(x)$
 \end_inset
 
@@ -2319,11 +2422,11 @@ asin(x)
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $\ln(x)$
+\begin_inset Formula $\log(x)$
 \end_inset
 
 
@@ -2331,13 +2434,13 @@ asin(x)
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \family typewriter
-log(x)
+log10(x)
 \end_layout
 
 \end_inset
@@ -2586,7 +2689,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2615,9 +2718,9 @@ Octave computations of some expressions.
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -3220,7 +3323,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3259,9 +3362,9 @@ Octave ! constants
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -3478,6 +3581,10 @@ Calculate the absolute error in approximating
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3757,6 +3864,10 @@ Compute the absolute error and relative error in approximations of
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3869,6 +3980,10 @@ octave
 \end_inset
 
 Using Octave, calculate
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3935,6 +4050,10 @@ Find
 \end_inset
 
  using Octave.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4077,13 +4196,17 @@ sin(0)==0
 \family typewriter
 ans=1
 \family default
- means true (the two sides are equal according to Octave---no round-off
- error) and 
+ means true (the two sides are equal according to Octave—no round-off error)
+ and 
 \family typewriter
 ans=0
 \family default
- means false (the two sides are not equal according to Octave---round-off
+ means false (the two sides are not equal according to Octave—round-off
  error).
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4154,6 +4277,10 @@ Find an approximation
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4322,6 +4449,10 @@ name "ex:absoluteError3"
 \end_inset
 
 ?
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4518,6 +4649,10 @@ The number
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4668,6 +4803,10 @@ Calculate (i)
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper

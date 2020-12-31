@@ -1,7 +1,9 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -151,6 +168,7 @@ Numerical Analysis
 \begin_inset CommandInset href
 LatexCommand href
 target "http://nm.mathforcollege.com/"
+literal "false"
 
 \end_inset
 
@@ -178,9 +196,9 @@ tea time
  Much of the material will be presented as if it were being told to a student
  during tea time at University, but with the benefit of careful planning.
  There will be no big blue boxes highlighting the main points, no stream
- of examples after a short introduction to a topic, and no theorem\SpecialChar \ldots{}
-proof\SpecialChar \ldots{}
-theorem\SpecialChar \ldots{}
+ of examples after a short introduction to a topic, and no theorem\SpecialChar ldots
+proof\SpecialChar ldots
+theorem\SpecialChar ldots
 pr
 oof structure.
  Instead, the necessary terms and definitions and theorems and examples
@@ -282,14 +300,17 @@ crumpets
  but each is there to enhance the reader's understanding or appreciation
  of the subject, even if the material is not strictly necessary for an introduct
 ory study of numerical analysis.
+ While version 2.5 does not introduce any new sections, it contains many
+ corrections, new exercises and modified discourse.
+ As a result, page and exercise numbering has changed.
 \end_layout
 
 \begin_layout Standard
-Along the way, implementation of the numerical methods in the form of computer
- code will also be discussed.
+Implementation of the numerical methods in the form of computer code will
+ also be discussed.
  While one could simply ignore the programming sections and exercises and
  still get something out of this text, it is my firm belief that full appreciati
-on for the content can not be achieved without getting ones hands 
+on for the content can not be achieved without getting one's hands 
 \begin_inset Quotes eld
 \end_inset
 
@@ -299,15 +320,11 @@ dirty
 
  by doing some programming.
  It would be nice if readers have had at least some minimal exposure to
- programming whether it be Java, or C, web programming, or just about anything
- else.
- But I have made every effort to give enough detail so that even those who
- have never written even a one-line program will be able to participate
+ programming whether it be Python, Java, C, web programming, or just about
+ anything, but I have made every effort to give enough detail so that even
+ those who have never written a single line of code will be able to participate
  in this part of the study.
-\end_layout
-
-\begin_layout Standard
-In keeping with the desire to produce a completely free learning experience,
+ In keeping with the desire to produce a completely free learning experience,
  GNU Octave was chosen as the programming language for this book.
  GNU Octave (Octave for short) is offered freely to anyone and everyone!
  It is free to download and use.
@@ -326,6 +343,9 @@ In keeping with the desire to produce a completely free learning experience,
  code will not run under MATLAB.
  It has only been tested in Octave! If you find any code that does not run
  in MATLAB, please let me know.
+ Version 2.5 includes substantial rewriting of details related to Octave
+ from installation to coding, and even includes information about computing
+ in the cloud.
 \end_layout
 
 \begin_layout Standard
@@ -357,7 +377,7 @@ Tea Time Numerical Analysis
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="1">
 <features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -417,83 +437,166 @@ Octave is developed by the GNU Project for the GNU operating system, which
  is most often paired with a Linux kernel.
  At its core, Octave is, therefore, GNU/Linux software.
  It runs natively on GNU/Linux machines.
- It must be ported (converted somehow) to run on other operating systems
- like Windows or OS X.
- Ports (converted programs) do exist for these operating systems, but are
- significantly more complicated to install than native Windows or native
- OS X programs.
- Nonetheless, the advantage to this approach is the end result which looks
- and runs very much like a native application, desktop shortcut/alias and
- all.
- The disadvantage is the somewhat lengthy installation procedure with parts
- that sometimes don't work together as expected, resulting in a failed installat
-ion.
+ Linux users will find it in their distribution's software repository.
+ Some of the other ways to access Octave are outlined below for convenience.
+\end_layout
+
+\begin_layout Subsubsection*
+Online (in the cloud)
 \end_layout
 
 \begin_layout Standard
-Windows and Mac users may also install hardware virtualizing software.
- Such software is freely available as native Windows and native OS X software.
- Then a complete GNU/Linux operating system can be installed inside the
- virtualizer as a so-called virtual machine.
- Octave can be installed in the virtual machine as a native program.
- With some configuring, the virtual machine can be made to look and feel
- almost like other Windows or OS X apps.
- The advantage to this approach is that installation is relatively straightforwa
-rd.
- The disadvantage is that it requires a lot of computing resources.
- People with an old (slow) machine or a machine with little RAM (memory)
- will likely be disappointed in performance.
- Octave will be even slower than other programs if it runs at all.
+Perhaps the easiest way to get started using Octave is through a web browser.
+ This approach has the advantage of quick startup, no installation, and
+ very modest hardware requirements.
+ Online Octave environments can be run on the most powerful workstations
+ or on a phone.
+ As of this writing, there are at least two free online platforms available.
 \end_layout
 
-\begin_layout Standard
-GNU/Linux can also be installed 
-\begin_inset Quotes eld
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "https://octave-online.net/"
+target "https://octave-online.net/"
+literal "false"
+
 \end_inset
 
-side-by-side
-\begin_inset Quotes erd
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "https://cocalc.com/"
+target "https://cocalc.com/"
+literal "false"
+
 \end_inset
 
- with Windows or OS X, creating a dual-boot machine.
- The advantage to this approach is it relieves all of the issues of the
- other two methods.
- Octave is installed as a native application and all computer resources
- are dedicated to GNU/Linux so Octave will run as quickly as possible on
- your machine.
- The primary disadvantage to this approach is that you will have to decide
- whether to run your usual (Windows or OS X) operating system or GNU/Linux
- every time the computer starts.
- You will not be able to switch between Octave and the apps you are used
- to running.
- For example, switching from iTunes to Octave, or from Word to Octave and
- back, is not possible.
- You get one or the other.
- A secondary disadvantage is the need to repartition the computer's hard
- drive (or the need to add an additional hard drive to the machine), making
- the installation process potentially devastating to the machine.
- A complete backup of your machine is required to maintain safety.
+
 \end_layout
 
 \begin_layout Standard
-All that may not mean much to you.
- To see how it translates into advice and step-by-step instructions on installin
-g GNU Octave, see this textbook's companion website,
+Octave Online is designed as an Octave interface only and includes useful
+ features for classroom use.
+ Open a support ticket to inquire about setting up a course.
+ The resulting course code gives instructors the ability to see student
+ work spaces and collaborate in real time upon their enrollment in the course.
+ Buckets allow an instructor to post read-only code for students to import
+ into their accounts, making it easy to distribute code for labs or assignments.
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset Flex URL
-status collapsed
-
-\begin_layout Plain Layout
-
-http://lqbrin.github.io/tea-time-numerical/more.html
+Cocalc (Collaborative Calculation in the cloud) provides access to Octave,
+ R, SageMath, \SpecialChar LaTeX
+, C++, Julia, and a host of other kernels.
+ Cocalc presents a much more robust environment, including classroom management
+ features such as classes, posting and collecting assignments, collaborative
+ editing, altogether a minimal set of tools for administering a course.
+ They offer both free and paid account access.
+ While they warn that running a free account may be slow, it also may suit
+ your needs.
+ It has been my experience that the free account requires substantial patience
+ as connection issues and slow downs inevitably occur.
 \end_layout
+
+\begin_layout Subsubsection*
+Locally (on your personal computer)
+\end_layout
+
+\begin_layout Standard
+For Windows, get an Octave installer at 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.gnu.org/software/octave/download#ms-windows"
+literal "false"
 
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+For macOS, see 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://octave-app.org/"
+literal "false"
+
+\end_inset
+
+.
+ Perhaps the simplest installation method is to follow the link to the wiki
+ page and then use the links under macOS App Bundles.
+ If you use this method, the first time you launch Octave, you will need
+ to control-click the Application icon and select Open from the popup menu.
+ If you simply click-start it like other applications, macOS will disallow
+ it since the application is unsigned and therefore untrusted.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+For 
+\begin_inset CommandInset href
+LatexCommand href
+name "GNU/Linux"
+target "https://www.gnu.org/gnu/linux-and-gnu.en.html"
+literal "false"
+
+\end_inset
+
+, your distribution probably has a package named octave and can be installed
+ in the usual way.
+ If you cannot find such a package, see the notes at 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.gnu.org/software/octave/download#linux"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+See the GNU Octave website for further details.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.gnu.org/software/octave/"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -519,6 +622,10 @@ addcontentsline{toc}{section}{How to Get the Code}
 \begin_layout Standard
 All the code appearing in the textbook can be downloaded from this textbook's
  companion website,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -570,11 +677,16 @@ I gratefully acknowledge the generous support I received during the writing
  the willingness of my Spring 2013 Seminar class, Elizabeth Field, Rachael
  Ivison, Amanda Reyher, and Steven Warner to read and criticize an early
  version of the first chapter.
- In between, the Woodbridge Public Library staff, especially Pamela Wilonski,
- helped provide a peaceful and inspirational environment for writing the
- bulk of the text.
+ The Woodbridge Public Library staff, especially Pamela Wilonski, helped
+ provide a peaceful and inspirational environment for writing the bulk of
+ the first edition text.
  Many thanks to Dick Pelosi for his extensive review and many kind words
- and encouragements throughout the endeavor.
+ and encouragements throughout the endeavor to create the first edition.
+ I also owe a hearty thanks to the folks at CollegeOpenTextbooks.org, who
+ provided unpaid copy editing.
+ Finally, many thanks to the users who have provided corrections and suggestions
+ for improvements.
+ A number of them have found their way into the third edition.
 \end_layout
 
 \end_body

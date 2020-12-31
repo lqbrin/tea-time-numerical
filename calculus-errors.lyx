@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -368,6 +385,10 @@ f'(x_{0})-P_{n}'(x_{0})=\frac{f^{(n+1)}(\xi)}{(n+1)!}\theta_{1}\theta_{2}\cdots\
 
 \begin_layout Standard
 For the stencil
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -463,7 +484,7 @@ Notice that the error term contains
 Errors for other formulas
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:derivativeError"
+name "subsec:derivativeError"
 
 \end_inset
 
@@ -501,8 +522,6 @@ It is tempting to think we can simply repeat the procedure we used with
 \end_inset
 
  is entirely unknown, so are its derivatives, making this approach unworkable.
- Other methods for producing precise bounds for certain higher derivative
- formulas or certain integral formulas are limited in scope.
 \end_layout
 
 \begin_layout Standard
@@ -541,6 +560,10 @@ good enough
  of an example.
  We demonstrate the method for the approximation of the first derivative
  over the stencil
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -568,14 +591,14 @@ method
 In subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Derivatives"
+reference "subsec:Derivatives"
 
 \end_inset
 
  
 \begin_inset CommandInset ref
 LatexCommand vpageref
-reference "sub:Derivatives"
+reference "subsec:Derivatives"
 
 \end_inset
 
@@ -596,8 +619,8 @@ f'\left(x_{0}-\frac{1}{6}h\right)=f'(x_{0})-\frac{1}{6}hf''(x_{0})+\frac{1}{72}h
 
 \end_inset
 
-The terms of the right hand side, the approximation, as Taylor series look
- like
+The terms of the right hand side, the approximation, as a Taylor series
+ look like
 \begin_inset Formula 
 \begin{eqnarray*}
 f(x_{0}-h) & = & f(x_{0})-hf'(x_{0})+\frac{1}{2}h^{2}f''(x_{0})-\frac{1}{6}h^{3}f'''(x_{0})+\frac{1}{24}h^{4}f^{(4)}(x_{0})-\cdots\\
@@ -620,6 +643,10 @@ reference "eq:generalApprox"
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -627,9 +654,9 @@ reference "eq:generalApprox"
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="right" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
+<column alignment="right" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="right" valignment="top" usebox="none">
 \begin_inset Text
@@ -818,18 +845,118 @@ For the error,
 
 \end_inset
 
-We now know that we have an error of the form 
+Before continuing a note about big-oh
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+big-oh
+\end_layout
+
+\end_inset
+
+ notation in this setting is needed.
+ 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! rate of
+\end_layout
+
+\end_inset
+
+ Given a function 
+\begin_inset Formula $g(h)$
+\end_inset
+
+ with 
+\begin_inset Formula ${\displaystyle \lim_{h\to0}g(h)=0}$
+\end_inset
+
+, 
+\begin_inset Formula $p(h)=O(g(h))$
+\end_inset
+
+ means that 
+\begin_inset Formula $|p(h)|\leq M|g(h)|$
+\end_inset
+
+ for some constant 
+\begin_inset Formula $M$
+\end_inset
+
+ and sufficiently small 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ In other words, the size of 
+\begin_inset Formula $p(h)$
+\end_inset
+
+ is bounded by the size of some constant multiple of 
+\begin_inset Formula $g(h)$
+\end_inset
+
+.
+ Compare this to the use of big-oh notation in the context of convergent
+ sequences from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Speed"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+In the present situation, our calculation shows we have an error of the
+ form 
 \begin_inset Formula $O(h^{2}f'''(\xi_{h}))$
 \end_inset
 
-, the form of the remaining term with least degree, but we do not have rigorous
- proof of that fact.
+, the form of the remaining term with least degree.
+ That is, 
+\begin_inset Formula $|e(h)|\leq M|h^{2}f'''(\xi_{h})|$
+\end_inset
+
+ for some constant 
+\begin_inset Formula $M$
+\end_inset
+
+ and sufficiently small 
+\begin_inset Formula $h$
+\end_inset
+
+, but we do not have rigorous proof of that fact yet.
  Think of what has been done so far as discovery.
- Now that we know the 
+\end_layout
+
+\begin_layout Standard
+We now need to prove that there is an 
+\begin_inset Formula $M$
+\end_inset
+
+ such that 
+\begin_inset Formula $|e(h)|\leq M|h^{2}f'''(\xi_{h})|$
+\end_inset
+
+ for sufficiently small 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ From the calculation above we know the 
 \begin_inset Formula $f'''$
 \end_inset
 
- terms do not cancel, we go back and truncate all the Taylor series after
+ terms do not cancel, so we go back and truncate all the Taylor series after
  the 
 \begin_inset Formula $f''$
 \end_inset
@@ -917,7 +1044,8 @@ The final formality is that of converting this expression into big-oh notation:
 \begin_inset Formula $M=\frac{13}{72}$
 \end_inset
 
- (the value of 
+.
+ The value of 
 \begin_inset Formula $\xi_{h}$
 \end_inset
 
@@ -933,7 +1061,7 @@ The final formality is that of converting this expression into big-oh notation:
 \begin_inset Formula $\xi_{3}$
 \end_inset
 
-).
+.
  We conclude
 \begin_inset Formula 
 \[
@@ -990,6 +1118,13 @@ In general,
 \end_inset
 
 .
+ Note this entire calculation depends on the continuity of 
+\begin_inset Formula $f'''(x)$
+\end_inset
+
+ over the interval between the least node and the greatest.
+ Without that continuity, Taylor's theorem does not apply and all calculations
+ after the expansion are meaningless.
 \end_layout
 
 \begin_layout Subsection
@@ -1116,6 +1251,10 @@ The numerical derivatives and integrals over a stencil with
 
 .
  Consider the second derivative approximation over the stencil
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1153,6 +1292,10 @@ The stencil has three points, so we expect it to be exact for all polynomials
 
  turns out to be zero.
  It follows that we can derive the same formula using the stencil
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1359,7 +1502,7 @@ so it is exact for degree one polynomials.
 
 \end_inset
 
-and
+but
 \begin_inset Formula 
 \[
 2hf(x_{0})=2h(x_{0}-x_{0})^{2}=0,
@@ -1587,7 +1730,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1628,9 +1771,9 @@ bigskip
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="14" columns="3">
-<features rotate="true" tabularvalignment="middle">
+<features rotate="90" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -2141,7 +2284,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2182,9 +2325,9 @@ bigskip
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="true" tabularvalignment="middle">
+<features rotate="90" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -2584,7 +2727,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2625,9 +2768,9 @@ bigskip
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="12" columns="3">
-<features rotate="true" tabularvalignment="middle">
+<features rotate="90" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -3072,7 +3215,7 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3113,9 +3256,9 @@ bigskip
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="14" columns="3">
-<features rotate="true" tabularvalignment="middle">
+<features rotate="90" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -3704,6 +3847,10 @@ Gaussian quadrature formulas
 \begin_layout Standard
 \noindent
 appears in the table as
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3828,6 +3975,62 @@ Another name for a numerical integration formula.
 \end_layout
 
 \begin_layout Description
+Rate
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+convergence: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+big-oh
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+convergence ! rate of
+\end_layout
+
+\end_inset
+
+Given a function 
+\begin_inset Formula $g(h)$
+\end_inset
+
+ with 
+\begin_inset Formula ${\displaystyle \lim_{h\to0}g(h)=0}$
+\end_inset
+
+, 
+\begin_inset Formula $p(h)=O(g(h))$
+\end_inset
+
+ means that 
+\begin_inset Formula $|p(h)|\leq M|g(h)|$
+\end_inset
+
+ for some constant 
+\begin_inset Formula $M$
+\end_inset
+
+ and sufficiently small 
+\begin_inset Formula $h$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
 Weighted
 \begin_inset space ~
 \end_inset
@@ -3933,6 +4136,10 @@ f'(x_{0})\approx\frac{-3f(x_{0})+4f(x_{0}+h)-f(x_{0}+2h)}{2h}.
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3941,9 +4148,9 @@ f'(x_{0})\approx\frac{-3f(x_{0})+4f(x_{0}+h)-f(x_{0}+2h)}{2h}.
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4155,6 +4362,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4163,9 +4374,9 @@ hasananswer
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4360,6 +4571,10 @@ name "exc:calculusErrors"
 \end_inset
 
 Approximate the integral using Simpson's rule.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4391,7 +4606,7 @@ hasasolution
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\int_{1}^{3}\ln(x+1)\, dx$
+\begin_inset Formula $\int_{1}^{3}\ln(x+1)\,dx$
 \end_inset
 
 
@@ -4425,7 +4640,14 @@ hasananswer
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $\int_{1}^{3}e^{\sin x}\: dx$
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:calculusErrors-41"
+
+\end_inset
+
+
+\begin_inset Formula $\int_{1}^{3}e^{\sin x}\:dx$
 \end_inset
 
 
@@ -4439,7 +4661,7 @@ name "exc:calculusErrors-7"
 \end_inset
 
 
-\begin_inset Formula $\int_{1}^{2}x^{4}\, dx$
+\begin_inset Formula $\int_{1}^{2}x^{4}\,dx$
 \end_inset
 
 
@@ -4538,6 +4760,21 @@ reference "exc:calculusErrors"
 \end_inset
 
 .
+ You may use 
+\begin_inset Formula $4.4247999271351$
+\end_inset
+
+ for the exact value of the integral in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-41"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \begin_inset ERT
 status open
 
@@ -4570,6 +4807,21 @@ reference "exc:calculusErrors-1"
 \end_inset
 
 .
+ You may use 
+\begin_inset Formula $4.4247999271351$
+\end_inset
+
+ for the exact value of the integral in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-41"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \begin_inset ERT
 status open
 
@@ -4598,6 +4850,21 @@ Find the error of the approximation in question
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "exc:calculusErrors-2"
+
+\end_inset
+
+.
+ You may use 
+\begin_inset Formula $4.4247999271351$
+\end_inset
+
+ for the exact value of the integral in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:calculusErrors-41"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -4702,6 +4969,17 @@ to approximate
 \end_inset
 
 .
+\family default
+\series default
+\shape default
+\size default
+\bar default
+\color inherit
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4924,7 +5202,7 @@ f'(x_{0})=\frac{1}{12h}\left[-25f(x_{0})+48f(x_{0}+h)-36f(x_{0}+2h)\right.\qquad
 Find the degree of precision of the quadrature formula
 \begin_inset Formula 
 \[
-\int_{3}^{5}f(x)\, dx\approx\frac{1}{2}\left[3f\left(\frac{11}{3}\right)+f(5)\right].
+\int_{3}^{5}f(x)\,dx\approx\frac{1}{2}\left[3f\left(\frac{11}{3}\right)+f(5)\right].
 \]
 
 \end_inset
@@ -4934,6 +5212,10 @@ Find the degree of precision of the quadrature formula
 
 \begin_layout Enumerate
 Find the error term for the quadrature method, and state its degree of precision.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4945,7 +5227,7 @@ name "exc:calculusErrors-21"
 \end_inset
 
 
-\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)\, dx\approx hf(x_{0})}$
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)\,dx\approx hf(x_{0})}$
 \end_inset
 
 
@@ -4965,7 +5247,7 @@ hasananswer
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)\, dx\approx hf\left(x_{0}+\frac{h}{4}\right)}$
+\begin_inset Formula ${\displaystyle \int_{x_{0}}^{x_{0}+h}f(x)\,dx\approx hf\left(x_{0}+\frac{h}{4}\right)}$
 \end_inset
 
 
@@ -5103,6 +5385,10 @@ hasananswer
 \end_deeper
 \begin_layout Enumerate
 Find the error term for the derivative approximation:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5286,6 +5572,10 @@ f''(3.0)\approx25[\sin(2.8)-2\sin(3.0)+\sin(3.2)].
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5318,6 +5608,10 @@ Let
 
 .
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5357,6 +5651,10 @@ Let
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5396,6 +5694,10 @@ Let
 
 .
  Find a bound on the error of the approximation.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5527,6 +5829,10 @@ hasasolution
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5535,12 +5841,12 @@ hasasolution
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -5732,7 +6038,7 @@ name "exc:calculusErrors-30"
 Refer to the quadrature method 
 \begin_inset Formula 
 \[
-\int_{x_{0}}^{x_{0}+h}f(x)\, dx=\frac{h}{2}\left[f\left(x_{0}+\frac{h}{3}\right)+f\left(x_{0}+\frac{2h}{3}\right)\right]+\frac{h^{3}}{36}f''(\xi)
+\int_{x_{0}}^{x_{0}+h}f(x)\,dx=\frac{h}{2}\left[f\left(x_{0}+\frac{h}{3}\right)+f\left(x_{0}+\frac{2h}{3}\right)\right]+\frac{h^{3}}{36}f''(\xi)
 \]
 
 \end_inset
@@ -5751,6 +6057,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5764,7 +6074,7 @@ What is the degree of precision?
 
 \begin_layout Enumerate
 Use the method to approximate 
-\begin_inset Formula $\int_{0}^{\pi}\sin x\, dx$
+\begin_inset Formula $\int_{0}^{\pi}\sin x\,dx$
 \end_inset
 
 .
@@ -5796,7 +6106,7 @@ name "exc:calculusErrors-31"
 \end_inset
 
 The Trapezoidal Rule applied to 
-\begin_inset Formula $\int_{0}^{2}f(x)\, dx$
+\begin_inset Formula $\int_{0}^{2}f(x)\,dx$
 \end_inset
 
  gives the value 4, and Simpson's Rule gives the value 2.
@@ -5903,6 +6213,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5995,7 +6309,7 @@ Sketch the graph of a function
 \end_inset
 
  for which the Trapezoidal Rule gives a better approximation of 
-\begin_inset Formula $\int_{0}^{1}f(x)\, dx$
+\begin_inset Formula $\int_{0}^{1}f(x)\,dx$
 \end_inset
 
  than does Simpson's Rule, and explain how you know.
@@ -6096,6 +6410,10 @@ f'(x_{0})\approx\frac{1}{2h}\left[-\frac{2+\alpha}{\alpha}f(x_{0})+\frac{4}{\alp
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6137,6 +6455,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6145,8 +6467,8 @@ hasananswer
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -6319,6 +6641,10 @@ The graph of
  Use it to rank your three approximations in order from least expected error
  to greatest expected error, and explain why you ranked them the way you
  did.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

@@ -1,7 +1,9 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/Book-Numerical/preamble
@@ -17,16 +19,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman lmodern
-\font_sans lmss
-\font_typewriter lmtt
+\font_roman "lmodern" "default"
+\font_sans "lmss" "default"
+\font_typewriter "lmtt" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -46,16 +50,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -68,7 +82,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle fancy
@@ -160,6 +177,10 @@ vfill
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -167,7 +188,7 @@ vfill
 \begin_inset Tabular
 <lyxtabular version="3" rows="1" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
 <column alignment="left" valignment="bottom" width="3in">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -188,12 +209,13 @@ vfill
 \begin_inset Text
 
 \begin_layout Plain Layout
-2016.
+2020.
  Tea Time Numerical Analysis by 
 \begin_inset CommandInset href
 LatexCommand href
 name "Leon Q. Brin"
 target "http://lqbrin.github.io/tea-time-numerical/"
+literal "false"
 
 \end_inset
 
@@ -202,6 +224,7 @@ target "http://lqbrin.github.io/tea-time-numerical/"
 LatexCommand href
 name "Creative Commons Attribution-ShareAlike 4.0 International License"
 target "http://creativecommons.org/licenses/by-sa/4.0/"
+literal "false"
 
 \end_inset
 
@@ -260,6 +283,7 @@ The code is distributed in the hope that it will be useful, but WITHOUT
 LatexCommand href
 name "GPL"
 target "http://www.gnu.org/licenses/"
+literal "false"
 
 \end_inset
 
@@ -774,6 +798,7 @@ status open
 \begin_inset CommandInset citation
 LatexCommand nocite
 key "leader,recipes,vanloan,strang,guichard"
+literal "true"
 
 \end_inset
 
@@ -839,6 +864,8 @@ fancyhead[LO]{}
 \begin_inset CommandInset index_print
 LatexCommand printindex
 type "idx"
+name "Index"
+literal "true"
 
 \end_inset
 

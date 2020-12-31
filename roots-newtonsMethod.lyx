@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -138,7 +155,7 @@ reference "sec:fixedptOrder"
  of the root finding investigation 
 \begin_inset CommandInset ref
 LatexCommand vpageref
-reference "sub:RootFindingInvestigation"
+reference "subsec:RootFindingInvestigation"
 
 \end_inset
 
@@ -210,7 +227,7 @@ reference "sec:fixedptOrder"
 
 \end_inset
 
-, we found that fixed point iteration converges quadraticly (or better)
+, we found that fixed point iteration converges quadratically (or better)
  only when the derivative at the fixed point is zero.
  These observations should lead you to believe 
 \begin_inset Formula $f_{6}'(3)=0$
@@ -444,12 +461,23 @@ The following figure shows how to compute the first two iterations of Newton's
 \end_inset
 
  geometrically.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename figures/roots-newton1.eps
+	filename figures/roots-newton1.pdf
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "img:newtonsMethod"
 
 \end_inset
 
@@ -603,7 +631,7 @@ Similar calculation shows
 \end_inset
 
 .
- This recurrence relation describes Newton's method---iterating the function
+ This recurrence relation describes Newton's method—iterating the function
  
 \begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
 \end_inset
@@ -712,6 +740,10 @@ Step
 \end_inset
 
  do Steps 2-4:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -778,7 +810,7 @@ Output: Approximation
 \begin_inset Formula $x$
 \end_inset
 
- near exact fixed point, or message of failure.
+ near exact fixed point or message of failure.
 \end_layout
 
 \begin_layout Standard
@@ -926,7 +958,18 @@ x_{n+1}=x_{n}-g(x_{n})\frac{x_{n}-x_{n-1}}{g(x_{n})-g(x_{n-1})}.\label{eq:secant
 
 \end_inset
 
-Notice this is not quite a fixed point iteration scheme.
+Geometrically, can you see how this method works? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "que:secantMethodGeometrically"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notice this is not quite a fixed point iteration scheme.
  Each iteration depends on the previous 
 \shape italic
 two
@@ -962,7 +1005,7 @@ hrule
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1000,9 +1043,9 @@ name "tab:secantDemo"
 \begin_inset Tabular
 <lyxtabular version="3" rows="16" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -1870,6 +1913,10 @@ name "syntheticDivisionExample"
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1877,11 +1924,11 @@ name "syntheticDivisionExample"
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -2268,7 +2315,7 @@ In polar form,
 \end_inset
 
  and 
-\begin_inset Formula $w_{3}=\left(\frac{2}{3}-i\right)\left(-\frac{1}{2}+\frac{\sqrt{3}}{2}i\right)=\frac{-3\sqrt{3}-2}{6}+\frac{3-2\sqrt{3}}{6}i$
+\begin_inset Formula $w_{3}=\left(\frac{2}{3}-i\right)\left(-\frac{1}{2}-\frac{\sqrt{3}}{2}i\right)=\frac{-3\sqrt{3}-2}{6}+\frac{3-2\sqrt{3}}{6}i$
 \end_inset
 
 .
@@ -2339,7 +2386,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2419,7 +2466,7 @@ and can be found by Newton's method with initial values
  Can you find the next root? Answer 
 \begin_inset CommandInset ref
 LatexCommand vpageref
-reference "nextRoot"
+reference "que:nextRoot"
 
 \end_inset
 
@@ -2448,8 +2495,11 @@ A straightforward implementation of the secant method can easily be inefficient
 
  appears in formula 
 \begin_inset CommandInset ref
-LatexCommand vpageref
+LatexCommand eqref
 reference "eq:secantMethod"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2563,6 +2613,10 @@ Step
 \end_inset
 
  do Steps 3-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2641,7 +2695,7 @@ Output: Approximation
 \begin_inset Formula $x$
 \end_inset
 
- near exact fixed point, or message of failure.
+ near exact fixed point or message of failure.
 \end_layout
 
 \begin_layout Standard
@@ -2834,6 +2888,10 @@ Step
 \end_inset
 
  do Steps 3-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2912,7 +2970,7 @@ Output: Approximation
 \begin_inset Formula $x$
 \end_inset
 
- near exact fixed point, or message of failure.
+ near exact fixed point or message of failure.
 \end_layout
 
 \begin_layout Standard
@@ -3024,7 +3082,7 @@ Newton's method
 \end_inset
 
  is computed for each 
-\begin_inset Formula $n>0$
+\begin_inset Formula $n>1$
 \end_inset
 
 .
@@ -3216,14 +3274,17 @@ octave
 
 \begin_inset CommandInset label
 LatexCommand label
-name "secant"
+name "newton-1"
 
 \end_inset
 
-Use your secant method function from question 
+Use your Newton's method function from question 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "enu:secantMethodCode"
+reference "enu:newtonsMethodCode"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -3232,6 +3293,10 @@ reference "enu:secantMethodCode"
 \end_inset
 
  to find a solution of
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3346,22 +3411,41 @@ octave
 
 \begin_inset CommandInset label
 LatexCommand label
-name "newton-1"
+name "secant"
 
 \end_inset
 
 Repeat exercise 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "secant"
+reference "newton-1"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
- using your Newton's method code from question 
+ using your secant method code from question 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "enu:newtonsMethodCode"
+reference "enu:secantMethodCode"
+plural "false"
+caps "false"
+noprefix "false"
 
+\end_inset
+
+.
+ Supply a value of 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ from the same interval as 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ but not equal to 
+\begin_inset Formula $x_{0}$
 \end_inset
 
 .
@@ -3547,6 +3631,10 @@ Let
 \end_inset
 
  using Newton's method with
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3593,6 +3681,10 @@ Let
 \end_inset
 
  using the secant method with
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3703,14 +3795,34 @@ name "exc:newton-4"
 \end_inset
 
 Let 
-\begin_inset Formula $g(x)={\displaystyle \frac{2\ln(1+x^{2})-x}{1+x^{2}}}.$
+\begin_inset Formula $h(x)={\displaystyle \frac{2\ln(1+x^{2})-x}{1+x^{2}}}.$
 \end_inset
 
+ Note that 
+\begin_inset Formula $h$
+\end_inset
+
+ and the function 
+\begin_inset Formula $g$
+\end_inset
+
+ from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton1"
+
+\end_inset
+
+ have the same roots (since dividing a function by 
+\begin_inset Formula $1+x^{2}$
+\end_inset
+
+ does not change its roots).
  Using Newton's method to find a root of 
-\begin_inset Formula $g(x)$
+\begin_inset Formula $h(x)$
 \end_inset
 
- with 
+ with (a) 
 \begin_inset Formula $x_{0}=5$
 \end_inset
 
@@ -3718,21 +3830,17 @@ Let
 \begin_inset Formula $x_{14}=8.6624821192$
 \end_inset
 
- and with 
-\begin_inset Formula $\tilde{x}_{0}=1.2$
+ and with (b) 
+\begin_inset Formula $x_{0}=1.2$
 \end_inset
 
  yields 
-\begin_inset Formula $\tilde{x}_{14}=0$
+\begin_inset Formula $x_{14}=0$
 \end_inset
 
 .
  Compare the values of 
 \begin_inset Formula $x_{14}$
-\end_inset
-
- and 
-\begin_inset Formula $\tilde{x}_{14}$
 \end_inset
 
  with the fourteenth iterations from question 
@@ -4051,6 +4159,10 @@ Suppose you are using the secant method with
 
 .
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4128,6 +4240,10 @@ status open
 hasananswer 
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -4381,6 +4497,10 @@ For what values of
 \end_inset
 
 ?
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4434,7 +4554,7 @@ name "exc:newton-13"
 Let 
 \begin_inset Formula 
 \[
-f(x)=10-\int_{0}^{x}\frac{e^{t}}{1+t}\, dt.
+f(x)=10-\int_{0}^{x}\frac{e^{t}}{1+t}\,dt.
 \]
 
 \end_inset
@@ -4503,6 +4623,10 @@ name "que:quadraticConvergence"
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4511,10 +4635,10 @@ name "que:quadraticConvergence"
 \begin_inset Tabular
 <lyxtabular version="3" rows="10" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4972,6 +5096,58 @@ The convergence looks quadratic since the number of significant digits of
 
 \end_deeper
 \begin_layout Description
+Secant
+\begin_inset space ~
+\end_inset
+
+method
+\begin_inset space ~
+\end_inset
+
+geometrically? 
+\begin_inset CommandInset label
+LatexCommand label
+name "que:secantMethodGeometrically"
+
+\end_inset
+
+ Compare the following geometric representation of the secant method with
+ that of Newton's method (on page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "img:newtonsMethod"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ In Newton's method, the intersection of a tangent line with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis determines the next iteration.
+ In the secant method, the intersection of a secant line with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis determines the next iteration.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-newton3.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
 Next
 \begin_inset space ~
 \end_inset
@@ -4979,7 +5155,7 @@ Next
 root? 
 \begin_inset CommandInset label
 LatexCommand label
-name "nextRoot"
+name "que:nextRoot"
 
 \end_inset
 

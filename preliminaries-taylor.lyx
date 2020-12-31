@@ -1,7 +1,9 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -115,7 +132,11 @@ Theorem ! Taylor's
 
 \end_inset
 
-Suppose that 
+For some integer 
+\begin_inset Formula $n\geq0$
+\end_inset
+
+, suppose 
 \begin_inset Formula $f(x)$
 \end_inset
 
@@ -144,7 +165,7 @@ Suppose that
 \begin_inset Formula $x$
 \end_inset
 
-, lying strictly between 
+, lying between 
 \begin_inset Formula $x$
 \end_inset
 
@@ -165,7 +186,21 @@ f(x)=f(x_{0})+\sum_{j=1}^{n}\left(\frac{f^{(j)}(x_{0})}{j!}(x-x_{0})^{j}\right)+
 
 \begin_layout Proof
 \noindent
-Let 
+In the case that 
+\begin_inset Formula $x=x_{0}$
+\end_inset
+
+, the claim is trivial.
+ 
+\begin_inset Formula $\xi=x=x_{0}$
+\end_inset
+
+ will do.
+ Now suppose 
+\begin_inset Formula $x\neq x_{0}$
+\end_inset
+
+, and let 
 \begin_inset Formula $I$
 \end_inset
 
@@ -181,8 +216,12 @@ Let
 \begin_inset Formula $\overline{I}$
 \end_inset
 
- be the closure of 
-\begin_inset Formula $I$
+ be the closed interval between 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}$
 \end_inset
 
 .
@@ -547,6 +586,10 @@ The absolute error in using
 \end_inset
 
  depends on three factors:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -593,7 +636,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -932,7 +975,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1037,7 +1080,7 @@ reference "fig:taylor3"
 
 \begin_layout Standard
 We now turn our attention to perhaps the most often analyzed Taylor polynomials-
---those for the sine and cosine functions.
+–those for the sine and cosine functions.
  They provide examples with beautiful visualization and simple analysis.
  The 
 \begin_inset Formula $n^{th}$
@@ -1080,6 +1123,23 @@ Since the sine and cosine functions are bounded between
 \end_inset
 
  we know that 
+\begin_inset Formula $-\frac{|x|^{n+1}}{(n+1)!}\leq\frac{x^{n+1}}{(n+1)!}\sin\xi\leq\frac{|x|^{n+1}}{(n+1)!}$
+\end_inset
+
+ and similarly for 
+\begin_inset Formula $-\sin\xi$
+\end_inset
+
+, 
+\begin_inset Formula $\cos\xi$
+\end_inset
+
+, and 
+\begin_inset Formula $-\cos\xi$
+\end_inset
+
+.
+ Therefore, no matter which form the remainder term takes,
 \begin_inset Formula 
 \[
 -\frac{|x|^{n+1}}{(n+1)!}\leq R_{n}(x)\leq\frac{|x|^{n+1}}{(n+1)!}.
@@ -1193,7 +1253,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1496,6 +1556,10 @@ Methodus
 , it appears as the second corollary to Proposition VII Theorem III, bearing
  faint resemblance to any modern statement of the theorem.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1935,12 +1999,12 @@ Octave
 
 \begin_layout Standard
 Two things that will come in handy time and again when using Octave are
- inline functions 
+ anonymous functions 
 \begin_inset Index idx
 status collapsed
 
 \begin_layout Plain Layout
-Octave ! inline function
+Octave ! anonymous function
 \end_layout
 
 \end_inset
@@ -1964,7 +2028,7 @@ Octave !
 \end_inset
 
 .
- Creating an inline function is a simple way to make a 
+ Creating an anonymous function is a simple way to make a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2014,15 +2078,19 @@ abs(x)
 \end_inset
 
  function.
- That's where an inline function is useful.
- The syntax for an inline function is
+ That's where an anonymous function is useful.
+ The syntax for an anonymous function is
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \align center
 
 \family typewriter
-name = inline('function definition')
+name = @(variables) function definition
 \end_layout
 
 \begin_layout Standard
@@ -2031,7 +2099,11 @@ where
 \family typewriter
 name
 \family default
- is the name of the function and 
+ is the name of the function,
+\family typewriter
+ variables
+\family default
+ is a comma separated list of variables used in the function, and 
 \family typewriter
 function definition
 \family default
@@ -2042,7 +2114,7 @@ function definition
 
 , the Octave code looks like 
 \family typewriter
-f=inline('3*x^2')
+f=@(x) 3*x^2
 \family default
 .
  Then you can use 
@@ -2069,7 +2141,7 @@ f
 \family default
  with the 
 \family typewriter
-f=inline('3*x^2')
+f=@(x) 3*x^2
 \family default
  statement, 
 \family typewriter
@@ -2088,7 +2160,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-octave:1> f=inline('3*x^2');
+octave:1> f=@(x) 3*x^2;
 \end_layout
 
 \begin_layout Plain Layout
@@ -2169,7 +2241,13 @@ To begin, use any text editor you like to create the list of commands.
  If you don't already have a favorite text editor (and maybe even if you
  do), you should use the one that comes with Octave.
  If you use this program, you will have no problems.
- So, first create the text document 
+ If you are using Octave-online or Cocalc, the online platform will include
+ an editor—you should use it.
+ 
+\end_layout
+
+\begin_layout Standard
+With your text editor of choice, create the text document 
 \family typewriter
 experiment1.m
 \family default
@@ -2356,6 +2434,10 @@ Find
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2503,6 +2585,10 @@ Let
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2582,6 +2668,10 @@ Suppose
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2719,11 +2809,7 @@ name "exc:taylor8"
 
 \end_inset
 
-Use an 
-\family typewriter
-inline
-\family default
- function to evaluate the Taylor polynomial 
+Use an anonymous function to evaluate the Taylor polynomial 
 \begin_inset Formula $T_{4}(x)=1-\frac{1}{2}x^{2}+\frac{1}{24}x^{4}$
 \end_inset
 
@@ -2742,6 +2828,10 @@ status open
 hasasolution 
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -2793,11 +2883,7 @@ name "exc:taylor10"
 
 \end_inset
 
-Use an 
-\family typewriter
-inline
-\family default
- function to evaluate the Taylor polynomial 
+Use an anonymous function to evaluate the Taylor polynomial 
 \begin_inset Formula $T_{3}(x)=1+x+\frac{1}{2}x^{2}+\frac{1}{6}x^{3}$
 \end_inset
 
@@ -2806,6 +2892,10 @@ inline
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2939,6 +3029,10 @@ Find
 \end_inset
 
  as guaranteed by Taylor's theorem in the following situation.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3026,6 +3120,10 @@ Let
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3084,6 +3182,10 @@ Find the second Taylor polynomial,
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3118,11 +3220,11 @@ Find a bound on the error
 
 \begin_layout Enumerate
 Approximate 
-\begin_inset Formula $\int_{0}^{1}f(x)\, dx$
+\begin_inset Formula $\int_{0}^{1}f(x)\,dx$
 \end_inset
 
  by calculating 
-\begin_inset Formula $\int_{0}^{1}P_{2}(x)\, dx$
+\begin_inset Formula $\int_{0}^{1}P_{2}(x)\,dx$
 \end_inset
 
  instead.
@@ -3130,7 +3232,7 @@ Approximate
 
 \begin_layout Enumerate
 Find an upper bound for the error in (c) using 
-\begin_inset Formula $\int_{0}^{1}|R_{2}(x)|\, dx$
+\begin_inset Formula $\int_{0}^{1}|R_{2}(x)|\,dx$
 \end_inset
 
  and compare the bound to the actual error.
@@ -3143,6 +3245,10 @@ Let
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3243,7 +3349,7 @@ The Maclaurin series for the arctangent function converges for
  and is given by
 \begin_inset Formula 
 \[
-\arctan x=\lim_{n\to\infty}P_{n}(x)=\lim_{n\to\infty}\sum_{i=n+1}^{\infty}(-1)^{i+1}\frac{x^{2i-1}}{2i-1}.
+\arctan x=\lim_{n\to\infty}P_{n}(x)=\lim_{n\to\infty}\sum_{i=1}^{n}(-1)^{i-1}\frac{x^{2i-1}}{2i-1}.
 \]
 
 \end_inset
@@ -3453,6 +3559,10 @@ hasasolution
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3530,6 +3640,10 @@ Let
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3620,6 +3734,10 @@ Suppose
 \end_inset
 
  to approximate
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3675,6 +3793,10 @@ Find a theoretical upper bound, as a function of
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3796,6 +3918,10 @@ e=1+1+\frac{1}{2}+\frac{1}{6}+\frac{1}{24}+\frac{1}{120}+\cdots
 \end_inset
 
 Use Taylor Series to find infinite sums that sum to 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper

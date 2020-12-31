@@ -1,0 +1,5170 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass book
+\begin_preamble
+\input $HOME/Documents/textbook/preamble
+\end_preamble
+\use_default_options true
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 2.5cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:newtonsMethod"
+
+\end_inset
+
+Newton's Method
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton's method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! Newton's|see{Newton's method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:fixedptOrder"
+
+\end_inset
+
+ we addressed some of the deficiency in fixed point iteration, but delayed
+ deep discussion of the mysterious function 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ of the root finding investigation 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "subsec:RootFindingInvestigation"
+
+\end_inset
+
+.
+ The time has come to discuss 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ in some detail.
+ We start with some number crunching.
+ Recall that 
+\begin_inset Formula $f_{6}(x)=\frac{2x^{3}\text{−}5x^{2}\text{−}6}{3x^{2}\text{−}10x+4}$
+\end_inset
+
+ and let 
+\begin_inset Formula $x_{0}=4.$
+\end_inset
+
+ Proceeding with fixed point iteration,
+\begin_inset Formula 
+\begin{eqnarray*}
+x_{1}=f_{6}(x_{0}) & = & 3.5\\
+x_{2}=f_{6}(x_{1}) & \approx & 3.217391304347826\\
+x_{3}=f_{6}(x_{2}) & \approx & 3.072749058541597\\
+x_{4}=f_{6}(x_{3}) & \approx & 3.013730618589344\\
+x_{5}=f_{6}(x_{4}) & \approx & 3.000683798275568\\
+x_{6}=f_{6}(x_{5}) & \approx & 3.000001860777997\\
+x_{7}=f_{6}(x_{6}) & \approx & 3.000000000013848.
+\end{eqnarray*}
+
+\end_inset
+
+You can see two things.
+ The sequence 
+\begin_inset Formula $x_{0},x_{1},x_{2},\ldots$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+is converging to (the fixed point) 3; and
+\end_layout
+
+\begin_layout Enumerate
+it looks like the convergence is quadratic since, starting with 
+\begin_inset Formula $x_{4}$
+\end_inset
+
+ to 
+\begin_inset Formula $x_{5}$
+\end_inset
+
+, the number of significant digits is roughly doubling with each iteration.
+\end_layout
+
+\begin_layout Standard
+In the analysis in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:fixedptOrder"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "sec:fixedptOrder"
+
+\end_inset
+
+, we found that fixed point iteration converges quadratically (or better)
+ only when the derivative at the fixed point is zero.
+ These observations should lead you to believe 
+\begin_inset Formula $f_{6}'(3)=0$
+\end_inset
+
+.
+ Let's check.
+ First, the derivative 
+\begin_inset Formula $f_{6}'(x)=\frac{6x^{4}\text{−}40x^{3}+74x^{2}\text{−}4x\text{−}60}{(3x^{2}\text{−}10x+4)^{2}}$
+\end_inset
+
+ (you should verify this).
+ Evaluating the numerator at the fixed point, 
+\begin_inset Formula $x=3$
+\end_inset
+
+, we get 
+\begin_inset Formula $6(3)^{4}-40(3)^{3}+74(3)^{2}-4(3)-60=486-1080+666-12-60=0$
+\end_inset
+
+.
+ So we have convergence to a fixed point where the derivative of the function
+ is zero, and we indeed have that convergence is quadratic.
+\end_layout
+
+\begin_layout Standard
+Starting with 
+\begin_inset Formula $x_{0}=2$
+\end_inset
+
+, fixed point iteration on 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ converges to 
+\begin_inset Formula $1+\sqrt{3}$
+\end_inset
+
+, and starting with 
+\begin_inset Formula $x_{0}=-1$
+\end_inset
+
+, fixed point iteration converges to 
+\begin_inset Formula $1-\sqrt{3}$
+\end_inset
+
+.
+ You should be able to verify this from the convergence diagram in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SixConvergenceDiagrams"
+
+\end_inset
+
+ or from calculating the first several iterations for each yourself.
+ What you do not get from the convergence diagram is the speed of convergence.
+ For that, you need to look at the iterates.
+ You should do so.
+ Does convergence look quadratic in these cases too? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "que:quadraticConvergence"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+From the convergence diagram, we see that fixed point iteration will converge
+ for virtually any initial value, and all three fixed points can be estimated
+ by fixed point iteration.
+ Moreover, from our calculations, it looks like convergence is quadratic
+ for all three.
+ It's hard to ask for more from a function.
+ Fast convergence to any fixed point! So whence did 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ come?
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ is differentiable and 
+\begin_inset Formula $g(\hat{x})=0$
+\end_inset
+
+ so 
+\begin_inset Formula $g$
+\end_inset
+
+ has a root at 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ Consider 
+\begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ is a fixed point of 
+\begin_inset Formula $f$
+\end_inset
+
+ as long as 
+\begin_inset Formula $g'(\hat{x})\neq0$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+f(\hat{x})=\hat{x}-\frac{g(\hat{x})}{g'(\hat{x})}=\hat{x}-\frac{0}{g'(\hat{x})}=\hat{x}.
+\]
+
+\end_inset
+
+Moreover, as long as 
+\begin_inset Formula $g$
+\end_inset
+
+ has a second derivative near 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\begin{eqnarray*}
+f'(\hat{x}) & = & 1-\frac{g'(\hat{x})\cdot g'(\hat{x})-g(\hat{x})g''(\hat{x})}{g'(\hat{x})\cdot g'(\hat{x})}\\
+ & = & 1-1+\frac{0\cdot g''(\hat{x})}{g'(\hat{x})\cdot g'(\hat{x})}\\
+ & = & 0.
+\end{eqnarray*}
+
+\end_inset
+
+From these calculations, we conclude if 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ is twice differentiable, 
+\begin_inset Formula $g(\hat{x})=0$
+\end_inset
+
+ and 
+\begin_inset Formula $g'(\hat{x})\neq0$
+\end_inset
+
+, then fixed point iteration of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ with initial value in a neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ will converge quadratically to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ What a great way to turn a root finding problem into a fixed point problem!
+\end_layout
+
+\begin_layout Standard
+Now is a good time to recall that 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ was just one of 6 candidate functions designed to find the roots of 
+\begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
+\end_inset
+
+ by fixed point iteration.
+ Indeed, 
+\begin_inset Formula $g'(x)=-3x^{2}+10x-4$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\begin{eqnarray*}
+x-\frac{g(x)}{g'(x)} & = & x-\frac{-x^{3}+5x^{2}-4x-6}{-3x^{2}+10x-4}\\
+ & = & \frac{2x^{3}\text{−}5x^{2}\text{−}6}{3x^{2}\text{−}10x+4}\\
+ & = & f_{6}(x).
+\end{eqnarray*}
+
+\end_inset
+
+Using fixed point iteration on 
+\begin_inset Formula $f_{6}(x)=x-\frac{g(x)}{g'(x)}$
+\end_inset
+
+ to find roots of 
+\begin_inset Formula $g(x)$
+\end_inset
+
+, as done here, is called 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton's method
+\end_layout
+
+\end_inset
+
+ Newton's method.
+\end_layout
+
+\begin_layout Subsection
+A Geometric Derivation of Newton's Method
+\end_layout
+
+\begin_layout Standard
+\noindent
+The following figure shows how to compute the first two iterations of Newton's
+ method on 
+\begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
+\end_inset
+
+ with initial value 
+\begin_inset Formula $x_{0}=-2.5$
+\end_inset
+
+ geometrically.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-newton1.pdf
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "img:newtonsMethod"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+To compute 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, the tangent line to 
+\begin_inset Formula $g$
+\end_inset
+
+ at 
+\begin_inset Formula $(x_{0},g(x_{0}))$
+\end_inset
+
+ is drawn and its intersection with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis is 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+.
+ Similarly, the tangent line to 
+\begin_inset Formula $g$
+\end_inset
+
+ at 
+\begin_inset Formula $(x_{1},g(x_{1}))$
+\end_inset
+
+ is drawn and its intersection with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis is 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+.
+ And so on.
+ For example, 
+\begin_inset Formula $(x_{0},g(x_{0}))=(-2.5,50.875)$
+\end_inset
+
+ and 
+\begin_inset Formula $g'(x_{0})=g'(-2.5)=-47.75$
+\end_inset
+
+.
+ Hence, the 
+\begin_inset Quotes eld
+\end_inset
+
+rise
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\begin_inset Formula $0-50.875$
+\end_inset
+
+) over the 
+\begin_inset Quotes eld
+\end_inset
+
+run
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\begin_inset Formula $x_{1}+2.5$
+\end_inset
+
+) between 
+\begin_inset Formula $(-2.5,50.875)$
+\end_inset
+
+ and 
+\begin_inset Formula $(x_{1},0)$
+\end_inset
+
+ must equal 
+\begin_inset Formula $-47.75$
+\end_inset
+
+.
+ We thus have 
+\begin_inset Formula $\frac{-50.875}{x_{1}+2.5}=-47.75$
+\end_inset
+
+ so 
+\begin_inset Formula 
+\[
+x_{1}=\frac{-50.875}{-47.75}-2.5\approx-1.43455497382199.
+\]
+
+\end_inset
+
+In symbols, the 
+\begin_inset Quotes eld
+\end_inset
+
+rise
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\begin_inset Formula $-g(x_{0})$
+\end_inset
+
+) over the 
+\begin_inset Quotes eld
+\end_inset
+
+run
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\begin_inset Formula $x_{1}-x_{0})$
+\end_inset
+
+ must equal 
+\begin_inset Formula $g'(x_{0})$
+\end_inset
+
+.
+ In other words,
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{-g(x_{0})}{x_{1}-x_{0}} & = & g'(x_{0})\Rightarrow\\
+\frac{-g(x_{0})}{g'(x_{0})} & = & x_{1}-x_{0}\Rightarrow\\
+x_{1} & = & x_{0}-\frac{g(x_{0})}{g'(x_{0})}.
+\end{eqnarray*}
+
+\end_inset
+
+Similar calculation shows 
+\begin_inset Formula $x_{2}=x_{1}-\frac{g(x_{1})}{g'(x_{1})}$
+\end_inset
+
+, and more generally 
+\begin_inset Formula $x_{n+1}=x_{n}-\frac{g(x_{n})}{g'(x_{n})}$
+\end_inset
+
+.
+ This recurrence relation describes Newton's method—iterating the function
+ 
+\begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Newton's Method (pseudo-code)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton's method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unlike Steffensen's method, the denominator appearing in Newton's method
+ is not expected to approach zero as the iterates converge, so generally
+ there is much less trouble with stability of the calculation and no intermediat
+e checks are done before computing one iteration from the previous.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $g$
+\end_inset
+
+ is twice differentiable.
+ 
+\begin_inset Formula $g$
+\end_inset
+
+ has a root at 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is in a neighborhood 
+\begin_inset Formula $(\hat{x}-\delta,\hat{x}+\delta)$
+\end_inset
+
+ where the magnitude of 
+\begin_inset Formula $f'(x)=1-\frac{g'(x)\cdot g'(x)-g(x)g''(x)}{g'(x)\cdot g'(x)}$
+\end_inset
+
+ is less than one.
+\end_layout
+
+\begin_layout Description
+Input: Initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+; function 
+\begin_inset Formula $g$
+\end_inset
+
+ and its derivative 
+\begin_inset Formula $g'$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: For 
+\begin_inset Formula $j=1\ldots N$
+\end_inset
+
+ do Steps 2-4:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: Set 
+\begin_inset Formula $x=x_{0}-\frac{g(x_{0})}{g'(x_{0})}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: If 
+\begin_inset Formula $|x-x_{0}|\leq tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $x$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: Set 
+\begin_inset Formula $x_{0}=x$
+\end_inset
+
+;
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: Print 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Maximum iterations exceeded.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $x$
+\end_inset
+
+ near exact fixed point or message of failure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Secant Method
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+secant method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! secant|see{secant method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The greatest weakness of Newton's method is the requirement that 
+\begin_inset Formula $g'$
+\end_inset
+
+ be known and used in the calculation.
+ The derivative is not always accessible or manageable or even known, though.
+ In such a case, it is better to use Steffensen's method or the secant method.
+ The secant method is derived by replacing the 
+\begin_inset Formula $g'$
+\end_inset
+
+ of Newton's method with a difference quotient.
+ In order for this to make any sense, though, we will need to restate Newton's
+ method in terms of 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+.
+ In Newton's method we are iterating 
+\begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
+\end_inset
+
+ so 
+\begin_inset Formula $x_{n+1}=x_{n}-\frac{g(x_{n})}{g'(x_{n})}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Now suppose you have a function 
+\begin_inset Formula $g$
+\end_inset
+
+ and some iterate 
+\begin_inset Formula $x_{n-1}$
+\end_inset
+
+.
+ That is enough to locate one point on the graph of 
+\begin_inset Formula $g$
+\end_inset
+
+, namely 
+\begin_inset Formula $(x_{n-1},g(x_{n-1}))$
+\end_inset
+
+.
+ But we need another point in order to form a difference quotient (the slope
+ of the line through two points).
+ So suppose we have a second value, 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+, near 
+\begin_inset Formula $x_{n-1}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\frac{g(x_{n})-g(x_{n-1})}{x_{n}-x_{n-1}}\approx g'(x_{n})$
+\end_inset
+
+ so we can substitute 
+\begin_inset Formula $\frac{g(x_{n})-g(x_{n-1})}{x_{n}-x_{n-1}}$
+\end_inset
+
+ for 
+\begin_inset Formula $g'(x_{n})$
+\end_inset
+
+ in Newton's method.
+ This yields the 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+secant method
+\end_layout
+
+\end_inset
+
+ secant method, 
+\begin_inset Formula $x_{n+1}=x_{n}-g(x_{n})/\left(\frac{g(x_{n})-g(x_{n-1})}{x_{n}-x_{n-1}}\right)$
+\end_inset
+
+, which simplifies to
+\begin_inset Formula 
+\begin{equation}
+x_{n+1}=x_{n}-g(x_{n})\frac{x_{n}-x_{n-1}}{g(x_{n})-g(x_{n-1})}.\label{eq:secantMethod}
+\end{equation}
+
+\end_inset
+
+Geometrically, can you see how this method works? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "que:secantMethodGeometrically"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notice this is not quite a fixed point iteration scheme.
+ Each iteration depends on the previous 
+\shape italic
+two
+\shape default
+ values, not one.
+ The analysis we've done so far does not apply, but there's hope that convergenc
+e will be fast since this method is a reasonable approximation of Newton's
+ method near a root, assuming 
+\begin_inset Formula $g$
+\end_inset
+
+ is differentiable near there.
+ Table 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:secantDemo"
+
+\end_inset
+
+ The secant method applied to 
+\begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=5$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=x_{0}+g(x_{0})=-21$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="16" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $|3-x_{n}|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2(10)^{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-21$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.4(10)^{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.9415730337078$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.941(10)^{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.8869924815972$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.886(10)^{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.0502898397912$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.050(10)^{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.7088949488497$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $7.088(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.412824115541$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.128(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.232292913133$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.322(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.1141957095727$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.141(10)^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.0465011115969$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.650(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.0132833760752$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.328(10)^{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.0020189248976$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.018(10)^{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.0001014520965$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.014(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.0000008128334$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8.128(10)^{-7}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.0000000003297$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3.297(10)^{-10}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hrule 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:secantDemo"
+
+\end_inset
+
+ provides evidence that the secant method indeed converges quickly.
+ In the particular case of 
+\begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=5$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=x_{0}+g(x_{0})=-21$
+\end_inset
+
+, it takes a while to settle in, but after the first 8 iterations or so,
+ convergence is very fast.
+ Not quite quadratic, but superlinear for sure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{The secant method converges with order $
+\backslash
+frac{1+
+\backslash
+sqrt{5}}{2}$.}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+secant method ! analysis
+\end_layout
+
+\end_inset
+
+Suppose 
+\begin_inset Formula $g$
+\end_inset
+
+ is a function with root 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+, 
+\begin_inset Formula $g'(\hat{x})\neq0$
+\end_inset
+
+, 
+\begin_inset Formula $g''(\hat{x})\neq0$
+\end_inset
+
+, and 
+\begin_inset Formula $g'''(x)$
+\end_inset
+
+ exists in a neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $x_{0},x_{1},x_{2},\ldots$
+\end_inset
+
+ be a sequence derived from the secant method (
+\begin_inset Formula $x_{n+1}=x_{n}-g(x_{n})\frac{x_{n}-x_{n-1}}{g(x_{n})-g(x_{n-1})}$
+\end_inset
+
+ for all 
+\begin_inset Formula $k\geq2$
+\end_inset
+
+) such that 
+\begin_inset Formula ${\displaystyle \lim_{k\to\infty}x_{k}=\hat{x}}$
+\end_inset
+
+.
+ Define 
+\begin_inset Formula $e_{n}=x_{n}-\hat{x}$
+\end_inset
+
+ so 
+\begin_inset Formula $x_{n}=\hat{x}+e_{n}$
+\end_inset
+
+.
+ Making this substitution into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:secantMethod"
+
+\end_inset
+
+ we have 
+\begin_inset Formula 
+\begin{equation}
+e_{n+1}=e_{n}-g(\hat{x}+e_{n})\frac{e_{n}-e_{n-1}}{g(\hat{x}+e_{n})-g(\hat{x}+e_{n-1})}.\label{eq:secantOrderPart1}
+\end{equation}
+
+\end_inset
+
+Taylor's theorem allows 
+\begin_inset Formula $g(\hat{x}+e_{k})=g(\hat{x})+e_{k}g'(\hat{x})+\frac{1}{2}e_{k}^{2}g''(\hat{x})+O(e_{k}^{3})$
+\end_inset
+
+.
+ Noting that 
+\begin_inset Formula $g(\hat{x})=0$
+\end_inset
+
+ and substituting into 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:secantOrderPart1"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{eqnarray}
+e_{n+1} & = & e_{n}-(e_{n}-e_{n-1})\frac{e_{n}g'(\hat{x})+\frac{1}{2}e_{n}^{2}g''(\hat{x})+O(e_{n}^{3})}{(e_{n}-e_{n-1})g'(\hat{x})+\frac{1}{2}(e_{n}^{2}-e_{n-1}^{2})g''(\hat{x})+O(e_{n-1}^{3})}\nonumber \\
+ & = & e_{n}-\frac{e_{n}+\frac{e_{n}^{2}g''(\hat{x})}{2g'(\hat{x})}+O(e_{n}^{3})}{1+\frac{(e_{n}+e_{n-1})g''(\hat{x})}{2g'(\hat{x})}+\frac{O(e_{n-1}^{3})}{(e_{n}-e_{n-1})}}\nonumber \\
+ & = & \frac{e_{n}\left(1+\frac{(e_{n}+e_{n-1})g''(\hat{x})}{2g'(\hat{x})}+\frac{O(e_{n-1}^{3})}{(e_{n}-e_{n-1})}\right)-\left(e_{n}+\frac{e_{n}^{2}g''(\hat{x})}{2g'(\hat{x})}+O(e_{n}^{3})\right)}{1+\frac{(e_{n}+e_{n-1})g''(\hat{x})}{2g'(\hat{x})}+\frac{O(e_{n-1}^{3})}{(e_{n}-e_{n-1})}}\nonumber \\
+ & = & \frac{e_{n}e_{n-1}\frac{g''(\hat{x})}{2g'(\hat{x})}+\frac{e_{n}}{e_{n}-e_{n-1}}O(e_{n-1}^{3})+O(e_{n}^{3})}{1+\frac{(e_{n}+e_{n-1})g''(\hat{x})}{2g'(\hat{x})}+\frac{O(e_{n-1}^{3})}{(e_{n}-e_{n-1})}}.\label{eq:secantOrderPart2}
+\end{eqnarray}
+
+\end_inset
+
+Using equality 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:secantOrderPart2"
+
+\end_inset
+
+ to find a value 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ for which 
+\begin_inset Formula $\lim_{n\to\infty}\frac{|\hat{x}-x_{n+1}|}{|\hat{x}-x_{n}|^{\alpha}}=\lambda\neq0$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{eqnarray*}
+\lim_{n\to\infty}\frac{|\hat{x}-x_{n+1}|}{|\hat{x}-x_{n}|^{\alpha}} & = & \lim_{n\to\infty}\frac{|e_{n+1}|}{|e_{n}|^{\alpha}}\\
+ & = & \lim_{n\to\infty}\left|\frac{e_{n}^{1-\alpha}e_{n-1}\frac{g''(\hat{x})}{2g'(\hat{x})}+\frac{e_{n}^{1-\alpha}}{e_{n}-e_{n-1}}O(e_{n-1}^{3})+O(e_{n}^{3-\alpha})}{1+\frac{(e_{n}+e_{n-1})g''(\hat{x})}{2g'(\hat{x})}+\frac{O(e_{n-1}^{3})}{(e_{n}-e_{n-1})}}\right|\\
+ & = & \lambda\neq0.
+\end{eqnarray*}
+
+\end_inset
+
+But 
+\begin_inset Formula $\lim_{n\to\infty}e_{n}=\lim_{n\to\infty}e_{n-1}=0$
+\end_inset
+
+.
+ Hence, 
+\begin_inset Formula $\lim_{n\to\infty}e_{n}^{1-\alpha}e_{n-1}$
+\end_inset
+
+ must not be 0 or divergent, for if it were, 
+\begin_inset Formula $\lim_{n\to\infty}\frac{|\hat{x}-x_{n+1}|}{|\hat{x}-x_{n}|^{\alpha}}$
+\end_inset
+
+ would be 0 or divergent, respectively.
+ Consequently, there is a positive constant 
+\begin_inset Formula $C$
+\end_inset
+
+ such that 
+\begin_inset Formula $\lim_{n\to\infty}|e_{n}^{1-\alpha}e_{n-1}|=\lim_{n\to\infty}|e_{n+1}^{1-\alpha}e_{n}|=C\Rightarrow\lim_{n\to\infty}|e_{n+1}e_{n}^{1/(1-\alpha)}|=C^{1/(1-\alpha)}$
+\end_inset
+
+.
+ Now we have 
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\frac{|e_{n+1}|}{|e_{n}|^{\alpha}}=\lambda\neq0\mbox{ and }\lim_{n\to\infty}\frac{|e_{n+1}|}{|e_{n}|^{1/(\alpha-1)}}=C^{1/(1-\alpha)}\neq0.
+\]
+
+\end_inset
+
+Since the order of convergence of a sequence is unique (Exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:orderOfConvergenceIsUnique"
+
+\end_inset
+
+ of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Speed"
+
+\end_inset
+
+) it must be that 
+\begin_inset Formula $\alpha=1/(\alpha-1)$
+\end_inset
+
+ or 
+\begin_inset Formula $\alpha^{2}-\alpha-1=0$
+\end_inset
+
+.
+ The quadratic formula supplies the desired result.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So far we have only applied Newton's method and the secant method to the
+ cubic polynomial 
+\begin_inset Formula $g(x)=-x^{3}+5x^{2}-4x-6$
+\end_inset
+
+, a task not strictly necessary.
+ The rational roots theorem, a basic tool from pre-calculus, would give
+ you the roots exactly.
+ The method would have you check 
+\begin_inset Formula $\pm1,\pm2,\pm3,$
+\end_inset
+
+ and 
+\begin_inset Formula $\pm6$
+\end_inset
+
+ as possible roots of 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ Assuming you did your checks by synthetic division, your work might look
+ something like this:
+\begin_inset CommandInset label
+LatexCommand label
+name "syntheticDivisionExample"
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+meaning 
+\begin_inset Formula $g(x)=(x-3)(-x^{2}+2x+2)$
+\end_inset
+
+.
+ The other two roots would then come from the quadratic formula applied
+ to 
+\begin_inset Formula $-x^{2}+2x+2$
+\end_inset
+
+ and would be 
+\begin_inset Formula $\frac{-2\pm\sqrt{4+8}}{-2}=1\pm\sqrt{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Solving the cubic} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+The solutions of the quadratic equation 
+\begin_inset Formula $ax^{2}+bx+c=0$
+\end_inset
+
+ are given by the well-known quadratic equation.
+ Less well-known, and significantly more involved, is any formula 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+cubic formula
+\end_layout
+
+\end_inset
+
+ for the solutions of the cubic equation 
+\begin_inset Formula $ax^{3}+bx^{2}+cx+d=0$
+\end_inset
+
+.
+ One method of solution follows.
+ First, we let
+\begin_inset Formula 
+\begin{eqnarray*}
+p & = & \frac{3ac-b^{2}}{3a^{2}}\qquad\mbox{and}\\
+q & = & \frac{2b^{3}-9abc+27a^{2}d}{27a^{3}}.
+\end{eqnarray*}
+
+\end_inset
+
+Then we set 
+\begin_inset Formula 
+\[
+w^{3}=-\frac{q}{2}-\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}.
+\]
+
+\end_inset
+
+Third, we set 
+\begin_inset Formula $w_{1},w_{2},$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{3}$
+\end_inset
+
+ to the three possible (complex) values of 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ Finally, the three solutions of 
+\begin_inset Formula $ax^{3}+bx^{2}+cx+d=0$
+\end_inset
+
+ are 
+\begin_inset Formula 
+\[
+x_{i}=w_{i}-\frac{p}{3w_{i}}-\frac{b}{3a},\quad i=1,2,3.
+\]
+
+\end_inset
+
+This is essentially the method of 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Cardano ! cubic formula of
+\end_layout
+
+\end_inset
+
+ Cardano, published in the 
+\begin_inset Formula $16^{th}$
+\end_inset
+
+ century!
+\end_layout
+
+\begin_layout Standard
+For example, to solve the equation 
+\begin_inset Formula $-x^{3}+5x^{2}-4x-6=0$
+\end_inset
+
+, we start with
+\begin_inset Formula 
+\begin{eqnarray*}
+p & = & \frac{3(-1)(-4)-5^{2}}{3(-1)^{2}}=-\frac{13}{3}\qquad\mbox{and}\\
+q & = & \frac{2\cdot5^{3}-9(-1)(5)(-4)+27(-1)^{2}(-6)}{27(-1)^{3}}=\frac{92}{27}.
+\end{eqnarray*}
+
+\end_inset
+
+Then
+\begin_inset Formula 
+\begin{eqnarray*}
+w^{3} & = & -\frac{92}{2\cdot27}-\sqrt{\frac{92^{2}}{4\cdot27^{2}}-\frac{13^{3}}{27^{2}}}\\
+ & = & -\frac{46}{27}-\frac{\sqrt{92^{2}-4\cdot13^{3}}}{54}\\
+ & = & -\frac{46}{27}-\frac{\sqrt{-324}}{54}\\
+ & = & -\frac{46}{27}-\frac{i}{3}.
+\end{eqnarray*}
+
+\end_inset
+
+In polar form, 
+\begin_inset Formula $w^{3}=\frac{13\sqrt{13}}{27}e^{i(\tan^{-1}(9/46)-\pi)}$
+\end_inset
+
+ so we may set 
+\begin_inset Formula $w_{1}=\frac{\sqrt{13}}{3}e^{i(\tan^{-1}(9/46)-\pi)/3}$
+\end_inset
+
+, one of the cube roots of 
+\begin_inset Formula $w^{3}$
+\end_inset
+
+.
+ Unfortunately, finding the angle 
+\begin_inset Formula $(\tan^{-1}(9/46)-\pi)/3$
+\end_inset
+
+ exactly amounts to solving a cubic equation! However, with a calculator
+ in hand, one can get the approximation 
+\begin_inset Formula $\text{−}0.982793723247329$
+\end_inset
+
+, which in the end will be good enough.
+ So, the real part of 
+\begin_inset Formula $w_{1}$
+\end_inset
+
+ is approximately 
+\begin_inset Formula $\frac{\sqrt{13}}{3}\cos(\text{−}0.982793723247329)\approx.6666666666666667$
+\end_inset
+
+ and the imaginary part is approximately 
+\begin_inset Formula $\frac{\sqrt{13}}{3}\sin(\text{−}0.982793723247329)\approx-1$
+\end_inset
+
+.
+ 
+\begin_inset Formula $w_{1}$
+\end_inset
+
+ is suspiciously close to 
+\begin_inset Formula $\frac{2}{3}-i$
+\end_inset
+
+.
+ And we can check, 
+\begin_inset Formula $\left(\frac{2}{3}-i\right)^{3}=\left(\frac{2}{3}\right)^{3}+3\left(\frac{2}{3}\right)^{2}(-i)+3\cdot\frac{2}{3}(-i)^{2}+(-i)^{3}=\frac{8}{27}-\frac{12}{9}i-2+i=-\frac{46}{27}-\frac{1}{3}i$
+\end_inset
+
+.
+ Therefore, 
+\begin_inset Formula $w_{1}=\frac{2}{3}-i$
+\end_inset
+
+ and we let 
+\begin_inset Formula $w_{2}=\left(\frac{2}{3}-i\right)\left(-\frac{1}{2}+\frac{\sqrt{3}}{2}i\right)=\frac{3\sqrt{3}-2}{6}+\frac{3+2\sqrt{3}}{6}i$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{3}=\left(\frac{2}{3}-i\right)\left(-\frac{1}{2}-\frac{\sqrt{3}}{2}i\right)=\frac{-3\sqrt{3}-2}{6}+\frac{3-2\sqrt{3}}{6}i$
+\end_inset
+
+.
+ Finally,
+\begin_inset Formula 
+\begin{eqnarray*}
+x_{1} & = & w_{1}+\frac{13}{9w_{1}}+\frac{5}{3}=w_{1}+\frac{13\overline{w_{1}}}{9|w_{1}|^{2}}+\frac{5}{3}=w_{1}+\overline{w_{1}}+\frac{5}{3}=3\\
+x_{2} & = & w_{2}+\frac{13}{9w_{2}}+\frac{5}{3}=w_{2}+\frac{13\overline{w_{2}}}{9|w_{2}|^{2}}+\frac{5}{3}=w_{2}+\overline{w_{2}}+\frac{5}{3}=\sqrt{3}+1\\
+x_{3} & = & w_{3}+\frac{13}{9w_{3}}+\frac{5}{3}=w_{3}+\frac{13\overline{w_{3}}}{9|w_{3}|^{2}}+\frac{5}{3}=w_{3}+\overline{w_{3}}+\frac{5}{3}=-\sqrt{3}+1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For an equation you most likely did not see in pre-calculus, or calculus
+ for that matter, consider 
+\begin_inset CommandInset label
+LatexCommand label
+name "interestingNewton"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+x-e^{x}\cos\sqrt{e^{2x}-x^{2}}=0.
+\]
+
+\end_inset
+
+You might try to solve this equation exactly, with a pencil and paper, but
+ you would soon run into a dead end.
+ This equation can not be solved explicitly.
+ The best you can hope for is to approximate the solutions with a numerical
+ method.
+ To get some idea what we are in for, look at the graph of 
+\begin_inset Formula $x-e^{x}\cos\sqrt{e^{2x}-x^{2}}$
+\end_inset
+
+ in Figure 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rootFindingExample"
+
+\end_inset
+
+The graph of 
+\begin_inset Formula $x-e^{x}\cos\sqrt{e^{2x}-x^{2}}$
+\end_inset
+
+ crosses the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis infinitely many times.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/roots-newton2.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rootFindingExample"
+
+\end_inset
+
+.
+ The function oscillates wildly, and only oscillates more wildly as 
+\begin_inset Formula $x$
+\end_inset
+
+ increases.
+ The graph crosses the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis 29 times on the interval from 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $4.5$
+\end_inset
+
+ so has 29 roots there! They are
+\begin_inset Formula 
+\[
+\begin{gathered}.3181315052047641,\ 1.668024051576096,\ 2.062277729598284,\\
+2.439940377216816,\ 2.653191974038697,\ldots
+\end{gathered}
+\]
+
+\end_inset
+
+and can be found by Newton's method with initial values 
+\begin_inset Formula $0,1.5,2,2.4,2.6,\ldots$
+\end_inset
+
+.
+ Can you find the next root? Answer 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "que:nextRoot"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Secant Method (pseudo-code)
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+secant method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A straightforward implementation of the secant method can easily be inefficient
+ due to the number of times 
+\begin_inset Formula $g$
+\end_inset
+
+ appears in formula 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:secantMethod"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The pseudo-code below takes great care not to compute each value of 
+\begin_inset Formula $g$
+\end_inset
+
+ more than once.
+ If it seems more complicated than necessary, this is likely the source
+ of the complication.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $g$
+\end_inset
+
+ has a root at 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $g$
+\end_inset
+
+ is differentiable in a neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ are sufficiently close to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Input: Initial values 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+; function 
+\begin_inset Formula $g$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $y_{0}=g(x_{0})$
+\end_inset
+
+; 
+\begin_inset Formula $y_{1}=g(x_{1})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: For 
+\begin_inset Formula $j=1\ldots N$
+\end_inset
+
+ do Steps 3-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: Set 
+\begin_inset Formula $x=x_{1}-y_{1}\frac{x_{1}-x_{0}}{y_{1}-y_{0}}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: If 
+\begin_inset Formula $|x-x_{1}|\leq tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $x$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: Set 
+\begin_inset Formula $x_{0}=x_{1}$
+\end_inset
+
+; 
+\begin_inset Formula $y_{0}=y_{1}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{1}=x$
+\end_inset
+
+; 
+\begin_inset Formula $y_{1}=g(x_{1})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6: Print 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Maximum iterations exceeded.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $x$
+\end_inset
+
+ near exact fixed point or message of failure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Seeded Secant Method (pseudo-code) 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+seeded secant method
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+method ! seeded secant|see{seeded secant method}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+seeded secant method ! pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The greatest drawback to the secant method is the necessity of two initial
+ values.
+ They should be near one another, but how near, and how do you determine?
+ These are tough questions, and the answers are complicated at best.
+ One reasonable approach is to let 
+\begin_inset Formula $x_{1}=x_{0}+g(x_{0})$
+\end_inset
+
+.
+ Assuming 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is near a root, 
+\begin_inset Formula $g(x_{0})$
+\end_inset
+
+ will be small, so 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ will be near 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ Taking this approach relieves the user from the burden of selecting a second
+ initial value.
+ There are times when such automated selection is not desirable, so both
+ methods have their place.
+ This method only works well when the initial approximation is good.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pseudocode} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Assumptions: 
+\begin_inset Formula $g$
+\end_inset
+
+ has a root at 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $g$
+\end_inset
+
+ is differentiable in a neighborhood of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is sufficiently close to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Input: Initial value 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+; function 
+\begin_inset Formula $g$
+\end_inset
+
+; desired accuracy 
+\begin_inset Formula $tol$
+\end_inset
+
+; maximum number of iterations 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+1: Set 
+\begin_inset Formula $y_{0}=g(x_{0})$
+\end_inset
+
+; 
+\begin_inset Formula $x_{1}=x_{0}+y_{0}$
+\end_inset
+
+; 
+\begin_inset Formula $y_{1}=g(x_{1})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+2: For 
+\begin_inset Formula $j=1\ldots N$
+\end_inset
+
+ do Steps 3-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+3: Set 
+\begin_inset Formula $x=x_{1}-y_{1}\frac{x_{1}-x_{0}}{y_{1}-y_{0}}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+4: If 
+\begin_inset Formula $|x-x_{1}|\leq tol$
+\end_inset
+
+ then return 
+\begin_inset Formula $x$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+5: Set 
+\begin_inset Formula $x_{0}=x_{1}$
+\end_inset
+
+; 
+\begin_inset Formula $y_{0}=y_{1}$
+\end_inset
+
+; 
+\begin_inset Formula $x_{1}=x$
+\end_inset
+
+; 
+\begin_inset Formula $y_{1}=g(x_{1})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Step
+\begin_inset space ~
+\end_inset
+
+6: Print 
+\begin_inset Quotes eld
+\end_inset
+
+Method failed.
+ Maximum iterations exceeded.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output: Approximation 
+\begin_inset Formula $x$
+\end_inset
+
+ near exact fixed point or message of failure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pseudocode} 
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Description
+Rational
+\begin_inset space ~
+\end_inset
+
+Roots
+\begin_inset space ~
+\end_inset
+
+Theorem: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Theorem ! Rational Roots
+\end_layout
+
+\end_inset
+
+ If the polynomial 
+\begin_inset Formula $p(x)=a_{0}+a_{1}x+\cdots+a_{k}x^{k}$
+\end_inset
+
+ has rational coefficients, then any rational roots of 
+\begin_inset Formula $p$
+\end_inset
+
+ are in the set 
+\begin_inset Formula $\left\{ \frac{n}{d}:n\mbox{ is a factor of }a_{0}\mbox{ and }d\mbox{ is a factor of }a_{k}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Synthetic
+\begin_inset space ~
+\end_inset
+
+division: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+division ! synthetic
+\end_layout
+
+\end_inset
+
+ A method for calculating the quotient of a polynomial by a monomial.
+ Example 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "syntheticDivisionExample"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Newton's
+\begin_inset space ~
+\end_inset
+
+method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Newton's method
+\end_layout
+
+\end_inset
+
+ A root finding method that generally converges to a root of 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ quadratically, but requires the use of the derivative.
+ In this method, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is chosen and 
+\begin_inset Formula $x_{n+1}=x_{n}-\frac{g(x_{n})}{g'(x_{n})}$
+\end_inset
+
+ is computed for each 
+\begin_inset Formula $n>1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Secant
+\begin_inset space ~
+\end_inset
+
+method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+secant method
+\end_layout
+
+\end_inset
+
+ A root finding method that generally converges to a root of 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ with order approximately 
+\begin_inset Formula $1.618$
+\end_inset
+
+, but does not require the use of the derivative.
+ In this method, 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ are chosen and 
+\begin_inset Formula $x_{n+1}=x_{n}-g(x_{n})\frac{x_{n}-x_{n-1}}{g(x_{n})-g(x_{n-1})}$
+\end_inset
+
+ is computed for each 
+\begin_inset Formula $n>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Seeded
+\begin_inset space ~
+\end_inset
+
+secant
+\begin_inset space ~
+\end_inset
+
+method: 
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+seeded secant method
+\end_layout
+
+\end_inset
+
+ A modification of the secant method where 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ is chosen and 
+\begin_inset Formula $x_{1}=x_{0}+g(x_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Exercises
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:newtonsMethodCode"
+
+\end_inset
+
+Write Octave code that implements Newton's method as a function.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:secantMethodCode"
+
+\end_inset
+
+Write Octave code that implements the secant method as a function.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:seededSecantMethodCode"
+
+\end_inset
+
+Write Octave code that implements the seeded secant method as a function.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "newton-1"
+
+\end_inset
+
+Use your Newton's method function from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:newtonsMethodCode"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ with a tolerance of 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ to find a solution of
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $e^{x}+2^{-x}+2\cos x-6=0$
+\end_inset
+
+ using 
+\begin_inset Formula $1\leq x_{0}\leq2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\ln(x-1)+\cos(x-1)=0$
+\end_inset
+
+ using 
+\begin_inset Formula $1.3\leq x_{0}\leq2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $2x\cos x-(x-2)^{2}=0$
+\end_inset
+
+ using 
+\begin_inset Formula $2\leq x_{0}\leq3$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $2x\cos x-(x-2)^{2}=0$
+\end_inset
+
+ using 
+\begin_inset Formula $3\leq x_{0}\leq4$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(x-2)^{2}-\ln x=0$
+\end_inset
+
+ using 
+\begin_inset Formula $1\leq x_{0}\leq2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(x-2)^{2}-\ln x=0$
+\end_inset
+
+ using 
+\begin_inset Formula $e\leq x_{0}\leq4$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "secant"
+
+\end_inset
+
+Repeat exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ using your secant method code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:secantMethodCode"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Supply a value of 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ from the same interval as 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ but not equal to 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton"
+
+\end_inset
+
+Repeat exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "secant"
+
+\end_inset
+
+ using your seeded secant method code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:seededSecantMethodCode"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-1"
+
+\end_inset
+
+Repeat exercise 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "secant"
+
+\end_inset
+
+ using a tolerance of 
+\begin_inset Formula $10^{-10}$
+\end_inset
+
+.
+ Taking this new value as the exact value, did using a tolerance of 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ give a result accurate to within 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ of the exact value? 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+haspartwithanswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-2"
+
+\end_inset
+
+Let 
+\begin_inset Formula $g(x)=\frac{100}{x^{2}}\sin\left(\frac{10}{x}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}=1.25$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ of Newton's method.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "newton1"
+
+\end_inset
+
+Let 
+\begin_inset Formula $g(x)=2\ln(1+x^{2})-x$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $x_{14}$
+\end_inset
+
+ using Newton's method with
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x_{0}=5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x_{0}=1.2$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $g(x)=2\ln(1+x^{2})-x$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+ using the secant method with
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-3"
+
+\end_inset
+
+
+\begin_inset Formula $x_{0}=5$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=6$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=2$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Compare the secant method and Newton's method based on questions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "secant"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton-1"
+
+\end_inset
+
+.
+ Which finds roots in fewer iterations? Which one fails least often? Which
+ is better?
+\end_layout
+
+\begin_layout Enumerate
+Compute the first three iterations of Newton's method applied to 
+\begin_inset Formula $g(x)=x-(\sqrt{2})^{x}$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=3$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a value of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ for which Newton's method will fail to converge to a root of 
+\begin_inset Formula $g(x)=2+x-e^{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Explain why Newton's method fails to converge for the the function 
+\begin_inset Formula $g(x)=x^{2}+x+1$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-4"
+
+\end_inset
+
+Let 
+\begin_inset Formula $h(x)={\displaystyle \frac{2\ln(1+x^{2})-x}{1+x^{2}}}.$
+\end_inset
+
+ Using Newton's method to find a root of 
+\begin_inset Formula $h(x)$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{0}=5$
+\end_inset
+
+ yields 
+\begin_inset Formula $x_{14}=8.6624821192$
+\end_inset
+
+ and with 
+\begin_inset Formula $\tilde{x}_{0}=1.2$
+\end_inset
+
+ yields 
+\begin_inset Formula $\tilde{x}_{14}=0$
+\end_inset
+
+.
+ Compare the values of 
+\begin_inset Formula $x_{14}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{x}_{14}$
+\end_inset
+
+ with the fourteenth iterations from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "newton1"
+
+\end_inset
+
+ and explain any similarities or differences.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-5"
+
+\end_inset
+
+Let 
+\begin_inset Formula $g(x)=e^{3x}-27x^{6}+27x^{4}e^{x}-9x^{2}e^{2x}$
+\end_inset
+
+ and let 
+\begin_inset Formula $p_{0}=4$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $p_{10}$
+\end_inset
+
+ using Newton's method.
+ HINT: 
+\begin_inset Formula $g'(x)=3e^{3x}-18(x+x^{2})e^{2x}+27(x^{4}+4x^{3})e^{x}-162x^{5}$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Newton's method does not introduce spurious solutions.
+ Suppose 
+\begin_inset Formula $f(x)=x-\frac{g(x)}{g'(x)}$
+\end_inset
+
+ and 
+\begin_inset Formula $g'(\hat{x})\neq0$
+\end_inset
+
+.
+ Prove that 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ is a root of 
+\begin_inset Formula $g$
+\end_inset
+
+ if and only if 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ is a fixed point of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Hint: one direction is proven in the text of this section.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-6"
+
+\end_inset
+
+The polynomial 
+\begin_inset Formula $g(x)=x^{4}+2x^{3}-x-3$
+\end_inset
+
+ has a root 
+\begin_inset Formula $\hat{x}\approx1.097740792$
+\end_inset
+
+.
+ Find the largest neighborhood 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ of 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ such that Newton's method converges to 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+ for any initial value 
+\begin_inset Formula $x_{0}\in(a,b)$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+Use Newton's method to find a negative solution of 
+\begin_inset Formula 
+\[
+0=12x^{4}-13x^{3}+7x^{2}+x-130
+\]
+
+\end_inset
+
+accurate to the nearest 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+.
+ What initial value did you use? How many iterations did it take?
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-7"
+
+\end_inset
+
+Consider the function 
+\begin_inset Formula $g(x)=e^{6x}+3(\ln2)^{2}e^{2x}-(\ln8)e^{4x}-(\ln2)^{3}$
+\end_inset
+
+.
+ Compute enough iterations of Newton's method with 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+ to approximate a zero of 
+\begin_inset Formula $g$
+\end_inset
+
+ with tolerance 
+\begin_inset Formula $0.0002$
+\end_inset
+
+.
+ Construct the Aitken's delta squared sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+.
+ Is the order of convergence improved?
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-8"
+
+\end_inset
+
+As with Newton's method, the secant method can easily be described geometrically
+: Draw the line through the two points 
+\begin_inset Formula $(x_{0},f(x_{0}))$
+\end_inset
+
+ and 
+\begin_inset Formula $(x_{1},f(x_{1}))$
+\end_inset
+
+.
+ Find the intersection of this line with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis.
+ The 
+\begin_inset Formula $x$
+\end_inset
+
+-coordinate of the intersection is 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+.
+ Find 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+ by intersecting the line through 
+\begin_inset Formula $(x_{1},f(x_{1}))$
+\end_inset
+
+ and 
+\begin_inset Formula $(x_{2},f(x_{2}))$
+\end_inset
+
+ with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis.
+ And so on.
+ Graph the polynomial 
+\begin_inset Formula $p(x)=x^{3}-3x+3$
+\end_inset
+
+, and demonstrate the first iteration of the secant method graphically for
+ 
+\begin_inset Formula $x_{0}=-1$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=-2$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Suppose you are using the secant method with 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=1.1$
+\end_inset
+
+ to find a root of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Find 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ given that 
+\begin_inset Formula $f(1)=0.3$
+\end_inset
+
+ and 
+\begin_inset Formula $f(1.1)=0.23$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Create a sketch (graph) that illustrates the calculation.
+ HINT: 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ will be located where the line through 
+\begin_inset Formula $(x_{0},f(x_{0}))$
+\end_inset
+
+ and 
+\begin_inset Formula $(x_{1},f(x_{1}))$
+\end_inset
+
+ crosses the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-9"
+
+\end_inset
+
+Use the graph of 
+\begin_inset Formula $g$
+\end_inset
+
+ to answer the following questions.
+ 
+\begin_inset Formula $g$
+\end_inset
+
+ has roots at 
+\begin_inset Formula $-2\pi,-\pi,\pi,$
+\end_inset
+
+ and 
+\begin_inset Formula $2\pi$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-newton4.eps
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+To which root will Newton's method converge if 
+\begin_inset Formula $x_{0}=2.5$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+What will happen if 
+\begin_inset Formula $x_{0}=0$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Find a positive integer value of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ for which Newton's method will converge to 
+\begin_inset Formula $2\pi$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a negative value of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ for which Newton's method will converge to 
+\begin_inset Formula $2\pi$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Graph the polynomial 
+\begin_inset Formula $p(x)=x^{3}-3x+3$
+\end_inset
+
+, and demonstrate Newton's method graphically for 
+\begin_inset Formula $x_{0}=-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-10"
+
+\end_inset
+
+Use your code from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:secantMethodCode"
+
+\end_inset
+
+ to find a root of the function in the interval of question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:bisectionExamples"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "enu:bisectionExamples"
+
+\end_inset
+
+ to within 
+\begin_inset Formula $10^{-8}$
+\end_inset
+
+.
+ Compare your answer to that from question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bisection3"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "exc:bisection3"
+
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-11"
+
+\end_inset
+
+The sum of two numbers is 20.
+ If each number is added to its square root, the product of the two sums
+ is 
+\begin_inset Formula $172.2$
+\end_inset
+
+.
+ Determine the two numbers to within 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ of their exact values.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-12"
+
+\end_inset
+
+Find an example of a situation in which Newton's method will fail on the
+ second iteration (i.e., 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ may be calculated but 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ may not).
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $h(x)=2.2x^{3}-6.6x^{2}+4.4x$
+\end_inset
+
+ and let 
+\begin_inset Formula $g(x)=h^{\circ3}(x)$
+\end_inset
+
+.
+ That is, 
+\begin_inset Formula $g(x)=h(h(h(x)))$
+\end_inset
+
+.
+ Approximate a root of 
+\begin_inset Formula $g'(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "graph"
+
+\end_inset
+
+For what values of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, approximately, will Newton's method converge to 
+\begin_inset Formula $-2.5$
+\end_inset
+
+?
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-newton3.eps
+	lyxscale 33
+	width 5.5cm
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+For the function shown in question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "graph"
+
+\end_inset
+
+, find 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+ for the secant method with 
+\begin_inset Formula $x_{0}=-10$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}=6$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:newton-13"
+
+\end_inset
+
+Let 
+\begin_inset Formula 
+\[
+f(x)=10-\int_{0}^{x}\frac{e^{t}}{1+t}\,dt.
+\]
+
+\end_inset
+
+Approximate the positive root of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Of the root finding methods we have surveyed so far (Bisection, Fixed Point,
+ Newton's, Secant, and Steffensen's), which one do you feel is the best?
+ Why?
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+finishexercises
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Answers
+\end_layout
+
+\begin_layout Description
+Quadratic
+\begin_inset space ~
+\end_inset
+
+convergence? 
+\begin_inset CommandInset label
+LatexCommand label
+name "que:quadraticConvergence"
+
+\end_inset
+
+
+\begin_inset Formula $\ $
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\quad$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{n}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.7647058823529411$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.666666666666667$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.7326286052763475$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.722222222222227$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.7320509933083684$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.731741086881274$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.7320508075688965$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.732050478023325$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.732050807568503$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.732050807568877$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-.7320508075688772$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The convergence looks quadratic since the number of significant digits of
+ accuracy roughly doubles with the last couple of iterations.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Secant
+\begin_inset space ~
+\end_inset
+
+method
+\begin_inset space ~
+\end_inset
+
+geometrically? 
+\begin_inset CommandInset label
+LatexCommand label
+name "que:secantMethodGeometrically"
+
+\end_inset
+
+ Compare the following geometric representation of the secant method with
+ that of Newton's method (on page 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "img:newtonsMethod"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ In Newton's method, the intersection of a tangent line with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis determines the next iteration.
+ In the secant method, the intersection of a secant line with the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis determines the next iteration.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/roots-newton3.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Next
+\begin_inset space ~
+\end_inset
+
+root? 
+\begin_inset CommandInset label
+LatexCommand label
+name "que:nextRoot"
+
+\end_inset
+
+ The next root is approximately 
+\begin_inset Formula $2.872257717171606$
+\end_inset
+
+.
+ This can be found using Newton's method with 
+\begin_inset Formula $x_{0}=2.81$
+\end_inset
+
+, for example.
+ Note this computation is very sensitive to initial conditions because there
+ are so many roots near one another.
+ Starting with 
+\begin_inset Formula $x_{0}=2.8$
+\end_inset
+
+, for example, leads to the root at 
+\begin_inset Formula $9.662623060421268$
+\end_inset
+
+!
+\end_layout
+
+\end_body
+\end_document

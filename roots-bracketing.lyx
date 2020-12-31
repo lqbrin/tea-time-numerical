@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -120,7 +137,7 @@ The problem with bisection is its linear order of convergence.
  Compared to superlinear methods like the secant method and Newton's method,
  the bisection method just creeps along.
  But the bisection method has something the secant method and Newton's method
- do not---certainty of convergence.
+ do not—certainty of convergence.
  Yes, the secant method and Newton's method are fast when they converge,
  but there is no guarantee they will converge at all.
 \end_layout
@@ -240,6 +257,10 @@ Take the function
 .
  The table shows the computation of the next iteration for bracketed secant
  method and bracketed Newton's method.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -247,11 +268,11 @@ Take the function
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -520,6 +541,10 @@ and
 .
  The following table demonstrates this decision process plus the computation
  of the next iteration.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -527,12 +552,12 @@ and
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -793,6 +818,10 @@ reference "ans:bracketedx4"
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -800,12 +829,12 @@ reference "ans:bracketedx4"
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -1039,6 +1068,10 @@ The next 5 iterations of each method are given here in case you would like
  to try your hand at computing a few.
  And now is a good time to do so.
  These values were computed using the subsequent Octave code.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1046,9 +1079,9 @@ The next 5 iterations of each method are given here in case you would like
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
@@ -1694,6 +1727,7 @@ bracketedNewton.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -1910,6 +1944,10 @@ Step
 \end_inset
 
  do Steps 4-10:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2044,7 +2082,7 @@ Output: Approximation
 \begin_inset Formula $tol$
 \end_inset
 
- of exact root, or message of failure.
+ of exact root or message of failure.
 \end_layout
 
 \begin_layout Standard
@@ -2089,7 +2127,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2185,6 +2223,7 @@ method ! Brent's|see{Brent's method}
 \begin_inset CommandInset citation
 LatexCommand cite
 key "brent"
+literal "true"
 
 \end_inset
 
@@ -2204,6 +2243,7 @@ fzero
 \begin_inset CommandInset citation
 LatexCommand cite
 key "moler"
+literal "true"
 
 \end_inset
 
@@ -2355,7 +2395,7 @@ reference "fig:quadraticVSinverseQuadratic"
 
 .
  Inverse quadratic interpolation avoids the main complication of quadratic
- interpolation---calculating its 
+ interpolation—calculating its 
 \begin_inset Formula $x$
 \end_inset
 
@@ -2397,7 +2437,7 @@ reference "fig:quadraticVSinverseQuadratic"
 Referring back to the derivation of Müller's method 
 \begin_inset CommandInset ref
 LatexCommand vpageref
-reference "sub:mullers"
+reference "subsec:mullers"
 
 \end_inset
 
@@ -2508,12 +2548,17 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
->> f=inline('x^3-x^2-x-1')
+>> f=@(x) x^3-x^2-x-1
 \end_layout
 
 \begin_layout Plain Layout
 
-f = f(x) = x^3-x^2-x-1
+f =
+\end_layout
+
+\begin_layout Plain Layout
+
+@(x) x ^ 3 - x ^ 2 - x - 1
 \end_layout
 
 \begin_layout Plain Layout
@@ -2558,6 +2603,7 @@ Reference
 \begin_inset CommandInset citation
 LatexCommand cite
 key "sharma"
+literal "true"
 
 \end_inset
 
@@ -2633,7 +2679,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3158,6 +3204,7 @@ bracketedInverseQuadratic.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -3579,6 +3626,10 @@ Use the bracketed secant method (false position) to find a root in the indicated
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3677,11 +3728,11 @@ hasananswer
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $g(t)=\frac{3t^{2}\tan t}{1-t^{2}}$
+\begin_inset Formula $g(t)=\tan\left(\frac{t^{2}}{1-3t}\right)$
 \end_inset
 
 ; 
-\begin_inset Formula $[3490,3491]$
+\begin_inset Formula $[3486,3487]$
 \end_inset
 
 

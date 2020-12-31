@@ -1,18 +1,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Written by Leon Brin                           1 February 2014 %
+% Written by Leon Brin                          10 December 2020 %
 % Purpose: This function implements the bisection method where   %
 %        the number of iterations is calculated, not supplied as %
 %        an argument                                             %
-% INPUT: function f; interval [a,b]; tolerance tol               %
-% OUTPUT: approximation p; f(p), FP; number of iterations i      %
+% INPUT: interval [a,b]; function f; tolerance tol               %
+% OUTPUT: approximation p; f(p) FP; number of iterations i       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [p,FP,i] = bisectionWhile(f,a,b,tol)
+function [p,FP,i] = bisectionWhile(a,b,f,tol)
   if (tol<=0)
     p = "ERROR:tol must be positive.";
     return
   end%if
-  p = a + (b-a)/2;
+  p = a;
   err = abs(b-a);
   FA = f(a);
   i=1;

@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -147,6 +164,10 @@ Suppose we have a polynomial
 
 .
  For example, the synthetic division
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -154,11 +175,11 @@ Suppose we have a polynomial
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -523,6 +544,10 @@ More generally, here is a dissection of the division of
 \end_inset
 
  using synthetic division:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -530,12 +555,12 @@ More generally, here is a dissection of the division of
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -841,6 +866,10 @@ Hence,
 \end_inset
 
 , we simply continue the synthetic division as in
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -848,11 +877,11 @@ Hence,
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -1164,7 +1193,7 @@ and find out
 \begin_inset Formula $p'(t)$
 \end_inset
 
- by simultaneous synthetic divisions is known as Horner's method 
+ by consecutive synthetic divisions is known as Horner's method 
 \begin_inset Index idx
 status collapsed
 
@@ -1330,7 +1359,7 @@ deflation
 
  degree polynomial.
  At this point, we have a quadratic polynomial and can use the quadratic
- equation to find the last two roots.
+ formula to find the last two roots.
 \end_layout
 
 \begin_layout Standard
@@ -1352,6 +1381,10 @@ For example,
 \end_inset
 
  gives
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1359,11 +1392,11 @@ For example,
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -1595,7 +1628,7 @@ The (near) zero in the box at the bottom-right indicates that
 \end_layout
 
 \begin_layout Standard
-Our process will lead us to finding 
+This process will lead to all 
 \begin_inset Formula $n$
 \end_inset
 
@@ -1977,6 +2010,10 @@ Step
 \end_inset
 
  do Steps 2-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2183,6 +2220,10 @@ Step
 \end_inset
 
  do Step 3
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2347,6 +2388,10 @@ Step
 \end_inset
 
  do Steps 3-13:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2380,6 +2425,10 @@ Step
 \end_inset
 
  do Steps 5-12:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2442,6 +2491,10 @@ Step
 \end_inset
 
  do Step 9
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2806,7 +2859,7 @@ The fix is not difficult, with one proviso.
 Müller's Method
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:mullers"
+name "subsec:mullers"
 
 \end_inset
 
@@ -3154,6 +3207,10 @@ so we get
 \end_inset
 
  does not have real roots:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3252,6 +3309,7 @@ References
 \begin_inset CommandInset citation
 LatexCommand cite
 key "muller,recipes"
+literal "true"
 
 \end_inset
 
@@ -3277,6 +3335,10 @@ end{digression}
 \begin_layout Standard
 The following chart summarizes the relative strengths and weaknesses of
  Newton's method, the secant method, and Müller's method.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3284,10 +3346,10 @@ The following chart summarizes the relative strengths and weaknesses of
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -3688,6 +3750,10 @@ octave
 Write an Octave function that calculates the roots of a quadratic function
  using the alternate quadratic formula when appropriate.
  The first line of your function should be 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3722,6 +3788,10 @@ r2
 \family default
  are returned by the function in an array.
  The function is called like this:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3770,6 +3840,10 @@ octave
 
 Write an Octave function that implements Horner's method.
  The first line of your function should be 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3816,6 +3890,10 @@ pprime
 \family default
  are returned by the function in an array.
  The function is called like this:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3864,6 +3942,10 @@ octave
 
 Write an Octave function that implements Newton's method with Horner's method.
  The first line of your function should be
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4054,6 +4136,10 @@ Use Horner's method/synthetic division to find
 
 .
  Do not use a computer.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4297,6 +4383,10 @@ reference "exc:polynomials-2"
  Repeat until the deflated polynomial is quadratic.
  Once this happens, use the quadratic formula (or alternate quadratic formula)
  to find the last two roots.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4407,6 +4497,10 @@ reference "exc:polynomials"
 \end_inset
 
  for solving the quadratic.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4524,6 +4618,10 @@ haspartwithanswer
 
 .
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4566,6 +4664,10 @@ About 800 years ago John of Palermo challenged mathematicians to find a
 \end_inset
 
 How accurate was his approximation?
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4575,6 +4677,7 @@ Reference
 LatexCommand cite
 after "pg. 96 ex. 10"
 key "burdenfaires"
+literal "true"
 
 \end_inset
 
@@ -4613,16 +4716,16 @@ reference "exc:polynomials-1"
 
 \end_inset
 
-; and (ii) use an 
-\family typewriter
-inline()
-\family default
- function.
+; and (ii) use an anonymous function.
  Then (iii) compare the two results using Octave's 
 \family typewriter
 ==
 \family default
  operator.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4814,6 +4917,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4910,6 +5017,10 @@ passing through
 
 , and so on.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5044,6 +5155,10 @@ Pick a function whose root(s) you know exactly.
 The errors in three consecutive iterations of Müller's method are shown
  in the table.
  Use this information to estimate the order of convergence.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5052,8 +5167,8 @@ The errors in three consecutive iterations of Müller's method are shown
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -5195,6 +5310,10 @@ status open
 \end_inset
 
 ller's method
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper

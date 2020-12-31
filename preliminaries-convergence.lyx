@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -157,7 +174,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -187,11 +204,11 @@ Some sequences that converge to
 \begin_inset Tabular
 <lyxtabular version="3" rows="13" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -1444,7 +1461,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1470,11 +1487,11 @@ Absolute errors.
 \begin_inset Tabular
 <lyxtabular version="3" rows="12" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -2853,6 +2870,87 @@ The only way
  
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{Nonexistent Order of Convergence}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Not all convergent sequences have a defined order of convergence.
+ The sequence 
+\begin_inset Formula ${\displaystyle \left\langle \frac{e^{n}}{e^{e^{n}}}\right\rangle }$
+\end_inset
+
+, which converges to 0 is an example.
+\begin_inset Formula 
+\begin{align*}
+\frac{\left|\frac{e^{n+1}}{e^{e^{n+1}}}-0\right|}{\left|\frac{e^{n}}{e^{e^{n}}}-0\right|^{\alpha}} & =\frac{\left|\frac{e^{n+1}}{e^{e^{n+1}}}-0\right|}{\left|\frac{e^{n}}{e^{e^{n}}}-0\right|^{\alpha}}\\
+ & =\frac{\left|e^{n+1-e^{n+1}}\right|}{\left|e^{\alpha n-\alpha e^{n}}\right|}\\
+ & =\left|e^{1+(1-\alpha)n+(\alpha-e)e^{n}}\right|
+\end{align*}
+
+\end_inset
+
+If we set 
+\begin_inset Formula $\alpha\leq e$
+\end_inset
+
+, then 
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}[1+(1-\alpha)n+(\alpha-e)e^{n}]=-\infty}$
+\end_inset
+
+ implying that 
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}\left|e^{1+(1-\alpha)n+(\alpha-e)e^{n}}\right|=0}$
+\end_inset
+
+.
+ If we set 
+\begin_inset Formula $\alpha>e$
+\end_inset
+
+, then 
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}[1+(1-\alpha)n+(\alpha-e)e^{n}]=\infty}$
+\end_inset
+
+ implying that 
+\begin_inset Formula ${\displaystyle \lim_{n\to\infty}\left|e^{1+(1-\alpha)n+(\alpha-e)e^{n}}\right|=\infty}$
+\end_inset
+
+.
+ There simply is not value of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ for which this limit is a nonzero constant.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Rate of Convergence of a Sequence
 \begin_inset Index idx
@@ -3024,6 +3122,16 @@ big-oh of
 
 
 \begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+big-oh
+\end_layout
+
 \end_inset
 
 .
@@ -3212,7 +3320,7 @@ It's tempting to believe, or hope, the sequence is quadratically convergent,
  but it is not.
  The third term has an accuracy of about 24 significant digits.
  Each term in the sequence is approximately 8 significant digits more accurate
- than the previous---the hallmark of a linearly convergent sequence.
+ than the previous—the hallmark of a linearly convergent sequence.
  
 \end_layout
 
@@ -3393,6 +3501,16 @@ of
 \end_inset
 
 convergence
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+big-oh
+\end_layout
+
+\end_inset
+
+
 \begin_inset Index idx
 status collapsed
 
@@ -4050,7 +4168,7 @@ Not bad, but we can do better.
 \begin_inset Formula $d(s_{n})$
 \end_inset
 
- by two different methods---directly and using the formula 
+ by two different methods—directly and using the formula 
 \begin_inset Formula $d(p_{n+1})\approx\alpha d(p_{n})-\log\left(\lambda|p|^{\alpha-1}\right)$
 \end_inset
 
@@ -4241,7 +4359,7 @@ errs = [2.817*10^(-1), 1.03*10^(-1), 2.022*10^(-2), 1.451*10^(-3), ...
 
 \begin_layout Plain Layout
 
-d = inline('-log(x/exp(1))/log(10)');
+d = @(x) -log(x/exp(1))/log(10);
 \end_layout
 
 \begin_layout Plain Layout
@@ -4433,7 +4551,7 @@ end{verbatim}
 
 It is worth taking some time to make sure you understand all the lines of
  this program.
- It uses assignment, built-in functions, inline functions, simple output,
+ It uses assignment, built-in functions, anonymous functions, simple output,
  arrays, and 
 \family typewriter
 for
@@ -4474,6 +4592,332 @@ Octave ! comments
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{digression}{More on 
+\backslash
+texttt{for} loops}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+The 
+\family typewriter
+first:last
+\family default
+ syntax used in 
+\family typewriter
+for
+\family default
+ loops is actually a shortcut for an array containing the integers from
+ 
+\family typewriter
+first
+\family default
+ to 
+\family typewriter
+last
+\family default
+.
+ A third number can be added to this notation to produce arbitrary arithemetic
+ sequences like 
+\begin_inset Formula $10,13,16,19,22$
+\end_inset
+
+ and 
+\begin_inset Formula $1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2$
+\end_inset
+
+.
+ This extended notation is 
+\family typewriter
+first:step:last
+\family default
+, so 
+\family typewriter
+10:3:22
+\family default
+ will produce an array containing terms 
+\begin_inset Formula $10,13,16,19,22$
+\end_inset
+
+.
+ Moreover, this array syntax is completely independent of its use in 
+\family typewriter
+for
+\family default
+ loops.
+ Arrays can be generated with this syntax for any purpose, as demonstrated
+ here.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:1> a=1:.1:2
+\end_layout
+
+\begin_layout Plain Layout
+
+a =
+\end_layout
+
+\begin_layout Plain Layout
+
+ Columns 1 through 7:
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.0000    1.1000    1.2000    1.3000    1.4000    1.5000    1.6000
+\end_layout
+
+\begin_layout Plain Layout
+
+ Columns 8 through 11:
+\end_layout
+
+\begin_layout Plain Layout
+
+    1.7000    1.8000    1.9000    2.0000
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:2> b=[1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2]
+\end_layout
+
+\begin_layout Plain Layout
+
+b =
+\end_layout
+
+\begin_layout Plain Layout
+
+ Columns 1 through 8:
+\end_layout
+
+\begin_layout Plain Layout
+
+   1.0000   1.1000   1.2000   1.3000   1.4000   1.5000   1.6000   1.7000
+\end_layout
+
+\begin_layout Plain Layout
+
+ Columns 9 through 11:
+\end_layout
+
+\begin_layout Plain Layout
+
+   1.8000   1.9000   2.0000
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:3> a==b % Check to see if arrays a and b are equal--they are not!
+\end_layout
+
+\begin_layout Plain Layout
+
+ans =
+\end_layout
+
+\begin_layout Plain Layout
+
+  1  1  1  1  1  1  1  0  1  1  1
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:4> format('bit') % display numbers as stored in memory
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:5> a(8) % The eighth term of array a (1.7)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans = 0011111111111011001100110011001100110011001100110011001100110100
+\end_layout
+
+\begin_layout Plain Layout
+
+octave:6> b(8) % The eighth term of array b (1.7)
+\end_layout
+
+\begin_layout Plain Layout
+
+ans = 0011111111111011001100110011001100110011001100110011001100110011
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+It's interesting to see that the number 
+\begin_inset Formula $1.7$
+\end_inset
+
+ as generated by the arithmetic sequence notation (as in variable 
+\family typewriter
+a
+\family default
+) is different from the 
+\begin_inset Formula $1.7$
+\end_inset
+
+ as generate by typing it in as a hard-coded constant (as in variable 
+\family typewriter
+b
+\family default
+).
+ The two representations of 
+\begin_inset Formula $1.7$
+\end_inset
+
+ differ in their last three binary digits!
+\end_layout
+
+\begin_layout Standard
+To get back to 
+\family typewriter
+for
+\family default
+ loops, it matters not how the array is generated.
+ The 
+\family typewriter
+for
+\family default
+ loop will run its code once for each value in the array.
+ For example, the program
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+for i=[1,5,7,0,8]
+\end_layout
+
+\begin_layout Plain Layout
+
+  disp(factorial(i))
+\end_layout
+
+\begin_layout Plain Layout
+
+end%for
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+produces
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 1
+\end_layout
+
+\begin_layout Plain Layout
+
+ 120
+\end_layout
+
+\begin_layout Plain Layout
+
+ 5040
+\end_layout
+
+\begin_layout Plain Layout
+
+ 1
+\end_layout
+
+\begin_layout Plain Layout
+
+ 40320
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{digression}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \noindent
 \begin_inset ERT
 status open
@@ -4497,6 +4941,10 @@ Exercises
 \begin_layout Enumerate
 Some convergent sequences and their limits are given.
  Find the order of convergence for each.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4589,10 +5037,27 @@ hasananswer
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula ${\displaystyle \left\langle \frac{e^{n}}{e^{e^{n}}}\right\rangle \to0}$
+\begin_inset Formula ${\displaystyle \left\langle f^{\circ n}(1)\right\rangle \to\sqrt{3}}$
 \end_inset
 
+ where 
+\begin_inset Formula ${\displaystyle f(x)=\frac{x^{2}+3}{2x}}$
+\end_inset
 
+.
+ Note: 
+\begin_inset Formula $f^{\circ n}$
+\end_inset
+
+ means 
+\begin_inset Formula $f$
+\end_inset
+
+ composed with itself 
+\begin_inset Formula $n$
+\end_inset
+
+ times.
 \end_layout
 
 \end_deeper
@@ -4632,6 +5097,10 @@ Approximate the order of convergence of the sequence
 \end_inset
 
  and explain your answer.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4640,10 +5109,10 @@ Approximate the order of convergence of the sequence
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4893,6 +5362,10 @@ Some linearly convergent sequences and their limits are given.
 
  for each.
  If this is not possible, suggest a reasonable rate of convergence.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4959,6 +5432,13 @@ status open
 hasasolution 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula ${\displaystyle \left\langle \frac{1}{n}+\frac{1}{n^{2}}\right\rangle \to0}$
 \end_inset
 
 
@@ -5148,6 +5628,10 @@ Find the rates of convergence of the following sequences as
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5182,15 +5666,21 @@ Find the rates of convergence of the following sequences as
 \begin_layout Standard
 For questions 
 \begin_inset CommandInset ref
-LatexCommand vpageref
+LatexCommand ref
 reference "exc:firstFunctionROC"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
 -
 \begin_inset CommandInset ref
-LatexCommand vpageref
+LatexCommand ref
 reference "exc:lastFunctionROC"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -5259,6 +5749,10 @@ Find rates of convergence for the following functions as
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5578,6 +6072,10 @@ but it does not.
  prevent the program from running at all) or a bug (an error that will not
  prevent the program from running, but will cause improper calculation of
  the sum).
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5610,6 +6108,10 @@ Some sequences do not have an order of convergence.
 
 .
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5651,6 +6153,10 @@ Use the rules of thumb for order of convergence to approximate the number
 
  for each order of convergence.
  Assume each sequence starts with one significant digit of accuracy.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5779,6 +6285,10 @@ Write a
 for
 \family default
  loop that outputs the sequence of numbers.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper

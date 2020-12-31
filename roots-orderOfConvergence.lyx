@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -480,7 +497,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -515,9 +532,9 @@ Comparing order of convergence for fixed point iteration when the derivative
 \begin_inset Tabular
 <lyxtabular version="3" rows="12" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -1076,7 +1093,7 @@ e_{n+1} & = & e_{n}(-e_{n}f''(x_{n})-O(e_{n}^{2}))+\frac{1}{2}e_{n}^{2}f''(x_{n}
 \end_inset
 
 Hence, 
-\begin_inset Formula $\frac{\hat{x}-x_{n+1}}{(\hat{x}-x_{n})^{2}}=\frac{e_{n+1}}{e_{n^{2}}}=-\frac{1}{2}f''(x_{n})+O(e_{n})$
+\begin_inset Formula $\frac{\hat{x}-x_{n+1}}{(\hat{x}-x_{n})^{2}}=\frac{e_{n+1}}{e_{n}^{2}}=-\frac{1}{2}f''(x_{n})+O(e_{n})$
 \end_inset
 
  and
@@ -1207,7 +1224,7 @@ hrule
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1233,13 +1250,13 @@ Accelerating the convergence of a linearly converging sequence.
 \begin_inset Tabular
 <lyxtabular version="3" rows="10" columns="7">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -2266,7 +2283,7 @@ hrule
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2299,13 +2316,14 @@ Comparing fixed point iteration when the derivative at the fixed point is
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="5">
+<lyxtabular version="3" rows="8" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -2360,6 +2378,18 @@ Comparing fixed point iteration when the derivative at the fixed point is
 
 \begin_layout Plain Layout
 \begin_inset Formula $|2-a_{n}|$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{|2-a_{n}|}{|2-s_{n+2}|^{2}}$
 \end_inset
 
 
@@ -2426,6 +2456,18 @@ Comparing fixed point iteration when the derivative at the fixed point is
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.54$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -2478,6 +2520,18 @@ Comparing fixed point iteration when the derivative at the fixed point is
 
 \begin_layout Plain Layout
 \begin_inset Formula $9.771(10)^{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.30$
 \end_inset
 
 
@@ -2544,6 +2598,18 @@ Comparing fixed point iteration when the derivative at the fixed point is
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.36$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -2596,6 +2662,18 @@ Comparing fixed point iteration when the derivative at the fixed point is
 
 \begin_layout Plain Layout
 \begin_inset Formula $6.284(10)^{-5}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.32$
 \end_inset
 
 
@@ -2662,6 +2740,18 @@ Comparing fixed point iteration when the derivative at the fixed point is
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.32$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -2692,6 +2782,15 @@ Comparing fixed point iteration when the derivative at the fixed point is
 \begin_inset Formula $6.894(10)^{-3}$
 \end_inset
 
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -2768,6 +2867,15 @@ Comparing fixed point iteration when the derivative at the fixed point is
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 </row>
 </lyxtabular>
 
@@ -2816,8 +2924,8 @@ reference "tab:fixedPointAitkens"
 \end_inset
 
  converges significantly faster than the linearly convergent sequence from
- which is was derived, just as before! The fact that 
-\begin_inset Formula $|2-a_{n}|\approx|2-s_{n+2}|^{2}$
+ which it was derived, just as before! The fact that 
+\begin_inset Formula $\frac{|2-a_{n}|}{|2-s_{n}|^{2}}\approx1.32$
 \end_inset
 
  is evidence of this claim, but the convergence of 
@@ -2825,7 +2933,21 @@ reference "tab:fixedPointAitkens"
 \end_inset
 
  is still linear.
- Make sure you can calculate the 
+ You can check that the ratio 
+\begin_inset Formula $\frac{|2-a_{n+1}|}{|2-a_{n}|^{1}}$
+\end_inset
+
+ is approximately constant (about 
+\begin_inset Formula $0.25$
+\end_inset
+
+) for 
+\begin_inset Formula $n=0,1,2,3,4$
+\end_inset
+
+.
+ Make sure you understand why this implies linear convergence and you can
+ calculate the 
 \begin_inset Formula $a_{n}$
 \end_inset
 
@@ -2873,7 +2995,11 @@ reference "eq:aitkensDeltaSquared"
 \begin_inset Formula $s_{n+2}$
 \end_inset
 
-.
+ (because 
+\begin_inset Formula $|2-a_{n}|\approx|2-s_{n+2}|^{2}$
+\end_inset
+
+).
  Consequently, 
 \begin_inset Formula $a_{0}$
 \end_inset
@@ -3085,6 +3211,10 @@ reference "eq:aitkensDeltaSquared"
 
 , and so on.
  This gives the sequence
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3092,9 +3222,9 @@ reference "eq:aitkensDeltaSquared"
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -3469,7 +3599,7 @@ hrule
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3499,12 +3629,12 @@ Steffensen's method applied to
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -4036,7 +4166,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -4045,7 +4175,7 @@ name "fig:FiveConvergenceDiagrams"
 
 \end_inset
 
-Convergence diagrams for 5 functions with the same fixed points---Steffensen's
+Convergence diagrams for 5 functions with the same fixed points—Steffensen's
  method.
 \end_layout
 
@@ -4232,6 +4362,10 @@ Step
 \end_inset
 
  do Steps 2-6:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4285,7 +4419,7 @@ Step
 \end_inset
 
 5: If 
-\begin_inset Formula $|x-x_{0}|\leq tol$
+\begin_inset Formula $|x-x_{2}|\leq tol$
 \end_inset
 
  then return 
@@ -4330,7 +4464,7 @@ Output: Approximation
 \begin_inset Formula $x$
 \end_inset
 
- near exact fixed point, or message of failure.
+ near exact fixed point or message of failure.
 \end_layout
 
 \begin_layout Standard
@@ -4382,7 +4516,7 @@ method: If
 \begin_inset Formula $p$
 \end_inset
 
- superlinearly.
+ faster but still linearly.
 \end_layout
 
 \begin_layout Description
@@ -4621,7 +4755,7 @@ convergence ! superquadratic
 Octave
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:WhileLoop"
+name "subsec:WhileLoop"
 
 \end_inset
 
@@ -4946,11 +5080,11 @@ Step
 \end_inset
 
 1: Set 
-\begin_inset Formula $m=\frac{a+b}{2}$
+\begin_inset Formula $m=a$
 \end_inset
 
 ; 
-\begin_inset Formula $err=|b-a|/2$
+\begin_inset Formula $err=|b-a|$
 \end_inset
 
 ; 
@@ -4970,6 +5104,10 @@ Step
 \end_inset
 
  do Steps 3-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5097,12 +5235,12 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-function p = bisectionWhile(f,a,b,tol)
+function p = bisectionWhile(a,b,f,tol)
 \end_layout
 
 \begin_layout Plain Layout
 
-  p = a + (b-a)/2;
+  p = a;
 \end_layout
 
 \begin_layout Plain Layout
@@ -5248,7 +5386,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-function p = bisectionWhile(f,a,b,tol)
+function p = bisectionWhile(a,b,f,tol)
 \end_layout
 
 \begin_layout Plain Layout
@@ -5273,7 +5411,7 @@ function p = bisectionWhile(f,a,b,tol)
 
 \begin_layout Plain Layout
 
-  p = a + (b-a)/2;
+  p = a;
 \end_layout
 
 \begin_layout Plain Layout
@@ -5408,6 +5546,7 @@ bisectionWhile.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -5636,6 +5775,10 @@ but it does not.
  prevent the program from running at all) or a bug (an error that will not
  prevent the program from running, but will cause improper calculation of
  the sum).
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5684,6 +5827,10 @@ Write a
 while
 \family default
  loop that outputs the sequence of numbers.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5796,6 +5943,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5872,6 +6023,10 @@ hasasolution
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5941,6 +6096,10 @@ reference "sec:Fixedpt"
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6126,6 +6285,10 @@ The following sequences are linearly convergent.
 \end_inset
 
  using Aitken's delta-squared calculation.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper

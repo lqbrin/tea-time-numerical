@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -499,7 +516,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -594,12 +611,12 @@ reference "fig:bisection-1"
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -956,7 +973,7 @@ is produced.
  What is the next value? Answer 
 \begin_inset CommandInset ref
 LatexCommand vpageref
-reference "sub:bisectionAnswer1"
+reference "subsec:bisectionAnswer1"
 
 \end_inset
 
@@ -1031,6 +1048,10 @@ reference "eq:bisectionExample"
  It is used to find zeros, or roots, of functions.
  In this light, we might summarize the first 8 iterations of this procedure
  as follows:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1040,10 +1061,10 @@ reference "eq:bisectionExample"
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -1743,7 +1764,7 @@ As the last line indicates, the desired value is approximately
  Solution 
 \begin_inset CommandInset ref
 LatexCommand vpageref
-reference "sub:bisectionAnswer2"
+reference "subsec:bisectionAnswer2"
 
 \end_inset
 
@@ -1764,7 +1785,7 @@ Though it works, the only real point of carrying out the procedure using
 \end_layout
 
 \begin_layout Standard
-That leaves only one question---how many repetitions, or iterations, should
+That leaves only one question—how many repetitions, or iterations, should
  we compute? And that depends on the user.
  Perhaps an answer to within 
 \begin_inset Formula $10^{-2}$
@@ -1779,6 +1800,111 @@ That leaves only one question---how many repetitions, or iterations, should
  to whatever accuracy is desired, within reason.
  With that in mind, here is some pseudo-code for the bisection method.
  
+\end_layout
+
+\begin_layout Subsection
+Analysis of the bisection method
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+bisection method ! analysis
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are two good reasons to study the bisection method.
+ First, its assumptions for guaranteed success are much simpler to verify
+ than those of other methods.
+ Even so, be somewhat cautious.
+ Faithful execution of any numerical method is subject to proper programming,
+ accurate computation, and proper input.
+ Programmers and users are not infallible.
+ Nor are computers.
+ Remember the lessons of Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Accuracy"
+
+\end_inset
+
+.
+ At the same time you should be wary of the results, you should temper your
+ skepticism with a good dose of confidence in the method.
+ It is only in rare circumstances that the computer will be the source of
+ any problems.
+\end_layout
+
+\begin_layout Standard
+Second, error analysis is straightforward.
+ Let 
+\begin_inset Formula $m_{1}=\frac{a+b}{2}$
+\end_inset
+
+, the midpoint of 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+ Let succeeding midpoints be 
+\begin_inset Formula $m_{2},\ m_{3},\ m_{4},$
+\end_inset
+
+ and so on.
+ Then the Intermediate Value theorem guarantees 
+\begin_inset Formula $|m_{j}-p|\leq\frac{b-a}{2^{j}}$
+\end_inset
+
+ for some root 
+\begin_inset Formula $p$
+\end_inset
+
+ of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ As we learned in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Speed"
+
+\end_inset
+
+, this means the sequence 
+\begin_inset Formula $\langle m_{n}\rangle$
+\end_inset
+
+ converges to 
+\begin_inset Formula $p$
+\end_inset
+
+ with linear order, and rate of convergence 
+\begin_inset Formula $O\left(\frac{1}{2^{n}}\right)$
+\end_inset
+
+.
+ This method should be considered slow to converge because it does so with
+ linear order.
+ But among those methods with linear order, it should be considered fast.
+ The error decays exponentially—faster than any polynomial decay.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO: Add digression on binary search?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1864,10 +1990,6 @@ Input: Interval
 \begin_inset Formula $tol$
 \end_inset
 
-; maximum number of iterations 
-\begin_inset Formula $N$
-\end_inset
-
 .
 \end_layout
 
@@ -1877,7 +1999,7 @@ Step
 \end_inset
 
 1: Set 
-\begin_inset Formula $err=|b-a|$
+\begin_inset Formula $N=\left\lceil \frac{\ln(b-a)-\ln(tol)}{\ln2}\right\rceil $
 \end_inset
 
 ; 
@@ -1897,6 +2019,10 @@ Step
 \end_inset
 
  do Steps 3-5:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1913,10 +2039,6 @@ Step
 \begin_inset Formula $M=f(m)$
 \end_inset
 
-; 
-\begin_inset Formula $err=err/2$
-\end_inset
-
 ;
 \end_layout
 
@@ -1927,10 +2049,6 @@ Step
 
 4: If 
 \begin_inset Formula $M=0$
-\end_inset
-
- or 
-\begin_inset Formula $err\leq tol$
 \end_inset
 
  then return 
@@ -1966,23 +2084,6 @@ Step
 
 \end_deeper
 \begin_layout Description
-Step
-\begin_inset space ~
-\end_inset
-
-6: Print 
-\begin_inset Quotes eld
-\end_inset
-
-Method failed.
- Maximum iterations exceeded.
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
 Output: Approximation 
 \begin_inset Formula $m$
 \end_inset
@@ -1991,7 +2092,7 @@ Output: Approximation
 \begin_inset Formula $tol$
 \end_inset
 
- of exact root, or message of failure.
+ of exact root or message of failure.
 \end_layout
 
 \begin_layout Standard
@@ -2122,10 +2223,6 @@ There would be no need for
 \end_inset
 
 , 
-\begin_inset Formula $err$
-\end_inset
-
-, 
 \begin_inset Formula $tol$
 \end_inset
 
@@ -2136,10 +2233,6 @@ There would be no need for
 , making the algorithm quite a bit simpler.
  Of course, programmed this way, the program would never stop, so 
 \begin_inset Formula $j$
-\end_inset
-
-, 
-\begin_inset Formula $err$
 \end_inset
 
 , 
@@ -2253,111 +2346,6 @@ The rest of the code is there to make sure the program doesn't do more than
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Subsection
-Analysis of the bisection method
-\begin_inset Index idx
-status open
-
-\begin_layout Plain Layout
-bisection method ! analysis
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-There are two good reasons to study the bisection method.
- First, its assumptions for guaranteed success are much simpler to verify
- than those of other methods.
- Even so, be somewhat cautious.
- Faithful execution of any numerical method is subject to proper programming,
- accurate computation, and proper input.
- Programmers and users are not infallible.
- Nor are computers.
- Remember the lessons of Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Accuracy"
-
-\end_inset
-
-.
- At the same time you should be wary of the results, you should temper your
- skepticism with a good dose of confidence in the method.
- It is only in rare circumstances that the computer will be the source of
- any problems.
-\end_layout
-
-\begin_layout Standard
-Second, error analysis is straightforward.
- Let 
-\begin_inset Formula $m_{1}=\frac{a+b}{2}$
-\end_inset
-
-, the midpoint of 
-\begin_inset Formula $[a,b]$
-\end_inset
-
-.
- Let succeeding midpoints be 
-\begin_inset Formula $m_{2},\ m_{3},\ m_{4},$
-\end_inset
-
- and so on.
- Then the Intermediate Value theorem guarantees 
-\begin_inset Formula $|m_{j}-p|\leq\frac{b-a}{2^{j}}$
-\end_inset
-
- for some root 
-\begin_inset Formula $p$
-\end_inset
-
- of 
-\begin_inset Formula $f(x)$
-\end_inset
-
-.
- As we learned in section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Speed"
-
-\end_inset
-
-, this means the sequence 
-\begin_inset Formula $\langle m_{n}\rangle$
-\end_inset
-
- converges to 
-\begin_inset Formula $p$
-\end_inset
-
- with linear order, and rate of convergence 
-\begin_inset Formula $O\left(\frac{1}{2^{n}}\right)$
-\end_inset
-
-.
- This method should be considered slow to converge because it does so with
- linear order.
- But among those methods with linear order, it should be considered fast.
- The error decays exponentially---faster than any polynomial decay.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO: Add digression on binary search?
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsection*
@@ -2553,7 +2541,7 @@ Octave
 
 \begin_layout Standard
 Roughly half the work in writing pseudo-code for the bisection method was
- dedicated to the logic of the method---the determination of when to stop.
+ dedicated to the logic of the method—the determination of when to stop.
  In programming, this type of logic is handled by 
 \family typewriter
 if then [else]
@@ -2813,6 +2801,10 @@ Octave ! comparison
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2820,8 +2812,8 @@ Octave ! comparison
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -2968,6 +2960,10 @@ if (t==1)
  And so on.
  Logical operators are often needed as well.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2975,8 +2971,8 @@ if (t==1)
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -3183,7 +3179,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-f = inline('2+(x-exp(2))/exp(2)-(x-exp(2))^2/(2*exp(4))-log(x)-1/10');
+f = @(x) 2+(x-exp(2))/exp(2)-(x-exp(2))^2/(2*exp(4))-log(x)-1/10;
 \end_layout
 
 \begin_layout Plain Layout
@@ -3198,7 +3194,7 @@ b=6;
 
 \begin_layout Plain Layout
 
-err=b-a;
+N=ceil((log(b-a)-log(10^-4))/log(2));
 \end_layout
 
 \begin_layout Plain Layout
@@ -3208,7 +3204,7 @@ L=f(a);
 
 \begin_layout Plain Layout
 
-for i=1:100
+for i=1:N
 \end_layout
 
 \begin_layout Plain Layout
@@ -3223,22 +3219,12 @@ for i=1:100
 
 \begin_layout Plain Layout
 
-  err=err/2;
+  if (M==0)
 \end_layout
 
 \begin_layout Plain Layout
 
-  if (M==0 || err<=10^-4)
-\end_layout
-
-\begin_layout Plain Layout
-
-    disp(m);
-\end_layout
-
-\begin_layout Plain Layout
-
-    return;
+    break;
 \end_layout
 
 \begin_layout Plain Layout
@@ -3283,8 +3269,7 @@ end%for
 
 \begin_layout Plain Layout
 
-disp('Method failed.
- Maximum iterations exceeded.');
+disp(m);
 \end_layout
 
 \begin_layout Plain Layout
@@ -3296,7 +3281,7 @@ end{verbatim}
 
 \end_inset
 
- This code would produce the correct result, 
+ This code produces the correct result, 
 \family typewriter
 3.2952
 \family default
@@ -3338,7 +3323,7 @@ end{verbatim}
 \family typewriter
 .m
 \family default
- file will assume that the inputs---interval 
+ file will assume that the inputs—interval 
 \begin_inset Formula $[a,b]$
 \end_inset
 
@@ -3346,15 +3331,11 @@ end{verbatim}
 \begin_inset Formula $f$
 \end_inset
 
-; desired accuracy 
+; and desired accuracy 
 \begin_inset Formula $tol$
 \end_inset
 
-; maximum number of iterations 
-\begin_inset Formula $N$
-\end_inset
-
----will be supplied from another source---the user.
+—will be supplied from another source—the user.
  The code inside the .m file should execute properly regardless of the (yet
  unknown) inputs.
  The syntax for an Octave function is: 
@@ -3436,55 +3417,50 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end_layout
 
 \begin_layout Plain Layout
 
 %  Bisection method written by Leon Q.
- Brin 09 July 2012  %
+ Brin 09 December 2020  %
 \end_layout
 
 \begin_layout Plain Layout
 
-%  Purpose: Implementation of the bisection method        %
+%  Purpose: Implementation of the bisection method            %
 \end_layout
 
 \begin_layout Plain Layout
 
-%  INPUT: Interval [a,b]; function f; tolerance tol; and  %
+%  INPUT: Interval [a,b]; function f; tolerance tol.
+          %
 \end_layout
 
 \begin_layout Plain Layout
 
-%         maximum number of iterations maxits.
-            %
-\end_layout
-
-\begin_layout Plain Layout
-
-%  OUTPUT: root res to within tol of exact or message of  %
+%  OUTPUT: root res to within tol of exact or message of      %
 \end_layout
 
 \begin_layout Plain Layout
 
 %         failure.
-                                        %
+                                            %
 \end_layout
 
 \begin_layout Plain Layout
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end_layout
 
 \begin_layout Plain Layout
 
-function res=bisection(a,b,f,tol,maxits)
+function res=bisection(a,b,f,tol)
 \end_layout
 
 \begin_layout Plain Layout
 
-  err=b-a;
+  N=ceil((log(b-a)-log(tol))/log(2));
 \end_layout
 
 \begin_layout Plain Layout
@@ -3494,7 +3470,7 @@ function res=bisection(a,b,f,tol,maxits)
 
 \begin_layout Plain Layout
 
-  for i=1:maxits
+  for i=1:N
 \end_layout
 
 \begin_layout Plain Layout
@@ -3509,12 +3485,7 @@ function res=bisection(a,b,f,tol,maxits)
 
 \begin_layout Plain Layout
 
-    err=err/2;
-\end_layout
-
-\begin_layout Plain Layout
-
-    if (M==0 || err<=tol)
+    if (M==0)
 \end_layout
 
 \begin_layout Plain Layout
@@ -3569,8 +3540,7 @@ function res=bisection(a,b,f,tol,maxits)
 
 \begin_layout Plain Layout
 
-  res='Method failed.
- Maximum iterations exceeded.';
+  res=m;
 \end_layout
 
 \begin_layout Plain Layout
@@ -3607,6 +3577,7 @@ bisection.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -3639,12 +3610,12 @@ octave:9>
 
 \begin_layout Plain Layout
 
-  f = inline('2+(x-exp(2))/exp(2)-(x-exp(2))^2/(2*exp(4))-log(x)-1/10');
+  f = @(x) 2+(x-exp(2))/exp(2)-(x-exp(2))^2/(2*exp(4))-log(x)-1/10;
 \end_layout
 
 \begin_layout Plain Layout
 
-octave:10> bisection(2,6,f,10^-4,100)
+octave:10> bisection(2,6,f,10^-4)
 \end_layout
 
 \begin_layout Plain Layout
@@ -3665,7 +3636,11 @@ After
 \family typewriter
 bisection.m
 \family default
- is written, the bisection() function becomes part of the Octave language.
+ is written, the 
+\family typewriter
+bisection()
+\family default
+ function becomes part of the Octave language.
  It can be called just like any built-in function.
  As a second example, we can find a root of 
 \begin_inset Formula $f(x)=\cos x-x$
@@ -3684,12 +3659,12 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-octave:12> bisection(0,3,inline('cos(x)-x'),10^-5,100)
+octave:12> bisection(0,3,@(x) cos(x)-x,10^-5)
 \end_layout
 
 \begin_layout Plain Layout
 
-ans =  0.73909
+ans =  0.7391
 \end_layout
 
 \begin_layout Plain Layout
@@ -3770,6 +3745,10 @@ name "enu:bisectionExamples"
 
 Use the Intermediate Value Theorem to show that the function has a root
  in the indicated interval.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4036,6 +4015,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4258,6 +4241,10 @@ The graph of
 \end_inset
 
 ? How do you know?
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4356,6 +4343,10 @@ Suppose a function
  satisfies the assumptions of the bisection method on the given interval.
  Starting with that interval, how many iterations are needed to approximate
  the root to within the given tolerance?
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4440,7 +4431,7 @@ octave
 \begin_inset Formula $f(x)=\ln(x^{4}\text{−}x^{3}\text{−}7x^{2}+13x\text{−}5)$
 \end_inset
 
- that can not be found by the bisection method.
+ that the bisection method can not be guaranteed to find.
 
 \family default
 \series default
@@ -4454,6 +4445,10 @@ octave
 \noun default
 \color inherit
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4533,7 +4528,7 @@ x=0.8:.01:1.2;
 
 \begin_layout Plain Layout
 
-f=inline("log(x.^4-x.^3-7*x.^2+13*x-5)");
+f=@(x) log(x.^4-x.^3-7*x.^2+13*x-5);
 \end_layout
 
 \begin_layout Plain Layout
@@ -4603,6 +4598,10 @@ not be found by the bisection method.
 \noun default
 \color inherit
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4682,7 +4681,7 @@ x=3.5:.05:4.5;
 
 \begin_layout Plain Layout
 
-f=inline("abs(sin(pi*x))");
+f=@(x) abs(sin(pi*x));
 \end_layout
 
 \begin_layout Plain Layout
@@ -4882,6 +4881,10 @@ hasananswer
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4946,6 +4949,10 @@ absval.m
 \family default
  and test it on the following computations.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5012,6 +5019,10 @@ name "exc:bisection-6"
 
 , so the assumptions of the bisection method are met.
  The method will converge to a root.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5089,6 +5100,10 @@ The function shown has roots at approximately
 .
  To which root will the bisection method converge with the given starting
  interval?
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5155,6 +5170,10 @@ Find an interval of length 1 over which the bisection method may be applied
 
 \begin_layout Enumerate
 The following algorithm is one possible incarnation of the bisection method.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5217,6 +5236,10 @@ Step
 \end_inset
 
  do Steps 2 and 3:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5353,11 +5376,15 @@ reference "tab:commonOctave"
  The while loop is discussed 
 \begin_inset CommandInset ref
 LatexCommand vpageref
-reference "sub:WhileLoop"
+reference "subsec:WhileLoop"
 
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5427,6 +5454,10 @@ Step
 \end_inset
 
  do Steps 3-6.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5594,6 +5625,10 @@ reference "bisectionCode-1"
 
  for the following problems.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5753,7 +5788,7 @@ next
 value?: 
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:bisectionAnswer1"
+name "subsec:bisectionAnswer1"
 
 \end_inset
 
@@ -5805,7 +5840,7 @@ is
 : 
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:bisectionAnswer2"
+name "subsec:bisectionAnswer2"
 
 \end_inset
 
@@ -5843,9 +5878,9 @@ name "sub:bisectionAnswer2"
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text

@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -167,6 +184,10 @@ reference "exc:abserr3"
 \end_inset
 
 , using the Octave command
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -220,6 +241,10 @@ e:
 \end_inset
 
 , using the Octave command
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -273,6 +298,10 @@ e:
 \end_inset
 
 , using the Octave command
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -841,12 +870,17 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-octave:1> f=inline('1-x^2/2+x^4/24')
+octave:1> f=@(x) 1-x^2/2+x^4/24
 \end_layout
 
 \begin_layout Plain Layout
 
-f = f(x) = 1-x^2/2+x^4/24
+f =
+\end_layout
+
+\begin_layout Plain Layout
+
+@(x) 1 - x ^ 2 / 2 + x ^ 4 / 24
 \end_layout
 
 \begin_layout Plain Layout
@@ -925,7 +959,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-f=inline('1-x^2/2+x^4/24');
+f=@(x) 1-x^2/2+x^4/24;
 \end_layout
 
 \begin_layout Plain Layout
@@ -1320,6 +1354,10 @@ R_{2}(x) & = & \frac{-6/\xi^{4}}{6}(x-5)^{3}\\
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1407,8 +1445,8 @@ Now,
 
 .
  Sometimes, at this point, the expression requiring optimization is easy
- enough to handle using standard calculus techniques---finding critical
- points and evaluating.
+ enough to handle using standard calculus techniques—finding critical points
+ and evaluating.
  However, in this case, that would involve finding the roots of a sixth
  degree polynomial.
  Ironically, techniques we will learn later in this course would be helpful
@@ -1423,6 +1461,10 @@ Now,
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1504,6 +1546,10 @@ Due to this symmetry, we may focus on finding extrema for positive values
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1663,7 +1709,7 @@ Consequently, if
 \begin_inset Formula $\frac{1/3^{e^{n+1}}}{\left(1/3^{e^{n}}\right)^{\alpha}}=1$
 \end_inset
 
-, from which if follows that 
+, from which it follows that 
 \begin_inset Formula $\lim_{n\to\infty}\frac{1/3^{e^{n+1}}}{\left(1/3^{e^{n}}\right)^{\alpha}}=1$
 \end_inset
 
@@ -1704,7 +1750,7 @@ reference "exc:convergence-1"
 \begin{eqnarray*}
 \frac{\left|\frac{2^{2^{n+1}}-2}{2^{2^{n+1}}+3}-1\right|}{\left|\frac{2^{2^{n}}-2}{2^{2^{n}}+3}-1\right|^{\alpha}} & = & \frac{\left|\frac{2^{2^{n+1}}-2}{2^{2^{n+1}}+3}-\frac{2^{2^{n+1}}+3}{2^{2^{n+1}}+3}\right|}{\left|\frac{2^{2^{n}}-2}{2^{2^{n}}+3}-\frac{2^{2^{n}}+3}{2^{2^{n}}+3}\right|^{\alpha}}\\
  & = & \frac{\left|\frac{-5}{2^{2^{n+1}}+3}\right|}{\left|\frac{-5}{2^{2^{n}}+3}\right|^{\alpha}}\\
- & = & 5{}^{1-\alpha}\frac{\left(2^{2^{n}}+3\right)^{\alpha}}{2^{2^{n+1}}+3}.
+ & = & 5^{1-\alpha}\frac{\left(2^{2^{n}}+3\right)^{\alpha}}{2^{2^{n+1}}+3}.
 \end{eqnarray*}
 
 \end_inset
@@ -1723,7 +1769,7 @@ If
  Let's try it:
 \begin_inset Formula 
 \begin{eqnarray*}
-5{}^{1-2}\frac{\left(2^{2^{n}}+3\right)^{2}}{2^{2^{n+1}}+3} & = & \frac{1}{5}\cdot\frac{2^{2\cdot2^{n}}+6\cdot2^{2^{n}}+3}{2^{2^{n+1}}+3}\\
+5^{1-2}\frac{\left(2^{2^{n}}+3\right)^{2}}{2^{2^{n+1}}+3} & = & \frac{1}{5}\cdot\frac{2^{2\cdot2^{n}}+6\cdot2^{2^{n}}+3}{2^{2^{n+1}}+3}\\
  & = & \frac{1}{5}\cdot\frac{2^{2^{n+1}}+6\cdot2^{2^{n}}+3}{2^{2^{n+1}}+3}\\
  & = & \frac{1}{5}\cdot\frac{1+6\cdot2^{-2^{n}}+3\cdot2^{-2^{n+1}}}{1+3\cdot2^{-2^{n+1}}}.
 \end{eqnarray*}
@@ -2078,7 +2124,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-f=inline('(2^(2^x)-2)/(2^(2^x)+3)');
+f=@(x) (2^(2^x)-2)/(2^(2^x)+3);
 \end_layout
 
 \begin_layout Plain Layout
@@ -2192,6 +2238,7 @@ trominos.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -2334,6 +2381,10 @@ reference "exc:recursion-2"
 
 : (a) 7.
  Follow this sequence of moves:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2443,6 +2494,10 @@ reference "exc:recursion-2"
 
 (b) i.
  Consider the following set of moves.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2539,7 +2594,7 @@ reference "exc:recursion-3"
 
 \end_inset
 
-: (a) One---just move the disk to another peg.
+: (a) One—just move the disk to another peg.
 \begin_inset Newline newline
 \end_inset
 
@@ -2552,6 +2607,7 @@ hanoi.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -2957,6 +3013,10 @@ reference "exc:recursion-8"
 
 .
  Continuing this way reveals the following table:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2966,16 +3026,16 @@ reference "exc:recursion-8"
 <lyxtabular version="3" rows="2" columns="11">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="2.5cm">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
@@ -3332,6 +3392,10 @@ reference "exc:bisection2"
  Anything that shows successive choices of interval and accompanying computation
 s will do.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3345,6 +3409,10 @@ For
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3352,12 +3420,12 @@ For
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -3664,6 +3732,10 @@ For
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3671,12 +3743,12 @@ For
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -4152,6 +4224,10 @@ Remark:
 
  actually satisfies the hypotheses of the Mean Value Theorem on any closed
  interval, as do all polynomials.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4211,6 +4287,10 @@ We can not solve this equation using basic techniques of algebra since the
 \end_inset
 
 , we get
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4433,6 +4513,10 @@ solve
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4567,6 +4651,10 @@ So the first 5 iterations are (approximately)
  and a floating point error.
  It does not look like fixed point iteration is converging on a fixed point.
  The numbers are getting larger in magnitude with each iteration.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4618,7 +4706,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-fixedPointIteration(inline('10+x-cosh(x)'),-3,1e-10,100)
+fixedPointIteration(@(x) 10+x-cosh(x),-3,1e-10,100)
 \end_layout
 
 \begin_layout Plain Layout
@@ -4636,6 +4724,10 @@ end{verbatim}
 \end_inset
 
 The method does not converge in 100 iterations.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4659,6 +4751,10 @@ reference "enu:usingWeb"
 \end_inset
 
 b: The web diagram will look something like this:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4759,6 +4855,10 @@ reference "prop:uniquenessOfFixedPoint"
 \end_inset
 
  gives us the result.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4866,6 +4966,10 @@ Remark:
 \end_inset
 
  looks like
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4961,6 +5065,10 @@ Remark:
 \end_inset
 
  looks like
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5062,6 +5170,10 @@ reference "exc:fixedpt-13"
 
  is a neighborhood of a fixed point in which the magnitude of the derivative
  is less than 1.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5183,6 +5295,10 @@ reference "exc:orderOfConvergence"
 
 .
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5204,7 +5320,7 @@ n=[0,1,2,4,6,10];
 
 \begin_layout Plain Layout
 
-f=inline('(2^(2^x)-2)/(2^(2^x)+3)');
+f=@(x) (2^(2^x)-2)/(2^(2^x)+3);
 \end_layout
 
 \begin_layout Plain Layout
@@ -5313,10 +5429,14 @@ Not a Number
 , on the sixth value by rewriting the function as the algebraically equivalent
  
 \family typewriter
-f=inline('(1-2*2^-(2^x))/(1+3*2^-(2^x))');
+f=@(x) (1-2*2^-(2^x))/(1+3*2^-(2^x));
 \family default
 .
  With this one change to the above program, the following output is produced:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5412,6 +5532,10 @@ reference "exc:orderOfConvergence-3"
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5430,6 +5554,10 @@ reference "prop:fixedPointErrorBound"
 
 .
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5607,6 +5735,10 @@ It takes 7 iterations to come up with an estimate within
 (c) The theoretical bound is 41 while the actual number of iterations is
  7.
  The bound is nearly six times the actual! This is not a very tight bound.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5634,6 +5766,10 @@ reference "exc:orderOfConvergence-6"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -5642,9 +5778,9 @@ reference "exc:orderOfConvergence-6"
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -5950,7 +6086,7 @@ reference "exc:orderOfConvergence-8"
 \end_inset
 
 .
- This is an incredible acceleration of convergence---from 
+ This is an incredible acceleration of convergence—from 
 \begin_inset Formula $29,992$
 \end_inset
 
@@ -6012,6 +6148,10 @@ x_{1}=1.25-\frac{g(1.25)}{g'(1.25)}=\frac{\frac{100}{1.25^{2}}\sin\left(\frac{10
 x_{2}=x_{1}-\frac{g(x_{1})}{g'(x_{1})}=\frac{\frac{100}{x_{1}^{2}}\sin\left(\frac{10}{x_{1}}\right)}{\text{−}\frac{200\sin\left(\frac{10}{x_{1}}\right)}{x_{1}^{3}}\text{−}\frac{1000\cos\left(\frac{10}{x_{1}}\right)}{x_{1}^{4}}}\approx3.07240930016243.
 \]
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -6145,6 +6285,10 @@ A graph of
 \end_inset
 
 ,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6211,7 +6355,7 @@ seems to indicate that
 \begin{eqnarray*}
 \frac{(12x^{2}+12x)(x^{4}+2x^{3}-x-3)}{(4x^{3}+6x^{2}-1)^{2}} & = & -1\\
 (12x^{2}+12x)(x^{4}+2x^{3}-x-3) & = & -(4x^{3}+6x^{2}-1)^{2}\\
-12\, x^{6}+36x^{5}+24x^{4}-12x^{3}-48x^{2}-36x & = & -16x^{6}-48x^{5}-36x^{4}+8x^{3}+12x^{2}-1\\
+12\,x^{6}+36x^{5}+24x^{4}-12x^{3}-48x^{2}-36x & = & -16x^{6}-48x^{5}-36x^{4}+8x^{3}+12x^{2}-1\\
 28x^{6}+84x^{5}+60x^{4}-20x^{3}-60x^{2}-36x+1 & = & 0.
 \end{eqnarray*}
 
@@ -6256,7 +6400,7 @@ The real solutions of this equation are, in decreasing order, approximately
 \begin{eqnarray*}
 \frac{(12x^{2}+12x)(x^{4}+2x^{3}-x-3)}{(4x^{3}+6x^{2}-1)^{2}} & = & 1\\
 (12x^{2}+12x)(x^{4}+2x^{3}-x-3) & = & (4x^{3}+6x^{2}-1)^{2}\\
-12\, x^{6}+36x^{5}+24x^{4}-12x^{3}-48x^{2}-36x & = & 16x^{6}+48x^{5}+36x^{4}-8x^{3}-12x^{2}+1\\
+12\,x^{6}+36x^{5}+24x^{4}-12x^{3}-48x^{2}-36x & = & 16x^{6}+48x^{5}+36x^{4}-8x^{3}-12x^{2}+1\\
 0 & = & 4x^{6}+12x^{5}+12x^{4}+4x^{3}+36x^{2}+36x+1.
 \end{eqnarray*}
 
@@ -6305,6 +6449,10 @@ The real solutions of this equation are, in decreasing order, approximately
 \end_inset
 
 ,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6408,6 +6556,10 @@ reference "exc:newton-8"
 \end_inset
 
 : 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6597,6 +6749,10 @@ so either of the initial values
 \end_inset
 
  will produce the desired result.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6667,12 +6823,12 @@ format('long')
 
 \begin_layout Plain Layout
 
-f=inline('x^3-3*x+3')
+f=@(x) x^3-3*x+3
 \end_layout
 
 \begin_layout Plain Layout
 
-fp=inline('3*x^2-3')
+fp=@(x) 3*x^2-3
 \end_layout
 
 \begin_layout Plain Layout
@@ -6838,6 +6994,10 @@ reference "exc:more"
 \end_inset
 
 ,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6921,6 +7081,10 @@ reference "exc:more-2"
 \end_inset
 
  one solution.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -6982,6 +7146,10 @@ reference "exc:more-4"
 \end_inset
 
  one solution.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7100,6 +7268,10 @@ reference "exc:polynomials-6"
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7108,11 +7280,11 @@ reference "exc:polynomials-6"
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -7446,6 +7618,10 @@ reference "exc:polynomials-6"
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7469,11 +7645,11 @@ extrarowheight}{5pt}
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -7795,6 +7971,10 @@ newtonhorner([-144,144,-59,6,1],1,1e-5,100)
 ans = 3
 \family default
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -7803,12 +7983,12 @@ ans = 3
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -8044,6 +8224,10 @@ newtonhorner([48,-32,9,1],3,1e-5,100)
 ans = -12
 \family default
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8051,11 +8235,11 @@ ans = -12
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -8275,6 +8459,10 @@ reference "exc:polynomials-16"
 format('long'); c=[-40,16,-12,-2,1]; newtonhorner(c,1,1e-5,100)
 \family default
  returns 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -8460,6 +8648,12 @@ reference "exc:polynomials-18"
 a: 
 \family typewriter
 c=[-40,16,-12,-2,1]; newtonhorner(c,-3.54823289798023,1e-5,100)
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -8480,6 +8674,12 @@ ans = -3.54823289797970
 
 \family typewriter
 c=[-40,16,-12,-2,1]; newtonhorner(c,4.38111344099655,1e-5,100)
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8499,6 +8699,12 @@ ans = 4.38111344099594
 
 \family typewriter
 c=[-40,16,-12,-2,1]; newtonhorner(c,0.583559728491838+1.494188006012761i,1e-5,100)
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8518,6 +8724,12 @@ ans = 0.583559728491879 + 1.494188006011256i
 
 \family typewriter
 c=[-40,16,-12,-2,1]; newtonhorner(c,0.583559728491838-1.494188006012761i,1e-5,100)
+\family default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8564,13 +8776,17 @@ ans = -49.6794919243112
  Notice we only get the value of the polynomial, the first entry of the
  array of return values.
  This is the default behavior if the function is not set equal to an array.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Standard
 (ii) 
 \family typewriter
-p=inline('x^4-2*x^3-12*x^2+16*x-40'); p(sqrt(3))
+p=@(x) x^4-2*x^3-12*x^2+16*x-40; p(sqrt(3))
 \family default
  returns 
 \family typewriter
@@ -8589,11 +8805,8 @@ horner(sqrt(3),[-40,16,-12,-2,1]) == p(sqrt(3))
 ans = 0
 \family default
 , however, so internally, the results are not exactly the same! We can conclude
- that the 
-\family typewriter
-inline
-\family default
- function evaluation is not done by nesting (synthetic division).
+ that the anonymous function evaluation is not done by nesting (synthetic
+ division).
 \end_layout
 
 \begin_layout Description
@@ -8607,6 +8820,3080 @@ ans = 1
 \family default
 , so for the integer input 3, the two methods do result in exactly the same
  value.
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:RootsBracketing"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $g(a)=g(0)=2$
+\end_inset
+
+ and 
+\begin_inset Formula $g(b)=g(.9)=-.1897$
+\end_inset
+
+ so the bracket is good.
+ Moreover, we now know that if the value of the function is positive at
+ any given iteration, that iteration becomes the left endpoint.
+ Otherwise it becomes the right endpoint.
+ Recall, the secant method when applied to a proper bracket will always
+ produce an iteration inside the bracket, so bisection is never needed.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+candidate 
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+ becomes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.82203$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.82203$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.207$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.82203$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.74486$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.74486$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.137$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.74486$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.69690$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.69690$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.060$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.69690$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.67660$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.67660$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.020$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.67660$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.66971$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|.66971-.67660|=.00689<.01$
+\end_inset
+
+ so we stop with 
+\begin_inset Formula $x_{5}=.66971$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+(h) 
+\begin_inset Formula $f(a)=f(-20)\approx20$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)=f(20)\approx-17$
+\end_inset
+
+ so the bracket is good.
+ Moreover, we now know that if the value of the function is positive at
+ any given iteration, that iteration becomes the left endpoint.
+ Otherwise it becomes the right endpoint.
+ Recall, the secant method when applied to a proper bracket will always
+ produce an iteration inside the bracket, so bisection is never needed.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+candidate 
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+ becomes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.5262$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.5262$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.18$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.5262$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.7013$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.7013$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1.16$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.5262$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.7013$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.1186$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.1186$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.229$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.1186$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.7013$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.2142$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.2142$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.011$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.2142$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.7013$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.2189$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|2.2189-2.2142|=.0047<.01$
+\end_inset
+
+ so we stop with 
+\begin_inset Formula $x_{5}=2.2189$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-1"
+
+\end_inset
+
+: (c) 
+\begin_inset Formula $g(a)=g(0)=2$
+\end_inset
+
+ and 
+\begin_inset Formula $g(b)=g(.9)=-.1897$
+\end_inset
+
+ so the bracket is good.
+ Moreover, we now know that if the value of the function is positive at
+ any given iteration, that iteration becomes the left endpoint.
+ Otherwise it becomes the right endpoint.
+ An 
+\begin_inset Formula $^{*}$
+\end_inset
+
+ indicates that the bisection method was used due to the candidate landing
+ outside the bracket.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+candidate 
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+ becomes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.1136$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.45^{*}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.59$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.45$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.63925$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.63925$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.060$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.63925$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.66547$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.66547$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.0025$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.66547$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.66666$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|.66666-.66547|=.00119<.01$
+\end_inset
+
+ so we stop with 
+\begin_inset Formula $x_{4}=.66666$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+(h) 
+\begin_inset Formula $f(a)=f(-20)\approx20$
+\end_inset
+
+ and 
+\begin_inset Formula $f(b)=f(20)\approx-17$
+\end_inset
+
+ so the bracket is good.
+ Moreover, we now know that if the value of the function is positive at
+ any given iteration, that iteration becomes the left endpoint.
+ Otherwise it becomes the right endpoint.
+ An 
+\begin_inset Formula $^{*}$
+\end_inset
+
+ indicates that the bisection method was used due to the candidate landing
+ outside the bracket.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+candidate 
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $g(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+ becomes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1062.3$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0^{*}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $undefined$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The method is undefined beyond this point due to division by zero.
+ The method fails.
+\end_layout
+
+\begin_layout Description
+REMARK: We will see later (question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-5"
+
+\end_inset
+
+h) that Octave is able to handle the division by zero well enough that the
+ method 
+\shape italic
+does
+\shape default
+ continue, and eventually arrives at a solution!
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-2"
+
+\end_inset
+
+: (c) The secant method produces the sequence of approximations
+\begin_inset Formula 
+\[
+\begin{gathered}0,\ .9,\ .82203,\ 1.7456,\ .83551,\ .84905,\ -1.6288,\ .83478,\\
+.82068,,\ .14336,\ .74168,\ .69475,\ .66071,\ .66700
+\end{gathered}
+\]
+
+\end_inset
+
+at which point it stops since 
+\begin_inset Formula $|.66700-.66071|=.00629<.01$
+\end_inset
+
+.
+ The (pure) secant method takes significantly longer to converge than does
+ its bracketed cousin.
+ This is largely due to the fact that in the secant method, the third iteration
+ comes from the secant method applied to 
+\begin_inset Formula $.9$
+\end_inset
+
+ and 
+\begin_inset Formula $.82203$
+\end_inset
+
+, the last two iterations (which do not comprise a proper bracket), whereas
+ the third iteration in false position comes from the secant method applied
+ to 
+\begin_inset Formula $0$
+\end_inset
+
+ and 
+\begin_inset Formula $.82203$
+\end_inset
+
+ (a proper bracket).
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(h) The secant method produces the sequence of approximations
+\begin_inset Formula 
+\[
+-20,\ 20,\ 1.5262,\ 2.7013,\ 2.1186,\ 2.2142,\ 2.2192
+\]
+
+\end_inset
+
+at which point it stops since 
+\begin_inset Formula $|2.2192-2.2142|=.005<.01$
+\end_inset
+
+.
+ The (pure) secant method and its bracketed cousin produce the exact same
+ sequence of iterations.
+ It just happens that, at each step, the secant method produces an approximation
+, which when paired with the previous iteration forms a proper bracket!
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-3"
+
+\end_inset
+
+: (c) Newton's method produces the sequence of approximations
+\begin_inset Formula 
+\[
+.9,\ 1.1136,\ 1.0302,\ 1.0030,\ 1.0000
+\]
+
+\end_inset
+
+at which point it stops since 
+\begin_inset Formula $|1-1.003|=.003<.01$
+\end_inset
+
+.
+ The (pure) Newton's method converges to a different root, one outside the
+ bracket! It is quick, but it fails to produce a root between 
+\begin_inset Formula $0$
+\end_inset
+
+ and 
+\begin_inset Formula $.9$
+\end_inset
+
+, something that should not be surprising from an un-safeguarded method.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(h) Newton's method produces the sequence of approximations
+\begin_inset Formula 
+\[
+\begin{gathered}20,\ 1062.3,\ 3803.0,\ 971.14,\ 377.14,\ 2880.5,\ 1606.3,\ 330.83,\ 66.635,\ 20.301,\\
+-5.5823,\ -21.983,\ -10.454,\ -4.6688,\ 1.9357,\ 2.2550,\ 2.2193,\ 2.2191
+\end{gathered}
+\]
+
+\end_inset
+
+at which point it stops since 
+\begin_inset Formula $|2.2191-2.2193|=.0002<.01$
+\end_inset
+
+.
+ The (pure) Newton's method takes significantly longer to converge than
+ does its bracketed cousin! Newton's method is allowed to wander in a seemingly
+ random pattern before it comes close enough to the root to converge.
+ Bracketing forces the iterations to approach much more quickly the interval
+ in which Newton's method will converge.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "exc:bracketing-12"
+
+\end_inset
+
+Use the bracketed secant method (false position) to find a root in the indicated
+ interval, accurate to within 
+\begin_inset Formula $10^{-2}$
+\end_inset
+
+.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $f(x)=3-x-\sin x$
+\end_inset
+
+; 
+\begin_inset Formula $[2,3]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
+\end_inset
+
+; 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
+\end_inset
+
+; 
+\begin_inset Formula $[0,0.9]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(x)=10-\cosh(x)$
+\end_inset
+
+; 
+\begin_inset Formula $[-3,-2]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(t)=\sqrt{4+5\sin t}-2.5$
+\end_inset
+
+; 
+\begin_inset Formula $[-600,-500]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(t)=\frac{3t^{2}\tan t}{1-t^{2}}$
+\end_inset
+
+; 
+\begin_inset Formula $[3490,3491]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(t)=\ln(3\sin t)-\frac{3t}{5}$
+\end_inset
+
+; 
+\begin_inset Formula $[1,2]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(r)=e^{\sin r}-r$
+\end_inset
+
+; 
+\begin_inset Formula $[-20,20]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasasolution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g(r)=\sin(e^{r})+r$
+\end_inset
+
+; 
+\begin_inset Formula $[-3,3]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(r)=2^{\sin r}-3^{\cos r}$
+\end_inset
+
+; 
+\begin_inset Formula $[1,3]$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hasananswer 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-4"
+
+\end_inset
+
+: (c) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f2=@(x) 3*x^4-2*x^3-3*x+2;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=falsePosition(f2,0,.9,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.900000000000000
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.822030415125360
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.744866113620209
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.696903242045358
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.676602659540989
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.669712929388636
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.667578776723430
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666937771712738
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666747069128180
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666690496216585
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666673727853602
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666668758921090
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666667286598371
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  0.666666850350527
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  13
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{13}=0.666666850350527$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(h) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f7=@(r) exp(sin(r))-r;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=falsePosition(f7,-20,20,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  20
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  1.52625394347853
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.70134274226916
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.11862078217644
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21421804475756
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21893051185485
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21910087293432
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21910692606145
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  2.21910714100071
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  8
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{8}=2.21910714100071$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-5"
+
+\end_inset
+
+: (c) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f2=@(x) 3*x^4-2*x^3-3*x+2;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f2p=@(x) 12*x^3-6*x^2-3;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=bracketedNewton(f2,f2p,0,.9,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.900000000000000
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.450000000000000
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.639257968925196
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.665474256136936
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666663994320019
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666666666653136
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  0.666666666666667
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  6
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{6}=0.666666666666667$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(h) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f7=@(r) exp(sin(r))-r;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f7p=@(r) exp(sin(r))*cos(r)-1;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=bracketedNewton(f7,f7p,-20,20,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  20
+\end_layout
+
+\begin_layout Plain Layout
+
+b = 0
+\end_layout
+
+\begin_layout Plain Layout
+
+warning: division by zero
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  10
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  3.66539525575696
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  1.65966535497164
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.50454805267468
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.22298743934113
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21911019802387
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21910714891565
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  2.21910714891375
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  9
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{9}=2.21910714891375$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\end_layout
+
+\begin_layout Description
+REMARK: When we tried to compute this solution by hand (question 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-1"
+
+\end_inset
+
+h), we quit after the first iteration due to the division by zero.
+ However, Octave continues, treating the undefined estimate as one that
+ lands outside the bracket.
+ Thus the second iteration is 
+\begin_inset Formula $10$
+\end_inset
+
+ (the bisection method applied to 
+\begin_inset Formula $[0,20]$
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-6"
+
+\end_inset
+
+: (c) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f2=@(x) 3*x^4-2*x^3-3*x+2;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=bracketedInverseQuadratic(f2,0,.9,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.900000000000000
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.822030415125360
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.411015207562680
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.729556813485380
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.629464108906733
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.671561434924253
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666977335665865
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666666168461076
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  0.666666666960237
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  8
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{8}=0.666666666960237$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(h) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f7=@(r) exp(sin(r))-r;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=bracketedInverseQuadratic(f7,-20,20,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  20
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  1.52625394347854
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.70134274226916
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.11862078217644
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21421804475756
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21917736990638
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21910707796098
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  2.21910714891272
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  7
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{7}=2.21910714891272$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-9"
+
+\end_inset
+
+: (c) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f2=@(x) 3*x^4-2*x^3-3*x+2;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> g2=@(x) f2(x)+x;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=bracketedSteffensens(g2,0,.9,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.900000000000000
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.559577120523157
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.707986331365555
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.669737865924576
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666686284030401
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666666667476795
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  0.666666667666825
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  6
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{6}=0.666666667666825$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(h) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f7=@(r) exp(sin(r))-r;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> g7=@(x) f7(x)+x;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=bracketedSteffensens(g7,-20,20,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  20
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  1.80564417969925
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.18151287547235
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21873144340028
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21910711013891
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  2.21910707929096
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  5
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{5}=2.21910707929096$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:bracketing-11"
+
+\end_inset
+
+: (c) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f2=@(x) 3*x^4-2*x^3-3*x+2;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=bracketedInverseQuadraticRE(f2,0,.9,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.900000000000000
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.822030415125360
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.411015207562680
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.729556813485380
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.629464108906733
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.671561434924253
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666977335665865
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  0.666666168461076
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  0.666666666960237
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  8
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{8}=0.666666666960237$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+(h) 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+>> f7=@(r) exp(sin(r))-r;
+\end_layout
+
+\begin_layout Plain Layout
+
+>> [res,i]=bracketedInverseQuadraticRE(f7,-20,20,10^-6,100)
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  20
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  1.52625394347854
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.70134274226916
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.11862078217644
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21421804475756
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21917736990638
+\end_layout
+
+\begin_layout Plain Layout
+
+b =  2.21910707796098
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+res =  2.21910714891272
+\end_layout
+
+\begin_layout Plain Layout
+
+i =  7
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+so 
+\begin_inset Formula $x_{7}=2.21910714891272$
+\end_inset
+
+ is expected to be within 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+ of the actual root.
 \end_layout
 
 \end_deeper
@@ -8628,7 +11915,7 @@ reference "exc:interpolation-lagrange-8"
 
 \end_inset
 
-: We begin by constructing three polynomials---the first with roots at the
+: We begin by constructing three polynomials—the first with roots at the
  second two data points and a value of 
 \begin_inset Formula $1$
 \end_inset
@@ -8714,6 +12001,10 @@ c: Neville's method is best executed on a computer or in a tabular format.
 
 .
  The tabular format is shown here:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -8722,10 +12013,10 @@ c: Neville's method is best executed on a computer or in a tabular format.
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -9009,6 +12300,10 @@ reference "exc:interpolation-lagrange-9"
  a single Neville's method table.
  With the data in the table in the order in which we would like to use them,
  we get
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -9017,11 +12312,11 @@ reference "exc:interpolation-lagrange-9"
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -9690,6 +12985,10 @@ reference "exc:interpolation-lagrange-12"
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -9739,10 +13038,10 @@ Method: We use the same table for both the degree at most 1 and degree at
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -10055,6 +13354,10 @@ reference "tab:NewtonPolyExample"
  Answers will depend on the order in which the data are listed in the table
  and on how the data are read from the table.
  Placing the data in the table in the order given in the question, we have:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -10063,11 +13366,11 @@ reference "tab:NewtonPolyExample"
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -10609,6 +13912,10 @@ reference "tab:NewtonPolyExample"
  and on how the data are read from the table.
  Placing the data in the table in the order given in the question, we have
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -10617,10 +13924,10 @@ reference "tab:NewtonPolyExample"
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -11317,6 +14624,587 @@ reference "sec:NumericalRudiments"
 \begin_layout Description
 \begin_inset CommandInset ref
 LatexCommand ref
+reference "exc:rudiments-29"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: The left side of the approximation, 
+\begin_inset Formula $\int_{x_{0}}^{x_{0}+2h}f(x)dx$
+\end_inset
+
+, gives the interval of integration, 
+\begin_inset Formula $[x_{0},x_{0}+2h]$
+\end_inset
+
+, so these points must be on the stencil and marked by square brackets.
+ The right side of the approximation 
+\begin_inset Formula 
+\[
+\frac{2h}{3}\left[f\left(x_{0}+\frac{1}{3}h\right)+2f\left(x_{0}+\frac{4}{3}h\right)\right]
+\]
+
+\end_inset
+
+ gives the placement of the nodes.
+ They are 
+\begin_inset Formula $x_{0}+\frac{1}{3}h$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{0}+\frac{4}{3}h$
+\end_inset
+
+ and must be marked by solid dots on the stencil.
+ The stencil is therefore
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments22.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-30"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: The left side of the approximation, 
+\begin_inset Formula $f''\left(x_{0}+\frac{1}{2}h\right)$
+\end_inset
+
+, gives the point of evaluation for the derivative, 
+\begin_inset Formula $x_{0}+\frac{1}{2}h$
+\end_inset
+
+, so this point must be on the stencil and marked by an open circle.
+ The right side of the approximation 
+\begin_inset Formula 
+\[
+\frac{2f(x_{0})-8f(x_{0}+h)+8f(x_{0}+\frac{3}{2}h)-2f(x_{0}+2h)}{h^{2}}
+\]
+
+\end_inset
+
+ gives the placement of the nodes.
+ They are 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+, 
+\begin_inset Formula $x_{0}+\frac{3}{2}h$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{0}+2h$
+\end_inset
+
+ and must be marked by solid dots on the stencil.
+ The stencil is therefore
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments23.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-31"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: Since the nodes, 
+\begin_inset Formula $0,1,2,3,$
+\end_inset
+
+ are evenly spaced by a distance of 1 it makes sense to imagine 
+\begin_inset Formula $h=1$
+\end_inset
+
+.
+ Also, since the point of evaluation, 
+\begin_inset Formula $1$
+\end_inset
+
+, happens to be one of the nodes, it makes sense to label that node as 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ It would follow that node 0 should be labeled 
+\begin_inset Formula $x_{0}-h$
+\end_inset
+
+ since 
+\begin_inset Formula $0=1-1h$
+\end_inset
+
+, node 3 should be labeled 
+\begin_inset Formula $x_{0}+2h$
+\end_inset
+
+ since 
+\begin_inset Formula $3=1+2h$
+\end_inset
+
+, and node 2 similarly.
+ These assignments would suggest we might look for (or derive a formula
+ from) a stencil that looks like
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments24.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, the choices of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $h$
+\end_inset
+
+ are somewhat arbitrary.
+ We may just as well look for (or derive a formula from) a stencil where
+ the leftmost node is labeled 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, as in
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments25.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What doesn't change is the fact that we have 4 evenly spaced dots (nodes)
+ with the second from the left circled.
+ The relative positions of the nodes and point of evaluation (the geometry)
+ is all that matters! The labels are secondary and only matter for purpose
+ of the derivation or application of a specific formula.
+ Formulas based on either of these stencils, and a range of others, would
+ be perfectly acceptable.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-32"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: Since the nodes, 
+\begin_inset Formula $0,1.5,3,$
+\end_inset
+
+ are evenly spaced by a distance of 
+\begin_inset Formula $1.5$
+\end_inset
+
+ it makes sense to imagine 
+\begin_inset Formula $h=1.5$
+\end_inset
+
+.
+ Also, since the point of evaluation, 
+\begin_inset Formula $1$
+\end_inset
+
+, happens to be between the leftmost node and the central node, it makes
+ sense to label one of these as 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ Let's say 
+\begin_inset Formula $1.5$
+\end_inset
+
+ will be labeled 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+.
+ It would follow that node 0 should be labeled 
+\begin_inset Formula $x_{0}-h$
+\end_inset
+
+ since 
+\begin_inset Formula $0=1.5-1h$
+\end_inset
+
+ and node 3 should be labeled 
+\begin_inset Formula $x_{0}+h$
+\end_inset
+
+ since 
+\begin_inset Formula $3=1.5+1h$
+\end_inset
+
+.
+ The point of evaluation, 
+\begin_inset Formula $1$
+\end_inset
+
+, would then be labeled 
+\begin_inset Formula $x_{0}-\frac{1}{3}h$
+\end_inset
+
+ since 
+\begin_inset Formula $1=1.5-\frac{1}{3}h$
+\end_inset
+
+.
+ These assignments would suggest we might look for (or derive a formula
+ from) a stencil that looks like
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments26.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, the choices of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $h$
+\end_inset
+
+ are somewhat arbitrary.
+ We may just as well look for (or derive a formula from) a stencil where
+ the leftmost node is labeled 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, as in
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments27.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What doesn't change is the fact that we have 3 evenly spaced dots (nodes)
+ with the circle (point of evaluation) two thirds of the way from the leftmost
+ node to the one next to it.
+ The relative positions of the nodes and point of evaluation (the geometry)
+ is all that matters! The labels are secondary and only matter for purpose
+ of the derivation or application of a specific formula.
+ Formulas based on either of these stencils, and a range of others, would
+ be perfectly acceptable.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-33"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: Since the interval of integration is 
+\begin_inset Formula $[1,5]$
+\end_inset
+
+, a width of 4, it makes sense to imagine 
+\begin_inset Formula $h=1$
+\end_inset
+
+, making the length of the interval 
+\begin_inset Formula $4h$
+\end_inset
+
+.
+ Labeling the left endpoint of integration 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, it follows that node 
+\begin_inset Formula $1.5$
+\end_inset
+
+ should be labeled 
+\begin_inset Formula $x_{0}+\frac{1}{2}h$
+\end_inset
+
+ since 
+\begin_inset Formula $1.5=1+\frac{1}{2}h$
+\end_inset
+
+, node 
+\begin_inset Formula $2.5$
+\end_inset
+
+ should be labeled 
+\begin_inset Formula $x_{0}+\frac{3}{2}h$
+\end_inset
+
+ since 
+\begin_inset Formula $2.5=1+\frac{3}{2}h$
+\end_inset
+
+, and so on.
+ These assignments would suggest we might look for (or derive a formula
+ from) a stencil that looks like
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments28.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, the choices of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $h$
+\end_inset
+
+ are somewhat arbitrary.
+ We will generally stick to using 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ for the left endpoint of the interval of integration but 
+\begin_inset Formula $h$
+\end_inset
+
+ may vary.
+ For example, we may just as well look for (or derive a formula from) a
+ stencil where 
+\begin_inset Formula $h=\frac{1}{2}$
+\end_inset
+
+, as in
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments29.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What doesn't change is the fact that we have 4 evenly spaced dots (nodes)
+ between the endpoints, the first and last of which are half as far from
+ the nearest endpoint as the nearest node.
+ The relative positions of the nodes and the endpoints (the geometry) is
+ all that matters! The labels are secondary and only matter for purpose
+ of the derivation or application of a specific formula.
+ Formulas based on either of these stencils, and a range of others, would
+ be perfectly acceptable.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exc:rudiments-34"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: Since the interval of integration is 
+\begin_inset Formula $[1,5]$
+\end_inset
+
+, a width of 4, it makes sense to imagine 
+\begin_inset Formula $h=1$
+\end_inset
+
+, making the length of the interval 
+\begin_inset Formula $4h$
+\end_inset
+
+.
+ Labeling the left endpoint of integration 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+, it follows that node 
+\begin_inset Formula $1.2$
+\end_inset
+
+ should be labeled 
+\begin_inset Formula $x_{0}+\frac{1}{5}h$
+\end_inset
+
+ since 
+\begin_inset Formula $1.2=1+\frac{1}{5}h$
+\end_inset
+
+, node 
+\begin_inset Formula $2.4$
+\end_inset
+
+ should be labeled 
+\begin_inset Formula $x_{0}+\frac{7}{5}h$
+\end_inset
+
+ since 
+\begin_inset Formula $2.4=1+\frac{7}{5}h$
+\end_inset
+
+, and so on.
+ These assignments would suggest we might look for (or derive a formula
+ from) a stencil that looks like
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments30.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, the choices of 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $h$
+\end_inset
+
+ are somewhat arbitrary.
+ We will generally stick to using 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ for the left endpoint of the interval of integration but 
+\begin_inset Formula $h$
+\end_inset
+
+ may vary.
+ For example, we may just as well look for (or derive a formula from) a
+ stencil where 
+\begin_inset Formula $h=\frac{1}{5}$
+\end_inset
+
+, as in
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename figures/calculus-rudiments31.pdf
+	width 3in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What doesn't change is the fact that we have 3 evenly spaced dots (nodes)
+ between the endpoints, the leftmost of which is one fifth as far from the
+ nearest endpoint as the nearest node and the rightmost of which is seven
+ fifths as far from the nearest endpoint as the nearest node.
+ The relative positions of the nodes and the endpoints (the geometry) is
+ all that matters! The labels are secondary and only matter for purpose
+ of the derivation or application of a specific formula.
+ Formulas based on either of these stencils, and a range of others, would
+ be perfectly acceptable.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "exc:rudiments"
 
 \end_inset
@@ -11355,6 +15243,10 @@ reference "exc:rudiments-6"
  of divided differences whether it is a single value or a formula for a
  general case.
  The divided differences table for this case is
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -11363,10 +15255,10 @@ reference "exc:rudiments-6"
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
@@ -11795,7 +15687,7 @@ reference "exc:rudiments-21"
 : 
 \begin_inset Formula 
 \begin{eqnarray*}
-f'(x) & \approx & P_{2}'(x)\\
+f'(x_{0}) & \approx & P_{2}'(x)\\
  & = & \frac{(0-2)+(0-3)}{h(-1-2)(-1-3)}f(x_{0}-h)\\
  &  & +\frac{(0-(-1))+(0-3)}{h(2-(-1))(2-3)}f(x_{0}+2h)\\
  &  & +\frac{(0-(-1))+(0-2)}{h(3-(-1))(3-2)}f(x_{0}+3h)\\
@@ -12547,7 +16439,7 @@ reference "eq:derivApprox"
 , thus becomes
 \begin_inset Formula 
 \begin{eqnarray*}
-f'\left(x_{0}+\frac{1}{2}h\right) & \approx & \frac{2}{h^{2}}f(x_{0})-\frac{8}{h^{2}}f(x_{0}+h)+\frac{8}{h^{2}}f(x_{0}+\frac{3}{2}h)-\frac{2}{h^{2}}f(x_{0}+2h)\\
+f''\left(x_{0}+\frac{1}{2}h\right) & \approx & \frac{2}{h^{2}}f(x_{0})-\frac{8}{h^{2}}f(x_{0}+h)+\frac{8}{h^{2}}f(x_{0}+\frac{3}{2}h)-\frac{2}{h^{2}}f(x_{0}+2h)\\
  & = & \frac{2f(x_{0})-8f(x_{0}+h)+8f(x_{0}+\frac{3}{2}h)-2f(x_{0}+2h)}{h^{2}}.
 \end{eqnarray*}
 
@@ -13409,6 +17301,10 @@ The error in any approximation formula is the difference between the two
 
  and simplify.
  The term of least degree remaining determines the error term.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -13559,7 +17455,7 @@ for some
 \end_inset
 
  and some 
-\begin_inset Formula $\xi_{h}\in(x_{0},x_{0}+h)$
+\begin_inset Formula $\xi_{1}\in(x_{0},x_{0}+h)$
 \end_inset
 
 .
@@ -13628,6 +17524,10 @@ reference "exc:calculusErrors-12"
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -13659,6 +17559,10 @@ To simplify the display of the algebra, we begin by summing
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -13667,9 +17571,9 @@ To simplify the display of the algebra, we begin by summing
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="right" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
+<column alignment="right" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="right" valignment="top" usebox="none">
 \begin_inset Text
@@ -14377,6 +18281,10 @@ reference "exc:calculusErrors-15"
 \end_inset
 
  is one example.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -14579,6 +18487,10 @@ a: Divide the interval of integration,
  into 3 subintervals of equal length and apply the midpoint rule to each
  of the subintervals.
  The sum of the three estimates is the answer.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -14587,8 +18499,8 @@ a: Divide the interval of integration,
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -14721,6 +18633,10 @@ a: Divide the interval of integration,
  into 3 subintervals of equal length and apply the trapezoidal rule to each
  of the subintervals.
  The sum of the three estimates is the answer.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -14729,8 +18645,8 @@ a: Divide the interval of integration,
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -14868,6 +18784,10 @@ a: Divide the interval of integration,
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -14876,8 +18796,8 @@ a: Divide the interval of integration,
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -15018,6 +18938,10 @@ a: Divide the interval of integration,
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -15026,8 +18950,8 @@ a: Divide the interval of integration,
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -15169,6 +19093,10 @@ a: Divide the interval of integration,
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -15177,8 +19105,8 @@ a: Divide the interval of integration,
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -15305,7 +19233,7 @@ reference "exc:calculus-composite-11"
 \end_inset
 
 : The trapezoidal rule applied to 
-\begin_inset Formula $\int_{0}^{\pi}\sin^{4}x\, dx$
+\begin_inset Formula $\int_{0}^{\pi}\sin^{4}x\,dx$
 \end_inset
 
  gives
@@ -15431,6 +19359,10 @@ so
 
 Now we know what quantity to use in order to estimate the error.
  We tabulate the necessary computations:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -15439,13 +19371,13 @@ Now we know what quantity to use in order to estimate the error.
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="7">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -16147,6 +20079,10 @@ test
 \end_inset
 
  accuracy.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -16324,7 +20260,7 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
->> f=inline('log(x+1)');
+>> f=@(x) log(x+1);
 \end_layout
 
 \begin_layout Plain Layout
@@ -16355,6 +20291,7 @@ compositeTrapezoidal.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -16543,6 +20480,10 @@ so our
 \frac{N(h)-8N(\frac{h}{2})+9N(\frac{h}{3})}{2}.
 \]
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -16764,6 +20705,10 @@ N_{3}(h)=\frac{64N_{2}(\frac{h}{2})-N_{2}(h)}{63}.
 \end_inset
 
 Tabulating the computation, it goes something like this:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -16772,10 +20717,10 @@ Tabulating the computation, it goes something like this:
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -17036,7 +20981,7 @@ reference "exc:calculus-extrapolation-11"
 
 \end_inset
 
-: To summarize the method, let 
+a: To summarize the method, let 
 \begin_inset Formula $N_{0}(k)=T_{k}(1,3)$
 \end_inset
 
@@ -17071,14 +21016,14 @@ for
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="8">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
@@ -17865,6 +21810,10 @@ The 8 equations come from the three sets of requirements on any free cubic
 \end_inset
 
 Interpolation:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -17964,6 +21913,10 @@ The 8 equations come from the three sets of requirements on any clamped
 \end_inset
 
 Interpolation:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -18137,6 +22090,10 @@ S(x)=\begin{cases}
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -18306,6 +22263,10 @@ S(x)=\begin{cases}
 \end{cases}
 \]
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -19195,6 +23156,7 @@ clampedCubicSpline.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -19288,3032 +23250,6 @@ end{verbatim}
 
 \end_layout
 
-\begin_layout Section*
-Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:RootsBracketing"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing"
-
-\end_inset
-
-: (c) 
-\begin_inset Formula $g(a)=g(0)=2$
-\end_inset
-
- and 
-\begin_inset Formula $g(b)=g(.9)=-.1897$
-\end_inset
-
- so the bracket is good.
- Moreover, we now know that if the value of the function is positive at
- any given iteration, that iteration becomes the left endpoint.
- Otherwise it becomes the right endpoint.
- Recall, the secant method when applied to a proper bracket will always
- produce an iteration inside the bracket, so bisection is never needed.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="6">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-candidate 
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $g(x)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
- becomes
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.9$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.82203$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.82203$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-0.207$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.82203$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.74486$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.74486$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-0.137$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.74486$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.69690$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.69690$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-0.060$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.69690$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.67660$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.67660$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-0.020$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.67660$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.66971$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $|.66971-.67660|=.00689<.01$
-\end_inset
-
- so we stop with 
-\begin_inset Formula $x_{5}=.66971$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-(h) 
-\begin_inset Formula $f(a)=f(-20)\approx20$
-\end_inset
-
- and 
-\begin_inset Formula $f(b)=f(20)\approx-17$
-\end_inset
-
- so the bracket is good.
- Moreover, we now know that if the value of the function is positive at
- any given iteration, that iteration becomes the left endpoint.
- Otherwise it becomes the right endpoint.
- Recall, the secant method when applied to a proper bracket will always
- produce an iteration inside the bracket, so bisection is never needed.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="6">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-candidate 
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $g(x)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
- becomes
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $20$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-20$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.5262$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.5262$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.18$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.5262$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-20$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.7013$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.7013$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-1.16$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.5262$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.7013$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.1186$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.1186$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.229$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.1186$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.7013$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.2142$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.2142$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.011$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.2142$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.7013$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.2189$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $|2.2189-2.2142|=.0047<.01$
-\end_inset
-
- so we stop with 
-\begin_inset Formula $x_{5}=2.2189$
-\end_inset
-
-.
-\end_layout
-
-\end_deeper
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-1"
-
-\end_inset
-
-: (c) 
-\begin_inset Formula $g(a)=g(0)=2$
-\end_inset
-
- and 
-\begin_inset Formula $g(b)=g(.9)=-.1897$
-\end_inset
-
- so the bracket is good.
- Moreover, we now know that if the value of the function is positive at
- any given iteration, that iteration becomes the left endpoint.
- Otherwise it becomes the right endpoint.
- An 
-\begin_inset Formula $^{*}$
-\end_inset
-
- indicates that the bisection method was used due to the candidate landing
- outside the bracket.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="6">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-candidate 
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $g(x)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
- becomes
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.9$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.1136$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.45^{*}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.59$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.45$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.9$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.63925$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.63925$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.060$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.63925$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.9$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.66547$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.66547$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.0025$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.66547$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.9$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.66666$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $|.66666-.66547|=.00119<.01$
-\end_inset
-
- so we stop with 
-\begin_inset Formula $x_{4}=.66666$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-(h) 
-\begin_inset Formula $f(a)=f(-20)\approx20$
-\end_inset
-
- and 
-\begin_inset Formula $f(b)=f(20)\approx-17$
-\end_inset
-
- so the bracket is good.
- Moreover, we now know that if the value of the function is positive at
- any given iteration, that iteration becomes the left endpoint.
- Otherwise it becomes the right endpoint.
- An 
-\begin_inset Formula $^{*}$
-\end_inset
-
- indicates that the bisection method was used due to the candidate landing
- outside the bracket.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="6">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $b$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-candidate 
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $g(x)$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $x$
-\end_inset
-
- becomes
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $20$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-20$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1062.3$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0^{*}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $-20$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $undefined$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The method is undefined beyond this point due to division by zero.
- The method fails.
-\end_layout
-
-\begin_layout Description
-REMARK: We will see later (question 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-5"
-
-\end_inset
-
-h) that Octave is able to handle the division by zero well enough that the
- method 
-\shape italic
-does
-\shape default
- continue, and eventually arrives at a solution!
-\end_layout
-
-\end_deeper
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-2"
-
-\end_inset
-
-: (c) The secant method produces the sequence of approximations
-\begin_inset Formula 
-\[
-\begin{gathered}0,\ .9,\ .82203,\ 1.7456,\ .83551,\ .84905,\ -1.6288,\ .83478,\\
-.82068,,\ .14336,\ .74168,\ .69475,\ .66071,\ .66700
-\end{gathered}
-\]
-
-\end_inset
-
-at which point it stops since 
-\begin_inset Formula $|.66700-.66071|=.00629<.01$
-\end_inset
-
-.
- The (pure) secant method takes significantly longer to converge than does
- its bracketed cousin.
- This is largely due to the fact that in the secant method, the third iteration
- comes from the secant method applied to 
-\begin_inset Formula $.9$
-\end_inset
-
- and 
-\begin_inset Formula $.82203$
-\end_inset
-
-, the last two iterations (which do not comprise a proper bracket), whereas
- the third iteration in false position comes from the secant method applied
- to 
-\begin_inset Formula $0$
-\end_inset
-
- and 
-\begin_inset Formula $.82203$
-\end_inset
-
- (a proper bracket).
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-(h) The secant method produces the sequence of approximations
-\begin_inset Formula 
-\[
--20,\ 20,\ 1.5262,\ 2.7013,\ 2.1186,\ 2.2142,\ 2.2192
-\]
-
-\end_inset
-
-at which point it stops since 
-\begin_inset Formula $|2.2192-2.2142|=.005<.01$
-\end_inset
-
-.
- The (pure) secant method and its bracketed cousin produce the exact same
- sequence of iterations.
- It just happens that, at each step, the secant method produces an approximation
-, which when paired with the previous iteration forms a proper bracket!
-\end_layout
-
-\end_deeper
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-3"
-
-\end_inset
-
-: (c) Newton's method produces the sequence of approximations
-\begin_inset Formula 
-\[
-.9,\ 1.1136,\ 1.0302,\ 1.0030,\ 1.0000
-\]
-
-\end_inset
-
-at which point it stops since 
-\begin_inset Formula $|1-1.003|=.003<.01$
-\end_inset
-
-.
- The (pure) Newton's method converges to a different root, one outside the
- bracket! It is quick, but it fails to produce a root between 
-\begin_inset Formula $0$
-\end_inset
-
- and 
-\begin_inset Formula $.9$
-\end_inset
-
-, something that should not be surprising from an un-safeguarded method.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-(h) Newton's method produces the sequence of approximations
-\begin_inset Formula 
-\[
-\begin{gathered}20,\ 1062.3,\ 3803.0,\ 971.14,\ 377.14,\ 2880.5,\ 1606.3,\ 330.83,\ 66.635,\ 20.301,\\
--5.5823,\ -21.983,\ -10.454,\ -4.6688,\ 1.9357,\ 2.2550,\ 2.2193,\ 2.2191
-\end{gathered}
-\]
-
-\end_inset
-
-at which point it stops since 
-\begin_inset Formula $|2.2191-2.2193|=.0002<.01$
-\end_inset
-
-.
- The (pure) Newton's method takes significantly longer to converge than
- does its bracketed cousin! Newton's method is allowed to wander in a seemingly
- random pattern before it comes close enough to the root to converge.
- Bracketing forces the iterations to approach much more quickly the interval
- in which Newton's method will converge.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "exc:bracketing-12"
-
-\end_inset
-
-Use the bracketed secant method (false position) to find a root in the indicated
- interval, accurate to within 
-\begin_inset Formula $10^{-2}$
-\end_inset
-
-.
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset Formula $f(x)=3-x-\sin x$
-\end_inset
-
-; 
-\begin_inset Formula $[2,3]$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-hasananswer 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
-\end_inset
-
-; 
-\begin_inset Formula $[0,1]$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $g(x)=3x^{4}-2x^{3}-3x+2$
-\end_inset
-
-; 
-\begin_inset Formula $[0,0.9]$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-hasasolution 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $h(x)=10-\cosh(x)$
-\end_inset
-
-; 
-\begin_inset Formula $[-3,-2]$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $f(t)=\sqrt{4+5\sin t}-2.5$
-\end_inset
-
-; 
-\begin_inset Formula $[-600,-500]$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-hasananswer 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $g(t)=\frac{3t^{2}\tan t}{1-t^{2}}$
-\end_inset
-
-; 
-\begin_inset Formula $[3490,3491]$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $h(t)=\ln(3\sin t)-\frac{3t}{5}$
-\end_inset
-
-; 
-\begin_inset Formula $[1,2]$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $f(r)=e^{\sin r}-r$
-\end_inset
-
-; 
-\begin_inset Formula $[-20,20]$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-hasasolution 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $g(r)=\sin(e^{r})+r$
-\end_inset
-
-; 
-\begin_inset Formula $[-3,3]$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $h(r)=2^{\sin r}-3^{\cos r}$
-\end_inset
-
-; 
-\begin_inset Formula $[1,3]$
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-hasananswer 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-4"
-
-\end_inset
-
-: (c) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f2=inline('3*x^4-2*x^3-3*x+2');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=falsePosition(f2,0,.9,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.900000000000000
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.822030415125360
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.744866113620209
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.696903242045358
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.676602659540989
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.669712929388636
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.667578776723430
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666937771712738
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666747069128180
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666690496216585
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666673727853602
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666668758921090
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666667286598371
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  0.666666850350527
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  13
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{13}=0.666666850350527$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-(h) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f7=inline('exp(sin(r))-r');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=falsePosition(f7,-20,20,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  20
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  1.52625394347853
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.70134274226916
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.11862078217644
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21421804475756
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21893051185485
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21910087293432
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21910692606145
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  2.21910714100071
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  8
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{8}=2.21910714100071$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\end_deeper
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-5"
-
-\end_inset
-
-: (c) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f2=inline('3*x^4-2*x^3-3*x+2');
-\end_layout
-
-\begin_layout Plain Layout
-
->> f2p=inline('12*x^3-6*x^2-3');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=bracketedNewton(f2,f2p,0,.9,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.900000000000000
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.450000000000000
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.639257968925196
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.665474256136936
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666663994320019
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666666666653136
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  0.666666666666667
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  6
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{6}=0.666666666666667$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-(h) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f7=inline('exp(sin(r))-r');
-\end_layout
-
-\begin_layout Plain Layout
-
->> f7p=inline('exp(sin(r))*cos(r)-1');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=bracketedNewton(f7,f7p,-20,20,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  20
-\end_layout
-
-\begin_layout Plain Layout
-
-b = 0
-\end_layout
-
-\begin_layout Plain Layout
-
-warning: division by zero
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  10
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  3.66539525575696
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  1.65966535497164
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.50454805267468
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.22298743934113
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21911019802387
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21910714891565
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  2.21910714891375
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  9
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{9}=2.21910714891375$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\begin_layout Description
-REMARK: When we tried to compute this solution by hand (question 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-1"
-
-\end_inset
-
-h), we quit after the first iteration due to the division by zero.
- However, Octave continues, treating the undefined estimate as one that
- lands outside the bracket.
- Thus the second iteration is 
-\begin_inset Formula $10$
-\end_inset
-
- (the bisection method applied to 
-\begin_inset Formula $[0,20]$
-\end_inset
-
-).
-\end_layout
-
-\end_deeper
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-6"
-
-\end_inset
-
-: (c) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f2=inline('3*x^4-2*x^3-3*x+2');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=bracketedInverseQuadratic(f2,0,.9,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.900000000000000
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.822030415125360
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.411015207562680
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.729556813485380
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.629464108906733
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.671561434924253
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666977335665865
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666666168461076
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  0.666666666960237
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  8
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{8}=0.666666666960237$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-(h) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f7=inline('exp(sin(r))-r');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=bracketedInverseQuadratic(f7,-20,20,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  20
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  1.52625394347854
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.70134274226916
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.11862078217644
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21421804475756
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21917736990638
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21910707796098
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  2.21910714891272
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  7
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{7}=2.21910714891272$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\end_deeper
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-9"
-
-\end_inset
-
-: (c) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f2=inline('3*x^4-2*x^3-3*x+2');
-\end_layout
-
-\begin_layout Plain Layout
-
->> g2=inline('f2(x)+x');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=bracketedSteffensens(g2,0,.9,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.900000000000000
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.559577120523157
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.707986331365555
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.669737865924576
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666686284030401
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666666667476795
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  0.666666667666825
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  6
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{6}=0.666666667666825$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-(h) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f7=inline('exp(sin(r))-r');
-\end_layout
-
-\begin_layout Plain Layout
-
->> g7=inline('f7(x)+x');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=bracketedSteffensens(g7,-20,20,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  20
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  1.80564417969925
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.18151287547235
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21873144340028
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21910711013891
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  2.21910707929096
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  5
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{5}=2.21910707929096$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\end_deeper
-\begin_layout Description
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "exc:bracketing-11"
-
-\end_inset
-
-: (c) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f2=inline('3*x^4-2*x^3-3*x+2');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=bracketedInverseQuadraticRE(f2,0,.9,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.900000000000000
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.822030415125360
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.411015207562680
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.729556813485380
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.629464108906733
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.671561434924253
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666977335665865
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  0.666666168461076
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  0.666666666960237
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  8
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{8}=0.666666666960237$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-(h) 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{verbatim}
-\end_layout
-
-\begin_layout Plain Layout
-
->> f7=inline('exp(sin(r))-r');
-\end_layout
-
-\begin_layout Plain Layout
-
->> [res,i]=bracketedInverseQuadraticRE(f7,-20,20,10^-6,100)
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  20
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  1.52625394347854
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.70134274226916
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.11862078217644
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21421804475756
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21917736990638
-\end_layout
-
-\begin_layout Plain Layout
-
-b =  2.21910707796098
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-res =  2.21910714891272
-\end_layout
-
-\begin_layout Plain Layout
-
-i =  7
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{verbatim}
-\end_layout
-
-\end_inset
-
-so 
-\begin_inset Formula $x_{7}=2.21910714891272$
-\end_inset
-
- is expected to be within 
-\begin_inset Formula $10^{-6}$
-\end_inset
-
- of the actual root.
-\end_layout
-
-\end_deeper
 \begin_layout Section*
 Section 
 \begin_inset CommandInset ref
@@ -22463,6 +23399,10 @@ reference "exc:odePendulum-10"
  we need to verify that it solves the differential equation and satisfies
  the initial value requirement.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -22675,6 +23615,10 @@ reference "exc:odePendulum-18"
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -22740,6 +23684,10 @@ reference "exc:odePendulum-22"
  The normal force acts perpendicular to the surface.
  Representing the block as a rectangle and each force by a vector, the free
  body diagram should look something like this:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -22776,6 +23724,10 @@ reference "exc:odePendulum-24"
  the floor.
  Representing the sofa as a rectangle and each force by a vector, the free
  body diagram should look something like this:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -22803,12 +23755,16 @@ reference "exc:odePendulum-30"
 
 \end_inset
 
-: The forces acting on a sky diver---whether his parachute is open, closed,
- or in the process of opening does not matter---are gravity and drag (air
+: The forces acting on a sky diver—whether his parachute is open, closed,
+ or in the process of opening does not matter—are gravity and drag (air
  resistance).
  Gravity acts vertically downward and drag acts vertically upward.
  Representing the sky diver as a rectangle and each force by a vector, the
  free body diagram should look something like this:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -22846,6 +23802,10 @@ reference "exc:odePendulum-22"
  The end.
  This answers the question asked.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -22871,6 +23831,10 @@ In a situation where the block is moving, however, it is necessary to consider
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -22974,6 +23938,10 @@ reference "exc:odePendulum-24"
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -23904,6 +24872,10 @@ reference "exc:ode-taylor-2"
  A reasonable comment for the beginning of the function would list all of
  these inputs and the output, plus document who wrote it when and for what
  reason:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -23980,6 +24952,7 @@ eulerode.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -24915,6 +25888,10 @@ It is the integration formula that gives us the weighted average.
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -25114,6 +26091,10 @@ It is the integration formula that gives us the weighted average.
 
 .
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -25226,6 +26207,10 @@ reference "exc:ode-rungeKutta-16"
 \end_inset
 
 a: We will modify the test code from the text in two essential ways.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -25270,11 +26255,11 @@ n=8;
 \end_layout
 
 \begin_layout LyX-Code
-f=inline("-y/t+t^2");
+f=@(t,y) -y/t+t^2;
 \end_layout
 
 \begin_layout LyX-Code
-exact=inline("t^3/4+16/t");
+exact=@(t) t^3/4+16/t;
 \end_layout
 
 \begin_layout LyX-Code
@@ -25422,6 +26407,10 @@ e: An extra loop will be added so it approximates
 \end_inset
 
  for a number of step sizes.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -25443,11 +26432,11 @@ n=8;
 \end_layout
 
 \begin_layout LyX-Code
-f=inline("-y/t+t^2");
+f=@(t,y) -y/t+t^2;
 \end_layout
 
 \begin_layout LyX-Code
-exact=inline("t^3/4+16/t");
+exact=@(t) t^3/4+16/t;
 \end_layout
 
 \begin_layout LyX-Code
@@ -25596,6 +26585,10 @@ reference "exc:ode-rungeKutta-17"
 
 a: The Octave function we wrote to implement Euler's method takes 5 arguments.
  As explained in the comment preceding the function declaration,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -25661,11 +26654,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('3*x-2*y')
+>> f=@(x,y) 3*x-2*y
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = 3*x-2*y
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) 3 * x - 2 * y
 \end_layout
 
 \begin_layout LyX-Code
@@ -25805,6 +26802,10 @@ reference "exc:ode-rungeKutta-17"
 
 d: The Octave function we wrote to implement Euler's method takes 5 arguments.
  As explained in the comment preceding the function declaration,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -25870,11 +26871,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+>> f=@(x,y) (2*cos(x)^3-1-y*sin(x))/cos(x)
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) (2 * cos (x) ^ 3 - 1 - y * sin (x)) / cos (x)
 \end_layout
 
 \begin_layout LyX-Code
@@ -26031,6 +27036,10 @@ reference "exc:ode-rungeKutta-18"
 a: The Octave functions we wrote to implement other methods take 5 arguments.
  Here, we imagine a similar function for trapezoidal-ode has been written
  and looks like
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -26096,11 +27105,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('3*x-2*y')
+>> f=@(x,y) 3*x-2*y
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = 3*x-2*y
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) 3 * x - 2 * y
 \end_layout
 
 \begin_layout LyX-Code
@@ -26241,6 +27254,10 @@ reference "exc:ode-rungeKutta-18"
 d: The Octave functions we wrote to implement other methods take 5 arguments.
  Here, we imagine a similar function for trapezoidal-ode has been written
  and looks like
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -26306,11 +27323,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+>> f=@(x,y) (2*cos(x)^3-1-y*sin(x))/cos(x)
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) (2 * cos (x) ^ 3 - 1 - y * sin (x)) / cos (x)
 \end_layout
 
 \begin_layout LyX-Code
@@ -26467,6 +27488,10 @@ reference "exc:ode-rungeKutta-19"
 a: The Octave functions we wrote to implement other methods take 5 arguments.
  Here, we imagine a similar function for clopen-ode has been written and
  looks like
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -26532,11 +27557,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('3*x-2*y')
+>> f=@(x,y) 3*x-2*y
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = 3*x-2*y
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) 3 * x - 2 * y
 \end_layout
 
 \begin_layout LyX-Code
@@ -26677,6 +27706,10 @@ reference "exc:ode-rungeKutta-19"
 d: The Octave functions we wrote to implement other methods take 5 arguments.
  Here, we imagine a similar function for clopen-ode has been written and
  looks like
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -26742,11 +27775,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+>> f=@(x) (2*cos(x)^3-1-y*sin(x))/cos(x)
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x) (2 * cos (x) ^ 3 - 1 - y * sin (x)) / cos (x)
 \end_layout
 
 \begin_layout LyX-Code
@@ -26903,6 +27940,10 @@ reference "exc:ode-rungeKutta-20"
 a: The Octave function we wrote to implement the midpoint method takes 5
  arguments.
  As explained in the comment preceding the function declaration,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -26968,11 +28009,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('3*x-2*y')
+>> f=@(x,y) 3*x-2*y
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = 3*x-2*y
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) 3 * x - 2 * y
 \end_layout
 
 \begin_layout LyX-Code
@@ -27113,6 +28158,10 @@ reference "exc:ode-rungeKutta-20"
 d: The Octave function we wrote to implement the midpoint method takes 5
  arguments.
  As explained in the comment preceding the function declaration,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -27178,11 +28227,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+>> f=@(x,y) (2*cos(x)^3-1-y*sin(x))/cos(x)
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) (2 * cos (x) ^ 3 - 1 - y * sin (x)) / cos (x)
 \end_layout
 
 \begin_layout LyX-Code
@@ -27338,6 +28391,10 @@ reference "exc:ode-rungeKutta-21"
 
 a: The Octave function we wrote to implement Ralston's method takes 5 arguments.
  As explained in the comment preceding the function declaration,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -27403,15 +28460,19 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('3*x-2*y')
+>> f=@(x,y) 3*x-2*y
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = 3*x-2*y
+f =
 \end_layout
 
 \begin_layout LyX-Code
->> raslston(f,1,1,2,20)
+@(x, y) 3 * x - 2 * y
+\end_layout
+
+\begin_layout LyX-Code
+>> ralston(f,1,1,2,20)
 \end_layout
 
 \begin_layout LyX-Code
@@ -27547,6 +28608,10 @@ reference "exc:ode-rungeKutta-21"
 
 d: The Octave function we wrote to implement Ralston's method takes 5 arguments.
  As explained in the comment preceding the function declaration,
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -27612,11 +28677,15 @@ n
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('(2*cos(x)^3-1-y*sin(x))/cos(x)')
+>> f=@(x,y) (2*cos(x)^3-1-y*sin(x))/cos(x)
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = (2*cos(x)^3-1-y*sin(x))/cos(x)
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) (2 * cos (x) ^ 3 - 1 - y * sin (x)) / cos (x)
 \end_layout
 
 \begin_layout LyX-Code
@@ -27783,6 +28852,10 @@ reference "exc:ode-errorAnalysis"
 
 a: The o.d.e.
  solver previously derived is 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -27873,6 +28946,10 @@ reference "exc:ode-errorAnalysis"
 
 e: The o.d.e.
  solver previously derived is 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -28025,8 +29102,8 @@ reference "exc:ode-errorAnalysis-1"
 \begin_inset Formula 
 \begin{eqnarray*}
 k_{1} & = & f(t_{i},y_{i})=1\cdot\frac{1}{2}=\frac{1}{2}\\
-k_{2} & = & f(t_{i}+\frac{1}{2}h,\, y_{i}+\frac{1}{2}hk_{1})=\left(1+\frac{1}{2}\cdot1\right)\left(\frac{1}{2}+\frac{1}{2}\cdot1\cdot\frac{1}{2}\right)=\frac{9}{8}\\
-k_{3} & = & f(t_{i}+\frac{1}{2}h,\, y_{i}+\frac{1}{2}hk_{2})=\left(1+\frac{1}{2}\cdot1\right)\left(\frac{1}{2}+\frac{1}{2}\cdot1\cdot\frac{9}{8}\right)=\frac{51}{32}\\
+k_{2} & = & f(t_{i}+\frac{1}{2}h,\,y_{i}+\frac{1}{2}hk_{1})=\left(1+\frac{1}{2}\cdot1\right)\left(\frac{1}{2}+\frac{1}{2}\cdot1\cdot\frac{1}{2}\right)=\frac{9}{8}\\
+k_{3} & = & f(t_{i}+\frac{1}{2}h,\,y_{i}+\frac{1}{2}hk_{2})=\left(1+\frac{1}{2}\cdot1\right)\left(\frac{1}{2}+\frac{1}{2}\cdot1\cdot\frac{9}{8}\right)=\frac{51}{32}\\
 k_{4} & = & f(t_{i}+h,\ y_{i}+hk_{3})=(1+1)\left(\frac{1}{2}+1\cdot\frac{51}{32}\right)=\frac{67}{16}\\
 y_{1} & = & y_{0}+\frac{1}{6}h(k_{1}+2k_{2}+2k_{3}+k_{4})\\
  & = & \frac{1}{2}+\frac{1}{6}\cdot1\left(\frac{1}{2}+2\cdot\frac{9}{8}+2\cdot\frac{51}{32}+\frac{67}{16}\right)\\
@@ -28052,7 +29129,7 @@ Thus
 
 , RK4 did a much better job in one step than did Euler's method in two steps.
  Incidentally, even four steps of Euler's method (which means 4 function
- evaluations---just as many as one step of RK4), yields 
+ evaluations—just as many as one step of RK4), yields 
 \begin_inset Formula $y(2)\approx1.621398925781250$
 \end_inset
 
@@ -28126,7 +29203,7 @@ Because the tableau has two rows above the row of
 \begin_inset Formula 
 \begin{eqnarray*}
 k_{1} & = & f(t_{i},y_{i})\\
-k_{2} & = & f(t_{i}+\delta_{2}h,\, y_{i}+\beta_{21}hk_{1})\\
+k_{2} & = & f(t_{i}+\delta_{2}h,\,y_{i}+\beta_{21}hk_{1})\\
 y_{i+1} & = & y_{i}+h[\alpha_{1}k_{1}+\alpha_{2}k_{2}].
 \end{eqnarray*}
 
@@ -28144,7 +29221,7 @@ reference "eq:Runge-Kutta-explicit"
 \begin_inset Formula 
 \begin{eqnarray*}
 k_{1} & = & f(t_{i},y_{i})\\
-k_{2} & = & f(t_{i}+h,\, y_{i}+hk_{1})\\
+k_{2} & = & f(t_{i}+h,\,y_{i}+hk_{1})\\
 y_{i+1} & = & y_{i}+h\left[\frac{1}{2}k_{1}+\frac{1}{2}k_{2}\right].
 \end{eqnarray*}
 
@@ -28183,9 +29260,9 @@ reference "eq:Runge-Kutta-explicit"
 \begin_inset Formula 
 \begin{eqnarray*}
 k_{1} & = & f(t_{i},y_{i})\\
-k_{2} & = & f\left(t_{i}+\frac{2}{7}h,\, y_{i}+\frac{2}{7}hk_{1}\right)\\
-k_{3} & = & f\left(t_{i}+\frac{4}{7}h,\, y_{i}-\frac{8}{35}hk_{1}+\frac{4}{5}hk_{2}\right)\\
-k_{4} & = & f\left(t_{i}+\frac{6}{7}h,\, y_{i}+\frac{29}{42}hk_{1}-\frac{2}{3}hk_{2}+\frac{5}{6}hk_{3}\right)\\
+k_{2} & = & f\left(t_{i}+\frac{2}{7}h,\,y_{i}+\frac{2}{7}hk_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{4}{7}h,\,y_{i}-\frac{8}{35}hk_{1}+\frac{4}{5}hk_{2}\right)\\
+k_{4} & = & f\left(t_{i}+\frac{6}{7}h,\,y_{i}+\frac{29}{42}hk_{1}-\frac{2}{3}hk_{2}+\frac{5}{6}hk_{3}\right)\\
 y_{i+1} & = & y_{i}+h\left[\frac{1}{6}k_{1}+\frac{1}{6}k_{2}+\frac{5}{12}k_{3}+\frac{1}{4}k_{4}\right].
 \end{eqnarray*}
 
@@ -28214,10 +29291,15 @@ thirdOrder.m, which
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
 .
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -28348,11 +29430,15 @@ to approximate
 \end_layout
 
 \begin_layout LyX-Code
->> f=inline('-y/t+t^2')
+>> f=@(t,y) -y/t+t^2
 \end_layout
 
 \begin_layout LyX-Code
-f = f(t, y) = -y/t+t^2
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(t, y) -y / t + t ^ 2
 \end_layout
 
 \begin_layout LyX-Code
@@ -28440,10 +29526,10 @@ reference "eq:Runge-Kutta-explicit"
 \begin_inset Formula 
 \begin{eqnarray*}
 k_{1} & = & f(t_{i},y_{i})\\
-k_{2} & = & f\left(t_{i}+\frac{1}{4}h,\, y_{i}+\frac{1}{4}hk_{1}\right)\\
-k_{3} & = & f\left(t_{i}+\frac{3}{4}h,\, y_{i}-\frac{9}{4}hk_{1}+3hk_{2}\right)\\
-k_{4} & = & f\left(t_{i}+\frac{1}{2}h,\, y_{i}+\frac{1}{18}hk_{1}+\frac{5}{12}hk_{2}+\frac{1}{36}hk_{3}\right)\\
-k_{5} & = & f\left(t_{i}+h,\, y_{i}+\frac{7}{9}hk_{1}-\frac{5}{3}hk_{2}-\frac{1}{9}hk_{3}+2hk_{4}\right)\\
+k_{2} & = & f\left(t_{i}+\frac{1}{4}h,\,y_{i}+\frac{1}{4}hk_{1}\right)\\
+k_{3} & = & f\left(t_{i}+\frac{3}{4}h,\,y_{i}-\frac{9}{4}hk_{1}+3hk_{2}\right)\\
+k_{4} & = & f\left(t_{i}+\frac{1}{2}h,\,y_{i}+\frac{1}{18}hk_{1}+\frac{5}{12}hk_{2}+\frac{1}{36}hk_{3}\right)\\
+k_{5} & = & f\left(t_{i}+h,\,y_{i}+\frac{7}{9}hk_{1}-\frac{5}{3}hk_{2}-\frac{1}{9}hk_{3}+2hk_{4}\right)\\
 \{\mbox{first method}\}\quad y_{i+1} & = & y_{i}+h\left[\frac{1}{6}k_{1}+\frac{2}{3}k_{4}+\frac{1}{6}k_{5}\right]\\
 \{\mbox{second method}\}\quad y_{i+1} & = & y_{i}+h\left[\frac{7}{9}k_{1}-\frac{5}{3}k_{2}-\frac{1}{9}k_{3}+2k_{4}\right].
 \end{eqnarray*}
@@ -28483,6 +29569,7 @@ rk34butcher.m
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -28495,6 +29582,10 @@ status collapsed
 RK3(4) method ! code
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -28694,6 +29785,10 @@ reference "exc:ode-adaptive-10"
 
  values from that table to this one, noting that we need to add a zero at
  the end:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -28702,11 +29797,11 @@ reference "exc:ode-adaptive-10"
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -29086,15 +30181,23 @@ global
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout LyX-Code
->> f=inline('(x+2*exp(y)*cos(exp(x)))/(1+exp(y))')
+>> f=@(x,y) (x+2*exp(y)*cos(exp(x)))/(1+exp(y))
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = (x+2*exp(y)*cos(exp(x)))/(1+exp(y))
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) (x + 2 * exp (y) * cos (exp (x))) / (1 + exp (y))
 \end_layout
 
 \begin_layout LyX-Code
@@ -29190,7 +30293,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -29257,7 +30360,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -29357,15 +30460,23 @@ global
 \end_inset
 
 :
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout LyX-Code
->> f=inline('(x^2+y)/(x-y^2)')
+>> f=@(x,y) (x^2+y)/(x-y^2)
 \end_layout
 
 \begin_layout LyX-Code
-f = f(x, y) = (x^2+y)/(x-y^2)
+f =
+\end_layout
+
+\begin_layout LyX-Code
+@(x, y) (x ^ 2 + y) / (x - y ^ 2)
 \end_layout
 
 \begin_layout LyX-Code
@@ -29459,7 +30570,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -29521,7 +30632,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label

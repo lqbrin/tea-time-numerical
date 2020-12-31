@@ -1,13 +1,15 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass book
 \begin_preamble
 \input $HOME/Documents/textbook/preamble
 \end_preamble
 \use_default_options true
-\master TeaTimeNumericalAnalysis.lyx
+\master ../scsu/Book-Numerical/TeaTimeNumericalAnalysis.lyx
 \begin_modules
 theorems-ams
 eqs-within-sections
@@ -18,16 +20,18 @@ figs-within-sections
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -47,16 +51,26 @@ figs-within-sections
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -69,7 +83,10 @@ figs-within-sections
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
@@ -173,9 +190,9 @@ has an exact solution that can be written in terms of an integral.
 : 
 \begin_inset Formula 
 \begin{eqnarray}
-\int_{t_{0}}^{\tilde{t}}\dot{y}\, dt & = & \int_{t_{0}}^{\tilde{t}}f(t,y)\, dt\nonumber \\
-y(\tilde{t})-y(t_{0}) & = & \int_{t_{0}}^{\tilde{t}}f(t,y)\, dt\nonumber \\
-y(\tilde{t}) & = & y(t_{0})+\int_{t_{0}}^{\tilde{t}}f(t,y)\, dt.\label{eq:basicRKidea}
+\int_{t_{0}}^{\tilde{t}}\dot{y}\,dt & = & \int_{t_{0}}^{\tilde{t}}f(t,y)\,dt\nonumber \\
+y(\tilde{t})-y(t_{0}) & = & \int_{t_{0}}^{\tilde{t}}f(t,y)\,dt\nonumber \\
+y(\tilde{t}) & = & y(t_{0})+\int_{t_{0}}^{\tilde{t}}f(t,y)\,dt.\label{eq:basicRKidea}
 \end{eqnarray}
 
 \end_inset
@@ -217,11 +234,11 @@ reference "eq:basicRKidea"
 \end_inset
 
 , 
-\begin_inset Formula $y(t_{1})=y(t_{0})+\int_{t_{0}}^{t_{1}}f(t,y)\, dt$
+\begin_inset Formula $y(t_{1})=y(t_{0})+\int_{t_{0}}^{t_{1}}f(t,y)\,dt$
 \end_inset
 
 , so we can add 
-\begin_inset Formula $\int_{t_{0}}^{t_{1}}f(t,y)\, dt$
+\begin_inset Formula $\int_{t_{0}}^{t_{1}}f(t,y)\,dt$
 \end_inset
 
  to the known value 
@@ -261,7 +278,7 @@ reference "eq:basicRKidea"
 \end_inset
 
 , 
-\begin_inset Formula $y(t_{2})=y(t_{1})+\int_{t_{1}}^{t_{2}}f(t,y)\, dt$
+\begin_inset Formula $y(t_{2})=y(t_{1})+\int_{t_{1}}^{t_{2}}f(t,y)\,dt$
 \end_inset
 
 .
@@ -314,7 +331,7 @@ reference "eq:basicRKidea"
 :
 \begin_inset Formula 
 \begin{equation}
-y(t_{i+1})=y(t_{i})+\int_{t_{i}}^{t_{i+1}}f(t,y)\, dt.\label{eq:integralEquation}
+y(t_{i+1})=y(t_{i})+\int_{t_{i}}^{t_{i+1}}f(t,y)\,dt.\label{eq:integralEquation}
 \end{equation}
 
 \end_inset
@@ -328,7 +345,7 @@ This formula suggests that finding one approximation,
 \end_inset
 
 , boils down to approximating 
-\begin_inset Formula $\int_{t_{i}}^{t_{i+1}}f(t,y)\, dt$
+\begin_inset Formula $\int_{t_{i}}^{t_{i+1}}f(t,y)\,dt$
 \end_inset
 
 .
@@ -351,6 +368,10 @@ reference "chap:Numerical-Calculus"
  endpoint of integration as one of the nodes.
  And to make our first stab as easy as possible, let's let that node be
  the only one! That is, let's find an integration formula for the stencil
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -402,7 +423,7 @@ So
 \end_inset
 
 Consequently, 
-\begin_inset Formula $\int_{t_{i}}^{t_{i+1}}f(t,y)\, dt\approx(t_{i+1}-t_{i})f(t_{i},y(t_{i}))$
+\begin_inset Formula $\int_{t_{i}}^{t_{i+1}}f(t,y)\,dt\approx(t_{i+1}-t_{i})f(t_{i},y(t_{i}))$
 \end_inset
 
 , and equation 
@@ -478,6 +499,10 @@ reference "sec:calculusErrorAnalysis"
 \end_inset
 
 over the stencil
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -496,7 +521,7 @@ over the stencil
 Translating the trapezoidal rule to the current notation,
 \begin_inset Formula 
 \[
-{\displaystyle \int_{t_{i}}^{t_{i+1}}f(t,y)\, dt=\frac{t_{i+1}-t_{i}}{2}\left[f(t_{i},y_{i})+f(t_{i+1},y_{i+1})\right]+O((t_{i+1}-t_{i})^{3}).}
+{\displaystyle \int_{t_{i}}^{t_{i+1}}f(t,y)\,dt=\frac{t_{i+1}-t_{i}}{2}\left[f(t_{i},y_{i})+f(t_{i+1},y_{i+1})\right]+O((t_{i+1}-t_{i})^{3}).}
 \]
 
 \end_inset
@@ -651,11 +676,11 @@ h=-1/4;
 \end_layout
 
 \begin_layout LyX-Code
-f=inline("-y/t+t^2");
+f=@(t,y) -y/t+t^2;
 \end_layout
 
 \begin_layout LyX-Code
-exact=inline("t^3/4+16/t");
+exact=@(t) t^3/4+16/t;
 \end_layout
 
 \begin_layout LyX-Code
@@ -716,6 +741,7 @@ This test code may be downloaded at
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
@@ -743,6 +769,10 @@ sprintf
 \end_inset
 
  The first argument, 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -924,7 +954,7 @@ reference "sec:calculusErrorAnalysis"
 which in the notation of this section we might write as
 \begin_inset Formula 
 \[
-\int_{t_{i}}^{t_{i+1}}f(t,y)\, dt=\frac{h}{6}\left[f(t_{i},y_{i})+4f(t_{i+1/2},y_{i+1/2})+f(t_{i+1},y_{i+1})\right],
+\int_{t_{i}}^{t_{i+1}}f(t,y)\,dt=\frac{h}{6}\left[f(t_{i},y_{i})+4f(t_{i+1/2},y_{i+1/2})+f(t_{i+1},y_{i+1})\right],
 \]
 
 \end_inset
@@ -1146,6 +1176,17 @@ reference "ans:fill-in"
 .
  We will call this method open-ode.
  Finally, we use the stencil
+\family default
+\series default
+\shape default
+\size default
+\bar default
+\color inherit
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1261,7 +1302,7 @@ We will call this method clopen-ode.
 \end_layout
 
 \begin_layout Standard
-So now we have three new methods to test out---one based on Simpson's rule
+So now we have three new methods to test out—one based on Simpson's rule
  (Simpson's-ode), one based on an open Newton-Cotes formula (open-ode),
  and a third based on a 
 \begin_inset Quotes eld
@@ -1353,6 +1394,10 @@ reference "sec:calculusErrorAnalysis"
 
 .
  The integration methods based on the stencils
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1469,7 +1514,7 @@ status open
 \uwave off
 \noun off
 \color none
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 
@@ -1504,12 +1549,12 @@ A comparison of absolute errors for five o.d.e.
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -2085,7 +2130,7 @@ status open
 \uwave off
 \noun off
 \color none
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 
@@ -2119,12 +2164,12 @@ The error terms of five o.d.e solvers and their underlying integration methods
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
@@ -2405,6 +2450,10 @@ name "exc:ode-rungeKutta"
 
 Derive an o.d.e.
  solver based on the stencil and corresponding integration formula.
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3825,6 +3874,10 @@ name "ans:clopenNewtonCotes"
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -3873,6 +3926,10 @@ Now putting them together with the right-hand sides (and swapping sides):
 
 This system is small enough to solve by hand (without the use of a computer
  algebra system):
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3880,11 +3937,11 @@ This system is small enough to solve by hand (without the use of a computer
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -4163,6 +4220,10 @@ name "ans:testCode"
 \end_inset
 
 Comparing Simpson's, open, and clopen methods:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4175,11 +4236,11 @@ h=-1/4;
 \end_layout
 
 \begin_layout LyX-Code
-f=inline("-y/t+t^2");
+f=@(t,y) -y/t+t^2;
 \end_layout
 
 \begin_layout LyX-Code
-exact=inline("t^3/4+16/t");
+exact=@(t) t^3/4+16/t;
 \end_layout
 
 \begin_layout LyX-Code
@@ -4288,6 +4349,7 @@ This test code may be downloaded at
 LatexCommand href
 name "the companion website"
 target "http://lqbrin.github.io/tea-time-numerical/ancillaries.html"
+literal "false"
 
 \end_inset
 
