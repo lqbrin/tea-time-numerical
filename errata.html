@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta name="description" content="Tea Time Numerical Analysis More Info" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Tea Time Numerical Analysis More Info</title>
+  </head>
+  
+  <script>
+	MathJax = {
+		loader: {load: ['input/asciimath', 'output/chtml', 'ui/menu']},
+	};
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"></script>
+  
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="go_home" href="index.html">Home</a>
+          <a id="download_book" href="https://github.com/lqbrin/tea-time-numerical/blob/master/TeaTimeNumericalAnalysis.pdf?raw=true">Download PDF</a>
+          <h2 id="book_title"><span style="font-size:60%">2021: Third Edition</span><br>Tea Time Numerical Analysis <span style="font-size:60%">Experiences in Mathematics</span></h2>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+		<h4>Errata, Last updated 16 January 2021</h4>
+		<ul>
+		<li><strong>PP. 3-4,6,9:</strong> the roles of `tilde p` and `tilde p ^ **` should be made clear. `tilde p` represents any approximation (generally calculated using floating-point arithmetic). `tilde p ^ **` exclusively represents an approximation calculated using exact arithmetic.</li>
+		<li><strong>P. 9 exercise 24 part b:</strong> (1) the sum should be from 1 to 9; and (2) 0.2071647018159241499410798569 should be 0.3550449718187918680449850763.</li>
+		<li><strong>P. 18 exercise 27 part g:</strong> `T_2(x)` should be `T_3(x)`.</li>
+		<li><strong>P. 24 end of Crumpet 8:</strong> In the last line, "not" should be "no".</li>
+		<li><strong>P. 38 exercise 20:</strong> A better demonstration of the instability of calculating `&lt;&lt; c_n &gt;&gt;` would be to calculate `c_50`.</li>
+		<li><strong>Section 2.1:</strong> Reference to maximum number of iterations should be deleted. It has been removed from the pseudo-code.</li>
+		<li><strong>P. 47 exercise 20b:</strong> `f` should be `g`.</li>
+		<li><strong>P. 48 exercise 29:</strong> Step 4 should return `i`, not `N_0`.</li>
+		<li><strong>P. 48 exercise 30a:</strong> The equation should be `x-2^x+.95=0`.</li>
+		<li><strong>P. 58 exercise 3b:</strong> Should read `f(x)=ln(2e^x)/2`.</li>
+		<li><strong>P. 58 exercise 17:</strong> The roles of `f` and `g` should be swapped.</li>
+		<li><strong>P. 59 exercise 20:</strong> "any fixed point" should read "any nonzero fixed point".</li>
+		<li><strong>P. 59 exercise 22:</strong> The assumption `g'(hat x) ne 0` should be added.</li>
+		<li><strong>P. 67 exercise 3:</strong> The Octave logo should be added.</li>
+		<li><strong>P. 75 exercise 14:</strong> One of the "the"s should be stricken.</li>
+		<li><strong>P. 249 solution 26 part f:</strong> The inequality `64/625 le 64/1125 le 64/6561` should be `64/6561 le 64/1125 le 64/625`.</li>
+		<li><strong>P. 250 solution 30b:</strong> The derivative of `g` is missing the exponential factor, `e^(-xi^2)`, in two separate places.</li>
+		<li><strong>P. 334 sec 2.2 answer 4c:</strong> `root(5)((4-3x^2)/2)` should be replaced by `root(5)((4-6x^2)/3)`.</li>
+		<li><strong>P. 334 sec 2.2 answer 4f:</strong> Each instance of `(x^2-5x+1)` should be replaced by `-(x^2-5x+1)`.</li>
+		<li><strong>P. 335 sec 2.3 answer 18:</strong> Should read, "Yes. Aitken's delta-squared method is designed to speed up linearly convergent sequences and `&lt;&lt; a_n &gt;&gt;` is linearly convergent."</li>
+		<li><strong>P. 336 sec 2.4 answer 20:</strong> Is wrong. Needs to be corrected.</li>
+		</ul>
+		<h4>Download</h4>
+		A PDF including these changes can be found <a href="https://github.com/lqbrin/tea-time-numerical/blob/master/TeaTimeNumericalAnalysis-workingCopy.pdf?raw=true">here</a>. You might consider this a preview of the next edition. Suggestions welcome!
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+	<p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="float:left; margin: 0px 15px 0px 0;" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Tea Time Numerical Analysis</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://lqbrin.github.io/tea-time-numerical/" property="cc:attributionName" rel="cc:attributionURL">Leon Q. Brin</a> is licensed under a<br /><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </footer>
+    </div>
+
+  </body>
+</html>
