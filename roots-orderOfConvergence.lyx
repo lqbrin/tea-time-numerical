@@ -5613,6 +5613,20 @@ are algebraically equivalent.
 \end_layout
 
 \begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+octave
+\backslash
+ 
+\end_layout
+
+\end_inset
+
 Write an Octave function that implements Steffensen's method.
 \end_layout
 

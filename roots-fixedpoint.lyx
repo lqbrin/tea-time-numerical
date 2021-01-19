@@ -3299,8 +3299,7 @@ Find the fixed point(s) of the function exactly.
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $f(x)=\frac{\ln(2%e^{x})
-}{2}$
+\begin_inset Formula $f(x)=\frac{\ln(2e^{x})}{2}$
 \end_inset
 
 
@@ -4024,7 +4023,7 @@ Use a fixed point iteration method to find an approximation of
 
 \begin_layout Enumerate
 The function 
-\begin_inset Formula $f(x)=x^{4}+2x^{2}-x-3$
+\begin_inset Formula $g(x)=x^{4}+2x^{2}-x-3$
 \end_inset
 
  has two roots.
@@ -4046,7 +4045,7 @@ The function
 \begin_deeper
 \begin_layout Enumerate
 In preparation for finding a root of 
-\begin_inset Formula $f(x)$
+\begin_inset Formula $g(x)$
 \end_inset
 
  using fixed point iteration, one way to manipulate the equation 
@@ -4067,7 +4066,7 @@ x=x^{4}+2x^{2}-3
 \end_inset
 
 Draw appropriate graphs to determine whether iteration of the function 
-\begin_inset Formula $g(x)=x^{4}+2x^{2}-3$
+\begin_inset Formula $f(x)=x^{4}+2x^{2}-3$
 \end_inset
 
  will find the root in 
@@ -4265,7 +4264,7 @@ Let
 \end_inset
 
  be a nonzero real number.
- Argue that any fixed point of 
+ Argue that any nonzero fixed point of 
 \begin_inset Formula $f(x)=xe^{c\cdot g(x)}$
 \end_inset
 
@@ -4302,11 +4301,15 @@ Suppose
 \begin_inset Formula $g(\hat{x})=0$
 \end_inset
 
- and 
+, 
 \begin_inset Formula $g$
 \end_inset
 
- has a continuous first derivative.
+ has a continuous first derivative, and 
+\begin_inset Formula $g'(\hat{x})\neq0$
+\end_inset
+
+.
  Argue that there exists a value 
 \begin_inset Formula $c$
 \end_inset

@@ -1342,7 +1342,7 @@ R_{2}(x) & = & \frac{-6/\xi^{4}}{6}(x-5)^{3}\\
 
 .
  Indeed 
-\begin_inset Formula $\frac{64}{625}\leq\frac{64}{1125}\leq\frac{64}{6561}$
+\begin_inset Formula $\frac{64}{6561}\leq\frac{64}{1125}\leq\frac{64}{625}$
 \end_inset
 
 .
@@ -1492,7 +1492,7 @@ With the goal of maximization in mind, it makes sense to take note of the
 
 .
  To confirm that these observations are facts, we start by calculating 
-\begin_inset Formula $g'(\xi)=-(8\xi^{6}-60\xi^{4}+90\xi^{2}-15)%e^{-xi^{2}}
+\begin_inset Formula $g'(\xi)=-(8\xi^{6}-60\xi^{4}+90\xi^{2}-15)%e^{-\xi^{2}}
 $
 \end_inset
 
@@ -1506,7 +1506,7 @@ $
  Also, 
 \begin_inset Formula 
 \[
-\lim_{\xi\to\pm\infty}-(8\xi^{6}-60\xi^{4}+90\xi^{2}-15)%e^{-xi^{2}}
+\lim_{\xi\to\pm\infty}-(8\xi^{6}-60\xi^{4}+90\xi^{2}-15)%e^{-\xi^{2}}
 =0
 \]
 

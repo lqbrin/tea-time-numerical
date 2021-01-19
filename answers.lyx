@@ -741,7 +741,7 @@ reference "exc:fixedpt-7"
 \end_inset
 
 : 
-\begin_inset Formula $f_{1}(x)=\sqrt[5]{\frac{4-3x^{2}}{2}}$
+\begin_inset Formula $f_{1}(x)=\sqrt[5]{\frac{4-6x^{2}}{3}}$
 \end_inset
 
  and 
@@ -760,11 +760,11 @@ reference "exc:fixedpt-9"
 \end_inset
 
 : 
-\begin_inset Formula $f_{1}(x)=\frac{(x^{2}-5x+1)(\log_{2}3)-x^{2}-1}{5}$
+\begin_inset Formula $f_{1}(x)=\frac{-(x^{2}-5x+1)(\log_{2}3)-x^{2}-1}{5}$
 \end_inset
 
  and 
-\begin_inset Formula $f_{2}(x)=\sqrt{(\log_{2}3)(x^{2}-5x+1)-5x-1}$
+\begin_inset Formula $f_{2}(x)=\sqrt{-(\log_{2}3)(x^{2}-5x+1)-5x-1}$
 \end_inset
 
 .
@@ -957,9 +957,13 @@ reference "exc:orderOfConvergence-7"
 
 \end_inset
 
-: No.
+: Yes.
  Aitken's delta-squared method is designed to speed up linearly convergent
- sequences, not superlinearly convergent sequences.
+ sequences and 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ is a linearly convergent sequence.
 \end_layout
 
 \begin_layout Description
@@ -1287,24 +1291,96 @@ reference "exc:newton-7"
 
 \end_inset
 
-: 
-\begin_inset Formula $x_{16}=3.7201766622615984(10)^{-4}$
+: It takes 16 iterations to reach a tolerance of 
+\begin_inset Formula $0.0002$
+\end_inset
+
+ (
+\begin_inset Formula $|x_{15}-x_{14}|\approx0.000275$
+\end_inset
+
+ and 
+\begin_inset Formula $|x_{16}-x_{15}|\approx0.000184$
+\end_inset
+
+).
+ 
+\begin_inset Formula $x_{12}=-0.181396689151049$
 \end_inset
 
 , 
-\begin_inset Formula $x_{17}=2.4933434933779863(10)^{-4}$
+\begin_inset Formula $x_{13}=-0.182015461369422$
+\end_inset
+
+, 
+\begin_inset Formula $x_{14}=-0.182428614744863$
+\end_inset
+
+, 
+\begin_inset Formula $x_{15}=-0.182704334912558$
 \end_inset
 
 , and 
-\begin_inset Formula $x_{18}=1.6752024023472534(10)^{-4}$
+\begin_inset Formula $x_{16}=-0.182888275080047$
 \end_inset
 
 .
  
-\begin_inset Formula $a_{16}=3.7404947721983783(10)^{-6}$
+\begin_inset Formula $a_{12}=-0.183258770722810$
 \end_inset
 
- so Aitken's delta-squared method DOES speed up convergence.
+, 
+\begin_inset Formula $a_{13}=-0.183257488055966$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{14}=-0.183256917323895$
+\end_inset
+
+.
+ Given that the exact root to 15 decimal places is 
+\begin_inset Formula $p\approx-0.183256460290832$
+\end_inset
+
+, we see Aitken's delta-squared method accelerates convergence in the sense
+ that 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ is closer to the limit than 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ (as evidenced for 
+\begin_inset Formula $n=12,13,14$
+\end_inset
+
+, and expected for Aitken's delta-squared method applied to a linearly convergen
+t sequence).
+ But the order of convergence is not improved.
+ The sequence 
+\begin_inset Formula $\langle a_{n}\rangle$
+\end_inset
+
+ is still linearly convergent.
+ 
+\begin_inset Formula 
+\begin{align*}
+\frac{|a_{12}-p|}{|a_{13}-p|} & \approx2.2480\\
+\frac{|a_{13}-p|}{|a_{14}-p|} & \approx2.2487
+\end{align*}
+
+\end_inset
+
+for example, evidence that 
+\begin_inset Formula $\lim_{n\to\infty}\frac{|a_{n+1}-p|}{|a_{n}-p|^{1}}=\lambda$
+\end_inset
+
+ for some 
+\begin_inset Formula $\lambda\approx2.25$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description
@@ -1323,11 +1399,15 @@ reference "exc:newton-9"
 \end_inset
 
 .
- (c) 6 (d) Something near 
-\begin_inset Formula $-7.5$
+ (c) 6 (d) 
+\begin_inset Formula $-4.4$
 \end_inset
 
- will do.
+ or 
+\begin_inset Formula $-4.3$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Description

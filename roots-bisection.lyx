@@ -2092,7 +2092,7 @@ Output: Approximation
 \begin_inset Formula $tol$
 \end_inset
 
- of exact root or message of failure.
+ of exact root.
 \end_layout
 
 \begin_layout Standard
@@ -2326,26 +2326,6 @@ The rest of the code is there to make sure the program doesn't do more than
 \end_inset
 
  in which case we happened to hit the root exactly so should quit.
- Though it could be argued overkill to set a maximum number of iterations,
- 
-\begin_inset Formula $N$
-\end_inset
-
-, in this program, it's a good habit to get into.
- Some numerical methods provide no guarantee the required tolerance will
- ever be reached.
- For these methods, a fallback exit criterion is needed.
- Also, if 
-\begin_inset Formula $tol$
-\end_inset
-
- were accidentally set to a negative value, it would certainly never be
- reached.
- The algorithm would have no way to stop without 
-\begin_inset Formula $N$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Subsection*
@@ -2774,7 +2754,11 @@ condition
 =
 \family default
  operator assigns a value to a variable.
- It is not a boolean operator so should not be used in an if condition.
+ It is not a boolean operator so should not be used in an 
+\family typewriter
+if
+\family default
+ condition.
  Instead, 
 \family typewriter
 ==
@@ -3164,8 +3148,7 @@ An Octave program to find a root of
 \begin_inset Formula $10^{-4}$
 \end_inset
 
- using the bisection method with a maximum of 100 iterations might look
- like this.
+ using the bisection method might look like this.
  
 \begin_inset ERT
 status open
@@ -3336,8 +3319,11 @@ end{verbatim}
 \end_inset
 
 —will be supplied from another source—the user.
- The code inside the .m file should execute properly regardless of the (yet
- unknown) inputs.
+ The code inside the 
+\family typewriter
+.m
+\family default
+ file should execute properly regardless of the (yet unknown) inputs.
  The syntax for an Octave function is: 
 \begin_inset ERT
 status open
@@ -3417,45 +3403,40 @@ begin{verbatim}
 
 \begin_layout Plain Layout
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end_layout
 
 \begin_layout Plain Layout
 
 %  Bisection method written by Leon Q.
- Brin 09 December 2020  %
+ Brin 09 December 2020 %
 \end_layout
 
 \begin_layout Plain Layout
 
-%  Purpose: Implementation of the bisection method            %
+%  Purpose: Implementation of the bisection method           %
 \end_layout
 
 \begin_layout Plain Layout
 
 %  INPUT: Interval [a,b]; function f; tolerance tol.
-          %
+         %
 \end_layout
 
 \begin_layout Plain Layout
 
-%  OUTPUT: root res to within tol of exact or message of      %
+%  OUTPUT: root m to within tol of exact.
+                    %
 \end_layout
 
 \begin_layout Plain Layout
 
-%         failure.
-                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end_layout
 
 \begin_layout Plain Layout
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end_layout
-
-\begin_layout Plain Layout
-
-function res=bisection(a,b,f,tol)
+function m=bisection(a,b,f,tol)
 \end_layout
 
 \begin_layout Plain Layout
@@ -3486,11 +3467,6 @@ function res=bisection(a,b,f,tol)
 \begin_layout Plain Layout
 
     if (M==0)
-\end_layout
-
-\begin_layout Plain Layout
-
-      res=m;
 \end_layout
 
 \begin_layout Plain Layout
@@ -3540,11 +3516,6 @@ function res=bisection(a,b,f,tol)
 
 \begin_layout Plain Layout
 
-  res=m;
-\end_layout
-
-\begin_layout Plain Layout
-
 end%function
 \end_layout
 
@@ -3590,8 +3561,7 @@ literal "false"
 \begin_inset Formula $10^{-4}$
 \end_inset
 
- using the bisection method with a maximum of 100 iterations might look
- like this.
+ using the bisection method might look like this.
  
 \begin_inset ERT
 status open
@@ -4640,7 +4610,7 @@ Use a graph of the function near
 \noun off
 \color none
 Run the bisection method on 
-\begin_inset Formula $f$
+\begin_inset Formula $g$
 \end_inset
 
  over the interval 
@@ -5503,7 +5473,7 @@ Return(
 \end_inset
 
 , 
-\begin_inset Formula $N_{0}$
+\begin_inset Formula $i$
 \end_inset
 
 ); STOP.
@@ -5633,7 +5603,7 @@ reference "bisectionCode-1"
 
 \begin_deeper
 \begin_layout Enumerate
-\begin_inset Formula $x-2^{x}=0$
+\begin_inset Formula $x-2^{x}+.95=0$
 \end_inset
 
  on 

@@ -3776,7 +3776,7 @@ Find a value of
 \end_layout
 
 \begin_layout Enumerate
-Explain why Newton's method fails to converge for the the function 
+Explain why Newton's method fails to converge for the function 
 \begin_inset Formula $g(x)=x^{2}+x+1$
 \end_inset
 
@@ -4295,7 +4295,8 @@ Find a negative value of
 \begin_inset Formula $x_{0}$
 \end_inset
 
- for which Newton's method will converge to 
+, accurate to the nearest tenth, for which Newton's method will converge
+ to 
 \begin_inset Formula $2\pi$
 \end_inset
 

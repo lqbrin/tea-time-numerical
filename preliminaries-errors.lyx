@@ -1033,7 +1033,7 @@ Using a calculator or computer, compute
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $\tilde{p}^{*}(h)$
+\begin_inset Formula $\tilde{p}(h)$
 \end_inset
 
 
@@ -1207,16 +1207,8 @@ Using a calculator or computer, compute
 
 \begin_layout Standard
 \noindent
-The second column is labeled 
-\begin_inset Formula $\tilde{p}^{*}(h)$
-\end_inset
-
- to indicate that the approximation 
-\begin_inset Formula $\tilde{p}(h)$
-\end_inset
-
- is calculated using approximate (floating-point) arithmetic, so it is technical
-ly an approximation of the approximation.
+The second column is calculated using approximate (floating-point) arithmetic,
+ so it is technically an approximation of the approximation.
  Since 
 \begin_inset Formula $f'(1)=\cos(1)\approx.5403023058681398$
 \end_inset
@@ -1240,7 +1232,7 @@ error ! algorithmic
  is 
 \begin_inset Formula 
 \begin{eqnarray*}
-|\tilde{p}(10^{-2})-f'(1)| & = & \left|50\left(\sin\left(\frac{101}{100}\right)-\sin\left(\frac{99}{100}\right)\right)-\cos(1)\right|\\
+|\tilde{p}^{*}(10^{-2})-f'(1)| & = & \left|50\left(\sin\left(\frac{101}{100}\right)-\sin\left(\frac{99}{100}\right)\right)-\cos(1)\right|\\
  & \approx & 9.00(10)^{-6}
 \end{eqnarray*}
 
@@ -1251,7 +1243,11 @@ accurate to three significant digits.
 \begin_inset Formula $\tilde{p}(10^{-2})$
 \end_inset
 
- using exact arithmetic, the value still misses 
+ using exact arithmetic, denoted here by 
+\begin_inset Formula $\tilde{p}^{*}(10^{-2})$
+\end_inset
+
+, the value still misses 
 \begin_inset Formula $f'(1)$
 \end_inset
 
@@ -1274,11 +1270,11 @@ error ! floating-point
 \begin_inset Formula $\tilde{p}(10^{-2})$
 \end_inset
 
-, what we have labeled 
+ deviates from the exact value, 
 \begin_inset Formula $\tilde{p}^{*}(10^{-2})$
 \end_inset
 
- in the table, deviates from the exact value of 
+, of 
 \begin_inset Formula $\tilde{p}(10^{-2})$
 \end_inset
 
@@ -1290,14 +1286,14 @@ error ! floating-point
 :
 \begin_inset Formula 
 \[
-\left|0.5402933008747335-50\left(\sin\left(\frac{101}{100}\right)-\sin\left(\frac{99}{100}\right)\right)\right|\approx1.58(10)^{-17},
+\left|50\left(\sin\left(\frac{101}{100}\right)-\sin\left(\frac{99}{100}\right)\right)-0.5402933008747335\right|\approx1.58(10)^{-17},
 \]
 
 \end_inset
 
 as small as one could expect.
  The absolute error 
-\begin_inset Formula $|\tilde{p}^{*}(10^{-2})-f'(1)|=|0.5402933008747335-\cos(1)|$
+\begin_inset Formula $|\tilde{p}(10^{-2})-f'(1)|=|0.5402933008747335-\cos(1)|$
 \end_inset
 
  is essentially all algorithmic.
@@ -1314,7 +1310,7 @@ On the other hand, the algorithmic error of
  is 
 \begin_inset Formula 
 \begin{eqnarray*}
-|\tilde{p}(10^{-7})-f'(1)| & = & \left|5000000\left(\sin\left(\frac{10000001}{10000000}\right)-\sin\left(\frac{9999999}{10000000}\right)\right)-\cos(1)\right|\\
+|\tilde{p}^{*}(10^{-7})-f'(1)| & = & \left|5000000\left(\sin\left(\frac{10000001}{10000000}\right)-\sin\left(\frac{9999999}{10000000}\right)\right)-\cos(1)\right|\\
  & \approx & 9.00(10)^{-16}
 \end{eqnarray*}
 
@@ -1339,7 +1335,7 @@ accurate to three significant digits.
 , or
 \begin_inset Formula 
 \[
-\left|0.5403023056738121-5000000\left(\sin\left(\frac{10000001}{10000000}\right)-\sin\left(\frac{9999999}{10000000}\right)\right)\right|\approx1.94(10)^{-10}.
+\left|5000000\left(\sin\left(\frac{10000001}{10000000}\right)-\sin\left(\frac{9999999}{10000000}\right)\right)-0.5403023056738121\right|\approx1.94(10)^{-10}.
 \]
 
 \end_inset
@@ -1733,6 +1729,17 @@ Key Concepts
 \end_layout
 
 \begin_layout Description
+\begin_inset Formula $\tilde{p}^{*}$
+\end_inset
+
+ An approximation of the value 
+\begin_inset Formula $p$
+\end_inset
+
+ calculated using exact arithmetic.
+\end_layout
+
+\begin_layout Description
 Absolute
 \begin_inset space ~
 \end_inset
@@ -1871,11 +1878,11 @@ error ! algorithmic
 
 : Error caused solely by the algorithm or equation involved in the approximation
 , 
-\begin_inset Formula $|\tilde{p}-p|$
+\begin_inset Formula $|\tilde{p}^{*}-p|$
 \end_inset
 
- where 
-\begin_inset Formula $\tilde{p}$
+, where 
+\begin_inset Formula $\tilde{p}^{*}$
 \end_inset
 
  is an approximation of 
@@ -1925,11 +1932,11 @@ t arithmetic,
 \end_inset
 
  where 
-\begin_inset Formula $\tilde{p}^{*}$
+\begin_inset Formula $\tilde{p}$
 \end_inset
 
  is computed using floating-point arithmetic, 
-\begin_inset Formula $\tilde{p}$
+\begin_inset Formula $\tilde{p}^{*}$
 \end_inset
 
  is computed using exact arithmetic, and both are computed according to
@@ -2073,7 +2080,7 @@ Some common functions and their Octave abbreviations.
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="6">
+<lyxtabular version="3" rows="9" columns="6">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top">
@@ -2299,6 +2306,10 @@ cot(x)
 
 \family typewriter
 exp(x)
+\family default
+ or 
+\family typewriter
+e^x
 \end_layout
 
 \end_inset
@@ -2520,6 +2531,77 @@ sqrt(x)
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $\sqrt[3]{x}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+cbrt(x)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sqrt[n]{x}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+nthroot(x)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $b^{x}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+b^x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 \begin_inset Formula $\sinh(x)$
 \end_inset
 
@@ -2614,9 +2696,6 @@ ceil(x)
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $b^{x}$
-\end_inset
-
 
 \end_layout
 
@@ -2627,8 +2706,6 @@ ceil(x)
 
 \begin_layout Plain Layout
 
-\family typewriter
-b^x
 \end_layout
 
 \end_inset
@@ -4778,24 +4855,25 @@ Find values for
 
 \begin_layout Enumerate
 Calculate (i) 
-\begin_inset Formula $\tilde{p}^{*}$
+\begin_inset Formula $\tilde{p}$
 \end_inset
 
- using a calculator or computer, (ii) the absolute error, 
-\begin_inset Formula $|\tilde{p}^{*}-p|$
+ using a calculator or computer (a floating-point calculation), (ii) the
+ absolute error, 
+\begin_inset Formula $|\tilde{p}-p|$
 \end_inset
 
 , and (iii) the relative error, 
-\begin_inset Formula $\frac{|\tilde{p}^{*}-p|}{|p|}$
+\begin_inset Formula $\frac{|\tilde{p}-p|}{|p|}$
 \end_inset
 
 .
  Then use the given value of 
-\begin_inset Formula $\tilde{p}$
+\begin_inset Formula $\tilde{p}^{*}$
 \end_inset
 
  to compute (iv) the algorithmic error, 
-\begin_inset Formula $|\tilde{p}-p|$
+\begin_inset Formula $|\tilde{p}^{*}-p|$
 \end_inset
 
  and (v) the round-off error, 
@@ -4879,7 +4957,7 @@ Let
 
 .
  Euler's method produces the approximation 
-\begin_inset Formula $\tilde{p}=\frac{1}{10}\sum_{i=1}^{10}e^{i/10}\sin i$
+\begin_inset Formula $\tilde{p}=\frac{1}{10}\sum_{i=1}^{9}e^{i/10}\sin i$
 \end_inset
 
 .
@@ -4888,7 +4966,12 @@ Let
 \end_inset
 
  is 
-\begin_inset Formula $0.2071647018159241499410798569$
+\begin_inset Formula $0.3550449718187918680449850763$
+\end_inset
+
+.
+ That is, use 
+\begin_inset Formula $\tilde{p}^{*}=0.3550449718187918680449850763$
 \end_inset
 
 .

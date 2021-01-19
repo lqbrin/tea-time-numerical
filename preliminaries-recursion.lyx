@@ -2888,10 +2888,6 @@ c_{0} & = & \frac{1}{10};\quad c_{n+1}=4c_{n}(1-c_{n}),\quad n\geq0
 \end_inset
 
 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -2930,24 +2926,30 @@ Write a function that uses a for loop to calculate the
 \end_layout
 
 \begin_layout Enumerate
-Write a program that calls these functions to calculate 
+Write a program that calls your function from part (a) to calculate 
 \begin_inset Formula $b_{30}$
 \end_inset
 
- and 
-\begin_inset Formula $c_{30}$
-\end_inset
-
 .
- How accurate are these calculations? HINT 
+ How accurate is this calculation? HINT: 
 \begin_inset Formula $b_{30}=\frac{1}{3}$
 \end_inset
 
- and 
-\begin_inset Formula $c_{30}=.32034$
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Write a program that calls your function from part (b) to calculate 
+\begin_inset Formula $c_{50}$
 \end_inset
 
- accurate to 5 decimal places.
+.
+ How accurate is this calculation? HINT: 
+\begin_inset Formula $c_{50}=.5392$
+\end_inset
+
+ accurate to 4 decimal places.
 \end_layout
 
 \begin_layout Enumerate
