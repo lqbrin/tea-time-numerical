@@ -5,10 +5,27 @@
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="Tea Time Numerical Analysis Fixed Point Iteration" />
-
+	<meta name=viewport content="width=device-width,initial-scale=1">  
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
     <title>Tea Time Numerical Analysis Fixed Point Iteration</title>
+
+  <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+  <script>
+	var params = {
+		"appName": "Fixed Point Iteration", 
+        "material_id": "hwducx9n",
+        "width": 800, 
+        "height": 800, 
+        "showToolBar": false, 
+        "showAlgebraInput": false, 
+        "showMenuBar": false,
+	};
+	var ggbApplet = new GGBApplet(params, true);
+	window.addEventListener("load", function() { 
+		ggbApplet.inject('ggb-element');
+	});
+  </script>
   </head>
 
   <body>
@@ -25,13 +42,8 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner" style="text-align:center;">
-      <table style="border-style:none; margin:auto;">
-	<tbody>
-	  <tr><td><img alt="GeoGebra Move Icon" src="images/geogebra_move.png" style="margin:0px 10px 0px 0px;" /></td><td style="vertical-align:middle;">Move objects such as points, functions, and sliders</td></tr>
-	  <tr><td><img alt="GeoGebra Move Graphics Icon" src="images/geogebra_move_grid.png" style="margin:0px 10px 0px 0px;" /></td><td style="vertical-align:middle;">Move coordinate grid. <span style="color:magenta;">Click the tiny triangle in the bottom right corner for zoom options.</span></td></tr>
-	</tbody>
-      </table>
-<iframe scrolling="no" src="https://www.geogebratube.org/material/iframe/id/125014/width/745/height/432/border/888888/rc/false/ai/false/sdz/false/smb/false/stb/true/stbh/true/ld/false/sri/true/at/preferjava" width="745px" height="432px" style="border:0px;"> </iframe>
+		  Fixed Point Iteration
+		  <div id="ggb-element"></div>
       </section>
     </div>
 
